@@ -59,12 +59,12 @@ BotKits является конструктором чат ботов. Это с
 
 #### Создано в соавторстве
 
-- 👨‍💻 [Екатерина Бычихина](https://github.com/)
+- 👨‍💻 [Екатерина Бычихина](https://github.com/BychikhinaE)
 - 👨‍💻 [Екатерина Столбова](https://github.com/)
 - 👨‍💻 [Кирилл Карпачев](https://github.com/Kirill-Karpachev)
-- 👨‍💻 [Михаил Карелин](https://github.com/)
-- 👨‍💻 [Славяна Родина](https://github.com/)
+- 👨‍💻 [Михаил Карелин](https://github.com/Kimer1990)
+- 👨‍💻 [Славяна Родина](https://github.com/SlavyanaR)
 - 👨‍💻 [Руслан Ахмадиев](https://github.com/)
-- 👨‍💻 [Константин Ванчуренков](https://github.com/)
-- 👨‍💻 [Максим Тищенко](https://github.com/)
+- 👨‍💻 [Константин Ванчуренков](https://github.com/Wacorasu)
+- 👨‍💻 [Максим Тищенко](https://github.com/maxtish)
 - 👨‍💻 [Ярослав Потрапелюк](https://github.com/MrStnr21)
