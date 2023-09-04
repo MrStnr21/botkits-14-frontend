@@ -1,0 +1,61 @@
+/* Переменные ограничивают ширину контента */
+$max-content-width: 1440px;
+$min-content-width: 320px;
+
+/* Переменные основных цветов в приложении*/
+$default-grey-color: #f8f9fb;
+$hover-grey-color: #f2f4f8;
+$focus-grey-color: #e4e9f1;
+$disabled-grey-color: #ccd4e0;
+$default-dark-grey-color: #a6b3c9;
+$placeholder-grey-color: #bfc9d9;
+
+$default-blue-color: #243cbb;
+$hover-blue-color: #435cdb;
+$active-blue-color: #2743ce;
+$disabled-blue-color: #ecefff;
+
+$primary-text-color: #060c23;
+$default-green-color: #22ffaa;
+$error-red-color: #ff5555;
+$white-color: #ffff;
+
+/* Переменные размеров шрифта */
+$h2-font-size: 32px;
+$h3-font-size: 24px;
+$h4-font-size: 18px;
+$l-font-size: 16px;
+$m-font-size: 14px;
+$s-font-size: 13px;
+$xs-font-size: 12px;
+
+/* Переменные высоты строки */
+$h2-line-height: 41.6px;
+$h3-line-height: 31.2px;
+$h4-line-height: 23.4px;
+$l-line-height: 24px;
+$m-line-height: 21px;
+$s-line-height: 19.5px;
+$xs-line-height: 18px;
+
+/* Переменные жирности шрифта */
+$bold: 600;
+$semi-bold: 500;
+$normal: 400;
+
+/* Переменные расстояния между буквами */
+$h2-letter-space: -0.2px;
+$h5-letter-space: 0.5px;
+$l-letter-space: 0.3px;
+$m-letter-space: 0.3px;
+$s-letter-space: 0.2px;
+
+/* Переменные радиуса скругления */
+$border-radius-185: 185px;
+$border-radius-50: 50px;
+$border-radius-30: 30px;
+$border-radius-15: 15px;
+$border-radius-10: 10px;
+$border-radius-8: 8px;
+$border-radius-5: 5px;
+
