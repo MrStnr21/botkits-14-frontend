@@ -3,7 +3,14 @@ import { FC } from 'react';
 import stylesApp from './app.module.scss';
 
 const App: FC = (): JSX.Element => {
-  return <div className={stylesApp.app} />;
+  return (
+    <div className={stylesApp.app}>
+      <h1>Hi!</h1>
+      <button type="button" className={stylesApp.button}>
+        Click!
+      </button>
+    </div>
+  );
 };
 
 export default App;
