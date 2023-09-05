@@ -1,0 +1,99 @@
+@import '../../../components/app/vars';
+
+.button {
+  padding: 0;
+  border: none;
+  font-size: $m-font-size;
+  font-weight: $bold;
+  letter-spacing: $button-letter-space;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'IBM Plex Mono', sans-serif;
+  transition: background-color 0.1s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Стили варианта кнопки*/
+.default {
+  border-radius: $border-radius-10;
+  width: 100%;
+}
+
+.circle {
+  border-radius: $border-radius-circle;
+  aspect-ratio: 1 / 1;
+}
+
+/* Стили размера кнопки*/
+.medium {
+  height: 46px;
+  line-height: $button-m-line-height;
+}
+
+.large {
+  height: 65px;
+  line-height: $button-l-line-height;
+}
+
+/* Стили цвета кнопки*/
+.blue {
+  color: $white-color;
+  background-color: $button-default-blue-color;
+}
+
+.blue:hover {
+  background-color: $button-hover-blue-color;
+}
+
+.blue:active {
+  background-color: $button-pressed-blue-color;
+}
+
+.blue:disabled {
+  background-color: $button-disabled-blue-color;
+}
+
+.green {
+  color: $primary-text-color;
+  background-color: $button-default-green-color;
+}
+
+.green:hover {
+  background-color: $button-hover-green-color;
+}
+
+.green:active {
+  background-color: $button-pressed-green-color;
+}
+
+.green:disabled {
+  color: rgba(0, 0, 0, 0.4);
+  background-color: $button-disabled-green-color;
+}
+
+.grey {
+  color: $primary-text-color;
+  background-color: $button-default-grey-color;
+}
+
+.grey:hover {
+  color: $default-blue-color;
+  background-color: $button-hover-grey-color;
+}
+
+.grey:active {
+  color: $default-blue-color;
+  background-color: $button-pressed-grey-color;
+  box-shadow: $s-box-shadow;
+}
+
+.grey:disabled {
+  color: $default-dark-grey-color;
+  background-color: $button-disabled-grey-color;
+}
+
+.grey:disabled:active {
+  box-shadow: none;
+}
