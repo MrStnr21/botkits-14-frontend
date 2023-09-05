@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import '../src/vendor/fonts.css';
+// import '../src/vendor/fonts.css'; у нас нет папки vendor)
 
 const preview: Preview = {
   parameters: {
