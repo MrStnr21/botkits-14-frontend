@@ -6,7 +6,12 @@ import { FC, useState } from 'react';
 import stylesBotCard from './bot-card.module.scss';
 import tg from '../../images/icon/40x40/telegram/default.svg';
 
-const BotCard: FC = ({ platform_icon, bot_name }: any): JSX.Element => {
+interface IBotCard {
+  platform_icon: any;
+  bot_name: any;
+}
+
+const BotCard: FC<IBotCard> = ({ platform_icon, bot_name }): JSX.Element => {
   const icon = platform_icon === '' ? platform_icon : tg;
   const name = bot_name === '' ? bot_name : 'Название бота';
 
