@@ -1,0 +1,42 @@
+@import '../../../components/app/vars';
+
+.button {
+  background-color: white;
+  width: 579px;
+  height: 76px;
+  border: 2px solid $button-default-grey-color;
+  transition:
+    border .1s linear,
+    box-shadow .1s linear;
+  border-radius: $border-radius-10;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+}
+
+.button:hover {
+  border: 2px solid rgba(0, 0, 0, 0);
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+}
+
+.image_box {
+  width: 173px;
+  height: 173px;
+  border-radius: $border-radius-circle;
+  background-color: $button-default-grey-color;
+  transition: background-color .1s linear;
+  position: absolute;
+  z-index: 1;
+  top: -48px;
+  right: 432px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover .image_box {
+  background-color: $button-disabled-green-color;
+}
+
+
