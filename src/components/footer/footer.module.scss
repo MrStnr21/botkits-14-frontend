@@ -1,0 +1,25 @@
+@import "../app/_vars";
+
+.footer {
+  display: flex;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 14px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-top: 1px solid #d7deea;
+  background-color:$white-color;
+  // z-index: 1;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.text {
+  font-family: 'OpenSans', Arial, Helvetica, sans-serif;
+  font-weight: $normal;
+  font-style: normal;
+  font-size: $m-font-size;
+  line-height: $m-line-height;
+  width: fit-content;
+}
