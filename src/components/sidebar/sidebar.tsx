@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { NavLink, useLocation } from 'react-router-dom';
-// import { useContext, useEffect, useState } from 'react';
-import stylesSidebar from './sidebar.module.css';
+import {NavLink
+ } from 'react-router-dom';
+import React, {  useState } from 'react';
+import stylesSidebar from './sidebar.module.scss';
 
 import dashboardIcon from '../../images/icon/side bar/dashboard.svg';
 import mailingIcon from '../../images/icon/side bar/mailing.svg';
@@ -14,138 +15,125 @@ import dialogueIcon from '../../images/icon/side bar/dialogue.svg';
 import rocketIcon from '../../images/icon/side bar/rocket.svg';
 import minilandingIcon from '../../images/icon/side bar/minilanding.svg';
 import crmIcon from '../../images/icon/side bar/crm.svg';
-
-const linkStyle = ({ isActive }: { isActive: boolean }) =>
-  isActive
-    ? `${stylesSidebar.navlink} ${stylesSidebar['navlink-active']}`
-    : `${stylesSidebar.navlink}`;
+import menuIcon from '../../images/icon/24x24/common/menu-grey.svg'
+import Logo from '../../ui/icons/logo';
 
 export default function Sidebar() {
-  // const [expanded, setExpanded] = useState(false);
-  // const [isBotBuilder, setIsBotBuilder] = useState(false);
-  const { pathname } = useLocation();
-  // const { sidebarOpen, setSidebarOpen } = useContext(Context);
-  useEffect(() => {
-    // setSidebarOpen(false);
-    // setExpanded(false);
-    // setIsBotBuilder(pathname.endsWith('bot-builder'));
-  }, [pathname]);
+  const [open, setState] = useState(true);
 
-  // function menuExpandHandler() {
-  //   setSidebarOpen(!sidebarOpen);
-  //   setExpanded((value) => !value);
-  // }
+  function toggleSidebar() {
+    setState(!open);
+  }
 
   return (
     <div
-      className={stylesSidebar.wrapper}
-      // className={`${styles.sidebar} ${
+    className={`${stylesSidebar.sidebar} ${
+      open ? stylesSidebar.sidebarOpen : stylesSidebar.sidebarClose
+    }`}
+>
+      <button
+        type="button"
+        onClick={toggleSidebar}
+        className={stylesSidebar.toggle}
+      >
+        <img
+            src={menuIcon}
+            alt="Меню"
+            className={stylesSidebar.icon}
+          />
+      </button>
 
-      //   expanded ? styles['sidebar-expanded'] : ''
-      // } ${isBotBuilder ? styles.sidebar_white : ''}`}
-    >
-      {/* {!isBotBuilder && (
-        <button
-          type="button"
-          onClick={menuExpandHandler}
-          className={styles['expand-button']}
-        >
-          {expanded ? menuCollapseIcon : menuExpandIcon}
-        </button>
-      )} */}
-
-      <div className={stylesSidebar.sidebar}>
-        <div className={stylesSidebar.title}>
-          <FullLogo />
-        </div>
-        <nav className={stylesSidebar.navigation}>
-          <NavLink to="/add-bot" className={stylesSidebar.addbutton}>
-            <p className={stylesSidebar.addtext}>Добавить бота</p>
-          </NavLink>
-
-          <NavLink to="/" className={linkStyle}>
-            <img
-              src={dashboardIcon}
-              alt="Дашборд."
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Дашборд</p>
-          </NavLink>
-
-          <NavLink to="/bot-builder" className={linkStyle}>
-            <img
-              src={constructorIcon}
-              alt="Воронки"
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Воронки</p>
-          </NavLink>
-
-          <NavLink to="/mailing" className={linkStyle}>
-            <img
-              src={mailingIcon}
-              alt="Рассылки"
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Рассылки</p>
-          </NavLink>
-
-          <NavLink to="/lists" className={linkStyle}>
-            <img src={listsIcon} alt="Списки" className={stylesSidebar.icon} />
-            <p className={stylesSidebar.navtext}>Списки</p>
-          </NavLink>
-
-          <NavLink to="/subscription" className={linkStyle}>
-            <img
-              src={chartIcon}
-              alt="Статистика"
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Статистика</p>
-          </NavLink>
-
-          <NavLink to="/chat" className={linkStyle}>
-            <img
-              src={dialogueIcon}
-              alt="Диалоги"
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Диалоги</p>
-          </NavLink>
-
-          <NavLink to="/partnership" className={linkStyle}>
-            <img
-              src={rocketIcon}
-              alt="Партнерская программа"
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Партнерская программа</p>
-          </NavLink>
-
-          <NavLink to="/share" className={linkStyle}>
-            <img
-              src={accessIcon}
-              alt="Общий доступ"
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Общий доступ</p>
-          </NavLink>
-
-          <NavLink to="/minilanding" className={linkStyle}>
-            <img
-              src={minilandingIcon}
-              alt="Мини-лендинг"
-              className={stylesSidebar.icon}
-            />
-            <p className={stylesSidebar.navtext}>Мини-лендинг</p>
-          </NavLink>
-
-          <NavLink to="/crm" className={linkStyle}>
-            <img src={crmIcon} alt="CRM" className={stylesSidebar.icon} />
-            <p className={stylesSidebar.navtext}>CRM</p>
-          </NavLink>
-        </nav>
+      <div className={stylesSidebar.logo}>
+        {open ?  <FullLogo /> : <Logo/>}
       </div>
+
+      <nav className={stylesSidebar.navigation}>
+        <NavLink to="/add-bot" className={stylesSidebar.addbutton}>
+          <p className={stylesSidebar.addtext}>Добавить бота</p>
+        </NavLink>
+
+        <NavLink to="/" className={stylesSidebar.link}>
+          <img
+            src={dashboardIcon}
+            alt="Дашборд."
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Дашборд</p>
+        </NavLink>
+
+        <NavLink to="/bot-builder" className={stylesSidebar.link}>
+          <img
+            src={constructorIcon}
+            alt="Воронки"
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Воронки</p>
+        </NavLink>
+
+        <NavLink to="/mailing" className={stylesSidebar.link}>
+          <img
+            src={mailingIcon}
+            alt="Рассылки"
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Рассылки</p>
+        </NavLink>
+
+        <NavLink to="/lists" className={stylesSidebar.link}>
+          <img src={listsIcon} alt="Списки" className={stylesSidebar.icon} />
+          <p className={stylesSidebar.navtext}>Списки</p>
+        </NavLink>
+
+        <NavLink to="/subscription" className={stylesSidebar.link}>
+          <img
+            src={chartIcon}
+            alt="Статистика"
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Статистика</p>
+        </NavLink>
+
+        <NavLink to="/chat" className={stylesSidebar.link}>
+          <img
+            src={dialogueIcon}
+            alt="Диалоги"
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Диалоги</p>
+        </NavLink>
+
+        <NavLink to="/partnership" className={stylesSidebar.link}>
+          <img
+            src={rocketIcon}
+            alt="Партнерская программа"
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Партнерская программа</p>
+        </NavLink>
+
+        <NavLink to="/share" className={stylesSidebar.link}>
+          <img
+            src={accessIcon}
+            alt="Общий доступ"
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Общий доступ</p>
+        </NavLink>
+
+        <NavLink to="/minilanding" className={stylesSidebar.link}>
+          <img
+            src={minilandingIcon}
+            alt="Мини-лендинг"
+            className={stylesSidebar.icon}
+          />
+          <p className={stylesSidebar.navtext}>Мини-лендинг</p>
+        </NavLink>
+
+        <NavLink to="/crm" className={stylesSidebar.link}>
+          <img src={crmIcon} alt="CRM" className={stylesSidebar.icon} />
+          <p className={stylesSidebar.navtext}>CRM</p>
+        </NavLink>
+      </nav>
     </div>
   );
 }

@@ -1,15 +1,15 @@
 import { FC } from 'react';
-
-import stylesApp from './app.module.scss';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import stylesApp from './app.module.scss';
+import Sidebar from '../sidebar/sidebar';
 
 const App: FC = (): JSX.Element => {
   return (
-    <div className={stylesApp.app}>
-      <h1>Hi!</h1>
-      <button type="button" className={stylesApp.button}>
-        Click!
-      </button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Sidebar />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

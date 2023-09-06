@@ -1,11 +1,166 @@
-.wrapper {
-  display: flex;
-}
+@import '../app/vars';
+
 .sidebar {
-  position: sticky;
-  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  margin-left: 16px;
+  width: 70px;
+  // min-height: calc(100vh - 32px);
+  background-color: $default-grey-color;
+  border-radius: 10px;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 18px;
+  // z-index: 1;
+  // overflow: hidden;
+}
+
+.sidebarOpen {
+  width: 240px;
+
+  .navtext {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .addbutton {
+    overflow: visible;
+    position: relative;
+    position: static;
+    width: 182px;
+    height: 48px;
+    border-radius: 10px;
+    background-image: none;
+    overflow: hidden;
+  }
+
+  .addtext {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .logo {
+    margin-left: 0;
+    margin-left: 65px;
+  }
+}
+
+.sidebarClose {
+  width: 70px;
+}
+
+.toggle{
+  display: block;
+  position: absolute;
+  right: -65px;
+  top: 5px;
+  border: 1px solid red;
+  background-color: transparent;
+  z-index: 1;
+
+    &:hover {
+      cursor: pointer;
+    }
+    .icon {
+      width: 24px;
+      height: auto;
+    }
+}
+
+.logo{
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  width: max-content;
+  overflow-x: hidden;
+  transition: all 0.3s;
+}
+
+.navigation{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.addbutton{
+  box-sizing: border-box;
+  position: relative;
+  right: 5px;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 43px;
+  padding: 13px;
+  border-radius: 50%;
+  background-color: $default-blue-color;
+  background-image: url('../../images/icon/24x24/screen navigation/plus.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.3s;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $hover-blue-color;
+  }
+}
+
+.addtext {
+  display: block;
+  width: 46px;
+  height: 46px;
+  background-color: $default-blue-color;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: all 0.4s;
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-weight: 600;
+  letter-spacing: $m-letter-space;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.link{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: max-content;
+  min-width: 100%;
+  margin-left: 8px;
+  margin-bottom: 15px;
+  stroke: $disabled-grey-color;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: $normal;
+  font-size: $l-font-size;
+  letter-spacing: $m-letter-space;
+  text-decoration: none;
+  color: $primary-text-color;
+  overflow: hidden;
+
+  &:active {
+    stroke: $default-blue-color;
+  color: $default-blue-color;
+  }
+
+  &:hover {
+    stroke: $hover-blue-color;
+    color: $hover-blue-color;
+  }
 }
 
 .icon {
 
+}
+
+.navtext{
+  opacity: 0;
+  max-width: 140px;
+  visibility: hidden;
+  transition: all 0.2s;
+  overflow: hidden;
 }
