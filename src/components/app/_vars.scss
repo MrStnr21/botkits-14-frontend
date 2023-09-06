@@ -20,22 +20,6 @@ $default-green-color: #22ffaa;
 $error-red-color: #ff5555;
 $white-color: #ffff;
 
-/* Переменные цветов фона базовых кнопок */
-$button-default-grey-color: #e4e9f1;
-$button-hover-grey-color: #e4e9f1;
-$button-pressed-grey-color: #ecefff;
-$button-disabled-grey-color: #f2f4f8;
-
-$button-default-blue-color: #243cbb;
-$button-hover-blue-color: #435cdb;
-$button-pressed-blue-color: #2743ce;
-$button-disabled-blue-color: #ecefff;
-
-$button-default-green-color: #22ffaa;
-$button-hover-green-color: #70ffc8;
-$button-pressed-green-color: #22ffaa;
-$button-disabled-green-color: #85ffd0;
-
 /* Переменные размеров шрифта */
 $h2-font-size: 32px;
 $h3-font-size: 24px;
@@ -101,3 +85,42 @@ $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 0;
   background: transparent;
 }
+
+/* КНОПКИ */
+/* Элемент Button */
+/* Переменные цветов */
+$button-default-grey-color: #e4e9f1;
+$button-hover-grey-color: #e4e9f1;
+$button-pressed-grey-color: #ecefff;
+$button-disabled-grey-color: #f2f4f8;
+
+$button-default-blue-color: #243cbb;
+$button-hover-blue-color: #435cdb;
+$button-pressed-blue-color: #2743ce;
+$button-disabled-blue-color: #ecefff;
+
+$button-default-green-color: #22ffaa;
+$button-hover-green-color: #70ffc8;
+$button-pressed-green-color: #22ffaa;
+$button-disabled-green-color: #85ffd0;
+
+/* Переменные размеров */
+$l-button-heigth: 65px;
+$m-button-heigth: 46px;
+
+$l-button-icon-size: 30px;
+
+$l-button-icon-stroke-width: 3px;
+$m-button-icon-stroke-width: 2px;
+
+/* Элемент ButtonIconCopy */
+/* Переменные цветов */
+$button-icon-copy-default-color: #a6b3c9;
+$button-icon-copy-hover-color: #243cbb;
+$button-icon-copy-pressed-color: #243cbb;
+$button-icon-copy-disabled-color: #d7deea;
+
+$button-icon-copy-pressed-background-color: #ecefff;
+
+/* Переменные размеров */
+$button-icon-copy-heigth: 40px;
