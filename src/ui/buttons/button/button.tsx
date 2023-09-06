@@ -6,6 +6,7 @@
 
 import React, { FC } from 'react';
 import cn from 'classnames';
+import { ReactSVG } from 'react-svg';
 
 import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
 
@@ -43,7 +44,7 @@ const Button: FC<IButton> = ({
       type={buttonHtmlType}
       disabled={disabled}
     >
-      {children || <img src={PlusIcon} alt="PlusIcon" />}
+      {children || <ReactSVG src={PlusIcon} />}
     </button>
   );
 };

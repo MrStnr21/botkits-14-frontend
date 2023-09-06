@@ -7,12 +7,21 @@
   font-weight: $bold;
   letter-spacing: $button-letter-space;
   text-transform: uppercase;
-  text-align: center;
   font-family: 'IBM Plex Mono', sans-serif;
-  transition: background-color 0.1s linear;
+  transition: all 0.1s linear;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.button div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button svg {
+  transition: stroke 0.2s linear;
 }
 
 /* Стили варианта кнопки*/
@@ -28,19 +37,33 @@
 
 /* Стили размера кнопки*/
 .medium {
-  height: 46px;
+  height: $m-button-heigth;
   line-height: $button-m-line-height;
 }
 
+.medium svg {
+  stroke-width: $m-button-icon-stroke-width;
+}
+
 .large {
-  height: 65px;
+  height: $l-button-heigth;
   line-height: $button-l-line-height;
+}
+
+.large svg {
+  stroke-width: $l-button-icon-stroke-width;
+  height: $l-button-icon-size;
+  width: $l-button-icon-size;
 }
 
 /* Стили цвета кнопки*/
 .blue {
   color: $white-color;
   background-color: $button-default-blue-color;
+}
+
+.blue svg {
+  stroke: $white-color;
 }
 
 .blue:hover {
@@ -60,6 +83,10 @@
   background-color: $button-default-green-color;
 }
 
+.green svg {
+  stroke: $primary-text-color;
+}
+
 .green:hover {
   background-color: $button-hover-green-color;
 }
@@ -71,6 +98,10 @@
 .green:disabled {
   color: rgba(0, 0, 0, 0.4);
   background-color: $button-disabled-green-color;
+}
+
+.green:disabled svg {
+  opacity: 0.5;
 }
 
 .grey {
