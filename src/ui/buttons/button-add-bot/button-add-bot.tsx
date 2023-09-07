@@ -13,7 +13,7 @@ interface IButtonAddBot {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
   onClick?: VoidFunction;
   disabled?: boolean;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const ButtonAddBot: FC<IButtonAddBot> = ({
