@@ -37,8 +37,8 @@ $l-line-height: 24px;
 $m-line-height: 21px;
 $s-line-height: 19.5px;
 $xs-line-height: 18px;
-$button-l-line-height: 24.12px;
-$button-m-line-height: 18.76px;
+$button-line-height-134: 134%;
+$button-line-height-130: 130%;
 
 /* Переменные жирности шрифта */
 $bold: 600;
@@ -104,3 +104,21 @@ $button-icon-copy-pressed-background-color: #ecefff;
 
 /* Переменные размеров */
 $button-icon-copy-heigth: 40px;
+
+/* Элемент ButtonAddBot */
+/* Переменные цветов */
+$button-add-bot-default-color: #a6b3c9;
+$button-add-bot-hover-color: #243cbb;
+$button-add-bot-pressed-color: #243cbb;
+$button-add-bot-disabled-color: #ccd4e0;
+
+$button-add-bot-default-background-color: #f2f4f8;
+$button-add-bot-pressed-background-color: #ecefff;
+
+/* Переменные размеров */
+$button-add-bot-heigth: 172px;
+
+$button-add-bot-icon-size: 46px;
+
+$button-add-bot-border-width: 3px;
+$button-add-bot-stroke-width: 2px;

@@ -6,8 +6,9 @@
   font-size: $m-font-size;
   font-weight: $bold;
   letter-spacing: $button-letter-space;
-  text-transform: uppercase;
+  line-height: $button-line-height-134;
   font-family: 'IBM Plex Mono', sans-serif;
+  text-transform: uppercase;
   transition: all 0.1s linear;
   display: flex;
   align-items: center;
@@ -21,7 +22,7 @@
 }
 
 .button svg {
-  transition: stroke 0.2s linear;
+  transition: stroke 0.1s linear;
 }
 
 /* Стили варианта кнопки*/
@@ -38,7 +39,6 @@
 /* Стили размера кнопки*/
 .medium {
   height: $m-button-heigth;
-  line-height: $button-m-line-height;
 }
 
 .medium svg {
@@ -47,7 +47,6 @@
 
 .large {
   height: $l-button-heigth;
-  line-height: $button-l-line-height;
 }
 
 .large svg {
