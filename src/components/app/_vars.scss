@@ -59,3 +59,22 @@ $border-radius-10: 10px;
 $border-radius-8: 8px;
 $border-radius-5: 5px;
 
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+%screen-reader {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+%button-style-reset {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
