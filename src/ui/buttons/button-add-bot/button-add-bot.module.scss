@@ -1,36 +1,29 @@
 @import '../../../components/app/vars';
 
 .button {
-  padding: 0;
-  border: none;
+  @extend %button-style-reset;
+  @extend %flex-element-center;
   font-size: $l-font-size;
   font-weight: $bold;
   letter-spacing: $h5-letter-space;
   line-height: $button-line-height-130;
   font-family: 'IBM Plex Mono', sans-serif;
   transition: all 0.1s linear;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: $button-add-bot-heigth;
   width: 100%;
   border-radius: $border-radius-30;
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @extend %flex-element-center;
   flex-direction: column;
   gap: 14px;
 }
 
 .icon {
+  @extend %flex-element-center;
   width: $button-add-bot-icon-size;
   height: $button-add-bot-icon-size;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   border: $button-add-bot-border-width solid;
   border-radius: $border-radius-circle;
@@ -38,9 +31,7 @@
 }
 
 .icon div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @extend %flex-element-center;
 }
 
 .icon svg {

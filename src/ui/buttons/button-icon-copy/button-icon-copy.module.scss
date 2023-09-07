@@ -1,12 +1,9 @@
 @import '../../../components/app/vars';
 
 .button {
-  padding: 0;
-  border: none;
+  @extend %button-style-reset;
+  @extend %flex-element-center;
   transition: all 0.1s linear;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: $border-radius-10;
   height: $button-icon-copy-heigth;
   background-color: transparent;
@@ -14,9 +11,7 @@
 }
 
 .button div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @extend %flex-element-center;
 }
 
 .button svg {

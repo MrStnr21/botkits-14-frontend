@@ -1,17 +1,14 @@
 @import '../../../components/app/vars';
 
 .button {
-  padding: 0;
-  border: none;
+  @extend %button-style-reset;
+  @extend %flex-element-center;
   font-size: $m-font-size;
   font-weight: $bold;
   letter-spacing: $l-letter-space;
   line-height: $button-line-height-150;
   font-family: 'IBM Plex Mono', sans-serif;
   transition: all 0.1s linear;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   flex-direction: column;
   gap: 16px;
   background-color: transparent;
@@ -28,9 +25,7 @@
 }
 
 .container div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @extend %flex-element-center;
 }
 
 .plus_icon svg {
@@ -47,6 +42,7 @@
 .text {
   padding: 0;
   margin: 0;
+  align-self: flex-start;
 }
 
 /* Стили цвета кнопки*/
