@@ -1,0 +1,107 @@
+@import '../../../components/app/vars';
+
+.button {
+  padding: 0;
+  border: none;
+  font-size: $l-font-size;
+  font-weight: $bold;
+  letter-spacing: $h5-letter-space;
+  line-height: $button-line-height-130;
+  font-family: 'IBM Plex Mono', sans-serif;
+  transition: all 0.1s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $button-add-bot-heigth;
+  width: 100%;
+  border-radius: $border-radius-30;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.icon {
+  width: $button-add-bot-icon-size;
+  height: $button-add-bot-icon-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: $button-add-bot-border-width solid;
+  border-radius: $border-radius-circle;
+  transition: all 0.1s linear;
+}
+
+.icon div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  stroke-width: $button-add-bot-stroke-width;
+  transition: stroke 0.1s linear;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+}
+
+/* Стили цвета кнопки*/
+
+.button {
+  color: $button-add-bot-default-color;
+  background-color: $button-add-bot-default-background-color;
+}
+
+.icon {
+  border-color: $default-dark-grey-color;
+}
+
+.button svg {
+  stroke: $button-add-bot-default-color;
+}
+
+.button:hover {
+  color: $button-add-bot-hover-color;
+}
+
+.button:hover .icon {
+  border-color: $button-add-bot-hover-color;
+}
+
+.button:hover svg {
+  stroke: $button-add-bot-hover-color;
+}
+
+.button:active {
+  color: $button-add-bot-pressed-color;
+  background-color: $button-add-bot-pressed-background-color;
+}
+
+.button:active .icon {
+  border-color: $button-add-bot-pressed-color;
+}
+
+.button:active svg {
+  stroke: $button-add-bot-pressed-color;
+}
+
+.button:disabled {
+  color: $button-add-bot-disabled-color;
+  background-color: $button-add-bot-default-background-color;
+}
+
+.button:disabled .icon {
+  border-color: $button-add-bot-disabled-color;
+}
+
+.button:disabled svg {
+  stroke: $button-add-bot-disabled-color;
+}
