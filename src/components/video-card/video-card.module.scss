@@ -1,0 +1,96 @@
+@import '../app/vars';
+
+// Размер элемента
+%size-m {
+  width: 264px;
+  height: 132px;
+}
+
+%size-s {
+  width: 172px;
+  height: 96px;
+}
+
+
+.container{
+  position: relative;
+  border-radius: $border-radius-5;
+  overflow: hidden;
+   &.size-m{
+    @extend %size-m;
+  }
+  &.size-s{
+    @extend %size-s;
+  }
+}
+
+.prewiew {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.5s ease;
+
+  &.hover, &:hover {
+    background-color:  rgba(#060C23, 0.4);
+
+    .playButton{
+      width: 47px;
+      height: 47px;
+      background-image: url('../../images/icon/add content/play-circle.svg');
+      background-size: 45px 45px;
+      filter: drop-shadow(0px 14px 56px rgba(21, 18, 51, 0.12));
+    }
+  }
+
+}
+
+.playButton{
+  @extend %button-style-reset;
+}
+
+.closeButton{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 15px;
+  height: 15px;
+  mask-image: url('../../images/icon/24x24/common/close.svg');
+  background-color: $disabled-grey-color;
+  mask-position: center;
+  mask-size: 15px 15px;
+  @extend %button-style-reset;
+  z-index: 2;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+  }
+}
+
+.visuallyHidden{
+  @extend %screen-reader;
+}
+
+.video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;;
+  height: 100%;;
+  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  display: flex;
+  border: none;
+}
