@@ -4,10 +4,7 @@
   background-color: white;
   width: 579px;
   height: 76px;
-  border: 2px solid $button-default-grey-color;
-  transition:
-    border .1s linear,
-    box-shadow .1s linear;
+  transition: box-shadow .1s linear;
   border-radius: $border-radius-10;
   overflow: hidden;
   position: relative;
@@ -16,8 +13,12 @@
 }
 
 .button:hover {
-  border: 2px solid rgba(0, 0, 0, 0);
   box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+}
+
+.button__disabled {
+  @extend .button;
+  pointer-events: none;
 }
 
 .image_box {
@@ -30,13 +31,33 @@
   z-index: 1;
   top: -48px;
   right: 432px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @extend %flex-element-center;
 }
 
 .button:hover .image_box {
   background-color: $button-disabled-green-color;
 }
 
+.text {
+  width: 579px;
+  height: 76px;
+  border: 2px solid $button-default-grey-color;
+  transition: border .1s linear;
+  border-radius: $border-radius-10;
+  margin: 0;
+  box-sizing: border-box;
+  line-height: 72px;
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: $m-font-size;
+  font-weight: $bold;
+  letter-spacing: $l-letter-space;
+}
 
+.button:hover .text {
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.text__disabled {
+  @extend .text;
+  color: $button-add-bot-disabled-color;
+}
