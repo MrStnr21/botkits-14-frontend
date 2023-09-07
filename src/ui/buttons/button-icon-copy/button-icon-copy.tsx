@@ -5,7 +5,7 @@ import CopyIcon from '../../../images/icon/24x24/common/copy.svg';
 
 import stylesButtonIconCopy from './button-icon-copy.module.scss';
 
-interface IButtonIconCopy {
+export interface IButtonIconCopy {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
   onClick?: VoidFunction;
   disabled?: boolean;
