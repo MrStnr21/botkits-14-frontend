@@ -12,7 +12,8 @@ import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
 
 import stylesButton from './button.module.scss';
 
-interface IButton {
+export interface IButton {
+  variant: 'default' | 'circle';
   size?: 'medium' | 'large';
   color?: 'blue' | 'green' | 'grey';
   buttonHtmlType?: 'button' | 'submit' | 'reset';
@@ -22,8 +23,9 @@ interface IButton {
 }
 
 const Button: FC<IButton> = ({
+  variant = 'default',
   size = 'medium',
-  color = 'green',
+  color = 'blue',
   buttonHtmlType = 'button',
   onClick,
   disabled,
@@ -31,9 +33,9 @@ const Button: FC<IButton> = ({
 }) => {
   const mainCn = cn(
     stylesButton.button,
+    stylesButton[variant],
     stylesButton[size],
-    stylesButton[color],
-    children ? stylesButton.default : stylesButton.circle
+    stylesButton[color]
   );
 
   return (

@@ -9,7 +9,7 @@ import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
 
 import stylesButtonAddSampleBot from './button-add-sample-bot.module.scss';
 
-interface IButtonAddSampleBot {
+export interface IButtonAddSampleBot {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
   onClick?: VoidFunction;
   disabled?: boolean;
