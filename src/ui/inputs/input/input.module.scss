@@ -36,6 +36,10 @@
   &:disabled::placeholder {
     color: $focus-grey-color;
   }
+
+  &:disabled {
+    color: $focus-grey-color;
+  }
 }
 
 .incorrect {
@@ -122,13 +126,35 @@
   max-width: 580px;
   background-color: $default-grey-color;
   border-radius: $border-radius-10;
+  padding-right: 4px;
 }
 
 .selects_items {
   display: flex;
-  padding: 16px 12px;
+  padding: 16px 8px 16px 12px;
   gap: 8px;
   flex-wrap: wrap;
+  max-height: 146px;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #D7DEEA;
+    border-radius: 17px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 18px 0;
+  }
+}
+
+.scroll {
+  padding: 16px 4px 16px 12px;
 }
 
 .selects_button {
@@ -155,9 +181,86 @@
     fill: $default-dark-grey-color;
     color: #6392AB;
   }
+
+  &:disabled * {
+    fill: $disabled-grey-color;
+    color: #D7DEEA;
+  }
 }
 
 .selects_text {
   margin: 0;
   color: $placeholder-grey-color;
+}
+
+.image {
+  max-width: 36px;
+  min-width: 36px;
+  max-height: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+}
+
+.message {
+  display: flex;
+  max-width: 526px;
+  min-width: 272px;
+  background-color: $default-grey-color;
+  border-radius: $border-radius-10;
+  min-height: 48px;
+}
+
+.message_input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px 0 0 10px;
+  outline: 0;
+  border: 0;
+  background-color: $default-grey-color;
+  font-family: "Open Sans", sans-serif;
+  font-size: $s-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+  letter-spacing: $m-letter-space;
+  color: $primary-text-color;
+
+  &::placeholder {
+    color: $default-dark-grey-color;
+  }
+}
+
+.message_hidden {
+  display: flex;
+  gap: 8px;
+}
+
+.message_buttons {
+  display: flex;
+  gap: 8px;
+  padding-right: 16px;
+}
+
+.message_button {
+  background: 0;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon_plus {
+  width: 28px;
+  transition: .2s linear;
+
+  * {
+    fill: $default-dark-grey-color;
+  }
+}
+
+.icon_plus_rotate {
+  transform: rotate(-45deg);
+  transition: .2s linear;
+}
+
+.icon_clip * {
+  stroke: $default-dark-grey-color;
 }
