@@ -1,4 +1,11 @@
-// to do: footer
-// https://trello.com/c/inJq0YmK/3-footer
+import stylesFooter from './footer.module.scss';
 
-export {};
+function Footer() {
+  return (
+    <footer className={stylesFooter.footer}>
+      <p className={stylesFooter.text}>&copy; 2023 BotKits</p>
+    </footer>
+  );
+}
+
+export default Footer;
