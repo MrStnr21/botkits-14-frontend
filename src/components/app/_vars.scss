@@ -65,7 +65,8 @@ $border-radius-5: 5px;
 $border-radius-circle: 50%;
 
 /* Переменные тени элемента */
-$m-box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+$l-box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+$m-box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
 $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
 /* Шаблонныe селекторы
@@ -165,3 +166,13 @@ $button-add-sample-bot-heigth: 88px;
 $button-add-sample-bot-width: 188px;
 
 $button-add-sample-bot-stroke-width: 2px;
+
+/* Элемент ButtonAddSocial */
+/* Переменные цветов */
+$button-add-social-default-background-color: #f8f9fb;
+$button-add-social-pressed-background-color: transparent;
+
+/* Переменные размеров */
+$button-add-social-size: 124px;
+
+$button-add-social-icon-size: 52px;

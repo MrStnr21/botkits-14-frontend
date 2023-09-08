@@ -30,10 +30,8 @@ const ButtonAddBot: FC<IButtonAddBot> = ({
       type={buttonHtmlType}
       disabled={disabled}
     >
-      <div className={stylesButtonAddBot.container}>
-        <ReactSVG className={stylesButtonAddBot.icon} src={PlusIcon} />
-        <p className={stylesButtonAddBot.text}>{children}</p>
-      </div>
+      <ReactSVG className={stylesButtonAddBot.icon} src={PlusIcon} />
+      <p className={stylesButtonAddBot.text}>{children}</p>
     </button>
   );
 };

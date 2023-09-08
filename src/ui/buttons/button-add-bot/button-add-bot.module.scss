@@ -3,6 +3,8 @@
 .button {
   @extend %button-style-reset;
   @extend %flex-element-center;
+  flex-direction: column;
+  gap: 14px;
   font-size: $l-font-size;
   font-weight: $bold;
   letter-spacing: $h5-letter-space;
@@ -12,12 +14,6 @@
   height: $button-add-bot-heigth;
   width: 100%;
   border-radius: $border-radius-30;
-}
-
-.container {
-  @extend %flex-element-center;
-  flex-direction: column;
-  gap: 14px;
 }
 
 .icon {

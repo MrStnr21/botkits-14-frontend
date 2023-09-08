@@ -7,7 +7,7 @@
   font-weight: $bold;
   letter-spacing: $l-letter-space;
   line-height: $button-line-height-150;
-  font-family: 'IBM Plex Mono', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
   flex-direction: column;
   gap: 16px;
@@ -65,7 +65,7 @@
 
 .button:hover .container {
   background-color: transparent;
-  box-shadow: $m-box-shadow;
+  box-shadow: $l-box-shadow;
 }
 
 .button:hover .plus_icon svg {
@@ -78,7 +78,7 @@
 
 .button:active .container {
   background-color: transparent;
-  box-shadow: $m-box-shadow;
+  box-shadow: $l-box-shadow;
 }
 
 .button:active .plus_icon svg {
