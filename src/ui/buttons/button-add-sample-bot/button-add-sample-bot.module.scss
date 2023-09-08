@@ -19,7 +19,7 @@
   align-items: center;
   gap: 34px;
   border-radius: $border-radius-185;
-  height: $button-add-sample-bot-heigth;
+  height: $button-add-sample-bot-height;
   width: $button-add-sample-bot-width;
   transition: all 0.1s linear;
 }
@@ -34,8 +34,8 @@
 }
 
 .template_icon svg {
-  height: $button-add-sample-bot-heigth;
-  width: $button-add-sample-bot-heigth;
+  height: $button-add-sample-bot-height;
+  width: $button-add-sample-bot-height;
   transition: all 0.1s linear;
 }
 

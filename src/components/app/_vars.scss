@@ -114,8 +114,8 @@ $button-pressed-green-color: #22ffaa;
 $button-disabled-green-color: #85ffd0;
 
 /* Переменные размеров */
-$l-button-heigth: 65px;
-$m-button-heigth: 46px;
+$l-button-height: 65px;
+$m-button-height: 46px;
 
 $l-button-icon-size: 30px;
 
@@ -132,7 +132,7 @@ $button-icon-copy-disabled-color: #d7deea;
 $button-icon-copy-pressed-background-color: #ecefff;
 
 /* Переменные размеров */
-$button-icon-copy-heigth: 40px;
+$button-icon-copy-height: 40px;
 
 /* Элемент ButtonAddBot */
 /* Переменные цветов */
@@ -145,7 +145,7 @@ $button-add-bot-default-background-color: #f2f4f8;
 $button-add-bot-pressed-background-color: #ecefff;
 
 /* Переменные размеров */
-$button-add-bot-heigth: 172px;
+$button-add-bot-height: 172px;
 
 $button-add-bot-icon-size: 46px;
 
@@ -162,7 +162,7 @@ $button-add-sample-bot-disabled-color: #ccd4e0;
 $button-add-sample-bot-default-background-color: #f2f4f8;
 
 /* Переменные размеров */
-$button-add-sample-bot-heigth: 88px;
+$button-add-sample-bot-height: 88px;
 $button-add-sample-bot-width: 188px;
 
 $button-add-sample-bot-stroke-width: 2px;
@@ -176,3 +176,64 @@ $button-add-social-pressed-background-color: transparent;
 $button-add-social-size: 124px;
 
 $button-add-social-icon-size: 52px;
+
+/* Элемент ConstructorDefaultButton */
+/* Переменные цветов */
+$constructor-default-button-default-color: #131118;
+$constructor-default-button-hover-color: #243cbb;
+$constructor-default-button-pressed-color: #243cbb;
+$constructor-default-button-disabled-color: #ccd4e0;
+
+$constructor-default-button-default-background-color: #e4e9f1;
+$constructor-default-button-pressed-background-color: #ecefff;
+
+/* Переменные размеров */
+$constructor-default-button-height: 95px;
+
+/* Элемент ConstructorIconBotton */
+/* Переменные цветов */
+$constructor-icon-button-default-color: #a6b3c9;
+$constructor-icon-button-hover-color: #243cbb;
+$constructor-icon-button-pressed-color: #243cbb;
+$constructor-icon-button-disabled-color: #ccd4e0;
+
+$constructor-icon-button-default-background-color: #f2f4f8;
+$constructor-icon-button-pressed-background-color: #ecefff;
+
+/* Переменные размеров */
+$constructor-icon-button-height: 52px;
+$constructor-icon-button-width: 56px;
+
+/* Элемент ConstructorAddButton */
+/* Переменные цветов */
+$constructor-add-button-default-color: #8392ab;
+$constructor-add-button-hover-color: #243cbb;
+$constructor-add-button-pressed-color: #243cbb;
+$constructor-add-button-disabled-color: #d7deea;
+
+$constructor-add-button-default-icon-color: #a6b3c9;
+$constructor-add-button-hover-icon-color: #243cbb;
+$constructor-add-button-pressed-icon-color: #243cbb;
+$constructor-add-button-disabled-icon-color: #ccd4e0;
+
+$constructor-add-button-default-background-color: #f8f9fb;
+$constructor-add-button-pressed-background-color: #ecefff;
+
+/* Переменные размеров */
+$constructor-add-button-height: 52px;
+
+/* Элемент ConstructorHelperButton */
+/* Переменные цветов */
+$constructor-helper-button-ask-icon-default-color: #243cbb;
+$constructor-helper-button-ask-icon-hover-color: #435cdb;
+$constructor-helper-button-ask-icon-pressed-color: #243cbb;
+
+$constructor-helper-button-delete-icon-default-color: #a6b3c9;
+$constructor-helper-button-delete-icon-hover-color: #ccd4e0;
+$constructor-helper-button-delete-icon-pressed-color: #a6b3c9;
+
+$constructor-helper-button-delete-line-color: #f2f4f8;
+
+/* Переменные размеров */
+$constructor-helper-button-height: 40px;
+$constructor-helper-button-width: 96px;

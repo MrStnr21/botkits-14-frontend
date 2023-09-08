@@ -1,0 +1,60 @@
+@import '../../../components/app/vars';
+
+.container {
+  @extend %flex-element-center;
+  transition: all 0.1s linear;
+  height: $constructor-helper-button-height;
+  width: $constructor-helper-button-width;
+  border-radius: $border-radius-10;
+  box-shadow: $m-box-shadow;
+}
+
+.container div {
+  height: $constructor-helper-button-height;
+  @extend %flex-element-center;
+}
+
+.container svg {
+  transition: stroke 0.1s linear;
+}
+
+.ask_button {
+  @extend %button-style-reset;
+  padding-right: 12px;
+  border-right: solid 1px $constructor-helper-button-delete-line-color;
+}
+
+.delete_button {
+  @extend %button-style-reset;
+  padding-left: 12px;
+}
+
+/* Стили цвета кнопки*/
+
+.container {
+  background-color: transparent;
+}
+
+.ask_button svg {
+  stroke: $constructor-helper-button-ask-icon-default-color;
+}
+
+.delete_button svg {
+  stroke: $constructor-helper-button-delete-icon-default-color;
+}
+
+.ask_button:hover svg {
+  stroke: $constructor-helper-button-ask-icon-hover-color;
+}
+
+.delete_button:hover svg {
+  stroke: $constructor-helper-button-delete-icon-hover-color;
+}
+
+.ask_button:active svg {
+  stroke: $constructor-helper-button-ask-icon-pressed-color;
+}
+
+.delete_button:active svg {
+  stroke: $constructor-helper-button-delete-icon-pressed-color;
+}
