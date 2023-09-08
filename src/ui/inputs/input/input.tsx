@@ -8,6 +8,7 @@ import { ReactComponent as Emoji } from '../../../images/icon/24x24/constructor/
 import { ReactComponent as File } from '../../../images/icon/24x24/add content/file.svg';
 import { ReactComponent as Slash } from '../../../images/icon/24x24/common/slash.svg';
 import { ReactComponent as Zap } from '../../../images/icon/24x24/common/zap.svg';
+import { ReactComponent as Check } from '../../../images/icon/24x24/common/check.svg';
 
 interface IInput {
   isInvalid?: boolean;
@@ -32,9 +33,8 @@ interface IPageItem {
   text?: string;
   type?: 'default' | 'upload';
   disabled?: true | false;
-  selected?: true | false;
   image?: string;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 interface ILoadPages {
@@ -140,17 +140,17 @@ const PageItem: FC<IPageItem> = ({
   type = 'default',
   text = 'Страница',
   disabled,
-  selected,
   onClick,
   image = imgDefault,
 }) => {
+  const [selected, setSelected] = useState(false);
   return (
     <button
       className={`${stylesInput.select} ${
         type === 'upload' ? stylesInput.select_upload : stylesInput.select_item
       } ${selected && stylesInput.selected}`}
       disabled={disabled}
-      onClick={onClick}
+      onClick={() => (type === 'default' ? setSelected(!selected) : onClick())}
       type="button"
     >
       {type === 'upload' ? (
@@ -160,7 +160,16 @@ const PageItem: FC<IPageItem> = ({
         </>
       ) : (
         <>
-          <img className={stylesInput.image} src={image} alt="img" />
+          <div className={stylesInput.image}>
+            <img src={image} alt="img" />
+            {selected && (
+              <>
+                <div className={stylesInput.image_check} />
+                <Check className={stylesInput.icon_check} />
+              </>
+            )}
+          </div>
+
           <p className={stylesInput.text}>{text}</p>
         </>
       )}

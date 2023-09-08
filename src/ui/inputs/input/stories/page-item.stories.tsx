@@ -13,7 +13,6 @@ export const PageItemDefault: Story = {
   args: {
     type: 'default',
     disabled: false,
-    selected: false,
   },
 };
 
