@@ -17,6 +17,10 @@ export default {
         type: 'radio',
       },
     },
+    url: {
+      type: 'string',
+      description: 'Ввежите url, на который будет ссылаться кнопка',
+    },
     onClick: {
       action: 'clicked',
       description: 'Переход на url с инструкцией',
@@ -34,6 +38,7 @@ const Template: StoryFn<IButtonInstruction> = (args) => <ButtonInstruction {...a
 export const Button = {
   args: {
     disabled: false,
+    url: '',
   },
   render: Template,
 };

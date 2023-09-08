@@ -1,0 +1,41 @@
+@import '../../../components/app/vars';
+
+.button {
+  @extend %button-style-reset;
+  width: 196px;
+  height: 64px;
+  display: flex;
+  background-color: white;
+  transition: background-color .1s linear;
+  border-radius: $border-radius-10;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: $hover-grey-color;
+}
+
+
+.icon {
+  margin: 0 16px 0;
+  opacity: .3;
+  transition: opacity .1s linear;
+}
+
+.button:hover .icon {
+  color: $default-blue-color;
+  opacity: 1;
+}
+
+.name {
+  font-size: $m-font-size;
+  font-weight: $bold;
+  letter-spacing: $m-letter-space;
+  line-height: $m-line-height;
+  font-family: 'Open Sans';
+  margin: 0;
+}
+
+.button:hover .name {
+  color: $default-blue-color;
+}

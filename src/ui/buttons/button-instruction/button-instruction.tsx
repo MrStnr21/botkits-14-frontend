@@ -9,7 +9,7 @@ import FaqIcon from '../../../images/icon/add bot/tutorial.svg';
 
 export interface IButtonInstruction {
   url: string;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 const ButtonInstruction: FC<IButtonInstruction> = ({ url, disabled }) => {
@@ -49,7 +49,3 @@ const ButtonInstruction: FC<IButtonInstruction> = ({ url, disabled }) => {
 };
 
 export default ButtonInstruction;
-/* <img
-          src={FaqIcon}
-          alt="FAQ"
-        /> */
