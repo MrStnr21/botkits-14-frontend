@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import stylesFooter from './footer.module.scss';
 
 const Footer: FC = (): JSX.Element => {
