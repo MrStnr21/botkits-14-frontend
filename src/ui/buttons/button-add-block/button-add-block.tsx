@@ -5,13 +5,12 @@
 // https://trello.com/c/ZimEto8x/7-buttons-contsructor
 
 import { FC } from 'react';
-import { ReactSVG } from 'react-svg';
 import stylesButtonAddBlock from './button-add-block.module.scss';
 import messageIcon from '../../../images/icon/24x24/add block/message-square.svg';
 
 export interface IButtonAddBlock {
-  icon?: string;
-  name?: string;
+  icon: string;
+  name: string;
   onClick?: VoidFunction;
   disabled?: boolean;
 }
@@ -29,7 +28,7 @@ const ButtonAddBlock: FC<IButtonAddBlock> = ({
       type="button"
       disabled={disabled}
     >
-      <ReactSVG src={icon} className={stylesButtonAddBlock.icon} />
+      <img src={icon} className={stylesButtonAddBlock.icon} alt="иконка" />
       <p className={stylesButtonAddBlock.name}>{name}</p>
     </button>
   );
