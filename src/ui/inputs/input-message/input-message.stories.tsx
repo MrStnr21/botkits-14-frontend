@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import { InputMessage } from '../input';
+import InputMessage from './input-message';
 
 const meta = {
   title: 'COMPONENTS/Fields/InputMessage',

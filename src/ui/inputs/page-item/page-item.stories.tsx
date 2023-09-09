@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import { PageItem } from '../input';
+import PageItem from './page-item';
 
 const meta = {
   title: 'COMPONENTS/Fields/PageItem',

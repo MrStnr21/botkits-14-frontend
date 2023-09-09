@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import { LoadPages } from '../input';
+import LoadPages from './load-pages';
 
 const meta = {
   title: 'COMPONENTS/Fields/LoadPages',
