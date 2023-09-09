@@ -1,9 +1,28 @@
-import type { Meta } from '@storybook/react';
-import Sidebar from './sidebar';
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import React from 'react';
+// import Sidebar from './sidebar';
+// import '../../index.scss';
+// import Footer from '../footer/footer';
+// import links from './sb-data';
 
-export default {
-  title: 'Components/Sidebar',
-  component: Sidebar,
-} satisfies Meta<typeof Sidebar>;
+// export default {
+//   title: 'Components/Sidebar',
+//   component: Sidebar,
+// };
 
-export const Default = () => <Sidebar />;
+// <BrowserRouter>
+//   <Routes>
+//     <Route path="/" element={<Sidebar />}>
+//       {links.map((item) => {
+//         return <Route path={item.navLink} element={<Footer />} />;
+//       })}
+//       <Route path="/site-vk" element={<Footer />} />
+//       <Route path="/add-bot" element={<Footer />} />
+//     </Route>
+//   </Routes>
+// </BrowserRouter>;
+
+// export const Default = () => <Sidebar />;
+
+// https://storybook.js.org/addons/storybook-addon-react-router-v6
+// eslint-disable-next-line storybook/default-exports
