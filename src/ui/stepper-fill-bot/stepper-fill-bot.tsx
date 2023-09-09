@@ -10,8 +10,8 @@ interface IStepperFillBot {
 }
 
 const StepperFillBot: FC<IStepperFillBot> = ({
-  step = 1,
-  text = 'Введите ключ',
+  step = '1 Шаг',
+  text = 'Ключ досупа',
   children,
 }) => {
   return (
