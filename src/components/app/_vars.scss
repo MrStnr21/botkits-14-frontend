@@ -9,6 +9,7 @@ $focus-grey-color: #e4e9f1;
 $disabled-grey-color: #ccd4e0;
 $default-dark-grey-color: #a6b3c9;
 $placeholder-grey-color: #bfc9d9;
+$icon-grey-color: #d7deea;
 
 $default-blue-color: #243cbb;
 $hover-blue-color: #435cdb;
@@ -77,4 +78,8 @@ $border-radius-5: 5px;
   border: none;
   padding: 0;
   background: transparent;
+
+  &:hover {
+    cursor: url("../../images/icon/cursor/pointing-hand.svg"), pointer;
+  }
 }
