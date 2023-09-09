@@ -10,70 +10,57 @@ import rocketIcon from '../../images/icon/side bar/rocket';
 import minilandingIcon from '../../images/icon/side bar/minilanding';
 import crmIcon from '../../images/icon/side bar/crm';
 
-interface ILink {
+export interface ILink {
   navLink: string;
-  icon: JSX.Element;
-  alt: string;
+  icon?: JSX.Element;
   text: string;
-  child?: Array<{
-    navLink: string;
-    text: string;
-  }>;
+  child?: Array<ILink>;
 }
 
-const links: Array<ILink> = [
+export const links: Array<ILink> = [
   {
     navLink: '/',
     icon: dashboardIcon,
-    alt: 'Дашборд.',
     text: 'Дашборд',
   },
   {
     navLink: '/bot-builder',
     icon: constructorIcon,
-    alt: 'Воронки.',
     text: 'Воронки',
   },
   {
     navLink: '/mailing',
     icon: mailingIcon,
-    alt: 'Рассылки.',
     text: 'Рассылки',
   },
   {
     navLink: '/lists',
     icon: listsIcon,
-    alt: 'Списки.',
     text: 'Списки',
   },
   {
     navLink: '/subscription',
     icon: chartsIcon,
-    alt: 'Статистика.',
     text: 'Статистика',
   },
   {
     navLink: '/chat',
     icon: dialogueIcon,
-    alt: 'Диалоги.',
     text: 'Диалоги',
   },
   {
     navLink: '/partnership',
     icon: rocketIcon,
-    alt: 'Партнерская программа.',
     text: 'Партнерская программа',
   },
   {
     navLink: '/share',
     icon: accessIcon,
-    alt: 'Общий доступ',
     text: 'Общий доступ',
   },
   {
     navLink: '/minilanding',
     icon: minilandingIcon,
-    alt: 'Мини-лендинг',
     text: 'Мини-лендинг',
     child: [
       {
@@ -85,9 +72,6 @@ const links: Array<ILink> = [
   {
     navLink: '/crm',
     icon: crmIcon,
-    alt: 'CRM',
     text: 'CRM',
   },
 ];
-
-export default links;

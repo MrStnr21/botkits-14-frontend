@@ -1,7 +1,24 @@
 import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
 import stylesSidebar from './sidebar.module.scss';
-import links from './sb-data';
+import { links, ILink } from './sb-data';
+
+// Элемент заголовка в навигации
+function Subheader({ navLink, icon, text }: ILink) {
+  return (
+    <NavLink
+      to={navLink}
+      className={(navData) =>
+        navData.isActive
+          ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}` // добавим селектор-модификатор
+          : stylesSidebar.navigation__link
+      }
+    >
+      {icon}
+      <p className={stylesSidebar.navigation__text}>{text}</p>
+    </NavLink>
+  );
+}
 
 export default function Sidebar() {
   const [isOpenSB, setStateSB] = useState(true);
@@ -57,17 +74,7 @@ export default function Sidebar() {
                     : stylesSidebar.nestedList_close
                 }`}
               >
-                <NavLink
-                  to={item.navLink}
-                  className={(navData) =>
-                    navData.isActive
-                      ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}` // добавим селектор-модификатор
-                      : stylesSidebar.navigation__link
-                  }
-                >
-                  {item.icon}
-                  <p className={stylesSidebar.navigation__text}>{item.text}</p>
-                </NavLink>
+                <Subheader {...item} />
                 <button
                   type="button"
                   onClick={expandList}
@@ -77,18 +84,7 @@ export default function Sidebar() {
                 <ul className={stylesSidebar.navigation__list_nested}>
                   {item.child.map((child) => (
                     <li key={child.text}>
-                      <NavLink
-                        to={child.navLink}
-                        className={(navData) =>
-                          navData.isActive
-                            ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}` // добавим селектор-модификатор
-                            : stylesSidebar.navigation__link
-                        }
-                      >
-                        <p className={stylesSidebar.navigation__text}>
-                          {child.text}
-                        </p>
-                      </NavLink>
+                      <Subheader {...child} />
                     </li>
                   ))}
                 </ul>
@@ -97,17 +93,7 @@ export default function Sidebar() {
               // нужен uuid пакет
               // ЗАГОЛОВОК БЕЗ ВЛОЖЕНИЙ
               <li key={item.text}>
-                <NavLink
-                  to={item.navLink}
-                  className={(navData) =>
-                    navData.isActive
-                      ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}` // добавим селектор-модификатор
-                      : stylesSidebar.navigation__link
-                  }
-                >
-                  {item.icon}
-                  <p className={stylesSidebar.navigation__text}>{item.text}</p>
-                </NavLink>
+                <Subheader {...item} />
               </li>
             )
           )}
