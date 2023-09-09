@@ -1,0 +1,57 @@
+@import '../../../components/app/vars';
+
+.wrapper {
+  max-width: 580px;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  max-width: 580px;
+  padding: 22px 24px;
+
+  color: $primary-text-color;
+  background-color: $default-grey-color;
+
+  font-family: 'Open Sans', sans-serif;
+  font-weight: $bold;
+  font-size: $m-font-size;
+  line-height: $m-line-height;
+  letter-spacing: $l-letter-space;
+
+  border-radius: $border-radius-10;
+  border: 1px solid transparent;
+  outline: 0;
+
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $placeholder-grey-color;
+  }
+
+  &:hover::placeholder {
+    color: $default-dark-grey-color;
+  }
+
+  &:disabled::placeholder {
+    color: $focus-grey-color;
+  }
+
+  &:disabled {
+    color: $focus-grey-color;
+  }
+}
+
+.incorrect {
+  border: 1px solid $error-red-color;
+}
+
+.incorrect_text {
+  color: $error-red-color;
+  position: absolute;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: $m-letter-space;
+  margin: 2px 0 0 0;
+  text-align: left;
+}
