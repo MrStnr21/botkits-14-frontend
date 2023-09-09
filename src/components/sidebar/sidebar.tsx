@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import stylesSidebar from './sidebar.module.scss';
 import { links, ILink } from './sb-data';
 
 // Элемент заголовка в навигации
-function Subheader({ navLink, icon, text }: ILink) {
+const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
   return (
     <NavLink
       to={navLink}
@@ -18,9 +18,9 @@ function Subheader({ navLink, icon, text }: ILink) {
       <p className={stylesSidebar.navigation__text}>{text}</p>
     </NavLink>
   );
-}
+};
 
-export default function Sidebar() {
+const Sidebar: FC = (): JSX.Element => {
   const [isOpenSB, setStateSB] = useState(true);
   const [isOpenNL, setStateNL] = useState(true);
 
@@ -106,4 +106,6 @@ export default function Sidebar() {
       </nav>
     </section>
   );
-}
+};
+
+export default Sidebar;
