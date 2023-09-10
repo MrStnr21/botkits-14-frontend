@@ -25,16 +25,21 @@ const LoadPages: FC<ILoadPages> = ({ arr = [], onClick, disabled }) => {
           <p className={stylesInput.selects_text}>Загрузить страницу</p>
         </button>
       ) : (
-        <div
+        <ul
           className={`${stylesInput.selects_items} ${
             arr.length > 5 ? stylesInput.scroll : ''
           }`}
         >
-          <PageItem type="upload" onClick={onClick} />
-          {arr.map((item: any) => (
-            <PageItem {...item} />
+          <li className={stylesInput.selects_item}>
+            <PageItem type="upload" onClick={onClick} />
+          </li>
+          {arr.map((item: any, index: number) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li className={stylesInput.selects_item} key={index}>
+              <PageItem {...item} />
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );
