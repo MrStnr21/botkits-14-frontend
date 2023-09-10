@@ -1,0 +1,58 @@
+@import '../../../components/app/vars';
+
+.button {
+  @extend %button-style-reset;
+  width: 196px;
+  height: 64px;
+  display: flex;
+  background-color: white;
+  transition: background-color .1s linear;
+  border-radius: $border-radius-10;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: $hover-grey-color;
+}
+
+.button:active {
+  background-color: $disabled-blue-color;
+}
+
+.button:disabled {
+  background-color: white;
+}
+
+.icon {
+  margin: 0 16px 0;
+  opacity: .3;
+  filter: none;
+  transition: opacity .1s linear;
+}
+
+.button:hover .icon {
+  opacity: 1;
+  filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg) brightness(77%) contrast(87%)
+}
+
+.button:disabled .icon {
+  opacity: .3;
+  filter: none;
+}
+
+.name {
+  font-size: $m-font-size;
+  font-weight: $bold;
+  letter-spacing: $m-letter-space;
+  line-height: $m-line-height;
+  font-family: 'Open Sans';
+  margin: 0;
+}
+
+.button:hover .name {
+  color: $default-blue-color;
+}
+
+.button:disabled .name {
+  color: $placeholder-grey-color;
+}

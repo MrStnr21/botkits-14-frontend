@@ -1,0 +1,103 @@
+@import '../../../components/app/vars';
+
+.button {
+  @extend %button-style-reset;
+  @extend %flex-element-center;
+  font-size: $m-font-size;
+  font-weight: $bold;
+  letter-spacing: $l-letter-space;
+  line-height: $button-line-height-150;
+  font-family: 'Open Sans', sans-serif;
+  transition: all 0.1s linear;
+  flex-direction: column;
+  gap: 16px;
+  background-color: transparent;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  border-radius: $border-radius-185;
+  height: $button-add-sample-bot-height;
+  width: $button-add-sample-bot-width;
+  transition: all 0.1s linear;
+}
+
+.container div {
+  @extend %flex-element-center;
+}
+
+.plus_icon svg {
+  stroke-width: $button-add-sample-bot-stroke-width;
+  transition: all 0.1s linear;
+}
+
+.template_icon svg {
+  height: $button-add-sample-bot-height;
+  width: $button-add-sample-bot-height;
+  transition: all 0.1s linear;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+  align-self: flex-start;
+}
+
+/* Стили цвета кнопки*/
+
+.button {
+  color: $primary-text-color;
+}
+
+.container {
+  background-color: $button-add-sample-bot-default-background-color;
+}
+
+.plus_icon svg {
+  stroke: $button-add-sample-bot-default-color;
+}
+
+.button:hover {
+  color: $button-add-sample-bot-hover-color;
+}
+
+.button:hover .container {
+  background-color: transparent;
+  box-shadow: $l-box-shadow;
+}
+
+.button:hover .plus_icon svg {
+  stroke: $button-add-sample-bot-hover-color;
+}
+
+.button:active {
+  color: $button-add-sample-bot-pressed-color;
+}
+
+.button:active .container {
+  background-color: transparent;
+  box-shadow: $l-box-shadow;
+}
+
+.button:active .plus_icon svg {
+  stroke: $button-add-sample-bot-pressed-color;
+}
+
+.button:disabled {
+  color: $button-add-sample-bot-disabled-color;
+}
+
+.button:disabled .container {
+  background-color: $button-add-sample-bot-default-background-color;
+  box-shadow: none;
+}
+
+.button:disabled .plus_icon svg {
+  stroke: $button-add-sample-bot-disabled-color;
+}
+
+.button:disabled .template_icon svg {
+  opacity: 0.5;
+}

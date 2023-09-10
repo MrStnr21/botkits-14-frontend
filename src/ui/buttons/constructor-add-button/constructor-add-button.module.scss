@@ -1,0 +1,68 @@
+@import '../../../components/app/vars';
+
+.button {
+  @extend %button-style-reset;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  gap: 8px;
+  font-size: $s-font-size;
+  font-weight: $normal;
+  letter-spacing: $m-letter-space;
+  line-height: $button-line-height-150;
+  font-family: 'Open Sans', sans-serif;
+  transition: all 0.1s linear;
+  height: $constructor-add-button-height;
+  width: 100%;
+  border-radius: $border-radius-10;
+}
+
+.button div {
+  @extend %flex-element-center;
+}
+
+.button svg {
+  transition: stroke 0.1s linear;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+}
+
+/* Стили цвета кнопки*/
+
+.button {
+  color: $constructor-add-button-default-color;
+  background-color: $constructor-add-button-default-background-color;
+}
+
+.button svg {
+  stroke: $constructor-add-button-default-icon-color;
+}
+
+.button:hover {
+  color: $constructor-add-button-hover-color;
+}
+
+.button:hover svg {
+  stroke: $constructor-add-button-hover-icon-color;
+}
+
+.button:active {
+  color: $constructor-add-button-pressed-color;
+  background-color: $constructor-add-button-pressed-background-color;
+}
+
+.button:active svg {
+  stroke: $constructor-add-button-pressed-icon-color;
+}
+
+.button:disabled {
+  color: $constructor-add-button-disabled-color;
+  background-color: $constructor-add-button-default-background-color;
+}
+
+.button:disabled svg {
+  stroke: $constructor-add-button-disabled-icon-color;
+}
