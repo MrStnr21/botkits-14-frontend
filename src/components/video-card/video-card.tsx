@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+
 import stylesVideo from './video-card.module.scss';
 
 interface IVideoElement {
@@ -23,7 +24,7 @@ const VideoCard: FC<IVideoElement> = ({
   size = 'm',
   hiddenRemoveButton,
   hover,
-}) => {
+}): JSX.Element => {
   const [isVisible, setIsVisible] = useState(true);
   const [isPlay, setIsPlay] = useState(false);
 
