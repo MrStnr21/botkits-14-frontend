@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import ConstructorHelperButton, {
   IConstructorHelperButton,
 } from './constructor-helper-botton';
-import AskPhoneIcon from '../../../images/icon/24x24/constructor/ask phone.svg';
+import AskPhoneIcon from '../../../images/icon/24x24/constructor/ask-phone.svg';
 import UrlIcon from '../../../images/icon/24x24/constructor/url.svg';
 
 export default {
