@@ -9,19 +9,21 @@ import stylesMenuSimple from './menu-simple.module.scss';
 export interface IMenuSimple {
   buttons: string[];
   isScroll?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'default' | 'large';
   isActive?: boolean;
   top?: number;
   left?: number;
+  onClick?: VoidFunction;
 }
 
 const MenuSimple: FC<IMenuSimple> = ({
   buttons,
   isScroll = false,
-  size = 'medium',
+  size = 'default',
   isActive = false,
   top = 0,
   left = 0,
+  onClick,
 }) => {
   let boxClassName = cn(stylesMenuSimple.box, stylesMenuSimple[size]);
 
@@ -39,6 +41,7 @@ const MenuSimple: FC<IMenuSimple> = ({
     <div
       style={{ top: `${top}px`, left: `${left}px` }}
       className={boxClassName}
+      onClick={onClick}
     >
       <ul className={stylesMenuSimple.ul}>
         {buttons.map((name) => {
