@@ -10,12 +10,18 @@ export interface IMenuSimple {
   buttons: string[];
   isScroll?: boolean;
   size?: 'small' | 'medium' | 'large';
+  isActive?: boolean;
+  top?: number;
+  left?: number;
 }
 
 const MenuSimple: FC<IMenuSimple> = ({
   buttons,
   isScroll = false,
   size = 'medium',
+  isActive = false,
+  top = 0,
+  left = 0,
 }) => {
   let boxClassName = cn(stylesMenuSimple.box, stylesMenuSimple[size]);
 
@@ -24,8 +30,16 @@ const MenuSimple: FC<IMenuSimple> = ({
     boxClassName += stylesMenuSimple.scroll;
   }
 
+  if (isActive) {
+    boxClassName += ' ';
+    boxClassName += stylesMenuSimple.active;
+  }
+
   return (
-    <div className={boxClassName}>
+    <div
+      style={{ top: `${top}px`, left: `${left}px` }}
+      className={boxClassName}
+    >
       <ul className={stylesMenuSimple.ul}>
         {buttons.map((name) => {
           return (

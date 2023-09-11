@@ -1,6 +1,8 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import MenuSimple, { IMenuSimple } from './menu-simple';
 
+const a = ['asd', 'dsd', 'sad', 'klfd', 'sa'];
+
 export default {
   title: 'UI/Menus/Menu-Simple',
   component: MenuSimple,
@@ -18,7 +20,7 @@ export default {
       type: 'string',
       description: 'Вариант размера кнопки',
       defaultValue: 'medium',
-      options: ['medium', 'large'],
+      options: ['small', 'medium', 'large'],
       control: {
         type: 'radio',
       },
@@ -69,37 +71,6 @@ export default {
 const Template: StoryFn<IMenuSimple> = (args) => <MenuSimple {...args} />;
 
 export const Blue = {
-  args: {
-    children: 'добавить бота',
-    variant: 'default',
-    size: 'medium',
-    color: 'blue',
-    buttonHtmlType: 'button',
-    disabled: false,
-  },
-  render: Template,
-};
-
-export const Green = {
-  args: {
-    children: 'добавить бота',
-    variant: 'default',
-    size: 'medium',
-    color: 'green',
-    buttonHtmlType: 'button',
-    disabled: false,
-  },
-  render: Template,
-};
-
-export const Grey = {
-  args: {
-    children: 'остановить',
-    variant: 'default',
-    size: 'medium',
-    color: 'grey',
-    buttonHtmlType: 'button',
-    disabled: false,
-  },
+  args: { buttons: a, size: 'medium', isActive: true },
   render: Template,
 };

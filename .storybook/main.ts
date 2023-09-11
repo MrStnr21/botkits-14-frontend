@@ -18,6 +18,4 @@ const config: StorybookConfig = {
   },
   staticDirs: ["../public"],
 };
-export default {
-  addons: ['storybook-addon-react-router-v6'],
-} satisfies StorybookConfig;
+export default config
