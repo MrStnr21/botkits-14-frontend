@@ -37,7 +37,10 @@ const TextField: FC = () => {
             (
             <EmojiPicker
               width={300}
-              onEmojiClick={(e) => setText(`${text}${e.emoji}`)}
+              onEmojiClick={(e) => {
+                setText(`${text}${e.emoji}`);
+                setShowEmojis(false);
+              }}
             />
             )
           </div>

@@ -2,37 +2,24 @@
 
 .textarea {
   position: relative;
-
-  // v1
-  // width: fit-content;
-
-  // v2
   width: 264px;
   background-color: $default-grey-color;
   border-radius: 12px;
   height: 102px;
   box-sizing: border-box;
-  padding: 12px 12px 28px;
-  z-index: 2;
+  padding: 12px 12px 8px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .textarea__input {
-  // v1
-  // width: 264px;
-  // background-color: $default-grey-color;
-  // border-radius: 12px;
-  // height: 102px;
-  // box-sizing: border-box;
-  // padding: 12px 12px 28px;
-
-  // v2
-  scroll-padding: 28px;
-  width: 100%;
-  height: 100%;
+  display: block;
+  height: 56px;
   background-color: inherit;
   padding: 0;
-  z-index: 2;
-  // common
+  z-index: 1;
   resize: none;
   border: none;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -49,15 +36,10 @@
 }
 
 .textarea__input:focus {
-  // v1
-  // outline: 1px solid $default-green-color;
-    // v2
    outline: none;
 }
 
 .textarea__input:focus ~.textarea__outline{
-  // width: 266px;
-  // height: 104px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -70,13 +52,7 @@
 }
 
 .textarea__footer {
-  // v2
-  z-index: 2;
-
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 5px;
+  z-index: 1;
   display: flex;
   align-items: center;
   font-family: 'IBM Plex Mono', Arial, sans-serif;
