@@ -1,0 +1,69 @@
+@import '../../components/app/vars';
+
+$width-mobile: 320px;
+
+.textarea {
+  position: relative;
+  width: fit-content;
+}
+
+.textarea__input {
+  width: 264px;
+  background-color: #f8f9fb;
+  border-radius: 12px;
+  height: 102px;
+  box-sizing: border-box;
+  padding: 12px 12px 28px 12px;
+  resize: none;
+  border: none;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: #060c23;
+}
+
+
+
+.textarea__input::placeholder {
+  color: #a6b3c9;
+}
+
+.textarea__input:focus {
+  outline: 1px solid #22ffaa;
+}
+
+.textarea__footer {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'IBM Plex Mono', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #a6b3c9;
+  column-gap: 12px;
+}
+
+.textarea__counter{
+  margin: 0;
+  margin-right: auto;
+}
+
+.textarea__icon {
+  cursor: pointer;
+}
+
+.textarea__emojiPicker {
+  position: absolute;
+  z-index: 10;
+  top: 20px;
+  right: -38px;
+}
