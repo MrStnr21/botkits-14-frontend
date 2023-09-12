@@ -32,7 +32,7 @@ export default {
     onClick: {
       action: 'clicked',
       description:
-        'Callback функция, вызываемая при клике. Значение сортировки можно получить через event.target.value',
+        'Callback функция, вызываемая при клике. Сюда передать стрелочную функцию с одним аргументом и setState с этим аргументом',
     },
     size: {
       type: 'string',
@@ -61,7 +61,7 @@ export default {
 
 const Template: StoryFn<IMenuSimple> = (args) => <MenuSimple {...args} />;
 
-export const Blue = {
+export const menuSimple = {
   args: { buttons, size: 'default', isActive: true },
   render: Template,
 };
