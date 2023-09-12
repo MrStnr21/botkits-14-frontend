@@ -1,7 +1,11 @@
 // to do: calendar
 // https://trello.com/c/cBVPYbCl/11-%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C
 import { FC, useEffect, useState } from 'react';
-import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
+import {
+  LocalizationProvider,
+  StaticDatePicker,
+  DateField,
+} from '@mui/x-date-pickers';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import ru from 'date-fns/locale/ru';
@@ -24,6 +28,30 @@ const Calendar: FC = () => {
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
       <ThemeProvider theme={calendarTheme}>
         <div className={stylesCalendar.container}>
+          <DateField
+            value={date}
+            fullWidth
+            helperText
+            sx={{
+              maxHeight: '40px',
+              marginBottom: '30px',
+              backgroundColor: '#F8F9FB',
+              '.MuiInputBase-input': {
+                fontSize: '13px',
+                fontWeight: 400,
+                fontStyle: 'normal',
+                lineHeight: '150%',
+                letterSpacing: '0.3px',
+                color: '#060C23',
+                padding: '10px 8px 10px 8px',
+              },
+              '.MuiOutlinedInput-notchedOutline': {
+                border: 'none',
+                borderRadius: '5px',
+                maxHeight: '40px',
+              },
+            }}
+          />
           <StaticDatePicker
             slotProps={{
               layout: {
@@ -74,9 +102,7 @@ const Calendar: FC = () => {
               actionBar: {
                 actions: [],
               },
-              toolbar: {
-                hidden: true,
-              },
+              toolbar: { hidden: true },
               calendarHeader: {
                 sx: {
                   paddingLeft: '5px',

@@ -1,0 +1,65 @@
+@import '../../../components/app/vars';
+
+.message {
+  display: flex;
+  max-width: 526px;
+  min-width: 272px;
+  background-color: $default-grey-color;
+  border-radius: $border-radius-10;
+  min-height: 48px;
+}
+
+.message_input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px 0 0 10px;
+  outline: 0;
+  border: 0;
+  background-color: $default-grey-color;
+  font-family: "Open Sans", sans-serif;
+  font-size: $s-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+  letter-spacing: $m-letter-space;
+  color: $primary-text-color;
+
+  &::placeholder {
+    color: $default-dark-grey-color;
+  }
+}
+
+.message_hidden {
+  display: flex;
+  gap: 8px;
+}
+
+.message_buttons {
+  display: flex;
+  gap: 8px;
+  padding-right: 16px;
+}
+
+.message_button {
+  background: 0;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon_plus {
+  width: 28px;
+  transition: .2s linear;
+
+  * {
+    fill: $default-dark-grey-color;
+  }
+}
+
+.icon_plus_rotate {
+  transform: rotate(-45deg);
+  transition: .2s linear;
+}
+
+.icon_clip * {
+  stroke: $default-dark-grey-color;
+}

@@ -1,0 +1,23 @@
+@import '../../components/app/vars';
+
+.stepper {
+  max-width: 580px;
+  width: 100%;
+}
+
+.stepper_step {
+  font-family: 'IBM Plex Mono';
+  font-weight: $bold;
+  font-size: $l-font-size;
+  line-height: $m-line-height;
+  letter-spacing: $h5-letter-space;
+
+  display: flex;
+  gap: 32px;
+
+  margin-bottom: 16px;
+
+  * {
+    margin: 0;
+  }
+}

@@ -1,0 +1,48 @@
+@import '../../../components/app/vars';
+
+.button {
+  @extend %button-style-reset;
+  @extend %flex-element-center;
+  transition: all 0.1s linear;
+  border-radius: $border-radius-10;
+  height: $constructor-icon-button-height;
+  width: $constructor-icon-button-width;
+}
+
+.button div {
+  @extend %flex-element-center;
+}
+
+.button svg {
+  transition: all 0.1s linear;
+}
+
+/* Стили цвета кнопки*/
+
+.button {
+  background-color: $constructor-icon-button-default-background-color;
+}
+
+.button svg {
+  stroke: $constructor-icon-button-default-color;
+}
+
+.button:hover svg {
+  stroke: $constructor-icon-button-hover-color;
+}
+
+.button:active {
+  background-color: $constructor-icon-button-pressed-background-color;
+}
+
+.button:active svg {
+  stroke: $constructor-icon-button-pressed-color;
+}
+
+.button:disabled {
+  background-color: $constructor-icon-button-default-background-color;
+}
+
+.button:disabled svg {
+  stroke: $constructor-icon-button-disabled-color;
+}
