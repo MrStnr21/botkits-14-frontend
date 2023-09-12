@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
 import stylesApp from './app.module.scss';
-import TextField from '../../ui/text-field/text-field';
+import DownloadFile from '../../ui/inputs/add-file/add-file';
+import { SIZE_INPUT } from '../../utils/constants';
 
 const App: FC = (): JSX.Element => {
   return (
@@ -10,7 +11,7 @@ const App: FC = (): JSX.Element => {
       <button type="button" className={stylesApp.button}>
         Click!
       </button>
-      <TextField />
+      <DownloadFile size={SIZE_INPUT.L} />
     </div>
   );
 };
