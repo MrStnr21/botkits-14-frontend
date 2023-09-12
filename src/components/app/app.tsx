@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import stylesApp from './app.module.scss';
+import TextField from '../../ui/text-field/text-field';
 
 const App: FC = (): JSX.Element => {
   return (
@@ -9,6 +10,7 @@ const App: FC = (): JSX.Element => {
       <button type="button" className={stylesApp.button}>
         Click!
       </button>
+      <TextField />
     </div>
   );
 };

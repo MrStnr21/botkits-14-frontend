@@ -22,6 +22,7 @@ const TextField: FC = () => {
         draggable={false}
         className={stylesTextField.textarea__input}
       />
+      <span className={stylesTextField.textarea__outline} />
 
       <div className={stylesTextField.textarea__footer}>
         <p className={stylesTextField.textarea__counter}>
