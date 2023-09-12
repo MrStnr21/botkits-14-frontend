@@ -1,0 +1,12 @@
+@import "../app/_vars";
+
+.container {
+  width:  296px;
+  border-radius: $border-radius-10;
+  padding-left: 19px;
+  padding-right: 19px;
+}
+
+.MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  border-radius: 4px;
+}
