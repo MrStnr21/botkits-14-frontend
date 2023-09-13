@@ -1,0 +1,66 @@
+@import '../../app/vars';
+
+.container {
+    text-align: start;
+    background-color: $default-grey-color;
+}
+
+.title {
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $h2-font-size;
+    font-weight: $bold;
+    line-height: $h2-line-height;
+    letter-spacing: $h2-letter-space;
+    color: $primary-text-color;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.wrapper_button {
+    display: flex;
+    width: 188px;
+    background-color: $hover-grey-color;
+    border-radius: 188px;
+}
+
+.button {
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+    background-image: url('../../../images/icon/template/answering machine.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.button_plus {
+    align-self: center;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    background-image: url('../../../images/icon/24x24/constructor/plus.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.name_template {
+    font-family: 'Open Sans', sans-serif;
+    font-size: $m-font-size;
+    font-weight: $bold;
+    line-height: $m-line-height;
+    letter-spacing: $m-letter-space;
+    color: $primary-text-color;
+}
