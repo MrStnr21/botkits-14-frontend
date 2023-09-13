@@ -12,11 +12,13 @@
     line-height: $h2-line-height;
     letter-spacing: $h2-letter-space;
     color: $primary-text-color;
+    margin-bottom: 24px;
 }
 
 .list {
     display: flex;
     flex-direction: row;
+    gap: 28px
 }
 
 .item {
@@ -37,7 +39,6 @@
     border-radius: 50%;
     width: 88px;
     height: 88px;
-    background-image: url('../../../images/icon/template/answering machine.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -63,4 +64,5 @@
     line-height: $m-line-height;
     letter-spacing: $m-letter-space;
     color: $primary-text-color;
+    margin-top: 16px;
 }

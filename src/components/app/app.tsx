@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import Templates from '../dashbord/bots-templates/bots-templates'; //для проверки компонента "Шаблоны"
 import stylesApp from './app.module.scss';
+
+import Templates from '../dashbord/bots-templates/bots-templates';
 
 const App: FC = (): JSX.Element => {
   return (

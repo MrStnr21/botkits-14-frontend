@@ -1,22 +1,41 @@
-// to do: BotsTemplates
-// https://trello.com/c/R4RTH1XP/22-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B
-// start
-import { FC } from 'react';
+import React, { FC } from 'react';
 import stylesTemplates from './bots-templates.module.scss';
 
-const Template: FC = (): JSX.Element => {
+const Template: FC<{ name: string; fileName: string }> = ({
+  name,
+  fileName,
+}) => {
   const click = () => {
     console.log('click');
   };
+
+  const importImage = async () => {
+    try {
+      const imageModule = await import(
+        `../../../images/icon/template/${fileName}.svg`
+      );
+      return imageModule.default;
+    } catch (error) {
+      console.error(`Error importing image for ${fileName}:`, error);
+      return null;
+    }
+  };
+
+  const [image, setImage] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    importImage().then((importedImage) => {
+      setImage(importedImage);
+    });
+  }, [fileName]);
+
   return (
     <div className={stylesTemplates.item}>
       <div className={stylesTemplates.wrapper_button}>
-        <button
-          type="button"
-          onClick={click}
-          className={stylesTemplates.button}
-          aria-label="xs"
-        />
+        {image && (
+          <img className={stylesTemplates.button} src={image} alt="Иконка" />
+        )}
+
         <button
           type="button"
           onClick={click}
@@ -24,17 +43,38 @@ const Template: FC = (): JSX.Element => {
           aria-label="xs"
         />
       </div>
-      <p className={stylesTemplates.name_template}>Бот автоответчик</p>
+      <p className={stylesTemplates.name_template}>{name}</p>
     </div>
   );
 };
 
 const Templates: FC = (): JSX.Element => {
+  const data = {
+    names_templates: [
+      'Бот автоответчик',
+      'Доставка еды',
+      'Демо бот',
+      'Опрос',
+      'Лидогенерация/HR ре...',
+      'Онлайн школа/Вебинар',
+    ],
+    names_files: [
+      'answering machine',
+      'food delivery',
+      'demo bot',
+      'poll',
+      'lead generation',
+      'e-learning',
+    ],
+  };
+
   return (
     <div className={stylesTemplates.container}>
       <h2 className={stylesTemplates.title}>Шаблоны</h2>
       <ul className={stylesTemplates.list}>
-        <Template />
+        {data.names_templates.map((name, index) => (
+          <Template key={name} name={name} fileName={data.names_files[index]} />
+        ))}
       </ul>
     </div>
   );
