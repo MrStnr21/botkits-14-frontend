@@ -122,3 +122,18 @@
 .grey:disabled:active {
   box-shadow: none;
 }
+
+
+/* Стиль для UI "Добавить кнопку" */
+.light-grey{
+  background-color: $constructor-icon-button-default-background-color;
+  color: #A6B3C9;
+  &:hover {
+    color: $constructor-icon-button-hover-color;
+  }
+}
+
+.button_active{
+  color: $constructor-icon-button-hover-color;
+  background-color: $constructor-icon-button-pressed-background-color;
+}

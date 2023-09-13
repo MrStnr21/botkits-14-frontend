@@ -1,0 +1,23 @@
+@import '../../../components/app/vars';
+
+.wrapper{
+  width: 400px;
+  // height: 76px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  @extend %flex-element-center;
+  gap: 6px;
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: #F8F9FB;
+}
+
+.btn__text{
+  text-align: center;
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 134%; /* 18.76px */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

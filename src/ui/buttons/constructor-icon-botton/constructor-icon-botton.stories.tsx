@@ -6,6 +6,7 @@ import AddVideoIcon from '../../../images/icon/24x24/add content/video.svg';
 import AddFileIcon from '../../../images/icon/24x24/add content/file.svg';
 import AddImageIcon from '../../../images/icon/24x24/add content/image.svg';
 import AddMusicIcon from '../../../images/icon/24x24/add content/music.svg';
+import { BUTTON_NAME } from '../../../utils/constants';
 
 export default {
   title: 'UI/Buttons/ConstructorIconBotton',
@@ -41,6 +42,38 @@ export default {
         type: 'select',
       },
     },
+    active: {
+      type: 'boolean',
+      description: 'Состояния после нажатия кнопки',
+      defaultValue: false,
+      options: [false, true],
+      control: {
+        type: 'radio',
+      },
+    },
+    text: {
+      type: 'string',
+      description: 'Подпись под кнопкой только для стиля Рассылки mailing',
+      options: [
+        BUTTON_NAME.AUDIO,
+        BUTTON_NAME.FILE,
+        BUTTON_NAME.VIDEO,
+        BUTTON_NAME.BTN,
+        BUTTON_NAME.IMAGE,
+        undefined,
+      ],
+      control: {
+        type: 'select',
+      },
+    },
+    styleBtn: {
+      type: 'string',
+      description: 'Иконка кнопки',
+      options: ['builder', 'mailing'],
+      control: {
+        type: 'select',
+      },
+    },
   },
   parameters: {
     layout: 'centered',
@@ -57,6 +90,17 @@ export const Button = {
     buttonHtmlType: 'button',
     disabled: false,
     icon: AddVideoIcon,
+  },
+  render: Template,
+};
+
+export const ButtonMLN = {
+  args: {
+    buttonHtmlType: 'button',
+    disabled: false,
+    icon: AddVideoIcon,
+    styleBtn: 'mailing',
+    text: BUTTON_NAME.VIDEO,
   },
   render: Template,
 };
