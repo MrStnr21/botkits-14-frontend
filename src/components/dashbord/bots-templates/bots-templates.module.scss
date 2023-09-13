@@ -18,14 +18,15 @@
 .list {
     display: flex;
     flex-direction: row;
-    gap: 28px
+    flex-wrap: wrap;
+    gap: 28px;
+    row-gap: 32px;
 }
 
 .item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
 }
 
 .wrapper_button {

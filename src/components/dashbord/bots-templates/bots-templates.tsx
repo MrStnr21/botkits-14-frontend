@@ -30,7 +30,7 @@ const Template: FC<{ name: string; fileName: string }> = ({
   }, [fileName]);
 
   return (
-    <div className={stylesTemplates.item}>
+    <li className={stylesTemplates.item}>
       <div className={stylesTemplates.wrapper_button}>
         {image && (
           <img className={stylesTemplates.button} src={image} alt="Иконка" />
@@ -44,7 +44,7 @@ const Template: FC<{ name: string; fileName: string }> = ({
         />
       </div>
       <p className={stylesTemplates.name_template}>{name}</p>
-    </div>
+    </li>
   );
 };
 
@@ -57,6 +57,12 @@ const Templates: FC = (): JSX.Element => {
       'Опрос',
       'Лидогенерация/HR ре...',
       'Онлайн школа/Вебинар',
+      'Закрытый клуб по под...',
+      'Агентство по недвиж...',
+      'Развлечения',
+      'Салон красоты',
+      'Онлайн-покупки',
+      'Вопрос/ответ',
     ],
     names_files: [
       'answering machine',
@@ -65,6 +71,12 @@ const Templates: FC = (): JSX.Element => {
       'poll',
       'lead generation',
       'e-learning',
+      'private club',
+      'real estate',
+      'entertainment',
+      'beauty',
+      'e-commerce',
+      'question',
     ],
   };
 
