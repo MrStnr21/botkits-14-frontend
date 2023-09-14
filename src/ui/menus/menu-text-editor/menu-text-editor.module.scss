@@ -1,0 +1,40 @@
+@import '../../../components/app/vars';
+
+.box {
+  display: none;
+  flex-direction: row;
+  width: 192px;
+  height: 40px;
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+  background-color: white;
+  border-radius: $border-radius-5;
+  position: absolute;
+}
+
+.active {
+  display: flex;
+}
+.button {
+  height: 100%;
+  width: 48px;
+  background-color: white;
+  border-radius: $border-radius-5;
+  border: none;
+  border-right: 1px solid $hover-grey-color;
+  cursor: pointer;
+}
+.button:last-of-type {
+  border: none;
+}
+.button:hover {
+  background-color: $default-grey-color;
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+}
+
+.icon__grey {
+  filter: invert(77%) sepia(17%) saturate(297%) hue-rotate(179deg) brightness(89%) contrast(93%);
+}
