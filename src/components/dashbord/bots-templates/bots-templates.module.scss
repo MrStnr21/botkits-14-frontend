@@ -84,4 +84,8 @@
     letter-spacing: $m-letter-space;
     color: $primary-text-color;
     margin-top: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 188px;
 }
