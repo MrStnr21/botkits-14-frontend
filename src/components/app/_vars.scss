@@ -90,7 +90,7 @@ $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: transparent;
 
   &:hover {
-    cursor: url("../../images/icon/cursor/pointing-hand.svg"), pointer;
+    cursor: url('../../images/icon/cursor/pointing-hand.svg'), pointer;
   }
 }
 
@@ -99,6 +99,9 @@ $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   justify-content: center;
   align-items: center;
 }
+
+/*  Курсор  */
+$cursor: url('../../images/icon/cursor/pointing-hand.svg'), pointer;
 
 /* КНОПКИ */
 /* Элемент Button */
@@ -244,6 +247,13 @@ $constructor-helper-button-delete-line-color: #f2f4f8;
 $constructor-helper-button-height: 40px;
 $constructor-helper-button-width: 96px;
 
+/* ADD BOT */
+/* Секция HowItWorks */
+/* Переменные цветов */
+$how-it-works-arrow-icon-default-color: #bfc9d9;
+$how-it-works-arrow-icon-hover-color: #d7deea;
 
-/*  Курсор  */
-$cursor: url("../../images/icon/cursor/pointing-hand.svg"), pointer;
+/* Переменные размеров */
+$how-it-works-arrow-icon-size: 26px;
+
+$how-it-works-arrow-icon-stroke-width: 3px;

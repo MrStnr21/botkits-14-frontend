@@ -5,46 +5,39 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 import stylesButtonInstruction from './button-instruction.module.scss';
-import FaqIcon from '../../../images/icon/add bot/tutorial.svg';
 
 export interface IButtonInstruction {
+  buttonHtmlType?: 'button' | 'submit' | 'reset';
   url: string;
   disabled?: boolean;
+  children: React.ReactNode;
+  icon: string;
 }
 
-const ButtonInstruction: FC<IButtonInstruction> = ({ url, disabled }) => {
+const ButtonInstruction: FC<IButtonInstruction> = ({
+  buttonHtmlType = 'button',
+  url,
+  disabled,
+  children,
+  icon,
+}) => {
   const onClick = () => {
     window.open(url, '_blank');
   };
 
-  const disabledClassnames = {
-    button:
-      disabled === false
-        ? stylesButtonInstruction.button
-        : stylesButtonInstruction.button__disabled,
-    image: disabled === false ? '1' : '.8',
-    text:
-      disabled === false
-        ? stylesButtonInstruction.text
-        : stylesButtonInstruction.text__disabled,
-  };
-
   return (
-    <div onClick={onClick} className={disabledClassnames.button}>
+    <button
+      // eslint-disable-next-line react/button-has-type
+      type={buttonHtmlType}
+      onClick={onClick}
+      className={stylesButtonInstruction.button}
+      disabled={disabled}
+    >
       <div className={stylesButtonInstruction.image_box}>
-        <ReactSVG
-          src={FaqIcon}
-          desc="FAQ"
-          beforeInjection={(svg) => {
-            svg.setAttribute(
-              'style',
-              `fill-opacity: ${disabledClassnames.image}`
-            );
-          }}
-        />
+        <ReactSVG src={icon} />
       </div>
-      <p className={disabledClassnames.text}>Пошаговая инструкция</p>
-    </div>
+      <p className={stylesButtonInstruction.text}>{children}</p>
+    </button>
   );
 };
 
