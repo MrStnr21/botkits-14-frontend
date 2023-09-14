@@ -18,7 +18,7 @@ const StepperFillBot: FC<IStepperFillBot> = ({
     <div className={stylesStepperFillBot.stepper}>
       <div className={stylesStepperFillBot.stepper_step}>
         <p>
-          {step} {`>`}
+          {step} Шаг {`>`}
         </p>
         <p>{text}</p>
       </div>
