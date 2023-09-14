@@ -2,7 +2,9 @@
 
 .container {
     text-align: start;
-    background-color: $default-grey-color;
+    background-color: $white-color;
+    max-width: 1268px;
+
 }
 
 .title {
@@ -21,6 +23,7 @@
     flex-wrap: wrap;
     gap: 28px;
     row-gap: 32px;
+    padding: 0;
 }
 
 .item {
@@ -34,6 +37,13 @@
     width: 188px;
     background-color: $hover-grey-color;
     border-radius: 188px;
+    cursor: pointer;
+
+}
+
+.wrapper_button:hover {
+    background-color: $white-color;
+    box-shadow: $l-box-shadow;
 }
 
 .button {
@@ -51,11 +61,19 @@
     margin: auto;
     width: 24px;
     height: 24px;
-    background-image: url('../../../images/icon/24x24/constructor/plus.svg');
+    background-image: url('../../../images/icon/template/plus.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    border: none;
+    cursor: pointer;
+    background-color: $hover-grey-color;
 
+}
+
+.wrapper_button:hover .button_plus {
+    background-image: url('../../../images/icon/template/plus-hover.svg');
+    background-color: $white-color;
 }
 
 .name_template {
