@@ -1,22 +1,11 @@
 @import '../../../components/app/vars';
 
-.open_button {
-  display: flex;
-  flex-direction: row;
-  width: 240px;
-  height: 40px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-5;
-  position: relative;
-  cursor: pointer;
-}
-
 .box {
   display: none;
   flex-direction: column;
   gap: 4px;
-  width: 240px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+  width: 175px;
+  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, .08);
   background-color: white;
   border-radius: $border-radius-10;
   position: absolute;
@@ -32,28 +21,7 @@
   line-height: $s-line-height;
   font-family: 'Open Sans';
   letter-spacing: $m-letter-space;
-  color: black;
-  transition: color .3s linear;
-}
-
-.open_button .text {
-  margin-left: 8px;
-}
-
-.grey {
-  color: $placeholder-grey-color
-}
-
-.li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-}
-
-.ul {
-  padding: 0;
-  margin: 0;
+  margin-left: 16px;
 }
 
 .button {
@@ -64,23 +32,26 @@
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   cursor: pointer;
 }
 .button:first-of-type {
-  margin-top: 11px;
+  margin-top: 8px;
 }
 .button:last-of-type {
   margin-bottom: 8px;
 }
-
 .button:hover {
   background-color: $default-grey-color;
 }
 
 .icon {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 16px;
-  height: 16px;
+  height: 24px;
+  width: 24px;
+}
+
+.icon__grey {
+  filter: invert(77%) sepia(17%) saturate(297%) hue-rotate(179deg) brightness(89%) contrast(93%);
 }

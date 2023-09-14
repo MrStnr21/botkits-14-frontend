@@ -6,7 +6,7 @@ const App: FC = (): JSX.Element => {
   return (
     <div className={stylesApp.app}>
       <h1>Hi!</h1>
-      <button type="button" className={stylesApp.button}>
+      <button>
         Click!
       </button>
     </div>
