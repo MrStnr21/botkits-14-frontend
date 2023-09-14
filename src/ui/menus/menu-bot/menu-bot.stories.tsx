@@ -35,7 +35,7 @@ export default {
 
 const Template: StoryFn<IMenuBot> = (args) => <MenuBot {...args} />;
 
-export const menuSimple = {
+export const menuBot = {
   args: {
     isActive: true,
     size: 'large',
