@@ -58,7 +58,7 @@ const Templates: FC = (): JSX.Element => {
       'Лидогенерация/HR ререререре...',
       'Онлайн школа/Вебинар',
       'Закрытый клуб по под...',
-      'Агентство по недвиж...',
+      'Агентство по недвижимости',
       'Развлечения',
       'Салон красоты',
       'Онлайн-покупки',
@@ -79,12 +79,40 @@ const Templates: FC = (): JSX.Element => {
       'question',
     ],
   };
-
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const displayedTemplates = isExpanded
+    ? data.names_templates
+    : data.names_templates.slice(0, 6);
   return (
     <div className={stylesTemplates.container}>
-      <h2 className={stylesTemplates.title}>Шаблоны</h2>
-      <ul className={stylesTemplates.list}>
-        {data.names_templates.map((name, index) => (
+      <div className={stylesTemplates.header_wrapper}>
+        <h2 className={stylesTemplates.title}>Шаблоны</h2>
+        <div className={stylesTemplates.accordion_wrapper}>
+          <button
+            className={stylesTemplates.accordion_button}
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-label="xs"
+          >
+            Все шаблоны
+          </button>
+
+          <button
+            className={`${stylesTemplates.accordion_ico_plus} ${
+              isExpanded ? stylesTemplates.accordion_ico_minus : ''
+            }`}
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-label="xs"
+          />
+        </div>
+      </div>
+      <ul
+        className={`${stylesTemplates.list} ${
+          !isExpanded ? stylesTemplates.expanded : ''
+        }`}
+      >
+        {displayedTemplates.map((name, index) => (
           <Template key={name} name={name} fileName={data.names_files[index]} />
         ))}
       </ul>

@@ -7,6 +7,13 @@
 
 }
 
+.header_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
 .title {
     font-family: 'IBM Plex Mono', sans-serif;
     font-size: $h2-font-size;
@@ -14,7 +21,7 @@
     line-height: $h2-line-height;
     letter-spacing: $h2-letter-space;
     color: $primary-text-color;
-    margin-bottom: 24px;
+    margin: 0;
 }
 
 .list {
@@ -24,20 +31,27 @@
     gap: 28px;
     row-gap: 32px;
     padding: 0;
+    width: 100%;
+}
+
+.expanded {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .item {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(auto, 188px));
     align-items: flex-start;
 }
 
 .wrapper_button {
     display: flex;
-    width: 188px;
     background-color: $hover-grey-color;
     border-radius: 188px;
     cursor: pointer;
+
 
 }
 
@@ -87,5 +101,40 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 188px;
+    max-width: 188px;
+}
+
+.accordion_wrapper {
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.accordion_button {
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    background-color: $white-color;
+    border: none;
+    font-weight: $bold;
+    font-size: $l-font-size;
+    line-height: $l-line-height;
+    color: $default-dark-grey-color;
+}
+
+.accordion_ico_plus {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../../images/icon/24x24/common/chevron-big.svg');
+    background-color: $white-color;
+    background-position: center;
+    border: none;
+    align-self: center;
+    transition: transform 0.3s ease;
+}
+
+.accordion_ico_minus {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
 }
