@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import React, { FC, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import stylesSidebar from './sidebar.module.scss';
 import { links, ILink } from './sb-data';
 
@@ -65,9 +66,8 @@ const Sidebar: FC = (): JSX.Element => {
           {links.map((item) =>
             // ЗАГОЛОВОК С ВЛОЖЕННЫМ СПИСКОМ
             item.child ? (
-              // хочу uuid здесь
               <li
-                key={item.text}
+                key={uuidv4()}
                 className={`${stylesSidebar.nestedList} ${
                   isOpenNL
                     ? stylesSidebar.nestedList_open
@@ -90,9 +90,8 @@ const Sidebar: FC = (): JSX.Element => {
                 </ul>
               </li>
             ) : (
-              // нужен uuid пакет
               // ЗАГОЛОВОК БЕЗ ВЛОЖЕНИЙ
-              <li key={item.text}>
+              <li key={uuidv4()}>
                 <Subheader {...item} />
               </li>
             )

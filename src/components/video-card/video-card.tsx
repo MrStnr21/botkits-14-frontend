@@ -1,30 +1,24 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import stylesVideo from './video-card.module.scss';
 
 interface IVideoElement {
-  // для фрейма видео
   title: string;
-  // ссылка на ютуб
-  src: string;
-  // заставка
-  prewiew: string;
-  // размер окна заставки и видео
-  size?: 'm' | 's';
-  // отображения кнопки удаления компонента с видео
-  hiddenRemoveButton?: boolean;
-  // для отображения кнопки play
-  hover?: boolean;
+  src: string; // ссылка на ютуб
+  prewiew: string; // заставка
+  size?: 's' | 'm' | 'x'; // размер окна заставки и видео
+  hiddenRemoveButton?: boolean; // скрыть кнопку удаления компонента с видео
+  hover?: boolean; // отобразить кнопку play
 }
 
 const VideoCard: FC<IVideoElement> = ({
   src,
   title,
   prewiew,
-  size = 'm',
+  size = 'l',
   hiddenRemoveButton,
   hover,
-}): JSX.Element => {
+}): JSX.Element | null => {
   const [isVisible, setIsVisible] = useState(true);
   const [isPlay, setIsPlay] = useState(false);
 
@@ -35,9 +29,21 @@ const VideoCard: FC<IVideoElement> = ({
     setIsPlay(true);
   }
 
+  if (!isVisible) {
+    return null;
+  }
+
   return (
-    <div>
-      {isVisible && (
+    <>
+      <div
+        className={size === 'x' ? `${stylesVideo.flexWrapper}` : ''}
+        onKeyDown={(ev) => {
+          // слушаем кнопку Esc, чтобы закрыть видео
+          if (ev.key === 'Escape') {
+            setIsPlay(false);
+          }
+        }}
+      >
         <div
           className={`${stylesVideo.container} ${stylesVideo[`size-${size}`]}`}
         >
@@ -45,33 +51,51 @@ const VideoCard: FC<IVideoElement> = ({
           <button
             type="button"
             onClick={remove}
-            className={stylesVideo.closeButton}
-            aria-label="Убрать блок с видео"
+            className={stylesVideo.button__remove}
+            aria-label="Удалить загруженное видео"
             hidden={hiddenRemoveButton}
           />
 
-          <div className={`${stylesVideo.cover} ${hover && stylesVideo.hover}`}>
+          <div
+            className={`${stylesVideo.cover} ${hover && stylesVideo.hover} ${
+              stylesVideo[`size-${size}`]
+            }`}
+          >
             <button
               type="button"
               onClick={play}
               className={stylesVideo.playButton}
               aria-label="Начать воспроизведение видео."
             />
-            <span className={stylesVideo.visuallyHidden}>
-              Создай чат-бота за 5 минут
-            </span>
           </div>
-          {isPlay && (
-            <iframe
-              className={stylesVideo.video}
-              src={src}
-              title={title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            />
-          )}
+        </div>
+        {hiddenRemoveButton && <p className={stylesVideo.caption}>{title}</p>}
+      </div>
+      {isPlay && (
+        <div className={stylesVideo.video__box}>
+          {/* в макете нет попапа с видео, кнопка примерная */}
+          <button
+            type="button"
+            onClick={() => setIsPlay(false)}
+            className={stylesVideo.button__close}
+            aria-label="Закрыть видео"
+          />
+          <iframe
+            className={stylesVideo.video__iframe}
+            src={src}
+            title={title}
+            allow="
+          accelerometer;
+          autoplay;
+          clipboard-write;
+          encrypted-media;
+          gyroscope;
+          picture-in-picture;
+          web-share"
+          />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

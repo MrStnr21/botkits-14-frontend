@@ -1,4 +1,74 @@
 // to do: KnowledgeBase
-// https://trello.com/c/MgBSWEzc/21-%D0%B1%D0%B0%D0%B7%D0%B0-%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D0%B9
+// https://trello.com/c/MgBSWEzc
+import { FC } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import stylesKnowledgeBase from './knowledge-base.module.scss';
+import VideoCard from '../../video-card/video-card';
+import prew1 from '../../../images/prewiew/prew1.png';
+import prew2 from '../../../images/prewiew/prew2.png';
+import prew3 from '../../../images/prewiew/prew3.png';
+import links from './kb-data';
+import useMediaQuery from '../../hooks/use-media-query';
 
-export {};
+const KnowledgeBase: FC = () => {
+  const matches = useMediaQuery('(max-width: 350px)');
+
+  return (
+    <section className={stylesKnowledgeBase.wrapper}>
+      <div className={stylesKnowledgeBase.video}>
+        <h2 className={stylesKnowledgeBase.video__header}>С чего начать?</h2>
+        <div className={stylesKnowledgeBase.video__container}>
+          <VideoCard
+            src="https://www.youtube.com/embed/FKOn5DfpJDA"
+            title="Подключение и основные параметры"
+            prewiew={prew1}
+            size={matches ? 'x' : 's'}
+            hiddenRemoveButton
+            hover
+          />
+          <VideoCard
+            src="https://www.youtube.com/embed/FKOn5DfpJDA"
+            title="Настраиваем простую рассылку"
+            prewiew={prew2}
+            size={matches ? 'x' : 's'}
+            hiddenRemoveButton
+            hover
+          />
+          <VideoCard
+            src="https://www.youtube.com/embed/FKOn5DfpJDA"
+            title="Начало работы с блок&#8209;схемами"
+            prewiew={prew3}
+            size={matches ? 'x' : 's'}
+            hiddenRemoveButton
+            hover
+          />
+        </div>
+      </div>
+
+      <div className={stylesKnowledgeBase.base}>
+        <h2 className={stylesKnowledgeBase.base__header}>База знаний</h2>
+        <p className={stylesKnowledgeBase.base__text}>
+          Узнай, как создать чат бота. Примеры и описание опций сервиса!
+        </p>
+        <nav>
+          <ul className={stylesKnowledgeBase.base__list}>
+            {links.map((item) => (
+              <li className={stylesKnowledgeBase.base__item} key={uuidv4()}>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  className={stylesKnowledgeBase.base__link}
+                  rel="noopener noreferrer"
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </section>
+  );
+};
+
+export default KnowledgeBase;
