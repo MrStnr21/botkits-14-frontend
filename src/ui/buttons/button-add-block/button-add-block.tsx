@@ -1,11 +1,7 @@
-// to do: Button
-// https://trello.com/c/Raesb3hx/5-buttons-common-1
-// копки в первом ряду с default до disabled
-
-// https://trello.com/c/ZimEto8x/7-buttons-contsructor
-
 import { FC } from 'react';
+
 import stylesButtonAddBlock from './button-add-block.module.scss';
+
 import messageIcon from '../../../images/icon/24x24/add block/message-square.svg';
 
 export interface IButtonAddBlock {
@@ -20,7 +16,7 @@ const ButtonAddBlock: FC<IButtonAddBlock> = ({
   name = 'Блок сообщений',
   onClick, // Добавляет блок на схему
   disabled,
-}) => {
+}): JSX.Element => {
   return (
     <button
       className={stylesButtonAddBlock.button}

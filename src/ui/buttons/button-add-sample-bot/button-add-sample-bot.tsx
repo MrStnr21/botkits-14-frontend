@@ -1,7 +1,3 @@
-// to do: ButtonAddSampleBot
-// https://trello.com/c/CAyJT0Nk/6-buttons-common-2
-// 1 столбец в макете
-
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
@@ -23,7 +19,7 @@ const ButtonAddSampleBot: FC<IButtonAddSampleBot> = ({
   disabled,
   children,
   icon,
-}) => {
+}): JSX.Element => {
   return (
     <button
       className={stylesButtonAddSampleBot.button}

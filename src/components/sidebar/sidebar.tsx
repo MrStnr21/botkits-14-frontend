@@ -1,7 +1,11 @@
+import { FC, useState } from 'react';
+
 import { NavLink } from 'react-router-dom';
-import React, { FC, useState } from 'react';
+
 import { v4 as uuidv4 } from 'uuid';
+
 import stylesSidebar from './sidebar.module.scss';
+
 import { links, ILink } from './sb-data';
 
 // Элемент заголовка в навигации

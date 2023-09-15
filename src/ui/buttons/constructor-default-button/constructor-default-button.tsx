@@ -14,7 +14,7 @@ const ConstructorDefaultButton: FC<IConstructorDefaultButton> = ({
   onClick,
   disabled,
   children,
-}) => {
+}): JSX.Element => {
   return (
     <button
       className={stylesConstructorDefaultButton.button}

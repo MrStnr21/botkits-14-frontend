@@ -1,6 +1,5 @@
-// to do: Input
-// https://trello.com/c/f5dfbuqo/8-fields-constructor
 import { FC, ChangeEvent } from 'react';
+
 import stylesInput from './input.module.scss';
 
 interface IInput {
@@ -21,7 +20,7 @@ const Input: FC<IInput> = ({
   onChange,
   disabled,
   name,
-}) => {
+}): JSX.Element => {
   return (
     <div className={stylesInput.wrapper}>
       <input

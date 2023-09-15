@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import cn from 'classnames';
 
 import stylesButtonAddSocial from './button-add-social.module.scss';
@@ -17,7 +18,7 @@ const ButtonAddSocial: FC<IButtonAddSocial> = ({
   disabled,
   children,
   social,
-}) => {
+}): JSX.Element => {
   const iconCn = cn(stylesButtonAddSocial.icon, stylesButtonAddSocial[social]);
 
   return (

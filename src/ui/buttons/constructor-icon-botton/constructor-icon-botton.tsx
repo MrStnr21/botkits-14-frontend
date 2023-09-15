@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
+
 import classNames from 'classnames/bind';
+
 import stylesConstructorIconBotton from './constructor-icon-botton.module.scss';
+
 import { BUTTON_NAME } from '../../../utils/constants';
 
 export interface IConstructorIconBotton {
@@ -27,7 +30,7 @@ const ConstructorIconBotton: FC<IConstructorIconBotton> = ({
   text,
   styleBtn = 'builder', // Bot Builder, воронки, без текста
   // 'mailing' - Рассылки, крупные с текстом
-}) => {
+}): JSX.Element => {
   const cnBtn =
     styleBtn === 'builder'
       ? cx('button', 'buttonBld', {

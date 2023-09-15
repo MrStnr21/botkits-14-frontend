@@ -1,21 +1,34 @@
 import { FC, FormEvent, useState } from 'react';
-import { ReactComponent as Facebook } from '../../../images/icon/40x40/facebook/hover.svg';
-import { ReactComponent as Instagram } from '../../../images/icon/40x40/insta/hover.svg';
-import { ReactComponent as Alisa } from '../../../images/icon/40x40/alisa/hover.svg';
+
+import stylesCreateBot from './create-bot.module.scss';
+
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
-import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
-import { ReactComponent as Viber } from '../../../images/icon/40x40/viber/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
 import { ReactComponent as Whatsapp } from '../../../images/icon/40x40/whatsapp/hover.svg';
+import { ReactComponent as Facebook } from '../../../images/icon/40x40/facebook/hover.svg';
+import { ReactComponent as Instagram } from '../../../images/icon/40x40/insta/hover.svg';
+import { ReactComponent as Viber } from '../../../images/icon/40x40/viber/hover.svg';
 import { ReactComponent as WebSite } from '../../../images/icon/40x40/web/hover.svg';
-import stylesCreateBot from './create-bot.module.scss';
+import { ReactComponent as Alisa } from '../../../images/icon/40x40/alisa/hover.svg';
+import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
+
 import StepperFillBot from '../../../ui/stepper-fill-bot/stepper-fill-bot';
 import LoadPages from '../../../ui/inputs/load-pages/load-pages';
-import Input from '../../../ui/inputs/input/input';
 import Button from '../../../ui/buttons/button/button';
+import Input from '../../../ui/inputs/input/input';
 import useForm from '../../../utils/use-form';
 
-const img: any = {
+interface ImageMap {
+  [key: string]: JSX.Element;
+}
+
+interface ICreateBot {
+  botName: string;
+  stepFirst: 'default' | 'upload';
+  botURI?: boolean;
+}
+
+const img: ImageMap = {
   Facebook: <Facebook className={stylesCreateBot.create_main_bot_name_img} />,
   Telegram: <Telegram className={stylesCreateBot.create_main_bot_name_img} />,
   Viber: <Viber className={stylesCreateBot.create_main_bot_name_img} />,
@@ -29,14 +42,12 @@ const img: any = {
   'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
 };
 
-export interface ICreateBot {
-  botName: string;
-  stepFirst: 'default' | 'upload';
-  botURI?: boolean;
-}
-
-const CreateBot: FC<ICreateBot> = ({ botName, stepFirst, botURI }) => {
-  const [arrPages, setArrPages] = useState<any>([]);
+const CreateBot: FC<ICreateBot> = ({
+  botName,
+  stepFirst,
+  botURI,
+}): JSX.Element => {
+  const [arrPages, setArrPages] = useState<any>([]); // временный тип any
 
   const { values, handleChange } = useForm({
     botName: '',
