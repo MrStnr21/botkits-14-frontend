@@ -1,16 +1,20 @@
-// to do: KnowledgeBase
-// https://trello.com/c/MgBSWEzc
 import { FC } from 'react';
+
 import { v4 as uuidv4 } from 'uuid';
+
+import useMediaQuery from '../../hooks/use-media-query';
+
 import stylesKnowledgeBase from './knowledge-base.module.scss';
-import VideoCard from '../../video-card/video-card';
+
 import prew1 from '../../../images/prewiew/prew1.png';
 import prew2 from '../../../images/prewiew/prew2.png';
 import prew3 from '../../../images/prewiew/prew3.png';
-import links from './kb-data';
-import useMediaQuery from '../../hooks/use-media-query';
 
-const KnowledgeBase: FC = () => {
+import VideoCard from '../../video-card/video-card';
+
+import links from './kb-data';
+
+const KnowledgeBase: FC = (): JSX.Element => {
   const matches = useMediaQuery('(max-width: 350px)');
 
   return (

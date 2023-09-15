@@ -19,7 +19,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
   askOnClick,
   deleteOnClick,
   askIcon,
-}) => {
+}): JSX.Element => {
   return (
     <div className={stylesConstructorHelperButton.container}>
       <button

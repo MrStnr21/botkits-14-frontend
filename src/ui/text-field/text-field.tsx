@@ -1,10 +1,13 @@
 import { FC, useState } from 'react';
+
 import EmojiPicker from 'emoji-picker-react';
+
 import stylesTextField from './text-field.module.scss';
+
 import { ReactComponent as Bracket } from '../../images/icon/24x24/constructor/bracket.svg';
 import { ReactComponent as EmojiIcon } from '../../images/icon/24x24/constructor/emoji.svg';
 
-const TextField: FC = () => {
+const TextField: FC = (): JSX.Element => {
   const textareaTextLength = 4096;
   const [showEmojis, setShowEmojis] = useState(false);
 

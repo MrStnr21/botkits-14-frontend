@@ -1,18 +1,21 @@
-// to do: ButtonAddFile
-// https://trello.com/c/Ma7RILKa
 // верхий компонент
-import React, { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback } from 'react';
+
+import stylesButtonAddFile from './button-add-file.module.scss';
+
 import ConstructorIconBotton from '../constructor-icon-botton/constructor-icon-botton';
+
 import videoIcon from '../../../images/icon/24x24/add content/video.svg';
 import musicIcon from '../../../images/icon/24x24/add content/music.svg';
 import imageIcon from '../../../images/icon/24x24/add content/image.svg';
 // import fileIcon from '../../../images/icon/24x24/add content/file.svg'; // Это скрепка
+
 import Button from '../button/button';
-import stylesButtonAddFile from './button-add-file.module.scss';
+
 import { BUTTON_NAME } from '../../../utils/constants';
 // import DownloadFile from '../../inputs/add-file/add-file'; // он откроется при клике на иконку?
 
-const ButtonAddFile: FC = () => {
+const ButtonAddFile: FC = (): JSX.Element => {
   const [iconsSelected, setIconsSelected] = useState<Array<BUTTON_NAME>>([]);
   let changeArr: [] | Array<BUTTON_NAME>;
 

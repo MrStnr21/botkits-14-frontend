@@ -1,9 +1,6 @@
-// to do: Button
-// https://trello.com/c/Raesb3hx/5-buttons-common-1
-// копки во втором ряду, первый столбец с default до disabled
-
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
+
 import stylesButtonInstruction from './button-instruction.module.scss';
 
 export interface IButtonInstruction {
@@ -20,7 +17,7 @@ const ButtonInstruction: FC<IButtonInstruction> = ({
   disabled,
   children,
   icon,
-}) => {
+}): JSX.Element => {
   const onClick = () => {
     window.open(url, '_blank');
   };

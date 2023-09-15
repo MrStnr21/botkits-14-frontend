@@ -1,16 +1,21 @@
 // Mailing/Add content
 // @TODO перенести в нужную папку, доделать стили, ДЛЯ ДОБАВЛЕНИЯ КОНТЕНТА В РАССЫЛКУ.. крупные кнопки с надписью
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
+
+import stylesButtonAddContent from './button-add-content.module.scss';
+
 import ConstructorIconBotton from '../constructor-icon-botton/constructor-icon-botton';
+
 import videoIcon from '../../../images/icon/24x24/add content/video.svg';
 import musicIcon from '../../../images/icon/24x24/add content/music.svg';
 import imageIcon from '../../../images/icon/24x24/add content/image.svg';
 import btnIcon from '../../../images/icon/24x24/add content/button.svg';
+
 // import Button from '../button/button';
-import stylesButtonAddContent from './button-add-content.module.scss';
+
 import { BUTTON_NAME } from '../../../utils/constants';
 
-const ButtonAddContent: FC = () => {
+const ButtonAddContent: FC = (): JSX.Element => {
   const [iconSelected, setIconSelected] = useState<BUTTON_NAME>();
 
   const addContent = (value: BUTTON_NAME) => {
