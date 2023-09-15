@@ -10,6 +10,7 @@ interface IInput {
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  name?: string;
 }
 
 const Input: FC<IInput> = ({
@@ -19,6 +20,7 @@ const Input: FC<IInput> = ({
   value,
   onChange,
   disabled,
+  name,
 }) => {
   return (
     <div className={stylesInput.wrapper}>
@@ -29,6 +31,7 @@ const Input: FC<IInput> = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        name={name}
       />
       {isInvalid && (
         <p className={stylesInput.incorrect_text}>{errorMessage}</p>

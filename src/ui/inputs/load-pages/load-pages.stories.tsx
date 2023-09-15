@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react';
 import LoadPages from './load-pages';
 
 const meta = {
-  title: 'COMPONENTS/Fields/LoadPages',
+  title: 'UI/Fields/LoadPages',
   component: LoadPages,
 };
 
