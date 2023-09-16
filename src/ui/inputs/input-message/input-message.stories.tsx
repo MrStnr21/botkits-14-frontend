@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react';
 import InputMessage from './input-message';
 
 const meta = {
-  title: 'COMPONENTS/Fields/InputMessage',
+  title: 'UI/Fields/InputMessage',
   component: InputMessage,
 };
 

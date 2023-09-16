@@ -10,6 +10,7 @@
   background-color: $default-grey-color;
   border-radius: $border-radius-10;
   padding-right: 4px;
+  box-sizing: border-box;
 }
 
 .selects_items {
@@ -20,7 +21,8 @@
   max-height: 146px;
   box-sizing: border-box;
   overflow-y: auto;
-
+  margin: 0;
+  list-style: none;
   &::-webkit-scrollbar {
     width: 4px;
     height: 8px;
@@ -74,4 +76,9 @@
 .selects_text {
   margin: 0;
   color: $placeholder-grey-color;
+}
+
+.selects_item {
+  display: flex;
+  flex: 1 1;
 }

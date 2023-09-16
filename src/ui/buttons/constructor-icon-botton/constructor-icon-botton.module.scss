@@ -1,0 +1,114 @@
+@import '../../../components/app/vars';
+
+.button {
+  @extend %button-style-reset;
+  @extend %flex-element-center;
+  transition: all 0.1s linear;
+  // border-radius: $border-radius-10;
+  // height: $constructor-icon-button-height;
+  // width: $constructor-icon-button-width;
+  flex-shrink: 0;
+}
+
+.buttonBld {
+  border-radius: $border-radius-10;
+  height: $constructor-icon-button-height;
+  width: $constructor-icon-button-width;
+}
+
+.buttonMln{
+  border-radius: $border-radius-30;
+  height: 124px;
+  width: 124px;
+}
+
+.icon {
+  @extend %flex-element-center;
+}
+
+.button svg {
+  transition: all 0.1s linear;
+}
+
+.iconMln{
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #ccd4e0;
+}
+
+/* Стили цвета кнопки*/
+
+.buttonBld {
+  background-color: $constructor-icon-button-default-background-color;
+}
+
+.buttonMln {
+  background-color: #f8f9fb;
+  @extend %flex-element-center;
+  flex-direction: column;
+}
+
+.iconBld svg {
+  stroke: $constructor-icon-button-default-color;
+}
+
+.iconMln svg {
+  stroke: white;
+}
+
+.buttonBld:hover .iconBld svg{
+  stroke: $constructor-icon-button-hover-color;
+}
+
+.buttonMln:hover {
+  background-color: white;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+  .iconMln {
+  background-color: $constructor-icon-button-hover-color;
+  }
+}
+
+// cтили в момент нажатия нужны?
+.button:active {
+  background-color: $constructor-icon-button-pressed-background-color;
+}
+
+.button:active svg {
+  stroke: $constructor-icon-button-pressed-color;
+}
+
+.button:disabled {
+  background-color: $constructor-icon-button-default-background-color;
+}
+
+.button:disabled svg {
+  stroke: $constructor-icon-button-disabled-color;
+}
+
+// стили нажатой кнопки
+.buttonBld_active{
+  background-color: $constructor-icon-button-pressed-background-color;
+  svg {
+    stroke: $constructor-icon-button-pressed-color;
+  }
+}
+
+.buttonMln_active{
+  // @TODO уточнить стили после нажатия кнопки, по макету вроде только hover
+  background-color: $constructor-icon-button-pressed-background-color;
+  .iconMln {
+    background-color: $constructor-icon-button-pressed-color;
+  }
+}
+
+.text {
+  color: #060C23;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%; /* 21px */
+  letter-spacing: 0.3px;
+  margin: 12px 0 0;
+}

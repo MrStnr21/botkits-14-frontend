@@ -1,0 +1,60 @@
+@import '../../../components/app/vars';
+
+.container {
+  @extend %flex-element-center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: $h4-font-size;
+  font-weight: $bold;
+  line-height: $button-line-height-130;
+  font-family: 'IBM Plex Mono', Arial, sans-serif;
+}
+
+.arrow_button {
+  @extend %button-style-reset;
+  @extend %flex-element-center;
+  aspect-ratio: 1 / 1;
+  cursor: $cursor;
+  transition: all 0.2s linear;
+}
+
+.arrow_button div {
+  @extend %flex-element-center;
+}
+
+.arrow_button svg {
+  height: $how-it-works-arrow-icon-size;
+  width: $how-it-works-arrow-icon-size;
+  stroke: $how-it-works-arrow-icon-default-color;
+  stroke-width: $how-it-works-arrow-icon-stroke-width;
+  transition: all 0.1s linear;
+}
+
+.arrow_button:hover svg {
+  stroke: $how-it-works-arrow-icon-hover-color;
+}
+
+.arrow_button_active {
+  rotate: 180deg;
+}
+
+.buttons_container {
+  @extend %flex-element-center;
+  width: 100%;
+  gap: 29px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.2s linear;
+}
+
+.buttons_container_active {
+  transform: scaleY(1);
+}

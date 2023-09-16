@@ -1,6 +1,5 @@
-// to do: Input
-// https://trello.com/c/f5dfbuqo/8-fields-constructor
 import { FC, ChangeEvent } from 'react';
+
 import stylesInput from './input.module.scss';
 
 interface IInput {
@@ -10,6 +9,7 @@ interface IInput {
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  name?: string;
 }
 
 const Input: FC<IInput> = ({
@@ -19,7 +19,8 @@ const Input: FC<IInput> = ({
   value,
   onChange,
   disabled,
-}) => {
+  name,
+}): JSX.Element => {
   return (
     <div className={stylesInput.wrapper}>
       <input
@@ -29,6 +30,7 @@ const Input: FC<IInput> = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        name={name}
       />
       {isInvalid && (
         <p className={stylesInput.incorrect_text}>{errorMessage}</p>
