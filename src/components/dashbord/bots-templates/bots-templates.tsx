@@ -1,14 +1,11 @@
 import React, { FC } from 'react';
 import stylesTemplates from './bots-templates.module.scss';
+import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
 
 const Template: FC<{ name: string; fileName: string }> = ({
   name,
   fileName,
 }) => {
-  const click = () => {
-    console.log('click');
-  };
-
   const importImage = async () => {
     try {
       const imageModule = await import(
@@ -16,12 +13,11 @@ const Template: FC<{ name: string; fileName: string }> = ({
       );
       return imageModule.default;
     } catch (error) {
-      console.error(`Error importing image for ${fileName}:`, error);
-      return null;
+      return 'null';
     }
   };
 
-  const [image, setImage] = React.useState<string | null>(null);
+  const [image, setImage] = React.useState<string>('');
 
   React.useEffect(() => {
     importImage().then((importedImage) => {
@@ -31,19 +27,7 @@ const Template: FC<{ name: string; fileName: string }> = ({
 
   return (
     <li className={stylesTemplates.item}>
-      <div className={stylesTemplates.wrapper_button}>
-        {image && (
-          <img className={stylesTemplates.button} src={image} alt="Иконка" />
-        )}
-
-        <button
-          type="button"
-          onClick={click}
-          className={stylesTemplates.button_plus}
-          aria-label="xs"
-        />
-      </div>
-      <p className={stylesTemplates.name_template}>{name}</p>
+      <ButtonAddSampleBot icon={image}>{name}</ButtonAddSampleBot>
     </li>
   );
 };
@@ -80,9 +64,7 @@ const Templates: FC = (): JSX.Element => {
     ],
   };
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const displayedTemplates = isExpanded
-    ? data.names_templates
-    : data.names_templates.slice(0, 6);
+
   return (
     <div className={stylesTemplates.container}>
       <div className={stylesTemplates.header_wrapper}>
@@ -91,7 +73,9 @@ const Templates: FC = (): JSX.Element => {
           <button
             className={stylesTemplates.accordion_button}
             type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+            }}
             aria-label="xs"
           >
             Все шаблоны
@@ -102,17 +86,20 @@ const Templates: FC = (): JSX.Element => {
               isExpanded ? stylesTemplates.accordion_ico_minus : ''
             }`}
             type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+            }}
             aria-label="xs"
           />
         </div>
       </div>
       <ul
-        className={`${stylesTemplates.list} ${
-          !isExpanded ? stylesTemplates.expanded : ''
-        }`}
+        className={`
+          ${stylesTemplates.list} ${
+            isExpanded ? stylesTemplates.expanded : stylesTemplates.not_expanded
+          } `}
       >
-        {displayedTemplates.map((name, index) => (
+        {data.names_templates.map((name, index) => (
           <Template key={name} name={name} fileName={data.names_files[index]} />
         ))}
       </ul>

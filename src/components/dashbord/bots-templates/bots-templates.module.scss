@@ -4,7 +4,6 @@
     text-align: start;
     background-color: $white-color;
     max-width: 1268px;
-
 }
 
 .header_wrapper {
@@ -25,91 +24,36 @@
 }
 
 .list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 125px));
+    grid-template-columns: repeat(6, minmax(100px, 188px));
     gap: 28px;
     row-gap: 32px;
     padding: 0;
-    width: 100%;
 }
 
 .expanded {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    overflow: hidden;
+    max-height: 300px;
+    transition: max-height 1s ease;
+}
+
+.not_expanded {
+    max-height: 125px;
+    overflow: hidden;
+    transition: max-height 1s ease;
 }
 
 .item {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(auto, 188px));
+    grid-template-columns: repeat(auto-fill, minmax(minmax, 188px));
     align-items: flex-start;
-}
-
-.wrapper_button {
-    display: flex;
-    background-color: $hover-grey-color;
-    border-radius: 188px;
-    cursor: pointer;
-
-
-}
-
-.wrapper_button:hover {
-    background-color: $white-color;
-    box-shadow: $l-box-shadow;
-}
-
-.button {
-    border-radius: 50%;
-    width: 88px;
-    height: 88px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
-}
-
-.button_plus {
-    align-self: center;
-    margin: auto;
-    width: 24px;
-    height: 24px;
-    background-image: url('../../../images/icon/template/plus.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border: none;
-    cursor: pointer;
-    background-color: $hover-grey-color;
-
-}
-
-.wrapper_button:hover .button_plus {
-    background-image: url('../../../images/icon/template/plus-hover.svg');
-    background-color: $white-color;
-}
-
-.name_template {
-    font-family: 'Open Sans', sans-serif;
-    font-size: $m-font-size;
-    font-weight: $bold;
-    line-height: $m-line-height;
-    letter-spacing: $m-letter-space;
-    color: $primary-text-color;
-    margin-top: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 188px;
 }
 
 .accordion_wrapper {
     display: flex;
     flex-direction: row;
-
 }
-
 
 .accordion_button {
     cursor: pointer;
