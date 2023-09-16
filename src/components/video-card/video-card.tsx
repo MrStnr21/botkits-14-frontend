@@ -15,7 +15,7 @@ const VideoCard: FC<IVideoElement> = ({
   src,
   title,
   prewiew,
-  size = 'l',
+  size = 'm',
   hiddenRemoveButton,
   hover,
 }): JSX.Element | null => {
