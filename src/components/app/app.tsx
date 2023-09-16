@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import stylesApp from './app.module.scss';
 
 const App: FC = (): JSX.Element => {
@@ -7,7 +6,7 @@ const App: FC = (): JSX.Element => {
     <div className={stylesApp.app}>
       <h1>Hi!</h1>
       <button type="button" className={stylesApp.button}>
-        Click!
+        click!
       </button>
     </div>
   );

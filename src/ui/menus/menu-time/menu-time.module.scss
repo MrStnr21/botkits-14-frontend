@@ -1,0 +1,79 @@
+@import '../../../components/app/vars';
+
+.box {
+  display: none;
+  flex-direction: column;
+  width: 264px;
+  height: 478px;
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+  background-color: white;
+  border-radius: $border-radius-10;
+  position: absolute;
+}
+
+.active {
+  display: flex;
+}
+
+.text {
+  font-size: $s-font-size;
+  font-weight: $normal;
+  line-height: $s-line-height;
+  font-family: 'Open Sans';
+  margin-left: 16px;
+  color: #000;
+}
+
+.button {
+  height: 56px;
+  background-color: white;
+  box-sizing: border-box;
+  width: 132px;
+  border: none;
+  border-top: 1px solid $hover-grey-color;
+  border-radius: $border-radius-10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: $default-grey-color;
+}
+
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.numbers_box {
+  width: 132px;
+  height: 422px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  overflow-y: scroll;
+}
+
+.numbers_box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.numbers_box::-webkit-scrollbar-thumb {
+  background-color: $default-dark-grey-color;
+  border-radius: 2px;
+  border: solid 4px white;
+}
+
+.numbers_box:first-of-type {
+  border-right: 1px solid $hover-grey-color;
+}
+
+.number_unit {
+  padding: 24px 0;
+}
+
+.number_unit:hover {
+  background-color: $default-grey-color;
+}
