@@ -1,7 +1,7 @@
-// to do: Input
-// https://trello.com/c/f5dfbuqo/8-fields-constructor
 import { FC, ChangeEvent, useState } from 'react';
+
 import stylesInput from './input-message.module.scss';
+
 import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
 import { ReactComponent as Emoji } from '../../../images/icon/24x24/constructor/emoji.svg';
 import { ReactComponent as File } from '../../../images/icon/24x24/add content/file.svg';
@@ -26,7 +26,7 @@ const InputMessage: FC<IInputMessage> = ({
   onClickEmoji,
   onClickSlash,
   onClickZap,
-}) => {
+}): JSX.Element => {
   const [toggle, setToggle] = useState(false);
   return (
     <div className={stylesInput.message}>

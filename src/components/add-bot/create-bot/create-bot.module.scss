@@ -1,0 +1,100 @@
+@import '../../app/vars';
+
+.create {
+  width: 100%;
+  min-height: 330px;
+}
+
+.create_message {
+  color: $default-dark-grey-color;
+  font-weight: $bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: inherit;
+  flex-direction: column;
+  background-color: #f2f4f8;
+  border-radius: $border-radius-30;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.create_message_title {
+  font-family: 'IBM Plex Mono';
+  font-size: $h3-font-size;
+  line-height: $h3-line-height;
+  letter-spacing: 0px;
+  margin: 0;
+}
+
+.create_message_text {
+  font-family: 'Open Sans';
+  font-size: $l-font-size;
+  line-height: $l-line-height;
+  letter-spacing: $l-letter-space;
+  margin: 16px 0 0;
+}
+
+.create_main {
+  min-height: inherit;
+  background-color: #ffffff;
+  border-radius: $border-radius-30;
+  box-shadow: 0px 6px 16px 0px #15123314;
+  padding: 40px 40px 36px;
+  box-sizing: border-box;
+}
+
+.create_main_bot_name {
+  display: flex;
+}
+
+.create_main_bot_name_img {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.create_main_bot_name_title {
+  font-family: 'IBM Plex Mono';
+  font-size: $h3-font-size;
+  font-weight: $bold;
+  line-height: $h3-line-height;
+  letter-spacing: 0px;
+  margin: 0;
+  margin-left: 15px;
+}
+
+.create_main_bot_name_text {
+  font-family: 'Open Sans';
+  font-size: $s-font-size;
+  font-weight: $normal;
+  line-height: $s-line-height;
+  letter-spacing: $l-letter-space;
+  color: $default-blue-color;
+  background-color: #ECEFFF;
+  padding: 6px 16px;
+  border-radius: 16px;
+  margin: 0;
+  margin-left: 20px;
+}
+
+.create_main_bot_name_span {
+  font-weight: $bold;
+}
+
+.create_main_fill_bot {
+  display: flex;
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.create_main_button_container{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.create_main_button {
+  min-width: 256px;
+}
+
+

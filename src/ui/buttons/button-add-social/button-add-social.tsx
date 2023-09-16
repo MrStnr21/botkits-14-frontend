@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import cn from 'classnames';
 
 import stylesButtonAddSocial from './button-add-social.module.scss';
@@ -9,6 +10,7 @@ export interface IButtonAddSocial {
   disabled?: boolean;
   children: React.ReactNode;
   social: string;
+  extraClass?: string;
 }
 
 const ButtonAddSocial: FC<IButtonAddSocial> = ({
@@ -17,12 +19,13 @@ const ButtonAddSocial: FC<IButtonAddSocial> = ({
   disabled,
   children,
   social,
-}) => {
+  extraClass = '',
+}): JSX.Element => {
   const iconCn = cn(stylesButtonAddSocial.icon, stylesButtonAddSocial[social]);
 
   return (
     <button
-      className={stylesButtonAddSocial.button}
+      className={`${stylesButtonAddSocial.button} ${stylesButtonAddSocial[extraClass]}`}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}

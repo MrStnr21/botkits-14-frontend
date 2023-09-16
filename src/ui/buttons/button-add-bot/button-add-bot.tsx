@@ -1,7 +1,3 @@
-// to do: ButtonAddBot
-// https://trello.com/c/CAyJT0Nk/6-buttons-common-2
-// 3 столбец в макете
-
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
@@ -21,7 +17,7 @@ const ButtonAddBot: FC<IButtonAddBot> = ({
   onClick,
   disabled,
   children,
-}) => {
+}): JSX.Element => {
   return (
     <button
       className={stylesButtonAddBot.button}

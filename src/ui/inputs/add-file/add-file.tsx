@@ -1,6 +1,9 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
+
 import stylesAddfile from './add-file.module.scss';
+
 import { ReactComponent as Upload } from '../../../images/icon/24x24/common/upload.svg';
+
 import { SIZE_INPUT } from '../../../utils/constants';
 
 interface IDownloadFile {
@@ -8,7 +11,10 @@ interface IDownloadFile {
   state?: boolean; // добавила для сторибука
 }
 
-const DownloadFile: FC<IDownloadFile> = ({ size, state = false }) => {
+const DownloadFile: FC<IDownloadFile> = ({
+  size,
+  state = false,
+}): JSX.Element => {
   const [isNoValid, setIsNoValid] = useState(state);
 
   const handleChange = (e: any) => {

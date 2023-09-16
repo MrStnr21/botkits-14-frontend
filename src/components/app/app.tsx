@@ -8,7 +8,7 @@ const App: FC = (): JSX.Element => {
     <div className={stylesApp.app}>
       <h1>Hi!</h1>
       <button type="button" className={stylesApp.button}>
-        Click!
+        click!
       </button>
       <Templates />
     </div>

@@ -1,0 +1,41 @@
+@import '../../../components/app/vars';
+
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: #F8F9FB;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.header{
+  color:  #060C23;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 150%; /* 19.5px */
+  letter-spacing: 0.3px;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.inputsBox{
+  flex-shrink: 0;
+  @extend %flex-element-center;
+  gap: 6px;
+}
+
+.output{
+  background-color: inherit;
+  padding: 8px;
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+

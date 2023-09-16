@@ -1,8 +1,9 @@
-// to do: Input
-// https://trello.com/c/f5dfbuqo/8-fields-constructor
 import { FC } from 'react';
+
 import stylesInput from './load-pages.module.scss';
+
 import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
+
 import PageItem from '../page-item/page-item';
 
 interface ILoadPages {
@@ -11,7 +12,11 @@ interface ILoadPages {
   onClick: () => void;
 }
 
-const LoadPages: FC<ILoadPages> = ({ arr = [], onClick, disabled }) => {
+const LoadPages: FC<ILoadPages> = ({
+  arr = [],
+  onClick,
+  disabled,
+}): JSX.Element => {
   return (
     <div className={stylesInput.selects}>
       {!arr.length ? (

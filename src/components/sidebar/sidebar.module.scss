@@ -106,7 +106,7 @@ $full-width-sb-desctop: 224px;
 }
 
 .sidebar_close {
-  width: 70px;
+  width: fit-content;
 
   .navigation__text, // все подписи у кнопок исчезнут
   .addtext {
@@ -289,8 +289,7 @@ $full-width-sb-desctop: 224px;
     opacity 0.3s,
     width 0.3s;
   margin: 0;
-  // развернутая ширина 224 = 8*2 паддинг + 46 иконка + 15 паддинг-лефт + 147текс
-  min-width: $full-width-sb-desctop -77px;
+  text-align: start;
   opacity: 0;
 }
 

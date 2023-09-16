@@ -4,7 +4,7 @@ import LoadPages from '../inputs/load-pages/load-pages';
 import Input from '../inputs/input/input';
 
 const meta = {
-  title: 'COMPONENTS/StepperFillBot',
+  title: 'UI/StepperFillBot',
   component: StepperFillBot,
 };
 

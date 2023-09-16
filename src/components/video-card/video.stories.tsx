@@ -18,7 +18,7 @@ export const VideoCardM: Story = {
     src: 'https://www.youtube.com/embed/FKOn5DfpJDA',
     title: 'Подключение чат бота и основные параметры | Bot Kits',
     prewiew: createbot,
-    size: 'm',
+    size: 's',
     hiddenRemoveButton: false,
     hover: false,
   },
