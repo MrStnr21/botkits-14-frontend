@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import stylesApp from './app.module.scss';
 
+import Templates from '../dashbord/bots-templates/bots-templates';
+
 const App: FC = (): JSX.Element => {
   return (
     <div className={stylesApp.app}>
@@ -8,6 +10,7 @@ const App: FC = (): JSX.Element => {
       <button type="button" className={stylesApp.button}>
         click!
       </button>
+      <Templates />
     </div>
   );
 };
