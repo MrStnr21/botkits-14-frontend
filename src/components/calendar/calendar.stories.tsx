@@ -10,5 +10,5 @@ export default meta;
 type Story = StoryObj<typeof Calendar>;
 
 export const Primary: Story = {
-  render: () => <Calendar />,
+  render: () => <Calendar handleFunction={(payload) => console.log(payload)} />,
 };

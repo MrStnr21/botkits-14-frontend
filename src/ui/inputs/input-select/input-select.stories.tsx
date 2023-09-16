@@ -16,9 +16,9 @@ export const InputSelectDefault: Story = {
       { nameValue: 'выбор 2', value: '2' },
       { nameValue: 'выбор 3', value: '3' },
     ],
-    defaultValue: ['Числа'],
-    initValue: ['1'],
-    handleFunction: (event) => console.log(event),
+    defaultValue: ['1'],
+    maxWidth: 240,
+    handleFunction: (payload) => console.log(payload),
   },
 };
 
@@ -29,9 +29,9 @@ export const InputSelectMultiple: Story = {
       { nameValue: 'выбор 2', value: '2' },
       { nameValue: 'выбор 3', value: '3' },
     ],
-    initValue: ['1'],
-    defaultValue: ['Числа'],
-    handleFunction: (event) => console.log(event),
+    defaultValue: ['1'],
+    maxWidth: 240,
+    handleFunction: (payload) => console.log(payload),
     multiple: true,
   },
 };

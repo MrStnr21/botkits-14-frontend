@@ -1,22 +1,58 @@
 // to do: calendar
 // https://trello.com/c/cBVPYbCl/11-%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C
 import { FC, useEffect, useState } from 'react';
+
 import {
   LocalizationProvider,
   StaticDatePicker,
   DateField,
+  DateValidationError,
 } from '@mui/x-date-pickers';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import ru from 'date-fns/locale/ru';
-import '../app/_vars.scss';
+import { zonedTimeToUtc, format as formatZ } from 'date-fns-tz';
+import { format } from 'date-fns';
+import { FieldChangeHandlerContext } from '@mui/x-date-pickers/internals';
+import InputSelect from '../../ui/inputs/input-select/input-select';
+import { TIME_ZONE } from '../../utils/constants';
 import stylesCalendar from './calendar.module.scss';
 
-const Calendar: FC = () => {
-  const [date, setDate] = useState<Date>(new Date());
+interface ICalendar {
+  handleFunction: (payload: string) => void;
+}
+
+const Calendar: FC<ICalendar> = ({ handleFunction }) => {
+  const [date, setDate] = useState<Date | null>(new Date());
+  const [timeZone, setTimeZone] = useState<string>('');
+  const localTimeZone = format(new Date(), 'zzz');
+
   useEffect(() => {
     setDate(new Date());
+    setTimeZone(localTimeZone);
   }, []);
+
+  const getInputTimeZone = (payload: string) => {
+    setTimeZone(payload);
+  };
+
+  const handleChangeDate = (
+    value: Date | null,
+    context: FieldChangeHandlerContext<DateValidationError>
+  ) => {
+    if (!context.validationError && value) {
+      setDate(value);
+      const zoneTimeSource = zonedTimeToUtc(value, `Etc/${timeZone}`);
+      const zoneTime = formatZ(zoneTimeSource, 'yyyy-MM-dd HH:mm:ss zzz', {
+        timeZone: `Etc/${timeZone}`,
+      });
+      handleFunction(zoneTime);
+    }
+  };
+
+  const handleClear = () => {
+    setDate(new Date());
+  };
 
   const calendarTheme = createTheme({
     typography: {
@@ -31,7 +67,8 @@ const Calendar: FC = () => {
           <DateField
             value={date}
             fullWidth
-            helperText
+            timezone="UTC"
+            onChange={handleChangeDate}
             sx={{
               maxHeight: '40px',
               marginBottom: '30px',
@@ -53,6 +90,8 @@ const Calendar: FC = () => {
             }}
           />
           <StaticDatePicker
+            onChange={handleChangeDate}
+            value={date}
             slotProps={{
               layout: {
                 sx: {
@@ -161,6 +200,24 @@ const Calendar: FC = () => {
             }}
             defaultValue={date}
           />
+          <div className={stylesCalendar.containerTimeZone}>
+            <span className={stylesCalendar.timeZoneLabel}>Часовой пояс</span>
+            <InputSelect
+              maxWidth={144}
+              values={TIME_ZONE}
+              defaultValue={[localTimeZone]}
+              handleFunction={getInputTimeZone}
+            />
+          </div>
+          <div className={stylesCalendar.containerButton}>
+            <button
+              type="button"
+              className={stylesCalendar.button}
+              onClick={handleClear}
+            >
+              Очистить
+            </button>
+          </div>
         </div>
       </ThemeProvider>
     </LocalizationProvider>
