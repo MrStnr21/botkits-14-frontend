@@ -1,0 +1,16 @@
+@import '../../../components/app/vars';
+// @TODO перенести в нужную папку, доделать стили
+.wrapper{
+  width: fit-content;
+  // height: 76px;
+  background-color: #F8F9FB;
+  text-align: left;
+}
+
+.butbox{
+  margin-top: 16px;
+  margin-bottom: 32px;
+  @extend %flex-element-center;
+  flex-wrap: wrap;
+  gap: 20px;
+}

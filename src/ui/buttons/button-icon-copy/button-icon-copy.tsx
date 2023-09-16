@@ -15,7 +15,7 @@ const ButtonIconCopy: FC<IButtonIconCopy> = ({
   buttonHtmlType = 'button',
   onClick,
   disabled,
-}) => {
+}): JSX.Element => {
   return (
     <button
       className={stylesButtonIconCopy.button}

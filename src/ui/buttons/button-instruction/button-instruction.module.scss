@@ -1,10 +1,11 @@
 @import '../../../components/app/vars';
 
 .button {
+  @extend %button-style-reset;
   background-color: white;
-  width: 579px;
+  width: 100%;
   height: 76px;
-  transition: box-shadow .1s linear;
+  transition: box-shadow 0.1s linear;
   border-radius: $border-radius-10;
   overflow: hidden;
   position: relative;
@@ -12,13 +13,21 @@
   box-sizing: border-box;
 }
 
-.button:hover {
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+.button div {
+  @extend %flex-element-center;
 }
 
-.button__disabled {
+.button:hover {
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
+}
+
+.button:disabled {
   @extend .button;
   pointer-events: none;
+}
+
+.button:disabled svg {
+  fill: $button-add-bot-disabled-color;
 }
 
 .image_box {
@@ -26,23 +35,32 @@
   height: 173px;
   border-radius: $border-radius-circle;
   background-color: $button-default-grey-color;
-  transition: background-color .1s linear;
+  transition: background-color 0.1s linear;
   position: absolute;
   z-index: 1;
   top: -48px;
-  right: 432px;
+  left: -26px;
   @extend %flex-element-center;
+}
+
+.image_box svg {
+  fill: $default-dark-grey-color;
+  transition: all 0.1s linear;
 }
 
 .button:hover .image_box {
   background-color: $button-disabled-green-color;
 }
 
+.button:hover .image_box svg {
+  fill: $button-default-green-color;
+}
+
 .text {
-  width: 579px;
-  height: 76px;
+  text-align: left;
+  padding-left: 201px;
   border: 2px solid $button-default-grey-color;
-  transition: border .1s linear;
+  transition: border 0.1s linear;
   border-radius: $border-radius-10;
   margin: 0;
   box-sizing: border-box;
@@ -57,7 +75,7 @@
   border: 2px solid rgba(0, 0, 0, 0);
 }
 
-.text__disabled {
-  @extend .text;
+.button:disabled .text {
+  //@extend .text;
   color: $button-add-bot-disabled-color;
 }

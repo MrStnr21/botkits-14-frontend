@@ -1,5 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import ButtonInstruction, { IButtonInstruction } from './button-instruction';
+import FaqIcon from '../../../images/icon/add bot/tutorial.svg';
+import VideoIcon from '../../../images/icon/add bot/video.svg';
 
 export default {
   title: 'UI/Buttons/Button-Instruction',
@@ -25,6 +27,19 @@ export default {
       action: 'clicked',
       description: 'Переход на url с инструкцией',
     },
+    children: {
+      type: 'string',
+      description: 'Текст кнопки',
+      name: 'label',
+    },
+    icon: {
+      type: 'string',
+      description: 'Иконка кнопки',
+      options: [FaqIcon, VideoIcon],
+      control: {
+        type: 'select',
+      },
+    },
   },
   parameters: {
     layout: 'centered',
@@ -37,6 +52,8 @@ const Template: StoryFn<IButtonInstruction> = (args) => <ButtonInstruction {...a
 
 export const Button = {
   args: {
+    children: 'Пошаговая инструкция',
+    icon: FaqIcon,
     disabled: false,
     url: '',
   },

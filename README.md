@@ -1,6 +1,6 @@
 # BotKits
 
-### Frontend часть проекта для реального заказчика [BotKits](https://botkits.ru/)\*
+### Frontend часть проекта для реального заказчика [BotKits](https://botkits.ru/)
 
 ## Описание проекта
 
