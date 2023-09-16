@@ -42,6 +42,7 @@
   box-shadow: 0px 6px 16px 0px #15123314;
   padding: 40px 40px 36px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .create_main_bot_name {
@@ -91,6 +92,9 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 16px;
+  position: absolute;
+  right: 40px;
+  bottom: 36px;
 }
 
 .create_main_button {
