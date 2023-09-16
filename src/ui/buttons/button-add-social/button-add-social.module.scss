@@ -36,6 +36,17 @@
   background-color: $button-add-social-default-background-color;
 }
 
+.button.active {
+  background-color: $button-add-social-pressed-background-color;
+  box-shadow: $m-box-shadow;
+}
+
+.button.disabled {
+  color: $default-dark-grey-color;
+  background-color: $button-add-social-default-background-color;
+  box-shadow: none;
+}
+
 .button:active {
   background-color: $button-add-social-pressed-background-color;
   box-shadow: $m-box-shadow;
@@ -65,6 +76,14 @@
   background-image: url('../../../images/icon/40x40/alisa/inactive.svg');
 }
 
+.button.active .alisa {
+  background-image: url('../../../images/icon/40x40/alisa/hover.svg');
+}
+
+.button.disabled .alisa {
+  background-image: url('../../../images/icon/40x40/alisa/inactive.svg');
+}
+
 /* Facebook*/
 .facebook {
   background-image: url('../../../images/icon/40x40/facebook/default.svg');
@@ -79,6 +98,14 @@
 }
 
 .button:disabled .facebook {
+  background-image: url('../../../images/icon/40x40/facebook/inactive.svg');
+}
+
+.button.active .facebook {
+  background-image: url('../../../images/icon/40x40/facebook/hover.svg');
+}
+
+.button.disabled .facebook {
   background-image: url('../../../images/icon/40x40/facebook/inactive.svg');
 }
 
@@ -99,6 +126,14 @@
   background-image: url('../../../images/icon/40x40/google/inactive.svg');
 }
 
+.button.active .google {
+  background-image: url('../../../images/icon/40x40/google/hover.svg');
+}
+
+.button.disabled .google {
+  background-image: url('../../../images/icon/40x40/google/inactive.svg');
+}
+
 /* Insta*/
 .insta {
   background-image: url('../../../images/icon/40x40/insta/default.svg');
@@ -113,6 +148,14 @@
 }
 
 .button:disabled .insta {
+  background-image: url('../../../images/icon/40x40/insta/inactive.svg');
+}
+
+.button.active .insta {
+  background-image: url('../../../images/icon/40x40/insta/hover.svg');
+}
+
+.button.disabled .insta {
   background-image: url('../../../images/icon/40x40/insta/inactive.svg');
 }
 
@@ -133,6 +176,14 @@
   background-image: url('../../../images/icon/40x40/mailru/inactive.svg');
 }
 
+.button.active .mailru {
+  background-image: url('../../../images/icon/40x40/mailru/hover.svg');
+}
+
+.button.disabled .mailru {
+  background-image: url('../../../images/icon/40x40/mailru/inactive.svg');
+}
+
 /* Odnoklassniki*/
 .odnoklassniki {
   background-image: url('../../../images/icon/40x40/odnoklassniki/default.svg');
@@ -147,6 +198,14 @@
 }
 
 .button:disabled .odnoklassniki {
+  background-image: url('../../../images/icon/40x40/odnoklassniki/inactive.svg');
+}
+
+.button.active .odnoklassniki {
+  background-image: url('../../../images/icon/40x40/odnoklassniki/hover.svg');
+}
+
+.button.disabled .odnoklassniki {
   background-image: url('../../../images/icon/40x40/odnoklassniki/inactive.svg');
 }
 
@@ -167,6 +226,14 @@
   background-image: url('../../../images/icon/40x40/telegram/inactive.svg');
 }
 
+.button.active .telegram {
+  background-image: url('../../../images/icon/40x40/telegram/hover.svg');
+}
+
+.button.disabled .telegram {
+  background-image: url('../../../images/icon/40x40/telegram/inactive.svg');
+}
+
 /* Twitter*/
 .twitter {
   background-image: url('../../../images/icon/40x40/twitter/default.svg');
@@ -181,6 +248,14 @@
 }
 
 .button:disabled .twitter {
+  background-image: url('../../../images/icon/40x40/twitter/inactive.svg');
+}
+
+.button.active .twitter {
+  background-image: url('../../../images/icon/40x40/twitter/hover.svg');
+}
+
+.button.disabled .twitter {
   background-image: url('../../../images/icon/40x40/twitter/inactive.svg');
 }
 
@@ -201,6 +276,14 @@
   background-image: url('../../../images/icon/40x40/viber/inactive.svg');
 }
 
+.button.active .viber {
+  background-image: url('../../../images/icon/40x40/viber/hover.svg');
+}
+
+.button.disabled .viber {
+  background-image: url('../../../images/icon/40x40/viber/inactive.svg');
+}
+
 /* Vk*/
 .vk {
   background-image: url('../../../images/icon/40x40/vk/default.svg');
@@ -215,6 +298,14 @@
 }
 
 .button:disabled .vk {
+  background-image: url('../../../images/icon/40x40/vk/inactive.svg');
+}
+
+.button.active .vk {
+  background-image: url('../../../images/icon/40x40/vk/hover.svg');
+}
+
+.button.disabled .vk {
   background-image: url('../../../images/icon/40x40/vk/inactive.svg');
 }
 
@@ -235,6 +326,14 @@
   background-image: url('../../../images/icon/40x40/web/inactive.svg');
 }
 
+.button.active .web {
+  background-image: url('../../../images/icon/40x40/web/hover.svg');
+}
+
+.button.disabled .web {
+  background-image: url('../../../images/icon/40x40/web/inactive.svg');
+}
+
 /* Whatsapp*/
 .whatsapp {
   background-image: url('../../../images/icon/40x40/whatsapp/default.svg');
@@ -249,6 +348,14 @@
 }
 
 .button:disabled .whatsapp {
+  background-image: url('../../../images/icon/40x40/whatsapp/inactive.svg');
+}
+
+.button.active .whatsapp {
+  background-image: url('../../../images/icon/40x40/whatsapp/hover.svg');
+}
+
+.button.disabled .whatsapp {
   background-image: url('../../../images/icon/40x40/whatsapp/inactive.svg');
 }
 
@@ -269,6 +376,14 @@
   background-image: url('../../../images/icon/40x40/yandex/inactive.svg');
 }
 
+.button.active .yandex {
+  background-image: url('../../../images/icon/40x40/yandex/hover.svg');
+}
+
+.button.disabled .yandex {
+  background-image: url('../../../images/icon/40x40/yandex/inactive.svg');
+}
+
 /* Youtube*/
 .youtube {
   background-image: url('../../../images/icon/40x40/youtube/default.svg');
@@ -283,5 +398,13 @@
 }
 
 .button:disabled .youtube {
+  background-image: url('../../../images/icon/40x40/youtube/inactive.svg');
+}
+
+.button.active .youtube {
+  background-image: url('../../../images/icon/40x40/youtube/hover.svg');
+}
+
+.button.disabled .youtube {
   background-image: url('../../../images/icon/40x40/youtube/inactive.svg');
 }
