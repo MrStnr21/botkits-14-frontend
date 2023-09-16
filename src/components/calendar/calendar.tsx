@@ -25,12 +25,19 @@ interface ICalendar {
 const Calendar: FC<ICalendar> = ({ handleFunction }) => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [timeZone, setTimeZone] = useState<string>('');
+  const [reset, setReset] = useState<boolean>(false);
   const localTimeZone = format(new Date(), 'zzz');
 
   useEffect(() => {
     setDate(new Date());
     setTimeZone(localTimeZone);
   }, []);
+
+  useEffect(() => {
+    if (reset) {
+      setReset(false);
+    }
+  }, [reset]);
 
   const getInputTimeZone = (payload: string) => {
     setTimeZone(payload);
@@ -51,7 +58,9 @@ const Calendar: FC<ICalendar> = ({ handleFunction }) => {
   };
 
   const handleClear = () => {
+    setReset(true);
     setDate(new Date());
+    //  setReset(false);
   };
 
   const calendarTheme = createTheme({
@@ -207,6 +216,7 @@ const Calendar: FC<ICalendar> = ({ handleFunction }) => {
               values={TIME_ZONE}
               defaultValue={[localTimeZone]}
               handleFunction={getInputTimeZone}
+              resetSelect={reset}
             />
           </div>
           <div className={stylesCalendar.containerButton}>
