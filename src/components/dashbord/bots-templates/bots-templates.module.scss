@@ -1,0 +1,84 @@
+@import '../../app/vars';
+
+.container {
+    text-align: start;
+    background-color: $white-color;
+    max-width: 1268px;
+}
+
+.header_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.title {
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $h2-font-size;
+    font-weight: $bold;
+    line-height: $h2-line-height;
+    letter-spacing: $h2-letter-space;
+    color: $primary-text-color;
+    margin: 0;
+}
+
+.list {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 125px));
+    grid-template-columns: repeat(6, minmax(100px, 188px));
+    gap: 28px;
+    row-gap: 32px;
+    padding: 0;
+}
+
+.expanded {
+    overflow: hidden;
+    max-height: 300px;
+    transition: max-height 1s ease;
+}
+
+.not_expanded {
+    max-height: 125px;
+    overflow: hidden;
+    transition: max-height 1s ease;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(minmax, 188px));
+    align-items: flex-start;
+}
+
+.accordion_wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.accordion_button {
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    background-color: $white-color;
+    border: none;
+    font-weight: $bold;
+    font-size: $l-font-size;
+    line-height: $l-line-height;
+    color: $default-dark-grey-color;
+}
+
+.accordion_ico_plus {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../../images/icon/24x24/common/chevron-big.svg');
+    background-color: $white-color;
+    background-position: center;
+    border: none;
+    align-self: center;
+    transition: transform 0.3s ease;
+}
+
+.accordion_ico_minus {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}

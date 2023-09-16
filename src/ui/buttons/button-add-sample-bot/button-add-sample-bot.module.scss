@@ -2,7 +2,10 @@
 
 .button {
   @extend %button-style-reset;
-  @extend %flex-element-center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
   font-size: $m-font-size;
   font-weight: $bold;
   letter-spacing: $l-letter-space;
@@ -16,11 +19,10 @@
 
 .container {
   display: flex;
-  align-items: center;
-  gap: 34px;
+  //gap: 34px; использую margin: auto;
   border-radius: $border-radius-185;
   height: $button-add-sample-bot-height;
-  width: $button-add-sample-bot-width;
+  width: 100%;
   transition: all 0.1s linear;
 }
 
@@ -28,9 +30,14 @@
   @extend %flex-element-center;
 }
 
+.plus_icon {
+  margin: auto;
+}
+
 .plus_icon svg {
   stroke-width: $button-add-sample-bot-stroke-width;
   transition: all 0.1s linear;
+  align-self: center;
 }
 
 .template_icon svg {
@@ -40,9 +47,16 @@
 }
 
 .text {
+  text-align: left;
   padding: 0;
   margin: 0;
-  align-self: flex-start;
+  /* Обрезаем всё за пределами блока */
+  /* Позволим тексту уменьшаться по ширине */
+  -webkit-line-clamp: 1;
+  /* Число отображаемых строк */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Стили цвета кнопки*/

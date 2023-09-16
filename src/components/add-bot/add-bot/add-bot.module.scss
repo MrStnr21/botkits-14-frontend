@@ -1,0 +1,20 @@
+@import '../../app/vars';
+
+.add_bot_title {
+  font-family: 'IBM Plex Mono';
+  font-size: $h2-font-size;
+  font-weight: $bold;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-space;
+  margin: 0 0 32px 0;
+  padding: 0;
+  text-align: left;
+}
+
+.add_bot_list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  gap: 19px;
+  list-style: none;
+}

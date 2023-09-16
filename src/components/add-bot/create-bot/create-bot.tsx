@@ -49,7 +49,7 @@ const CreateBot: FC<ICreateBot> = ({
 }): JSX.Element => {
   const [arrPages, setArrPages] = useState<any>([]); // временный тип any
 
-  const { values, handleChange } = useForm({
+  const { values, handleChange, setValues } = useForm({
     botName: '',
   });
 
@@ -59,6 +59,7 @@ const CreateBot: FC<ICreateBot> = ({
       ...values,
       pages: arrPages,
     };
+    setValues({ botName: '' });
     // Добавить отправку данных на бэк
     // Добавить редирект на страницу бота
     console.log(dataBot);
