@@ -13,6 +13,7 @@ import Partnership from '../../pages/partnership/partnership';
 import Share from '../../pages/share/share';
 import Subscription from '../../pages/subscription/subscription';
 import NotFound from '../../pages/not-found';
+import Signup from '../../pages/signup/signup';
 
 const App: FC = (): JSX.Element => {
   const [authenticated, setAuthenticated] = useState(true); // ?
@@ -22,6 +23,7 @@ const App: FC = (): JSX.Element => {
       {/* {!authenticated && <Auth />}
       {authenticated && ( */}
       <Routes>
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="add-bot" element={<AddBotPage />} />

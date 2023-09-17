@@ -1,0 +1,159 @@
+@import "../../components/app/vars";
+
+.signupPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(180deg, $white-color 36%, $default-grey-color 0%);
+}
+
+.contentContainer {
+  width: 100%;
+  max-width: 770px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo {
+  width: 149px;
+  height: 35px;
+  margin-bottom: 20px;
+  background-image: url('../../images/icon/BOTkitLogo.svg');
+}
+
+.label {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+  font-family: 'IBM Plex Mono', sans-serif;;
+  font-size: $h1-font-size;
+  font-weight: $semi-bold;
+  line-height: $h1-line-height;
+  letter-spacing: 5px;
+  font-style: normal;
+  font-feature-settings: 'clig' off, 'liga' off;
+}
+
+.signupFormContainer {
+  width: 100%;
+  background-color: $active-blue-color;
+  border-radius: $border-radius-30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signupTitle {
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+  margin-bottom: 15px;
+  font-family: 'IBM Plex Mono', sans-serif;;
+  text-align: center;
+  color: $white-color;
+  font-size: $xl-font-size;
+  font-weight: $bold;
+  line-height: $button-line-height-130;
+}
+
+.socialContainer {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.socialMain {
+  display: flex;
+  gap: 40px;
+  padding: 10px;
+  background-color: $persian-blue-focus;
+  border-radius: $border-radius-30;
+}
+
+.socialSecond {
+  display: flex;
+  gap: 40px;
+  padding: 10px;
+  background-color: $persian-blue-focus;
+  border-radius: $border-radius-30;
+}
+
+.signupInputsContainer {
+  width: 100%;
+  display: flex;
+  border-radius: $border-radius-30;
+  flex-direction: column;
+  align-items: center;
+  background-color: $default-blue-color;
+}
+
+.signupTitleForm {
+  margin: 0;
+  padding: 0;
+  margin-top: -15px;
+  margin-bottom: 45px;
+  width: 80px;
+  height: 30px;
+  border-radius: $border-radius-15;
+  background-color: $default-blue-color;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  color: $white-color;
+  font-size: $l-font-size;
+  font-weight: $bold;
+  line-height: $button-line-height-150;
+}
+
+.inputsContainer {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 325px 325px;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.inputsPhoneContainer{
+  width: 100%;
+  max-width: 325px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phoneCodeSelect {
+  background-color: $white-color;
+  border: none;
+  flex-basis: 110px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.formsButton {
+  width: 100%;
+  max-width: 260px;
+  margin-bottom: 50px;
+}
+
+.signupReadyContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  color: $white-color;
+  font-size: $m-font-size;
+  font-weight: $normal;
+  line-height: $button-line-height-150;
+  margin-bottom: 40px;
+}
+
+.signinLink {
+  color: $white-color;
+  text-decoration-line: underline;
+}

@@ -15,22 +15,26 @@ $default-blue-color: #243cbb;
 $hover-blue-color: #435cdb;
 $active-blue-color: #2743ce;
 $disabled-blue-color: #ecefff;
+$persian-blue-focus: #314DD8;
 
 $primary-text-color: #060c23;
 $default-green-color: #22ffaa;
 $error-red-color: #ff5555;
-$white-color: #ffff;
+$white-color: #ffffff;
 
 /* Переменные размеров шрифта */
+$h1-font-size: 48px;
 $h2-font-size: 32px;
 $h3-font-size: 24px;
 $h4-font-size: 18px;
+$xl-font-size: 20px;
 $l-font-size: 16px;
 $m-font-size: 14px;
 $s-font-size: 13px;
 $xs-font-size: 12px;
 
 /* Переменные высоты строки */
+$h1-line-height: 52.8px;
 $h2-line-height: 41.6px;
 $h3-line-height: 31.2px;
 $h4-line-height: 23.4px;
@@ -185,6 +189,7 @@ $button-add-social-pressed-background-color: transparent;
 $button-add-social-size: 124px;
 
 $button-add-social-icon-size: 52px;
+$button-add-social-icon-size-s: 40px;
 
 /* Элемент ConstructorDefaultButton */
 /* Переменные цветов */

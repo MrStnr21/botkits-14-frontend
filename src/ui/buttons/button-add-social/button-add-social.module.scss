@@ -464,3 +464,8 @@
 .button.disabled .youtube {
   background-image: url('../../../images/icon/40x40/youtube/inactive.svg');
 }
+
+.buttonSmall {
+  height: $button-add-social-icon-size-s;
+  background-color: transparent;
+}
