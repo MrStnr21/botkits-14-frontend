@@ -5,27 +5,27 @@ interface ILink {
 
 const links: Array<ILink> = [
   {
-    link: '/',
+    link: 'https://botkits.ru/start/',
     text: 'Начало работы в сервисе',
   },
   {
-    link: '/',
+    link: 'https://botkits.ru/block-schemes/',
     text: 'Блок схемы',
   },
   {
-    link: '/',
+    link: 'https://botkits.ru/newsletter/',
     text: 'Рассылка',
   },
   {
-    link: '/',
+    link: 'https://botkits.ru/configuration/ ',
     text: 'Конфигурации',
   },
   {
-    link: '/',
+    link: 'https://botkits.ru/statistics/ ',
     text: 'Статистика',
   },
   {
-    link: '/',
+    link: 'https://botkits.ru/dialogues/ ',
     text: 'Диалоги',
   },
 ];

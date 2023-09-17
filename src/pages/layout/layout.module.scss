@@ -4,7 +4,7 @@
 .layout{
 max-width: $max-content-width;
 margin: 0 auto;
-height: 100vh;
+min-height: 100vh;
 display: grid;
 grid-template-columns: auto 1fr;
 grid-template-rows: auto  1fr auto;
@@ -13,7 +13,7 @@ padding: 16px 0 16px 16px; // справа 0, чтобы во время отк�
 column-gap: 40px;
 position: relative;
 background-color: $white-color;
-overflow-x: hidden;
+// overflow-x: hidden;
 
 @media (max-width: $min-content-width) {
   padding: 0;
@@ -27,6 +27,7 @@ overflow-x: hidden;
     grid-column: 2 / -1;
     grid-row: 2 / -2;
     // END GRID LAYOUT
+    align-self: center;
 
     @media (max-width: $min-content-width) {
       grid-column: 1 / -1;

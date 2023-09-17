@@ -65,7 +65,14 @@
 .base__header{
   margin-top: 0;
   margin-bottom: 24px;
-  @extend %typography-header
+  @extend %typography-header;
+  text-decoration: none;
+  color: inherit;
+  cursor: $cursor;
+
+  &:hover{
+    opacity: 0.6; // на макете нет, что это ссылка, но есть в notion
+  }
 }
 
 .base__text{
@@ -98,6 +105,11 @@
   font-family: inherit;
   font-size: $m-font-size;
   font-weight: $normal;
+
+  &:hover{
+    opacity: 0.6; // на макете нет эффекта при наведении
+
+  }
 }
 
 .base__link::before{

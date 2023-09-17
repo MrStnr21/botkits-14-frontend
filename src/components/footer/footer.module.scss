@@ -12,6 +12,7 @@
   height: 35px;
   box-sizing: border-box;
   padding-top: 15px;
+  margin-top: 32px;
   border-top: 1px solid #d7deea;
   background-color: $white-color;
   @media (max-width: 768px) {
@@ -27,4 +28,5 @@
   line-height: $m-line-height;
   width: fit-content;
   margin: 0;
+  white-space: nowrap;
 }
