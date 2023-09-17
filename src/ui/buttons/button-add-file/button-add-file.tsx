@@ -1,6 +1,6 @@
 // верхий компонент
-import { FC, useState, useCallback } from 'react';
-
+import React, { FC, useState, useCallback } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import stylesButtonAddFile from './button-add-file.module.scss';
 
 import ConstructorIconBotton from '../constructor-icon-botton/constructor-icon-botton';
@@ -8,15 +8,23 @@ import ConstructorIconBotton from '../constructor-icon-botton/constructor-icon-b
 import videoIcon from '../../../images/icon/24x24/add content/video.svg';
 import musicIcon from '../../../images/icon/24x24/add content/music.svg';
 import imageIcon from '../../../images/icon/24x24/add content/image.svg';
-// import fileIcon from '../../../images/icon/24x24/add content/file.svg'; // Это скрепка
-
-import Button from '../button/button';
+import fileIcon from '../../../images/icon/24x24/add content/file.svg';
 
 import { BUTTON_NAME } from '../../../utils/constants';
-// import DownloadFile from '../../inputs/add-file/add-file'; // он откроется при клике на иконку?
+import ResultAddFile, { IResultProps } from './result-add-file/result-add-file';
+import VideoCard from '../../../components/video-card/video-card';
+import createbot from '../../../images/prewiew/createbot.png'; // for example
 
-const ButtonAddFile: FC = (): JSX.Element => {
+interface IButton {
+  type: BUTTON_NAME;
+  icon: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  accept: string; // но тут д.б.расширения
+}
+
+const Button: FC<IButton> = ({ type, icon, onChange, accept }): JSX.Element => {
   const [iconsSelected, setIconsSelected] = useState<Array<BUTTON_NAME>>([]);
+
   let changeArr: [] | Array<BUTTON_NAME>;
 
   const checkActiveIcon = useCallback(
@@ -27,13 +35,11 @@ const ButtonAddFile: FC = (): JSX.Element => {
   );
 
   const openDownloadFile = (value: BUTTON_NAME) => {
-    // если кликаем на выбранную иконку второй раз, то она переходит в дефолт active=false..это для поиграться
     if (checkActiveIcon(value)) {
       // @todo  здесь должна быть другая логика - клик по крестику загруженного файла?
       changeArr = iconsSelected.filter((item) => {
         return item !== value;
       });
-
       setIconsSelected(changeArr);
     } else {
       setIconsSelected([...iconsSelected, value]);
@@ -42,57 +48,113 @@ const ButtonAddFile: FC = (): JSX.Element => {
     // @TODO добавить функцию удаления добавленного контента
   };
 
-  // Для элемента Button отдельная, потому что не уверена, что стоит его переделывать
-  const addBtn = () => {
-    if (checkActiveIcon(BUTTON_NAME.BTN)) {
-      changeArr = iconsSelected.filter((item) => {
-        return item !== BUTTON_NAME.BTN;
-      });
-      setIconsSelected(changeArr);
-    } else {
-      setIconsSelected([...iconsSelected, BUTTON_NAME.BTN]);
+  return (
+    <div>
+      <input
+        className={stylesButtonAddFile.download__input}
+        type="file"
+        onChange={onChange}
+        id={type}
+        name={type}
+        hidden
+        accept={accept}
+      />
+      <label className={stylesButtonAddFile.download__label} htmlFor={type}>
+        <ConstructorIconBotton
+          value={type}
+          active={checkActiveIcon(type)}
+          onClick={openDownloadFile}
+          icon={icon}
+        />
+      </label>
+    </div>
+  );
+};
+
+const ButtonAddFile: FC = (): JSX.Element => {
+  const [isNoValid, setIsNoValid] = useState(false);
+  const [fileList, setFileList] = useState<Array<IResultProps>>([]);
+
+  const handleChange = (files: FileList | null) => {
+    // console.log(files);
+    if (files && files.length > 0) {
+      if (files[0].size > 20 * 1024 * 1024) {
+        setIsNoValid(true);
+      } else {
+        setFileList([
+          ...fileList,
+          {
+            name: files[0].name,
+            size: files[0].size,
+            type: files[0].type,
+          },
+        ]);
+      }
     }
   };
 
   return (
-    <div className={stylesButtonAddFile.wrapper}>
-      <ConstructorIconBotton
-        value={BUTTON_NAME.VIDEO}
-        active={checkActiveIcon(BUTTON_NAME.VIDEO)}
-        onClick={openDownloadFile}
-        icon={videoIcon}
-      />
-      <ConstructorIconBotton
-        value={BUTTON_NAME.AUDIO}
-        active={checkActiveIcon(BUTTON_NAME.AUDIO)}
-        onClick={openDownloadFile}
-        icon={musicIcon}
-      />
-      <ConstructorIconBotton
-        value={BUTTON_NAME.IMAGE}
-        active={checkActiveIcon(BUTTON_NAME.IMAGE)}
-        onClick={openDownloadFile}
-        icon={imageIcon}
-      />
-
-      {/*   СКРЕПКА, у меня нет в UI, в макете воронки будет, тут для примера */}
-      {/* <ConstructorIconBotton
-        value={BUTTON_NAME.FILE}
-        active={checkActiveIcon(BUTTON_NAME.FILE)}
-        onClick={openDownloadFile}
-        icon={fileIcon}
-      /> */}
-
-      <Button
-        color="light-grey"
-        variant="default"
-        active={checkActiveIcon(BUTTON_NAME.BTN)}
-        // @TODO будет другая функция
-        onClick={() => addBtn()}
-      >
-        <p className={stylesButtonAddFile.btn__text}>Добавить кнопку</p>
-      </Button>
-    </div>
+    <>
+      {fileList.length > 0 && (
+        <ul
+          className={stylesButtonAddFile.output}
+          aria-label="Выбранные файлы для загрузки"
+        >
+          {fileList.map((file) =>
+            file.type.includes('video') ? (
+              <li key={uuidv4()}>
+                <VideoCard
+                  src="https://www.youtube.com/embed/FKOn5DfpJDA"
+                  title="Подключение чат бота и основные параметры | Bot Kits"
+                  prewiew={createbot}
+                  size="m"
+                  hiddenRemoveButton={false}
+                  hover={false}
+                />
+              </li>
+            ) : (
+              <li key={uuidv4()}>
+                <ResultAddFile
+                  name={file.name}
+                  size={file.size}
+                  type={file.type}
+                  error={isNoValid}
+                />
+              </li>
+            )
+          )}
+        </ul>
+      )}
+      <div className={stylesButtonAddFile.wrapper}>
+        <h3 className={stylesButtonAddFile.header}>Дополните контентом</h3>
+        <div className={stylesButtonAddFile.inputsBox}>
+          <Button
+            type={BUTTON_NAME.IMAGE}
+            icon={imageIcon}
+            onChange={({ target }) => handleChange(target.files)}
+            accept="image/*" // любые графические файлы;
+          />
+          <Button
+            type={BUTTON_NAME.VIDEO}
+            icon={videoIcon}
+            onChange={({ target }) => handleChange(target.files)}
+            accept="video/*" // любые видеофайлы;
+          />
+          <Button
+            type={BUTTON_NAME.FILE}
+            icon={fileIcon}
+            onChange={({ target }) => handleChange(target.files)}
+            accept="text/*, .docx, .doc " //
+          />
+          <Button
+            type={BUTTON_NAME.AUDIO}
+            icon={musicIcon}
+            onChange={({ target }) => handleChange(target.files)}
+            accept="audio/*" //  любые аудио файлы;
+          />
+        </div>
+      </div>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ interface IInputSelect {
   values: { nameValue: string; value: string }[];
   multiple?: boolean;
   maxWidth: number;
+  resetSelect?: boolean;
   handleFunction: (payload: string) => void;
 }
 
@@ -19,6 +20,7 @@ const InputSelect: FC<IInputSelect> = ({
   defaultValue,
   handleFunction,
   multiple = false,
+  resetSelect = false,
   maxWidth,
 }) => {
   const [inputValues, setInputValues] = useState<string[]>([]);
@@ -27,9 +29,24 @@ const InputSelect: FC<IInputSelect> = ({
     setInputValues(defaultValue);
   }, []);
 
+  useEffect(() => {
+    if (resetSelect) {
+      setInputValues(defaultValue);
+    }
+  }, [resetSelect]);
+
   const inputSelectTheme = createTheme({
     typography: {
       fontFamily: 'Open Sans, sans-serif',
+    },
+    components: {
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            boxShadow: '0px 6px 16px 0px rgba(21, 18, 51, 0.08)',
+          },
+        },
+      },
     },
   });
 
@@ -43,7 +60,12 @@ const InputSelect: FC<IInputSelect> = ({
 
   return (
     <ThemeProvider theme={inputSelectTheme}>
-      <FormControl sx={{ maxWidth: `${maxWidth}px` }} fullWidth>
+      <FormControl
+        sx={{
+          maxWidth: `${maxWidth}px`,
+        }}
+        fullWidth
+      >
         <Select
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}

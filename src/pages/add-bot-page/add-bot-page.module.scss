@@ -1,0 +1,18 @@
+@import '../../components/app/vars';
+
+.add_bot_page {
+  max-width: 1268px;
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+  margin: 0 auto;
+}
+
+.add_bot_page_container {
+  background-color: $hover-grey-color;
+  border-radius: $border-radius-30;
+}
+
+.add_bot_page_works {
+  padding: 32px 40px 40px 40px;
+}

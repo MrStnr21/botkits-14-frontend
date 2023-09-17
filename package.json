@@ -33,7 +33,7 @@
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
-    "react-svg": "^16.1.23",
+    "react-svg": "^16.1.24",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "redux-ts": "^4.3.0",
