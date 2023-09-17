@@ -2,7 +2,7 @@
 import { IResponse } from '../services/types/data';
 
 type TOptions = {
-  headers: { token?: string; 'Content-Type': string };
+  headers: { authorization?: string; 'Content-Type': string };
   method?: string;
   body?: string;
 };

@@ -1,11 +1,17 @@
+/* eslint-disable import/no-cycle */
 import { combineReducers } from 'redux';
-// eslint-disable-next-line import/no-cycle
-import { signupReducer } from './signup';
-import { signinReducer } from './signin';
+
+import { signupReducer } from './auth/signup';
+import { signinReducer } from './auth/signin';
+
+import { getBotsReducer } from './bots/getBots';
+import { addBotReducer } from './bots/addBot';
 
 const rootReducer = combineReducers({
   signin: signinReducer,
   signup: signupReducer,
+  getBot: getBotsReducer,
+  addBot: addBotReducer,
 });
 
 export default rootReducer;

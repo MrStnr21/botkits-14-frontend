@@ -4,9 +4,9 @@ import {
   SIGNIN_SUCCESS,
   SIGNIN_ERROR,
   TSigninActions,
-} from '../actions/signin';
+} from '../../actions/auth/signin';
 
-import { TUser } from '../types/data';
+import { TUser } from '../../types/user';
 
 export type TSigninState = {
   user: TUser | null;

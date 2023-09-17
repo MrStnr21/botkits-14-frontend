@@ -4,9 +4,9 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   TSignupActions,
-} from '../actions/signup';
+} from '../../actions/auth/signup';
 
-import { TUser } from '../types/data';
+import { TUser } from '../../types/user';
 
 export type TSignupState = {
   user: TUser | null;
