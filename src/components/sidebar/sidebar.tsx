@@ -26,8 +26,8 @@ const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
 };
 
 const Sidebar: FC = (): JSX.Element => {
-  const [isOpenSB, setStateSB] = useState(true);
-  const [isOpenNL, setStateNL] = useState(true);
+  const [isOpenSB, setStateSB] = useState(false);
+  const [isOpenNL, setStateNL] = useState(true); // выпадающий список nestedList
 
   function toggleSidebar() {
     setStateSB(!isOpenSB);
@@ -117,6 +117,7 @@ const Sidebar: FC = (): JSX.Element => {
         aria-label="Cover"
         // className={`${isOpenSB ? stylesSidebar.cover : ''}`}
         className={stylesSidebar.cover}
+        onClick={() => setStateSB(false)}
       />
     </section>
   );

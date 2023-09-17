@@ -1,24 +1,66 @@
 import { Link } from 'react-router-dom';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { MuiTelInput } from 'mui-tel-input';
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
 import stylesSignup from './signup.module.scss';
 import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+import { IUserSignupState } from '../../services/types/user';
+import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
+import { signupAction } from '../../services/actions/auth/signup';
 
 const Signup: FC = () => {
   const [phoneCode, setPhoneCode] = useState<string>('');
+  const userData = useAppSelector((store) => store.signup);
+  const [formValue, setFromValue] = useState<IUserSignupState>({
+    username: '',
+    email: '',
+    password: '',
+    phone: '',
+  });
 
   const handleChangeCodePhone = (newCode: string) => {
     setPhoneCode(newCode);
+    setFromValue({ ...formValue, phone: newCode + formValue.phone });
   };
 
   useEffect(() => {
     setPhoneCode(DEFAULT_PHONE_CODE);
   }, []);
 
-  return (
+  const dispatch = useAppDispatch();
+
+  const handleSignup = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      dispatch(
+        signupAction({
+          username: formValue.username,
+          email: formValue.email,
+          password: formValue.password,
+          phone: formValue.phone,
+        })
+      );
+    },
+    [formValue]
+  );
+
+  return userData.signupSuccess ? (
+    <section className={stylesSignup.successPage}>
+      <Link
+        to={{ pathname: '/signin' }}
+        className={stylesSignup.successSigninLink}
+      />
+      <div className={stylesSignup.titleContainer}>
+        <h1 className={stylesSignup.title}>
+          Письмо с подтверждением отправлено тебе на{' '}
+          <span className={stylesSignup.email}>/email</span> !
+        </h1>
+        <div className={stylesSignup.titleImage} />
+      </div>
+    </section>
+  ) : (
     <section className={stylesSignup.signupPage}>
       <div className={stylesSignup.contentContainer}>
         <div className={stylesSignup.logo} />
@@ -72,24 +114,53 @@ const Signup: FC = () => {
           </div>
           <div className={stylesSignup.signupInputsContainer}>
             <h2 className={stylesSignup.signupTitleForm}>или</h2>
-            <div className={stylesSignup.inputsContainer}>
-              <Input placeholder="Имя" name="name" />
-              <Input placeholder="E-mail" name="email" />
-              <Input placeholder="Пароль" name="password" />
-              <div className={stylesSignup.inputsPhoneContainer}>
-                <MuiTelInput
-                  value={phoneCode}
-                  className={stylesSignup.phoneCodeSelect}
-                  onChange={handleChangeCodePhone}
+            <form className={stylesSignup.inputsForm} onSubmit={handleSignup}>
+              <div className={stylesSignup.inputsContainer}>
+                <Input
+                  placeholder="Имя"
+                  name="name"
+                  onChange={(e) =>
+                    setFromValue({ ...formValue, username: e.target.value })
+                  }
                 />
-                <Input placeholder="Телефон" name="phoneNumber" />
+                <Input
+                  placeholder="E-mail"
+                  name="email"
+                  onChange={(e) =>
+                    setFromValue({ ...formValue, email: e.target.value })
+                  }
+                />
+                <Input
+                  placeholder="Пароль"
+                  name="password"
+                  onChange={(e) =>
+                    setFromValue({ ...formValue, password: e.target.value })
+                  }
+                />
+                <div className={stylesSignup.inputsPhoneContainer}>
+                  <MuiTelInput
+                    value={phoneCode}
+                    className={stylesSignup.phoneCodeSelect}
+                    onChange={handleChangeCodePhone}
+                  />
+                  <Input
+                    placeholder="Телефон"
+                    name="phoneNumber"
+                    onChange={(e) =>
+                      setFromValue({
+                        ...formValue,
+                        phone: phoneCode + e.target.value,
+                      })
+                    }
+                  />
+                </div>
               </div>
-            </div>
-            <div className={stylesSignup.formsButton}>
-              <Button variant="default" color="green">
-                создать аккаунт
-              </Button>
-            </div>
+              <div className={stylesSignup.formsButton}>
+                <Button variant="default" color="green" buttonHtmlType="submit">
+                  создать аккаунт
+                </Button>
+              </div>
+            </form>
             <div className={stylesSignup.signupReadyContainer}>
               <span className={stylesSignup.signupReadyTitle}>
                 Уже прошли регистрацию?

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import useMediaQuery from '../../hooks/use-media-query';
+import useMediaQuery from '../../../services/hooks/use-media-query';
 
 import stylesKnowledgeBase from './knowledge-base.module.scss';
 
@@ -50,7 +50,14 @@ const KnowledgeBase: FC = (): JSX.Element => {
       </div>
 
       <div className={stylesKnowledgeBase.base}>
-        <h2 className={stylesKnowledgeBase.base__header}>База знаний</h2>
+        <a
+          href="https://botkits.ru/help/ "
+          className={stylesKnowledgeBase.base__header}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          База знаний
+        </a>
         <p className={stylesKnowledgeBase.base__text}>
           Узнай, как создать чат бота. Примеры и описание опций сервиса!
         </p>

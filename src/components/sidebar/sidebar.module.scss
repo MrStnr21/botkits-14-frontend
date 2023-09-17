@@ -34,7 +34,7 @@
 .wrapper {
   // START GRID LAYOUT
   grid-row: span 3;
-  z-index: 1;
+  z-index: 3;
   // END GRID LAYOUT
 
  @media (max-width: $min-content-width) {

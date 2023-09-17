@@ -16,7 +16,7 @@ import StepperFillBot from '../../../ui/stepper-fill-bot/stepper-fill-bot';
 import LoadPages from '../../../ui/inputs/load-pages/load-pages';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
-import useForm from '../../../utils/use-form';
+import useForm from '../../../services/hooks/use-form';
 
 interface ImageMap {
   [key: string]: JSX.Element;
