@@ -1,0 +1,105 @@
+@import '../../components/app/vars';
+
+.bot_template {
+  padding: 60px 40px;
+  max-width: 620px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0px 12px 24px 0px #15123321;
+  border-radius: $border-radius-30;
+  position: relative;
+}
+
+.bot_template_close {
+  position: absolute;
+  top: 37px;
+  right: 37px;
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  padding: 0;
+  & * {
+    stroke: #060C23;
+  }
+}
+
+.bot_template_image {
+  max-width: 88px;
+  max-height: 88px;
+}
+
+.bot_template_description {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bot_template_title {
+  font-family: 'IBM Plex Mono';
+  font-size: $h2-font-size;
+  font-weight: $bold;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-space;
+  margin: 0;
+}
+
+.bot_template_text {
+  font-family: 'Open Sans';
+  font-size: $h4-font-size;
+  font-weight: $bold;
+  line-height: 27px;
+  letter-spacing: $m-letter-space;
+  margin: 0;
+}
+
+.bot_template_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.bot_template_item_index {
+  font-family: 'IBM Plex Mono';
+  font-size: $l-font-size;
+  font-weight: $bold;
+  line-height: $m-line-height;
+  letter-spacing: $h5-letter-space;
+  color: $default-blue-color;
+  margin-right: 28px;
+}
+
+.bot_template_item_text {
+  font-family: 'Open Sans';
+  font-size: $m-font-size;
+  font-weight: $bold;
+  line-height: $m-line-height;
+  letter-spacing: $l-letter-space;
+  color: $primary-text-color;
+}
+
+.bot_template_buttons {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 60px;
+}
+
+.bot_template_cancel {
+  @extend %button-style-reset;
+  font-family: 'IBM Plex Mono';
+  font-size: $h4-font-size;
+  font-weight: $bold;
+  line-height: $l-line-height;
+  letter-spacing: $button-letter-space;
+  text-transform: uppercase;
+  color: $primary-text-color;
+}
+
+.bot_template_add_button {
+  min-width: 256px;
+}
