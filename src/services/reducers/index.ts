@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 // eslint-disable-next-line import/no-cycle
-import { authorizationReducer } from './authorization';
+import { signupReducer } from './signup';
+import { signinReducer } from './signin';
 
 const rootReducer = combineReducers({
-  auth: authorizationReducer,
+  signin: signinReducer,
+  signup: signupReducer,
 });
 
 export default rootReducer;

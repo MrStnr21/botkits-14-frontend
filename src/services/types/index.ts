@@ -2,9 +2,9 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action, ActionCreator, Dispatch } from 'redux';
 
-import { TAuthState } from '../reducers/authorization';
+import { TAuthState } from '../reducers/signup';
 
-import { TAuthorizationActions } from '../actions/authorization';
+import { TAuthorizationActions } from '../actions/signup';
 
 import store from '../store';
 

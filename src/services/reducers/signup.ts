@@ -3,11 +3,8 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
-  SIGNIN_REQUSET,
-  SIGNIN_SUCCESS,
-  SIGNIN_ERROR,
   TAuthorizationActions,
-} from '../actions/authorization';
+} from '../actions/signup';
 
 import { TUser } from '../types/data';
 
@@ -19,13 +16,9 @@ export type TAuthState = {
   signupRequest: boolean;
   signupSuccess: boolean;
   signupError: boolean;
-
-  signinRequest: boolean;
-  signinSuccess: boolean;
-  signinError: boolean;
 };
 
-const authInitialState: TAuthState = {
+const signupInitialState: TAuthState = {
   user: null,
   isLoading: false,
   hasError: false,
@@ -33,15 +26,11 @@ const authInitialState: TAuthState = {
   signupRequest: false,
   signupSuccess: false,
   signupError: false,
-
-  signinRequest: false,
-  signinSuccess: false,
-  signinError: false,
 };
 
-function authorizationReducer(
+function signupReducer(
   // eslint-disable-next-line @typescript-eslint/default-param-last
-  state = authInitialState,
+  state = signupInitialState,
   action: TAuthorizationActions
 ) {
   switch (action.type) {
@@ -71,33 +60,10 @@ function authorizationReducer(
         signupError: true,
       };
     }
-    // экшены авторизации
-    case SIGNIN_REQUSET: {
-      return {
-        ...state,
-        signinRequest: true,
-        signinError: false,
-      };
-    }
-    case SIGNIN_SUCCESS: {
-      return {
-        ...state,
-        user: action.user,
-        signinSuccess: true,
-        signinRequest: false,
-      };
-    }
-    case SIGNIN_ERROR: {
-      return {
-        ...state,
-        signinRequest: false,
-        signinError: true,
-      };
-    }
     default: {
       return state;
     }
   }
 }
 
-export { authorizationReducer };
+export { signupReducer };
