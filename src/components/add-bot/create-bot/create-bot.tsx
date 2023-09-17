@@ -1,4 +1,5 @@
 import { FC, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import stylesCreateBot from './create-bot.module.scss';
 
@@ -56,8 +57,9 @@ const CreateBot: FC<ICreateBot> = ({
     accessKey: '',
     uri: '',
   });
+  const history = useNavigate();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const databot = {
@@ -66,16 +68,21 @@ const CreateBot: FC<ICreateBot> = ({
       profile: '64f9ac26edb84d7ebf6281d0',
       messenger: {
         name: botName,
-        page: 'dsadsad',
+        page: 'страница',
         accessKey: values?.accessKey,
         url: values?.uri,
       },
       botSettings: {},
     };
-    addBotApi(databot, token);
+
+    try {
+      await addBotApi(databot, token);
+      history('/bot-builder');
+    } catch (err) {
+      console.log(err);
+    }
+
     setValues({ botName: '', accessKey: '', uri: '' });
-    // Добавить отправку данных на бэк
-    // Добавить редирект на страницу бота
   };
   return (
     <div className={stylesCreateBot.create}>
