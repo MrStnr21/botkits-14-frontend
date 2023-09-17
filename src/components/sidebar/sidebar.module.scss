@@ -1,8 +1,5 @@
 @import '../app/vars';
 
-$width-mobile: 320px;
-$full-width-sb-desctop: 224px;
-
 @mixin add-button-circle() {
   // Это синяя круглая кнопка
   border-radius: 50%;
@@ -12,10 +9,8 @@ $full-width-sb-desctop: 224px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: $default-blue-color;
-  transition:
-    width 0.2s,
-    background-color 0.3s,
-    border-radius 0.5s;
+  transition: all 0.3s;
+  flex-shrink: 0;
 
   &:hover {
     background-color: $hover-blue-color;
@@ -34,30 +29,68 @@ $full-width-sb-desctop: 224px;
   line-height: $l-line-height;
 }
 
-/* **     Общий блок открытое/закрытое состояние сайдбара    ** */
+/* **     Общий блок открытое/закрытое состояние сайдбара и блок затемнения   ** */
+
+.wrapper {
+  // START GRID LAYOUT
+  grid-row: span 3;
+  z-index: 1;
+  // END GRID LAYOUT
+
+ @media (max-width: $min-content-width) {
+  .cover{
+    display: none;
+  }
+}
+}
+
+.wrapper_open {
+  grid-column: 1/-1;
+  position: absolute; //@todo многослойность в грид должны работать и без абсолюто, но не работает.. а так прыгает разметка, нужно понять почему не работает
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+
+.cover{  // затемнение сделано именно так, из-за белого ободка вокруг сайдбара (просто фон блока затемнял бы отступы)
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.10);
+}
+}
+
+.wrapper_close {
+  grid-column: 1/2;
+
+  @media (max-width: $min-content-width) {
+    grid-row: 1 / 2; //в середине экрана будет основной контент страницы
+    }
+}
 
 .sidebar {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+//  max-width: 224px;
+ box-sizing: border-box;
+ transition: all 0.2s;
+ flex-shrink: 0;
 
-  transition: width 0.2s;
+ // для десктоп
+ background-color: $default-grey-color;
+ box-sizing: border-box;
+ padding: 8px;
+ border-radius: 10px;
 
-  // для десктоп
-  background-color: $default-grey-color;
-  padding: 8px;
-  border-radius: 10px;
-
-  // для моб.устройств
-  @media (max-width: $width-mobile) {
-    background-color: $white-color;
-    padding: 0;
-    border-radius: 0;
-    width: 100%;
-  }
+ @media (max-width: $min-content-width) {
+   background-color: $white-color;
+   padding: 0;
+   border-radius: 0;
+   max-width: 100%;
+ }
 }
 
 .sidebar_open {
+  background-color: $default-grey-color;
+  margin: 16px 0;
   width: 224px;
 
   .navigation__text,
@@ -84,16 +117,17 @@ $full-width-sb-desctop: 224px;
     }
   }
 
-  // для моб.устройств
-  @media (max-width: $width-mobile) {
-    width: 100%; // растянуть сайдбар на весь экран
+  @media (max-width: $min-content-width) {
+    width: 100%; // растянуть sidebar_open на весь экран
+    background-color: $white-color;
+    margin: 0;
 
     .header__toggle {
       mask-image: url('../../images/icon/24x24/common/close.svg'); //бургер меняем на крест
     }
 
     .addbutton {
-      display: none; // верхнюю синюю кнопку вообще убрать
+      display: none; // верхнюю синюю кнопку убрать
     }
     .navigation {
       padding: 20px;
@@ -106,41 +140,38 @@ $full-width-sb-desctop: 224px;
 }
 
 .sidebar_close {
-  width: fit-content;
+  height: 100%;
 
   .navigation__text, // все подписи у кнопок исчезнут
   .addtext {
     @extend %screen-reader;
   }
 
-  .addbutton {
-    // синяя прямоугольная кнопка станет круглой и можно настроить плавность перехода
+  .addbutton { // синяя прямоугольная кнопка станет круглой и можно настроить плавность перехода
     @include add-button-circle();
     margin-left: 4px;
   }
+
   .header__logo {
-    //логотип без надписи
-    background-image: url('../../images/icon/side bar/logo.svg');
+    background-image: url('../../images/icon/side bar/logo.svg'); //логотип без надписи
     width: 38px;
   }
 
   /*  стили вложенного списка при закрытии сайдбара  */
-  .navigation__expandButton {
-    // Это кнопка рядом с мини-лендингом
+
+  .navigation__expandButton { // Это кнопка рядом с мини-лендингом
     display: none;
   }
   .navigation__list_nested {
     @extend %screen-reader;
   }
 
-  // для моб.устройств
-  @media (max-width: $width-mobile) {
+  @media (max-width: $min-content-width) {
     .navigation {
       display: none; //скрываем весь сайдбар кроме логотипа и бургер-кнопки
     }
     .header__logo {
-      //логотип c надписью
-      background-image: url('../../images/icon/side bar/full-logo.svg');
+      background-image: url('../../images/icon/side bar/full-logo.svg'); //логотип c надписью
       width: 128px;
     }
   }
@@ -155,8 +186,7 @@ $full-width-sb-desctop: 224px;
   box-sizing: border-box;
   padding-top: 16px;
 
-  // для моб.устройств
-  @media (max-width: $width-mobile) {
+  @media (max-width: $min-content-width) {
     background-color: inherit;
     padding-bottom: 15px;
     padding-left: 20px;
@@ -164,8 +194,7 @@ $full-width-sb-desctop: 224px;
   }
 }
 
-.header__toggle {
-  // бургер-кнопка
+.header__toggle { // бургер-кнопка
   position: absolute;
   right: -45px;
   top: 5px;
@@ -180,8 +209,7 @@ $full-width-sb-desctop: 224px;
   background-color: $icon-grey-color;
   flex-shrink: 0;
 
-  // для моб.устройств
-  @media (max-width: $width-mobile) {
+  @media (max-width: $min-content-width) {
     position: static;
     background-color: $primary-text-color;
     margin-right: 8px;
@@ -197,8 +225,8 @@ $full-width-sb-desctop: 224px;
   background-repeat: no-repeat;
   background-size: contain;
   flex-shrink: 0;
-  // для моб.устройств
-  @media (max-width: $width-mobile) {
+
+  @media (max-width: $min-content-width) {
     width: 128px;
     height: 30px;
   }
@@ -261,16 +289,17 @@ $full-width-sb-desctop: 224px;
   color: $primary-text-color;
   stroke: $icon-grey-color;
 
-  transition:
-    stroke 0.3s,
-    color 0.3s,
-    background-color 0.3s;
+  transition: all 0.3s;
+
+  svg {
+    flex-shrink: 0;
+  }
 
   &:hover {
     background-color: $hover-grey-color;
   }
 
-  @media (max-width: $width-mobile) {
+  @media (max-width: $min-content-width) {
     gap: 23px;
   }
 }
@@ -297,8 +326,8 @@ $full-width-sb-desctop: 224px;
   display: none;
 }
 
-// для моб.устройств
-@media (max-width: $width-mobile) {
+
+@media (max-width: $min-content-width) { // синяя кнопка внизу у моб.пользователей
   .addbutton_mobile {
     display: flex;
     gap: 12px;
@@ -318,9 +347,6 @@ $full-width-sb-desctop: 224px;
 /* ****  Стили для вложенного списка **** */
 .nestedList {
   position: relative;
-}
-
-.nestedList_open {
 }
 
 .nestedList_close {
@@ -351,8 +377,4 @@ $full-width-sb-desctop: 224px;
   margin: 0;
   padding: 0;
   padding-left: 40px;
-
-  // .navigation__link{
-
-  // }
 }

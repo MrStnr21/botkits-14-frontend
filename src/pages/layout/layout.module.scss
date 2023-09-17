@@ -1,0 +1,35 @@
+@import '../../components/app/vars';
+
+
+.layout{
+max-width: $max-content-width;
+margin: 0 auto;
+height: 100vh;
+display: grid;
+grid-template-columns: auto 1fr;
+grid-template-rows: auto  1fr auto;
+box-sizing: border-box;
+padding: 16px 0 16px 16px; // справа 0, чтобы во время открытия не было белого отступа
+column-gap: 40px;
+position: relative;
+background-color: $white-color;
+overflow-x: hidden;
+
+@media (max-width: $min-content-width) {
+  padding: 0;
+
+
+}
+}
+
+.page{
+    // START GRID LAYOUT
+    grid-column: 2 / -1;
+    grid-row: 2 / -2;
+    // END GRID LAYOUT
+
+    @media (max-width: $min-content-width) {
+      grid-column: 1 / -1;
+
+    }
+}
