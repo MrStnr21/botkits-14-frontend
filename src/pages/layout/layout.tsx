@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router';
 import stylesLayout from './layout.module.scss';
 import Sidebar from '../../components/sidebar/sidebar';
 import Footer from '../../components/footer/footer';
-// import Header from '../../components/header/header';
+import Header from '../../components/header/header';
 
 const Layout: FC = () => {
   const location = useLocation();
@@ -15,7 +15,7 @@ const Layout: FC = () => {
   return (
     <div className={stylesLayout.layout}>
       <Sidebar />
-      {/* {isVisible && <Header />} */}
+      {isVisible && <Header />}
       <main className={stylesLayout.page}>
         <Outlet />
       </main>
