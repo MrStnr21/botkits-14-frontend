@@ -1,9 +1,15 @@
-import { IUserResponse, TUser } from '../services/types/data';
+import {
+  IUserResponse,
+  IUserSigninState,
+  IUserSignupState,
+} from '../services/types/user';
+
 import request from './api';
+
 import BASE_URL from '../utils/data';
 
 // запрос регистрации
-function signupApi(userInfo: TUser) {
+function signupApi(userInfo: IUserSignupState) {
   return request<IUserResponse>(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
@@ -14,7 +20,7 @@ function signupApi(userInfo: TUser) {
 }
 
 // запрос авторизации
-function signinApi(userInfo: TUser) {
+function signinApi(userInfo: IUserSigninState) {
   return request<IUserResponse>(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {

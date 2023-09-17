@@ -1,8 +1,8 @@
-import { signupApi } from '../../api/index';
+import { signupApi } from '../../../api/index';
 
 // eslint-disable-next-line import/no-cycle
-import { AppDispatch, AppThunk } from '../types';
-import { TUser } from '../types/data';
+import { AppDispatch, AppThunk } from '../../types';
+import { TUser } from '../../types/user';
 
 const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
