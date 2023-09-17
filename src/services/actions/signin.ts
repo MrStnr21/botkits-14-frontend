@@ -21,7 +21,7 @@ export interface ISigninErrorAction {
   readonly type: typeof SIGNIN_ERROR;
 }
 
-export type TAuthorizationActions =
+export type TSigninActions =
   | ISigninRequestAction
   | ISigninSuccessAction
   | ISigninErrorAction;
@@ -37,7 +37,7 @@ const signinAction: AppThunk = (userInfo: any) => {
         if (res) {
           dispatch({
             type: SIGNIN_SUCCESS,
-            user: res.user,
+            user: res,
           });
         }
       })

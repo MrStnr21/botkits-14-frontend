@@ -1,5 +1,3 @@
-// to do: calendar
-// https://trello.com/c/cBVPYbCl/11-%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C
 import { FC, useEffect, useState } from 'react';
 
 import {
@@ -10,19 +8,23 @@ import {
 } from '@mui/x-date-pickers';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { FieldChangeHandlerContext } from '@mui/x-date-pickers/internals';
+
 import ru from 'date-fns/locale/ru';
 import { zonedTimeToUtc, format as formatZ } from 'date-fns-tz';
 import { format } from 'date-fns';
-import { FieldChangeHandlerContext } from '@mui/x-date-pickers/internals';
-import InputSelect from '../../ui/inputs/input-select/input-select';
-import { TIME_ZONE } from '../../utils/constants';
+
 import stylesCalendar from './calendar.module.scss';
+
+import InputSelect from '../../ui/inputs/input-select/input-select';
+
+import { TIME_ZONE } from '../../utils/constants';
 
 interface ICalendar {
   handleFunction: (payload: string) => void;
 }
 
-const Calendar: FC<ICalendar> = ({ handleFunction }) => {
+const Calendar: FC<ICalendar> = ({ handleFunction }): JSX.Element => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [timeZone, setTimeZone] = useState<string>('');
   const localTimeZone = format(new Date(), 'zzz');

@@ -1,5 +1,6 @@
 import { TStore } from '../services/types';
 
-const authSel = (store: TStore) => store.auth;
+const signupSel = (store: TStore) => store.signup;
+const signinSel = (store: TStore) => store.signin;
 
-export default authSel;
+export { signupSel, signinSel };

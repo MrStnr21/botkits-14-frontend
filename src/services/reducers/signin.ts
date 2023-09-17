@@ -3,12 +3,12 @@ import {
   SIGNIN_REQUEST,
   SIGNIN_SUCCESS,
   SIGNIN_ERROR,
-  TAuthorizationActions,
-} from '../actions/signup';
+  TSigninActions,
+} from '../actions/signin';
 
 import { TUser } from '../types/data';
 
-export type TAuthState = {
+export type TSigninState = {
   user: TUser | null;
   isLoading: boolean;
   hasError: boolean;
@@ -18,7 +18,7 @@ export type TAuthState = {
   signinError: boolean;
 };
 
-const signinInitialState: TAuthState = {
+const signinInitialState: TSigninState = {
   user: null,
   isLoading: false,
   hasError: false,
@@ -31,7 +31,7 @@ const signinInitialState: TAuthState = {
 function signinReducer(
   // eslint-disable-next-line @typescript-eslint/default-param-last
   state = signinInitialState,
-  action: TAuthorizationActions
+  action: TSigninActions
 ) {
   switch (action.type) {
     // экшены авторизации
