@@ -1,5 +1,6 @@
 import signupApi from '../../utils/api';
 
+// eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../types';
 import { TUser } from '../types/data';
 

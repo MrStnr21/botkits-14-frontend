@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
@@ -39,6 +40,7 @@ const authInitialState: TAuthState = {
 };
 
 function authorizationReducer(
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   state = authInitialState,
   action: TAuthorizationActions
 ) {
