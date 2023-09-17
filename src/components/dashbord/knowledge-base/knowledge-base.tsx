@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import useMediaQuery from '../../hooks/use-media-query';
+import useMediaQuery from '../../../services/hooks/use-media-query';
 
 import stylesKnowledgeBase from './knowledge-base.module.scss';
 

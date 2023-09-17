@@ -3,7 +3,7 @@ import styles from './bot.module.scss';
 import { ReactComponent as MoreButtonIcon } from '../../images/icon/24x24/common/more.svg';
 import { ReactComponent as TelegramIcon } from '../../images/icon/40x40/telegram/default.svg';
 
-import useMediaQuery from '../../components/hooks/use-media-query';
+import useMediaQuery from '../../services/hooks/use-media-query';
 
 interface IBot {
   text: string;
