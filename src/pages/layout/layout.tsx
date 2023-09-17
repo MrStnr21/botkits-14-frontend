@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router';
 import stylesLayout from './layout.module.scss';
 import Sidebar from '../../components/sidebar/sidebar';
 import Footer from '../../components/footer/footer';
+// import Header from '../../components/header/header';
 
 const Layout: FC = () => {
   const location = useLocation();
