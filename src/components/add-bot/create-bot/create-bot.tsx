@@ -17,6 +17,7 @@ import LoadPages from '../../../ui/inputs/load-pages/load-pages';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 import useForm from '../../../services/hooks/use-form';
+import { addBotApi } from '../../../api';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -41,6 +42,8 @@ const img: ImageMap = {
   Instagram: <Instagram className={stylesCreateBot.create_main_bot_name_img} />,
   'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
 };
+const token =
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTA2ZGQxOWMzNDAwOGMwNTdhMmVlNDYiLCJpYXQiOjE2OTQ5NDg3MDIsImV4cCI6MTY5NTAzNTEwMn0.2P0i22PAg-9ChsoFLkN6QkkO-attA2h4cQrfN4repZo'; // ToDo: Токен надо брать из хранилища
 
 const CreateBot: FC<ICreateBot> = ({
   botName,
@@ -48,21 +51,31 @@ const CreateBot: FC<ICreateBot> = ({
   botURI,
 }): JSX.Element => {
   const [arrPages, setArrPages] = useState<any>([]); // временный тип any
-
   const { values, handleChange, setValues } = useForm({
     botName: '',
+    accessKey: '',
+    uri: '',
   });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const dataBot = {
-      ...values,
-      pages: arrPages,
+
+    const databot = {
+      icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
+      botName: values?.botName,
+      profile: '64f9ac26edb84d7ebf6281d0',
+      messenger: {
+        name: botName,
+        page: 'dsadsad',
+        accessKey: values?.accessKey,
+        url: values?.uri,
+      },
+      botSettings: {},
     };
-    setValues({ botName: '' });
+    addBotApi(databot, token);
+    setValues({ botName: '', accessKey: '', uri: '' });
     // Добавить отправку данных на бэк
     // Добавить редирект на страницу бота
-    console.log(dataBot);
   };
   return (
     <div className={stylesCreateBot.create}>
