@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
+
 import stylesTemplates from './bots-templates.module.scss';
+
 import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
 import BotTemplate from '../../../ui/bot-template/bot-template';
 
 const Template: FC<{ name: string; fileName: string }> = ({
   name,
   fileName,
-}) => {
+}): JSX.Element => {
   const importImage = async () => {
     try {
       const imageModule = await import(
@@ -27,6 +29,7 @@ const Template: FC<{ name: string; fileName: string }> = ({
     });
   }, [fileName]);
   console.log(open);
+
   return (
     <li className={stylesTemplates.item}>
       <ButtonAddSampleBot onClick={() => setOpen(true)} icon={image}>

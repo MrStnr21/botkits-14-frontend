@@ -1,8 +1,10 @@
 import { FC, FormEvent, useState } from 'react';
+
 import { useNavigate } from 'react-router';
-import { useAppSelector } from '../../../services/hooks/hooks';
 
 import stylesCreateBot from './create-bot.module.scss';
+
+import { useAppSelector } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -16,9 +18,10 @@ import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
 
 import StepperFillBot from '../../../ui/stepper-fill-bot/stepper-fill-bot';
 import LoadPages from '../../../ui/inputs/load-pages/load-pages';
+import useForm from '../../../services/hooks/use-form';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
-import useForm from '../../../services/hooks/use-form';
+
 import { addBotApi } from '../../../api';
 
 interface ImageMap {
@@ -79,7 +82,7 @@ const CreateBot: FC<ICreateBot> = ({
 
     try {
       await addBotApi(dataBot, credentials.accessToken);
-      history('/bot-builder');
+      history('/');
     } catch (err) {
       console.log(err);
     }
