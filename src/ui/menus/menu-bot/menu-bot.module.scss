@@ -9,6 +9,7 @@
   background-color: white;
   border-radius: $border-radius-10;
   position: absolute;
+  z-index: 1; // иначе перекравает соседники карточками
 }
 
 .active {

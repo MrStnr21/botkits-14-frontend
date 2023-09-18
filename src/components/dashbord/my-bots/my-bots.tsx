@@ -1,12 +1,14 @@
 // to do: MyBots
 // https://trello.com/c/6gxmCXj9/23-%D0%BC%D0%BE%D0%B8-%D0%B1%D0%BE%D1%82%D1%8B
 
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './my-bots.module.scss';
-
-import Bot from '../../../ui/bot/bot';
+import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
+import BotCard from '../../bot-card/bot-card';
+import useMediaQuery from '../../../services/hooks/use-media-query';
 
 const bots = [
   'Салон красоты',
@@ -15,17 +17,42 @@ const bots = [
 ];
 
 const MyBots: FC = () => {
+  const [isHidden, SetIsHidden] = useState(false);
+  const matches = useMediaQuery('(max-width: 1410px)');
+
+  const navigate = useNavigate();
+  const addBot = () => {
+    navigate('/add-bot');
+  };
+
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.header}>Мои боты</h1>
-      <ul className={styles.list}>
+      <div className={styles.header}>
+        <h1 className={styles.header__text}>Мои боты</h1>
+        {matches && (
+          <button
+            className={styles.header__button}
+            type="button"
+            onClick={() => SetIsHidden(!isHidden)}
+          >
+            {isHidden ? 'Все' : 'Cвернуть'}
+          </button>
+        )}
+      </div>
+      <ul
+        className={styles.list}
+        style={{
+          overflow: isHidden ? 'hidden' : 'visible',
+          height: isHidden ? '200px' : matches ? '340px' : 'auto',
+        }}
+      >
         {bots.map((bot) => (
-          <li key={uuidv4()}>
-            <Bot text={bot} />
+          <li key={uuidv4()} className={styles.item}>
+            <BotCard platform_icon={TelegramIcon} bot_name={bot} />
           </li>
         ))}
         <li key={uuidv4()} className={styles.buttonAddbot}>
-          <ButtonAddBot>Добавить бота</ButtonAddBot>
+          <ButtonAddBot onClick={addBot}>Добавить бота</ButtonAddBot>
         </li>
       </ul>
     </div>
