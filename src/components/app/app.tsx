@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import stylesApp from './app.module.scss'; // возможно не понадобится
 
+import ResetPassword from '../../pages/reset-password/reset-password';
 import Subscription from '../../pages/subscription/subscription';
 import AddBotPage from '../../pages/add-bot-page/add-bot-page';
 import Partnership from '../../pages/partnership/partnership';
@@ -11,14 +12,13 @@ import Dashboard from '../../pages/dashboard/dashboard';
 import Mailing from '../../pages/mailing/mailing';
 import Layout from '../../pages/layout/layout';
 import Signup from '../../pages/signup/signup';
+import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
-import Signin from '../../pages/signin/signin';
-import ResetPassword from '../../pages/reset-password/reset-password';
 
 const App: FC = (): JSX.Element => {
-  const [authenticated, setAuthenticated] = useState(true); // ?
+  // const [authenticated, setAuthenticated] = useState(true); // ?
 
   return (
     <BrowserRouter>
