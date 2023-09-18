@@ -1,5 +1,8 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useNavigate } from 'react-router';
+
 import stylesBotTemplate from './bot-template.module.scss';
+
 import { ReactComponent as ImageAnswer } from '../../images/icon/template/answering machine.svg';
 import { ReactComponent as ImageFood } from '../../images/icon/template/food delivery.svg';
 import { ReactComponent as ImageDemo } from '../../images/icon/template/demo bot.svg';
@@ -65,17 +68,11 @@ const BotTemplate: FC<IBotTemplate> = ({
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
   ];
-  const [isVisible, setIsVisible] = useState(false);
-
+  const history = useNavigate();
   const addBot = () => {
-    setIsVisible(true);
     // добавить подключение к редаксу
-    onClick();
+    history('/add-bot');
   };
-
-  if (isVisible) {
-    return null;
-  }
 
   return (
     <div className={stylesBotTemplate.bot_template}>
@@ -109,7 +106,7 @@ const BotTemplate: FC<IBotTemplate> = ({
       <div className={stylesBotTemplate.bot_template_buttons}>
         <button
           className={stylesBotTemplate.bot_template_cancel}
-          onClick={() => setIsVisible(true)}
+          onClick={onClick}
           type="button"
         >
           Отмена
@@ -130,7 +127,7 @@ const BotTemplate: FC<IBotTemplate> = ({
 
       <button
         className={stylesBotTemplate.bot_template_close}
-        onClick={() => setIsVisible(true)}
+        onClick={onClick}
         type="button"
       >
         <Close />

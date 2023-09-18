@@ -1,5 +1,6 @@
 import { FC, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAppSelector } from '../../../services/hooks/hooks';
 
 import stylesCreateBot from './create-bot.module.scss';
 
@@ -43,14 +44,15 @@ const img: ImageMap = {
   Instagram: <Instagram className={stylesCreateBot.create_main_bot_name_img} />,
   'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
 };
-const token =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTA2ZGQxOWMzNDAwOGMwNTdhMmVlNDYiLCJpYXQiOjE2OTQ5NDg3MDIsImV4cCI6MTY5NTAzNTEwMn0.2P0i22PAg-9ChsoFLkN6QkkO-attA2h4cQrfN4repZo'; // ToDo: Токен надо брать из хранилища
 
 const CreateBot: FC<ICreateBot> = ({
   botName,
   stepFirst,
   botURI,
 }): JSX.Element => {
+  const { credentials, profile }: any = useAppSelector(
+    (store) => store.signup.user?.accounts[0]
+  );
   const [arrPages, setArrPages] = useState<any>([]); // временный тип any
   const { values, handleChange, setValues } = useForm({
     botName: '',
@@ -62,10 +64,10 @@ const CreateBot: FC<ICreateBot> = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const databot = {
+    const dataBot = {
       icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
       botName: values?.botName,
-      profile: '64f9ac26edb84d7ebf6281d0',
+      profile,
       messenger: {
         name: botName,
         page: 'страница',
@@ -76,7 +78,7 @@ const CreateBot: FC<ICreateBot> = ({
     };
 
     try {
-      await addBotApi(databot, token);
+      await addBotApi(dataBot, credentials.accessToken);
       history('/bot-builder');
     } catch (err) {
       console.log(err);
