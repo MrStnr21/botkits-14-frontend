@@ -1,37 +1,62 @@
 @import '../../app/vars';
 
 .wrapper{
-  max-width: 1268px;
+  max-width: 100%;
+  margin-bottom: 10px;
+
 }
 
 .header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header__text{
   font-family: 'IBM Plex Mono', sans-serif;
   font-weight: 600;
   font-size: 32px;
-  line-height: 41.6px;
+  line-height: 42px;
   letter-spacing: -0.2px;
-  margin-top: 0;
-  margin-bottom: 23px;
+  margin: 0;
 
   @media (max-width: $min-content-width) {
     font-size: 24px;
     line-height: 31px;
-    margin-bottom: 25px;
   }
 }
 
+.header__button{
+  @extend %button-style-reset;
+  display: block;
+  margin-right: 20px;
+
+  color:  #8392AB;
+  text-align: right;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%; /* 19.5px */
+  letter-spacing: 0.3px;
+}
+
 .list{
-  width: 100%;
+  max-width: 100%;
   list-style: none;
   display: flex;
   gap: 28px;
   margin: 0;
   padding: 0;
   flex-wrap: wrap;
+  transition: height 1s;
 
   @media (max-width: $min-content-width) {
     gap: 20px;
   }
+}
+.item{
+  position: relative;
 }
 
 .buttonAddbot{
