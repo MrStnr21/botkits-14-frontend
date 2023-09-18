@@ -28,7 +28,6 @@ const Template: FC<{ name: string; fileName: string }> = ({
       setImage(importedImage);
     });
   }, [fileName]);
-  console.log(open);
 
   return (
     <li className={stylesTemplates.item}>
@@ -37,7 +36,13 @@ const Template: FC<{ name: string; fileName: string }> = ({
       </ButtonAddSampleBot>
       {open && (
         <div className={stylesTemplates.modal}>
-          <BotTemplate title={name} onClick={() => setOpen(false)} />
+          <div
+            className={stylesTemplates.modal_overlay}
+            onClick={() => setOpen(false)}
+          />
+          <div className={stylesTemplates.content}>
+            <BotTemplate title={name} onClick={() => setOpen(false)} />
+          </div>
         </div>
       )}
     </li>
