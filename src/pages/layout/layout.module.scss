@@ -9,24 +9,25 @@ display: grid;
 grid-template-columns: auto 1fr;
 grid-template-rows: auto  1fr auto;
 box-sizing: border-box;
-padding: 16px 0 16px 16px; // справа 0, чтобы во время открытия не было белого отступа
-column-gap: 40px;
+padding-left: 16px;
+// column-gap: 40px;
 position: relative;
 background-color: $white-color;
 
-@media (max-width: $min-content-width) {
+@media (max-width: ($min-content-width + 200px)) {
   padding: 0;
 }
 }
 
 .page{
     // START GRID LAYOUT
-    grid-column: 2 / -1;
-    grid-row: 2 / -2;
+    grid-column: 2 / 3;
+    grid-row: 2;
     // END GRID LAYOUT
-    align-self: center;
+    // align-self: start;
+    overflow-x: hidden;
 
-    @media (max-width: $min-content-width) {
+    @media (max-width:( $min-content-width + 200px)) {
       grid-column: 1 / -1;
     }
 }

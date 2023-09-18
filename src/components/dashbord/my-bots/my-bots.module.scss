@@ -3,7 +3,6 @@
 .wrapper{
   max-width: 100%;
   margin-bottom: 10px;
-
 }
 
 .header{
@@ -21,7 +20,7 @@
   letter-spacing: -0.2px;
   margin: 0;
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     font-size: 24px;
     line-height: 31px;
   }
@@ -44,14 +43,14 @@
 .list{
   max-width: 100%;
   list-style: none;
-  display: flex;
   gap: 28px;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
   transition: height 1s;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(296px, 1fr));
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     gap: 20px;
   }
 }
