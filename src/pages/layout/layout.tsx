@@ -1,11 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
+
 import stylesLayout from './layout.module.scss';
+
 import Sidebar from '../../components/sidebar/sidebar';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 
-const Layout: FC = () => {
+const Layout: FC = (): JSX.Element => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
 

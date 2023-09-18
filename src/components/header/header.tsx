@@ -1,28 +1,32 @@
 import { FC, useEffect, useState } from 'react';
+
 import styles from './header.module.scss';
+
+import Notifications from '../icons/Notifications/Notifications';
+import ArrowSmall from '../icons/ArrowSmall/ArrowSmall';
+import MenuMobile from '../icons/MenuMobile/MenuMobile';
 import Menu24px from '../icons/Menu24px/Menu24px';
 import Help from '../icons/Help/Help';
-import Notifications from '../icons/Notifications/Notifications';
-import avatar from '../../images/avatar/circled/default.svg';
-import ArrowSmall from '../icons/ArrowSmall/ArrowSmall';
 import Logo from '../icons/Logo/Logo';
-import MenuMobile from '../icons/MenuMobile/MenuMobile';
+
+import avatar from '../../images/avatar/circled/default.svg';
 
 const Header: FC = (): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
-  const toggle = () => {
-    setIsActive(!isActive);
-  };
-
   const [matches, setMatches] = useState(
     window.matchMedia('(max-width: 768px)').matches
   );
+
+  const toggle = () => {
+    setIsActive(!isActive);
+  };
 
   useEffect(() => {
     window
       .matchMedia('(max-width: 768px)')
       .addEventListener('change', (e) => setMatches(e.matches));
   }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
