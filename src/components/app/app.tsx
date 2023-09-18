@@ -14,6 +14,7 @@ import Share from '../../pages/share/share';
 import Subscription from '../../pages/subscription/subscription';
 import NotFound from '../../pages/not-found';
 import Signup from '../../pages/signup/signup';
+import Signin from '../../pages/signin/signin';
 
 const App: FC = (): JSX.Element => {
   const [authenticated, setAuthenticated] = useState(true); // ?
@@ -24,6 +25,7 @@ const App: FC = (): JSX.Element => {
       {authenticated && ( */}
       <Routes>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="add-bot" element={<AddBotPage />} />
