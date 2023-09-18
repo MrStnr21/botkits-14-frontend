@@ -1,17 +1,19 @@
+import { FC, useCallback, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import React, { FC, useCallback, useState } from 'react';
-
-import Button from '../../ui/buttons/button/button';
-import Input from '../../ui/inputs/input/input';
-import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
 import stylesResetPassword from './reset-password.module.scss';
 
+import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
+
+import Button from '../../ui/buttons/button/button';
+import Input from '../../ui/inputs/input/input';
+
+// import { signinAction } from '../../services/actions/auth/signin';
 import { IUserResetPasswordState } from '../../services/types/user';
 import { useAppSelector } from '../../services/hooks/hooks';
-// import { signinAction } from '../../services/actions/auth/signin';
+import routesUrl from '../../utils/routesData';
 
-const ResetPassword: FC = () => {
+const ResetPassword: FC = (): JSX.Element => {
   const userData = useAppSelector((store) => store.signin);
   // to do: переписать на хуке useForm
   const [formValue, setFromValue] = useState<IUserResetPasswordState>({
@@ -33,7 +35,7 @@ const ResetPassword: FC = () => {
   );
 
   return userData.signinSuccess ? (
-    <Navigate to="/" /> // Временная заглушка до реализации Protect route
+    <Navigate to={routesUrl.homePage} /> // Временная заглушка до реализации Protect route
   ) : (
     <RegLogResLayout title="Восстановление пароля">
       <div className={stylesResetPassword.resetFormContainer}>

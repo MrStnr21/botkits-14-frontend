@@ -17,6 +17,8 @@ import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
 
+import routesUrl from '../../utils/routesData';
+
 const App: FC = (): JSX.Element => {
   // const [authenticated, setAuthenticated] = useState(true); // ?
 
@@ -25,24 +27,24 @@ const App: FC = (): JSX.Element => {
       {/* {!authenticated && <Auth />}
       {authenticated && ( */}
       <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/reset" element={<ResetPassword />} />
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="add-bot" element={<AddBotPage />} />
-          <Route path="bot-builder" element={<BotBuilder />} />
-          <Route path="chat" element={<Chat />} />
-          <Route path="mailing" element={<Mailing />}>
+        <Route path={routesUrl.signup} element={<Signup />} />
+        <Route path={routesUrl.signin} element={<Signin />} />
+        <Route path={routesUrl.reset} element={<ResetPassword />} />
+        <Route path={routesUrl.homePage} element={<Layout />}>
+          <Route path={routesUrl.homePage} element={<Dashboard />} />
+          <Route path={routesUrl.addBot} element={<AddBotPage />} />
+          <Route path={routesUrl.botBuilder} element={<BotBuilder />} />
+          <Route path={routesUrl.chat} element={<Chat />} />
+          <Route path={routesUrl.mailing} element={<Mailing />}>
             {/* <Route path="" element={<First... />} />
               <Route path="start" element={<My... />} />
               <Route path="add" element={<Create... />} />
               <Route path="conditions" element={<Conditions.. />} /> */}
           </Route>
-          <Route path="partnership" element={<Partnership />} />
-          <Route path="share" element={<Share />} />
-          <Route path="subscription" element={<Subscription />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path={routesUrl.partnership} element={<Partnership />} />
+          <Route path={routesUrl.share} element={<Share />} />
+          <Route path={routesUrl.subscription} element={<Subscription />} />
+          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
       </Routes>
       {/* )} */}

@@ -6,13 +6,14 @@ import stylesLayout from './layout.module.scss';
 import Sidebar from '../../components/sidebar/sidebar';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import routesUrl from '../../utils/routesData';
 
 const Layout: FC = (): JSX.Element => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    setIsVisible(!location.pathname.endsWith('bot-builder'));
+    setIsVisible(!location.pathname.endsWith(routesUrl.botBuilder));
   }, [location]);
   return (
     <div className={stylesLayout.layout}>
