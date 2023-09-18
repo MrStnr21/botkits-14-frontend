@@ -12,6 +12,7 @@ import Input from '../../ui/inputs/input/input';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signinAction } from '../../services/actions/auth/signin';
 import { IUserSigninState } from '../../services/types/user';
+import routesUrl from '../../utils/routesData';
 
 const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector((store) => store.signin);
@@ -37,7 +38,7 @@ const Signin: FC = (): JSX.Element => {
   );
 
   return userData.signinSuccess ? (
-    <Navigate to="/" /> // Временная заглушка до реализации Protect route
+    <Navigate to={routesUrl.homePage} /> // Временная заглушка до реализации Protect route
   ) : (
     <RegLogResLayout title="Вход">
       <div className={stylesSignin.signinFormContainer}>
@@ -61,13 +62,13 @@ const Signin: FC = (): JSX.Element => {
             </div>
             <div className={stylesSignin.signinLinksContainer}>
               <Link
-                to={{ pathname: '/reset' }}
+                to={{ pathname: routesUrl.reset }}
                 className={stylesSignin.signinLink}
               >
                 Забыли пароль?
               </Link>
               <Link
-                to={{ pathname: '/signup' }}
+                to={{ pathname: routesUrl.signup }}
                 className={stylesSignin.signinLink}
               >
                 Регистрация
