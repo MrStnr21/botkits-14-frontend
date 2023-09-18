@@ -41,6 +41,7 @@
 }
 
 .signupFormContainer {
+  position: relative;
   width: 100%;
   background-color: $active-blue-color;
   border-radius: $border-radius-30;
@@ -48,6 +49,17 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.signupBackgroundImage{
+  background-image: url('../../images/roboCreate.png');
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 205px;
+  aspect-ratio: 1.1;
+  z-index: 0;
 }
 
 .signupTitle {
@@ -127,6 +139,7 @@
   grid-template-columns: 325px 325px;
   grid-template-rows: max-content max-content;
   gap: 20px;
+  z-index: 1;
 }
 
 .inputsPhoneContainer {
@@ -146,6 +159,7 @@
 }
 
 .formsButton {
+  z-index: 1;
   width: 100%;
   max-width: 260px;
 }
@@ -160,6 +174,7 @@
   font-weight: $normal;
   line-height: $button-line-height-150;
   margin-bottom: 40px;
+  z-index: 1;
 }
 
 .signinLink {

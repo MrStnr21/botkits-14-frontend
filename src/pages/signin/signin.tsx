@@ -1,16 +1,20 @@
 import { Link, Navigate } from 'react-router-dom';
 import React, { FC, useCallback, useState } from 'react';
+
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
+import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
+
 import stylesSignin from './signin.module.scss';
+
 import { IUserSigninState } from '../../services/types/user';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 import { signinAction } from '../../services/actions/auth/signin';
 
 const Signin: FC = () => {
   const userData = useAppSelector((store) => store.signin);
+  // to do: перепеисать на хуке useForm
   const [formValue, setFromValue] = useState<IUserSigninState>({
     email: '',
     password: '',
@@ -74,7 +78,6 @@ const Signin: FC = () => {
               </Button>
             </div>
           </form>
-          <div className={stylesSignin.signinBackgroundImage} />
         </div>
         <div className={stylesSignin.signinSocialContainer}>
           <h2 className={stylesSignin.signinSocialTitle}>Быстрый вход</h2>

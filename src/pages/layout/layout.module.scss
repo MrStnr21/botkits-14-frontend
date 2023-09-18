@@ -13,12 +13,9 @@ padding: 16px 0 16px 16px; // справа 0, чтобы во время отк�
 column-gap: 40px;
 position: relative;
 background-color: $white-color;
-// overflow-x: hidden;
 
 @media (max-width: $min-content-width) {
   padding: 0;
-
-
 }
 }
 
@@ -31,6 +28,5 @@ background-color: $white-color;
 
     @media (max-width: $min-content-width) {
       grid-column: 1 / -1;
-
     }
 }
