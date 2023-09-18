@@ -10,6 +10,7 @@ interface IInput {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   name?: string;
+  minLength?: number;
 }
 
 const Input: FC<IInput> = ({
@@ -20,6 +21,7 @@ const Input: FC<IInput> = ({
   onChange,
   disabled,
   name,
+  minLength = 2,
 }): JSX.Element => {
   return (
     <div className={stylesInput.wrapper}>
@@ -31,6 +33,7 @@ const Input: FC<IInput> = ({
         onChange={onChange}
         disabled={disabled}
         name={name}
+        minLength={minLength}
       />
       {isInvalid && (
         <p className={stylesInput.incorrect_text}>{errorMessage}</p>

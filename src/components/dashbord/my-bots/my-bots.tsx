@@ -4,6 +4,7 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
+// import { useAppSelector } from '../../../services/hooks/hooks';
 import styles from './my-bots.module.scss';
 import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
@@ -20,7 +21,8 @@ const bots = [
 const MyBots: FC = () => {
   const [isHidden, SetIsHidden] = useState(false);
   const matches = useMediaQuery('(max-width: 1410px)');
-
+  // ToDo: получение ботов из стора
+  // const bots: any = useAppSelector((store) => store.getBot.bot);
   const navigate = useNavigate();
   const addBot = () => {
     navigate(routesUrl.addBot);
