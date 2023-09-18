@@ -15,7 +15,7 @@ import VideoCard from '../../video-card/video-card';
 import links from './kb-data';
 
 const KnowledgeBase: FC = (): JSX.Element => {
-  const matches = useMediaQuery('(max-width: 350px)');
+  const matches = useMediaQuery('(max-width: 560px)');
 
   return (
     <section className={stylesKnowledgeBase.wrapper}>

@@ -33,11 +33,15 @@
 
 .wrapper {
   // START GRID LAYOUT
-  grid-row: span 3;
+  grid-row: 1 / -1;
   z-index: 3;
   // END GRID LAYOUT
+  position: relative;
+  margin: 16px 46px 16px 0;
+  display: flex;
 
- @media (max-width: $min-content-width) {
+ @media (max-width: ($min-content-width + 200px)) {
+  margin: 0;
   .cover{
     display: none;
   }
@@ -46,25 +50,23 @@
 
 .wrapper_open {
   grid-column: 1/-1;
-  position: absolute; //@todo многослойность в грид должны работать и без абсолюто, но не работает.. а так прыгает разметка, нужно понять почему не работает
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  display: flex;
+  margin-right: 0;
 
 .cover{  // затемнение сделано именно так, из-за белого ободка вокруг сайдбара (просто фон блока затемнял бы отступы)
-  width: 100%;
   background-color: rgba(0, 0, 0, 0.10);
-}
+  position: absolute;
+  top: -16px;
+  bottom: -16px;
+  left: 224px;
+  right: 0;
+  }
 }
 
 .wrapper_close {
   grid-column: 1/2;
 
-  @media (max-width: $min-content-width) {
-    grid-row: 1 / 2; //в середине экрана будет основной контент страницы
+  @media (max-width: ($min-content-width + 200px)) {
+    grid-row: 1; //в середине экрана будет основной контент страницы
     }
 }
 
@@ -80,7 +82,7 @@
  padding: 8px;
  border-radius: 10px;
 
- @media (max-width: $min-content-width) {
+ @media (max-width: ($min-content-width + 200px)) {
    background-color: $white-color;
    padding: 0;
    border-radius: 0;
@@ -90,7 +92,7 @@
 
 .sidebar_open {
   background-color: $default-grey-color;
-  margin: 16px 0;
+  // margin: 16px 0;
   width: 224px;
 
   .navigation__text,
@@ -117,7 +119,7 @@
     }
   }
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     width: 100%; // растянуть sidebar_open на весь экран
     background-color: $white-color;
     margin: 0;
@@ -166,7 +168,7 @@
     @extend %screen-reader;
   }
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     .navigation {
       display: none; //скрываем весь сайдбар кроме логотипа и бургер-кнопки
     }
@@ -186,7 +188,7 @@
   box-sizing: border-box;
   padding-top: 16px;
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     background-color: inherit;
     padding-bottom: 15px;
     padding-left: 20px;
@@ -196,7 +198,7 @@
 
 .header__toggle { // бургер-кнопка
   position: absolute;
-  right: -45px;
+  right: -80px;
   top: 5px;
   width: 24px;
   height: 24px;
@@ -209,7 +211,7 @@
   background-color: $icon-grey-color;
   flex-shrink: 0;
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     position: static;
     background-color: $primary-text-color;
     margin-right: 8px;
@@ -226,7 +228,7 @@
   background-size: contain;
   flex-shrink: 0;
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     width: 128px;
     height: 30px;
   }
@@ -299,7 +301,7 @@
     background-color: $hover-grey-color;
   }
 
-  @media (max-width: $min-content-width) {
+  @media (max-width: ($min-content-width + 200px)) {
     gap: 23px;
   }
 }
@@ -327,7 +329,7 @@
 }
 
 
-@media (max-width: $min-content-width) { // синяя кнопка внизу у моб.пользователей
+@media (max-width:($min-content-width + 200px)) { // синяя кнопка внизу у моб.пользователей
   .addbutton_mobile {
     display: flex;
     gap: 12px;

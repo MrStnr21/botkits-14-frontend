@@ -42,10 +42,14 @@ const MyBots: FC = () => {
       </div>
       <ul
         className={styles.list}
-        style={{
-          overflow: isHidden ? 'hidden' : 'visible',
-          height: isHidden ? '200px' : matches ? '340px' : 'auto',
-        }}
+        style={
+          isHidden
+            ? {
+                overflow: 'hidden',
+                height: '200px',
+              }
+            : {}
+        }
       >
         {bots.map((bot) => (
           <li key={uuidv4()} className={styles.item}>

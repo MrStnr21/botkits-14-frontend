@@ -60,7 +60,10 @@ const Sidebar: FC = (): JSX.Element => {
           <div className={stylesSidebar.header__logo} />
         </div>
 
-        <nav className={stylesSidebar.navigation}>
+        <div
+          className={stylesSidebar.navigation}
+          onClick={() => setStateSB(false)} // клик по кнопкам всплывет и закроет сайдбар..к тегу nav не цеплялся onClick
+        >
           <NavLink
             to="/add-bot"
             className={(navData) =>
@@ -111,7 +114,7 @@ const Sidebar: FC = (): JSX.Element => {
             <NavLink to="/add-bot" className={stylesSidebar.addcircle_mobile} />
             <p className={stylesSidebar.addtext_mobile}>Добавить бота</p>
           </div>
-        </nav>
+        </div>
       </div>
       <div
         aria-label="Cover"

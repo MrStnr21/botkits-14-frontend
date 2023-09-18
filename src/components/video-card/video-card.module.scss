@@ -129,15 +129,15 @@
 
 .button__close{
   position: absolute;
-  top: 5%;
-  right: 7%;
-  width: 25px;
-  height: 25px;
+  top: 20px;
+  right: 30px;
+  width: 35px;
+  height: 35px;
   mask-image: url('../../images/icon/24x24/common/close.svg');
   mask-repeat: no-repeat;
   background-color: $disabled-grey-color;
   mask-position: center;
-  mask-size: 25px 25px;
+  mask-size: 35px 35px;
   @extend %button-style-reset;
   z-index: 11;
 

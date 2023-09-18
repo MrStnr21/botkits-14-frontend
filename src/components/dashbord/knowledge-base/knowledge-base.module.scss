@@ -12,8 +12,10 @@
   max-width: 100%;
   border-radius: 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  column-gap: 60px;
+  row-gap: 40px;
+  align-content: space-between;
   background-color: $hover-grey-color;
 
   font-family: 'Open Sans', sans-serif;
@@ -25,39 +27,40 @@
 .video{
   box-sizing: border-box;
   padding-left: 32px;
+  padding-bottom: 32px;
 
-  @media (max-width: 640px){
+  @media (max-width: ($min-content-width + 200px)){
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 0;
   }
-
 }
 
 .video__header{
   margin-top: 32px;
   margin-bottom: 24px;
   text-align: start;
-  box-sizing: border-box;
   @extend %typography-header
 }
 
 .video__container{
-  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 172px));
+  grid-template-columns: repeat(auto-fit, 172px);
   gap: 20px;
-
+  @media (max-width: ($min-content-width + 200px)){
+    grid-template-columns: repeat(auto-fit, 200px);
+  }
 }
 
 .base{
   border-radius: 30px;
   background-color: #E4E9F1;
   box-sizing: border-box;
-  padding: 32px;
+  padding: 32px 32px 32px 32px;
   text-align: start;
   min-height: 283px;
 
-  @media (max-width: 640px){
+  @media (max-width:($min-content-width + 200px)){
     padding-left: 20px;
     padding-right: 20px;
   }
