@@ -9,6 +9,7 @@ import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
 import BotCard from '../../bot-card/bot-card';
 import useMediaQuery from '../../../services/hooks/use-media-query';
+import routesUrl from '../../../utils/routesData';
 
 const bots = [
   'Салон красоты',
@@ -22,7 +23,7 @@ const MyBots: FC = () => {
 
   const navigate = useNavigate();
   const addBot = () => {
-    navigate('/add-bot');
+    navigate(routesUrl.addBot);
   };
 
   return (

@@ -9,6 +9,7 @@ import dialogueIcon from '../../images/icon/side bar/dialogue';
 import rocketIcon from '../../images/icon/side bar/rocket';
 import minilandingIcon from '../../images/icon/side bar/minilanding';
 import crmIcon from '../../images/icon/side bar/crm';
+import routesUrl from '../../utils/routesData';
 
 export interface ILink {
   navLink: string;
@@ -19,47 +20,47 @@ export interface ILink {
 
 export const links: Array<ILink> = [
   {
-    navLink: '/',
+    navLink: routesUrl.homePage,
     icon: dashboardIcon,
     text: 'Дашборд',
   },
   {
-    navLink: '/bot-builder',
+    navLink: routesUrl.botBuilder,
     icon: constructorIcon,
     text: 'Воронки',
   },
   {
-    navLink: '/mailing',
+    navLink: routesUrl.mailing,
     icon: mailingIcon,
     text: 'Рассылки',
   },
   {
-    navLink: '/lists',
+    navLink: routesUrl.lists,
     icon: listsIcon,
     text: 'Списки',
   },
   {
-    navLink: '/subscription',
+    navLink: routesUrl.subscription,
     icon: chartsIcon,
     text: 'Статистика',
   },
   {
-    navLink: '/chat',
+    navLink: routesUrl.chat,
     icon: dialogueIcon,
     text: 'Диалоги',
   },
   {
-    navLink: '/partnership',
+    navLink: routesUrl.partnership,
     icon: rocketIcon,
     text: 'Партнерская программа',
   },
   {
-    navLink: '/share',
+    navLink: routesUrl.share,
     icon: accessIcon,
     text: 'Общий доступ',
   },
   {
-    navLink: '/minilanding',
+    navLink: routesUrl.minilanding,
     icon: minilandingIcon,
     text: 'Мини-лендинг',
     child: [

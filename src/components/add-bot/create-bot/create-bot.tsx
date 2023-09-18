@@ -1,6 +1,10 @@
 import { FC, FormEvent, useState } from 'react';
 
+import { useNavigate } from 'react-router';
+
 import stylesCreateBot from './create-bot.module.scss';
+
+import { useAppSelector } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -14,9 +18,12 @@ import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
 
 import StepperFillBot from '../../../ui/stepper-fill-bot/stepper-fill-bot';
 import LoadPages from '../../../ui/inputs/load-pages/load-pages';
+import useForm from '../../../services/hooks/use-form';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
-import useForm from '../../../services/hooks/use-form';
+
+import { addBotApi } from '../../../api';
+import routesUrl from '../../../utils/routesData';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -47,22 +54,41 @@ const CreateBot: FC<ICreateBot> = ({
   stepFirst,
   botURI,
 }): JSX.Element => {
+  const { credentials, profile }: any = useAppSelector(
+    (store) => store.signup.user?.accounts[0]
+  );
   const [arrPages, setArrPages] = useState<any>([]); // временный тип any
-
   const { values, handleChange, setValues } = useForm({
     botName: '',
+    accessKey: '',
+    uri: '',
   });
+  const history = useNavigate();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const dataBot = {
-      ...values,
-      pages: arrPages,
+      icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
+      botName: values?.botName,
+      profile,
+      messenger: {
+        name: botName,
+        page: 'страница',
+        accessKey: values?.accessKey,
+        url: values?.uri,
+      },
+      botSettings: {},
     };
-    setValues({ botName: '' });
-    // Добавить отправку данных на бэк
-    // Добавить редирект на страницу бота
-    console.log(dataBot);
+
+    try {
+      await addBotApi(dataBot, credentials.accessToken);
+      history(routesUrl.homePage);
+    } catch (err) {
+      console.log(err);
+    }
+
+    setValues({ botName: '', accessKey: '', uri: '' });
   };
   return (
     <div className={stylesCreateBot.create}>
