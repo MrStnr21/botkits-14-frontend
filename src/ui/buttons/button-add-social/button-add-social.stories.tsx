@@ -23,6 +23,15 @@ export default {
         type: 'radio',
       },
     },
+    size: {
+      type: 'string',
+      description: 'Вариант размера кнопки',
+      defaultValue: 'standard',
+      options: ['small', 'standard'],
+      control: {
+        type: 'radio',
+      },
+    },
     onClick: {
       action: 'clicked',
       description: 'Callback функция, вызываемая при клике',

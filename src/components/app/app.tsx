@@ -3,16 +3,17 @@ import { FC, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import stylesApp from './app.module.scss'; // возможно не понадобится
 
+import Subscription from '../../pages/subscription/subscription';
 import AddBotPage from '../../pages/add-bot-page/add-bot-page';
+import Partnership from '../../pages/partnership/partnership';
 import BotBuilder from '../../pages/bot-builder/bot-builder';
-import Chat from '../../pages/chat/chat';
-import Layout from '../../pages/layout/layout';
 import Dashboard from '../../pages/dashboard/dashboard';
 import Mailing from '../../pages/mailing/mailing';
-import Partnership from '../../pages/partnership/partnership';
-import Share from '../../pages/share/share';
-import Subscription from '../../pages/subscription/subscription';
+import Layout from '../../pages/layout/layout';
+import Signup from '../../pages/signup/signup';
 import NotFound from '../../pages/not-found';
+import Share from '../../pages/share/share';
+import Chat from '../../pages/chat/chat';
 
 const App: FC = (): JSX.Element => {
   const [authenticated, setAuthenticated] = useState(true); // ?
@@ -22,6 +23,7 @@ const App: FC = (): JSX.Element => {
       {/* {!authenticated && <Auth />}
       {authenticated && ( */}
       <Routes>
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="add-bot" element={<AddBotPage />} />

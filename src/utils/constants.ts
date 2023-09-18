@@ -6,6 +6,8 @@ export enum SIZE_INPUT {
   S = 272,
 }
 
+export const DEFAULT_PHONE_CODE = '+7';
+
 export enum BUTTON_NAME {
   IMAGE = 'Фото',
   VIDEO = 'Видео',
