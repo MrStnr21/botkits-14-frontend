@@ -15,6 +15,7 @@ import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
 import Signin from '../../pages/signin/signin';
+import ResetPassword from '../../pages/reset-password/reset-password';
 
 const App: FC = (): JSX.Element => {
   const [authenticated, setAuthenticated] = useState(true); // ?
@@ -26,6 +27,7 @@ const App: FC = (): JSX.Element => {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/reset" element={<ResetPassword />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="add-bot" element={<AddBotPage />} />
