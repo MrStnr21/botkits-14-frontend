@@ -11,13 +11,13 @@ import Dashboard from '../../pages/dashboard/dashboard';
 import Mailing from '../../pages/mailing/mailing';
 import Layout from '../../pages/layout/layout';
 import Signup from '../../pages/signup/signup';
+import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
-import Signin from '../../pages/signin/signin';
 
 const App: FC = (): JSX.Element => {
-  const [authenticated, setAuthenticated] = useState(true); // ?
+  // const [authenticated, setAuthenticated] = useState(true); // ?
 
   return (
     <BrowserRouter>

@@ -1,18 +1,19 @@
+import { FC, useCallback, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import React, { FC, useCallback, useState } from 'react';
+
+import stylesSignin from './signin.module.scss';
+
+import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
-import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
-import stylesSignin from './signin.module.scss';
-
-import { IUserSigninState } from '../../services/types/user';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signinAction } from '../../services/actions/auth/signin';
+import { IUserSigninState } from '../../services/types/user';
 
-const Signin: FC = () => {
+const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector((store) => store.signin);
   // to do: перепеисать на хуке useForm
   const [formValue, setFromValue] = useState<IUserSigninState>({
