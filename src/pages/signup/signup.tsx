@@ -9,6 +9,7 @@ import { DEFAULT_PHONE_CODE } from '../../utils/constants';
 import { IUserSignupState } from '../../services/types/user';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
+import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
 const Signup: FC = () => {
   const [phoneCode, setPhoneCode] = useState<string>('');
@@ -61,122 +62,116 @@ const Signup: FC = () => {
       </div>
     </section>
   ) : (
-    <section className={stylesSignup.signupPage}>
-      <div className={stylesSignup.contentContainer}>
-        <div className={stylesSignup.logo} />
-        <h1 className={stylesSignup.label}>Регистрация</h1>
-        <div className={stylesSignup.signupFormContainer}>
-          <div className={stylesSignup.signupSocialContainer}>
-            <h2 className={stylesSignup.signupTitle}>
-              Создай аккаунт с помощью
-            </h2>
-            <div className={stylesSignup.socialContainer}>
-              <div className={stylesSignup.socialMain}>
-                <ButtonAddSocial
-                  social="google"
-                  size="small"
-                  buttonHtmlType="button"
-                />
-                <ButtonAddSocial
-                  social="yandex"
-                  size="small"
-                  buttonHtmlType="button"
-                />
-                <ButtonAddSocial
-                  social="mailru"
-                  size="small"
-                  buttonHtmlType="button"
-                />
-              </div>
-              <div className={stylesSignup.socialSecond}>
-                <ButtonAddSocial
-                  social="vk"
-                  size="small"
-                  buttonHtmlType="button"
-                />
-                <ButtonAddSocial
-                  social="odnoklassniki"
-                  size="small"
-                  buttonHtmlType="button"
-                />
-                <ButtonAddSocial
-                  social="facebook"
-                  size="small"
-                  buttonHtmlType="button"
-                />
-                <ButtonAddSocial
-                  social="telegram"
-                  size="small"
-                  buttonHtmlType="button"
-                />
-              </div>
+    <RegLogResLayout title="Регистрация">
+      <div className={stylesSignup.signupFormContainer}>
+        <div className={stylesSignup.signupSocialContainer}>
+          <h2 className={stylesSignup.signupTitle}>Создай аккаунт с помощью</h2>
+          <div className={stylesSignup.socialContainer}>
+            <div className={stylesSignup.socialMain}>
+              <ButtonAddSocial
+                social="google"
+                size="small"
+                buttonHtmlType="button"
+              />
+              <ButtonAddSocial
+                social="yandex"
+                size="small"
+                buttonHtmlType="button"
+              />
+              <ButtonAddSocial
+                social="mailru"
+                size="small"
+                buttonHtmlType="button"
+              />
             </div>
-          </div>
-          <div className={stylesSignup.signupInputsContainer}>
-            <h2 className={stylesSignup.signupTitleForm}>или</h2>
-            <form className={stylesSignup.inputsForm} onSubmit={handleSignup}>
-              <div className={stylesSignup.inputsContainer}>
-                <Input
-                  placeholder="Имя"
-                  name="name"
-                  onChange={(e) =>
-                    setFromValue({ ...formValue, username: e.target.value })
-                  }
-                />
-                <Input
-                  placeholder="E-mail"
-                  name="email"
-                  onChange={(e) =>
-                    setFromValue({ ...formValue, email: e.target.value })
-                  }
-                />
-                <Input
-                  placeholder="Пароль"
-                  name="password"
-                  onChange={(e) =>
-                    setFromValue({ ...formValue, password: e.target.value })
-                  }
-                />
-                <div className={stylesSignup.inputsPhoneContainer}>
-                  <MuiTelInput
-                    value={phoneCode}
-                    className={stylesSignup.phoneCodeSelect}
-                    onChange={handleChangeCodePhone}
-                  />
-                  <Input
-                    placeholder="Телефон"
-                    name="phoneNumber"
-                    onChange={(e) =>
-                      setFromValue({
-                        ...formValue,
-                        phone: phoneCode + e.target.value,
-                      })
-                    }
-                  />
-                </div>
-              </div>
-              <div className={stylesSignup.formsButton}>
-                <Button variant="default" color="green" buttonHtmlType="submit">
-                  создать аккаунт
-                </Button>
-              </div>
-            </form>
-            <div className={stylesSignup.signupReadyContainer}>
-              <span className={stylesSignup.signupReadyTitle}>
-                Уже прошли регистрацию?
-              </span>
-              <Link
-                to={{ pathname: '/login' }}
-                className={stylesSignup.signinLink}
-              >
-                Войти
-              </Link>
+            <div className={stylesSignup.socialSecond}>
+              <ButtonAddSocial
+                social="vk"
+                size="small"
+                buttonHtmlType="button"
+              />
+              <ButtonAddSocial
+                social="odnoklassniki"
+                size="small"
+                buttonHtmlType="button"
+              />
+              <ButtonAddSocial
+                social="facebook"
+                size="small"
+                buttonHtmlType="button"
+              />
+              <ButtonAddSocial
+                social="telegram"
+                size="small"
+                buttonHtmlType="button"
+              />
             </div>
-            <div className={stylesSignup.signupBackgroundImage} />
           </div>
         </div>
+        <div className={stylesSignup.signupInputsContainer}>
+          <h2 className={stylesSignup.signupTitleForm}>или</h2>
+          <form className={stylesSignup.inputsForm} onSubmit={handleSignup}>
+            <div className={stylesSignup.inputsContainer}>
+              <Input
+                placeholder="Имя"
+                name="name"
+                onChange={(e) =>
+                  setFromValue({ ...formValue, username: e.target.value })
+                }
+              />
+              <Input
+                placeholder="E-mail"
+                name="email"
+                onChange={(e) =>
+                  setFromValue({ ...formValue, email: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Пароль"
+                name="password"
+                onChange={(e) =>
+                  setFromValue({ ...formValue, password: e.target.value })
+                }
+              />
+              <div className={stylesSignup.inputsPhoneContainer}>
+                <MuiTelInput
+                  value={phoneCode}
+                  className={stylesSignup.phoneCodeSelect}
+                  onChange={handleChangeCodePhone}
+                />
+                <Input
+                  placeholder="Телефон"
+                  name="phoneNumber"
+                  onChange={(e) =>
+                    setFromValue({
+                      ...formValue,
+                      phone: phoneCode + e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <div className={stylesSignup.formsButton}>
+              <Button variant="default" color="green" buttonHtmlType="submit">
+                создать аккаунт
+              </Button>
+            </div>
+          </form>
+          <div className={stylesSignup.signupReadyContainer}>
+            <span className={stylesSignup.signupReadyTitle}>
+              Уже прошли регистрацию?
+            </span>
+            <Link
+              to={{ pathname: '/login' }}
+              className={stylesSignup.signinLink}
+            >
+              Войти
+            </Link>
+          </div>
+          <div className={stylesSignup.signupBackgroundImage} />
+        </div>
       </div>
-    </section>
+    </RegLogResLayout>
   );
 };
 
