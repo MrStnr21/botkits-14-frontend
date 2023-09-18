@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import stylesApp from './app.module.scss'; // возможно не понадобится
 
+import ResetPassword from '../../pages/reset-password/reset-password';
 import Subscription from '../../pages/subscription/subscription';
 import AddBotPage from '../../pages/add-bot-page/add-bot-page';
 import Partnership from '../../pages/partnership/partnership';
@@ -26,6 +27,7 @@ const App: FC = (): JSX.Element => {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/reset" element={<ResetPassword />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="add-bot" element={<AddBotPage />} />
