@@ -4,23 +4,41 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
+// import { useAppSelector } from '../../../services/hooks/hooks';
 import styles from './my-bots.module.scss';
-import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
+// import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
 import BotCard from '../../bot-card/bot-card';
 import useMediaQuery from '../../../services/hooks/use-media-query';
 import routesUrl from '../../../utils/routesData';
+import { useAppSelector } from '../../../services/hooks/hooks';
 
-const bots = [
-  'Салон красоты',
-  'Запись клиентов для консультации',
-  'Опрос клиентов для проведения встречи',
-];
+import Odnoklassniki from '../../../images/icon/40x40/odnoklassniki/hover.svg';
+import Telegram from '../../../images/icon/40x40/telegram/hover.svg';
+import Whatsapp from '../../../images/icon/40x40/whatsapp/hover.svg';
+import Facebook from '../../../images/icon/40x40/facebook/hover.svg';
+import Instagram from '../../../images/icon/40x40/insta/hover.svg';
+import Viber from '../../../images/icon/40x40/viber/hover.svg';
+import WebSite from '../../../images/icon/40x40/web/hover.svg';
+import Alisa from '../../../images/icon/40x40/alisa/hover.svg';
+import VK from '../../../images/icon/40x40/vk/hover.svg';
+
+const img: any = {
+  Facebook,
+  Telegram,
+  Viber,
+  VK,
+  Odnoklassniki,
+  Алиса: Alisa,
+  Whatsapp,
+  Instagram,
+  'Веб-сайт': WebSite,
+};
 
 const MyBots: FC = () => {
   const [isHidden, SetIsHidden] = useState(false);
   const matches = useMediaQuery('(max-width: 1410px)');
-
+  const bots: any = useAppSelector((store) => store.getBot.bot) || [];
   const navigate = useNavigate();
   const addBot = () => {
     navigate(routesUrl.addBot);
@@ -51,9 +69,12 @@ const MyBots: FC = () => {
             : {}
         }
       >
-        {bots.map((bot) => (
+        {bots.map((bot: any) => (
           <li key={uuidv4()} className={styles.item}>
-            <BotCard platform_icon={TelegramIcon} bot_name={bot} />
+            <BotCard
+              platform_icon={img[bot.messenger.name]}
+              bot_name={bot.botName}
+            />
           </li>
         ))}
         <li key={uuidv4()} className={styles.buttonAddbot}>

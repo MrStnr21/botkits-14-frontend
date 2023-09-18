@@ -3,8 +3,9 @@ import { FC, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import stylesCreateBot from './create-bot.module.scss';
+import { addBotAction } from '../../../services/actions/bots/addBot';
 
-import { useAppSelector } from '../../../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -22,7 +23,6 @@ import useForm from '../../../services/hooks/use-form';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 
-import { addBotApi } from '../../../api';
 import routesUrl from '../../../utils/routesData';
 
 interface ImageMap {
@@ -55,7 +55,7 @@ const CreateBot: FC<ICreateBot> = ({
   botURI,
 }): JSX.Element => {
   const { credentials, profile }: any = useAppSelector(
-    (store) => store.signup.user?.accounts[0]
+    (store) => store.signup.user?.accounts[0] || store.signin.user?.accounts[0]
   );
   const [arrPages, setArrPages] = useState<any>([]); // временный тип any
   const { values, handleChange, setValues } = useForm({
@@ -64,8 +64,25 @@ const CreateBot: FC<ICreateBot> = ({
     uri: '',
   });
   const history = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const disabledDefault =
+    values.accessKey.length > 1 && values.botName.length > 1;
+
+  const disabledPages = arrPages.length && values.botName.length > 1;
+
+  const disabledBotURI =
+    values.accessKey.length > 1 &&
+    values.botName.length > 1 &&
+    values.uri.length > 1;
+
+  const disabled = botURI
+    ? !disabledBotURI
+    : stepFirst === 'default'
+    ? !disabledDefault
+    : !disabledPages;
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const dataBot = {
@@ -82,7 +99,7 @@ const CreateBot: FC<ICreateBot> = ({
     };
 
     try {
-      await addBotApi(dataBot, credentials.accessToken);
+      dispatch(addBotAction(dataBot, credentials.accessToken));
       history(routesUrl.homePage);
     } catch (err) {
       console.log(err);
@@ -169,7 +186,7 @@ const CreateBot: FC<ICreateBot> = ({
                   variant="default"
                   color="green"
                   buttonHtmlType="submit"
-                  disabled={!values.botName.length}
+                  disabled={disabled}
                 >
                   Создать бота
                 </Button>
