@@ -11,12 +11,13 @@ import Dashboard from '../../pages/dashboard/dashboard';
 import Mailing from '../../pages/mailing/mailing';
 import Layout from '../../pages/layout/layout';
 import Signup from '../../pages/signup/signup';
+import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
 
 const App: FC = (): JSX.Element => {
-  const [authenticated, setAuthenticated] = useState(true); // ?
+  // const [authenticated, setAuthenticated] = useState(true); // ?
 
   return (
     <BrowserRouter>
@@ -24,6 +25,7 @@ const App: FC = (): JSX.Element => {
       {authenticated && ( */}
       <Routes>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="add-bot" element={<AddBotPage />} />

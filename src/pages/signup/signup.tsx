@@ -171,7 +171,7 @@ const Signup: FC = (): JSX.Element => {
               Уже прошли регистрацию?
             </span>
             <Link
-              to={{ pathname: '/login' }}
+              to={{ pathname: '/signin' }}
               className={stylesSignup.signinLink}
             >
               Войти
