@@ -23,6 +23,7 @@ import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 
 import { addBotApi } from '../../../api';
+import routesUrl from '../../../utils/routesData';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -82,7 +83,7 @@ const CreateBot: FC<ICreateBot> = ({
 
     try {
       await addBotApi(dataBot, credentials.accessToken);
-      history('/');
+      history(routesUrl.homePage);
     } catch (err) {
       console.log(err);
     }

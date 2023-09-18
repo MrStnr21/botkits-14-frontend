@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
 
 import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+import routesUrl from '../../utils/routesData';
 
 const Signup: FC = (): JSX.Element => {
   const [phoneCode, setPhoneCode] = useState<string>('');
@@ -58,7 +59,7 @@ const Signup: FC = (): JSX.Element => {
   return userData.signupSuccess ? (
     <section className={stylesSignup.successPage}>
       <Link
-        to={{ pathname: '/signin' }}
+        to={{ pathname: routesUrl.signin }}
         className={stylesSignup.successSigninLink}
       />
       <div className={stylesSignup.titleContainer}>
@@ -171,7 +172,7 @@ const Signup: FC = (): JSX.Element => {
               Уже прошли регистрацию?
             </span>
             <Link
-              to={{ pathname: '/login' }}
+              to={{ pathname: routesUrl.signin }}
               className={stylesSignup.signinLink}
             >
               Войти

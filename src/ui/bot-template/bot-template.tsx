@@ -18,6 +18,7 @@ import { ReactComponent as Close } from '../../images/icon/24x24/common/close.sv
 import { ReactComponent as ImagePoll } from '../../images/icon/template/poll.svg';
 
 import Button from '../buttons/button/button';
+import routesUrl from '../../utils/routesData';
 
 interface IBotTemplate {
   title: string;
@@ -72,7 +73,7 @@ const BotTemplate: FC<IBotTemplate> = ({
   const history = useNavigate();
   const addBot = () => {
     // добавить подключение к редаксу
-    history('/add-bot');
+    history(routesUrl.addBot);
   };
 
   return (

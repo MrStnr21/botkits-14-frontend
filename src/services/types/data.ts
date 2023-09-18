@@ -6,3 +6,8 @@ export interface IResponse<T> extends Response {
 export interface IResBody {
   status: string;
 }
+
+// типизация роутов
+export type TRoutesUrl = {
+  readonly [name: string]: string;
+};

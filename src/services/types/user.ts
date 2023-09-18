@@ -35,6 +35,10 @@ export interface IUserSigninState {
   email: string;
 }
 
+export interface IUserResetPasswordState {
+  email: string;
+}
+
 export interface IUserResponse extends IResBody {
   user: TUser;
 }
