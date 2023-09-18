@@ -1,25 +1,33 @@
+import { FC, useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import React, { FC, useCallback, useEffect, useState } from 'react';
+
 import { MuiTelInput } from 'mui-tel-input';
+
+import stylesSignup from './signup.module.scss';
+
+import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
+
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
-import stylesSignup from './signup.module.scss';
-import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+
 import { IUserSignupState } from '../../services/types/user';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
-import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
-const Signup: FC = () => {
+import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+
+const Signup: FC = (): JSX.Element => {
   const [phoneCode, setPhoneCode] = useState<string>('');
-  const userData = useAppSelector((store) => store.signup);
+  // to do: перепеисать на хуке useForm
   const [formValue, setFromValue] = useState<IUserSignupState>({
     username: '',
     email: '',
     password: '',
     phone: '',
   });
+
+  const userData = useAppSelector((store) => store.signup);
 
   const handleChangeCodePhone = (newCode: string) => {
     setPhoneCode(newCode);
@@ -140,6 +148,7 @@ const Signup: FC = () => {
                   onChange={handleChangeCodePhone}
                 />
                 <Input
+                  // добавить максимальную длину номера
                   placeholder="Телефон"
                   name="phoneNumber"
                   onChange={(e) =>

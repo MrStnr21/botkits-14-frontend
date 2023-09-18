@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import stylesRegLogResLayout from './reg-log-res-layout.module.scss';
 
 interface IRegLogResLayout {
@@ -6,7 +7,10 @@ interface IRegLogResLayout {
   children?: React.ReactNode;
 }
 
-const RegLogResLayout: FC<IRegLogResLayout> = ({ title, children }) => {
+const RegLogResLayout: FC<IRegLogResLayout> = ({
+  title,
+  children,
+}): JSX.Element => {
   return (
     <section className={stylesRegLogResLayout.signupPage}>
       <div className={stylesRegLogResLayout.contentContainer}>
