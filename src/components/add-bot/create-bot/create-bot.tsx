@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import stylesCreateBot from './create-bot.module.scss';
 import { addBotAction } from '../../../services/actions/bots/addBot';
 
-import { useAppDispatch } from '../../../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -54,9 +54,9 @@ const CreateBot: FC<ICreateBot> = ({
   stepFirst,
   botURI,
 }): JSX.Element => {
-  // const { credentials, profile }: any = useAppSelector(
-  //   (store) => store.signup.user?.accounts[0] || store.signin.user?.accounts[0]
-  // );
+  const { credentials, profile }: any = useAppSelector(
+    (store) => store.signup.user?.accounts[0] || store.signin.user?.accounts[0]
+  );
   const [arrPages, setArrPages] = useState<any>([]); // временный тип any
   const { values, handleChange, setValues } = useForm({
     botName: '',
@@ -88,7 +88,7 @@ const CreateBot: FC<ICreateBot> = ({
     const dataBot = {
       icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
       botName: values?.botName,
-      // profile,
+      profile,
       messenger: {
         name: botName,
         page: 'страница',
@@ -99,7 +99,7 @@ const CreateBot: FC<ICreateBot> = ({
     };
 
     try {
-      dispatch(addBotAction(dataBot, 'token'));
+      dispatch(addBotAction(dataBot, credentials.accessToken));
       history(routesUrl.homePage);
     } catch (err) {
       console.log(err);
