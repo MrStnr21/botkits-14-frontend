@@ -1,4 +1,6 @@
-import { FC } from 'react';
+import { FC, useRef } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useDraggable } from 'react-use-draggable-scroll';
 
 import stylesAddBot from './add-bot.module.scss';
 
@@ -65,11 +67,14 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
       botURI: false,
     },
   ];
+  const ref =
+    useRef<HTMLDivElement>() as unknown as React.MutableRefObject<HTMLUListElement>;
+  const { events } = useDraggable(ref);
 
   return (
     <div className={stylesAddBot.add_bot}>
       <h2 className={stylesAddBot.add_bot_title}>Добавить бота</h2>
-      <ul className={stylesAddBot.add_bot_list}>
+      <ul className={stylesAddBot.add_bot_list} {...events} ref={ref}>
         {socials?.map((social: any) => (
           <li key={social.name} className={stylesAddBot.add_bot_item}>
             <ButtonAddSocial
