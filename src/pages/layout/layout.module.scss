@@ -2,11 +2,12 @@
 
 
 .layout{
-max-width: $max-content-width;
+// max-width: $max-content-width;
+width: 100vw;
 margin: 0 auto;
 min-height: 100vh;
 display: grid;
-grid-template-columns: auto 1fr;
+grid-template-columns: auto 1fr auto;
 grid-template-rows: auto  1fr auto;
 box-sizing: border-box;
 padding-left: 16px;
@@ -24,8 +25,10 @@ background-color: $white-color;
     grid-column: 2 / 3;
     grid-row: 2;
     // END GRID LAYOUT
-    // align-self: start;
-    overflow-x: hidden;
+
+    max-width: $max-content-width;
+    margin: 0 auto;
+    width: 100%;
 
     @media (max-width:( $min-content-width + 200px)) {
       grid-column: 1 / -1;
