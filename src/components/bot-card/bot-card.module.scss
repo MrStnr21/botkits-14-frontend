@@ -5,7 +5,7 @@
   height: 172px;
   background-color: $white-color;
   border-radius: $border-radius-30;
-  box-shadow: 0 12px 24px rgba(21, 18, 51, .13);
+  box-shadow: 0 12px 24px rgba(21, 18, 51, 0.13);
   position: relative;
   display: flex;
   justify-content: start;
@@ -25,7 +25,7 @@
   cursor: pointer;
   height: 24px;
   width: 24px;
-  background-image: url("../../images/icon/24x24/common/more.svg");
+  background-image: url('../../images/icon/24x24/common/more.svg');
 }
 
 .more_box {
@@ -35,7 +35,7 @@
 .more_box__active {
   display: inline;
   background-color: white;
-  border: 1px  solid black;
+  border: 1px solid black;
   position: absolute;
   left: 185px;
   width: 150px;
@@ -54,7 +54,7 @@
   font: {
     weight: $bold;
     size: $l-font-size;
-    family: "IBM Plex Mono", sans-serif;
+    family: 'IBM Plex Mono', sans-serif;
   }
 
   margin: 0;
@@ -66,9 +66,8 @@
   overflow: hidden;
 }
 
-
 .more_button {
-  background-image: url("../../images/icon/24x24/common/more.svg");
+  background-image: url('../../images/icon/24x24/common/more.svg');
   width: 24px;
   height: 24px;
 }

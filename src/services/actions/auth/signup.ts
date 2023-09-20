@@ -1,8 +1,10 @@
 import { signupApi } from '../../../api/index';
 
+import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
+
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
-import { TUser } from '../../types/user';
+import { IUserSignupState, TUser } from '../../types/user';
 
 const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -27,14 +29,17 @@ export type TSignupActions =
   | ISignupErrorAction;
 
 // экшн регистрации
-const signupAction: AppThunk = (userInfo: any) => {
+const signupAction: AppThunk = (userInfo: IUserSignupState) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: SIGNUP_REQUEST,
     });
     signupApi(userInfo)
-      .then((res: any) => {
+      .then((res: TUser) => {
         if (res) {
+          saveAccessToken(res.accounts[0].credentials.accessToken);
+          saveRefreshToken(res.accounts[0].credentials.refreshToken);
+
           dispatch({
             type: SIGNUP_SUCCESS,
             user: res,

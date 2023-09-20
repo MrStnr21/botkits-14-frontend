@@ -33,7 +33,7 @@ const addBotAction: AppThunk = (botinfo: TBot, token: string) => {
       type: ADDBOT_REQUEST,
     });
     addBotApi(botinfo, token)
-      .then((res: any) => {
+      .then((res: TBot) => {
         if (res) {
           dispatch({
             type: ADDBOT_SUCCESS,
