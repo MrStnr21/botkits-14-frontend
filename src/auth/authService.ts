@@ -1,14 +1,23 @@
-import { IToken } from '../services/types/token';
-
 // Функция для сохранения токена в localStorage
-const saveAccessToken = (token: IToken) => {
-  localStorage.setItem('accessToken', token.accessToken);
+const saveAccessToken = (accessToken: string) => {
+  localStorage.setItem('accessToken', accessToken);
 };
 
 // Функция для получения токена из localStorage
-const getAccessToken = (): IToken | null => {
+const getAccessToken = (): string | null => {
   const accessToken = localStorage.getItem('accessToken');
-  return accessToken ? { accessToken } : null;
+  return accessToken ?? null;
 };
 
-export { saveAccessToken, getAccessToken };
+// Функция для сохранения рефреш-токена в localStorage
+const saveRefreshToken = (refreshToken: string) => {
+  localStorage.setItem('refreshToken', refreshToken);
+};
+
+// Функция для получения рефреш-токена из localStorage
+const getRefreshToken = (): string | null => {
+  const refreshToken = localStorage.getItem('refreshToken');
+  return refreshToken ?? null;
+};
+
+export { saveAccessToken, saveRefreshToken, getAccessToken, getRefreshToken };

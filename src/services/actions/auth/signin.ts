@@ -1,8 +1,10 @@
 import { signinApi } from '../../../api/index';
 
+import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
+
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
-import { TUser } from '../../types/user';
+import { IUserSigninState, TUser } from '../../types/user';
 
 const SIGNIN_REQUEST = 'SIGNIN_REQUSET';
 const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
@@ -27,14 +29,17 @@ export type TSigninActions =
   | ISigninErrorAction;
 
 // экшн авторизации
-const signinAction: AppThunk = (userInfo: any) => {
+const signinAction: AppThunk = (userInfo: IUserSigninState) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: SIGNIN_REQUEST,
     });
     signinApi(userInfo)
-      .then((res: any) => {
+      .then((res: TUser) => {
         if (res) {
+          saveAccessToken(res.accounts[0].credentials.accessToken);
+          saveRefreshToken(res.accounts[0].credentials.refreshToken);
+
           dispatch({
             type: SIGNIN_SUCCESS,
             user: res,

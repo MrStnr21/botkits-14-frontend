@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-cycle
-import { IResBody } from './response';
-
 // типизация данных пользователя
 export type TUser = {
   username: string;
@@ -39,6 +36,4 @@ export interface IUserResetPasswordState {
   email: string;
 }
 
-export interface IUserResponse extends IResBody {
-  user: TUser;
-}
+export interface IUserResponse extends TUser {}
