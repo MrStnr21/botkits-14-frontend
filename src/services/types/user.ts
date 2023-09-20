@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { IResBody } from './data';
+import { IResBody } from './response';
 
 // типизация данных пользователя
 export type TUser = {

@@ -6,7 +6,7 @@ import {
 
 import request from './api';
 
-import BASE_URL from '../utils/data';
+import BASE_URL from '../utils/config';
 
 // запрос регистрации
 function signupApi(userInfo: IUserSignupState) {

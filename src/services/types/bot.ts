@@ -1,4 +1,4 @@
-import { IResBody } from './data';
+import { IResBody } from './response';
 
 // Типизация данных бота
 export type TBot = {

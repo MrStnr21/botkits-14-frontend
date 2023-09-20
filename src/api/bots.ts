@@ -1,8 +1,8 @@
-import { IResBody } from '../services/types/data';
+import { IResBody } from '../services/types/response';
 
 import request from './api';
 
-import BASE_URL from '../utils/data';
+import BASE_URL from '../utils/config';
 
 import { TBot } from '../services/types/bot';
 

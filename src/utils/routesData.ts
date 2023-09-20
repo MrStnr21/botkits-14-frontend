@@ -1,4 +1,4 @@
-import { TRoutesUrl } from '../services/types/data';
+import { TRoutesUrl } from '../services/types/response';
 
 const routesUrl: TRoutesUrl = {
   homePage: '/',
