@@ -1,7 +1,7 @@
 /* Переменные ограничивают ширину контента */
 $max-content-width: 1440px;
 $min-content-width: 320px;
-
+$switching-width: ($min-content-width + 300px);
 /* Переменные основных цветов в приложении*/
 $default-grey-color: #f8f9fb;
 $hover-grey-color: #f2f4f8;

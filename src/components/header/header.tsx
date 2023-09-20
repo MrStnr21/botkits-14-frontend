@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import styles from './header.module.scss';
 
@@ -10,15 +10,21 @@ import Help from '../icons/Help/Help';
 import Logo from '../icons/Logo/Logo';
 
 import avatar from '../../images/avatar/circled/default.svg';
+import MenuUser from '../../ui/menus/menu-user/menu-user';
+import NotificationPopup from '../popups/notification-popup/notification-popup';
 
 const Header: FC = (): JSX.Element => {
-  const [isActive, setIsActive] = useState(false);
+  const [isOpenAccontSettings, setIsAccSet] = useState(false);
+  const [isNotificationOpened, setIsNotificationOpened] = useState(false);
   const [matches, setMatches] = useState(
     window.matchMedia('(max-width: 768px)').matches
   );
 
-  const toggle = () => {
-    setIsActive(!isActive);
+  const toggleAccSet = () => {
+    setIsAccSet(!isOpenAccontSettings);
+  };
+  const toggleNotifPopup = () => {
+    setIsNotificationOpened(!isNotificationOpened);
   };
 
   useEffect(() => {
@@ -40,21 +46,41 @@ const Header: FC = (): JSX.Element => {
         <p className={styles.text}>Демо</p>
         <div className={styles.icons}>
           <Help />
-          <Notifications number={2} />
+          <Notifications number={2} onClick={toggleNotifPopup} />
         </div>
-        <span className={styles.avatar}>
-          <img src={avatar} alt="Avatar" className={styles.image} />
-        </span>
-        <p className={styles.text}>User Name</p>
-        <span
-          className={`${styles.button} ${
-            !isActive ? styles.button_default : styles.button_active
-          }`}
-          onClick={toggle}
-        >
-          <ArrowSmall />
-        </span>
+        <div className={styles.userInfo} onClick={toggleAccSet}>
+          <span className={styles.userInfo__avatar}>
+            <img src={avatar} alt="Avatar" className={styles.userInfo__image} />
+          </span>
+          <p className={styles.text}>User Name</p>
+          <span
+            className={`${styles.userInfo__button} ${
+              !isOpenAccontSettings
+                ? styles.button_default
+                : styles.button_active
+            }`}
+          >
+            <ArrowSmall />
+          </span>
+          {/* <MenuUser isActive={isOpenAccontSettings} top={47} right={0} /> */}
+        </div>
+        <MenuUser
+          isActive={isOpenAccontSettings}
+          top={47}
+          right={0}
+          onClick={(e) => {
+            console.log(e);
+            setIsAccSet(false);
+            if (e.target.id === 'notification') {
+              setIsNotificationOpened(true);
+            }
+          }}
+        />
       </div>
+      <NotificationPopup
+        isOpen={isNotificationOpened}
+        setIsNotificationOpened={setIsNotificationOpened}
+      />
     </header>
   );
 };
