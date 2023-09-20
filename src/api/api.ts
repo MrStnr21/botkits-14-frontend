@@ -1,5 +1,5 @@
 /* eslint-disable prefer-promise-reject-errors */
-import { IResponse } from '../services/types/data';
+import { IResponse } from '../services/types/response';
 
 type TOptions = {
   headers: { authorization?: string; 'Content-Type': string };

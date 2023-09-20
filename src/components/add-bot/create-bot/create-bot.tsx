@@ -24,6 +24,7 @@ import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 
 import routesUrl from '../../../utils/routesData';
+import { getAccessToken } from '../../../auth/authService';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -54,17 +55,23 @@ const CreateBot: FC<ICreateBot> = ({
   stepFirst,
   botURI,
 }): JSX.Element => {
-  const { credentials, profile }: any = useAppSelector(
+  const [arrPages, setArrPages] = useState<any>([]); // временный тип any
+
+  const profile = useAppSelector(
     (store) => store.signup.user?.accounts[0] || store.signin.user?.accounts[0]
   );
-  const [arrPages, setArrPages] = useState<any>([]); // временный тип any
+
   const { values, handleChange, setValues } = useForm({
     botName: '',
     accessKey: '',
     uri: '',
   });
+
   const history = useNavigate();
+
   const dispatch = useAppDispatch();
+
+  const token = getAccessToken();
 
   const disabledDefault =
     values.accessKey.length > 1 && values.botName.length > 1;
@@ -99,9 +106,10 @@ const CreateBot: FC<ICreateBot> = ({
     };
 
     try {
-      dispatch(addBotAction(dataBot, credentials.accessToken));
+      dispatch(addBotAction(dataBot, token));
       history(routesUrl.homePage);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
 
