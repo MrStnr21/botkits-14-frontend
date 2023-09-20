@@ -33,7 +33,7 @@ const getBotsAction: AppThunk = (token: string) => {
       type: GETBOTS_REQUEST,
     });
     getBotsApi(token)
-      .then((res: any) => {
+      .then((res: TBot) => {
         if (res) {
           dispatch({
             type: GETBOTS_SUCCESS,

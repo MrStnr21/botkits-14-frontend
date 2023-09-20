@@ -1,14 +1,12 @@
-import { IResBody } from '../services/types/response';
-
 import request from './api';
 
 import BASE_URL from '../utils/config';
 
-import { TBot } from '../services/types/bot';
+import { IBotResponse, TBot } from '../services/types/bot';
 
 // запрос получения ботов
 function getBotsApi(token: string) {
-  return request<IResBody>(`${BASE_URL}/bots`, {
+  return request<IBotResponse>(`${BASE_URL}/bots`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -20,7 +18,7 @@ function getBotsApi(token: string) {
 
 // запрос добавления бота
 function addBotApi(bot: TBot, token: string) {
-  return request<IResBody>(`${BASE_URL}/bots`, {
+  return request<IBotResponse>(`${BASE_URL}/bots`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

@@ -1,5 +1,3 @@
-import { IResBody } from './response';
-
 // Типизация данных бота
 export type TBot = {
   icon: string;
@@ -14,6 +12,4 @@ export type TBot = {
   botSettings?: any;
 };
 
-export interface IBotResponse extends IResBody {
-  bot: TBot;
-}
+export interface IBotResponse extends TBot {}
