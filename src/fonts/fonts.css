@@ -68,8 +68,8 @@
   font-family: 'IBM Plex Sans';
   font-weight: 500;
   src:
-  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
-  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'),
+  /* url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
+  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'), */
   url('./IBMPlexSans/IBMPlexSans-Medium.ttf') format('truetype');
 }
 

@@ -22,6 +22,10 @@
   color: $primary-text-color;
   line-height: $button-line-height-150;
   letter-spacing: $m-letter-space;
+
+  @media (max-width: $switching-width){
+    margin-right: 20px;
+  }
 }
 
 .video{
@@ -29,7 +33,7 @@
   padding-left: 32px;
   padding-bottom: 32px;
 
-  @media (max-width: ($min-content-width + 200px)){
+  @media (max-width: $switching-width){
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 0;
@@ -47,8 +51,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 172px);
   gap: 20px;
-  @media (max-width: ($min-content-width + 200px)){
-    grid-template-columns: repeat(auto-fit, 200px);
+  @media (max-width: ($switching-width)){
+    grid-template-columns: repeat(auto-fit, 250px);
   }
 }
 
@@ -60,7 +64,7 @@
   text-align: start;
   min-height: 283px;
 
-  @media (max-width:($min-content-width + 200px)){
+  @media (max-width: $switching-width){
     padding-left: 20px;
     padding-right: 20px;
   }
