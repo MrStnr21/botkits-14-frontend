@@ -9,6 +9,11 @@ const getAccessToken = (): string | null => {
   return accessToken ?? null;
 };
 
+// Функция удаление токена
+const removeAccessToken = (): void => {
+  localStorage.removeItem('accessToken');
+};
+
 // Функция для сохранения рефреш-токена в localStorage
 const saveRefreshToken = (refreshToken: string) => {
   localStorage.setItem('refreshToken', refreshToken);
@@ -20,4 +25,16 @@ const getRefreshToken = (): string | null => {
   return refreshToken ?? null;
 };
 
-export { saveAccessToken, saveRefreshToken, getAccessToken, getRefreshToken };
+// Функция удаление рефреш-токена
+const removeRefreshToken = (): void => {
+  localStorage.removeItem('refreshToken');
+};
+
+export {
+  saveAccessToken,
+  saveRefreshToken,
+  getAccessToken,
+  getRefreshToken,
+  removeAccessToken,
+  removeRefreshToken,
+};
