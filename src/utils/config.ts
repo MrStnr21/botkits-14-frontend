@@ -1,3 +1,3 @@
-const BASE_URL: string = 'http://localhost:3001';
+const BASE_URL: string = 'https://botkits.nomoreparties.co/api';
 
 export default BASE_URL;
