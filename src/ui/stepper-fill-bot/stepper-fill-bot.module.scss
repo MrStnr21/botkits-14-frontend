@@ -20,4 +20,8 @@
   * {
     margin: 0;
   }
+
+  @media screen and (max-width:520px){
+    gap: 12px;
+  }
 }
