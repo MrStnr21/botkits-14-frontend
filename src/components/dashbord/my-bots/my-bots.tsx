@@ -69,9 +69,6 @@ const MyBots: FC = () => {
             />
           </li>
         ))}
-        <li key={uuidv4()} className={styles.item}>
-          <BotCard platform_icon={Odnoklassniki} bot_name="Odnoklassniki" />
-        </li>
         <li key={uuidv4()} className={styles.buttonAddbot}>
           <ButtonAddBot onClick={addBot}>Добавить бота</ButtonAddBot>
         </li>
