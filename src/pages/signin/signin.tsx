@@ -11,13 +11,13 @@ import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signinAction } from '../../services/actions/auth/signin';
-import useForm from '../../services/hooks/use-form';
 
-import { signinSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
+import useForm from '../../services/hooks/use-form';
+import { signinSel } from '../../utils/selectorData';
 
 const Signin: FC = (): JSX.Element => {
-  const userData = useAppSelector(signinSel);
+  const { signinSuccess } = useAppSelector(signinSel);
 
   const { values, handleChange } = useForm({
     email: '',
@@ -39,8 +39,8 @@ const Signin: FC = (): JSX.Element => {
     [values]
   );
 
-  return userData.signinSuccess ? (
-    <Navigate to={routesUrl.homePage} /> // Временная заглушка до реализации Protect route
+  return signinSuccess ? (
+    <Navigate to={routesUrl.homePage} />
   ) : (
     <RegLogResLayout title="Вход">
       <div className={stylesSignin.signinFormContainer}>
