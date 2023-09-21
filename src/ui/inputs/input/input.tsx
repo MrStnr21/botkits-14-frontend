@@ -11,6 +11,7 @@ interface IInput {
   disabled?: boolean;
   name?: string;
   minLength?: number;
+  type?: string;
 }
 
 const Input: FC<IInput> = ({
@@ -22,12 +23,13 @@ const Input: FC<IInput> = ({
   disabled,
   name,
   minLength = 2,
+  type = 'text',
 }): JSX.Element => {
   return (
     <div className={stylesInput.wrapper}>
       <input
         className={`${stylesInput.input} ${isInvalid && stylesInput.incorrect}`}
-        type="text"
+        type={type || 'text'}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

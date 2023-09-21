@@ -40,38 +40,25 @@
   margin: 16px 46px 16px 0;
   display: flex;
 
- @media (max-width: ($min-content-width + 200px)) {
+ @media (max-width: $switching-width) {
   margin: 0;
-  .cover{
-    display: none;
-  }
 }
 }
 
 .wrapper_open {
   grid-column: 1/-1;
   margin-right: 0;
-
-.cover{  // затемнение сделано именно так, из-за белого ободка вокруг сайдбара (просто фон блока затемнял бы отступы)
-  background-color: rgba(0, 0, 0, 0.10);
-  position: absolute;
-  top: -16px;
-  bottom: -16px;
-  left: 224px;
-  right: 0;
-  }
 }
 
 .wrapper_close {
   grid-column: 1/2;
 
-  @media (max-width: ($min-content-width + 200px)) {
+  @media (max-width: $switching-width) {
     grid-row: 1; //в середине экрана будет основной контент страницы
     }
 }
 
 .sidebar {
-//  max-width: 224px;
  box-sizing: border-box;
  transition: all 0.2s;
  flex-shrink: 0;
@@ -82,7 +69,7 @@
  padding: 8px;
  border-radius: 10px;
 
- @media (max-width: ($min-content-width + 200px)) {
+ @media (max-width: $switching-width) {
    background-color: $white-color;
    padding: 0;
    border-radius: 0;
@@ -92,7 +79,6 @@
 
 .sidebar_open {
   background-color: $default-grey-color;
-  // margin: 16px 0;
   width: 224px;
 
   .navigation__text,
@@ -119,7 +105,7 @@
     }
   }
 
-  @media (max-width: ($min-content-width + 200px)) {
+  @media (max-width: $switching-width) {
     width: 100%; // растянуть sidebar_open на весь экран
     background-color: $white-color;
     margin: 0;
@@ -168,7 +154,8 @@
     @extend %screen-reader;
   }
 
-  @media (max-width: ($min-content-width + 200px)) {
+  @media (max-width: $switching-width) {
+
     .navigation {
       display: none; //скрываем весь сайдбар кроме логотипа и бургер-кнопки
     }
@@ -188,7 +175,7 @@
   box-sizing: border-box;
   padding-top: 16px;
 
-  @media (max-width: ($min-content-width + 200px)) {
+  @media (max-width: $switching-width) {
     background-color: inherit;
     padding-bottom: 15px;
     padding-left: 20px;
@@ -199,7 +186,7 @@
 .header__toggle { // бургер-кнопка
   position: absolute;
   right: -80px;
-  top: 5px;
+  top: 2px;
   width: 24px;
   height: 24px;
   @extend %button-style-reset;
@@ -211,7 +198,7 @@
   background-color: $icon-grey-color;
   flex-shrink: 0;
 
-  @media (max-width: ($min-content-width + 200px)) {
+  @media (max-width: $switching-width) {
     position: static;
     background-color: $primary-text-color;
     margin-right: 8px;
@@ -228,7 +215,7 @@
   background-size: contain;
   flex-shrink: 0;
 
-  @media (max-width: ($min-content-width + 200px)) {
+  @media (max-width: $switching-width) {
     width: 128px;
     height: 30px;
   }
@@ -269,6 +256,10 @@
   list-style: none;
   margin: 47px 0 20px 0;
   padding: 0;
+
+  @media (max-width: $switching-width) {
+   margin-top: 0;
+  }
 }
 
 .navigation__link {
@@ -287,21 +278,19 @@
   @include font-nav();
 
   text-decoration: none;
-
   color: $primary-text-color;
-  stroke: $icon-grey-color;
-
   transition: all 0.3s;
 
   svg {
     flex-shrink: 0;
+    stroke: $icon-grey-color;
   }
 
   &:hover {
     background-color: $hover-grey-color;
   }
 
-  @media (max-width: ($min-content-width + 200px)) {
+  @media (max-width: $switching-width) {
     gap: 23px;
   }
 }
@@ -329,7 +318,7 @@
 }
 
 
-@media (max-width:($min-content-width + 200px)) { // синяя кнопка внизу у моб.пользователей
+@media (max-width: $switching-width) { // синяя кнопка внизу у моб.пользователей
   .addbutton_mobile {
     display: flex;
     gap: 12px;

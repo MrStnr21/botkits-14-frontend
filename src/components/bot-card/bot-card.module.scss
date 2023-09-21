@@ -10,6 +10,11 @@
   display: flex;
   justify-content: start;
   flex-direction: column;
+  @media (max-width: $switching-width) {
+    width: 235px;
+    height: 177px;
+  }
+
 }
 
 .icon {
@@ -26,28 +31,33 @@
   height: 24px;
   width: 24px;
   background-image: url('../../images/icon/24x24/common/more.svg');
+
+  @media (max-width: $switching-width) {
+    left: 195px;
 }
 
-.more_box {
-  display: none;
 }
 
-.more_box__active {
-  display: inline;
-  background-color: white;
-  border: 1px solid black;
-  position: absolute;
-  left: 185px;
-  width: 150px;
-  top: 65px;
-}
+// .more_box {
+//   display: none;
+// }
+
+// .more_box__active {
+//   display: inline;
+//   background-color: white;
+//   border: 1px solid black;
+//   position: absolute;
+//   left: 185px;
+//   width: 150px;
+//   top: 65px;
+// }
 
 .name_box {
-  width: 232px;
   height: 56px;
   margin: 24px 0 0 32px;
   display: flex;
   align-items: center;
+  max-width: 170px;
 }
 
 .name {
@@ -60,9 +70,9 @@
   margin: 0;
   line-height: $m-line-height;
   letter-spacing: 0.5px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  // переполнение, имя бота
+  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
 }
 
