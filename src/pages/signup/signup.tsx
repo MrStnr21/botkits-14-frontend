@@ -6,6 +6,7 @@ import { MuiTelInput } from 'mui-tel-input';
 import stylesSignup from './signup.module.scss';
 
 import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
+import ConfirmationPage from '../confirmation-page/confirmation-page';
 
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
@@ -17,8 +18,17 @@ import { signupAction } from '../../services/actions/auth/signup';
 
 import { DEFAULT_PHONE_CODE } from '../../utils/constants';
 import routesUrl from '../../utils/routesData';
+import backgroundImage from '../../images/roboSuccess.png';
 
 const Signup: FC = (): JSX.Element => {
+  const titleImageStyle = {
+    width: '100%',
+    maxWidth: '570px',
+    height: '100%',
+    aspectRatio: '1.06',
+    backgroundImage: `url(${backgroundImage})`,
+  };
+
   const [phoneCode, setPhoneCode] = useState<string>('');
   // to do: перепеисать на хуке useForm
   const [formValue, setFromValue] = useState<IUserSignupState>({
@@ -57,19 +67,10 @@ const Signup: FC = (): JSX.Element => {
   );
 
   return userData.signupSuccess ? (
-    <section className={stylesSignup.successPage}>
-      <Link
-        to={{ pathname: routesUrl.signin }}
-        className={stylesSignup.successSigninLink}
-      />
-      <div className={stylesSignup.titleContainer}>
-        <h1 className={stylesSignup.title}>
-          Письмо с подтверждением отправлено тебе на{' '}
-          <span className={stylesSignup.email}>/email</span> !
-        </h1>
-        <div className={stylesSignup.titleImage} />
-      </div>
-    </section>
+    <ConfirmationPage
+      text="Письмо с подтверждением отправлено тебе на"
+      style={titleImageStyle}
+    />
   ) : (
     <RegLogResLayout title="Регистрация">
       <div className={stylesSignup.signupFormContainer}>
