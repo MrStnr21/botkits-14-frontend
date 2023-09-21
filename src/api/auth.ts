@@ -2,6 +2,7 @@ import {
   IUserResponse,
   IUserSigninState,
   IUserSignupState,
+  IUserLogoutResponse,
 } from '../services/types/user';
 
 import request from './api';
@@ -30,4 +31,15 @@ function signinApi(userInfo: IUserSigninState) {
   });
 }
 
-export { signupApi, signinApi };
+// Запрос на выход из аккаунта
+function logoutApi(token: string) {
+  return request<IUserLogoutResponse>(`${BASE_URL}/logout`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export { signupApi, signinApi, logoutApi };

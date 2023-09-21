@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { LOGOUT, TLogoutActions } from '../../actions/logout/logout';
 
 import { TUser } from '../../types/user';
