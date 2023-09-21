@@ -10,8 +10,7 @@ function getBotsApi(token: string) {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
-      // eslint-disable-next-line prefer-template
-      authorization: 'Bearer ' + token,
+      authorization: `Bearer ${token}`,
     },
   });
 }
@@ -22,8 +21,7 @@ function addBotApi(bot: TBot, token: string) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
-      // eslint-disable-next-line prefer-template
-      authorization: 'Bearer ' + token,
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(bot),
   });

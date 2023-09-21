@@ -5,8 +5,7 @@
   margin: 0 auto;
   min-height: 100vh;
   display: grid;
-//   grid-template-columns: 120px auto;
-  grid-template-columns: minmax(0, 120px) minmax(360px, auto);
+  grid-template-columns: minmax(0, 120px) minmax($min-content-width, auto);
   grid-template-rows: auto  1fr auto;
   box-sizing: border-box;
   padding-left: 16px;

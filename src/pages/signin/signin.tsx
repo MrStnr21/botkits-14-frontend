@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, FormEvent } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import stylesSignin from './signin.module.scss';
@@ -11,14 +11,14 @@ import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signinAction } from '../../services/actions/auth/signin';
-import { IUserSigninState } from '../../services/types/user';
 
 import routesUrl from '../../utils/routesData';
+import useForm from '../../services/hooks/use-form';
 
 const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector((store) => store.signin);
-  // to do: перепеисать на хуке useForm
-  const [formValue, setFromValue] = useState<IUserSigninState>({
+
+  const { values, handleChange } = useForm({
     email: '',
     password: '',
   });
@@ -26,16 +26,16 @@ const Signin: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleSignin = useCallback(
-    (e: any) => {
+    (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       dispatch(
         signinAction({
-          email: formValue.email,
-          password: formValue.password,
+          email: values.email,
+          password: values.password,
         })
       );
     },
-    [formValue]
+    [values]
   );
 
   return userData.signinSuccess ? (
@@ -49,16 +49,16 @@ const Signin: FC = (): JSX.Element => {
               <Input
                 placeholder="E-mail"
                 name="email"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, email: e.target.value })
-                }
+                styled="secondary"
+                required
+                onChange={handleChange}
               />
               <Input
                 placeholder="Пароль"
                 name="password"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, password: e.target.value })
-                }
+                styled="secondary"
+                required
+                onChange={handleChange}
               />
             </div>
             <div className={stylesSignin.signinLinksContainer}>

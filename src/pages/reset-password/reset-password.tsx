@@ -1,5 +1,4 @@
-import { FC, useCallback, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { FC, useCallback, FormEvent } from 'react';
 
 import stylesResetPassword from './reset-password.module.scss';
 
@@ -7,23 +6,32 @@ import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-lay
 
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
+import backgroundImage from '../../images/roboResetSuccess.png';
+import ConfirmationScreen from '../../components/confirmation-screen/confirmation-screen';
 
 // import { signinAction } from '../../services/actions/auth/signin';
-import { IUserResetPasswordState } from '../../services/types/user';
 import { useAppSelector } from '../../services/hooks/hooks';
-import routesUrl from '../../utils/routesData';
+import useForm from '../../services/hooks/use-form';
 
 const ResetPassword: FC = (): JSX.Element => {
   const userData = useAppSelector((store) => store.signin);
-  // to do: переписать на хуке useForm
-  const [formValue, setFromValue] = useState<IUserResetPasswordState>({
+
+  const { values, handleChange } = useForm({
     email: '',
   });
+
+  const titleImageStyle = {
+    width: '100%',
+    maxWidth: '570px',
+    height: '100%',
+    aspectRatio: '1.06',
+    backgroundImage: `url(${backgroundImage})`,
+  };
 
   // const dispatch = useAppDispatch();
 
   const handleReset = useCallback(
-    (e: any) => {
+    (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       /*       dispatch(
         resetAction({
@@ -31,11 +39,14 @@ const ResetPassword: FC = (): JSX.Element => {
         })
       ); */
     },
-    [formValue]
+    [values]
   );
 
   return userData.signinSuccess ? (
-    <Navigate to={routesUrl.homePage} /> // Временная заглушка до реализации Protect route
+    <ConfirmationScreen
+      text="Ссылка для сброса пароля отправлена тебе на"
+      style={titleImageStyle}
+    />
   ) : (
     <RegLogResLayout title="Восстановление пароля">
       <div className={stylesResetPassword.resetFormContainer}>
@@ -49,9 +60,9 @@ const ResetPassword: FC = (): JSX.Element => {
               <Input
                 placeholder="E-mail"
                 name="email"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, email: e.target.value })
-                }
+                styled="secondary"
+                required
+                onChange={handleChange}
               />
             </div>
             <div className={stylesResetPassword.formsButton}>

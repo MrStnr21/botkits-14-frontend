@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
-
+import React, { FC, useRef } from 'react';
+import { useDraggable } from 'react-use-draggable-scroll';
 import stylesTemplates from './bots-templates.module.scss';
 
 import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
-import BotTemplate from '../../../ui/bot-template/bot-template';
+import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
+import ModalOverlayPopup from '../../popups/modal-overlay-popup/modal-overlay-popup';
 
 const Template: FC<{ name: string; fileName: string }> = ({
   name,
@@ -36,10 +37,7 @@ const Template: FC<{ name: string; fileName: string }> = ({
       </ButtonAddSampleBot>
       {open && (
         <div className={stylesTemplates.modal}>
-          <div
-            className={stylesTemplates.modal_overlay}
-            onClick={() => setOpen(false)}
-          />
+          <ModalOverlayPopup onClick={() => setOpen(false)} />
           <div className={stylesTemplates.content}>
             <BotTemplate title={name} onClick={() => setOpen(false)} />
           </div>
@@ -82,6 +80,10 @@ const Templates: FC = (): JSX.Element => {
   };
   const [isExpanded, setIsExpanded] = React.useState(false);
 
+  const ref =
+    useRef<HTMLDivElement>() as unknown as React.MutableRefObject<HTMLUListElement>;
+  const { events } = useDraggable(ref);
+
   return (
     <div className={stylesTemplates.container}>
       <div className={stylesTemplates.header_wrapper}>
@@ -115,6 +117,8 @@ const Templates: FC = (): JSX.Element => {
           ${stylesTemplates.list} ${
             isExpanded ? stylesTemplates.expanded : stylesTemplates.not_expanded
           } `}
+        {...events}
+        ref={ref}
       >
         {data.names_templates.map((name, index) => (
           <Template key={name} name={name} fileName={data.names_files[index]} />

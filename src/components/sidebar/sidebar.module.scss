@@ -42,24 +42,12 @@
 
  @media (max-width: $switching-width) {
   margin: 0;
-  .cover{
-    display: none;
-  }
 }
 }
 
 .wrapper_open {
   grid-column: 1/-1;
   margin-right: 0;
-
-.cover{  // затемнение сделано именно так, из-за белого ободка вокруг сайдбара (просто фон блока затемнял бы отступы)
-  background-color: rgba(0, 0, 0, 0.10);
-  position: absolute;
-  top: -16px;
-  bottom: -16px;
-  left: 224px;
-  right: 0;
-  }
 }
 
 .wrapper_close {
@@ -290,14 +278,12 @@
   @include font-nav();
 
   text-decoration: none;
-
   color: $primary-text-color;
-  stroke: $icon-grey-color;
-
   transition: all 0.3s;
 
   svg {
     flex-shrink: 0;
+    stroke: $icon-grey-color;
   }
 
   &:hover {

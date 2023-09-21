@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import stylesApp from './app.module.scss'; // возможно не понадобится
 
@@ -19,35 +19,109 @@ import Chat from '../../pages/chat/chat';
 
 import routesUrl from '../../utils/routesData';
 
-const App: FC = (): JSX.Element => {
-  // const [authenticated, setAuthenticated] = useState(true); // ?
+import ProtectedRoute from '../../routes/protected-route';
 
+const App: FC = (): JSX.Element => {
   return (
     <BrowserRouter>
-      {/* {!authenticated && <Auth />}
-      {authenticated && ( */}
       <Routes>
-        <Route path={routesUrl.signup} element={<Signup />} />
-        <Route path={routesUrl.signin} element={<Signin />} />
-        <Route path={routesUrl.reset} element={<ResetPassword />} />
+        <Route
+          path={routesUrl.signup}
+          element={
+            <ProtectedRoute notAuth>
+              <Signup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.signin}
+          element={
+            <ProtectedRoute notAuth>
+              <Signin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.reset}
+          element={
+            <ProtectedRoute notAuth>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
         <Route path={routesUrl.homePage} element={<Layout />}>
-          <Route path={routesUrl.homePage} element={<Dashboard />} />
-          <Route path={routesUrl.addBot} element={<AddBotPage />} />
-          <Route path={routesUrl.botBuilder} element={<BotBuilder />} />
-          <Route path={routesUrl.chat} element={<Chat />} />
-          <Route path={routesUrl.mailing} element={<Mailing />}>
+          <Route
+            path={routesUrl.homePage}
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.addBot}
+            element={
+              <ProtectedRoute>
+                <AddBotPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.botBuilder}
+            element={
+              <ProtectedRoute>
+                <BotBuilder />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.chat}
+            element={
+              <ProtectedRoute>
+                <Chat />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.mailing}
+            element={
+              <ProtectedRoute>
+                <Mailing />
+              </ProtectedRoute>
+            }
+          >
             {/* <Route path="" element={<First... />} />
               <Route path="start" element={<My... />} />
               <Route path="add" element={<Create... />} />
               <Route path="conditions" element={<Conditions.. />} /> */}
           </Route>
-          <Route path={routesUrl.partnership} element={<Partnership />} />
-          <Route path={routesUrl.share} element={<Share />} />
-          <Route path={routesUrl.subscription} element={<Subscription />} />
+          <Route
+            path={routesUrl.partnership}
+            element={
+              <ProtectedRoute>
+                <Partnership />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.share}
+            element={
+              <ProtectedRoute>
+                <Share />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.subscription}
+            element={
+              <ProtectedRoute>
+                <Subscription />
+              </ProtectedRoute>
+            }
+          />
           <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
       </Routes>
-      {/* )} */}
     </BrowserRouter>
   );
 };

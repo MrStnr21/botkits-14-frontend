@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-
+import { useMediaQuery } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import stylesSidebar from './sidebar.module.scss';
 
 import { links, ILink } from './sb-data';
+import Cover from '../../ui/cover/cover';
 
 // Элемент заголовка в навигации
 const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
@@ -15,7 +16,7 @@ const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
       to={navLink}
       className={(navData) =>
         navData.isActive
-          ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}` // добавим селектор-модификатор
+          ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}`
           : stylesSidebar.navigation__link
       }
     >
@@ -36,6 +37,8 @@ const Sidebar: FC = (): JSX.Element => {
   function expandList() {
     setStateNL(!isOpenNL);
   }
+
+  const matches = useMediaQuery('(max-width: 620px)');
 
   return (
     <section
@@ -62,13 +65,13 @@ const Sidebar: FC = (): JSX.Element => {
 
         <div
           className={stylesSidebar.navigation}
-          onClick={() => setStateSB(false)} // клик по кнопкам всплывет и закроет сайдбар..к тегу nav не цеплялся onClick
+          onClick={() => setStateSB(false)}
         >
           <NavLink
             to="/add-bot"
             className={(navData) =>
               navData.isActive
-                ? `${stylesSidebar.addbutton} ${stylesSidebar.addbutton_active}` // добавим селектор-модификатор
+                ? `${stylesSidebar.addbutton} ${stylesSidebar.addbutton_active}`
                 : stylesSidebar.addbutton
             }
           >
@@ -76,7 +79,6 @@ const Sidebar: FC = (): JSX.Element => {
           </NavLink>
           <ul className={stylesSidebar.navigation__list}>
             {links.map((item) =>
-              // ЗАГОЛОВОК С ВЛОЖЕННЫМ СПИСКОМ
               item.child ? (
                 <li
                   key={uuidv4()}
@@ -102,26 +104,27 @@ const Sidebar: FC = (): JSX.Element => {
                   </ul>
                 </li>
               ) : (
-                // ЗАГОЛОВОК БЕЗ ВЛОЖЕНИЙ
                 <li key={uuidv4()}>
                   <Subheader {...item} />
                 </li>
               )
             )}
           </ul>
-          {/* для моб.устройств и да, лучше так, чем сделать файл со стилями трудночитаемым */}
           <div className={stylesSidebar.addbutton_mobile}>
             <NavLink to="/add-bot" className={stylesSidebar.addcircle_mobile} />
             <p className={stylesSidebar.addtext_mobile}>Добавить бота</p>
           </div>
         </div>
       </div>
-      <div
-        aria-label="Cover"
-        // className={`${isOpenSB ? stylesSidebar.cover : ''}`}
-        className={stylesSidebar.cover}
-        onClick={() => setStateSB(false)}
-      />
+      {!matches && (
+        <Cover
+          top="-16px"
+          bottom="-16px"
+          left="224px"
+          right="0"
+          onClick={() => setStateSB(false)}
+        />
+      )}
     </section>
   );
 };
