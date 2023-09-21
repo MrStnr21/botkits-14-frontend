@@ -52,6 +52,6 @@ export enum POPUP_ITEM {
   RENAME = 'Переименовать',
   INFO = 'Информация',
   NOTIFSETT = 'Настройка уведомлений',
-  GETLINK = 'Получить ссылку',
+  LINK = 'Получить ссылку',
   DEFAULT = '',
 }
