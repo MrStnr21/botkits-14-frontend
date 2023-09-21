@@ -45,3 +45,13 @@ export const TIME_ZONE = [
   { nameValue: 'UTC+13:00', value: 'GMT+13' },
   { nameValue: 'UTC+14:00', value: 'GMT+14' },
 ];
+
+export enum POPUP_ITEM {
+  COPY = 'Копировать',
+  SHARE = 'Общий доступ',
+  RENAME = 'Переименовать',
+  INFO = 'Информация',
+  NOTIFSETT = 'Настройка уведомлений',
+  GETLINK = 'Получить ссылку',
+  DEFAULT = '',
+}

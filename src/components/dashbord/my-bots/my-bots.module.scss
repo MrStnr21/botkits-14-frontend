@@ -49,15 +49,33 @@
   transition: height 1s;
   display: grid;
   grid-template-columns: repeat(auto-fit, 296px);
+
   @media (max-width: $switching-width) {
     gap: 20px;
+    grid-template-columns: repeat(auto-fit, 235px);
   }
 }
+
+.list_hidden{
+  overflow-x: hidden;
+  grid-auto-flow: column;
+}
+
 .item{
+  min-height: 195px;
   position: relative;
+  // @media (max-width: $switching-width) {
+  //   gap: 20px;
+  //   grid-template-columns: repeat(auto-fit, 235px);
+  // }
 }
 
 .buttonAddbot{
   width: 296px;
   height: 172px;
+  @media (max-width: $switching-width) {
+    width: 235px;
+    height: 177px;
+  }
+
 }

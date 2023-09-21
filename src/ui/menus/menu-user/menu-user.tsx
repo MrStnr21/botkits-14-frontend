@@ -21,7 +21,7 @@ export interface IMenuUser {
 const MenuUser: FC<IMenuUser> = ({
   isActive = false,
   top = 0,
-  left,
+  left = 0,
   right,
   onClick,
 }) => {

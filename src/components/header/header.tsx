@@ -1,5 +1,5 @@
-import { FC, useState, useEffect } from 'react';
-
+import { FC, useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 import styles from './header.module.scss';
 
 import Notifications from '../icons/Notifications/Notifications';
@@ -16,22 +16,16 @@ import NotificationPopup from '../popups/notification-popup/notification-popup';
 const Header: FC = (): JSX.Element => {
   const [isOpenAccontSettings, setIsAccSet] = useState(false);
   const [isNotificationOpened, setIsNotificationOpened] = useState(false);
-  const [matches, setMatches] = useState(
-    window.matchMedia('(max-width: 768px)').matches
-  );
 
   const toggleAccSet = () => {
     setIsAccSet(!isOpenAccontSettings);
   };
   const toggleNotifPopup = () => {
+    setIsAccSet(false);
     setIsNotificationOpened(!isNotificationOpened);
   };
 
-  useEffect(() => {
-    window
-      .matchMedia('(max-width: 768px)')
-      .addEventListener('change', (e) => setMatches(e.matches));
-  }, []);
+  const matches = useMediaQuery('(max-width: 620px)');
 
   return (
     <header className={styles.header}>
@@ -62,14 +56,12 @@ const Header: FC = (): JSX.Element => {
           >
             <ArrowSmall />
           </span>
-          {/* <MenuUser isActive={isOpenAccontSettings} top={47} right={0} /> */}
         </div>
         <MenuUser
           isActive={isOpenAccontSettings}
           top={47}
-          right={0}
+          right={matches ? -15 : 0}
           onClick={(e) => {
-            console.log(e);
             setIsAccSet(false);
             if (e.target.id === 'notification') {
               setIsNotificationOpened(true);

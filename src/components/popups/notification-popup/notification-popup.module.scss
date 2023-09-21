@@ -18,6 +18,8 @@
   position: fixed;
   top: 0;
   transition: right 0.5s linear;
+  height: 100vh;
+  z-index: 100;
 }
 
 .container {

@@ -35,7 +35,7 @@ export const links: Array<ILink> = [
     text: 'Рассылки',
   },
   {
-    navLink: routesUrl.lists,
+    navLink: routesUrl.lists || '/lists',
     icon: listsIcon,
     text: 'Списки',
   },
@@ -60,7 +60,7 @@ export const links: Array<ILink> = [
     text: 'Общий доступ',
   },
   {
-    navLink: routesUrl.minilanding,
+    navLink: routesUrl.minilanding || '/minilanding',
     icon: minilandingIcon,
     text: 'Мини-лендинг',
     child: [
