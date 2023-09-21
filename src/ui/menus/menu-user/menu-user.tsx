@@ -9,6 +9,8 @@ import paymentsIcon from '../../../images/icon/24x24/drop down/payment.svg';
 import exitIcon from '../../../images/icon/24x24/drop down/log out.svg';
 import Notifications from '../../../components/icons/Notifications/Notifications';
 import Help from '../../../components/icons/Help/Help';
+import BASE_URL from '../../../utils/config';
+import routesUrl from '../../../utils/routesData';
 
 export interface IMenuUser {
   isActive?: boolean;
@@ -55,7 +57,10 @@ const MenuUser: FC<IMenuUser> = ({
         <img src={settingsIcon} alt="Иконка" />
         <p className={stylesMenuUser.text}>Настройки аккаунта</p>
       </a>
-      <a href="#id" className={stylesMenuUser.button}>
+      <a
+        href={`${BASE_URL}/${routesUrl.subscription}`}
+        className={stylesMenuUser.button}
+      >
         <img src={paymentsIcon} alt="Иконка" />
         <p className={stylesMenuUser.text}>Подписка и платежи</p>
       </a>
