@@ -2,8 +2,6 @@ import { Dispatch, FC, SetStateAction } from 'react';
 
 import BotMenuPopup from '../bot-menu-popup/bot-menu-popup';
 
-import ModalPopup from '../modal-popup/modal-popup';
-
 import { useAppSelector } from '../../../services/hooks/hooks';
 import { TBot } from '../../../services/types/bot';
 
@@ -113,9 +111,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
     }
   }
 
-  return (
-    <ModalPopup onClick={() => setIsPopupItemOpen(false)}>{child}</ModalPopup>
-  );
+  return <div>{child}</div>;
 };
 
 export default SwitchBotMenuPopup;
