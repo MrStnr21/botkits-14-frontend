@@ -38,7 +38,7 @@ const img: any = {
 const MyBots: FC = () => {
   const [isHidden, SetIsHidden] = useState(false);
   const matches = useMediaQuery('(max-width: 1410px)');
-  const bots: any = useAppSelector((store) => store.getBot.bot) || [];
+  const bots: any = useAppSelector((store) => store.getBots.bot) || [];
   const navigate = useNavigate();
   const addBot = () => {
     navigate(routesUrl.addBot);

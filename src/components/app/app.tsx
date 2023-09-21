@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import stylesApp from './app.module.scss'; // возможно не понадобится
 
@@ -18,14 +18,26 @@ import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
 
 import routesUrl from '../../utils/routesData';
+import { useAppDispatch } from '../../services/hooks/hooks';
+import { getBotsAction } from '../../services/actions/bots/getBot';
+import { getUserInfoAction } from '../../services/actions/user/user';
+import { getAccessToken } from '../../auth/authService';
 
 const App: FC = (): JSX.Element => {
-  // const [authenticated, setAuthenticated] = useState(true); // ?
+  const dispatch = useAppDispatch();
+
+  const token = getAccessToken();
+
+  useEffect(() => {
+    dispatch(getBotsAction(token));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getUserInfoAction(token));
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
-      {/* {!authenticated && <Auth />}
-      {authenticated && ( */}
       <Routes>
         <Route path={routesUrl.signup} element={<Signup />} />
         <Route path={routesUrl.signin} element={<Signin />} />
@@ -47,7 +59,6 @@ const App: FC = (): JSX.Element => {
           <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
       </Routes>
-      {/* )} */}
     </BrowserRouter>
   );
 };
