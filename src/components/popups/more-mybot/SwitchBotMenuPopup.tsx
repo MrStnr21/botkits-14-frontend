@@ -3,9 +3,9 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import BotMenuPopup from '../bot-menu-popup/bot-menu-popup';
 
 import { useAppSelector } from '../../../services/hooks/hooks';
-import { TBot } from '../../../services/types/bot';
 
 import { POPUP_ITEM } from '../../../utils/constants';
+import { getBotsSel } from '../../../utils/selectorData';
 
 interface IPopupMoreMyBot {
   itemSelected: POPUP_ITEM | undefined;
@@ -25,7 +25,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
   //   (store) => store.getBot.bot
   // );
 
-  const currentBot: TBot | null = useAppSelector((store) => store.getBots.bot);
+  const { bots } = useAppSelector(getBotsSel);
 
   // if (Array.isArray(bots) && bots.length > 0) {
   //   // eslint-disable-next-line no-underscore-dangle
@@ -68,7 +68,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           title="Переименуйте файл"
           placeholder="Переименуйте файл"
           buttonText="Переименовать"
-          value={currentBot ? currentBot.botName : 'Псевдоним'}
+          value={bots ? bots[0].botName : 'Псевдоним'}
           onClose={() => setIsPopupItemOpen(false)}
           // onClick={() => console.log('переименовывайся')}
         />

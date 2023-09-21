@@ -27,6 +27,8 @@ import Viber from '../../../images/icon/40x40/viber/hover.svg';
 import WebSite from '../../../images/icon/40x40/web/hover.svg';
 import Alisa from '../../../images/icon/40x40/alisa/hover.svg';
 import VK from '../../../images/icon/40x40/vk/hover.svg';
+import { TBot } from '../../../services/types/bot';
+import { getBotsSel } from '../../../utils/selectorData';
 
 const img: any = {
   Facebook,
@@ -43,8 +45,10 @@ const img: any = {
 const MyBots: FC = (): JSX.Element => {
   const [isHidden, SetIsHidden] = useState(false);
 
-  const bots: any = useAppSelector((store) => store.getBots.bot) || [];
+  const { bots } = useAppSelector(getBotsSel);
+
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const token = getAccessToken();
@@ -74,7 +78,7 @@ const MyBots: FC = (): JSX.Element => {
         )}
       </div>
       <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
-        {bots.map((bot: any) => (
+        {bots.map((bot: TBot) => (
           <li key={uuidv4()} className={styles.item}>
             <BotCard
               platform_icon={img[bot.messenger.name]}

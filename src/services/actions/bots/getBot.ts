@@ -14,7 +14,7 @@ export interface IGetBotsRequestAction {
 
 export interface IGetBotsSuccessAction {
   readonly type: typeof GETBOTS_SUCCESS;
-  bot: TBot;
+  bot: Array<TBot>;
 }
 
 export interface IGetBotsErrorAction {
@@ -33,7 +33,7 @@ const getBotsAction: AppThunk = (token: string) => {
       type: GETBOTS_REQUEST,
     });
     getBotsApi(token)
-      .then((res: TBot) => {
+      .then((res: Array<TBot>) => {
         if (res) {
           dispatch({
             type: GETBOTS_SUCCESS,
