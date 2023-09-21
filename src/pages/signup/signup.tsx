@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
@@ -6,19 +6,19 @@ import { MuiTelInput } from 'mui-tel-input';
 import stylesSignup from './signup.module.scss';
 
 import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
-import ConfirmationPage from '../confirmation-page/confirmation-page';
+import ConfirmationScreen from '../../components/confirmation-screen/confirmation-screen';
 
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
 
-import { IUserSignupState } from '../../services/types/user';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
 
 import { DEFAULT_PHONE_CODE } from '../../utils/constants';
 import routesUrl from '../../utils/routesData';
 import backgroundImage from '../../images/roboSuccess.png';
+import useForm from '../../services/hooks/use-form';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
@@ -30,8 +30,8 @@ const Signup: FC = (): JSX.Element => {
   };
 
   const [phoneCode, setPhoneCode] = useState<string>('');
-  // to do: перепеисать на хуке useForm
-  const [formValue, setFromValue] = useState<IUserSignupState>({
+
+  const { values, handleChange, setValues } = useForm({
     username: '',
     email: '',
     password: '',
@@ -42,7 +42,7 @@ const Signup: FC = (): JSX.Element => {
 
   const handleChangeCodePhone = (newCode: string) => {
     setPhoneCode(newCode);
-    setFromValue({ ...formValue, phone: newCode + formValue.phone });
+    setValues({ ...values, phone: newCode + values.phone });
   };
 
   useEffect(() => {
@@ -52,22 +52,22 @@ const Signup: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleSignup = useCallback(
-    (e: any) => {
+    (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       dispatch(
         signupAction({
-          username: formValue.username,
-          email: formValue.email,
-          password: formValue.password,
-          phone: formValue.phone,
+          username: values.username,
+          email: values.email,
+          password: values.password,
+          phone: values.phone,
         })
       );
     },
-    [formValue]
+    [values]
   );
 
   return userData.signupSuccess ? (
-    <ConfirmationPage
+    <ConfirmationScreen
       text="Письмо с подтверждением отправлено тебе на"
       style={titleImageStyle}
     />
@@ -124,24 +124,24 @@ const Signup: FC = (): JSX.Element => {
             <div className={stylesSignup.inputsContainer}>
               <Input
                 placeholder="Имя"
-                name="name"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, username: e.target.value })
-                }
+                name="username"
+                onChange={handleChange}
+                styled="secondary"
+                required
               />
               <Input
                 placeholder="E-mail"
                 name="email"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, email: e.target.value })
-                }
+                onChange={handleChange}
+                styled="secondary"
+                required
               />
               <Input
                 placeholder="Пароль"
                 name="password"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, password: e.target.value })
-                }
+                onChange={handleChange}
+                styled="secondary"
+                required
               />
               <div className={stylesSignup.inputsPhoneContainer}>
                 <MuiTelInput
@@ -153,9 +153,12 @@ const Signup: FC = (): JSX.Element => {
                   // добавить максимальную длину номера
                   placeholder="Телефон"
                   name="phoneNumber"
+                  maxLength={15}
+                  styled="secondary"
+                  required
                   onChange={(e) =>
-                    setFromValue({
-                      ...formValue,
+                    setValues({
+                      ...values,
                       phone: phoneCode + e.target.value,
                     })
                   }

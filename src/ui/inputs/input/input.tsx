@@ -11,7 +11,10 @@ interface IInput {
   disabled?: boolean;
   name?: string;
   minLength?: number;
+  maxLength?: number;
   type?: string;
+  required?: boolean;
+  styled?: 'main' | 'secondary';
 }
 
 const Input: FC<IInput> = ({
@@ -23,12 +26,17 @@ const Input: FC<IInput> = ({
   disabled,
   name,
   minLength = 2,
+  maxLength,
   type = 'text',
+  required,
+  styled,
 }): JSX.Element => {
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={`${stylesInput.input} ${isInvalid && stylesInput.incorrect}`}
+        className={`${stylesInput.input} ${
+          styled === 'secondary' ? stylesInput.inputSecondary : ''
+        } ${isInvalid && stylesInput.incorrect}`}
         type={type || 'text'}
         placeholder={placeholder}
         value={value}
@@ -36,10 +44,13 @@ const Input: FC<IInput> = ({
         disabled={disabled}
         name={name}
         minLength={minLength}
+        maxLength={maxLength}
+        required={required}
       />
       {isInvalid && (
         <p className={stylesInput.incorrect_text}>{errorMessage}</p>
       )}
+      {required && <span className={stylesInput.required}>*</span>}
     </div>
   );
 };
