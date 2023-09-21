@@ -5,13 +5,14 @@ import { getAccessToken } from '../auth/authService';
 import { getUserInfoSel } from '../utils/selectorData';
 import { getUserInfoAction } from '../services/actions/user/user';
 import routesUrl from '../utils/routesData';
+import { getBotsAction } from '../services/actions/bots/getBot';
 
 type TProtectedRoute = {
   children: JSX.Element;
-  auth?: boolean;
+  notAuth?: boolean;
 };
 
-const ProtectedRoute: FC<TProtectedRoute> = ({ children, auth = false }) => {
+const ProtectedRoute: FC<TProtectedRoute> = ({ children, notAuth = false }) => {
   const { user } = useAppSelector(getUserInfoSel);
   const dispatch = useAppDispatch();
 
@@ -22,16 +23,17 @@ const ProtectedRoute: FC<TProtectedRoute> = ({ children, auth = false }) => {
   useEffect(() => {
     if (token) {
       dispatch(getUserInfoAction(token));
+      dispatch(getBotsAction(token));
     }
   }, [dispatch]);
 
   const from: string = location.state?.from || routesUrl.homePage;
 
-  if (user && auth) {
+  if (user && notAuth) {
     return <Navigate to={from} />;
   }
 
-  if (!user && !auth) {
+  if (!user && !notAuth) {
     return <Navigate to={routesUrl.signup} state={{ from: location }} />;
   }
 
