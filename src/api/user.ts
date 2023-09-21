@@ -1,33 +1,18 @@
-import {
-  IUserResponse,
-  IUserSigninState,
-  IUserSignupState,
-} from '../services/types/user';
+import { IUserResponse } from '../services/types/user';
 
 import request from './api';
 
 import BASE_URL from '../utils/config';
 
-// запрос регистрации
-function signupApi(userInfo: IUserSignupState) {
-  return request<IUserResponse>(`${BASE_URL}/signup`, {
-    method: 'POST',
+// Запрос на получение данных пользователя
+function getUserInfoApi(token: string) {
+  return request<IUserResponse>(`${BASE_URL}/profiles/me`, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(userInfo),
   });
 }
 
-// запрос авторизации
-function signinApi(userInfo: IUserSigninState) {
-  return request<IUserResponse>(`${BASE_URL}/signin`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify(userInfo),
-  });
-}
-
-export { signupApi, signinApi };
+export default getUserInfoApi;

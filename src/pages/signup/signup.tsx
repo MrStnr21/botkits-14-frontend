@@ -1,38 +1,50 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
 
 import stylesSignup from './signup.module.scss';
 
+import ConfirmationScreen from '../../components/confirmation-screen/confirmation-screen';
 import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
 
-import { IUserSignupState } from '../../services/types/user';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
+import useForm from '../../services/hooks/use-form';
 
 import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+import { signupSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
 
+import backgroundImage from '../../images/roboSuccess.png';
+
 const Signup: FC = (): JSX.Element => {
+  const titleImageStyle = {
+    width: '100%',
+    maxWidth: '570px',
+    height: '100%',
+    aspectRatio: '1.06',
+    backgroundImage: `url(${backgroundImage})`,
+  };
+
   const [phoneCode, setPhoneCode] = useState<string>('');
-  // to do: перепеисать на хуке useForm
-  const [formValue, setFromValue] = useState<IUserSignupState>({
+
+  const { values, handleChange, setValues } = useForm({
     username: '',
     email: '',
     password: '',
     phone: '',
   });
 
-  const userData = useAppSelector((store) => store.signup);
+  const userData = useAppSelector(signupSel);
 
   const handleChangeCodePhone = (newCode: string) => {
     setPhoneCode(newCode);
-    setFromValue({ ...formValue, phone: newCode + formValue.phone });
+    setValues({ ...values, phone: newCode + values.phone });
   };
 
   useEffect(() => {
@@ -42,34 +54,25 @@ const Signup: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleSignup = useCallback(
-    (e: any) => {
+    (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       dispatch(
         signupAction({
-          username: formValue.username,
-          email: formValue.email,
-          password: formValue.password,
-          phone: formValue.phone,
+          username: values.username,
+          email: values.email,
+          password: values.password,
+          phone: values.phone,
         })
       );
     },
-    [formValue]
+    [values]
   );
 
   return userData.signupSuccess ? (
-    <section className={stylesSignup.successPage}>
-      <Link
-        to={{ pathname: routesUrl.signin }}
-        className={stylesSignup.successSigninLink}
-      />
-      <div className={stylesSignup.titleContainer}>
-        <h1 className={stylesSignup.title}>
-          Письмо с подтверждением отправлено тебе на{' '}
-          <span className={stylesSignup.email}>/email</span> !
-        </h1>
-        <div className={stylesSignup.titleImage} />
-      </div>
-    </section>
+    <ConfirmationScreen
+      text="Письмо с подтверждением отправлено тебе на"
+      style={titleImageStyle}
+    />
   ) : (
     <RegLogResLayout title="Регистрация">
       <div className={stylesSignup.signupFormContainer}>
@@ -123,24 +126,24 @@ const Signup: FC = (): JSX.Element => {
             <div className={stylesSignup.inputsContainer}>
               <Input
                 placeholder="Имя"
-                name="name"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, username: e.target.value })
-                }
+                name="username"
+                onChange={handleChange}
+                styled="secondary"
+                required
               />
               <Input
                 placeholder="E-mail"
                 name="email"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, email: e.target.value })
-                }
+                onChange={handleChange}
+                styled="secondary"
+                required
               />
               <Input
                 placeholder="Пароль"
                 name="password"
-                onChange={(e) =>
-                  setFromValue({ ...formValue, password: e.target.value })
-                }
+                onChange={handleChange}
+                styled="secondary"
+                required
               />
               <div className={stylesSignup.inputsPhoneContainer}>
                 <MuiTelInput
@@ -152,9 +155,12 @@ const Signup: FC = (): JSX.Element => {
                   // добавить максимальную длину номера
                   placeholder="Телефон"
                   name="phoneNumber"
+                  maxLength={15}
+                  styled="secondary"
+                  required
                   onChange={(e) =>
-                    setFromValue({
-                      ...formValue,
+                    setValues({
+                      ...values,
                       phone: phoneCode + e.target.value,
                     })
                   }

@@ -1,35 +1,35 @@
 @import '../../../components/app/vars';
 
-.download{
+.download {
   position: relative;
 }
 
-.download__input{
+.download__input {
   opacity: 0;
   position: absolute;
 }
 
-.download__label{
+.download__label {
   @extend %flex-element-center;
   height: 65px;
   width: 100%;
   border-radius: 10px;
   box-sizing: border-box;
-  border: 2px dashed  #A6B3C9;
+  border: 2px dashed #a6b3c9;
   margin-bottom: 2px;
   background-color: #fff;
   cursor: $cursor;
 }
 
-.download__icon{
+.download__icon {
   stroke: $default-dark-grey-color;
   width: 24px;
   margin-right: 12px;
 }
 
-.download__text{
+.download__text {
   color: $default-dark-grey-color;
-  font-family:  "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 150%; /* 21px */
@@ -38,12 +38,12 @@
 
 .textError {
   display: none;
-  color: #F55;
+  color: #f55;
 
   position: absolute;
   bottom: -15px;
 
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 10px;
   font-weight: 400;
   line-height: 150%;
@@ -51,23 +51,20 @@
 }
 
 .download_error {
-
-  .download__label{
+  .download__label {
     border-radius: 10px;
-    border: 1px solid #FF5656;
-   }
+    border: 1px solid #ff5656;
+  }
 
-   .textError {
+  .textError {
     display: block;
   }
 
-  .download__icon{
+  .download__icon {
     stroke: $disabled-grey-color;
   }
 
-  .download__text{
+  .download__text {
     color: $disabled-grey-color;
   }
 }
-
-

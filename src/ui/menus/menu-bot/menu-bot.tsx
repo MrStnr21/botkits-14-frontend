@@ -1,9 +1,8 @@
-// to do: Menu
-// https://trello.com/c/n9wbVo8O/12-%D0%B2%D1%81%D0%BF%D0%BB%D1%8B%D0%B2%D0%B0%D1%8E%D1%89%D0%B5%D0%B5-%D0%BC%D0%B5%D0%BD%D1%8E
-// https://trello.com/c/gUWxjeoo/17-%D0%BC%D0%B5%D0%BD%D1%8E-%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D0%B9
+import { FC, useState } from 'react';
 
-import { FC } from 'react';
 import stylesMenuBot from './menu-bot.module.scss';
+
+import BotMenuPopup from '../../../components/popups/bot-menu-popup/bot-menu-popup';
 import copyIcon from '../../../images/icon/24x24/drop down/copy bot.svg';
 import trashIcon from '../../../images/icon/24x24/drop down/trash.svg';
 import shareIcon from '../../../images/icon/24x24/drop down/share.svg';
@@ -23,21 +22,49 @@ const MenuBot: FC<IMenuBot> = ({
   editFunction,
   top = 0,
   left = 0,
-}) => {
+}): JSX.Element => {
+  const [open, setOpen] = useState(false);
+  const [settings, setSettings] = useState({
+    title: '',
+    buttonText: '',
+    placeholder: '',
+    value: '',
+  });
+
   const copyHandler = () => {
+    // eslint-disable-next-line no-console
     console.log('Копия');
   };
 
   const shareHandler = () => {
+    setOpen(true);
+    // Пример использования
+    setSettings({
+      ...settings,
+      title: 'Поделитесь доступом к боту',
+      placeholder: 'Добавьте e-mail пользователя',
+      buttonText: 'поделиться',
+    });
+    // eslint-disable-next-line no-console
     console.log('Доступ');
   };
 
   const editHandler = () => {
+    // eslint-disable-next-line no-console
     console.log('Редактирование');
+    setOpen(true);
+    // Пример использования
+    setSettings({
+      ...settings,
+      title: 'Переименуйте файл',
+      placeholder: 'Переименуйте файл',
+      buttonText: 'Переименовать',
+    });
     editFunction(true);
   };
 
   const deleteHandler = () => {
+    // eslint-disable-next-line no-console
     console.log('Удалить');
   };
 
@@ -138,6 +165,15 @@ const MenuBot: FC<IMenuBot> = ({
           />
           <p className={stylesMenuBot.text}>Удалить</p>
         </button>
+        {open && (
+          <BotMenuPopup
+            buttonText={settings.buttonText}
+            title={settings.title}
+            onClose={() => setOpen(false)}
+            placeholder={settings.placeholder}
+            value={settings.value}
+          />
+        )}
       </div>
     );
   }

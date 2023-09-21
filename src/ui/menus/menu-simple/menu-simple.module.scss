@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 4px;
   width: 264px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
   border-radius: $border-radius-10;
   position: absolute;
@@ -47,7 +47,6 @@
   margin: 0;
   list-style: none;
   display: flex;
-
 }
 
 .ul {
@@ -76,7 +75,6 @@
 .button:last-of-type {
   margin-bottom: 8px;
 }
-
 
 .button:hover {
   background-color: $default-grey-color;

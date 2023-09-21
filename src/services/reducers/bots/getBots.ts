@@ -9,7 +9,7 @@ import {
 import { TBot } from '../../types/bot';
 
 export type TGetBotsState = {
-  bot: TBot | null;
+  bots: TBot[] | [];
   isLoading: boolean;
   hasError: boolean;
 
@@ -19,7 +19,7 @@ export type TGetBotsState = {
 };
 
 const getBotsInitialState: TGetBotsState = {
-  bot: null,
+  bots: [],
   isLoading: false,
   hasError: false,
 
@@ -45,7 +45,7 @@ function getBotsReducer(
     case GETBOTS_SUCCESS: {
       return {
         ...state,
-        bot: action.bot,
+        bots: action.bot,
         getBotsSuccess: true,
         getBotsRequest: false,
       };

@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
+
 import cn from 'classnames/bind';
+
 import styles from './result-add-file.module.scss';
-import { ReactComponent as doc } from '../../../../images/icon/add content/doc-circle.svg';
+
 import { ReactComponent as docError } from '../../../../images/icon/add content/doc-error.svg'; // нет иконок с другими error, так что один вид у иконки-ошибки
+import { ReactComponent as doc } from '../../../../images/icon/add content/doc-circle.svg';
 import { ReactComponent as audio } from '../../../../images/icon/add content/play-blue.svg';
 import { ReactComponent as image } from '../../../../images/icon/add content/image-blue.svg';
+
 import { sizeFormated } from '../../../../utils/utils';
 
 export interface IResultProps {

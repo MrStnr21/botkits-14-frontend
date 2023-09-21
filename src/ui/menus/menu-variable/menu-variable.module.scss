@@ -16,7 +16,7 @@
   flex-direction: column;
   gap: 4px;
   width: 240px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
   border-radius: $border-radius-10;
   position: absolute;
@@ -33,7 +33,7 @@
   font-family: 'Open Sans';
   letter-spacing: $m-letter-space;
   color: black;
-  transition: color .3s linear;
+  transition: color 0.3s linear;
 }
 
 .open_button .text {
@@ -41,7 +41,7 @@
 }
 
 .grey {
-  color: $placeholder-grey-color
+  color: $placeholder-grey-color;
 }
 
 .li {

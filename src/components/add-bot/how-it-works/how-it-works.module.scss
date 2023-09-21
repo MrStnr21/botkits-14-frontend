@@ -52,7 +52,9 @@
   gap: 29px;
   transform: scaleY(0);
   transform-origin: top;
-  transition: transform 0.2s linear, height 0.2s linear;
+  transition:
+    transform 0.2s linear,
+    height 0.2s linear;
   height: 0;
 }
 

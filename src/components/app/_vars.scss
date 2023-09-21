@@ -1,7 +1,7 @@
 /* Переменные ограничивают ширину контента */
 $max-content-width: 1440px;
 $min-content-width: 320px;
-
+$switching-width: ($min-content-width + 300px);
 /* Переменные основных цветов в приложении*/
 $default-grey-color: #f8f9fb;
 $hover-grey-color: #f2f4f8;
@@ -15,7 +15,7 @@ $default-blue-color: #243cbb;
 $hover-blue-color: #435cdb;
 $active-blue-color: #2743ce;
 $disabled-blue-color: #ecefff;
-$persian-blue-focus: #314DD8;
+$persian-blue-focus: #314dd8;
 
 $primary-text-color: #060c23;
 $default-green-color: #22ffaa;
@@ -56,6 +56,7 @@ $normal: 400;
 /* Переменные расстояния между буквами */
 $h2-letter-space: -0.2px;
 $h5-letter-space: 0.5px;
+$lx-letter-space: 0.75px;
 $l-letter-space: 0.3px; // ??
 $m-letter-space: 0.3px;
 $s-letter-space: 0.2px;

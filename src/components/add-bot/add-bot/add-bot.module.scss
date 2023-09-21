@@ -10,7 +10,7 @@
   padding: 0;
   text-align: left;
 
-  @media screen and (max-width:520px){
+  @media screen and (max-width: 520px) {
     margin-left: 20px;
   }
 }
@@ -28,7 +28,7 @@
     height: 0px;
   }
 
-  @media screen and (max-width:520px){
+  @media screen and (max-width: 520px) {
     li:first-child {
       margin-left: 20px;
     }
@@ -38,4 +38,3 @@
     }
   }
 }
-

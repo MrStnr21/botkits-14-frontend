@@ -1,10 +1,12 @@
 import { FC, useState, useEffect } from 'react';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material';
-import './input-select.module.scss';
+import FormControl from '@mui/material/FormControl';
 import { ArrowLeftIcon } from '@mui/x-date-pickers';
+import MenuItem from '@mui/material/MenuItem';
+
+import './input-select.module.scss';
 
 interface IInputSelect {
   defaultValue: string[];
@@ -22,7 +24,7 @@ const InputSelect: FC<IInputSelect> = ({
   multiple = false,
   resetSelect = false,
   maxWidth,
-}) => {
+}): JSX.Element => {
   const [inputValues, setInputValues] = useState<string[]>([]);
 
   useEffect(() => {

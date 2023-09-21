@@ -1,6 +1,6 @@
 @import '../../components/app/vars';
 
-.dashboard{
+.dashboard {
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -10,7 +10,8 @@
   justify-content: space-between;
   margin-right: 40px;
 
-  @media (max-width:( $min-content-width + 200px)) {
-    margin-left: 20px;
+  @media (max-width: $switching-width) {
+    padding-left: 20px;
+    margin-right: 0;
   }
 }

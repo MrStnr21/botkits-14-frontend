@@ -1,24 +1,24 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 
-import stylesBotTemplate from './bot-template.module.scss';
+import stylesBotTemplate from './bot-template-popup.module.scss';
 
-import { ReactComponent as ImageAnswer } from '../../images/icon/template/answering machine.svg';
-import { ReactComponent as ImageEntertain } from '../../images/icon/template/entertainment.svg';
-import { ReactComponent as ImageLead } from '../../images/icon/template/lead generation.svg';
-import { ReactComponent as ImagePrivate } from '../../images/icon/template/private club.svg';
-import { ReactComponent as ImageFood } from '../../images/icon/template/food delivery.svg';
-import { ReactComponent as ImageLearn } from '../../images/icon/template/e-learning.svg';
-import { ReactComponent as ImageReal } from '../../images/icon/template/real estate.svg';
-import { ReactComponent as ImageCom } from '../../images/icon/template/e-commerce.svg';
-import { ReactComponent as ImageQuest } from '../../images/icon/template/question.svg';
-import { ReactComponent as ImageDemo } from '../../images/icon/template/demo bot.svg';
-import { ReactComponent as ImageBeauty } from '../../images/icon/template/beauty.svg';
-import { ReactComponent as Close } from '../../images/icon/24x24/common/close.svg';
-import { ReactComponent as ImagePoll } from '../../images/icon/template/poll.svg';
+import { ReactComponent as ImageAnswer } from '../../../images/icon/template/answering machine.svg';
+import { ReactComponent as ImageEntertain } from '../../../images/icon/template/entertainment.svg';
+import { ReactComponent as ImageLead } from '../../../images/icon/template/lead generation.svg';
+import { ReactComponent as ImagePrivate } from '../../../images/icon/template/private club.svg';
+import { ReactComponent as ImageFood } from '../../../images/icon/template/food delivery.svg';
+import { ReactComponent as ImageLearn } from '../../../images/icon/template/e-learning.svg';
+import { ReactComponent as ImageReal } from '../../../images/icon/template/real estate.svg';
+import { ReactComponent as ImageCom } from '../../../images/icon/template/e-commerce.svg';
+import { ReactComponent as ImageQuest } from '../../../images/icon/template/question.svg';
+import { ReactComponent as ImageDemo } from '../../../images/icon/template/demo bot.svg';
+import { ReactComponent as ImageBeauty } from '../../../images/icon/template/beauty.svg';
+import { ReactComponent as Close } from '../../../images/icon/24x24/common/close.svg';
+import { ReactComponent as ImagePoll } from '../../../images/icon/template/poll.svg';
 
-import Button from '../buttons/button/button';
-import routesUrl from '../../utils/routesData';
+import Button from '../../../ui/buttons/button/button';
+import routesUrl from '../../../utils/routesData';
 
 interface IBotTemplate {
   title: string;
@@ -60,8 +60,9 @@ const image: any = {
   ),
 };
 
-const BotTemplate: FC<IBotTemplate> = ({
+const BotTemplatePopup: FC<IBotTemplate> = ({
   title,
+  // eslint-disable-next-line no-console
   onClick = () => console.log(1),
 }): JSX.Element | null => {
   const data = [
@@ -138,4 +139,4 @@ const BotTemplate: FC<IBotTemplate> = ({
   );
 };
 
-export default BotTemplate;
+export default BotTemplatePopup;

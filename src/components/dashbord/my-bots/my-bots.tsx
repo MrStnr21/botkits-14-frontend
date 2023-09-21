@@ -1,17 +1,22 @@
-// to do: MyBots
-// https://trello.com/c/6gxmCXj9/23-%D0%BC%D0%BE%D0%B8-%D0%B1%D0%BE%D1%82%D1%8B
-
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+
+import { useMediaQuery } from '@mui/material';
+
 import { v4 as uuidv4 } from 'uuid';
-// import { useAppSelector } from '../../../services/hooks/hooks';
+
 import styles from './my-bots.module.scss';
-// import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
+
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
+
 import BotCard from '../../bot-card/bot-card';
-import useMediaQuery from '../../../services/hooks/use-media-query';
+
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
+import { getBotsAction } from '../../../services/actions/bots/getBot';
+
+import { getAccessToken } from '../../../auth/authService';
+
 import routesUrl from '../../../utils/routesData';
-import { useAppSelector } from '../../../services/hooks/hooks';
 
 import Odnoklassniki from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import Telegram from '../../../images/icon/40x40/telegram/hover.svg';
@@ -22,6 +27,8 @@ import Viber from '../../../images/icon/40x40/viber/hover.svg';
 import WebSite from '../../../images/icon/40x40/web/hover.svg';
 import Alisa from '../../../images/icon/40x40/alisa/hover.svg';
 import VK from '../../../images/icon/40x40/vk/hover.svg';
+import { TBot } from '../../../services/types/bot';
+import { getBotsSel } from '../../../utils/selectorData';
 
 const img: any = {
   Facebook,
@@ -35,14 +42,26 @@ const img: any = {
   'Веб-сайт': WebSite,
 };
 
-const MyBots: FC = () => {
+const MyBots: FC = (): JSX.Element => {
   const [isHidden, SetIsHidden] = useState(false);
-  const matches = useMediaQuery('(max-width: 1410px)');
-  const bots: any = useAppSelector((store) => store.getBot.bot) || [];
+
+  const { bots } = useAppSelector(getBotsSel);
+
+  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
+
+  const token = getAccessToken();
+
+  const matches = useMediaQuery('(max-width: 1410px)');
+
   const addBot = () => {
     navigate(routesUrl.addBot);
   };
+
+  useEffect(() => {
+    dispatch(getBotsAction(token));
+  }, [dispatch]);
 
   return (
     <div className={styles.wrapper}>
@@ -58,22 +77,14 @@ const MyBots: FC = () => {
           </button>
         )}
       </div>
-      <ul
-        className={styles.list}
-        style={
-          isHidden
-            ? {
-                overflow: 'hidden',
-                height: '200px',
-              }
-            : {}
-        }
-      >
-        {bots.map((bot: any) => (
+      <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
+        {bots.map((bot: TBot) => (
           <li key={uuidv4()} className={styles.item}>
             <BotCard
               platform_icon={img[bot.messenger.name]}
               bot_name={bot.botName}
+              // eslint-disable-next-line no-underscore-dangle
+              bot_id={bot._id}
             />
           </li>
         ))}

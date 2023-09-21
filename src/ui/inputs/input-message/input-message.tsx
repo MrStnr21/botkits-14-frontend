@@ -2,11 +2,11 @@ import { FC, ChangeEvent, useState } from 'react';
 
 import stylesInput from './input-message.module.scss';
 
-import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
 import { ReactComponent as Emoji } from '../../../images/icon/24x24/constructor/emoji.svg';
 import { ReactComponent as File } from '../../../images/icon/24x24/add content/file.svg';
 import { ReactComponent as Slash } from '../../../images/icon/24x24/common/slash.svg';
 import { ReactComponent as Zap } from '../../../images/icon/24x24/common/zap.svg';
+import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
 
 interface IInputMessage {
   placeholder?: string;

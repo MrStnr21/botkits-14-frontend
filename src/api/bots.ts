@@ -2,28 +2,26 @@ import request from './api';
 
 import BASE_URL from '../utils/config';
 
-import { IBotResponse, TBot } from '../services/types/bot';
+import { IAddBotResponse, IGetBotsResponse, TBot } from '../services/types/bot';
 
 // запрос получения ботов
 function getBotsApi(token: string) {
-  return request<IBotResponse>(`${BASE_URL}/bots`, {
+  return request<IGetBotsResponse>(`${BASE_URL}/bots`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
-      // eslint-disable-next-line prefer-template
-      authorization: 'Bearer ' + token,
+      authorization: `Bearer ${token}`,
     },
   });
 }
 
 // запрос добавления бота
 function addBotApi(bot: TBot, token: string) {
-  return request<IBotResponse>(`${BASE_URL}/bots`, {
+  return request<IAddBotResponse>(`${BASE_URL}/bots`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
-      // eslint-disable-next-line prefer-template
-      authorization: 'Bearer ' + token,
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(bot),
   });

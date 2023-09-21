@@ -25,6 +25,7 @@ import Input from '../../../ui/inputs/input/input';
 
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
+import { signinSel, signupSel } from '../../../utils/selectorData';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -57,9 +58,7 @@ const CreateBot: FC<ICreateBot> = ({
 }): JSX.Element => {
   const [arrPages, setArrPages] = useState<any>([]); // временный тип any
 
-  const profile = useAppSelector(
-    (store) => store.signup.user?.accounts[0] || store.signin.user?.accounts[0]
-  );
+  const profile = useAppSelector(signupSel || signinSel);
 
   const { values, handleChange, setValues } = useForm({
     botName: '',

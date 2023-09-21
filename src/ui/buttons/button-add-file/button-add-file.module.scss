@@ -1,18 +1,17 @@
 @import '../../../components/app/vars';
 
-
-.wrapper{
+.wrapper {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   padding: 12px;
-  background-color: #F8F9FB;
+  background-color: #f8f9fb;
   width: fit-content;
   border-radius: 10px;
 }
 
-.header{
-  color:  #060C23;
+.header {
+  color: #060c23;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -23,13 +22,13 @@
   margin-bottom: 12px;
 }
 
-.inputsBox{
+.inputsBox {
   flex-shrink: 0;
   @extend %flex-element-center;
   gap: 6px;
 }
 
-.output{
+.output {
   background-color: inherit;
   padding: 8px;
   list-style: none;
@@ -38,4 +37,3 @@
   flex-direction: column;
   gap: 8px;
 }
-

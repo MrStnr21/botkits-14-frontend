@@ -2,9 +2,9 @@ import { useState, FC } from 'react';
 
 import stylesAddBotPage from './add-bot-page.module.scss';
 
-import AddBot from '../../components/add-bot/add-bot/add-bot';
-import CreateBot from '../../components/add-bot/create-bot/create-bot';
 import HowItWorks from '../../components/add-bot/how-it-works/how-it-works';
+import CreateBot from '../../components/add-bot/create-bot/create-bot';
+import AddBot from '../../components/add-bot/add-bot/add-bot';
 
 const AddBotPage: FC = (): JSX.Element => {
   const [bot, setBot] = useState<any>();

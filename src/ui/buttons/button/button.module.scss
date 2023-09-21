@@ -123,17 +123,16 @@
   box-shadow: none;
 }
 
-
 /* Стиль для UI "Добавить кнопку" */
-.light-grey{
+.light-grey {
   background-color: $constructor-icon-button-default-background-color;
-  color: #A6B3C9;
+  color: #a6b3c9;
   &:hover {
     color: $constructor-icon-button-hover-color;
   }
 }
 
-.button_active{
+.button_active {
   color: $constructor-icon-button-hover-color;
   background-color: $constructor-icon-button-pressed-background-color;
 }

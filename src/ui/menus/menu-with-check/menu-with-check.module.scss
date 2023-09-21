@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 4px;
   width: 264px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
   border-radius: $border-radius-10;
   position: absolute;
@@ -41,5 +41,6 @@
   top: 9px;
   right: 16px;
   position: absolute;
-  filter: invert(21%) sepia(67%) saturate(5310%) hue-rotate(232deg) brightness(75%) contrast(93%);
+  filter: invert(21%) sepia(67%) saturate(5310%) hue-rotate(232deg)
+    brightness(75%) contrast(93%);
 }
