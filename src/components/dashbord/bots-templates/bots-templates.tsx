@@ -3,7 +3,8 @@ import { useDraggable } from 'react-use-draggable-scroll';
 import stylesTemplates from './bots-templates.module.scss';
 
 import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
-import BotTemplate from '../../../ui/bot-template/bot-template';
+import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
+import ModalOverlayPopup from '../../popups/modal-overlay-popup/modal-overlay-popup';
 
 const Template: FC<{ name: string; fileName: string }> = ({
   name,
@@ -36,10 +37,7 @@ const Template: FC<{ name: string; fileName: string }> = ({
       </ButtonAddSampleBot>
       {open && (
         <div className={stylesTemplates.modal}>
-          <div
-            className={stylesTemplates.modal_overlay}
-            onClick={() => setOpen(false)}
-          />
+          <ModalOverlayPopup onClick={() => setOpen(false)} />
           <div className={stylesTemplates.content}>
             <BotTemplate title={name} onClick={() => setOpen(false)} />
           </div>
