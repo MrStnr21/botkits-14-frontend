@@ -1,7 +1,8 @@
 import { FC } from 'react';
+
 import stylesBotBuilder from './bot-builder.module.scss';
 
-const BotBuilder: FC = () => {
+const BotBuilder: FC = (): JSX.Element => {
   return <div className={stylesBotBuilder.title}>BotBuilder</div>;
 };
 

@@ -1,14 +1,22 @@
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+
 import { useMediaQuery } from '@mui/material';
+
 import { v4 as uuidv4 } from 'uuid';
-// import { useAppSelector } from '../../../services/hooks/hooks';
+
 import styles from './my-bots.module.scss';
-// import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
+
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
+
 import BotCard from '../../bot-card/bot-card';
-import routesUrl from '../../../utils/routesData';
+
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
+import { getBotsAction } from '../../../services/actions/bots/getBot';
+
+import { getAccessToken } from '../../../auth/authService';
+
+import routesUrl from '../../../utils/routesData';
 
 import Odnoklassniki from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import Telegram from '../../../images/icon/40x40/telegram/hover.svg';
@@ -19,8 +27,6 @@ import Viber from '../../../images/icon/40x40/viber/hover.svg';
 import WebSite from '../../../images/icon/40x40/web/hover.svg';
 import Alisa from '../../../images/icon/40x40/alisa/hover.svg';
 import VK from '../../../images/icon/40x40/vk/hover.svg';
-import { getBotsAction } from '../../../services/actions/bots/getBot';
-import { getAccessToken } from '../../../auth/authService';
 
 const img: any = {
   Facebook,
@@ -34,16 +40,20 @@ const img: any = {
   'Веб-сайт': WebSite,
 };
 
-const MyBots: FC = () => {
+const MyBots: FC = (): JSX.Element => {
   const [isHidden, SetIsHidden] = useState(false);
-  const matches = useMediaQuery('(max-width: 1410px)');
+
   const bots: any = useAppSelector((store) => store.getBots.bot) || [];
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const token = getAccessToken();
+
+  const matches = useMediaQuery('(max-width: 1410px)');
+
   const addBot = () => {
     navigate(routesUrl.addBot);
   };
-  const dispatch = useAppDispatch();
-  const token = getAccessToken();
 
   useEffect(() => {
     dispatch(getBotsAction(token));

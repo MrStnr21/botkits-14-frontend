@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 4px;
   width: 200px;
-  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, .08);
+  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
   border-radius: $border-radius-10;
   position: absolute;
@@ -36,15 +36,15 @@
   font-family: 'IBM Plex Sans', sans-serif;
   margin: 0;
   margin-left: 16px;
-  color: #2E293D;
+  color: #2e293d;
 
-  &hover{
-    color: #060C23;
+  &hover {
+    color: #060c23;
   }
 
   @media (max-width: ($switching-width)) {
     font-family: 'Open Sans', sans-serif;
-    color: #060C23;
+    color: #060c23;
   }
 }
 
@@ -71,20 +71,22 @@
   }
 }
 
-.button:nth-child(3) { // подписки и платежи
+.button:nth-child(3) {
+  // подписки и платежи
   margin-bottom: 11px;
   @media (max-width: ($switching-width)) {
     margin-bottom: 0;
   }
 }
 
-.button:nth-child(4) { // выйти
+.button:nth-child(4) {
+  // выйти
   border-top: 1px solid $icon-grey-color;
   padding-top: 18px;
   padding-bottom: 6px;
 
   @media (max-width: ($switching-width)) {
-    border-top:  none;
+    border-top: none;
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -92,53 +94,54 @@
 
 /* Стили для доп.блоков в моб.версии  */
 
-.userInfo, .addition {
-   display: none;
+.userInfo,
+.addition {
+  display: none;
   @media (max-width: ($switching-width)) {
     display: block;
   }
 }
 
-.userInfo{
+.userInfo {
   margin-bottom: 20px;
 }
 
-.userInfo__name{
+.userInfo__name {
   margin: 0;
-  color: #060C23;
+  color: #060c23;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 130%;
 }
 
-.tariff_container{
+.tariff_container {
   display: flex;
   gap: 5px;
   margin-top: 4px;
 
-  color: #8392AB;
+  color: #8392ab;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   line-height: 150%;
   letter-spacing: 0.3px;
-  }
+}
 
-.tariff{
+.tariff {
   margin: 0;
   font-weight: 400;
 }
 
-.tariff_name{
+.tariff_name {
   margin: 0;
   font-weight: 600;
 }
 
-.addition{
+.addition {
   border-top: 1px solid $icon-grey-color;
   padding-top: 20px;
 
-  .button:first-child{
+  .button:first-child {
     margin-bottom: 20px;
   }
 }

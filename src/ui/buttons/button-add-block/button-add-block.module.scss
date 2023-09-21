@@ -6,7 +6,7 @@
   height: 64px;
   display: flex;
   background-color: white;
-  transition: background-color .1s linear;
+  transition: background-color 0.1s linear;
   border-radius: $border-radius-10;
   align-items: center;
 }
@@ -25,18 +25,19 @@
 
 .icon {
   margin: 0 16px 0;
-  opacity: .3;
+  opacity: 0.3;
   filter: none;
-  transition: opacity .1s linear;
+  transition: opacity 0.1s linear;
 }
 
 .button:hover .icon {
   opacity: 1;
-  filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg) brightness(77%) contrast(87%)
+  filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg)
+    brightness(77%) contrast(87%);
 }
 
 .button:disabled .icon {
-  opacity: .3;
+  opacity: 0.3;
   filter: none;
 }
 

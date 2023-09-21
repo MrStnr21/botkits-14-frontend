@@ -62,6 +62,7 @@ const image: any = {
 
 const BotTemplatePopup: FC<IBotTemplate> = ({
   title,
+  // eslint-disable-next-line no-console
   onClick = () => console.log(1),
 }): JSX.Element | null => {
   const data = [

@@ -5,7 +5,7 @@
   flex-direction: row;
   width: 192px;
   height: 40px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, .08);
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
   border-radius: $border-radius-5;
   position: absolute;
@@ -36,5 +36,6 @@
 }
 
 .icon__grey {
-  filter: invert(77%) sepia(17%) saturate(297%) hue-rotate(179deg) brightness(89%) contrast(93%);
+  filter: invert(77%) sepia(17%) saturate(297%) hue-rotate(179deg)
+    brightness(89%) contrast(93%);
 }

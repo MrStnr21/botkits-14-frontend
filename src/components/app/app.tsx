@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import stylesApp from './app.module.scss'; // возможно не понадобится
 
 import ResetPassword from '../../pages/reset-password/reset-password';
 import Subscription from '../../pages/subscription/subscription';

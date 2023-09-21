@@ -15,6 +15,7 @@ export const StepperFillBotWithLoadPages: Story = {
   args: {
     step: '1 Шаг',
     text: 'Загрузить страницу',
+    // eslint-disable-next-line no-console
     children: <LoadPages arr={[]} onClick={() => console.log(1)} />,
   },
 };

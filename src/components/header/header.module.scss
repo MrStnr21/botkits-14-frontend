@@ -1,12 +1,12 @@
-@import "../app/_vars";
+@import '../app/_vars';
 
 .header {
-	// max-width: 1268px;
-	height: 72px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-end;
+  // max-width: 1268px;
+  height: 72px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 
   border-bottom: 1px solid #d7deea;
   margin-right: 40px;
@@ -15,25 +15,25 @@
   grid-row: 1;
   // END GRID LAYOUT
 
-	@media (max-width: $switching-width) {
+  @media (max-width: $switching-width) {
     border-bottom: none;
     margin-right: 20px;
-	}
+  }
 }
 
 .wrapper {
   display: flex;
   align-items: center;
-  color: #060C23;
+  color: #060c23;
   position: relative; //цепляем абсол.позиц.account setting
 }
 
 .container {
-	/* Временный костыль, надо разобраться с кнопкой. */
-	display: none;
-	flex-direction: row;
-	align-items: center;
-	gap: 15px;
+  /* Временный костыль, надо разобраться с кнопкой. */
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
 }
 
 .text {
@@ -42,7 +42,7 @@
   line-height: 24px;
   font-weight: 400;
 
-  & + .text{
+  & + .text {
     font-weight: 500;
     padding-left: 7px;
     padding-right: 15px;
@@ -56,9 +56,9 @@
 
 .logo {
   display: none;
-	@media (max-width: $switching-width) {
-	  display: block;
-	}
+  @media (max-width: $switching-width) {
+    display: block;
+  }
 }
 
 .icons {
@@ -68,19 +68,19 @@
   gap: 37px;
   margin-left: 15px;
 
-	@media (max-width: $switching-width) {
-	  display: none;
-	}
+  @media (max-width: $switching-width) {
+    display: none;
+  }
 }
 
-.userInfo{
+.userInfo {
   display: flex;
   align-items: center;
   // position: relative; //цепляем абсол.позиц.account setting
   cursor: $cursor;
 
-  &>.text{
-      // многоточие, имя пользователя
+  & > .text {
+    // многоточие, имя пользователя
     max-width: 20vw;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -97,9 +97,9 @@
   overflow: hidden;
   flex-shrink: 0;
 
-	@media (max-width: $switching-width) {
-	  margin-right: 0;
-	}
+  @media (max-width: $switching-width) {
+    margin-right: 0;
+  }
 }
 
 .userInfo__image {
@@ -118,10 +118,10 @@
 }
 
 .botton_default {
-rotate: 0;
+  rotate: 0;
 }
 
 .button_active {
-rotate: 180deg;
-transition: all 0.5s linear;
+  rotate: 180deg;
+  transition: all 0.5s linear;
 }

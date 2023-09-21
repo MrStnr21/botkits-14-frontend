@@ -1,15 +1,21 @@
 import { FC } from 'react';
+
 import stylesMenuUser from './menu-user.module.scss';
+
 import settingsIcon from '../../../images/icon/24x24/drop down/settings.svg';
 import paymentsIcon from '../../../images/icon/24x24/drop down/payment.svg';
 import exitIcon from '../../../images/icon/24x24/drop down/log out.svg';
+
 import Notifications from '../../../components/icons/Notifications/Notifications';
 import Help from '../../../components/icons/Help/Help';
+
+import { logoutAction } from '../../../services/actions/logout/logout';
+import { useAppDispatch } from '../../../services/hooks/hooks';
+
 import BASE_URL from '../../../utils/config';
 import routesUrl from '../../../utils/routesData';
-import { logoutAction } from '../../../services/actions/logout/logout';
+
 import { getAccessToken } from '../../../auth/authService';
-import { useAppDispatch } from '../../../services/hooks/hooks';
 
 export interface IMenuUser {
   isActive?: boolean;
@@ -25,7 +31,7 @@ const MenuUser: FC<IMenuUser> = ({
   left = 0,
   right,
   onClick,
-}) => {
+}): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const token = getAccessToken();

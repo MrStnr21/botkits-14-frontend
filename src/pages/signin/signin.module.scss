@@ -1,5 +1,4 @@
-@import "../../components/app/vars";
-
+@import '../../components/app/vars';
 
 .signinFormContainer {
   width: 100%;
@@ -11,7 +10,7 @@
   flex-direction: column;
 }
 
-.signinSocialContainer{
+.signinSocialContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -42,7 +41,6 @@
   line-height: $button-line-height-150;
 }
 
-
 .socialMain {
   display: flex;
   gap: 40px;
@@ -68,7 +66,6 @@
   background-color: $default-blue-color;
 }
 
-
 .inputsForm {
   margin-bottom: 55px;
   display: flex;
@@ -88,7 +85,6 @@
   margin-bottom: 25px;
 }
 
-
 .formsButton {
   width: 100%;
   max-width: 260px;
@@ -104,7 +100,9 @@
   font-weight: $bold;
   line-height: $button-line-height-150;
   letter-spacing: $l-letter-space;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
   font-style: normal;
   margin-bottom: 50px;
 }
@@ -115,7 +113,7 @@
   transition: opacity 0.4s ease-in-out;
 }
 
-.signinLink:hover{
+.signinLink:hover {
   opacity: 0.8;
 }
 

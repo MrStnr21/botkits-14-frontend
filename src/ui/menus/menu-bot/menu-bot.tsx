@@ -1,14 +1,12 @@
-// to do: Menu
-// https://trello.com/c/n9wbVo8O/12-%D0%B2%D1%81%D0%BF%D0%BB%D1%8B%D0%B2%D0%B0%D1%8E%D1%89%D0%B5%D0%B5-%D0%BC%D0%B5%D0%BD%D1%8E
-// https://trello.com/c/gUWxjeoo/17-%D0%BC%D0%B5%D0%BD%D1%8E-%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D0%B9
-
 import { FC, useState } from 'react';
+
 import stylesMenuBot from './menu-bot.module.scss';
+
+import BotMenuPopup from '../../../components/popups/bot-menu-popup/bot-menu-popup';
 import copyIcon from '../../../images/icon/24x24/drop down/copy bot.svg';
 import trashIcon from '../../../images/icon/24x24/drop down/trash.svg';
 import shareIcon from '../../../images/icon/24x24/drop down/share.svg';
 import editIcon from '../../../images/icon/24x24/drop down/edit.svg';
-import BotMenuPopup from '../../../components/popups/bot-menu-popup/bot-menu-popup';
 
 export interface IMenuBot {
   size?: 'medium' | 'large';
@@ -24,7 +22,7 @@ const MenuBot: FC<IMenuBot> = ({
   editFunction,
   top = 0,
   left = 0,
-}) => {
+}): JSX.Element => {
   const [open, setOpen] = useState(false);
   const [settings, setSettings] = useState({
     title: '',
@@ -34,6 +32,7 @@ const MenuBot: FC<IMenuBot> = ({
   });
 
   const copyHandler = () => {
+    // eslint-disable-next-line no-console
     console.log('Копия');
   };
 
@@ -46,10 +45,12 @@ const MenuBot: FC<IMenuBot> = ({
       placeholder: 'Добавьте e-mail пользователя',
       buttonText: 'поделиться',
     });
+    // eslint-disable-next-line no-console
     console.log('Доступ');
   };
 
   const editHandler = () => {
+    // eslint-disable-next-line no-console
     console.log('Редактирование');
     setOpen(true);
     // Пример использования
@@ -63,6 +64,7 @@ const MenuBot: FC<IMenuBot> = ({
   };
 
   const deleteHandler = () => {
+    // eslint-disable-next-line no-console
     console.log('Удалить');
   };
 

@@ -31,7 +31,7 @@ $switching-width-menu: ($min-content-width + 100px);
   align-items: center;
   gap: 15px;
   cursor: $cursor;
-  color: #2E293D;
+  color: #2e293d;
   position: relative;
   box-sizing: border-box;
   padding: 0 16px;
@@ -39,7 +39,7 @@ $switching-width-menu: ($min-content-width + 100px);
 
   &:hover {
     background-color: #f2f4f8;
-    color: #060C23;
+    color: #060c23;
   }
 }
 
@@ -51,30 +51,29 @@ $switching-width-menu: ($min-content-width + 100px);
   margin: 0;
 }
 
-
 .item:nth-child(1) {
   // height: 43px;
   padding-bottom: 6px;
-  border-bottom: 1px solid #D7DEEA;
+  border-bottom: 1px solid #d7deea;
 }
 
 .item:nth-child(7) {
   // height: 43px;
   padding-top: 6px;
-  border-top: 1px solid #D7DEEA;
+  border-top: 1px solid #d7deea;
 }
 
-.item:nth-child(8) { // "Отмена"
+.item:nth-child(8) {
+  // "Отмена"
   display: none;
   height: 43px;
   padding-top: 6px;
-  border-top: 1px solid #D7DEEA;
+  border-top: 1px solid #d7deea;
 
   @media (max-width: $switching-width-menu) {
     display: flex;
-    }
+  }
 }
-
 
 @media (max-width: $switching-width-menu) {
   .container {
@@ -97,7 +96,8 @@ $switching-width-menu: ($min-content-width + 100px);
     height: 44px;
   }
 
-  .flexItem { // "Получить ссылку"
+  .flexItem {
+    // "Получить ссылку"
     grid-row: 6 / 7;
   }
 }

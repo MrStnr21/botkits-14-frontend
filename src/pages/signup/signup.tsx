@@ -5,8 +5,8 @@ import { MuiTelInput } from 'mui-tel-input';
 
 import stylesSignup from './signup.module.scss';
 
-import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 import ConfirmationScreen from '../../components/confirmation-screen/confirmation-screen';
+import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
 import ButtonAddSocial from '../../ui/buttons/button-add-social/button-add-social';
 import Button from '../../ui/buttons/button/button';
@@ -14,11 +14,13 @@ import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
+import useForm from '../../services/hooks/use-form';
 
 import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+import { signupSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
+
 import backgroundImage from '../../images/roboSuccess.png';
-import useForm from '../../services/hooks/use-form';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
@@ -38,7 +40,7 @@ const Signup: FC = (): JSX.Element => {
     phone: '',
   });
 
-  const userData = useAppSelector((store) => store.signup);
+  const userData = useAppSelector(signupSel);
 
   const handleChangeCodePhone = (newCode: string) => {
     setPhoneCode(newCode);

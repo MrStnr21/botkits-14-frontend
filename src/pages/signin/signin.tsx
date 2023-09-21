@@ -11,12 +11,13 @@ import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signinAction } from '../../services/actions/auth/signin';
-
-import routesUrl from '../../utils/routesData';
 import useForm from '../../services/hooks/use-form';
 
+import { signinSel } from '../../utils/selectorData';
+import routesUrl from '../../utils/routesData';
+
 const Signin: FC = (): JSX.Element => {
-  const userData = useAppSelector((store) => store.signin);
+  const userData = useAppSelector(signinSel);
 
   const { values, handleChange } = useForm({
     email: '',

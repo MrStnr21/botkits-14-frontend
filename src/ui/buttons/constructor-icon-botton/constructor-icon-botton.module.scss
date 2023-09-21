@@ -16,7 +16,7 @@
   width: $constructor-icon-button-width;
 }
 
-.buttonMln{
+.buttonMln {
   border-radius: $border-radius-30;
   height: 124px;
   width: 124px;
@@ -30,7 +30,7 @@
   transition: all 0.1s linear;
 }
 
-.iconMln{
+.iconMln {
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -57,7 +57,7 @@
   stroke: white;
 }
 
-.buttonBld:hover .iconBld svg{
+.buttonBld:hover .iconBld svg {
   stroke: $constructor-icon-button-hover-color;
 }
 
@@ -65,7 +65,7 @@
   background-color: white;
   box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
   .iconMln {
-  background-color: $constructor-icon-button-hover-color;
+    background-color: $constructor-icon-button-hover-color;
   }
 }
 
@@ -87,14 +87,14 @@
 }
 
 // стили нажатой кнопки
-.buttonBld_active{
+.buttonBld_active {
   background-color: $constructor-icon-button-pressed-background-color;
   svg {
     stroke: $constructor-icon-button-pressed-color;
   }
 }
 
-.buttonMln_active{
+.buttonMln_active {
   // @TODO уточнить стили после нажатия кнопки, по макету вроде только hover
   background-color: $constructor-icon-button-pressed-background-color;
   .iconMln {
@@ -103,7 +103,7 @@
 }
 
 .text {
-  color: #060C23;
+  color: #060c23;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
