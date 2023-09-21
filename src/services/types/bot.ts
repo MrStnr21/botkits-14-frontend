@@ -10,6 +10,7 @@ export type TBot = {
     url: string;
   };
   botSettings?: any;
+  _id: string;
 };
 
 export interface IBotResponse extends TBot {}

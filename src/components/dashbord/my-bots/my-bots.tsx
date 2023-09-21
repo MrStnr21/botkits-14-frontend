@@ -64,9 +64,14 @@ const MyBots: FC = () => {
             <BotCard
               platform_icon={img[bot.messenger.name]}
               bot_name={bot.botName}
+              // eslint-disable-next-line no-underscore-dangle
+              bot_id={bot._id}
             />
           </li>
         ))}
+        <li key={uuidv4()} className={styles.item}>
+          <BotCard platform_icon={Odnoklassniki} bot_name="Odnoklassniki" />
+        </li>
         <li key={uuidv4()} className={styles.buttonAddbot}>
           <ButtonAddBot onClick={addBot}>Добавить бота</ButtonAddBot>
         </li>
