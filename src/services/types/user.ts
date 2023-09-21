@@ -32,6 +32,10 @@ export interface IUserSigninState {
   email: string;
 }
 
+export interface IUserLogoutResponse {
+  message: string;
+}
+
 export interface IUserResetPasswordState {
   email: string;
 }

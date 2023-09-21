@@ -1,3 +1,4 @@
+import { logoutApi } from '../../../api/auth';
 import {
   removeAccessToken,
   removeRefreshToken,
@@ -14,13 +15,22 @@ export interface ILogoutAction {
 export type TLogoutActions = ILogoutAction;
 
 // экшен разлогина
-const logoutAction: AppThunk = () => {
+const logoutAction: AppThunk = (token: string) => {
   return (dispatch: AppDispatch) => {
-    removeAccessToken();
-    removeRefreshToken();
-    dispatch({
-      type: LOGOUT,
-    });
+    logoutApi(token)
+      .then((res) => {
+        removeAccessToken();
+        removeRefreshToken();
+        dispatch({
+          type: LOGOUT,
+        });
+        // eslint-disable-next-line no-console
+        console.log(res.message);
+      })
+      .catch((err: { message: string }) => {
+        // eslint-disable-next-line no-console
+        console.log(err.message);
+      });
   };
 };
 

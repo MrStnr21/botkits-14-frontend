@@ -1,7 +1,3 @@
-// to do: Menu
-// https://trello.com/c/n9wbVo8O/12-%D0%B2%D1%81%D0%BF%D0%BB%D1%8B%D0%B2%D0%B0%D1%8E%D1%89%D0%B5%D0%B5-%D0%BC%D0%B5%D0%BD%D1%8E
-// https://trello.com/c/gUWxjeoo/17-%D0%BC%D0%B5%D0%BD%D1%8E-%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D0%B9
-
 import { FC } from 'react';
 import stylesMenuUser from './menu-user.module.scss';
 import settingsIcon from '../../../images/icon/24x24/drop down/settings.svg';
@@ -9,6 +5,9 @@ import paymentsIcon from '../../../images/icon/24x24/drop down/payment.svg';
 import exitIcon from '../../../images/icon/24x24/drop down/log out.svg';
 import Notifications from '../../../components/icons/Notifications/Notifications';
 import Help from '../../../components/icons/Help/Help';
+import { logoutAction } from '../../../services/actions/logout/logout';
+import { getAccessToken } from '../../../auth/authService';
+import { useAppDispatch } from '../../../services/hooks/hooks';
 
 export interface IMenuUser {
   isActive?: boolean;
@@ -25,6 +24,10 @@ const MenuUser: FC<IMenuUser> = ({
   right,
   onClick,
 }) => {
+  const dispatch = useAppDispatch();
+
+  const token = getAccessToken();
+
   let boxClassName = stylesMenuUser.box;
 
   if (isActive) {
@@ -33,6 +36,10 @@ const MenuUser: FC<IMenuUser> = ({
   } else {
     boxClassName = stylesMenuUser.box;
   }
+
+  const onlogout = (accessToken: string): void => {
+    dispatch(logoutAction(accessToken));
+  };
 
   return (
     <div
@@ -59,7 +66,11 @@ const MenuUser: FC<IMenuUser> = ({
         <img src={paymentsIcon} alt="Иконка" />
         <p className={stylesMenuUser.text}>Подписка и платежи</p>
       </a>
-      <a href="#id" className={stylesMenuUser.button}>
+      <a
+        href="#id"
+        className={stylesMenuUser.button}
+        onClick={() => onlogout(token!)}
+      >
         <img src={exitIcon} alt="Иконка" />
         <p className={stylesMenuUser.text}>Выйти</p>
       </a>
