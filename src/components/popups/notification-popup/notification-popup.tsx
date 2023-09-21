@@ -1,8 +1,8 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 import CloseIcon from '../../icons/close';
 import stylesNotification from './notification-popup.module.scss';
 import Notifications from '../../icons/Notifications/Notifications';
-import useMediaQuery from '../../../services/hooks/use-media-query';
 
 interface INotificationPopup {
   isOpen: boolean;

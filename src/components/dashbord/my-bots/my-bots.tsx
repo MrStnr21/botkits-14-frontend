@@ -3,13 +3,13 @@
 
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useMediaQuery } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 // import { useAppSelector } from '../../../services/hooks/hooks';
 import styles from './my-bots.module.scss';
 // import TelegramIcon from '../../../images/icon/40x40/telegram/default.svg';
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
 import BotCard from '../../bot-card/bot-card';
-import useMediaQuery from '../../../services/hooks/use-media-query';
 import routesUrl from '../../../utils/routesData';
 import { useAppSelector } from '../../../services/hooks/hooks';
 
@@ -58,17 +58,7 @@ const MyBots: FC = () => {
           </button>
         )}
       </div>
-      <ul
-        className={styles.list}
-        style={
-          isHidden
-            ? {
-                overflow: 'hidden',
-                height: '200px',
-              }
-            : {}
-        }
-      >
+      <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
         {bots.map((bot: any) => (
           <li key={uuidv4()} className={styles.item}>
             <BotCard
