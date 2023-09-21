@@ -39,7 +39,7 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
     return <Navigate to={from} />;
   }
 
-  if (!user && !notAuth) {
+  if (!notAuth && user === null) {
     return <Navigate to={routesUrl.signup} state={{ from: location }} />;
   }
 

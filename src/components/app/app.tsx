@@ -47,7 +47,14 @@ const App: FC = (): JSX.Element => {
             </ProtectedRoute>
           }
         />
-        <Route path={routesUrl.homePage} element={<Layout />}>
+        <Route
+          path={routesUrl.homePage}
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        >
           <Route
             path={routesUrl.homePage}
             element={
