@@ -2,19 +2,22 @@ import { FC, useCallback, FormEvent } from 'react';
 
 import stylesResetPassword from './reset-password.module.scss';
 
+import backgroundImage from '../../images/roboResetSuccess.png';
+
+import ConfirmationScreen from '../../components/confirmation-screen/confirmation-screen';
 import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
 
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
-import backgroundImage from '../../images/roboResetSuccess.png';
-import ConfirmationScreen from '../../components/confirmation-screen/confirmation-screen';
 
 // import { signinAction } from '../../services/actions/auth/signin';
 import { useAppSelector } from '../../services/hooks/hooks';
 import useForm from '../../services/hooks/use-form';
 
+import { signinSel } from '../../utils/selectorData';
+
 const ResetPassword: FC = (): JSX.Element => {
-  const userData = useAppSelector((store) => store.signin);
+  const userData = useAppSelector(signinSel);
 
   const { values, handleChange } = useForm({
     email: '',

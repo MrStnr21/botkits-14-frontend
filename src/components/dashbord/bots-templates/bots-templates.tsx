@@ -1,10 +1,10 @@
-import React, { FC, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDraggable } from 'react-use-draggable-scroll';
 import stylesTemplates from './bots-templates.module.scss';
 
 import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
-import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
 import ModalOverlayPopup from '../../popups/modal-overlay-popup/modal-overlay-popup';
+import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
 
 const Template: FC<{ name: string; fileName: string }> = ({
   name,
@@ -21,10 +21,10 @@ const Template: FC<{ name: string; fileName: string }> = ({
     }
   };
 
-  const [image, setImage] = React.useState<string>('');
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [image, setImage] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     importImage().then((importedImage) => {
       setImage(importedImage);
     });
@@ -78,7 +78,7 @@ const Templates: FC = (): JSX.Element => {
       'question',
     ],
   };
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const ref =
     useRef<HTMLDivElement>() as unknown as React.MutableRefObject<HTMLUListElement>;

@@ -2,9 +2,9 @@ import { FC, useState } from 'react';
 
 import stylesInput from './page-item.module.scss';
 
+import { ReactComponent as Check } from '../../../images/icon/24x24/common/check.svg';
 import imgDefault from '../../../images/avatar/circled/for group/default.svg';
 import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
-import { ReactComponent as Check } from '../../../images/icon/24x24/common/check.svg';
 
 interface IPageItem {
   text?: string;

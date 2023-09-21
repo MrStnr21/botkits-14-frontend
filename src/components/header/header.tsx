@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
+
 import { useMediaQuery } from '@mui/material';
+
 import styles from './header.module.scss';
 
 import Notifications from '../icons/Notifications/Notifications';
@@ -10,7 +12,9 @@ import Help from '../icons/Help/Help';
 import Logo from '../icons/Logo/Logo';
 
 import avatar from '../../images/avatar/circled/default.svg';
+
 import MenuUser from '../../ui/menus/menu-user/menu-user';
+
 import NotificationPopup from '../popups/notification-popup/notification-popup';
 
 const Header: FC = (): JSX.Element => {

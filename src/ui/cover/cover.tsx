@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import stylesCover from './cover.module.css';
+import stylesCover from './cover.module.scss';
 
 interface ICover {
   onClick: () => void;
@@ -16,7 +16,7 @@ const Cover: FC<ICover> = ({
   left = '0px',
   right = '0px',
   backgroundColor = 'rgba(0, 0, 0, 0.1)',
-}) => {
+}): JSX.Element => {
   return (
     <div
       className={stylesCover.cover}

@@ -27,7 +27,7 @@
   letter-spacing: 0px;
   margin: 0;
 
-  @media screen and (max-width: 520px){
+  @media screen and (max-width: 520px) {
     font-size: $h4-font-size;
     line-height: $h4-line-height;
   }
@@ -40,7 +40,7 @@
   letter-spacing: $l-letter-space;
   margin: 16px 0 0;
 
-  @media screen and (max-width: 520px){
+  @media screen and (max-width: 520px) {
     font-size: $m-font-size;
     line-height: $m-line-height;
   }
@@ -55,7 +55,7 @@
   box-sizing: border-box;
   position: relative;
 
-  @media screen and (max-width: 670px){
+  @media screen and (max-width: 670px) {
     padding: 97px 24px 40px;
   }
 }
@@ -86,13 +86,13 @@
   line-height: $s-line-height;
   letter-spacing: $l-letter-space;
   color: $default-blue-color;
-  background-color: #ECEFFF;
+  background-color: #ecefff;
   padding: 6px 16px;
   border-radius: 16px;
   margin: 0;
   margin-left: 20px;
 
-  @media screen and (max-width: 670px){
+  @media screen and (max-width: 670px) {
     position: absolute;
     top: 0;
     left: 0;
@@ -114,13 +114,13 @@
   gap: 28px;
   margin-top: 40px;
 
-  @media screen and (max-width: 960px){
+  @media screen and (max-width: 960px) {
     flex-wrap: wrap;
     justify-content: center;
   }
 }
 
-.create_main_button_container{
+.create_main_button_container {
   display: flex;
   justify-content: flex-end;
   margin-top: 16px;
@@ -128,7 +128,7 @@
   right: 40px;
   bottom: 36px;
 
-  @media screen and (max-width: 960px){
+  @media screen and (max-width: 960px) {
     position: initial;
     display: block;
     margin-top: 32px;
@@ -138,5 +138,3 @@
 .create_main_button {
   min-width: 256px;
 }
-
-

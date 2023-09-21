@@ -29,7 +29,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #D7DEEA;
+    background: #d7deea;
     border-radius: 17px;
   }
 
@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: $bold;
   font-size: $m-font-size;
   line-height: $m-line-height;
@@ -59,17 +59,17 @@
   border-radius: $border-radius-10;
   cursor: pointer;
 
-  transition: .2s linear;
+  transition: 0.2s linear;
 
   &:hover * {
-    transition: .2s linear;
+    transition: 0.2s linear;
     fill: $default-dark-grey-color;
-    color: #6392AB;
+    color: #6392ab;
   }
 
   &:disabled * {
     fill: $disabled-grey-color;
-    color: #D7DEEA;
+    color: #d7deea;
   }
 }
 

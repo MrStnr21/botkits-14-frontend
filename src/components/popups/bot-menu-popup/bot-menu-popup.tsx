@@ -3,9 +3,10 @@ import { FC, useState } from 'react';
 import stylesBotMenuPopup from './bot-menu-popup.module.scss';
 
 import ModalPopup from '../modal-popup/modal-popup';
-import Input from '../../../ui/inputs/input/input';
-import Button from '../../../ui/buttons/button/button';
+
 import ButtonIconCopy from '../../../ui/buttons/button-icon-copy/button-icon-copy';
+import Button from '../../../ui/buttons/button/button';
+import Input from '../../../ui/inputs/input/input';
 
 export interface IBotMenuPopup {
   type?: 'default' | 'info' | 'notify';
@@ -27,7 +28,7 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
   onClose,
   onClick,
   isLink,
-}) => {
+}): JSX.Element => {
   const [inputValue, setInputValue] = useState(value);
   const [open, setOpen] = useState(false);
 

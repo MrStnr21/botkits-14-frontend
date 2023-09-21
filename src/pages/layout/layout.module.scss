@@ -1,12 +1,11 @@
 @import '../../components/app/vars';
 
-
-.layout{
+.layout {
   margin: 0 auto;
   min-height: 100vh;
   display: grid;
   grid-template-columns: minmax(0, 120px) minmax($min-content-width, auto);
-  grid-template-rows: auto  1fr auto;
+  grid-template-rows: auto 1fr auto;
   box-sizing: border-box;
   padding-left: 16px;
   position: relative;
@@ -17,7 +16,7 @@
   }
 }
 
-.page{
+.page {
   // START GRID LAYOUT
   grid-column: 2 / 3;
   grid-row: 2;

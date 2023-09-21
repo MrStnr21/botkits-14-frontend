@@ -1,18 +1,24 @@
 import { useEffect, FC } from 'react';
 import { Location, Navigate, useLocation } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../services/hooks/hooks';
-import { getAccessToken } from '../auth/authService';
-import { getUserInfoSel } from '../utils/selectorData';
 import { getUserInfoAction } from '../services/actions/user/user';
-import routesUrl from '../utils/routesData';
 import { getBotsAction } from '../services/actions/bots/getBot';
+
+import { getAccessToken } from '../auth/authService';
+
+import { getUserInfoSel } from '../utils/selectorData';
+import routesUrl from '../utils/routesData';
 
 type TProtectedRoute = {
   children: JSX.Element;
   notAuth?: boolean;
 };
 
-const ProtectedRoute: FC<TProtectedRoute> = ({ children, notAuth = false }) => {
+const ProtectedRoute: FC<TProtectedRoute> = ({
+  children,
+  notAuth = false,
+}): JSX.Element => {
   const { user } = useAppSelector(getUserInfoSel);
   const dispatch = useAppDispatch();
 

@@ -1,14 +1,14 @@
 /* bring in normalize.css styles */
 // @import-normalize;
-@import url("./fonts/fonts.css");
+@import url('./fonts/fonts.css');
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   margin: 0;
-   width: 100%;
-   background: #fff;
+  margin: 0;
+  width: 100%;
+  background: #fff;
   // background: grey;
 }

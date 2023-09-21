@@ -1,6 +1,8 @@
 // верхий компонент
 import React, { FC, useState, useCallback } from 'react';
+
 import { v4 as uuidv4 } from 'uuid';
+
 import stylesButtonAddFile from './button-add-file.module.scss';
 
 import ConstructorIconBotton from '../constructor-icon-botton/constructor-icon-botton';
@@ -9,11 +11,13 @@ import videoIcon from '../../../images/icon/24x24/add content/video.svg';
 import musicIcon from '../../../images/icon/24x24/add content/music.svg';
 import imageIcon from '../../../images/icon/24x24/add content/image.svg';
 import fileIcon from '../../../images/icon/24x24/add content/file.svg';
+import createbot from '../../../images/prewiew/createbot.png'; // for example
 
 import { BUTTON_NAME } from '../../../utils/constants';
+
 import ResultAddFile, { IResultProps } from './result-add-file/result-add-file';
+
 import VideoCard from '../../../components/video-card/video-card';
-import createbot from '../../../images/prewiew/createbot.png'; // for example
 
 interface IButton {
   type: BUTTON_NAME;

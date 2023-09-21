@@ -1,13 +1,14 @@
 import { FC, useState } from 'react';
-import { useMediaQuery } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
 
 import { v4 as uuidv4 } from 'uuid';
 
 import stylesSidebar from './sidebar.module.scss';
 
-import { links, ILink } from './sb-data';
 import Cover from '../../ui/cover/cover';
+
+import { links, ILink } from './sb-data';
 
 // Элемент заголовка в навигации
 const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {

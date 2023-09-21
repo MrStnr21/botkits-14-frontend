@@ -1,9 +1,13 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import { POPUP_ITEM } from '../../../utils/constants';
-import ModalPopup from '../modal-popup/modal-popup';
+
 import BotMenuPopup from '../bot-menu-popup/bot-menu-popup';
+
+import ModalPopup from '../modal-popup/modal-popup';
+
 import { useAppSelector } from '../../../services/hooks/hooks';
 import { TBot } from '../../../services/types/bot';
+
+import { POPUP_ITEM } from '../../../utils/constants';
 
 interface IPopupMoreMyBot {
   itemSelected: POPUP_ITEM | undefined;
@@ -15,14 +19,15 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
   itemSelected,
   setIsPopupItemOpen,
   idMyBot,
-}) => {
+}): JSX.Element => {
+  // eslint-disable-next-line no-console
   console.log(`Берем данные для бота по id ${idMyBot}`);
 
   // const bots: Array<TBot> | undefined = useAppSelector(
   //   (store) => store.getBot.bot
   // );
 
-  const currentBot: TBot | null = useAppSelector((store) => store.getBot.bot);
+  const currentBot: TBot | null = useAppSelector((store) => store.getBots.bot);
 
   // if (Array.isArray(bots) && bots.length > 0) {
   //   // eslint-disable-next-line no-underscore-dangle

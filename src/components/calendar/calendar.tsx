@@ -28,6 +28,7 @@ const Calendar: FC<ICalendar> = ({ handleFunction }): JSX.Element => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [timeZone, setTimeZone] = useState<string>('');
   const [reset, setReset] = useState<boolean>(false);
+
   const localTimeZone = format(new Date(), 'zzz');
 
   useEffect(() => {

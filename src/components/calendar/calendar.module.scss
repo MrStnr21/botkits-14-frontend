@@ -1,4 +1,4 @@
-@import "../app/_vars";
+@import '../app/_vars';
 
 .container {
   width: 296px;
@@ -16,7 +16,7 @@
   padding-bottom: 8px;
   border-top: 1px solid $button-disabled-grey-color;
   border-bottom: 1px solid $button-disabled-grey-color;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: $s-font-size;
   font-weight: $normal;
   line-height: $button-line-height-150;
@@ -35,14 +35,14 @@
   padding-bottom: 18px;
   background-color: transparent;
   border: none;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: $s-font-size;
   font-weight: $normal;
   line-height: $button-line-height-150;
   letter-spacing: $l-letter-space;
-  transition: color .4s ease-in-out;
+  transition: color 0.4s ease-in-out;
 }
 
 .button:hover {
-  color: $default-dark-grey-color
+  color: $default-dark-grey-color;
 }

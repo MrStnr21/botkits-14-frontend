@@ -1,18 +1,18 @@
 @import '../../app/vars';
 
-.wrapper{
+.wrapper {
   max-width: 100%;
   margin-bottom: 10px;
 }
 
-.header{
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
 }
 
-.header__text{
+.header__text {
   font-family: 'IBM Plex Mono', sans-serif;
   font-weight: 600;
   font-size: 32px;
@@ -26,12 +26,12 @@
   }
 }
 
-.header__button{
+.header__button {
   @extend %button-style-reset;
   display: block;
   margin-right: 20px;
 
-  color:  #8392AB;
+  color: #8392ab;
   text-align: right;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
@@ -40,7 +40,7 @@
   letter-spacing: 0.3px;
 }
 
-.list{
+.list {
   max-width: 100%;
   list-style: none;
   gap: 28px;
@@ -56,12 +56,12 @@
   }
 }
 
-.list_hidden{
+.list_hidden {
   overflow-x: hidden;
   grid-auto-flow: column;
 }
 
-.item{
+.item {
   min-height: 195px;
   position: relative;
   // @media (max-width: $switching-width) {
@@ -70,12 +70,11 @@
   // }
 }
 
-.buttonAddbot{
+.buttonAddbot {
   width: 296px;
   height: 172px;
   @media (max-width: $switching-width) {
     width: 235px;
     height: 177px;
   }
-
 }

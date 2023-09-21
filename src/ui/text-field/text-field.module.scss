@@ -30,16 +30,15 @@
   color: $primary-text-color;
 }
 
-
 .textarea__input::placeholder {
   color: $default-dark-grey-color;
 }
 
 .textarea__input:focus {
-   outline: none;
+  outline: none;
 }
 
-.textarea__input:focus ~.textarea__outline{
+.textarea__input:focus ~ .textarea__outline {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -65,7 +64,7 @@
   column-gap: 12px;
 }
 
-.textarea__counter{
+.textarea__counter {
   margin: 0;
   margin-right: auto;
 }

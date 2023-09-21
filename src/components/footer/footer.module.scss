@@ -1,10 +1,10 @@
-@import "../app/_vars";
+@import '../app/_vars';
 
 .footer {
-    // START GRID LAYOUT
-    grid-column: 2 / 3;
-    grid-row: 3;
-    // END GRID LAYOUT
+  // START GRID LAYOUT
+  grid-column: 2 / 3;
+  grid-row: 3;
+  // END GRID LAYOUT
 
   display: flex;
   flex-direction: column;

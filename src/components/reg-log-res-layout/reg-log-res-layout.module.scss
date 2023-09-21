@@ -1,4 +1,4 @@
-@import "../../components/app/vars";
+@import '../../components/app/vars';
 
 .signupPage {
   width: 100%;
@@ -31,11 +31,12 @@
   padding: 0;
   margin-bottom: 30px;
   font-family: 'IBM Plex Mono', sans-serif;
-  ;
   font-size: $h1-font-size;
   font-weight: $semi-bold;
   line-height: $h1-line-height;
   letter-spacing: 5px;
   font-style: normal;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
 }
