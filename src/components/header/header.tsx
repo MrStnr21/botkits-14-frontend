@@ -16,6 +16,7 @@ import avatar from '../../images/avatar/circled/default.svg';
 import MenuUser from '../../ui/menus/menu-user/menu-user';
 
 import NotificationPopup from '../popups/notification-popup/notification-popup';
+import TelegramLoginWidget from '../telegramLoginWidget/TelegramLoginWidget';
 
 const Header: FC = (): JSX.Element => {
   const [isOpenAccontSettings, setIsAccSet] = useState(false);
@@ -60,6 +61,7 @@ const Header: FC = (): JSX.Element => {
           >
             <ArrowSmall />
           </span>
+          <TelegramLoginWidget />
         </div>
         <MenuUser
           isActive={isOpenAccontSettings}
