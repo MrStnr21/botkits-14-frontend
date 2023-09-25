@@ -33,9 +33,9 @@ BotKits является конструктором чат ботов. Это с
 
 ## Инструкция по работае с проектом через домен
 
-    IP адрес 84.201.178.186
-    Frontend https://botkits.nomoreparties.co
-    Swagger https://botkits.nomoreparties.co/api/
+- IP адрес: 84.201.178.186
+- Frontend: https://botkits.nomoreparties.co
+- Swagger: https://botkits.nomoreparties.co/api/
 
 Полноценно работают:
 
