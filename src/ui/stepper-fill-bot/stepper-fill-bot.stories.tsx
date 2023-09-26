@@ -24,7 +24,7 @@ export const StepperFillBotWithInput: Story = {
   args: {
     step: '1 Шаг',
     text: 'Ключ доступа',
-    children: <Input />,
+    children: <Input onChange={() => {}} />,
   },
 };
 
@@ -32,6 +32,6 @@ export const StepperFillBotName: Story = {
   args: {
     step: '2 Шаг',
     text: 'Назвавние бота',
-    children: <Input />,
+    children: <Input onChange={() => {}} />,
   },
 };

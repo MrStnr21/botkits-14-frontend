@@ -147,16 +147,41 @@
   width: 100%;
   max-width: 325px;
   display: flex;
+  gap: 15px;
   align-items: center;
   justify-content: center;
 }
 
 .phoneCodeSelect {
-  background-color: $white-color;
+  background-color: $primary-text-color;
+  background-color: $primary-text-color;
   border: none;
+  border-radius: 4px;
   flex-basis: 110px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
   margin-top: auto;
   margin-bottom: auto;
+  & input {
+    color: $white-color;
+    font-family: 'Open Sans', sans-serif;
+    font-size: $m-font-size;
+    font-weight: $normal;
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    border: none;
+  }
+  & :focus {
+    border: none;
+  }
+  [class*="MuiInputBase-root-MuiOutlinedInput-root"]{
+    height: 60px;
+    border: none;
+    flex-direction: row-reverse;
+  }
+
 }
 
 .formsButton {

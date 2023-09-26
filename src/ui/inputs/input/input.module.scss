@@ -80,8 +80,7 @@
   font-size: $h4-font-size;
   line-height: $button-line-height-150;
   letter-spacing: $lx-letter-space;
-  color: $white-color;
-  opacity: 0.6;
+  color: $placeholder-grey-color;
 
   position: absolute;
   display: flex;
@@ -90,4 +89,21 @@
   right: 0;
   top: 0;
   bottom: 0;
+}
+
+.inputSecondaryIncorrect {
+  border: 0;
+  border-bottom: 1px solid $error-red-color;
+
+  &::placeholder {
+    color: $error-red-color;
+  }
+
+  &:hover::placeholder {
+    color: $error-red-color;
+  }
+}
+
+.requiredIncorrect {
+  color: $error-red-color;
 }
