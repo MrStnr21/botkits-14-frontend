@@ -1,4 +1,4 @@
-import { FC, useCallback, FormEvent } from 'react';
+import { FC, useCallback, FormEvent, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import stylesSignin from './signin.module.scss';
@@ -38,6 +38,42 @@ const Signin: FC = (): JSX.Element => {
     },
     [values]
   );
+
+  const handlerAuthYandex = () => {
+    // Замените эти значения на значения, полученные при регистрации вашего приложения на Яндексе
+    const CLIENT_ID = 'b6e2d274a2e94c5ea78626531209dee7';
+
+    // Составляем URL для авторизации
+    const authUrl = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}`;
+
+    // Перенаправляем пользователя на страницу авторизации Яндекса
+    window.location.href = authUrl;
+  };
+
+  // Извлечение текущего URL
+  const currentUrl = new URL(window.location.href);
+
+  // Используем URLSearchParams для получения параметра 'code'
+  const code = currentUrl.searchParams.get('code');
+
+  useEffect(() => {
+    if (code) {
+      fetch('http://localhost:3001/yandex/exchange', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ codeAuth: code }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Response from server:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  }, []);
 
   return signinSuccess ? (
     <Navigate to={routesUrl.homePage} />
@@ -96,6 +132,7 @@ const Signin: FC = (): JSX.Element => {
                 social="yandex"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthYandex}
               />
               <ButtonAddSocial
                 social="mailru"

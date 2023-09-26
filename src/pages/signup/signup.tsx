@@ -40,6 +40,17 @@ const Signup: FC = (): JSX.Element => {
     phone: '',
   });
 
+  const handlerAuthYandex = () => {
+    // Замените эти значения на значения, полученные при регистрации вашего приложения на Яндексе
+    const CLIENT_ID = 'b6e2d274a2e94c5ea78626531209dee7';
+
+    // Составляем URL для авторизации
+    const authUrl = `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}`;
+
+    // Перенаправляем пользователя на страницу авторизации Яндекса
+    window.location.href = authUrl;
+  };
+
   const userData = useAppSelector(signupSel);
 
   const handleChangeCodePhone = (newCode: string) => {
@@ -89,6 +100,7 @@ const Signup: FC = (): JSX.Element => {
                 social="yandex"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthYandex}
               />
               <ButtonAddSocial
                 social="mailru"
