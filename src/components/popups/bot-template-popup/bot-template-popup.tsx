@@ -14,7 +14,6 @@ import { ReactComponent as ImageCom } from '../../../images/icon/template/e-comm
 import { ReactComponent as ImageQuest } from '../../../images/icon/template/question.svg';
 import { ReactComponent as ImageDemo } from '../../../images/icon/template/demo bot.svg';
 import { ReactComponent as ImageBeauty } from '../../../images/icon/template/beauty.svg';
-import { ReactComponent as Close } from '../../../images/icon/24x24/common/close.svg';
 import { ReactComponent as ImagePoll } from '../../../images/icon/template/poll.svg';
 
 import Button from '../../../ui/buttons/button/button';
@@ -62,8 +61,7 @@ const image: any = {
 
 const BotTemplatePopup: FC<IBotTemplate> = ({
   title,
-  // eslint-disable-next-line no-console
-  onClick = () => console.log(1),
+  onClick,
 }): JSX.Element | null => {
   const data = [
     'Что настроено в шаблоне',
@@ -127,14 +125,6 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
           </Button>
         </div>
       </div>
-
-      <button
-        className={stylesBotTemplate.bot_template_close}
-        onClick={onClick}
-        type="button"
-      >
-        <Close />
-      </button>
     </div>
   );
 };

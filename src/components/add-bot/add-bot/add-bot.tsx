@@ -75,7 +75,7 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
     <div className={stylesAddBot.add_bot}>
       <h2 className={stylesAddBot.add_bot_title}>Добавить бота</h2>
       <ul className={stylesAddBot.add_bot_list} {...events} ref={ref}>
-        {socials?.map((social: any) => (
+        {socials?.map((social) => (
           <li key={social.name} className={stylesAddBot.add_bot_item}>
             <ButtonAddSocial
               social={social.icon}
