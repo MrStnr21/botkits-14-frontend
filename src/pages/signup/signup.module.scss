@@ -1,46 +1,5 @@
 @import '../../components/app/vars';
 
-.signupPage {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: linear-gradient(180deg, $white-color 36%, $default-grey-color 0%);
-}
-
-.contentContainer {
-  width: 100%;
-  max-width: 770px;
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.logo {
-  width: 149px;
-  height: 35px;
-  margin-bottom: 20px;
-  background-image: url('../../images/icon/BOTkitLogo.svg');
-}
-
-.label {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 30px;
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h1-font-size;
-  font-weight: $semi-bold;
-  line-height: $h1-line-height;
-  letter-spacing: 5px;
-  font-style: normal;
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
-}
-
 .signupFormContainer {
   position: relative;
   width: 100%;
@@ -54,6 +13,7 @@
 
 .signupBackgroundImage {
   background-image: url('../../images/roboCreate.png');
+  background-size: contain;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -61,6 +21,12 @@
   max-width: 205px;
   aspect-ratio: 1.1;
   z-index: 0;
+  @media screen and (max-width: 710px) {
+    max-width: 180px;
+  }
+  @media screen and (max-width: 650px) {
+    max-width: 150px;
+  }
 }
 
 .signupTitle {
@@ -100,7 +66,10 @@
 
 .signupInputsContainer {
   width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
   display: flex;
+  box-sizing: border-box;
   border-radius: $border-radius-30;
   flex-direction: column;
   align-items: center;
@@ -137,7 +106,7 @@
   width: 100%;
   display: grid;
   justify-content: center;
-  grid-template-columns: 325px 325px;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content max-content;
   gap: 20px;
   z-index: 1;
@@ -152,11 +121,12 @@
   justify-content: center;
 }
 
+
 .phoneCodeSelect {
-  background-color: $primary-text-color;
   background-color: $primary-text-color;
   border: none;
   border-radius: 4px;
+  min-width: 110px;
   flex-basis: 110px;
   height: 60px;
   align-items: center;
@@ -164,7 +134,12 @@
   flex-direction: row-reverse;
   margin-top: auto;
   margin-bottom: auto;
+  z-index: 0;
+
   & input {
+    width: 33px;
+    padding: 0;
+    margin: 0;
     color: $white-color;
     font-family: 'Open Sans', sans-serif;
     font-size: $m-font-size;
@@ -173,16 +148,50 @@
     letter-spacing: $m-letter-space;
     border: none;
   }
+
   & :focus {
     border: none;
   }
-  [class*="MuiInputBase-root-MuiOutlinedInput-root"]{
+
+  [class*="MuiInputBase-root-MuiOutlinedInput-root"] {
     height: 60px;
     border: none;
+    width: 100%;
     flex-direction: row-reverse;
+    padding-right: 34px;
+    position: relative;
   }
 
+  [class*="MuiOutlinedInput-notchedOutline"] {
+    height: 60px;
+    border: none;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  [class*="MuiButtonBase-root-MuiIconButton-root"] {
+    background-image: url('../../images/icon/24x24/common/arrow-drop-down.svg');
+    background-repeat: no-repeat;
+    background-position: left 5px top 18px;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+    justify-content: flex-end;
+    padding-right: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+
 }
+
 
 .formsButton {
   z-index: 1;
@@ -208,67 +217,3 @@
   text-decoration-line: underline;
 }
 
-.successPage {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 98px;
-  align-items: center;
-  background-color: $default-blue-color;
-}
-
-.successSigninLink {
-  width: 32px;
-  height: 32px;
-  margin-right: 30px;
-  margin-top: 30px;
-  align-self: flex-end;
-  background-image: url('../../images/icon/32x32/close.svg');
-}
-
-.titleContainer {
-  width: 100%;
-  max-width: 1170px;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-}
-
-.title {
-  margin: 0;
-  padding: 0;
-  max-width: 570px;
-  font-family: 'IBM Plex Mono', sans-serif;
-  text-align: left;
-  color: $white-color;
-  font-size: $xl-h1-font-size;
-  font-weight: $bold;
-  line-height: $button-line-height-110;
-  vertical-align: middle;
-}
-
-.titleImage {
-  width: 100%;
-  max-width: 570px;
-  height: 100%;
-  aspect-ratio: 1.06;
-}
-
-.email {
-  vertical-align: baseline;
-  width: 100%;
-  max-height: 60px;
-  max-width: 158px;
-  padding: 14px 23px 14px 20px;
-  font-size: $h2-font-size;
-  border-radius: $border-radius-15;
-  color: $default-green-color;
-  font-weight: $bold;
-  background-color: $hover-blue-color;
-  line-height: $button-line-height-150;
-  letter-spacing: $h2-letter-space;
-  vertical-align: middle;
-}

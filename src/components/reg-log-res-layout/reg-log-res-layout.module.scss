@@ -6,17 +6,29 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: linear-gradient(180deg, $white-color 36%, $default-grey-color 0%);
+  background: linear-gradient(180deg, $white-color 372px, $default-grey-color 0px);
 }
 
 .contentContainer {
   width: 100%;
   max-width: 770px;
   margin-top: 40px;
+  margin-left: 34px;
+  margin-right: 34px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media screen and (max-width: 710px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .logo {
