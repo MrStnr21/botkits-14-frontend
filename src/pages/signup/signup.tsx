@@ -72,7 +72,6 @@ const Signup: FC = (): JSX.Element => {
       ...formValid,
       [`${input.target?.name}IsValid`]: input.target.validity?.valid,
     });
-    console.log(values);
     handleChange(input);
   };
 
