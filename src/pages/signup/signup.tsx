@@ -31,9 +31,6 @@ import backgroundImage from '../../images/roboSuccess.png';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
-    width: '100%',
-    maxWidth: '570px',
-    height: '100%',
     aspectRatio: '1.06',
     backgroundImage: `url(${backgroundImage})`,
   };
@@ -44,12 +41,12 @@ const Signup: FC = (): JSX.Element => {
     usernameIsValid: boolean;
     emailIsValid: boolean;
     passwordIsValid: boolean;
-    phoneIsValid: boolean;
+    phoneNumberMainIsValid: boolean;
   }>({
     usernameIsValid: false,
     emailIsValid: false,
     passwordIsValid: false,
-    phoneIsValid: false,
+    phoneNumberMainIsValid: false,
   });
 
   const { values, handleChange, setValues } = useForm({
@@ -63,7 +60,7 @@ const Signup: FC = (): JSX.Element => {
     if (
       formValid.emailIsValid &&
       formValid.passwordIsValid &&
-      formValid.phoneIsValid &&
+      formValid.phoneNumberMainIsValid &&
       formValid.usernameIsValid
     ) {
       setButtonDisabled(false);
@@ -75,6 +72,7 @@ const Signup: FC = (): JSX.Element => {
       ...formValid,
       [`${input.target?.name}IsValid`]: input.target.validity?.valid,
     });
+    console.log(values);
     handleChange(input);
   };
 
@@ -99,7 +97,7 @@ const Signup: FC = (): JSX.Element => {
           username: values.username,
           email: values.email,
           password: values.password,
-          phone: values.phone,
+          phone: phoneCode + values.phoneNumberMain,
         })
       );
     },
@@ -190,6 +188,8 @@ const Signup: FC = (): JSX.Element => {
                 maxLength={30}
                 onChange={customHandleChange}
                 styled="secondary"
+                password
+                type="password"
                 required
               />
               <div className={stylesSignup.inputsPhoneContainer}>
@@ -202,18 +202,12 @@ const Signup: FC = (): JSX.Element => {
                 />
                 <Input
                   placeholder="Телефон"
-                  name="phone"
+                  name="phoneNumberMain"
                   maxLength={15}
                   styled="secondary"
                   pattern="^\d+$"
                   required
-                  onChange={(e) => {
-                    setValues({
-                      ...values,
-                      phone: phoneCode + e.target.value,
-                    });
-                    customHandleChange(e);
-                  }}
+                  onChange={customHandleChange}
                 />
               </div>
             </div>

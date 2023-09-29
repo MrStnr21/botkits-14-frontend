@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, useState } from 'react';
+import { FC, ChangeEvent, useState, useEffect } from 'react';
 
 import stylesInput from './input.module.scss';
 
@@ -16,6 +16,7 @@ interface IInput {
   required?: boolean;
   styled?: 'main' | 'secondary';
   pattern?: string;
+  password?: boolean;
 }
 
 const Input: FC<IInput> = ({
@@ -32,11 +33,30 @@ const Input: FC<IInput> = ({
   required,
   styled,
   pattern,
+  password,
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
     textError: '',
   });
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [typeValues, setTypeValues] = useState<string>('');
+
+  useEffect(() => {
+    setTypeValues(type);
+  }, [type]);
+
+  const handleShowPassword = () => {
+    if (!showPassword) {
+      setShowPassword(true);
+      setTypeValues('text');
+    } else {
+      setShowPassword(false);
+      setTypeValues('password');
+    }
+  };
+
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
     const validityState = input.currentTarget.validity;
     if (validityState.valueMissing) {
@@ -78,7 +98,7 @@ const Input: FC<IInput> = ({
             ? stylesInput.inputSecondaryIncorrect
             : ''
         }`}
-        type={type || 'text'}
+        type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}
         onChange={validate}
@@ -92,15 +112,27 @@ const Input: FC<IInput> = ({
       {(error.error || isInvalid) && (
         <p className={stylesInput.incorrect_text}>{error.textError}</p>
       )}
-      {required && (
-        <span
-          className={`${stylesInput.required} ${
-            (error.error || isInvalid) && stylesInput.requiredIncorrect
-          }`}
-        >
-          *
-        </span>
-      )}
+      <div className={stylesInput.iconContainer}>
+        {password && (
+          <button
+            type="button"
+            aria-label="show/hide password"
+            onClick={handleShowPassword}
+            className={`${stylesInput.password} ${
+              showPassword && stylesInput.passwordShow
+            }`}
+          />
+        )}
+        {required && (
+          <span
+            className={`${stylesInput.required} ${
+              (error.error || isInvalid) && stylesInput.requiredIncorrect
+            }`}
+          >
+            *
+          </span>
+        )}
+      </div>
     </div>
   );
 };

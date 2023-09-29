@@ -7,9 +7,6 @@ import routesUrl from '../../utils/routesData';
 interface IConfirmationScreen {
   text: string;
   style: {
-    width: string;
-    maxWidth: string;
-    height: string;
     aspectRatio: string;
     backgroundImage: string;
   };
@@ -21,16 +18,18 @@ const ConfirmationScreen: FC<IConfirmationScreen> = ({
 }): JSX.Element => {
   return (
     <section className={stylesConfirmationScreen.successPage}>
-      <Link
-        to={{ pathname: routesUrl.signin }}
-        className={stylesConfirmationScreen.successSigninLink}
-      />
-      <div className={stylesConfirmationScreen.titleContainer}>
-        <h1 className={stylesConfirmationScreen.title}>
-          {text} <span className={stylesConfirmationScreen.email}>/email</span>{' '}
-          !
-        </h1>
-        <div style={style} />
+      <div className={stylesConfirmationScreen.contentContainer}>
+        <Link
+          to={{ pathname: routesUrl.signin }}
+          className={stylesConfirmationScreen.successSigninLink}
+        />
+        <div className={stylesConfirmationScreen.titleContainer}>
+          <h1 className={stylesConfirmationScreen.title}>
+            {text}{' '}
+            <span className={stylesConfirmationScreen.email}>/email</span> !
+          </h1>
+          <div style={style} className={stylesConfirmationScreen.titleImage} />
+        </div>
       </div>
     </section>
   );
