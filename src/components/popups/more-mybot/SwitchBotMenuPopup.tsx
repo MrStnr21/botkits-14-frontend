@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { FC } from 'react';
 
 import BotMenuPopup from '../bot-menu-popup/bot-menu-popup';
 
@@ -9,7 +9,7 @@ import { getBotsSel } from '../../../utils/selectorData';
 
 interface IPopupMoreMyBot {
   itemSelected: POPUP_ITEM | undefined;
-  setIsPopupItemOpen: Dispatch<SetStateAction<boolean>>;
+  setIsPopupItemOpen: () => void;
   idMyBot: string;
 }
 
@@ -43,7 +43,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           placeholder="none"
           buttonText="none"
           value="info"
-          onClose={() => setIsPopupItemOpen(false)}
+          onClose={setIsPopupItemOpen}
         />
       );
       break;
@@ -56,7 +56,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           placeholder="Добавьте e-mail пользователя"
           buttonText="поделиться"
           value="string"
-          onClose={() => setIsPopupItemOpen(false)}
+          onClose={setIsPopupItemOpen}
         />
       );
       break;
@@ -69,7 +69,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           placeholder="Переименуйте файл"
           buttonText="Переименовать"
           value={bots ? bots[0].botName : 'Псевдоним'}
-          onClose={() => setIsPopupItemOpen(false)}
+          onClose={setIsPopupItemOpen}
           // onClick={() => console.log('переименовывайся')}
         />
       );
@@ -83,7 +83,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           buttonText="скопировать ссылку"
           placeholder="Ссылка на бота"
           value="string"
-          onClose={() => setIsPopupItemOpen(false)}
+          onClose={setIsPopupItemOpen}
           isLink
         />
       );
@@ -97,7 +97,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           buttonText="none"
           placeholder="none"
           value="string"
-          onClose={() => setIsPopupItemOpen(false)}
+          onClose={setIsPopupItemOpen}
           isLink
         />
       );

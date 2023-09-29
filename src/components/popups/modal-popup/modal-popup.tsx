@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import ReactDom from 'react-dom';
 
 import stylesModalPopup from './modal-popup.module.scss';
@@ -15,6 +15,18 @@ interface IModalPopup {
 }
 
 const ModalPopup: FC<IModalPopup> = ({ onClick, children }): JSX.Element => {
+  useEffect(() => {
+    function closeEscModal(evt: KeyboardEvent) {
+      if (evt.key === 'Escape') onClick();
+    }
+
+    document.addEventListener('keydown', closeEscModal);
+
+    return () => {
+      document.removeEventListener('keydown', closeEscModal);
+    };
+  }, [onClick]);
+
   return ReactDom.createPortal(
     <div className={stylesModalPopup.modal}>
       <ModalOverlayPopup onClick={onClick} />
