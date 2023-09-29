@@ -1,4 +1,11 @@
-import { FC, useCallback, useEffect, useState, FormEvent } from 'react';
+import {
+  FC,
+  useCallback,
+  useEffect,
+  useState,
+  FormEvent,
+  ChangeEvent,
+} from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
@@ -24,14 +31,23 @@ import backgroundImage from '../../images/roboSuccess.png';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
-    width: '100%',
-    maxWidth: '570px',
-    height: '100%',
     aspectRatio: '1.06',
     backgroundImage: `url(${backgroundImage})`,
   };
 
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [phoneCode, setPhoneCode] = useState<string>('');
+  const [formValid, setFormValid] = useState<{
+    usernameIsValid: boolean;
+    emailIsValid: boolean;
+    passwordIsValid: boolean;
+    phoneNumberMainIsValid: boolean;
+  }>({
+    usernameIsValid: false,
+    emailIsValid: false,
+    passwordIsValid: false,
+    phoneNumberMainIsValid: false,
+  });
 
   const { values, handleChange, setValues } = useForm({
     username: '',
@@ -39,6 +55,25 @@ const Signup: FC = (): JSX.Element => {
     password: '',
     phone: '',
   });
+
+  useEffect(() => {
+    if (
+      formValid.emailIsValid &&
+      formValid.passwordIsValid &&
+      formValid.phoneNumberMainIsValid &&
+      formValid.usernameIsValid
+    ) {
+      setButtonDisabled(false);
+    } else setButtonDisabled(true);
+  }, [formValid]);
+
+  const customHandleChange = (input: ChangeEvent<HTMLInputElement>) => {
+    setFormValid({
+      ...formValid,
+      [`${input.target?.name}IsValid`]: input.target.validity?.valid,
+    });
+    handleChange(input);
+  };
 
   const userData = useAppSelector(signupSel);
 
@@ -48,7 +83,7 @@ const Signup: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    setPhoneCode(DEFAULT_PHONE_CODE);
+    setPhoneCode(DEFAULT_PHONE_CODE.code);
   }, []);
 
   const dispatch = useAppDispatch();
@@ -61,7 +96,7 @@ const Signup: FC = (): JSX.Element => {
           username: values.username,
           email: values.email,
           password: values.password,
-          phone: values.phone,
+          phone: phoneCode + values.phoneNumberMain,
         })
       );
     },
@@ -122,53 +157,67 @@ const Signup: FC = (): JSX.Element => {
         </div>
         <div className={stylesSignup.signupInputsContainer}>
           <h2 className={stylesSignup.signupTitleForm}>или</h2>
-          <form className={stylesSignup.inputsForm} onSubmit={handleSignup}>
+          <form
+            className={stylesSignup.inputsForm}
+            onSubmit={handleSignup}
+            noValidate
+          >
             <div className={stylesSignup.inputsContainer}>
               <Input
                 placeholder="Имя"
                 name="username"
-                onChange={handleChange}
+                maxLength={30}
+                onChange={customHandleChange}
                 styled="secondary"
                 required
               />
               <Input
                 placeholder="E-mail"
                 name="email"
-                onChange={handleChange}
+                maxLength={30}
+                onChange={customHandleChange}
+                errorMessage="Введите корректный email"
                 styled="secondary"
+                pattern="^\S+@\S+\.\S+$"
                 required
               />
               <Input
                 placeholder="Пароль"
                 name="password"
-                onChange={handleChange}
+                maxLength={30}
+                onChange={customHandleChange}
                 styled="secondary"
+                password
+                type="password"
                 required
               />
               <div className={stylesSignup.inputsPhoneContainer}>
                 <MuiTelInput
+                  defaultCountry={DEFAULT_PHONE_CODE.country}
                   value={phoneCode}
                   className={stylesSignup.phoneCodeSelect}
                   onChange={handleChangeCodePhone}
+                  langOfCountryName="ru"
                 />
                 <Input
-                  // добавить максимальную длину номера
                   placeholder="Телефон"
-                  name="phoneNumber"
+                  name="phoneNumberMain"
                   maxLength={15}
                   styled="secondary"
+                  pattern="^\d+$"
                   required
-                  onChange={(e) =>
-                    setValues({
-                      ...values,
-                      phone: phoneCode + e.target.value,
-                    })
-                  }
+                  onChange={customHandleChange}
                 />
               </div>
             </div>
             <div className={stylesSignup.formsButton}>
-              <Button variant="default" color="green" buttonHtmlType="submit">
+              <Button
+                variant="default"
+                size="large"
+                color="green"
+                buttonHtmlType="submit"
+                disabled={buttonDisabled}
+              >
                 создать аккаунт
               </Button>
             </div>

@@ -6,17 +6,30 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: linear-gradient(180deg, $white-color 36%, $default-grey-color 0%);
+  background: linear-gradient(180deg, $white-color 372px, $default-grey-color 0px);
 }
 
 .contentContainer {
   width: 100%;
   max-width: 770px;
   margin-top: 40px;
+  margin-left: 34px;
+  margin-right: 34px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media screen and (max-width: 710px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+  }
 }
 
 .logo {
@@ -24,6 +37,13 @@
   height: 35px;
   margin-bottom: 20px;
   background-image: url('../../images/icon/BOTkitLogo.svg');
+
+  @media screen and (max-width: 600px) {
+    width: 128px;
+    height: 30px;
+    margin-bottom: 15px;
+    background-size: contain;
+  }
 }
 
 .label {
@@ -39,4 +59,12 @@
   font-feature-settings:
     'clig' off,
     'liga' off;
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 20px;
+    font-size: $h3-line-height;
+    line-height: $button-line-height-110;
+    letter-spacing: $h2-letter-space;
+
+  }
 }
