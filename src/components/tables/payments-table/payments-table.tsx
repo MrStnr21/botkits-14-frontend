@@ -1,4 +1,3 @@
-// import { StyledEngineProvider } from '@mui/styled-engine-sc';
 import { FC } from 'react';
 import {
   Paper,

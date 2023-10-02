@@ -9,7 +9,6 @@ import {
   TableRow,
 } from '@mui/material';
 
-// import { StyledEngineProvider } from '@mui/material/styles';
 import tableStyles from './referrals-table.module.scss';
 
 function createData(
@@ -94,71 +93,66 @@ const ReferralsTable: FC = () => {
   // const [data, setData] = useState([]); // хук для получения данных с сервера
 
   return (
-    <div className={tableStyles.tableWrapper}>
-      <TableContainer component={Paper} className={tableStyles.table}>
-        {/* <div className={tableStyles.headContainer}>
-          <h2 className={tableStyles.heading}>Статистика рефераллов</h2>
-        </div> */}
-        <Table>
-          <TableHead className={tableStyles.tableHead}>
-            <TableRow className={tableStyles.row}>
-              <TableCell className={tableStyles.cell}>
-                Перешли по ссылке
+    <TableContainer component={Paper} className={tableStyles.table}>
+      <Table>
+        <TableHead className={tableStyles.tableHead}>
+          <TableRow className={tableStyles.row}>
+            <TableCell className={tableStyles.cell}>
+              Перешли по ссылке
+            </TableCell>
+            <TableCell className={tableStyles.cell} align="left">
+              Регистрация
+            </TableCell>
+            <TableCell className={tableStyles.cell} align="left">
+              Оплата
+            </TableCell>
+            <TableCell className={tableStyles.cell} align="left">
+              Сумма
+            </TableCell>
+            <TableCell className={tableStyles.cell} align="left">
+              Комиссия
+            </TableCell>
+            <TableCell className={tableStyles.cell} align="left">
+              Выплачено
+            </TableCell>
+            <TableCell className={tableStyles.cell} align="right">
+              Вывод
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody className={tableStyles.tableBody}>
+          {rows.map((row) => (
+            <TableRow key={row.linkTaps} className={tableStyles.row}>
+              <TableCell
+                component="th"
+                scope="row"
+                className={tableStyles.cell}
+              >
+                {row.linkTaps}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
-                Регистрация
+              <TableCell align="left" className={tableStyles.cell}>
+                {row.regs}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
-                Оплата
+              <TableCell align="left" className={tableStyles.cell}>
+                {row.status}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
-                Сумма
+              <TableCell align="left" className={tableStyles.cell}>
+                {row.sum}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
-                Комиссия
+              <TableCell align="left" className={tableStyles.cell}>
+                {row.fee}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
-                Выплачено
+              <TableCell align="left" className={tableStyles.cell}>
+                {row.paid}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="right">
-                Выход
+              <TableCell align="right" className={tableStyles.cell}>
+                {row.withdrawal}
               </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody className={tableStyles.tableBody}>
-            {rows.map((row) => (
-              <TableRow key={row.linkTaps} className={tableStyles.row}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  className={tableStyles.cell}
-                >
-                  {row.linkTaps}
-                </TableCell>
-                <TableCell align="left" className={tableStyles.cell}>
-                  {row.regs}
-                </TableCell>
-                <TableCell align="left" className={tableStyles.cell}>
-                  {row.status}
-                </TableCell>
-                <TableCell align="left" className={tableStyles.cell}>
-                  {row.sum}
-                </TableCell>
-                <TableCell align="left" className={tableStyles.cell}>
-                  {row.fee}
-                </TableCell>
-                <TableCell align="left" className={tableStyles.cell}>
-                  {row.paid}
-                </TableCell>
-                <TableCell align="right" className={tableStyles.cell}>
-                  {row.withdrawal}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
