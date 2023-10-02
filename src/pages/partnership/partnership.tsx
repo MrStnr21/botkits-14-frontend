@@ -16,8 +16,19 @@ const Partnership: FC = (): JSX.Element => {
     <StyledEngineProvider injectFirst>
       <div className={stylesPartnership.partnershipLayout}>
         <div className={stylesPartnership.tableContainer}>
+          {/* <div className={stylesPartnership.referralsHeader}>
+            <h2 className={stylesPartnership.heading}>Cтатистика рефераллов</h2>
+          </div> */}
           <ReferralsTable />
-          <PaymentsTable onClick={toggleSecondTable} />
+        </div>
+        <div className={stylesPartnership.tableContainer}>
+          <div className={stylesPartnership.headContainer}>
+            <h2 className={stylesPartnership.heading}>Выплаты</h2>
+            <button onClick={toggleSecondTable} type="button">
+              Кнопка
+            </button>
+          </div>
+          {isTableVisible && <PaymentsTable />}
         </div>
       </div>
     </StyledEngineProvider>

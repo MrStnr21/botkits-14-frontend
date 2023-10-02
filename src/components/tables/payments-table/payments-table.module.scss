@@ -8,10 +8,10 @@
 }
 
 .table {
-  padding: 40px;
+  padding: 0 40px;
   box-sizing: border-box;
   border-radius: $border-radius-30;
-  max-height: 310px;
+  max-height: 200px;
   background-color: transparent;
   box-shadow: none;
 }
@@ -31,9 +31,9 @@
 
 .cell {
   border: none;
-  padding: 10px 0 10px;
+  padding: 20px 0 10px;
 }
 
 .cell:first-child {
-  padding-top: 20px;
+  padding-top: 0;
 }

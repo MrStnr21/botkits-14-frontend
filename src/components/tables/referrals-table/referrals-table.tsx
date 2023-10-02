@@ -97,7 +97,9 @@ const ReferralsTable: FC = () => {
     // <StyledEngineProvider injectFirst>
     <div className={tableStyles.tableWrapper}>
       <TableContainer component={Paper} className={tableStyles.table}>
-        <h2 className={tableStyles.heading}>Статистика рефераллов</h2>
+        <div className={tableStyles.headContainer}>
+          <h2 className={tableStyles.heading}>Статистика рефераллов</h2>
+        </div>
         <Table className={tableStyles.table}>
           <TableHead className={tableStyles.tableHead}>
             <TableRow className={tableStyles.row}>
@@ -119,7 +121,7 @@ const ReferralsTable: FC = () => {
               <TableCell className={tableStyles.cell} align="left">
                 Выплачено
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
+              <TableCell className={tableStyles.cell} align="center">
                 Выход
               </TableCell>
             </TableRow>
@@ -149,7 +151,7 @@ const ReferralsTable: FC = () => {
                 <TableCell align="left" className={tableStyles.cell}>
                   {row.paid}
                 </TableCell>
-                <TableCell align="left" className={tableStyles.cell}>
+                <TableCell align="center" className={tableStyles.cell}>
                   {row.withdrawal}
                 </TableCell>
               </TableRow>

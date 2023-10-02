@@ -13,4 +13,20 @@
 
 .tableContainer {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
+
+.headContainer {
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading {
+  margin: 0;
+}
+

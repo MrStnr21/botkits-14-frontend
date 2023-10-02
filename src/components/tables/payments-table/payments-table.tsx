@@ -29,20 +29,9 @@ const rows = [
   createData('15.08.22', '19.08.22', 'Документ', 'Выплачено', '1500 ₽'),
 ];
 
-interface IPaymentsTable {
-  onClick: () => void;
-}
-
-const PaymentsTable: FC<IPaymentsTable> = ({ onClick }) => {
+const PaymentsTable: FC = () => {
   return (
-    // <StyledEngineProvider injectFirst>
     <TableContainer component={Paper} className={tableStyles.table}>
-      <div className={tableStyles.header}>
-        <h2 className={tableStyles.heading}>Выплаты</h2>
-        <button onClick={onClick} type="button">
-          Кнопка
-        </button>
-      </div>
       <Table>
         <TableHead className={tableStyles.tableHead}>
           <TableRow className={tableStyles.row}>
@@ -86,7 +75,6 @@ const PaymentsTable: FC<IPaymentsTable> = ({ onClick }) => {
         </TableBody>
       </Table>
     </TableContainer>
-    // </StyledEngineProvider>
   );
 };
 

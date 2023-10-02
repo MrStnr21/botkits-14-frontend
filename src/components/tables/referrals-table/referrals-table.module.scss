@@ -12,12 +12,21 @@
   max-height: 310px;
 }
 
+.headContainer {
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .tableBody {
   overflow-y: scroll;
 }
 
 .heading {
-  margin: 0 0 20px;
+  margin: 0;
   padding: 0;
 }
 
