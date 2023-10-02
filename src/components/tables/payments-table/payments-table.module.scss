@@ -1,0 +1,39 @@
+@import '../../../components/app/vars';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.table {
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: $border-radius-30;
+  max-height: 310px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.tableBody {
+  overflow-y: scroll;
+}
+
+.heading {
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.row {
+  border: none;
+}
+
+.cell {
+  border: none;
+  padding: 10px 0 10px;
+}
+
+.cell:first-child {
+  padding-top: 20px;
+}

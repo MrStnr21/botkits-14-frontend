@@ -1,15 +1,26 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
+import { StyledEngineProvider } from '@mui/material';
 import stylesPartnership from './partnership.module.scss';
-import PartnershipTable from '../../components/partnership-table/partnership-table';
+import ReferralsTable from '../../components/tables/referrals-table/referrals-table';
+import PaymentsTable from '../../components/tables/payments-table/payments-table';
 
 const Partnership: FC = (): JSX.Element => {
+  const [isTableVisible, setTableVisible] = useState(false);
+
+  const toggleSecondTable = () => {
+    setTableVisible(!isTableVisible);
+  };
+
   return (
-    <div className={stylesPartnership.partnershipLayout}>
-      <div className={stylesPartnership.tableContainer}>
-        <PartnershipTable />
+    <StyledEngineProvider injectFirst>
+      <div className={stylesPartnership.partnershipLayout}>
+        <div className={stylesPartnership.tableContainer}>
+          <ReferralsTable />
+          <PaymentsTable onClick={toggleSecondTable} />
+        </div>
       </div>
-    </div>
+    </StyledEngineProvider>
   );
 };
 
