@@ -1,0 +1,18 @@
+@import '../../components/app/vars';
+
+.container {
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: $h2-font-size;
+  font-weight: $bold;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-space;
+  color: $primary-text-color;
+  margin: 0;
+}
