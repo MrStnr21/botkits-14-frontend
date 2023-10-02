@@ -15,13 +15,13 @@ const Partnership: FC = (): JSX.Element => {
   return (
     <StyledEngineProvider injectFirst>
       <div className={stylesPartnership.partnershipLayout}>
-        <div className={stylesPartnership.tableContainer}>
-          {/* <div className={stylesPartnership.referralsHeader}>
+        <div className={stylesPartnership.referralsTableContainer}>
+          <div className={stylesPartnership.headContainer}>
             <h2 className={stylesPartnership.heading}>Cтатистика рефераллов</h2>
-          </div> */}
+          </div>
           <ReferralsTable />
         </div>
-        <div className={stylesPartnership.tableContainer}>
+        <div className={stylesPartnership.paymentsTableContainer}>
           <div className={stylesPartnership.headContainer}>
             <h2 className={stylesPartnership.heading}>Выплаты</h2>
             <button onClick={toggleSecondTable} type="button">

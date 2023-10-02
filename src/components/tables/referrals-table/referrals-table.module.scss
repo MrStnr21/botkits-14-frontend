@@ -1,15 +1,16 @@
 @import '../../../components/app/vars';
 
-.tableWrapper {
-  border-radius: $border-radius-30;
-  box-shadow: 0px 6px 16px 0px #15123314;
-}
+// .tableWrapper {
+//   border-radius: $border-radius-30;
+//   box-shadow: 0px 6px 16px 0px #15123314;
+// }
 
 .table {
-  padding: 40px 40px 0;
+  padding: 0 40px 40px;
   box-sizing: border-box;
+  max-height: 220px;
+  box-shadow: none;
   border-radius: $border-radius-30;
-  max-height: 310px;
 }
 
 .headContainer {
@@ -34,11 +35,11 @@
   border: none;
 }
 
-.cell {
-  border: none;
-  padding: 10px 0 10px;
+.row:first-child {
+  padding: 0;
 }
 
-.cell:first-child {
-  padding-top: 20px;
+.cell {
+  padding: 20px 0 10px;
+  border: none;
 }

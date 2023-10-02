@@ -94,13 +94,12 @@ const ReferralsTable: FC = () => {
   // const [data, setData] = useState([]); // хук для получения данных с сервера
 
   return (
-    // <StyledEngineProvider injectFirst>
     <div className={tableStyles.tableWrapper}>
       <TableContainer component={Paper} className={tableStyles.table}>
-        <div className={tableStyles.headContainer}>
+        {/* <div className={tableStyles.headContainer}>
           <h2 className={tableStyles.heading}>Статистика рефераллов</h2>
-        </div>
-        <Table className={tableStyles.table}>
+        </div> */}
+        <Table>
           <TableHead className={tableStyles.tableHead}>
             <TableRow className={tableStyles.row}>
               <TableCell className={tableStyles.cell}>
@@ -121,7 +120,7 @@ const ReferralsTable: FC = () => {
               <TableCell className={tableStyles.cell} align="left">
                 Выплачено
               </TableCell>
-              <TableCell className={tableStyles.cell} align="center">
+              <TableCell className={tableStyles.cell} align="right">
                 Выход
               </TableCell>
             </TableRow>
@@ -151,7 +150,7 @@ const ReferralsTable: FC = () => {
                 <TableCell align="left" className={tableStyles.cell}>
                   {row.paid}
                 </TableCell>
-                <TableCell align="center" className={tableStyles.cell}>
+                <TableCell align="right" className={tableStyles.cell}>
                   {row.withdrawal}
                 </TableCell>
               </TableRow>
@@ -160,7 +159,6 @@ const ReferralsTable: FC = () => {
         </Table>
       </TableContainer>
     </div>
-    // </StyledEngineProvider>
   );
 };
 
