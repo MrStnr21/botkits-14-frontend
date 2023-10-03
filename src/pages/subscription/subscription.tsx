@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Button from '../../ui/buttons/button/button';
+import Typography from '../../ui/typography/typography';
 
 import stylesSubscription from './subscription.module.scss';
 
@@ -10,7 +11,7 @@ const Subscription: FC = (): JSX.Element => {
       <div className={stylesSubscription.container__body}>
         <div className={stylesSubscription.subscription}>
           <div className={stylesSubscription.subscription__header}>
-            <h3 className={stylesSubscription.subscription__rate}>Тариф</h3>
+            <Typography tag="h3">Тариф</Typography>
             <h4 className={stylesSubscription.subscription__status}>Статус</h4>
             <p className={stylesSubscription.subscription__info}>Инфо</p>
             <div className={stylesSubscription.subscription__button}>
