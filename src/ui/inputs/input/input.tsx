@@ -17,6 +17,7 @@ interface IInput {
   styled?: 'main' | 'secondary';
   pattern?: string;
   password?: boolean;
+  textColor?: 'default' | 'blue';
 }
 
 const Input: FC<IInput> = ({
@@ -34,6 +35,7 @@ const Input: FC<IInput> = ({
   styled,
   pattern,
   password,
+  textColor = 'default',
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -97,7 +99,7 @@ const Input: FC<IInput> = ({
           (error.error || isInvalid) && styled === 'secondary'
             ? stylesInput.inputSecondaryIncorrect
             : ''
-        }`}
+        } ${textColor === 'blue' && stylesInput.colorBlue}`}
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}

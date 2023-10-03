@@ -1,0 +1,34 @@
+@import '../../components/app/vars';
+
+.wrapper {
+  margin: 32px 40px 0 0;
+}
+
+.title {
+  font-family: 'IBM Plex Mono';
+  font-size: $h2-font-size;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-space;
+  font-weight: $bold;
+  color: $primary-text-color;
+  margin: 0 0 32px 0;
+}
+
+.flex_container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.flex_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_wrapper {
+  width: 399px;
+}
+
+.button_wrapper {
+  width: 188px;
+}

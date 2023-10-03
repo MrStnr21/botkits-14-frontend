@@ -32,6 +32,10 @@
 }
 
 /* Стили размера кнопки*/
+.small {
+  height: $s-button-height;
+}
+
 .medium {
   height: $m-button-height;
 }
