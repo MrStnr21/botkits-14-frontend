@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import PauseIcon from './pause';
+import PauseIcon from './PauseIcon';
 
 const meta: Meta<typeof PauseIcon> = {
   title: 'Components/Icons/PauseIcon',

@@ -6,7 +6,7 @@ export interface IXCircleClose {
   height?: number;
 }
 
-const PXCircleCloseIcon: FC<IXCircleClose> = ({
+const XCircleCloseIcon: FC<IXCircleClose> = ({
   color,
   width = 24,
   height = 24,
@@ -46,4 +46,4 @@ const PXCircleCloseIcon: FC<IXCircleClose> = ({
   </svg>
 );
 
-export default PXCircleCloseIcon;
+export default XCircleCloseIcon;

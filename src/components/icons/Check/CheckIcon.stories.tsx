@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CheckIcon from './check';
+import CheckIcon from './CheckIcon';
 
 const colors = {
   blue: '#243CBB',
@@ -13,7 +13,7 @@ const meta: Meta<typeof CheckIcon> = {
   argTypes: {
     color: {
       type: 'string',
-      description: 'Вариант платформы',
+      description: 'Выбор цвета',
       options: Object.keys(colors),
       mapping: colors,
       control: {

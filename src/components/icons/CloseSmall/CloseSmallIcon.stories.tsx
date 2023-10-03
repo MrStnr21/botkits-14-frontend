@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CloseSmallIcon from './close-small';
+import CloseSmallIcon from './CloseSmallIcon';
 
 const meta: Meta<typeof CloseSmallIcon> = {
   title: 'Components/Icons/CloseSmallIcon',

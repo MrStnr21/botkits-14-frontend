@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import QuickAnswerIcon from './quick-answer';
+import QuickAnswerIcon from './QuickAnswerIcon';
 
 const meta: Meta<typeof QuickAnswerIcon> = {
   title: 'Components/Icons/QuickAnswerIcon',
