@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@mui/material';
 
-import tableStyles from './referrals-table.module.scss';
+import stylesReferralsTable from './referrals-table.module.scss';
 
 function createData(
   linkTaps: string,
@@ -91,61 +91,73 @@ const rows = [
 
 const ReferralsTable: FC = () => {
   // const [data, setData] = useState([]); // хук для получения данных с сервера
+  // const [loading, setLoading] = useState(true); // хук для отображения прелоадера
+
+  // useEffect(() => {
+  // здесь будет запрос к серверу
+
+  // setData(serverData);
+  // setLoading(false);
+  // }, []);
+
+  // if (loading) {
+  //   return <div>Получение данных...</div>; // вынести логику в общий для таблиц компонент?
+  // }
 
   return (
-    <TableContainer component={Paper} className={tableStyles.table}>
+    <TableContainer component={Paper} className={stylesReferralsTable.table}>
       <Table>
-        <TableHead className={tableStyles.tableHead}>
-          <TableRow className={tableStyles.row}>
-            <TableCell className={tableStyles.cell}>
+        <TableHead className={stylesReferralsTable.tableHead}>
+          <TableRow className={stylesReferralsTable.row}>
+            <TableCell className={stylesReferralsTable.cell}>
               Перешли по ссылке
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesReferralsTable.cell} align="left">
               Регистрация
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesReferralsTable.cell} align="left">
               Оплата
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesReferralsTable.cell} align="left">
               Сумма
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesReferralsTable.cell} align="left">
               Комиссия
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesReferralsTable.cell} align="left">
               Выплачено
             </TableCell>
-            <TableCell className={tableStyles.cell} align="right">
+            <TableCell className={stylesReferralsTable.cell} align="right">
               Вывод
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody className={tableStyles.tableBody}>
+        <TableBody className={stylesReferralsTable.tableBody}>
           {rows.map((row) => (
-            <TableRow key={row.linkTaps} className={tableStyles.row}>
+            <TableRow key={row.linkTaps} className={stylesReferralsTable.row}>
               <TableCell
                 component="th"
                 scope="row"
-                className={tableStyles.cell}
+                className={stylesReferralsTable.cell}
               >
                 {row.linkTaps}
               </TableCell>
-              <TableCell align="left" className={tableStyles.cell}>
+              <TableCell align="left" className={stylesReferralsTable.cell}>
                 {row.regs}
               </TableCell>
-              <TableCell align="left" className={tableStyles.cell}>
+              <TableCell align="left" className={stylesReferralsTable.cell}>
                 {row.status}
               </TableCell>
-              <TableCell align="left" className={tableStyles.cell}>
+              <TableCell align="left" className={stylesReferralsTable.cell}>
                 {row.sum}
               </TableCell>
-              <TableCell align="left" className={tableStyles.cell}>
+              <TableCell align="left" className={stylesReferralsTable.cell}>
                 {row.fee}
               </TableCell>
-              <TableCell align="left" className={tableStyles.cell}>
+              <TableCell align="left" className={stylesReferralsTable.cell}>
                 {row.paid}
               </TableCell>
-              <TableCell align="right" className={tableStyles.cell}>
+              <TableCell align="right" className={stylesReferralsTable.cell}>
                 {row.withdrawal}
               </TableCell>
             </TableRow>

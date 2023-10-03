@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@mui/material';
 
-import tableStyles from './payments-table.module.scss';
+import stylesPaymentsTable from './payments-table.module.scss';
 
 function createData(
   reqDate: string,
@@ -30,43 +30,46 @@ const rows = [
 
 const PaymentsTable: FC = () => {
   return (
-    <TableContainer component={Paper} className={tableStyles.table}>
+    <TableContainer component={Paper} className={stylesPaymentsTable.table}>
       <Table>
-        <TableHead className={tableStyles.tableHead}>
-          <TableRow className={tableStyles.row}>
-            <TableCell className={tableStyles.cell} align="left">
+        <TableHead className={stylesPaymentsTable.tableHead}>
+          <TableRow className={stylesPaymentsTable.row}>
+            <TableCell className={stylesPaymentsTable.cell} align="left">
               Дата запроса
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesPaymentsTable.cell} align="left">
               Дата выплаты
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesPaymentsTable.cell} align="left">
               Акт
             </TableCell>
-            <TableCell className={tableStyles.cell} align="left">
+            <TableCell className={stylesPaymentsTable.cell} align="left">
               Статус
             </TableCell>
-            <TableCell className={tableStyles.cell} align="right">
+            <TableCell className={stylesPaymentsTable.cell} align="right">
               Сумма выплаты
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.reqDate} className={tableStyles.tableRow}>
-              <TableCell className={tableStyles.cell} align="left">
+            <TableRow
+              key={row.reqDate}
+              className={stylesPaymentsTable.tableRow}
+            >
+              <TableCell className={stylesPaymentsTable.cell} align="left">
                 {row.reqDate}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
+              <TableCell className={stylesPaymentsTable.cell} align="left">
                 {row.payDate}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
+              <TableCell className={stylesPaymentsTable.cell} align="left">
                 {row.document}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="left">
+              <TableCell className={stylesPaymentsTable.cell} align="left">
                 {row.status}
               </TableCell>
-              <TableCell className={tableStyles.cell} align="right">
+              <TableCell className={stylesPaymentsTable.cell} align="right">
                 {row.sum}
               </TableCell>
             </TableRow>
