@@ -1,0 +1,23 @@
+@import '../../components/app/vars';
+
+@mixin typography {
+  font-family: 'IBM Plex Mono', sans-serif;
+  margin: 0;
+  color: $primary-text-color;
+}
+
+.h2 {
+  @include typography;
+  font-size: $h2-font-size;
+  font-weight: $bold;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-space;
+
+}
+
+.h3 {
+  @include typography;
+  font-size: $h3-font-size;
+  font-weight: $bold;
+  line-height: $h3-line-height;
+}
