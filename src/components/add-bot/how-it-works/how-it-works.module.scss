@@ -47,9 +47,11 @@
 }
 
 .buttons_container {
-  @extend %flex-element-center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
   width: 100%;
-  gap: 29px;
+  column-gap: 29px;
+  row-gap: 12px;
   transform: scaleY(0);
   transform-origin: top;
   transition:
