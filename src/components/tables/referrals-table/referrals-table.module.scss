@@ -1,11 +1,21 @@
 @import '../../../components/app/vars';
 
-.table {
+.tableContainer {
   padding: 0 40px 0;
   box-sizing: border-box;
   max-height: 244px;
   box-shadow: none;
   border-radius: $border-radius-30;
+}
+
+.table {
+  @media screen and (max-width: 860px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px $hover-grey-color solid;
+  }
 }
 
 .headContainer {
@@ -15,6 +25,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.tableHead {
+  @media screen and (max-width: 860px) {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .tableBody {
@@ -28,9 +45,27 @@
 
 .row {
   border: none;
+
+  @media screen and (max-width: 860px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .cell {
   padding: 0 0 40px;
   border: none;
+
+  @media screen and (max-width: 860px) {
+    color: $default-dark-grey-color;
+    padding: 0 0 10px;
+  }
+}
+
+.bodyCell {
+  @extend .cell;
+
+  @media screen and (max-width: 860px) {
+    color: $primary-text-color;
+  }
 }
