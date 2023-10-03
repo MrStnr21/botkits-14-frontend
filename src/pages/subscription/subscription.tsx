@@ -6,7 +6,7 @@ import stylesSubscription from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
 import useModal from '../../services/hooks/use-modal';
-import PaymentPopup from '../../components/popups/activate-subscription-popup/payment-popup';
+import PaymentPopup from '../../components/popups/payment-popup/payment-popup';
 
 const Subscription: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
