@@ -1,9 +1,9 @@
 @import '../../../components/app/vars';
 
 .table {
-  padding: 0 40px 40px;
+  padding: 0 40px 0;
   box-sizing: border-box;
-  max-height: 220px;
+  max-height: 244px;
   box-shadow: none;
   border-radius: $border-radius-30;
 }
@@ -30,11 +30,7 @@
   border: none;
 }
 
-.row:first-child {
-  padding: 0;
-}
-
 .cell {
-  padding: 20px 0 10px;
+  padding: 0 0 40px;
   border: none;
 }
