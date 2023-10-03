@@ -1,38 +1,41 @@
 import { FC } from 'react';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
-
-import stylesSubscription from './subscription.module.scss';
+import style from './subscription.module.scss';
 
 const Subscription: FC = (): JSX.Element => {
   return (
-    <div className={stylesSubscription.container}>
-      <h2 className={stylesSubscription.title}>Подписка и платежи</h2>
-      <div className={stylesSubscription.container__body}>
-        <div className={stylesSubscription.subscription}>
-          <div className={stylesSubscription.subscription__header}>
-            <Typography tag="h3">Тариф</Typography>
-            <h4 className={stylesSubscription.subscription__status}>Статус</h4>
-            <p className={stylesSubscription.subscription__info}>Инфо</p>
-            <div className={stylesSubscription.subscription__button}>
+    <div className={style.container}>
+      <Typography tag="h2">Подписка и платежи</Typography>
+      <div className={style.container__body}>
+        <div className={style.subscription}>
+          <div className={style.subscription__header}>
+            <Typography tag="h3" className={style.subscription__rate}>
+              Тариф
+            </Typography>
+            <Typography tag="h4" className={style.subscription__status}>
+              Статус
+            </Typography>
+            <Typography tag="p" className={style.subscription__info}>
+              Инфо
+            </Typography>
+            <div className={style.subscription__button}>
               <Button variant="default" color="green">
                 Активировать подписку
               </Button>
             </div>
           </div>
-          <div className={stylesSubscription.subscription__body}>
-            <div className={stylesSubscription.subscription__balance}>
-              <p className={stylesSubscription.subscription__text}>Баланс</p>
-              <h3 className={stylesSubscription.subscription__price}>
-                {`${0}₽`}
-              </h3>
+          <div className={style.subscription__body}>
+            <div className={style.subscription__balance}>
+              <Typography tag="p">Баланс</Typography>
+              <Typography tag="h3">{`${0}₽`}</Typography>
             </div>
             <Button variant="default" color="grey">
               Активировать промокод
             </Button>
           </div>
         </div>
-        <div className={stylesSubscription.payment}>payment</div>
+        <div className={style.payment}>payment</div>
       </div>
     </div>
   );
