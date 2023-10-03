@@ -35,7 +35,12 @@ const Subscription: FC = (): JSX.Element => {
             </Button>
           </div>
         </div>
-        <div className={style.payment}>payment</div>
+        <div className={style.payment}>
+          <div className={style.payment__header}>
+            <Typography tag="h4">История платежей</Typography>
+            <Typography tag="p">All</Typography>
+          </div>
+        </div>
       </div>
     </div>
   );

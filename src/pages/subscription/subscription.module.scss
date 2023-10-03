@@ -2,6 +2,7 @@
 
 .container {
   padding-top: 32px;
+  margin-right: 40px;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -77,6 +78,22 @@
     height: min-content;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.payment {
+  width: 100%;
+  padding: 36px 32px 24px;
+  box-sizing: border-box;
+  background-color: $hover-grey-color;
+  border-radius: $border-radius-30;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__header {
+    display: flex;
     justify-content: space-between;
   }
 }
