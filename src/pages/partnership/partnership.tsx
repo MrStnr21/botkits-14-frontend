@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { StyledEngineProvider } from '@mui/material';
+import { StyledEngineProvider, useMediaQuery } from '@mui/material';
 import cn from 'classnames';
 import stylesPartnership from './partnership.module.scss';
 import ReferralsTable from '../../components/tables/referrals-table/referrals-table';
@@ -10,15 +10,27 @@ import PaymentsTable from '../../components/tables/payments-table/payments-table
 import chevron from '../../images/icon/20x20/chevron/down.svg';
 
 const Partnership: FC = (): JSX.Element => {
-  const [isTableVisible, setTableVisible] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 860px)');
+  const [isReferralsTableVisible, setReferralsTableVisible] = useState(true);
+  const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
 
   const chevronClassName = cn(
     stylesPartnership.chevron,
-    isTableVisible && stylesPartnership.chevron_active
+    isPaymentsTableVisible && stylesPartnership.chevron_active
   );
 
+  const toggleFirstTable = () => {
+    setReferralsTableVisible(!isReferralsTableVisible);
+    setPaymentsTableVisible(!isPaymentsTableVisible);
+  };
+
   const toggleSecondTable = () => {
-    setTableVisible(!isTableVisible);
+    setPaymentsTableVisible(!isPaymentsTableVisible);
+    if (!isMobile) {
+      setReferralsTableVisible(true);
+    } else {
+      setReferralsTableVisible(false);
+    }
   };
 
   return (
@@ -26,13 +38,22 @@ const Partnership: FC = (): JSX.Element => {
       <div className={stylesPartnership.partnershipLayout}>
         <div className={stylesPartnership.referralsTableContainer}>
           <div className={stylesPartnership.headContainer}>
-            <h2 className={stylesPartnership.heading}>Cтатистика рефераллов</h2>
+            <h2 className={stylesPartnership.title}>Cтатистика рефераллов</h2>
+            {isMobile && (
+              <button
+                type="button"
+                onClick={toggleFirstTable}
+                className={chevronClassName}
+              >
+                <ReactSVG src={chevron} />
+              </button>
+            )}
           </div>
-          <ReferralsTable />
+          {isReferralsTableVisible && <ReferralsTable />}
         </div>
         <div className={stylesPartnership.paymentsTableContainer}>
           <div className={stylesPartnership.headContainer}>
-            <h2 className={stylesPartnership.heading}>Выплаты</h2>
+            <h2 className={stylesPartnership.title}>Выплаты</h2>
             <button
               type="button"
               onClick={toggleSecondTable}
@@ -41,7 +62,7 @@ const Partnership: FC = (): JSX.Element => {
               <ReactSVG src={chevron} />
             </button>
           </div>
-          {isTableVisible && <PaymentsTable />}
+          {isPaymentsTableVisible && <PaymentsTable />}
         </div>
       </div>
     </StyledEngineProvider>

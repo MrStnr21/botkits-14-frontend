@@ -9,6 +9,12 @@
   align-items: center;
   background-color: $default-grey-color;
   border-radius: $border-radius-30;
+
+  @media screen and (max-width: 680px) {
+    margin: 0 auto;
+    max-width: 90vw;
+    width: 100%;
+  }
 }
 
 .paymentsTableContainer {
@@ -34,8 +40,19 @@
   align-items: center;
 }
 
-.heading {
+.title {
   margin: 0;
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 31px;
+  letter-spacing: 0px;
+
+  @media screen and (max-width: 860px) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 23px;
+  }
 }
 
 .button {
