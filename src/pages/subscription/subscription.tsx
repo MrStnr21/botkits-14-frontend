@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
+import { rows, PaymentTable } from './payment-table/payment-table';
 import style from './subscription.module.scss';
 
 const Subscription: FC = (): JSX.Element => {
@@ -40,6 +41,7 @@ const Subscription: FC = (): JSX.Element => {
             <Typography tag="h4">История платежей</Typography>
             <Typography tag="p">All</Typography>
           </div>
+          <PaymentTable tableData={rows} />
         </div>
       </div>
     </div>
