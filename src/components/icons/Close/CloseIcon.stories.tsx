@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import PauseIcon from './PauseIcon';
+import CloseIcon from './CloseIcon';
 
 const colors = {
   black: '#060C23',
   grey: '#A6B3C9',
 };
 
-const meta: Meta<typeof PauseIcon> = {
-  title: 'Components/Icons/PauseIcon',
-  component: PauseIcon,
+const meta: Meta<typeof CloseIcon> = {
+  title: 'Components/Icons/CloseIcon',
+  component: CloseIcon,
   argTypes: {
     color: {
       type: 'string',
@@ -29,10 +29,19 @@ const meta: Meta<typeof PauseIcon> = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
-export const Pause: Story = {
+
+export const CloseDefault: Story = {
   args: {
-    color: '#A6B3C9',
+    color: '#060C23',
     width: 24,
     height: 24,
+  },
+};
+
+export const CloseSmall: Story = {
+  args: {
+    color: '#A6B3C9',
+    width: 18,
+    height: 18,
   },
 };

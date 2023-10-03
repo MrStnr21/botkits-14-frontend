@@ -3,7 +3,7 @@ import ChevronIcon from './ChevronIcon';
 
 const colors = {
   black: '#060C23',
-  grey: '#A6B3C9',
+  grey: '#243CBB',
   while: '#FFFFFF',
 };
 
