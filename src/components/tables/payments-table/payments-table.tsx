@@ -7,6 +7,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  useMediaQuery,
 } from '@mui/material';
 
 import stylesPaymentsTable from './payments-table.module.scss';
@@ -29,53 +30,120 @@ const rows = [
 ];
 
 const PaymentsTable: FC = () => {
+  const isMobile = useMediaQuery('(max-width: 860px)');
+
   return (
-    <TableContainer component={Paper} className={stylesPaymentsTable.table}>
-      <Table>
-        <TableHead className={stylesPaymentsTable.tableHead}>
-          <TableRow className={stylesPaymentsTable.row}>
-            <TableCell className={stylesPaymentsTable.cell} align="left">
-              Дата запроса
-            </TableCell>
-            <TableCell className={stylesPaymentsTable.cell} align="left">
-              Дата выплаты
-            </TableCell>
-            <TableCell className={stylesPaymentsTable.cell} align="left">
-              Акт
-            </TableCell>
-            <TableCell className={stylesPaymentsTable.cell} align="left">
-              Статус
-            </TableCell>
-            <TableCell className={stylesPaymentsTable.cell} align="right">
-              Сумма выплаты
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+    <TableContainer
+      component={Paper}
+      className={stylesPaymentsTable.tableContainer}
+    >
+      {isMobile ? (
+        <>
           {rows.map((row) => (
-            <TableRow
-              key={row.reqDate}
-              className={stylesPaymentsTable.tableRow}
-            >
+            <Table key={row.reqDate} className={stylesPaymentsTable.table}>
+              <TableHead className={stylesPaymentsTable.tableHead}>
+                <TableRow className={stylesPaymentsTable.row}>
+                  <TableCell className={stylesPaymentsTable.cell}>
+                    Дата запроса
+                  </TableCell>
+                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                    Дата выплаты
+                  </TableCell>
+                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                    Акт
+                  </TableCell>
+                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                    Статус
+                  </TableCell>
+                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                    Сумма выплаты
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody className={stylesPaymentsTable.tableBody}>
+                <TableRow className={stylesPaymentsTable.row}>
+                  <TableCell
+                    align="right"
+                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                  >
+                    {row.reqDate}
+                  </TableCell>
+                  <TableCell
+                    align="right"
+                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                  >
+                    {row.payDate}
+                  </TableCell>
+                  <TableCell
+                    align="right"
+                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                  >
+                    {row.document}
+                  </TableCell>
+                  <TableCell
+                    align="right"
+                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                  >
+                    {row.status}
+                  </TableCell>
+                  <TableCell
+                    align="right"
+                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                  >
+                    {row.sum}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          ))}
+        </>
+      ) : (
+        <Table className={stylesPaymentsTable.tableContainer}>
+          <TableHead className={stylesPaymentsTable.tableHead}>
+            <TableRow className={stylesPaymentsTable.row}>
               <TableCell className={stylesPaymentsTable.cell} align="left">
-                {row.reqDate}
+                Дата запроса
               </TableCell>
               <TableCell className={stylesPaymentsTable.cell} align="left">
-                {row.payDate}
+                Дата выплаты
               </TableCell>
               <TableCell className={stylesPaymentsTable.cell} align="left">
-                {row.document}
+                Акт
               </TableCell>
               <TableCell className={stylesPaymentsTable.cell} align="left">
-                {row.status}
+                Статус
               </TableCell>
               <TableCell className={stylesPaymentsTable.cell} align="right">
-                {row.sum}
+                Сумма выплаты
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.reqDate}
+                className={stylesPaymentsTable.tableRow}
+              >
+                <TableCell className={stylesPaymentsTable.cell} align="left">
+                  {row.reqDate}
+                </TableCell>
+                <TableCell className={stylesPaymentsTable.cell} align="left">
+                  {row.payDate}
+                </TableCell>
+                <TableCell className={stylesPaymentsTable.cell} align="left">
+                  {row.document}
+                </TableCell>
+                <TableCell className={stylesPaymentsTable.cell} align="left">
+                  {row.status}
+                </TableCell>
+                <TableCell className={stylesPaymentsTable.cell} align="right">
+                  {row.sum}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </TableContainer>
   );
 };
