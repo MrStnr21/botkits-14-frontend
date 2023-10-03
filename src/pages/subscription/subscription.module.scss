@@ -1,0 +1,97 @@
+@import '../../components/app/vars';
+
+.container {
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__body {
+    display: flex;
+    gap: 28px;
+  }
+}
+
+.title {
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: $h2-font-size;
+  font-weight: $bold;
+  line-height: $h2-line-height;
+  letter-spacing: $h2-letter-space;
+  color: $primary-text-color;
+  margin: 0;
+}
+
+.subscription {
+  width: 100%;
+  max-width: 404px;
+  height: 352px;
+  position: relative;
+
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+    'rate status'
+    'info info'
+    'button button';
+    row-gap: 8px;
+    position: absolute;
+    box-sizing: border-box;
+    background-color: $white-color;
+    border-radius: $border-radius-30;
+    box-shadow: $l-box-shadow;
+    overflow: hidden;
+    width: 100%;
+    max-width: 404px;
+    height: 228px;
+    padding: 32px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  &__rate {
+    margin: 0;
+    grid-area: rate;
+  }
+
+  &__status {
+    margin: 0;
+    grid-area: status;
+    justify-self: end;
+  }
+
+  &__info {
+    margin: 0;
+    grid-area: info;
+  }
+
+  &__button {
+    margin-top: 16px;
+    grid-area: button;
+  }
+
+  &__body {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 404px;
+    height: 205px;
+    border-radius: $border-radius-30;
+    background-color: $hover-grey-color;
+    padding: 113px 32px 32px;
+    display: flex;
+    gap: 24px;
+  }
+
+  &__text {
+    margin: 0;
+  }
+
+  &__price {
+    margin: 0;
+  }
+}
