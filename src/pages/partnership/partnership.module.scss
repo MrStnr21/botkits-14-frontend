@@ -1,9 +1,5 @@
 @import '../../components/app/vars';
 
-.wrapper {
-  margin: 32px 40px 0 0;
-}
-
 .title {
   font-family: 'IBM Plex Mono';
   font-size: $h2-font-size;
@@ -23,6 +19,7 @@
 .flex_wrapper {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .input_wrapper {
@@ -31,4 +28,92 @@
 
 .button_wrapper {
   width: 188px;
+}
+
+.partnershipLayout {
+  margin-top: 32px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $default-grey-color;
+  border-radius: $border-radius-30;
+
+  @media screen and (max-width: 680px) {
+    margin: 0 auto;
+    max-width: 90vw;
+    width: 100%;
+  }
+}
+
+.paymentsTableContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.referralsTableContainer {
+  @extend .paymentsTableContainer;
+  background-color: #FFF;
+  border-radius: $border-radius-30;
+  box-sizing: border-box;
+  box-shadow: 0px 6px 16px 0px #15123314;
+}
+
+.headContainer {
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tableTitle {
+  margin: 0;
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 31px;
+  letter-spacing: 0px;
+
+  @media screen and (max-width: 860px) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 23px;
+  }
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+}
+
+.chevron {
+  @extend %button-style-reset;
+  @extend %flex-element-center;
+  aspect-ratio: 1 / 1;
+  cursor: $cursor;
+  transition: all 0.2s linear;
+}
+
+.chevron div {
+  @extend %flex-element-center;
+}
+
+.chevron svg {
+  height: $partnership-table-chevron-icon-size;
+  width: $partnership-table-chevron-icon-size;
+  stroke: $partnership-table-chevron-icon-default-color;
+  stroke-width: $partnership-table-chevron-icon-stroke-width;
+  transition: all 0.1s linear;
+}
+
+.chevron:hover svg {
+  stroke: $partnership-table-chevron-icon-hover-color;
+}
+
+.chevron_active {
+  rotate: 180deg;
 }

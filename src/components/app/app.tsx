@@ -50,49 +50,49 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.homePage}
           element={
-            <ProtectedRoute notAuth>
-              <Layout />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <Layout />
+            // </ProtectedRoute>
           }
         >
           <Route
             path={routesUrl.homePage}
             element={
-              <ProtectedRoute notAuth>
-                <Dashboard />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Dashboard />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.addBot}
             element={
-              <ProtectedRoute notAuth>
-                <AddBotPage />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <AddBotPage />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.botBuilder}
             element={
-              <ProtectedRoute notAuth>
-                <BotBuilder />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <BotBuilder />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.chat}
             element={
-              <ProtectedRoute notAuth>
-                <Chat />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Chat />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.mailing}
             element={
-              <ProtectedRoute notAuth>
-                <Mailing />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Mailing />
+              // </ProtectedRoute>
             }
           >
             {/* <Route path="" element={<First... />} />
@@ -103,25 +103,25 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.partnership}
             element={
-              <ProtectedRoute notAuth>
-                <Partnership />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Partnership />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.share}
             element={
-              <ProtectedRoute notAuth>
-                <Share />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Share />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.subscription}
             element={
-              <ProtectedRoute notAuth>
-                <Subscription />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Subscription />
+              // </ProtectedRoute>
             }
           />
           <Route path={routesUrl.notFound} element={<NotFound />} />
