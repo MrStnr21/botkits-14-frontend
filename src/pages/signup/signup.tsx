@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, FormEvent, ChangeEvent } from 'react';
+import { FC, useEffect, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
@@ -30,44 +30,25 @@ const Signup: FC = (): JSX.Element => {
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [phoneCode, setPhoneCode] = useState<string>('');
-  const [formValid, setFormValid] = useState<{
-    usernameIsValid: boolean;
-    emailIsValid: boolean;
-    passwordIsValid: boolean;
-    phoneNumberMainIsValid: boolean;
-  }>({
-    usernameIsValid: false,
-    emailIsValid: false,
-    passwordIsValid: false,
-    phoneNumberMainIsValid: false,
-  });
 
   const { values, handleChange, setValues } = useForm({
-    username: '',
-    email: '',
-    password: '',
-    phone: '',
-    phoneNumberMain: '',
+    username: { value: '', valueValid: false },
+    email: { value: '', valueValid: false },
+    password: { value: '', valueValid: false },
+    phone: { value: '', valueValid: false },
+    phoneNumberMain: { value: '', valueValid: false },
   });
 
   useEffect(() => {
     if (
-      formValid.emailIsValid &&
-      formValid.passwordIsValid &&
-      formValid.phoneNumberMainIsValid &&
-      formValid.usernameIsValid
+      values.username.valueValid &&
+      values.email.valueValid &&
+      values.password.valueValid &&
+      values.phoneNumberMain.valueValid
     ) {
       setButtonDisabled(false);
     } else setButtonDisabled(true);
-  }, [formValid]);
-
-  const customHandleChange = (input: ChangeEvent<HTMLInputElement>) => {
-    setFormValid({
-      ...formValid,
-      [`${input.target?.name}IsValid`]: input.target.validity?.valid,
-    });
-    handleChange(input);
-  };
+  }, [values]);
 
   const userData = useAppSelector(signupSel);
 
@@ -86,10 +67,10 @@ const Signup: FC = (): JSX.Element => {
     e.preventDefault();
     dispatch(
       signupAction({
-        username: values.username,
-        email: values.email,
-        password: values.password,
-        phone: phoneCode + values.phoneNumberMain,
+        username: values.username.value,
+        email: values.email.value,
+        password: values.password.value,
+        phone: phoneCode + values.phoneNumberMain.value,
       })
     );
   };
@@ -158,8 +139,8 @@ const Signup: FC = (): JSX.Element => {
                 placeholder="Имя"
                 name="username"
                 maxLength={30}
-                onChange={customHandleChange}
-                value={values.username}
+                onChange={handleChange}
+                value={values.username.value}
                 styled="secondary"
                 required
               />
@@ -167,8 +148,8 @@ const Signup: FC = (): JSX.Element => {
                 placeholder="E-mail"
                 name="email"
                 maxLength={30}
-                onChange={customHandleChange}
-                value={values.email}
+                onChange={handleChange}
+                value={values.email.value}
                 errorMessage="Введите корректный email"
                 styled="secondary"
                 pattern="^\S+@\S+\.\S+$"
@@ -178,8 +159,8 @@ const Signup: FC = (): JSX.Element => {
                 placeholder="Пароль"
                 name="password"
                 maxLength={30}
-                onChange={customHandleChange}
-                value={values.password}
+                onChange={handleChange}
+                value={values.password.value}
                 styled="secondary"
                 password
                 type="password"
@@ -199,13 +180,14 @@ const Signup: FC = (): JSX.Element => {
                 <Input
                   placeholder="Телефон"
                   name="phoneNumberMain"
-                  onChange={customHandleChange}
-                  value={values.phoneNumberMain}
+                  onChange={handleChange}
+                  value={values.phoneNumberMain.value}
                   maxLength={15}
                   styled="secondary"
                   pattern="^\d+$"
                   errorMessage="Номер телефона может содержать только цифры"
                   required
+                  type="number"
                 />
               </div>
             </div>

@@ -61,9 +61,9 @@ const CreateBot: FC<ICreateBot> = ({
   const profile = useAppSelector(signupSel || signinSel);
 
   const { values, handleChange, setValues } = useForm({
-    botName: '',
-    accessKey: '',
-    uri: '',
+    botName: { value: '', valueValid: false },
+    accessKey: { value: '', valueValid: false },
+    uri: { value: '', valueValid: false },
   });
 
   const history = useNavigate();
@@ -73,14 +73,14 @@ const CreateBot: FC<ICreateBot> = ({
   const token = getAccessToken();
 
   const disabledDefault =
-    values.accessKey.length > 1 && values.botName.length > 1;
+    values.accessKey.value.length > 1 && values.botName.value.length > 1;
 
-  const disabledPages = arrPages.length && values.botName.length > 1;
+  const disabledPages = arrPages.length && values.botName.value.length > 1;
 
   const disabledBotURI =
-    values.accessKey.length > 1 &&
-    values.botName.length > 1 &&
-    values.uri.length > 1;
+    values.accessKey.value.length > 1 &&
+    values.botName.value.length > 1 &&
+    values.uri.value.length > 1;
 
   const disabled = botURI
     ? !disabledBotURI
@@ -93,13 +93,13 @@ const CreateBot: FC<ICreateBot> = ({
 
     const dataBot = {
       icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
-      botName: values?.botName,
+      botName: values?.botName.value,
       profile,
       messenger: {
         name: botName,
         page: 'страница',
-        accessKey: values?.accessKey,
-        url: values?.uri,
+        accessKey: values?.accessKey.value,
+        url: values?.uri.value,
       },
       botSettings: {},
     };
@@ -112,7 +112,11 @@ const CreateBot: FC<ICreateBot> = ({
       console.log(err);
     }
 
-    setValues({ botName: '', accessKey: '', uri: '' });
+    setValues({
+      botName: { value: '', valueValid: false },
+      accessKey: { value: '', valueValid: false },
+      uri: { value: '', valueValid: false },
+    });
   };
   return (
     <div className={stylesCreateBot.create}>
@@ -139,7 +143,7 @@ const CreateBot: FC<ICreateBot> = ({
                 <StepperFillBot step="1" text="Ключ доступа">
                   <Input
                     name="accessKey"
-                    value={values?.accessKey}
+                    value={values?.accessKey.value}
                     placeholder="Введите ключ доступа"
                     onChange={handleChange}
                   />
@@ -158,7 +162,7 @@ const CreateBot: FC<ICreateBot> = ({
                   <StepperFillBot step="2" text="URI бота">
                     <Input
                       name="uri"
-                      value={values?.uri}
+                      value={values?.uri.value}
                       placeholder="Введите URI"
                       onChange={handleChange}
                     />
@@ -166,7 +170,7 @@ const CreateBot: FC<ICreateBot> = ({
                   <StepperFillBot step="3" text="Название бота">
                     <Input
                       name="botName"
-                      value={values?.botName}
+                      value={values?.botName.value}
                       placeholder="Введите название бота"
                       onChange={handleChange}
                     />
@@ -176,7 +180,7 @@ const CreateBot: FC<ICreateBot> = ({
                 <StepperFillBot step="2" text="Название бота">
                   <Input
                     name="botName"
-                    value={values?.botName}
+                    value={values?.botName.value}
                     placeholder="Введите название бота"
                     onChange={handleChange}
                   />
