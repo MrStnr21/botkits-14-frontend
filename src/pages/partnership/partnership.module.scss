@@ -1,53 +1,6 @@
 @import '../../components/app/vars';
 
-.title {
-  font-family: 'IBM Plex Mono';
-  font-size: $h2-font-size;
-  line-height: $h2-line-height;
-  letter-spacing: $h2-letter-space;
-  font-weight: $bold;
-  color: $primary-text-color;
-  margin: 0 0 32px 0;
-}
-
-.flex_container {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.flex_wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  background-color: $white-color;
-  padding-bottom: 40px;
-}
-
-.input_wrapper {
-  max-width: 399px;
-  width: 100%;
-}
-
-.button_wrapper {
-  width: 20%;
-  padding: 0 0 40px;
-
-  @media screen and (max-width: 860px) {
-    width: 80%;
-  }
-}
-
-.tablesWrapper {
-  margin: 0;
-  border-radius: $border-radius-30;
-  background-color: $default-grey-color;
-  width: 100%;
-}
-
-.partnershipLayout {
+.partnership {
   margin-top: 32px;
   margin-right: 40px;
   display: flex;
@@ -60,44 +13,93 @@
     max-width: 90vw;
     width: 100%;
   }
-}
 
-.paymentsTableContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding-bottom: 40px;
+  }
 
-.referralsTableContainer {
-  @extend .paymentsTableContainer;
-  background-color: $white-color;
-  border-radius: $border-radius-30;
-  box-sizing: border-box;
-  box-shadow: 0px 6px 16px 0px #15123314;
-}
-
-.titleContainer {
-  padding: 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.tableTitle {
-  margin: 0;
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h3-font-size;
-  font-weight: $semi-bold;
-  line-height: $h3-line-height;
-
-  @media screen and (max-width: 860px) {
-    font-size: $h4-font-size;
+  &__title {
+    font-family: 'IBM Plex Mono';
+    font-size: $h2-font-size;
+    line-height: $h2-line-height;
+    letter-spacing: $h2-letter-space;
     font-weight: $bold;
-    line-height: $h4-line-height;
+    color: $primary-text-color;
+    margin: 0 0 32px 0;
+  }
+
+  &__inputContainer {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__inputWrapper {
+    max-width: 399px;
+    width: 100%;
+  }
+
+  &__buttonWrapper {
+    width: 20%;
+    padding: 0 0 40px;
+
+    @media screen and (max-width: 860px) {
+      width: 80%;
+    }
+  }
+}
+
+.tables {
+  margin: 0;
+  border-radius: $border-radius-30;
+  background-color: $default-grey-color;
+  width: 100%;
+
+  &__payments {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__referrals {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $white-color;
+    border-radius: $border-radius-30;
+    box-sizing: border-box;
+    box-shadow: 0px 6px 16px 0px #15123314;
+  }
+
+  &__titleContainer {
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $h3-font-size;
+    font-weight: $semi-bold;
+    line-height: $h3-line-height;
+
+    @media screen and (max-width: 860px) {
+      font-size: $h4-font-size;
+      font-weight: $bold;
+      line-height: $h4-line-height;
+    }
   }
 }
 

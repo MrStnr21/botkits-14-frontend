@@ -36,12 +36,14 @@ const Partnership: FC = (): JSX.Element => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <div className={stylesPartnership.partnershipLayout}>
-        <div className={stylesPartnership.flex_wrapper}>
+      <div className={stylesPartnership.partnership}>
+        <div className={stylesPartnership.partnership__wrapper}>
           <div>
-            <h2 className={stylesPartnership.title}>Партнерская программа</h2>
-            <div className={stylesPartnership.flex_container}>
-              <div className={stylesPartnership.input_wrapper}>
+            <h2 className={stylesPartnership.partnership__title}>
+              Партнерская программа
+            </h2>
+            <div className={stylesPartnership.partnership__inputContainer}>
+              <div className={stylesPartnership.partnership__inputWrapper}>
                 <Input
                   onChange={() => {}}
                   value="botkits.ru/?ref=12345"
@@ -53,7 +55,7 @@ const Partnership: FC = (): JSX.Element => {
             </div>
           </div>
           {!isMobile && (
-            <div className={stylesPartnership.button_wrapper}>
+            <div className={stylesPartnership.partnership__buttonWrapper}>
               <Button
                 variant="default"
                 size="small"
@@ -65,10 +67,10 @@ const Partnership: FC = (): JSX.Element => {
             </div>
           )}
         </div>
-        <div className={stylesPartnership.tablesWrapper}>
-          <div className={stylesPartnership.referralsTableContainer}>
-            <div className={stylesPartnership.titleContainer}>
-              <h2 className={stylesPartnership.tableTitle}>
+        <div className={stylesPartnership.tables}>
+          <div className={stylesPartnership.tables__referrals}>
+            <div className={stylesPartnership.tables__titleContainer}>
+              <h2 className={stylesPartnership.tables__title}>
                 Cтатистика рефераллов
               </h2>
               {isMobile && (
@@ -83,7 +85,7 @@ const Partnership: FC = (): JSX.Element => {
             </div>
             {isReferralsTableVisible && <ReferralsTable />}
             {isMobile && (
-              <div className={stylesPartnership.button_wrapper}>
+              <div className={stylesPartnership.partnership__buttonWrapper}>
                 <Button
                   variant="default"
                   size="small"
@@ -95,9 +97,9 @@ const Partnership: FC = (): JSX.Element => {
               </div>
             )}
           </div>
-          <div className={stylesPartnership.paymentsTableContainer}>
-            <div className={stylesPartnership.titleContainer}>
-              <h2 className={stylesPartnership.tableTitle}>Выплаты</h2>
+          <div className={stylesPartnership.tables__payments}>
+            <div className={stylesPartnership.tables__titleContainer}>
+              <h2 className={stylesPartnership.tables__title}>Выплаты</h2>
               <button
                 type="button"
                 onClick={toggleSecondTable}

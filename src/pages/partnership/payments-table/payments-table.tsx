@@ -33,62 +33,74 @@ const PaymentsTable: FC = () => {
   const isMobile = useMediaQuery('(max-width: 860px)');
 
   return (
-    <TableContainer
-      component={Paper}
-      className={stylesPaymentsTable.tableContainer}
-    >
+    <TableContainer component={Paper} className={stylesPaymentsTable.payments}>
       {isMobile ? (
         <>
           {rows.map((row) => (
-            <Table key={row.reqDate} className={stylesPaymentsTable.table}>
-              <TableHead className={stylesPaymentsTable.tableHead}>
-                <TableRow className={stylesPaymentsTable.row}>
-                  <TableCell className={stylesPaymentsTable.cell}>
+            <Table
+              key={row.reqDate}
+              className={stylesPaymentsTable.payments__table}
+            >
+              <TableHead className={stylesPaymentsTable.payments__tableHead}>
+                <TableRow className={stylesPaymentsTable.payments__row}>
+                  <TableCell className={stylesPaymentsTable.payments__cell}>
                     Дата запроса
                   </TableCell>
-                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                  <TableCell
+                    className={stylesPaymentsTable.payments__cell}
+                    align="left"
+                  >
                     Дата выплаты
                   </TableCell>
-                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                  <TableCell
+                    className={stylesPaymentsTable.payments__cell}
+                    align="left"
+                  >
                     Акт
                   </TableCell>
-                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                  <TableCell
+                    className={stylesPaymentsTable.payments__cell}
+                    align="left"
+                  >
                     Статус
                   </TableCell>
-                  <TableCell className={stylesPaymentsTable.cell} align="left">
+                  <TableCell
+                    className={stylesPaymentsTable.payments__cell}
+                    align="left"
+                  >
                     Сумма выплаты
                   </TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody className={stylesPaymentsTable.tableBody}>
-                <TableRow className={stylesPaymentsTable.row}>
+              <TableBody className={stylesPaymentsTable.payments__tableBody}>
+                <TableRow className={stylesPaymentsTable.payments__row}>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
                   >
                     {row.reqDate}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
                   >
                     {row.payDate}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
                   >
                     {row.document}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
                   >
                     {row.status}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
                   >
                     {row.sum}
                   </TableCell>
@@ -98,22 +110,37 @@ const PaymentsTable: FC = () => {
           ))}
         </>
       ) : (
-        <Table className={stylesPaymentsTable.tableContainer}>
-          <TableHead className={stylesPaymentsTable.tableHead}>
-            <TableRow className={stylesPaymentsTable.row}>
-              <TableCell className={stylesPaymentsTable.cell} align="left">
+        <Table className={stylesPaymentsTable.payments__tableContainer}>
+          <TableHead className={stylesPaymentsTable.payments__tableHead}>
+            <TableRow className={stylesPaymentsTable.payments__row}>
+              <TableCell
+                className={stylesPaymentsTable.payments__cell}
+                align="left"
+              >
                 Дата запроса
               </TableCell>
-              <TableCell className={stylesPaymentsTable.cell} align="left">
+              <TableCell
+                className={stylesPaymentsTable.payments__cell}
+                align="left"
+              >
                 Дата выплаты
               </TableCell>
-              <TableCell className={stylesPaymentsTable.cell} align="left">
+              <TableCell
+                className={stylesPaymentsTable.payments__cell}
+                align="left"
+              >
                 Акт
               </TableCell>
-              <TableCell className={stylesPaymentsTable.cell} align="left">
+              <TableCell
+                className={stylesPaymentsTable.payments__cell}
+                align="left"
+              >
                 Статус
               </TableCell>
-              <TableCell className={stylesPaymentsTable.cell} align="right">
+              <TableCell
+                className={stylesPaymentsTable.payments__cell}
+                align="right"
+              >
                 Сумма выплаты
               </TableCell>
             </TableRow>
@@ -122,21 +149,36 @@ const PaymentsTable: FC = () => {
             {rows.map((row) => (
               <TableRow
                 key={row.reqDate}
-                className={stylesPaymentsTable.tableRow}
+                className={stylesPaymentsTable.payments__row}
               >
-                <TableCell className={stylesPaymentsTable.cell} align="left">
+                <TableCell
+                  className={stylesPaymentsTable.payments__cell}
+                  align="left"
+                >
                   {row.reqDate}
                 </TableCell>
-                <TableCell className={stylesPaymentsTable.cell} align="left">
+                <TableCell
+                  className={stylesPaymentsTable.payments__cell}
+                  align="left"
+                >
                   {row.payDate}
                 </TableCell>
-                <TableCell className={stylesPaymentsTable.cell} align="left">
+                <TableCell
+                  className={stylesPaymentsTable.payments__cell}
+                  align="left"
+                >
                   {row.document}
                 </TableCell>
-                <TableCell className={stylesPaymentsTable.cell} align="left">
+                <TableCell
+                  className={stylesPaymentsTable.payments__cell}
+                  align="left"
+                >
                   {row.status}
                 </TableCell>
-                <TableCell className={stylesPaymentsTable.cell} align="right">
+                <TableCell
+                  className={stylesPaymentsTable.payments__cell}
+                  align="right"
+                >
                   {row.sum}
                 </TableCell>
               </TableRow>
