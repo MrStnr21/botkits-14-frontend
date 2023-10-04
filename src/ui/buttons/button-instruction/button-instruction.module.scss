@@ -2,6 +2,7 @@
 
 .button {
   @extend %button-style-reset;
+  @extend %flex-element-center;
   width: 100%;
   height: 76px;
   transition: box-shadow 0.1s linear;
@@ -10,10 +11,6 @@
   position: relative;
   z-index: 0;
   box-sizing: border-box;
-}
-
-.button div {
-  @extend %flex-element-center;
 }
 
 .button:hover {
@@ -31,6 +28,7 @@
 }
 
 .image_box {
+  @extend %flex-element-center;
   width: 173px;
   height: 173px;
   border-radius: $border-radius-circle;
@@ -40,12 +38,24 @@
   z-index: 1;
   top: -48px;
   left: -26px;
+
+  @media screen and (max-width: 670px) {
+    justify-content: end;
+    left: -56px;
+  }
+}
+
+.image_box div {
   @extend %flex-element-center;
 }
 
 .image_box svg {
   fill: $default-dark-grey-color;
   transition: all 0.1s linear;
+
+  @media screen and (max-width: 670px) {
+    padding-right: 32px;
+  }
 }
 
 .button:hover .image_box {
@@ -56,23 +66,35 @@
   fill: $button-default-green-color;
 }
 
-.text {
-  text-align: left;
-  padding-left: 201px;
+.text_container {
+  @extend %flex-element-center;
+  width: 100%;
+  height: 76px;
   border: 2px solid $button-default-grey-color;
+  box-sizing: border-box;
   transition: border 0.1s linear;
   border-radius: $border-radius-10;
+}
+
+.button:hover .text_container {
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.text {
+  width: 100%;
+  text-align: left;
+  padding-left: 201px;
+  padding-right: 20px;
   margin: 0;
-  box-sizing: border-box;
-  line-height: 72px;
+  line-height: $button-line-height-150;
   font-family: 'Open Sans';
   font-size: $m-font-size;
   font-weight: $bold;
   letter-spacing: $l-letter-space;
-}
 
-.button:hover .text {
-  border: 2px solid rgba(0, 0, 0, 0);
+  @media screen and (max-width: 670px) {
+    padding-left: 137px;
+  }
 }
 
 .button:disabled .text {
