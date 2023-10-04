@@ -3,7 +3,7 @@ import XCircleCloseIcon from './XCircleCloseIcon';
 
 const colors = {
   black: '#060C23',
-  white: '#FFFFFF',
+  grey: '#A6B3C9',
 };
 
 const meta: Meta<typeof XCircleCloseIcon> = {
@@ -19,7 +19,7 @@ const meta: Meta<typeof XCircleCloseIcon> = {
         type: 'radio',
         labels: {
           black: 'Черный',
-          white: 'Белый',
+          grey: 'Серый',
         },
       },
     },
@@ -31,7 +31,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const XCircleClose: Story = {
   args: {
-    color: '#FFFFFF',
+    color: '#A6B3C9',
     width: 24,
     height: 24,
   },
