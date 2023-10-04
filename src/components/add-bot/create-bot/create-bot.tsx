@@ -56,7 +56,7 @@ const CreateBot: FC<ICreateBot> = ({
   stepFirst,
   botURI,
 }): JSX.Element => {
-  const [arrPages, setArrPages] = useState<any>([]); // временный тип any
+  const [arrPages, setArrPages] = useState<any[]>([]); // временный тип any
 
   const profile = useAppSelector(signupSel || signinSel);
 
@@ -148,9 +148,7 @@ const CreateBot: FC<ICreateBot> = ({
                 <StepperFillBot step="1" text="Загрузить страницу">
                   <LoadPages
                     arr={arrPages}
-                    onClick={() =>
-                      setArrPages([...arrPages, { text: 'Страница' }])
-                    }
+                    onClick={() => setArrPages([...arrPages, 'Страница'])}
                   />
                 </StepperFillBot>
               )}

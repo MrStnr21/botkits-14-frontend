@@ -3,8 +3,10 @@ import { useDraggable } from 'react-use-draggable-scroll';
 import stylesTemplates from './bots-templates.module.scss';
 
 import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
-import ModalOverlayPopup from '../../popups/modal-overlay-popup/modal-overlay-popup';
+// import ModalOverlayPopup from '../../popups/modal-overlay-popup/modal-overlay-popup';
 import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
+import ModalPopup from '../../popups/modal-popup/modal-popup';
+import useModal from '../../../services/hooks/use-modal';
 
 const Template: FC<{ name: string; fileName: string }> = ({
   name,
@@ -22,7 +24,7 @@ const Template: FC<{ name: string; fileName: string }> = ({
   };
 
   const [image, setImage] = useState<string>('');
-  const [open, setOpen] = useState<boolean>(false);
+  const { isModalOpen, closeModal, openModal } = useModal();
 
   useEffect(() => {
     importImage().then((importedImage) => {
@@ -32,16 +34,13 @@ const Template: FC<{ name: string; fileName: string }> = ({
 
   return (
     <li className={stylesTemplates.item}>
-      <ButtonAddSampleBot onClick={() => setOpen(true)} icon={image}>
+      <ButtonAddSampleBot onClick={openModal} icon={image}>
         {name}
       </ButtonAddSampleBot>
-      {open && (
-        <div className={stylesTemplates.modal}>
-          <ModalOverlayPopup onClick={() => setOpen(false)} />
-          <div className={stylesTemplates.content}>
-            <BotTemplate title={name} onClick={() => setOpen(false)} />
-          </div>
-        </div>
+      {isModalOpen && (
+        <ModalPopup onClick={closeModal}>
+          <BotTemplate title={name} onClick={closeModal} />
+        </ModalPopup>
       )}
     </li>
   );
