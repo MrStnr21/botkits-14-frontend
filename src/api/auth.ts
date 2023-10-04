@@ -7,11 +7,9 @@ import {
 
 import request from './api';
 
-import BASE_URL from '../utils/config';
-
 // запрос регистрации
 function signupApi(userInfo: IUserSignupState) {
-  return request<IUserResponse>(`${BASE_URL}/signup`, {
+  return request<IUserResponse>('signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -22,7 +20,7 @@ function signupApi(userInfo: IUserSignupState) {
 
 // запрос авторизации
 function signinApi(userInfo: IUserSigninState) {
-  return request<IUserResponse>(`${BASE_URL}/signin`, {
+  return request<IUserResponse>('signin', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -33,7 +31,7 @@ function signinApi(userInfo: IUserSigninState) {
 
 // Запрос на выход из аккаунта
 function logoutApi(token: string) {
-  return request<IUserLogoutResponse>(`${BASE_URL}/logout`, {
+  return request<IUserLogoutResponse>('logout', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
