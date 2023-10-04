@@ -51,6 +51,17 @@ const Signup: FC = (): JSX.Element => {
     window.location.href = authUrl;
   };
 
+  const handlerAuthMail = () => {
+    // Замените эти значения на значения, полученные при регистрации вашего приложения на Яндексе
+    const CLIENT_ID = 'b85b17e5adb44a6e9e1325c97d1b1b83';
+
+    // Составляем URL для авторизации обрати внимание на state=random_string_123 Для предотвращения CSRF атак необходимо сохранять случайное значение state в сессии\куке и проверять его при возврате на redirect_uri.
+    const authUrl = `https://oauth.mail.ru/login?client_id=${CLIENT_ID}&response_type=code&scope=userinfo&redirect_uri=http://localhost:3000/signin&state=random_string_123`;
+
+    // Перенаправляем пользователя на страницу авторизации Яндекса
+    window.location.href = authUrl;
+  };
+
   const userData = useAppSelector(signupSel);
 
   const handleChangeCodePhone = (newCode: string) => {
@@ -106,6 +117,7 @@ const Signup: FC = (): JSX.Element => {
                 social="mailru"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthMail}
               />
             </div>
             <div className={stylesSignup.socialSecond}>

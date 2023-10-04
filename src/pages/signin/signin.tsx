@@ -50,15 +50,42 @@ const Signin: FC = (): JSX.Element => {
     window.location.href = authUrl;
   };
 
+  const handlerAuthMailru = () => {
+    // Замените эти значения на значения, полученные при регистрации вашего приложения на Яндексе
+    const CLIENT_ID = 'b85b17e5adb44a6e9e1325c97d1b1b83';
+
+    // Составляем URL для авторизации
+    const authUrl = `https://oauth.mail.ru/login?client_id=${CLIENT_ID}&response_type=code&scope=userinfo&redirect_uri=http://localhost:3000/signin&state=random_string_123`;
+
+    // Перенаправляем пользователя на страницу авторизации Яндекса
+    window.location.href = authUrl;
+  };
+
   // Извлечение текущего URL
   const currentUrl = new URL(window.location.href);
 
   // Используем URLSearchParams для получения параметра 'code'
   const code = currentUrl.searchParams.get('code');
+  const state = currentUrl.searchParams.get('state');
 
   useEffect(() => {
-    if (code) {
+    if (code && !state) {
       fetch('http://localhost:3001/yandex/exchange', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ codeAuth: code }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Response from server:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else if (code && state) {
+      fetch('http://localhost:3001/mailru/exchange', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,6 +165,7 @@ const Signin: FC = (): JSX.Element => {
                 social="mailru"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthMailru}
               />
             </div>
             <div className={stylesSignin.socialSecond}>
