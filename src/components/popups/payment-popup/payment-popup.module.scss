@@ -4,7 +4,7 @@
   padding: 40px 40px 37px 40px;
   width: 970px;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: #D7DEEA;
   box-shadow: 0 12px 24px 0 #15123321;
   border-radius: $border-radius-30;
   position: relative;
@@ -13,6 +13,57 @@
   justify-content: center;
   text-align: center;
   gap: 20px;
+}
+
+.groupTitle {
+  display: flex;
+  width: 213px;
+}
+
+.iconRocketBot {
+  width: 193px;
+  height: 139px;
+  position: absolute;
+  top: -37px;
+  left: 44px;
+}
+
+.iconCheck {
+  margin-left: 0;
+  left: 45px;
+  position: relative;
+}
+
+.tariff {
+  left: 35px;
+  position: relative;
+  text-align: start;
+}
+
+.linkWrapper {
+  width: 890px;
+  height: 257px;
+  background: #F8F9FB;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.linkGroup {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.linkBtn {
+  width: 260px;
+  height: 70px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  outline: solid 1.5px #060C234D;
+  border-radius: 8px;
+
 }
 
 .btnWrapper {
