@@ -1,0 +1,28 @@
+@import '../../app/_vars';
+
+.container {
+  display: flex;
+  max-width: 250px;
+  height: 40px;
+  background-color: $default-grey-color;
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 10px;
+  border-radius: $border-radius-5;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.text {
+  font-family: 'OpenSans', sans-serif;
+  font-weight: $normal;
+  font-size: $s-font-size;
+  line-height: $s-line-height;
+  letter-spacing: $lx-letter-space;
+  // width: fit-content;
+  margin: 0;
+  white-space: nowrap;
+  color: $primary-text-color;
+}
