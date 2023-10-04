@@ -2,6 +2,7 @@
 
 .container {
   padding-top: 32px;
+  margin-right: 40px;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -10,16 +11,6 @@
     display: flex;
     gap: 28px;
   }
-}
-
-.title {
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h2-font-size;
-  font-weight: $bold;
-  line-height: $h2-line-height;
-  letter-spacing: $h2-letter-space;
-  color: $primary-text-color;
-  margin: 0;
 }
 
 .subscription {
@@ -32,9 +23,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
-    'rate status'
-    'info info'
-    'button button';
+      'rate status'
+      'info info'
+      'button button';
     row-gap: 8px;
     position: absolute;
     box-sizing: border-box;
@@ -43,7 +34,6 @@
     box-shadow: $l-box-shadow;
     overflow: hidden;
     width: 100%;
-    max-width: 404px;
     height: 228px;
     padding: 32px;
     top: 0;
@@ -52,19 +42,18 @@
   }
 
   &__rate {
-    margin: 0;
     grid-area: rate;
   }
 
   &__status {
-    margin: 0;
     grid-area: status;
     justify-self: end;
+    color: $error-red-color;
   }
 
   &__info {
-    margin: 0;
     grid-area: info;
+    font-size: $s-font-size;
   }
 
   &__button {
@@ -78,7 +67,6 @@
     right: 0;
     bottom: 0;
     width: 100%;
-    max-width: 404px;
     height: 205px;
     border-radius: $border-radius-30;
     background-color: $hover-grey-color;
@@ -87,11 +75,26 @@
     gap: 24px;
   }
 
-  &__text {
-    margin: 0;
+  &__balance {
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
+}
 
-  &__price {
-    margin: 0;
+.payment {
+  width: 100%;
+  padding: 36px 32px 24px;
+  box-sizing: border-box;
+  background-color: $hover-grey-color;
+  border-radius: $border-radius-30;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
   }
 }
