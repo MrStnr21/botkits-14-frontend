@@ -27,6 +27,14 @@
 .p {
   @include typography;
   font-size: $m-font-size;
+  line-height: $p-line-height;
+  letter-spacing: $m-letter-space;
+}
+
+.span {
+  @include typography;
+  font-size: $s-font-size;
   font-weight: $normal;
+  line-height: $p-line-height;
   letter-spacing: $m-letter-space;
 }

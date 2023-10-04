@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import cn from 'classnames';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import { rows, PaymentTable } from './payment-table/payment-table';
@@ -9,7 +10,7 @@ const Subscription: FC = (): JSX.Element => {
     <div className={style.container}>
       <Typography tag="h2">Подписка и платежи</Typography>
       <div className={style.container__body}>
-        <div className={style.subscription}>
+        <div className={cn(style.subscription, style.container__subscription)}>
           <div className={style.subscription__header}>
             <Typography tag="h3" className={style.subscription__rate}>
               Тариф
@@ -17,7 +18,7 @@ const Subscription: FC = (): JSX.Element => {
             <Typography tag="h4" className={style.subscription__status}>
               Статус
             </Typography>
-            <Typography tag="p" className={style.subscription__info}>
+            <Typography tag="span" className={style.subscription__info}>
               Инфо
             </Typography>
             <div className={style.subscription__button}>
@@ -28,7 +29,7 @@ const Subscription: FC = (): JSX.Element => {
           </div>
           <div className={style.subscription__body}>
             <div className={style.subscription__balance}>
-              <Typography tag="p">Баланс</Typography>
+              <Typography tag="span">Баланс</Typography>
               <Typography tag="h3">{`${0}₽`}</Typography>
             </div>
             <Button variant="default" color="grey">
