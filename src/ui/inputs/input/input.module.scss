@@ -41,6 +41,12 @@
     color: $focus-grey-color;
     opacity: 0.5;
   }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 .incorrect {
@@ -69,7 +75,7 @@
   border-bottom: 1px solid $white-color;
   box-sizing: border-box;
   outline: 0;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
 
   font-family: 'Open Sans', sans-serif;
   font-weight: $normal;
@@ -93,6 +99,12 @@
   &:disabled {
     color: $focus-grey-color;
     opacity: 0.5;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }
 
