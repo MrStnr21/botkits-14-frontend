@@ -3,7 +3,13 @@ import { FC } from 'react';
 import stylesFooter from './footer.module.scss';
 
 const Footer: FC = (): JSX.Element => {
-  const year = new Date().getFullYear();
+  let year = '';
+  const todayYear = new Date().getFullYear();
+  if (todayYear != 2023) {
+    year = `2023 - ${todayYear}`;
+  } else {
+    year = '2023';
+  }
 
   return (
     <footer className={stylesFooter.footer}>
