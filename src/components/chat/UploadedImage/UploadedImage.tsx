@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import stylesImage from './uploaded-image.module.scss';
+import stylesImage from './UploadedImage.module.scss';
 
 interface IUploadedFiles {
   image: string;

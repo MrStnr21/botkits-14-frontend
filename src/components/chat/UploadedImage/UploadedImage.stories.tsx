@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import UploadedImage from './uploaded-image';
+import UploadedImage from './UploadedImage';
 
 const meta = {
   title: 'COMPONENTS/UploadedImage',

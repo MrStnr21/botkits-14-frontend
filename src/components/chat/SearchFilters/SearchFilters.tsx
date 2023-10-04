@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import stylesFilters from './search-filters.module.scss';
+import stylesFilters from './SearchFilters.module.scss';
 
 const SearchFilters: FC = (): JSX.Element => {
   return (

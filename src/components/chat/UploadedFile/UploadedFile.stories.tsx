@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import UploadedFile from './uploaded-file';
+import UploadedFile from './UploadedFile';
 
 const meta = {
   title: 'COMPONENTS/UploadedFile',

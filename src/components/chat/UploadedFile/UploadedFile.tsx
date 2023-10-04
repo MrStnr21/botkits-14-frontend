@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import icon from '../../../images/icon/add content/doc-circle.svg';
-import stylesFile from './uploaded-file.module.scss';
+import stylesFile from './UploadedFile.module.scss';
 
 interface IUploadedFile {
   file_name: string;

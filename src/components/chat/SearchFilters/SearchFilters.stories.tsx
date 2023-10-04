@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import SearchFilters from './search-filters';
+import SearchFilters from './SearchFilters';
 
 const meta = {
   title: 'COMPONENTS/SearchFilters',
