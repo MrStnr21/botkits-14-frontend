@@ -21,6 +21,10 @@
     align-items: flex-start;
     width: 100%;
     padding-bottom: 40px;
+
+    @media screen and (max-width: 620px) {
+      padding-bottom: 26px;
+    }
   }
 
   &__title {
@@ -31,6 +35,12 @@
     font-weight: $bold;
     color: $primary-text-color;
     margin: 0 0 32px 0;
+
+    @media screen and (max-width: 620px) {
+      font-size: $h3-font-size;
+      line-height: $h3-line-height;
+      margin-bottom: 20px;
+    }
   }
 
   &__inputContainer {

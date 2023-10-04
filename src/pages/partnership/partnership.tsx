@@ -1,5 +1,6 @@
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { ReactSVG } from 'react-svg';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
 import cn from 'classnames';
 import stylesPartnership from './partnership.module.scss';
@@ -14,6 +15,7 @@ const Partnership: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [isReferralsTableVisible, setReferralsTableVisible] = useState(true);
   const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
+  const [inputValue, setInputValue] = useState<string>('botkits.ru/?ref=12345');
 
   const chevronClassName = cn(
     stylesPartnership.chevron,
@@ -45,13 +47,17 @@ const Partnership: FC = (): JSX.Element => {
             <div className={stylesPartnership.partnership__inputContainer}>
               <div className={stylesPartnership.partnership__inputWrapper}>
                 <Input
-                  onChange={() => {}}
-                  value="botkits.ru/?ref=12345"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setInputValue(e.target.value)
+                  }
+                  value={inputValue}
                   styled="main"
                   textColor="blue"
                 />
               </div>
-              <ButtonIconCopy />
+              <CopyToClipboard text={inputValue}>
+                <ButtonIconCopy />
+              </CopyToClipboard>
             </div>
           </div>
           {!isMobile && (
