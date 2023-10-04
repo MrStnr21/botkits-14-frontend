@@ -1,16 +1,16 @@
 import type { StoryObj } from '@storybook/react';
-import UploadedFiles from './uploaded-files';
+import UploadedFile from './uploaded-file';
 
 const meta = {
-  title: 'COMPONENTS/UploadedFiles',
-  component: UploadedFiles,
+  title: 'COMPONENTS/UploadedFile',
+  component: UploadedFile,
   tags: ['autodocs'],
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const UploadedFilesDefault: Story = {
+export const UploadedFileDefault: Story = {
   args: {
     file_name: 'File',
     file_extension: 'pdf',

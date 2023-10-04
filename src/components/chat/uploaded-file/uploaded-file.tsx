@@ -1,24 +1,24 @@
 import { FC } from 'react';
 import icon from '../../../images/icon/add content/doc-circle.svg';
-import stylesFilers from './uploaded-files.module.scss';
+import stylesFile from './uploaded-file.module.scss';
 
-interface IUploadedFiles {
+interface IUploadedFile {
   file_name: string;
   file_extension: string;
 }
 
-const UploadedFiles: FC<IUploadedFiles> = ({
+const UploadedFile: FC<IUploadedFile> = ({
   file_name = 'Инфо',
   file_extension = 'pdf',
 }): JSX.Element => {
   return (
-    <div className={stylesFilers.container}>
+    <div className={stylesFile.container}>
       <img src={icon} alt="иконка" />
-      <p className={stylesFilers.text}>
+      <p className={stylesFile.text}>
         {file_name}.{file_extension}
       </p>
     </div>
   );
 };
 
-export default UploadedFiles;
+export default UploadedFile;
