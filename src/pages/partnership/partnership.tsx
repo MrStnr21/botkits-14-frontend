@@ -52,19 +52,21 @@ const Partnership: FC = (): JSX.Element => {
               <ButtonIconCopy />
             </div>
           </div>
-          <div className={stylesPartnership.button_wrapper}>
-            <Button
-              variant="default"
-              size="small"
-              color="green"
-              buttonHtmlType="submit"
-            >
-              Запросить выплату
-            </Button>
-          </div>
+          {!isMobile && (
+            <div className={stylesPartnership.button_wrapper}>
+              <Button
+                variant="default"
+                size="small"
+                color="green"
+                buttonHtmlType="submit"
+              >
+                Запросить выплату
+              </Button>
+            </div>
+          )}
         </div>
         <div className={stylesPartnership.referralsTableContainer}>
-          <div className={stylesPartnership.headContainer}>
+          <div className={stylesPartnership.titleContainer}>
             <h2 className={stylesPartnership.tableTitle}>
               Cтатистика рефераллов
             </h2>
@@ -79,9 +81,21 @@ const Partnership: FC = (): JSX.Element => {
             )}
           </div>
           {isReferralsTableVisible && <ReferralsTable />}
+          {isMobile && (
+            <div className={stylesPartnership.button_wrapper}>
+              <Button
+                variant="default"
+                size="small"
+                color="green"
+                buttonHtmlType="submit"
+              >
+                Запросить выплату
+              </Button>
+            </div>
+          )}
         </div>
         <div className={stylesPartnership.paymentsTableContainer}>
-          <div className={stylesPartnership.headContainer}>
+          <div className={stylesPartnership.titleContainer}>
             <h2 className={stylesPartnership.tableTitle}>Выплаты</h2>
             <button
               type="button"

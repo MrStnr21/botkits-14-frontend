@@ -1,0 +1,78 @@
+@import '../../../components/app/vars';
+
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 40px 0;
+  box-sizing: border-box;
+  max-height: 244px;
+  box-shadow: none;
+  border-radius: $border-radius-30;
+
+  @media screen and (max-width: 860px) {
+    max-height: 845px;
+    overflow-y: scroll;
+  }
+}
+
+.table {
+  @media screen and (max-width: 860px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px $hover-grey-color solid;
+  }
+}
+
+.tableHead {
+  @media screen and (max-width: 860px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.tableBody {
+  overflow-y: scroll;
+}
+
+.heading {
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  border: none;
+
+  @media screen and (max-width: 860px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.cell {
+  padding: 0 0 40px;
+  border: none;
+
+  @media screen and (max-width: 860px) {
+    color: $default-dark-grey-color;
+    padding: 0 0 10px;
+  }
+}
+
+.cell:last-child {
+  @media screen and (max-width: 860px) {
+    padding: 0 0 20px;
+  }
+}
+
+.bodyCell {
+  @extend .cell;
+
+  @media screen and (max-width: 860px) {
+    color: $primary-text-color;
+  }
+}
