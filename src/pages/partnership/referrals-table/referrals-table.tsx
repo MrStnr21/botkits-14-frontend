@@ -249,64 +249,6 @@ const ReferralsTable: FC = () => {
           </TableBody>
         </Table>
       )}
-      {/* <Table className={stylesReferralsTable.table}>
-        <TableHead className={stylesReferralsTable.tableHead}>
-          <TableRow className={stylesReferralsTable.row}>
-            <TableCell className={stylesReferralsTable.cell}>
-              Перешли по ссылке
-            </TableCell>
-            <TableCell className={stylesReferralsTable.cell} align="left">
-              Регистрация
-            </TableCell>
-            <TableCell className={stylesReferralsTable.cell} align="left">
-              Оплата
-            </TableCell>
-            <TableCell className={stylesReferralsTable.cell} align="left">
-              Сумма
-            </TableCell>
-            <TableCell className={stylesReferralsTable.cell} align="left">
-              Комиссия
-            </TableCell>
-            <TableCell className={stylesReferralsTable.cell} align="left">
-              Выплачено
-            </TableCell>
-            <TableCell className={stylesReferralsTable.cell} align="right">
-              Вывод
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody className={stylesReferralsTable.tableBody}>
-          {rows.map((row) => (
-            <TableRow key={row.linkTaps} className={stylesReferralsTable.row}>
-              <TableCell
-                component="th"
-                scope="row"
-                className={stylesReferralsTable.cell}
-              >
-                {row.linkTaps}
-              </TableCell>
-              <TableCell align="left" className={stylesReferralsTable.cell}>
-                {row.regs}
-              </TableCell>
-              <TableCell align="left" className={stylesReferralsTable.cell}>
-                {row.status}
-              </TableCell>
-              <TableCell align="left" className={stylesReferralsTable.cell}>
-                {row.sum}
-              </TableCell>
-              <TableCell align="left" className={stylesReferralsTable.cell}>
-                {row.fee}
-              </TableCell>
-              <TableCell align="left" className={stylesReferralsTable.cell}>
-                {row.paid}
-              </TableCell>
-              <TableCell align="right" className={stylesReferralsTable.cell}>
-                {row.withdrawal}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table> */}
     </TableContainer>
   );
 };

@@ -5,10 +5,10 @@
   padding: 0 40px 0;
   box-sizing: border-box;
   max-height: 244px;
-  height: 100%;
   border-radius: $border-radius-30;
   background-color: transparent;
   box-shadow: none;
+  overflow-y: scroll;
 
   @media screen and (max-width: 860px) {
     max-height: 580px;
@@ -16,11 +16,12 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    overflow-y: scroll;
   }
 }
 
 .table {
+  max-height: 244px;
+
   @media screen and (max-width: 860px) {
     display: flex;
     flex-direction: row;
