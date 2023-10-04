@@ -3,8 +3,8 @@ import { ReactSVG } from 'react-svg';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
 import cn from 'classnames';
 import stylesPartnership from './partnership.module.scss';
-import ReferralsTable from '../../components/tables/referrals-table/referrals-table';
-import PaymentsTable from '../../components/tables/payments-table/payments-table';
+import ReferralsTable from './referrals-table/referrals-table';
+import PaymentsTable from './payments-table/payments-table';
 import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
@@ -65,47 +65,49 @@ const Partnership: FC = (): JSX.Element => {
             </div>
           )}
         </div>
-        <div className={stylesPartnership.referralsTableContainer}>
-          <div className={stylesPartnership.titleContainer}>
-            <h2 className={stylesPartnership.tableTitle}>
-              Cтатистика рефераллов
-            </h2>
+        <div className={stylesPartnership.tablesWrapper}>
+          <div className={stylesPartnership.referralsTableContainer}>
+            <div className={stylesPartnership.titleContainer}>
+              <h2 className={stylesPartnership.tableTitle}>
+                Cтатистика рефераллов
+              </h2>
+              {isMobile && (
+                <button
+                  type="button"
+                  onClick={toggleFirstTable}
+                  className={chevronClassName}
+                >
+                  <ReactSVG src={chevron} />
+                </button>
+              )}
+            </div>
+            {isReferralsTableVisible && <ReferralsTable />}
             {isMobile && (
+              <div className={stylesPartnership.button_wrapper}>
+                <Button
+                  variant="default"
+                  size="small"
+                  color="green"
+                  buttonHtmlType="submit"
+                >
+                  Запросить выплату
+                </Button>
+              </div>
+            )}
+          </div>
+          <div className={stylesPartnership.paymentsTableContainer}>
+            <div className={stylesPartnership.titleContainer}>
+              <h2 className={stylesPartnership.tableTitle}>Выплаты</h2>
               <button
                 type="button"
-                onClick={toggleFirstTable}
+                onClick={toggleSecondTable}
                 className={chevronClassName}
               >
                 <ReactSVG src={chevron} />
               </button>
-            )}
-          </div>
-          {isReferralsTableVisible && <ReferralsTable />}
-          {isMobile && (
-            <div className={stylesPartnership.button_wrapper}>
-              <Button
-                variant="default"
-                size="small"
-                color="green"
-                buttonHtmlType="submit"
-              >
-                Запросить выплату
-              </Button>
             </div>
-          )}
-        </div>
-        <div className={stylesPartnership.paymentsTableContainer}>
-          <div className={stylesPartnership.titleContainer}>
-            <h2 className={stylesPartnership.tableTitle}>Выплаты</h2>
-            <button
-              type="button"
-              onClick={toggleSecondTable}
-              className={chevronClassName}
-            >
-              <ReactSVG src={chevron} />
-            </button>
+            {isPaymentsTableVisible && <PaymentsTable />}
           </div>
-          {isPaymentsTableVisible && <PaymentsTable />}
         </div>
       </div>
     </StyledEngineProvider>
