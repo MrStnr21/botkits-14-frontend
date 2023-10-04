@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.input {
+.inputMain {
   width: 100%;
   max-width: 580px;
   padding: 22px 24px;
@@ -39,6 +39,7 @@
 
   &:disabled {
     color: $focus-grey-color;
+    opacity: 0.5;
   }
 }
 
@@ -57,7 +58,7 @@
 }
 
 .inputSecondary {
-  padding: 16px 0 17px 0;
+  padding: 16px 50px 17px 0;
   margin: 0;
   width: 100%;
   max-width: 570px;
@@ -66,6 +67,9 @@
   border-radius: 0;
   background-color: transparent;
   border-bottom: 1px solid $white-color;
+  box-sizing: border-box;
+  outline: 0;
+  text-overflow:ellipsis;
 
   font-family: 'Open Sans', sans-serif;
   font-weight: $normal;
@@ -73,9 +77,26 @@
   line-height: $button-line-height-150;
   letter-spacing: $lx-letter-space;
   color: $white-color;
+
+  &::placeholder {
+    color: $placeholder-grey-color;
+  }
+
+  &:hover::placeholder {
+    color: $default-dark-grey-color;
+  }
+
+  &:disabled::placeholder {
+    color: $focus-grey-color;
+  }
+
+  &:disabled {
+    color: $focus-grey-color;
+    opacity: 0.5;
+  }
 }
 
-.iconContainer{
+.iconContainerSecondary {
   position: absolute;
   display: flex;
   align-items: center;
@@ -83,6 +104,21 @@
   right: 0;
   top: 0;
   bottom: 0;
+}
+
+.iconContainerMain {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+}
+
+.disabled {
+  color: $focus-grey-color;
+  opacity: 0.5;
 }
 
 .required {
@@ -98,7 +134,7 @@
   color: $placeholder-grey-color;
 }
 
-.password {
+.passwordSecondary {
   margin: 0;
   padding: 0;
   width: 24px;
@@ -109,8 +145,19 @@
   opacity: 1;
 }
 
+.passwordMain {
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  background-image: url('../../../images/icon/24x24/common/eye-off-black.svg');
+  opacity: 1;
+}
+
 .passwordShow {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .inputSecondaryIncorrect {

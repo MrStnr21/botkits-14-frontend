@@ -1,11 +1,4 @@
-import {
-  FC,
-  useCallback,
-  useEffect,
-  useState,
-  FormEvent,
-  ChangeEvent,
-} from 'react';
+import { FC, useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
@@ -23,7 +16,7 @@ import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
 import useForm from '../../services/hooks/use-form';
 
-import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+import { COUNTRY_COD_LIST, DEFAULT_PHONE_CODE } from '../../utils/constants';
 import { signupSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
 
@@ -54,6 +47,7 @@ const Signup: FC = (): JSX.Element => {
     email: '',
     password: '',
     phone: '',
+    phoneNumberMain: '',
   });
 
   useEffect(() => {
@@ -88,20 +82,17 @@ const Signup: FC = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  const handleSignup = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      dispatch(
-        signupAction({
-          username: values.username,
-          email: values.email,
-          password: values.password,
-          phone: phoneCode + values.phoneNumberMain,
-        })
-      );
-    },
-    [values]
-  );
+  const handleSignup = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(
+      signupAction({
+        username: values.username,
+        email: values.email,
+        password: values.password,
+        phone: phoneCode + values.phoneNumberMain,
+      })
+    );
+  };
 
   return userData.signupSuccess ? (
     <ConfirmationScreen
@@ -168,6 +159,7 @@ const Signup: FC = (): JSX.Element => {
                 name="username"
                 maxLength={30}
                 onChange={customHandleChange}
+                value={values.username}
                 styled="secondary"
                 required
               />
@@ -176,6 +168,7 @@ const Signup: FC = (): JSX.Element => {
                 name="email"
                 maxLength={30}
                 onChange={customHandleChange}
+                value={values.email}
                 errorMessage="Введите корректный email"
                 styled="secondary"
                 pattern="^\S+@\S+\.\S+$"
@@ -186,6 +179,7 @@ const Signup: FC = (): JSX.Element => {
                 name="password"
                 maxLength={30}
                 onChange={customHandleChange}
+                value={values.password}
                 styled="secondary"
                 password
                 type="password"
@@ -198,15 +192,20 @@ const Signup: FC = (): JSX.Element => {
                   className={stylesSignup.phoneCodeSelect}
                   onChange={handleChangeCodePhone}
                   langOfCountryName="ru"
+                  onlyCountries={
+                    COUNTRY_COD_LIST.length > 0 ? COUNTRY_COD_LIST : undefined
+                  }
                 />
                 <Input
                   placeholder="Телефон"
                   name="phoneNumberMain"
+                  onChange={customHandleChange}
+                  value={values.phoneNumberMain}
                   maxLength={15}
                   styled="secondary"
                   pattern="^\d+$"
+                  errorMessage="Номер телефона может содержать только цифры"
                   required
-                  onChange={customHandleChange}
                 />
               </div>
             </div>
@@ -220,6 +219,11 @@ const Signup: FC = (): JSX.Element => {
               >
                 создать аккаунт
               </Button>
+              {userData.signupError && (
+                <p className={stylesSignup.incorrect_text}>
+                  {userData.signupErrorText}
+                </p>
+              )}
             </div>
           </form>
           <div className={stylesSignup.signupReadyContainer}>

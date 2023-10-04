@@ -41,3 +41,9 @@ export interface IUserResetPasswordState {
 }
 
 export interface IUserResponse extends TUser {}
+
+export interface IUserSignupError {
+  message: string;
+  error: string;
+  statusCode: number;
+}
