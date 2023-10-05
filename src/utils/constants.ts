@@ -12,6 +12,20 @@ export enum SIZE_INPUT {
 export const DEFAULT_PHONE_CODE: { code: string; country: MuiTelInputCountry } =
   { code: '+7', country: 'RU' };
 
+// Список отображаемых телефонных кодов стран, если оставить пустой массив, то будут все страны отображаться
+export const COUNTRY_COD_LIST: MuiTelInputCountry[] = [
+  'AM',
+  'AZ',
+  'BY',
+  'KZ',
+  'KG',
+  'MD',
+  'RU',
+  'TJ',
+  'TM',
+  'UZ',
+];
+
 export enum BUTTON_NAME {
   IMAGE = 'Фото',
   VIDEO = 'Видео',
