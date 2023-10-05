@@ -1,6 +1,6 @@
 @import '../../app/_vars';
 
-.container {
+.accordion {
   display: flex;
   max-width: 250px;
   height: 40px;
@@ -15,14 +15,33 @@
   justify-content: space-between;
 }
 
-.text {
+@mixin font {
   font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
   font-size: $s-font-size;
   line-height: $s-line-height;
   letter-spacing: $lx-letter-space;
-  // width: fit-content;
   margin: 0;
   white-space: nowrap;
   color: $primary-text-color;
+}
+
+.text {
+  @include font;
+  // width: fit-content;
+}
+
+.container{
+  background-color: $white-color;
+  max-width: 250px;
+  padding: 8px;
+}
+
+.title{
+  font-weight: $bold;
+}
+
+.textinfo {
+  @include font;
+  padding-top: 12px;
 }

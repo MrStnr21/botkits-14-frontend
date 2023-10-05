@@ -1,20 +1,49 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import ChevronIcon from '../../icons/Chevron/ChevronIcon';
 import stylesList from './DropDownList.module.scss';
 
 interface IDropDownList {
   caption: string;
-  position?: string;
 }
 
 const DropDownList: FC<IDropDownList> = ({
   caption = 'Информация о пользователе',
-  position = 'down',
 }): JSX.Element => {
+  const [isOpened, setIsOpened] = useState(false);
+  const info = {
+    one: {
+      title: 'Последнее действие:',
+      paragraph: '3 мин назад',
+    },
+    two: {
+      title: 'Первое действие:',
+      paragraph: '12.02.2021',
+    },
+  };
+
   return (
-    <div className={stylesList.container}>
-      <p className={stylesList.text}>{caption}</p>
-      <ChevronIcon position={position} />
+    <div>
+      <div
+        className={stylesList.accordion}
+        onClick={() => {
+          setIsOpened(!isOpened);
+        }}
+      >
+        <p className={stylesList.text}>{caption}</p>
+        <ChevronIcon position={`${isOpened ? 'up' : 'down'}`} />
+      </div>
+      {isOpened && (
+        <div className={stylesList.container}>
+          <p className={stylesList.textinfo}>
+            <span className={stylesList.title}>{info.one.title}</span>
+            {` ${info.one.paragraph}`}
+          </p>
+          <p className={stylesList.textinfo}>
+            <span className={stylesList.title}>{info.two.title}</span>
+            {` ${info.two.paragraph}`}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

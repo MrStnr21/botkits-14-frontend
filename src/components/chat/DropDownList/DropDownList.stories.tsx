@@ -6,13 +6,8 @@ const captions = {
   story: 'История действий',
 };
 
-const positions = {
-  down: 'down',
-  up: 'up',
-};
-
 const meta = {
-  title: 'COMPONENTS/DropDownList',
+  title: 'COMPONENTS/Chat/DropDownList',
   component: DropDownList,
   tags: ['autodocs'],
   argTypes: {
@@ -29,19 +24,6 @@ const meta = {
         },
       },
     },
-    position: {
-      type: 'string',
-      description: 'Выбор положения шеврона',
-      options: Object.keys(positions),
-      mapping: positions,
-      control: {
-        type: 'radio',
-        labels: {
-          down: 'Вниз',
-          up: 'Вверх',
-        },
-      },
-    },
   },
 };
 
@@ -51,6 +33,5 @@ type Story = StoryObj<typeof meta>;
 export const DropDownListDefault: Story = {
   args: {
     caption: 'Информация о пользователе',
-    position: 'down',
   },
 };

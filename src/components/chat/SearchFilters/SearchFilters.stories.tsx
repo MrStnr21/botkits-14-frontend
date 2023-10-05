@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react';
 import SearchFilters from './SearchFilters';
 
 const meta = {
-  title: 'COMPONENTS/SearchFilters',
+  title: 'COMPONENTS/Chat/SearchFilters',
   component: SearchFilters,
   tags: ['autodocs'],
 };

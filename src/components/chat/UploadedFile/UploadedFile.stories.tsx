@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react';
 import UploadedFile from './UploadedFile';
 
 const meta = {
-  title: 'COMPONENTS/UploadedFile',
+  title: 'COMPONENTS/Chat/UploadedFile',
   component: UploadedFile,
   tags: ['autodocs'],
 };
