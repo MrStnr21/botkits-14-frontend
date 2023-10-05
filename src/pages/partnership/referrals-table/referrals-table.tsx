@@ -63,10 +63,20 @@ const rows = [
   ),
 ]; // заглушка
 
-const ReferralsTable: FC = () => {
+interface IReferralsTable {
+  isReferralsTableVisible: boolean;
+}
+
+const ReferralsTable: FC<IReferralsTable> = ({ isReferralsTableVisible }) => {
   // const [data, setData] = useState([]); // хук для получения данных с сервера
   // const [loading, setLoading] = useState(true); // хук для отображения прелоадера
   const isMobile = useMediaQuery('(max-width: 860px)');
+  const maxTableHeight =
+    isReferralsTableVisible && isMobile
+      ? '845px'
+      : isReferralsTableVisible && !isMobile
+      ? '0px'
+      : '240px';
 
   // useEffect(() => {
   // здесь будет запрос к серверу
@@ -83,14 +93,12 @@ const ReferralsTable: FC = () => {
     <TableContainer
       component={Paper}
       className={stylesReferralsTable.referrals}
+      style={{ maxHeight: maxTableHeight }}
     >
       {isMobile ? (
         <>
           {rows.map((row) => (
-            <Table
-              key={row.linkTaps}
-              className={stylesReferralsTable.referrals__table}
-            >
+            <Table className={stylesReferralsTable.referrals__table}>
               <TableHead className={stylesReferralsTable.referrals__tableHead}>
                 <TableRow className={stylesReferralsTable.referrals__row}>
                   <TableCell className={stylesReferralsTable.referrals__cell}>
@@ -138,7 +146,7 @@ const ReferralsTable: FC = () => {
                 <TableRow className={stylesReferralsTable.referrals__row}>
                   <TableCell
                     align="right"
-                    className={`${stylesReferralsTable.referrals__cell} + ${stylesReferralsTable.boreferrals__bodyCelldyCell}`}
+                    className={`${stylesReferralsTable.referrals__cell} + ${stylesReferralsTable.referrals__bodyCell}`}
                   >
                     {row.linkTaps}
                   </TableCell>
@@ -185,8 +193,8 @@ const ReferralsTable: FC = () => {
         </>
       ) : (
         <Table className={stylesReferralsTable.referrals__table}>
-          <TableHead className={stylesReferralsTable.tableHead}>
-            <TableRow className={stylesReferralsTable.row}>
+          <TableHead className={stylesReferralsTable.referrals__tableHead}>
+            <TableRow className={stylesReferralsTable.referrals__row}>
               <TableCell className={stylesReferralsTable.referrals__cell}>
                 Перешли по ссылке
               </TableCell>
@@ -230,10 +238,7 @@ const ReferralsTable: FC = () => {
           </TableHead>
           <TableBody className={stylesReferralsTable.referrals__tableBody}>
             {rows.map((row) => (
-              <TableRow
-                key={row.linkTaps}
-                className={stylesReferralsTable.referrals__row}
-              >
+              <TableRow className={stylesReferralsTable.referrals__row}>
                 <TableCell
                   component="th"
                   scope="row"

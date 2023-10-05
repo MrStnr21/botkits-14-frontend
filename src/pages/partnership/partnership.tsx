@@ -22,17 +22,17 @@ const Partnership: FC = (): JSX.Element => {
     isPaymentsTableVisible && stylesPartnership.chevron_active
   );
 
-  const toggleFirstTable = () => {
+  const toggleReferralsTable = () => {
     setReferralsTableVisible(!isReferralsTableVisible);
-    setPaymentsTableVisible(!isPaymentsTableVisible);
+    setPaymentsTableVisible(false);
   };
 
-  const toggleSecondTable = () => {
-    setPaymentsTableVisible(!isPaymentsTableVisible);
-    if (!isMobile) {
-      setReferralsTableVisible(true);
-    } else {
+  const togglePaymentsTable = () => {
+    if (isMobile) {
+      setPaymentsTableVisible(!isPaymentsTableVisible);
       setReferralsTableVisible(false);
+    } else {
+      setPaymentsTableVisible(!isPaymentsTableVisible);
     }
   };
 
@@ -82,14 +82,16 @@ const Partnership: FC = (): JSX.Element => {
               {isMobile && (
                 <button
                   type="button"
-                  onClick={toggleFirstTable}
+                  onClick={toggleReferralsTable}
                   className={chevronClassName}
                 >
                   <ReactSVG src={chevron} />
                 </button>
               )}
             </div>
-            {isReferralsTableVisible && <ReferralsTable />}
+            {/* {isReferralsTableVisible && ( */}
+            <ReferralsTable isReferralsTableVisible={isReferralsTableVisible} />
+            {/* )} */}
             {isMobile && (
               <div className={stylesPartnership.partnership__buttonWrapper}>
                 <Button
@@ -108,7 +110,7 @@ const Partnership: FC = (): JSX.Element => {
               <h2 className={stylesPartnership.tables__title}>Выплаты</h2>
               <button
                 type="button"
-                onClick={toggleSecondTable}
+                onClick={togglePaymentsTable}
                 className={chevronClassName}
               >
                 <ReactSVG src={chevron} />

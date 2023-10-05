@@ -29,7 +29,11 @@ const rows = [
   createData('15.08.22', '19.08.22', 'Документ', 'Выплачено', '1500 ₽'),
 ];
 
-const PaymentsTable: FC = () => {
+interface IPaymentsTable {
+  isPaymentsTableVisible?: boolean;
+}
+
+const PaymentsTable: FC<IPaymentsTable> = () => {
   const isMobile = useMediaQuery('(max-width: 860px)');
 
   return (
@@ -76,31 +80,31 @@ const PaymentsTable: FC = () => {
                 <TableRow className={stylesPaymentsTable.payments__row}>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.payments__bodyCell}`}
                   >
                     {row.reqDate}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.payments__bodyCell}`}
                   >
                     {row.payDate}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.payments__bodyCell}`}
                   >
                     {row.document}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.payments__bodyCell}`}
                   >
                     {row.status}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.payments__bodyCell}`}
                   >
                     {row.sum}
                   </TableCell>

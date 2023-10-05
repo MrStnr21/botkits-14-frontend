@@ -56,10 +56,11 @@
 
   &__buttonWrapper {
     width: 20%;
-    padding: 0 0 40px;
+    padding: 40px 0 40px;
 
     @media screen and (max-width: 860px) {
       width: 80%;
+      padding: 20px 0 40px;
     }
   }
 }
