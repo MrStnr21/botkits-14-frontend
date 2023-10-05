@@ -9,6 +9,7 @@ import stylesSidebar from './sidebar.module.scss';
 import Cover from '../../ui/cover/cover';
 
 import { links, ILink } from './sb-data';
+import BASE_URL from '../../utils/config';
 
 // Элемент заголовка в навигации
 const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
@@ -61,7 +62,12 @@ const Sidebar: FC = (): JSX.Element => {
             aria-label="Показать навигацию сайдбара"
           />
 
-          <div className={stylesSidebar.header__logo} />
+          <div
+            onClick={() => {
+              window.location.href = `${BASE_URL}`;
+            }}
+            className={stylesSidebar.header__logo}
+          />
         </div>
 
         <div
