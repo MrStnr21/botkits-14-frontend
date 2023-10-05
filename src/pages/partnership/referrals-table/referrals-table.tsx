@@ -72,11 +72,7 @@ const ReferralsTable: FC<IReferralsTable> = ({ isReferralsTableVisible }) => {
   // const [loading, setLoading] = useState(true); // хук для отображения прелоадера
   const isMobile = useMediaQuery('(max-width: 860px)');
   const maxTableHeight =
-    isReferralsTableVisible && isMobile
-      ? '845px'
-      : isReferralsTableVisible && !isMobile
-      ? '0px'
-      : '240px';
+    isReferralsTableVisible && isMobile ? '845px' : '240px';
 
   // useEffect(() => {
   // здесь будет запрос к серверу
