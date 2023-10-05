@@ -17,9 +17,14 @@ const Partnership: FC = (): JSX.Element => {
   const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
   const [inputValue, setInputValue] = useState<string>('botkits.ru/?ref=12345');
 
-  const chevronClassName = cn(
+  const chevronClassNamePayments = cn(
     stylesPartnership.chevron,
     isPaymentsTableVisible && stylesPartnership.chevron_active
+  );
+
+  const chevronClassNameReferrals = cn(
+    stylesPartnership.chevron,
+    isReferralsTableVisible && stylesPartnership.chevron_active
   );
 
   const toggleReferralsTable = () => {
@@ -28,12 +33,8 @@ const Partnership: FC = (): JSX.Element => {
   };
 
   const togglePaymentsTable = () => {
-    if (isMobile) {
-      setPaymentsTableVisible(!isPaymentsTableVisible);
-      setReferralsTableVisible(false);
-    } else {
-      setPaymentsTableVisible(!isPaymentsTableVisible);
-    }
+    setPaymentsTableVisible(!isPaymentsTableVisible);
+    setReferralsTableVisible(false);
   };
 
   return (
@@ -83,15 +84,13 @@ const Partnership: FC = (): JSX.Element => {
                 <button
                   type="button"
                   onClick={toggleReferralsTable}
-                  className={chevronClassName}
+                  className={chevronClassNameReferrals}
                 >
                   <ReactSVG src={chevron} />
                 </button>
               )}
             </div>
-            {/* {isReferralsTableVisible && ( */}
             <ReferralsTable isReferralsTableVisible={isReferralsTableVisible} />
-            {/* )} */}
             {isMobile && (
               <div className={stylesPartnership.partnership__buttonWrapper}>
                 <Button
@@ -111,7 +110,7 @@ const Partnership: FC = (): JSX.Element => {
               <button
                 type="button"
                 onClick={togglePaymentsTable}
-                className={chevronClassName}
+                className={chevronClassNamePayments}
               >
                 <ReactSVG src={chevron} />
               </button>
