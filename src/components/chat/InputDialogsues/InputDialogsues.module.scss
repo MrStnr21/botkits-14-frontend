@@ -1,0 +1,49 @@
+@import '../../app/vars';
+
+.message {
+  display: flex;
+  max-width: 308px;
+  background-color: $default-grey-color;
+  border-radius: $border-radius-10;
+  min-height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.input {
+  width: 100%;
+  border-radius: 10px 0 0 10px;
+  outline: 0;
+  border: 0;
+  background-color: $default-grey-color;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $s-font-size;
+  font-weight: $normal;
+  line-height: 20px;
+  letter-spacing: $m-letter-space;
+  color: $primary-text-color;
+  text-indent: 20px;
+
+  &::placeholder {
+    color: $default-dark-grey-color;
+    background: url('../../../images/icon/20x20/search.svg') no-repeat;
+  }
+}
+
+.message_hidden {
+  display: flex;
+  gap: 8px;
+}
+
+
+.button {
+  background: 0;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+.icon {
+  stroke: $default-dark-grey-color;
+}
