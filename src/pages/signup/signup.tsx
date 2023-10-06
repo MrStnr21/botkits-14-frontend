@@ -21,6 +21,7 @@ import { signupSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
 
 import backgroundImage from '../../images/roboSuccess.png';
+import TelegramWidget from '../../components/telegramWidget/telegramWidget';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
@@ -57,6 +58,22 @@ const Signup: FC = (): JSX.Element => {
 
     // Составляем URL для авторизации обрати внимание на state=random_string_123 Для предотвращения CSRF атак необходимо сохранять случайное значение state в сессии\куке и проверять его при возврате на redirect_uri.
     const authUrl = `https://oauth.mail.ru/login?client_id=${CLIENT_ID}&response_type=code&scope=userinfo&redirect_uri=http://localhost:3000/signin&state=random_string_123`;
+
+    // Перенаправляем пользователя на страницу авторизации Яндекса
+    window.location.href = authUrl;
+  };
+
+  const handlerAuthVkontakte = () => {
+    // Составляем URL для авторизации обрати внимание на state=random_string_123 Для предотвращения CSRF атак необходимо сохранять случайное значение state в сессии\куке и проверять его при возврате на redirect_uri.
+    const authUrl = `http://localhost:3001/vkontakte`;
+
+    // Перенаправляем пользователя на страницу авторизации Яндекса
+    window.location.href = authUrl;
+  };
+
+  const handlerAuthGoogle = () => {
+    // Составляем URL для авторизации обрати внимание на state=random_string_123 Для предотвращения CSRF атак необходимо сохранять случайное значение state в сессии\куке и проверять его при возврате на redirect_uri.
+    const authUrl = `http://localhost:3001/google`;
 
     // Перенаправляем пользователя на страницу авторизации Яндекса
     window.location.href = authUrl;
@@ -106,6 +123,7 @@ const Signup: FC = (): JSX.Element => {
                 social="google"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthGoogle}
               />
               <ButtonAddSocial
                 social="yandex"
@@ -125,6 +143,7 @@ const Signup: FC = (): JSX.Element => {
                 social="vk"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthVkontakte}
               />
               <ButtonAddSocial
                 social="odnoklassniki"
@@ -136,11 +155,7 @@ const Signup: FC = (): JSX.Element => {
                 size="small"
                 buttonHtmlType="button"
               />
-              <ButtonAddSocial
-                social="telegram"
-                size="small"
-                buttonHtmlType="button"
-              />
+              <TelegramWidget />
             </div>
           </div>
         </div>

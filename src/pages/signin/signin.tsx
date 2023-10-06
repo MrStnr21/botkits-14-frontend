@@ -15,6 +15,7 @@ import { signinAction } from '../../services/actions/auth/signin';
 import routesUrl from '../../utils/routesData';
 import useForm from '../../services/hooks/use-form';
 import { signinSel } from '../../utils/selectorData';
+import TelegramWidget from '../../components/telegramWidget/telegramWidget';
 
 const Signin: FC = (): JSX.Element => {
   const { signinSuccess } = useAppSelector(signinSel);
@@ -184,11 +185,7 @@ const Signin: FC = (): JSX.Element => {
                 size="small"
                 buttonHtmlType="button"
               />
-              <ButtonAddSocial
-                social="telegram"
-                size="small"
-                buttonHtmlType="button"
-              />
+              <TelegramWidget />
             </div>
           </div>
         </div>
