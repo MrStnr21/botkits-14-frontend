@@ -31,8 +31,8 @@ const Signin: FC = (): JSX.Element => {
       e.preventDefault();
       dispatch(
         signinAction({
-          email: values.email,
-          password: values.password,
+          email: values.email.value,
+          password: values.password.value,
         })
       );
     },
