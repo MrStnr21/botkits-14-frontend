@@ -38,8 +38,8 @@ const signupAction: AppThunk = (userInfo: IUserSignupState) => {
     signupApi(userInfo)
       .then((res: TUser) => {
         if (res) {
-          saveAccessToken(res.accounts[0].credentials.accessToken);
-          saveRefreshToken(res.accounts[0].credentials.refreshToken);
+          saveAccessToken(res.credentials.accessToken);
+          saveRefreshToken(res.credentials.refreshToken);
 
           dispatch({
             type: SIGNUP_SUCCESS,

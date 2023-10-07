@@ -6,10 +6,24 @@ import HowItWorks from '../../components/add-bot/how-it-works/how-it-works';
 import CreateBot from '../../components/add-bot/create-bot/create-bot';
 import AddBot from '../../components/add-bot/add-bot/add-bot';
 
+interface IBot {
+  name: string;
+  stepFirst: 'default' | 'upload';
+  botURI?: boolean;
+}
+
 const AddBotPage: FC = (): JSX.Element => {
-  const [bot, setBot] = useState<any>();
-  // Добавить подключение к бэку и к редаксу
-  const onClick = (name: string, stepFirst: string, botURI: boolean) => {
+  const [bot, setBot] = useState<IBot>({
+    name: '',
+    stepFirst: 'default',
+    botURI: false,
+  });
+
+  const onClick = (
+    name: string,
+    stepFirst: 'default' | 'upload',
+    botURI: boolean
+  ) => {
     setBot({
       name,
       stepFirst,
@@ -22,8 +36,8 @@ const AddBotPage: FC = (): JSX.Element => {
       <AddBot bot={bot} onClick={onClick} />
       <div className={stylesAddBotPage.add_bot_page_container}>
         <CreateBot
-          botName={bot?.name}
-          stepFirst={bot?.stepFirst}
+          botName={bot.name}
+          stepFirst={bot.stepFirst}
           botURI={bot?.botURI}
         />
         {bot && (

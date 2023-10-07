@@ -56,7 +56,7 @@ const CreateBot: FC<ICreateBot> = ({
   stepFirst,
   botURI,
 }): JSX.Element => {
-  const [arrPages, setArrPages] = useState<any[]>([]); // временный тип any
+  const [arrPages, setArrPages] = useState<string[]>([]);
 
   const profile = useAppSelector(signupSel || signinSel);
 

@@ -37,8 +37,8 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
     signinApi(userInfo)
       .then((res: TUser) => {
         if (res) {
-          saveAccessToken(res.accounts[0].credentials.accessToken);
-          saveRefreshToken(res.accounts[0].credentials.refreshToken);
+          saveAccessToken(res.credentials.accessToken);
+          saveRefreshToken(res.credentials.refreshToken);
 
           dispatch({
             type: SIGNIN_SUCCESS,

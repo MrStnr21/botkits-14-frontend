@@ -8,7 +8,7 @@ import PageItem from '../page-item/page-item';
 
 interface ILoadPages {
   disabled?: boolean;
-  arr: any;
+  arr: string[];
   onClick: () => void;
 }
 
@@ -38,10 +38,10 @@ const LoadPages: FC<ILoadPages> = ({
           <li className={stylesInput.selects_item}>
             <PageItem type="upload" onClick={onClick} />
           </li>
-          {arr.map((item: any, index: number) => (
+          {arr.map((item, index: number) => (
             // eslint-disable-next-line react/no-array-index-key
             <li className={stylesInput.selects_item} key={index}>
-              <PageItem {...item} />
+              <PageItem text={item} />
             </li>
           ))}
         </ul>
