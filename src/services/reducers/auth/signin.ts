@@ -16,6 +16,7 @@ export type TSigninState = {
   signinRequest: boolean;
   signinSuccess: boolean;
   signinError: boolean;
+  signinErrorText: string;
 };
 
 const signinInitialState: TSigninState = {
@@ -26,6 +27,7 @@ const signinInitialState: TSigninState = {
   signinRequest: false,
   signinSuccess: false,
   signinError: false,
+  signinErrorText: '',
 };
 
 function signinReducer(
@@ -55,6 +57,7 @@ function signinReducer(
         ...state,
         signinRequest: false,
         signinError: true,
+        signinErrorText: action.textError,
       };
     }
     default: {
