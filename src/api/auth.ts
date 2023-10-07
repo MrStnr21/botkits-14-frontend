@@ -40,4 +40,14 @@ function logoutApi(token: string) {
   });
 }
 
-export { signupApi, signinApi, logoutApi };
+function socialAuth(code: string, social: string) {
+  return request(`${social}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({ codeAuth: code }),
+  });
+}
+
+export { signupApi, signinApi, logoutApi, socialAuth };

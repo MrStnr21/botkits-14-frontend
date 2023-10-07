@@ -73,3 +73,15 @@ export enum POPUP_ITEM {
   LINK = 'Получить ссылку',
   DEFAULT = '',
 }
+
+export const CLIENT_ID = {
+  yandex: 'b6e2d274a2e94c5ea78626531209dee7',
+  mailru: 'b85b17e5adb44a6e9e1325c97d1b1b83',
+};
+
+export const AUTH_URL = {
+  yandex: `https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID.yandex}`,
+  mailru: `https://oauth.mail.ru/login?client_id=${CLIENT_ID.mailru}&response_type=code&scope=userinfo&redirect_uri=http://localhost:3000/signin&state=random_string_123`,
+  vk: `http://localhost:3001/vkontakte`,
+  google: `http://localhost:3001/google`,
+};

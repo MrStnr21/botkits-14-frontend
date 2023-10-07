@@ -19,6 +19,7 @@ import useForm from '../../services/hooks/use-form';
 import { COUNTRY_COD_LIST, DEFAULT_PHONE_CODE } from '../../utils/constants';
 import { signupSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
+import { handlerAuthMailru, handlerAuthYandex } from '../../utils/utils';
 
 import backgroundImage from '../../images/roboSuccess.png';
 
@@ -96,11 +97,13 @@ const Signup: FC = (): JSX.Element => {
                 social="yandex"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthYandex}
               />
               <ButtonAddSocial
                 social="mailru"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthMailru}
               />
             </div>
             <div className={stylesSignup.socialSecond}>

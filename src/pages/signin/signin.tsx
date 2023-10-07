@@ -10,15 +10,28 @@ import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { signinAction } from '../../services/actions/auth/signin';
+import {
+  signinAction,
+  socialAuthAction,
+} from '../../services/actions/auth/signin';
 
 import routesUrl from '../../utils/routesData';
 import useForm from '../../services/hooks/use-form';
 import { signinSel } from '../../utils/selectorData';
+import { getSocial, removeSocial } from '../../auth/authService';
+import {
+  handlerAuthMailru,
+  handlerAuthVkontakte,
+  handlerAuthYandex,
+} from '../../utils/utils';
 
 const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector(signinSel);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  // Извлечение текущего URL
+  const currentUrl = new URL(window.location.href);
+  // Используем URLSearchParams для получения параметра 'code'
+  const code = currentUrl.searchParams.get('code');
 
   const { values, handleChange } = useForm({
     email: { value: '', valueValid: false },
@@ -42,6 +55,13 @@ const Signin: FC = (): JSX.Element => {
       })
     );
   };
+
+  useEffect(() => {
+    if (code) {
+      dispatch(socialAuthAction(code, getSocial()));
+      removeSocial();
+    }
+  }, []);
 
   return userData.signinSuccess ? (
     <Navigate to={routesUrl.homePage} />
@@ -118,11 +138,13 @@ const Signin: FC = (): JSX.Element => {
                 social="yandex"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthYandex}
               />
               <ButtonAddSocial
                 social="mailru"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthMailru}
               />
             </div>
             <div className={stylesSignin.socialSecond}>
@@ -130,6 +152,7 @@ const Signin: FC = (): JSX.Element => {
                 social="vk"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthVkontakte}
               />
               <ButtonAddSocial
                 social="odnoklassniki"

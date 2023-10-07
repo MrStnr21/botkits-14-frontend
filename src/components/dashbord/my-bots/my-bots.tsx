@@ -18,7 +18,7 @@ import { getAccessToken } from '../../../auth/authService';
 
 import routesUrl from '../../../utils/routesData';
 
-import Odnoklassniki from '../../../images/icon/40x40/odnoklassniki/hover.svg';
+import Odnokassniki from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import Telegram from '../../../images/icon/40x40/telegram/hover.svg';
 import Whatsapp from '../../../images/icon/40x40/whatsapp/hover.svg';
 import Facebook from '../../../images/icon/40x40/facebook/hover.svg';
@@ -35,7 +35,7 @@ const img: any = {
   Telegram,
   Viber,
   VK,
-  Odnoklassniki,
+  Odnokassniki,
   Алиса: Alisa,
   Whatsapp,
   Instagram,
