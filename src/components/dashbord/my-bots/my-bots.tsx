@@ -77,7 +77,7 @@ const MyBots: FC = (): JSX.Element => {
       </div>
       <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
         {bots.map((bot: TBot, index) => (
-          <li key={bot.botName + index.toString()} className={styles.item}>
+          <li key={bot.botName + +index} className={styles.item}>
             <BotCard
               platform_icon={img[bot.messenger.name]}
               bot_name={bot.botName}

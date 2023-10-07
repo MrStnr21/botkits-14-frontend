@@ -64,7 +64,7 @@ const KnowledgeBase: FC = (): JSX.Element => {
             {links.map((item, index) => (
               <li
                 className={stylesKnowledgeBase.base__item}
-                key={item.text + index.toString()}
+                key={item.text + +index}
               >
                 <a
                   href={item.link}

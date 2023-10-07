@@ -86,7 +86,7 @@ const Sidebar: FC = (): JSX.Element => {
             {links.map((item, index) =>
               item.child ? (
                 <li
-                  key={item.text + index.toString()}
+                  key={item.text + +index}
                   className={`${stylesSidebar.nestedList} ${
                     isOpenNL
                       ? stylesSidebar.nestedList_open

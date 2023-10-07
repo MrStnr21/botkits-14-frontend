@@ -104,7 +104,7 @@ const ButtonAddFile: FC = (): JSX.Element => {
         >
           {fileList.map((file, index) =>
             file.type.includes('video') ? (
-              <li key={file.name + index.toString()}>
+              <li key={file.name + +index}>
                 <VideoCard
                   src="https://www.youtube.com/embed/FKOn5DfpJDA"
                   title="Подключение чат бота и основные параметры | Bot Kits"
@@ -115,7 +115,7 @@ const ButtonAddFile: FC = (): JSX.Element => {
                 />
               </li>
             ) : (
-              <li key={file.name + index.toString()}>
+              <li key={file.name + +index}>
                 <ResultAddFile
                   name={file.name}
                   size={file.size}
