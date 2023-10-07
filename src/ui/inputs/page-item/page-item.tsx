@@ -11,14 +11,14 @@ interface IPageItem {
   type?: 'default' | 'upload';
   disabled?: true | false;
   image?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const PageItem: FC<IPageItem> = ({
   type = 'default',
   text = 'Страница',
   disabled,
-  onClick,
+  onClick = () => console.log('Click'),
   image = imgDefault,
 }): JSX.Element => {
   const [selected, setSelected] = useState(false);
