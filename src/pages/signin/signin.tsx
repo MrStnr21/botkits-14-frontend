@@ -24,6 +24,7 @@ import {
   handlerAuthVkontakte,
   handlerAuthYandex,
 } from '../../utils/utils';
+import TelegramWidget from '../../components/telegram-widget/telegram-widget';
 
 const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector(signinSel);
@@ -169,6 +170,7 @@ const Signin: FC = (): JSX.Element => {
                 size="small"
                 buttonHtmlType="button"
               />
+              <TelegramWidget />
             </div>
           </div>
         </div>
