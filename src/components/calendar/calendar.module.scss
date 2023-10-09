@@ -145,12 +145,12 @@
     }
 
     [class*="MuiPickersCalendarHeader-label"] {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: $s-font-size;
+      font-weight: $bold;
       font-style: normal;
-      line-height: 150%;
-      letter-spacing: 0.3px;
-      color: #060C23;
+      line-height: $button-line-height-150;
+      letter-spacing: $m-letter-space;
+      color: $primary-text-color;
       text-transform: capitalize;
       margin: 0;
       padding: 0;
@@ -158,7 +158,7 @@
 
     [class*="MuiPickersArrowSwitcher"] {
       padding: 0px;
-      color: #A6B3C9;
+      color: $default-dark-grey-color;
     }
   }
 
@@ -166,12 +166,12 @@
     max-width: 26px;
     max-height: 26px;
     margin: 0px;
-    font-size: 13px;
-    font-weight: 400;
+    font-size: $s-font-size;
+    font-weight: $normal;
     font-style: normal;
-    line-height: 150%;
-    letter-spacing: 0.3px;
-    color: #060C23;
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    color: $primary-text-color;
 
     &:hover {
       border-radius: 4px;
