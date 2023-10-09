@@ -73,10 +73,16 @@
   }
 
   &__bodyCell {
-    border: none;
-
     @media screen and (max-width: 860px) {
       color: $primary-text-color;
     }
+  }
+
+  &__statusDone {
+    color: $success-color;
+  }
+
+  &__statusProcessing {
+    color: $default-blue-color;
   }
 }

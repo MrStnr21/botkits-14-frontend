@@ -15,7 +15,7 @@ import stylesReferralsTable from './referrals-table.module.scss';
 function createData(
   linkTaps: string,
   regs: number,
-  status: string,
+  status: boolean,
   sum: string,
   fee: string,
   paid: string,
@@ -25,42 +25,10 @@ function createData(
 } // переделать в интерфейс позже
 
 const rows = [
-  createData(
-    '28 человек',
-    15,
-    'Оплачено',
-    '5 000 ₽',
-    '1500 ₽',
-    '4500 ₽',
-    '1500 ₽'
-  ),
-  createData(
-    '17 человек',
-    8,
-    'Оплачено',
-    '15000 ₽',
-    '4500 ₽',
-    '8200 ₽',
-    '4500 ₽'
-  ),
-  createData(
-    '10 человек',
-    10,
-    'Оплачено',
-    '5000 ₽',
-    '1500 ₽',
-    '10000 ₽',
-    '1500 ₽'
-  ),
-  createData(
-    '18 человек',
-    10,
-    'Оплачено',
-    '5000 ₽',
-    '1500 ₽',
-    '10000 ₽',
-    '1500 ₽'
-  ),
+  createData('28 человек', 15, true, '5 000 ₽', '1500 ₽', '4500 ₽', '1500 ₽'),
+  createData('17 человек', 8, true, '15000 ₽', '4500 ₽', '8200 ₽', '4500 ₽'),
+  createData('10 человек', 10, true, '5000 ₽', '1500 ₽', '10000 ₽', '1500 ₽'),
+  createData('18 человек', 10, true, '5000 ₽', '1500 ₽', '10000 ₽', '1500 ₽'),
 ]; // заглушка
 
 interface IReferralsTable {
@@ -154,9 +122,14 @@ const ReferralsTable: FC<IReferralsTable> = ({ isReferralsTableVisible }) => {
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesReferralsTable.referrals__cell} + ${stylesReferralsTable.referrals__bodyCell}`}
+                    className={`${stylesReferralsTable.referrals__cell} +
+                     ${
+                       row.status
+                         ? stylesReferralsTable.referrals__statusDone
+                         : stylesReferralsTable.referrals__statusProcessing
+                     } + ${stylesReferralsTable.referrals__bodyCell}`}
                   >
-                    {row.status}
+                    {row.status ? 'Оплачено' : 'В обработке'}
                   </TableCell>
                   <TableCell
                     align="right"
@@ -250,9 +223,14 @@ const ReferralsTable: FC<IReferralsTable> = ({ isReferralsTableVisible }) => {
                 </TableCell>
                 <TableCell
                   align="left"
-                  className={stylesReferralsTable.referrals__cell}
+                  className={`${stylesReferralsTable.referrals__cell} +
+                  ${
+                    row.status
+                      ? stylesReferralsTable.referrals__statusDone
+                      : stylesReferralsTable.referrals__statusProcessing
+                  }`}
                 >
-                  {row.status}
+                  {row.status ? 'Оплачено' : 'В обработке'}
                 </TableCell>
                 <TableCell
                   align="left"

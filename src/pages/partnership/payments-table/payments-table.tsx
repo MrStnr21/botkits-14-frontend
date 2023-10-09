@@ -16,17 +16,17 @@ function createData(
   reqDate: string,
   payDate: string,
   document: any,
-  status: string,
+  status: boolean,
   sum: string
 ) {
   return { reqDate, payDate, document, status, sum };
 } // переделать в интерфейс позже
 
 const rows = [
-  createData('05.07.22', '07.07.22', 'Документ', 'Выплачено', '1500 ₽'),
-  createData('02.07.22', '-', 'Документ', 'Выплачено', '4500 ₽'),
-  createData('27.06.22', '29.07.22', 'Документ', 'В обработке', '4500 ₽'),
-  createData('15.08.22', '19.08.22', 'Документ', 'Выплачено', '1500 ₽'),
+  createData('05.07.22', '07.07.22', 'Документ', true, '1500 ₽'),
+  createData('02.07.22', '-', 'Документ', true, '4500 ₽'),
+  createData('27.06.22', '29.07.22', 'Документ', false, '4500 ₽'),
+  createData('15.08.22', '19.08.22', 'Документ', true, '1500 ₽'),
 ];
 
 interface IPaymentsTable {
@@ -98,9 +98,15 @@ const PaymentsTable: FC<IPaymentsTable> = () => {
                   </TableCell>
                   <TableCell
                     align="right"
-                    className={`${stylesPaymentsTable.payments__cell} + ${stylesPaymentsTable.payments__bodyCell}`}
+                    className={`${stylesPaymentsTable.payments__cell} +
+                      ${
+                        row.status
+                          ? stylesPaymentsTable.payments__statusDone
+                          : stylesPaymentsTable.payments__statusProcessing
+                      } +
+                    ${stylesPaymentsTable.payments__bodyCell}`}
                   >
-                    {row.status}
+                    {row.status ? 'Выплачено' : 'В обработке'}
                   </TableCell>
                   <TableCell
                     align="right"
@@ -174,10 +180,15 @@ const PaymentsTable: FC<IPaymentsTable> = () => {
                   {row.document}
                 </TableCell>
                 <TableCell
-                  className={stylesPaymentsTable.payments__cell}
+                  className={`${stylesPaymentsTable.payments__cell} +
+                  ${
+                    row.status
+                      ? stylesPaymentsTable.payments__statusDone
+                      : stylesPaymentsTable.payments__statusProcessing
+                  }`}
                   align="left"
                 >
-                  {row.status}
+                  {row.status ? 'Выплачено' : 'В обработке'}
                 </TableCell>
                 <TableCell
                   className={stylesPaymentsTable.payments__cell}

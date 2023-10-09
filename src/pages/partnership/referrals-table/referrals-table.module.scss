@@ -79,4 +79,13 @@
       color: $primary-text-color;
     }
   }
+
+
+  &__statusDone {
+    color: $success-color;
+  }
+
+  &__statusProcessing {
+    color: $default-blue-color;
+  }
 }
