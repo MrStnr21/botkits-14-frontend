@@ -72,7 +72,7 @@ const ReferralsTable: FC<IReferralsTable> = ({ isReferralsTableVisible }) => {
                     className={stylesReferralsTable.referrals__cell}
                     align="left"
                   >
-                    Регистрация
+                    Регистраций
                   </TableCell>
                   <TableCell
                     className={stylesReferralsTable.referrals__cell}
@@ -171,7 +171,7 @@ const ReferralsTable: FC<IReferralsTable> = ({ isReferralsTableVisible }) => {
                 className={stylesReferralsTable.referrals__cell}
                 align="left"
               >
-                Регистрация
+                Регистраций
               </TableCell>
               <TableCell
                 className={stylesReferralsTable.referrals__cell}

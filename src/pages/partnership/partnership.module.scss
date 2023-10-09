@@ -112,6 +112,11 @@
       line-height: $h4-line-height;
     }
   }
+
+  &__arrowButton {
+    border: none;
+    background: transparent;
+  }
 }
 
 .button {

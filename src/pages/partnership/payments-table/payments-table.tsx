@@ -20,12 +20,12 @@ function createData(
   sum: string
 ) {
   return { reqDate, payDate, document, status, sum };
-} // переделать в интерфейс позже
+}
 
 const rows = [
   createData('05.07.22', '07.07.22', 'Документ', true, '1500 ₽'),
-  createData('02.07.22', '-', 'Документ', true, '4500 ₽'),
-  createData('27.06.22', '29.07.22', 'Документ', false, '4500 ₽'),
+  createData('02.07.22', '-', 'Документ', false, '4500 ₽'),
+  createData('27.06.22', '29.07.22', 'Документ', true, '4500 ₽'),
   createData('15.08.22', '19.08.22', 'Документ', true, '1500 ₽'),
 ];
 
@@ -191,6 +191,7 @@ const PaymentsTable: FC<IPaymentsTable> = () => {
                   {row.status ? 'Выплачено' : 'В обработке'}
                 </TableCell>
                 <TableCell
+                  sx={{ width: '130px' }}
                   className={stylesPaymentsTable.payments__cell}
                   align="right"
                 >
