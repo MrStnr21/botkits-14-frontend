@@ -312,6 +312,7 @@
     position: relative;
     border: 6px solid transparent;
     box-sizing: border-box;
+    box-shadow: $l-box-shadow;
 
     @media screen and (max-width: 600px) {
       width: 100%;

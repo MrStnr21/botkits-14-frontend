@@ -11,6 +11,8 @@
 
   @media screen and (max-width: 600px) {
     border-radius: $border-radius-30 $border-radius-30 0 0;
+    height: calc(100vh - 119px);
+    justify-content: flex-start;
   }
 }
 

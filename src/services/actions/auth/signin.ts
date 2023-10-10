@@ -47,15 +47,18 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
           });
         }
       })
-      .catch((err: [string, Promise<IUserAuthError>]) => {
-        // eslint-disable-next-line no-console
-        console.log(err[0]);
-        err[1].then((payload: IUserAuthError) => {
-          dispatch({
-            type: SIGNIN_ERROR,
-            textError: payload.message,
+      .catch((err: [string, Promise<IUserAuthError> | undefined]) => {
+        if (err[1]) {
+          // eslint-disable-next-line no-console
+          console.log(err[0]);
+          err[1].then((payload: IUserAuthError) => {
+            dispatch({
+              type: SIGNIN_ERROR,
+              textError: payload.message,
+            });
           });
-        });
+          // eslint-disable-next-line no-console
+        } else console.log(err);
       });
   };
 };
