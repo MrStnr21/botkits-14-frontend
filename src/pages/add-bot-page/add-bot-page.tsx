@@ -5,12 +5,7 @@ import stylesAddBotPage from './add-bot-page.module.scss';
 import HowItWorks from '../../components/add-bot/how-it-works/how-it-works';
 import CreateBot from '../../components/add-bot/create-bot/create-bot';
 import AddBot from '../../components/add-bot/add-bot/add-bot';
-
-interface IBot {
-  name: string;
-  stepFirst: 'default' | 'upload';
-  botURI?: boolean;
-}
+import { IBot } from '../../utils/types';
 
 const AddBotPage: FC = (): JSX.Element => {
   const [bot, setBot] = useState<IBot>({

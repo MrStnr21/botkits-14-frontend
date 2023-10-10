@@ -28,7 +28,11 @@ import VK from '../../../images/icon/40x40/vk/hover.svg';
 import { TBot } from '../../../services/types/bot';
 import { getBotsSel } from '../../../utils/selectorData';
 
-const img: any = {
+interface IImg {
+  [key: string]: string;
+}
+
+const img: IImg = {
   Facebook,
   Telegram,
   Viber,

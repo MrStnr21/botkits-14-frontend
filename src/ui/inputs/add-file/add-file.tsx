@@ -17,9 +17,11 @@ const DownloadFile: FC<IDownloadFile> = ({
 }): JSX.Element => {
   const [isNoValid, setIsNoValid] = useState(state);
 
-  const handleChange = (e: any) => {
-    if (e.target.files.length > 0) {
-      if (e.target.files[0].size > 20 * 1024 * 1024) {
+  const handleChange = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+
+    if (target.files!.length > 0) {
+      if (target.files![0].size > 20 * 1024 * 1024) {
         setIsNoValid(true);
       }
     }

@@ -22,7 +22,7 @@ export interface IMenuUser {
   top?: number;
   left?: number;
   right?: number;
-  onClick?: (e: any) => void; // Пока что слушаем только "Уведомления"
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void; // Пока что слушаем только "Уведомления"
 }
 
 const MenuUser: FC<IMenuUser> = ({
