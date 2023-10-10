@@ -1,13 +1,26 @@
 import { FC } from 'react';
+import MenuSimple from '../../../ui/menus/menu-simple/menu-simple';
+// import stylesFilters from './SearchFilters.module.scss';
 
-import stylesFilters from './SearchFilters.module.scss';
+interface ISearchFilters {
+  active: boolean;
+  onClick?: VoidFunction;
+}
 
-const SearchFilters: FC = (): JSX.Element => {
+const SearchFilters: FC<ISearchFilters> = ({
+  active = true,
+  onClick,
+}): JSX.Element => {
+  const array = ['Сначала новые', 'Сначала старые', 'Неотвеченные'];
   return (
-    <div className={stylesFilters.container}>
-      <p className={stylesFilters.text}>Сначала новые</p>
-      <p className={stylesFilters.text}>Сначала старые</p>
-      <p className={stylesFilters.text}>Неотвеченные</p>
+    <div>
+      <MenuSimple
+        buttons={array}
+        isScroll={false}
+        isActive={active}
+        size="chat"
+        onClick={onClick}
+      />
     </div>
   );
 };

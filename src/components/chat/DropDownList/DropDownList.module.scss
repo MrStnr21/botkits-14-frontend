@@ -2,7 +2,7 @@
 
 .accordion {
   display: flex;
-  max-width: 250px;
+  width: 250px;
   height: 40px;
   background-color: $default-grey-color;
   box-sizing: border-box;
@@ -13,6 +13,7 @@
   border-radius: $border-radius-5;
   align-items: flex-start;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 @mixin font {
@@ -33,7 +34,7 @@
 
 .container{
   background-color: $white-color;
-  max-width: 250px;
+  width: 250px;
   padding: 8px;
 }
 
