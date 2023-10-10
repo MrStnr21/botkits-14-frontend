@@ -10,10 +10,12 @@ import logoutReducer from './logout/logout';
 
 import { getBotsReducer } from './bots/getBots';
 import { addBotReducer } from './bots/addBot';
+import { resetPasswordReducer } from './auth/reset-password';
 
 const rootReducer = combineReducers({
   signin: signinReducer,
   signup: signupReducer,
+  resetPassword: resetPasswordReducer,
   getUserInfo: getUserInfoReducer,
   logout: logoutReducer,
   getBots: getBotsReducer,

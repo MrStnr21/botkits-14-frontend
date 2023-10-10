@@ -7,11 +7,20 @@ import stylesAddBot from './add-bot.module.scss';
 import ButtonAddSocial from '../../../ui/buttons/button-add-social/button-add-social';
 
 interface IAddBot {
-  onClick: (name: string, stepFirst: string, botURI: boolean) => void;
+  onClick: (
+    name: string,
+    stepFirst: 'default' | 'upload',
+    botURI: boolean
+  ) => void;
   bot: any;
 }
 const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
-  const socials = [
+  const socials: Array<{
+    name: string;
+    icon: string;
+    stepFirst: 'default' | 'upload';
+    botURI: boolean;
+  }> = [
     {
       name: 'Facebook',
       icon: 'facebook',

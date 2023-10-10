@@ -8,8 +8,8 @@ import styles from './more-mybot.module.scss';
 
 import NotificationSettingsIcon from '../../icons/notification-settings';
 import CopyBotIcon from '../../icons/copy-bot';
+import CloseIcon from '../../icons/Close/CloseIcon';
 import TrashIcon from '../../icons/Trash/TrashIcon';
-import CloseIcon from '../../icons/close';
 import ShareIcon from '../../icons/share';
 import EditIcon from '../../icons/edit';
 import LinkIcon from '../../icons/link';

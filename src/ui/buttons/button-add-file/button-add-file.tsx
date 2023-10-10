@@ -1,8 +1,6 @@
 // верхий компонент
 import React, { FC, useState, useCallback } from 'react';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import stylesButtonAddFile from './button-add-file.module.scss';
 
 import ConstructorIconBotton from '../constructor-icon-botton/constructor-icon-botton';
@@ -104,9 +102,9 @@ const ButtonAddFile: FC = (): JSX.Element => {
           className={stylesButtonAddFile.output}
           aria-label="Выбранные файлы для загрузки"
         >
-          {fileList.map((file) =>
+          {fileList.map((file, index) =>
             file.type.includes('video') ? (
-              <li key={uuidv4()}>
+              <li key={file.name + +index}>
                 <VideoCard
                   src="https://www.youtube.com/embed/FKOn5DfpJDA"
                   title="Подключение чат бота и основные параметры | Bot Kits"
@@ -117,7 +115,7 @@ const ButtonAddFile: FC = (): JSX.Element => {
                 />
               </li>
             ) : (
-              <li key={uuidv4()}>
+              <li key={file.name + +index}>
                 <ResultAddFile
                   name={file.name}
                   size={file.size}

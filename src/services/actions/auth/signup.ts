@@ -4,7 +4,7 @@ import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
-import { IUserSignupState, TUser } from '../../types/user';
+import { IUserAuthError, IUserSignupState, TUser } from '../../types/user';
 
 const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -21,6 +21,7 @@ export interface ISignupSuccesAction {
 
 export interface ISignupErrorAction {
   readonly type: typeof SIGNUP_ERROR;
+  textError: string;
 }
 
 export type TSignupActions =
@@ -37,8 +38,8 @@ const signupAction: AppThunk = (userInfo: IUserSignupState) => {
     signupApi(userInfo)
       .then((res: TUser) => {
         if (res) {
-          saveAccessToken(res.accounts[0].credentials.accessToken);
-          saveRefreshToken(res.accounts[0].credentials.refreshToken);
+          saveAccessToken(res.credentials.accessToken);
+          saveRefreshToken(res.credentials.refreshToken);
 
           dispatch({
             type: SIGNUP_SUCCESS,
@@ -46,12 +47,18 @@ const signupAction: AppThunk = (userInfo: IUserSignupState) => {
           });
         }
       })
-      .catch((err: { message: string }) => {
-        // eslint-disable-next-line no-console
-        console.log(err.message);
-        dispatch({
-          type: SIGNUP_ERROR,
-        });
+      .catch((err: [string, Promise<IUserAuthError> | undefined]) => {
+        if (err[1]) {
+          // eslint-disable-next-line no-console
+          console.log(err[0]);
+          err[1].then((payload: IUserAuthError) => {
+            dispatch({
+              type: SIGNUP_ERROR,
+              textError: payload.message,
+            });
+          });
+          // eslint-disable-next-line no-console
+        } else console.log(err);
       });
   };
 };

@@ -1,4 +1,4 @@
-import { FC, useCallback, FormEvent } from 'react';
+import { FC, FormEvent, useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import stylesSignin from './signin.module.scss';
@@ -17,29 +17,33 @@ import useForm from '../../services/hooks/use-form';
 import { signinSel } from '../../utils/selectorData';
 
 const Signin: FC = (): JSX.Element => {
-  const { signinSuccess } = useAppSelector(signinSel);
+  const userData = useAppSelector(signinSel);
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   const { values, handleChange } = useForm({
-    email: '',
-    password: '',
+    email: { value: '', valueValid: false },
+    password: { value: '', valueValid: false },
   });
 
   const dispatch = useAppDispatch();
 
-  const handleSignin = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      dispatch(
-        signinAction({
-          email: values.email,
-          password: values.password,
-        })
-      );
-    },
-    [values]
-  );
+  useEffect(() => {
+    if (values.email.valueValid && values.password.valueValid) {
+      setButtonDisabled(false);
+    } else setButtonDisabled(true);
+  }, [values]);
 
-  return signinSuccess ? (
+  const handleSignin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(
+      signinAction({
+        email: values.email.value,
+        password: values.password.value,
+      })
+    );
+  };
+
+  return userData.signinSuccess ? (
     <Navigate to={routesUrl.homePage} />
   ) : (
     <RegLogResLayout title="Вход">
@@ -51,15 +55,23 @@ const Signin: FC = (): JSX.Element => {
                 placeholder="E-mail"
                 name="email"
                 styled="secondary"
-                required
                 onChange={handleChange}
+                value={values.email.value}
+                pattern="^\S+@\S+\.\S+$"
+                maxLength={30}
+                errorMessage="Введите корректный email"
+                required
               />
               <Input
                 placeholder="Пароль"
                 name="password"
                 styled="secondary"
-                required
                 onChange={handleChange}
+                value={values.password.value}
+                password
+                type="password"
+                maxLength={30}
+                required
               />
             </div>
             <div className={stylesSignin.signinLinksContainer}>
@@ -77,9 +89,19 @@ const Signin: FC = (): JSX.Element => {
               </Link>
             </div>
             <div className={stylesSignin.formsButton}>
-              <Button variant="default" color="green" buttonHtmlType="submit">
+              <Button
+                variant="default"
+                color="green"
+                buttonHtmlType="submit"
+                disabled={buttonDisabled}
+              >
                 Войти
               </Button>
+              {userData.signinError && (
+                <p className={stylesSignin.incorrect_text}>
+                  {userData.signinErrorText}
+                </p>
+              )}
             </div>
           </form>
         </div>

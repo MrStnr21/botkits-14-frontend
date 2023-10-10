@@ -16,6 +16,7 @@ export type TSignupState = {
   signupRequest: boolean;
   signupSuccess: boolean;
   signupError: boolean;
+  signupErrorText: string;
 };
 
 const signupInitialState: TSignupState = {
@@ -26,6 +27,7 @@ const signupInitialState: TSignupState = {
   signupRequest: false,
   signupSuccess: false,
   signupError: false,
+  signupErrorText: '',
 };
 
 function signupReducer(
@@ -58,6 +60,7 @@ function signupReducer(
         signupRequest: false,
         signupSuccess: false,
         signupError: true,
+        signupErrorText: action.textError,
       };
     }
     default: {
