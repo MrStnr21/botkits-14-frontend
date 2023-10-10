@@ -1,9 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import SearchIcon from './SearchIcon';
 
+const colors = {
+  black: '#060C23',
+  grey: '#A6B3C9',
+};
+
 const meta: Meta<typeof SearchIcon> = {
   title: 'Components/Icons/SearchIcon',
   component: SearchIcon,
+  argTypes: {
+    color: {
+      type: 'string',
+      description: 'Выбор цвета',
+      options: Object.keys(colors),
+      mapping: colors,
+      control: {
+        type: 'radio',
+        labels: {
+          black: 'Черный',
+          grey: 'Серый',
+        },
+      },
+    },
+  },
 };
 
 export default meta;

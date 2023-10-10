@@ -7,7 +7,7 @@ export interface IPaperClipIcon {
 }
 
 const PaperClipIcon: FC<IPaperClipIcon> = ({
-  color = '#060C23',
+  color = '#A6B3C9',
   width = 24,
   height = 24,
 }) => (

@@ -17,14 +17,14 @@ const AddIcon: FC<IAddIcon> = ({ color, width = 36, height = 36 }) => (
     <circle cx="18" cy="18" r="15" fill={color || '#8392AB'} />
     <path
       d="M18 12.1667V23.8333"
-      stroke={color || '#FFFFFF'}
+      stroke="#FFFFFF"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M12.1665 18H23.8332"
-      stroke={color || '#FFFFFF'}
+      stroke="#FFFFFF"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

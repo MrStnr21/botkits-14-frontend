@@ -36,7 +36,7 @@ const InvisibleMessageIcon: FC<IInvisibleMessageIcon> = ({
     </g>
     <defs>
       <clipPath id="clip0_1881_334900">
-        <rect width={width} height={height} fill={color || '#FFFFFF'} />
+        <rect width={width} height={height} fill="#FFFFFF" />
       </clipPath>
     </defs>
   </svg>
