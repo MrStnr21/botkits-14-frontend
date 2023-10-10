@@ -33,7 +33,9 @@ const ButtonInstruction: FC<IButtonInstruction> = ({
       <div className={stylesButtonInstruction.image_box}>
         <ReactSVG src={icon} />
       </div>
-      <p className={stylesButtonInstruction.text}>{children}</p>
+      <div className={stylesButtonInstruction.text_container}>
+        <p className={stylesButtonInstruction.text}>{children}</p>
+      </div>
     </button>
   );
 };

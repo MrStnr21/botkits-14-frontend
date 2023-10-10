@@ -3,7 +3,7 @@ import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 
 import Notifications from '../../icons/Notifications/Notifications';
-import CloseIcon from '../../icons/close';
+import CloseIcon from '../../icons/Close/CloseIcon';
 
 import stylesNotification from './notification-popup.module.scss';
 

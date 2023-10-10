@@ -1,40 +1,31 @@
 import { ChangeEvent, FC, useState } from 'react';
-import { ReactSVG } from 'react-svg';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
-import cn from 'classnames';
 import stylesPartnership from './partnership.module.scss';
 import ReferralsTable from './referrals-table/referrals-table';
 import PaymentsTable from './payments-table/payments-table';
 import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
-import chevron from '../../images/icon/20x20/chevron/down.svg';
+import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
 
 const Partnership: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [isReferralsTableVisible, setReferralsTableVisible] = useState(true);
   const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
+  const [chevronActive, setChevronActive] = useState(false);
   const [inputValue, setInputValue] = useState<string>('botkits.ru/?ref=12345');
-
-  const chevronClassNamePayments = cn(
-    stylesPartnership.chevron,
-    isPaymentsTableVisible && stylesPartnership.chevron_active
-  );
-
-  const chevronClassNameReferrals = cn(
-    stylesPartnership.chevron,
-    isReferralsTableVisible && stylesPartnership.chevron_active
-  );
 
   const toggleReferralsTable = () => {
     setReferralsTableVisible(!isReferralsTableVisible);
     setPaymentsTableVisible(false);
+    setChevronActive(!chevronActive);
   };
 
   const togglePaymentsTable = () => {
     setPaymentsTableVisible(!isPaymentsTableVisible);
     setReferralsTableVisible(false);
+    setChevronActive(!chevronActive);
   };
 
   return (
@@ -84,9 +75,14 @@ const Partnership: FC = (): JSX.Element => {
                 <button
                   type="button"
                   onClick={toggleReferralsTable}
-                  className={chevronClassNameReferrals}
+                  className={stylesPartnership.tables__chevron}
                 >
-                  <ReactSVG src={chevron} />
+                  <ChevronIcon
+                    color="#a6b3c9"
+                    width={24}
+                    height={24}
+                    position={chevronActive ? 'up' : 'down'}
+                  />
                 </button>
               )}
             </div>
@@ -110,9 +106,22 @@ const Partnership: FC = (): JSX.Element => {
               <button
                 type="button"
                 onClick={togglePaymentsTable}
-                className={chevronClassNamePayments}
+                className={stylesPartnership.tables__chevron}
               >
-                <ReactSVG src={chevron} />
+                {isMobile ? (
+                  <ChevronIcon
+                    color="#a6b3c9"
+                    width={24}
+                    height={24}
+                    position={chevronActive ? 'up' : 'down'}
+                  />
+                ) : (
+                  <ChevronIcon
+                    width={24}
+                    height={24}
+                    position={chevronActive ? 'up' : 'down'}
+                  />
+                )}
               </button>
             </div>
             {isPaymentsTableVisible && <PaymentsTable />}

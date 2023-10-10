@@ -113,7 +113,7 @@
     }
   }
 
-  &__arrowButton {
+  &__chevron {
     border: none;
     background: transparent;
   }
@@ -125,30 +125,30 @@
   padding: 40px;
 }
 
-.chevron {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
-  aspect-ratio: 1 / 1;
-  cursor: $cursor;
-  transition: all 0.2s linear;
-}
+// .chevron {
+//   @extend %button-style-reset;
+//   @extend %flex-element-center;
+//   aspect-ratio: 1 / 1;
+//   cursor: $cursor;
+//   transition: all 0.2s linear;
+// }
 
-.chevron div {
-  @extend %flex-element-center;
-}
+// .chevron div {
+//   @extend %flex-element-center;
+// }
 
-.chevron svg {
-  height: $partnership-table-chevron-icon-size;
-  width: $partnership-table-chevron-icon-size;
-  stroke: $partnership-table-chevron-icon-default-color;
-  stroke-width: $partnership-table-chevron-icon-stroke-width;
-  transition: all 0.1s linear;
-}
+// .chevron svg {
+//   height: $partnership-table-chevron-icon-size;
+//   width: $partnership-table-chevron-icon-size;
+//   stroke: $partnership-table-chevron-icon-default-color;
+//   stroke-width: $partnership-table-chevron-icon-stroke-width;
+//   transition: all 0.1s linear;
+// }
 
-.chevron:hover svg {
-  stroke: $partnership-table-chevron-icon-hover-color;
-}
+// .chevron:hover svg {
+//   stroke: $partnership-table-chevron-icon-hover-color;
+// }
 
-.chevron_active {
-  rotate: 180deg;
-}
+// .chevron_active {
+//   rotate: 180deg;
+// }
