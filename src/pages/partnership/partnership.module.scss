@@ -24,11 +24,12 @@
 
     @media screen and (max-width: 620px) {
       padding-bottom: 26px;
+      justify-content: center;
     }
   }
 
   &__title {
-    font-family: 'IBM Plex Mono';
+    font-family: 'IBM Plex Mono', sans-serif;
     font-size: $h2-font-size;
     line-height: $h2-line-height;
     letter-spacing: $h2-letter-space;
@@ -44,9 +45,15 @@
   }
 
   &__inputContainer {
+    width: 455px;
     display: flex;
     gap: 16px;
     align-items: center;
+
+    @media screen and (max-width: 860px) {
+      min-width: 320px;
+      width: 100%;
+    }
   }
 
   &__inputWrapper {
@@ -117,5 +124,6 @@
     border: none;
     background: transparent;
     cursor: $cursor;
+    transition: all .3s ease-in;
   }
 }
