@@ -1,0 +1,91 @@
+@import '../../../components/app/vars';
+
+.referrals {
+  font-family: 'Open-Sans', sans-serif;
+  padding: 0 40px 0;
+  box-sizing: border-box;
+  border-radius: $border-radius-30;
+  background-color: transparent;
+  box-shadow: none;
+  overflow-y: scroll;
+
+  @media screen and (min-width: 861px) {
+    max-height: 244px;
+  }
+
+  @media screen and (max-width: 860px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__table {
+    @media screen and (max-width: 860px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px $disabled-grey-color solid;
+    }
+
+    &:last-child {
+      @media screen and (max-width: 860px) {
+        border: none;
+      }
+    }
+  }
+
+  &__tableHead {
+    @media screen and (max-width: 860px) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__tableBody {
+    overflow-y: scroll;
+  }
+
+  &__row {
+    border: none;
+
+    @media screen and (max-width: 860px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__cell {
+    border: none;
+    padding: 0 0 40px;
+
+    @media screen and (max-width: 860px) {
+      color: $default-dark-grey-color;
+      padding: 0 0 10px;
+    }
+
+    &:last-child {
+      @media screen and (max-width: 860px) {
+        padding: 0 0 20px;
+      }
+    }
+  }
+
+  &__bodyCell {
+    border: none;
+
+    @media screen and (max-width: 860px) {
+      color: $primary-text-color;
+    }
+  }
+
+
+  &__statusDone {
+    color: $success-color;
+  }
+
+  &__statusProcessing {
+    color: $default-blue-color;
+  }
+}
