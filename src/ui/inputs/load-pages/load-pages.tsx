@@ -38,7 +38,7 @@ const LoadPages: FC<ILoadPages> = ({
           <li className={stylesInput.selects_item}>
             <PageItem type="upload" onClick={onClick} />
           </li>
-          {arr.map((item, index: number) => (
+          {arr.map((item, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <li className={stylesInput.selects_item} key={index}>
               <PageItem text={item} />
