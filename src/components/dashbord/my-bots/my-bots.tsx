@@ -44,7 +44,7 @@ const img: IImg = {
 };
 
 const MyBots: FC = (): JSX.Element => {
-  const [isHidden, SetIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   const { bots } = useAppSelector(getBotsSel);
 
@@ -72,7 +72,7 @@ const MyBots: FC = (): JSX.Element => {
           <button
             className={styles.header__button}
             type="button"
-            onClick={() => SetIsHidden(!isHidden)}
+            onClick={() => setIsHidden(!isHidden)}
           >
             {isHidden ? 'Все' : 'Cвернуть'}
           </button>
