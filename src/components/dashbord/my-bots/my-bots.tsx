@@ -80,10 +80,10 @@ const MyBots: FC = (): JSX.Element => {
       </div>
       <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
         {bots.map((bot, index) => (
-          <li key={bot.botName + +index} className={styles.item}>
+          <li key={bot.title + +index} className={styles.item}>
             <BotCard
-              platform_icon={img[bot.messenger.name]}
-              bot_name={bot.botName}
+              platform_icon={img[bot.messengers[0].name]}
+              bot_name={bot.title}
               // eslint-disable-next-line no-underscore-dangle
               bot_id={bot._id}
             />
