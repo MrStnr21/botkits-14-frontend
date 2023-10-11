@@ -15,7 +15,7 @@
   gap: 20px;
 }
 
-.groupTitle {
+.wrapperTariffTitle {
   display: flex;
   width: 213px;
 }
@@ -34,7 +34,7 @@
   position: relative;
 }
 
-.tariff {
+.tariffTitle {
   left: 35px;
   position: relative;
   text-align: start;
@@ -94,7 +94,7 @@
   padding-right: 24px;
 }
 
-.btnWrapper {
+.paymentButtonsWrapper {
   display: flex;
   gap: 20px;
   z-index: 2;
@@ -118,7 +118,7 @@
   display: inline;
 }
 
-.wrapperLightGray {
+.lightGrayBackgroundWrapper {
   width: 970px;
   height: 207px;
   left: 0;
@@ -141,7 +141,7 @@
   padding-bottom: 12px;
 }
 
-.wrapperBlack {
+.blackBackgroundWrapper  {
   width: 970px;
   height: 144px;
   left: 0;
@@ -152,7 +152,7 @@
   z-index: 0;
 }
 
-.wrapperGray {
+.greyBackgroundWrapper {
   width: 890px;
   height: 64px;
   left: 40px;

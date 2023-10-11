@@ -25,7 +25,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
 
   return (
     <div className={stylesPaymentPopup.container}>
-      <div className={stylesPaymentPopup.wrapperLightGray} />
+      <div className={stylesPaymentPopup.lightGrayBackgroundWrapper} />
       <Typography className={stylesPaymentPopup.title} tag="h2">
         Подписаться
       </Typography>
@@ -35,8 +35,8 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
         alt="checkMarkIcon"
       />
       <div className={stylesPaymentPopup.linkWrapper}>
-        <div className={stylesPaymentPopup.groupTitle}>
-          <h4 className={stylesPaymentPopup.tariff}>Выбери тариф</h4>
+        <div className={stylesPaymentPopup.wrapperTariffTitle}>
+          <h4 className={stylesPaymentPopup.tariffTitle}>Выбери тариф</h4>
           <img
             className={stylesPaymentPopup.iconCheck}
             src={checkMark}
@@ -76,9 +76,9 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
           не отмените подписку.
         </Typography>
       </div>
-      <div className={stylesPaymentPopup.wrapperBlack} />
-      <div className={stylesPaymentPopup.btnWrapper}>
-        <div className={stylesPaymentPopup.wrapperGray} />
+      <div className={stylesPaymentPopup.blackBackgroundWrapper} />
+      <div className={stylesPaymentPopup.paymentButtonsWrapper}>
+        <div className={stylesPaymentPopup.greyBackgroundWrapper} />
         <div className={stylesPaymentPopup.wrapperTotalPrice}>
           <Typography className={stylesPaymentPopup.totalPrice} tag="h4">
             К оплате:&nbsp;
