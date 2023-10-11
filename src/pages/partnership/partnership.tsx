@@ -77,7 +77,7 @@ const paymentRows = [
     payDate: '-',
     document: 'Чек.pdf',
     status: false,
-    sum: '-',
+    sum: '3000 ₽',
   },
   {
     reqDate: '22.12.2022',
@@ -173,7 +173,6 @@ const Partnership: FC = (): JSX.Element => {
               cols={refCols}
               rows={refRows}
             />
-            {/* <ReferralsTable isReferralsTableVisible={isReferralsTableVisible} /> */}
             {isMobile && (
               <div className={stylesPartnership.partnership__buttonWrapper}>
                 <Button
@@ -214,7 +213,6 @@ const Partnership: FC = (): JSX.Element => {
             {isPaymentsTableVisible && (
               <PartnershipTable cols={paymentCols} rows={paymentRows} />
             )}
-            {/* {isPaymentsTableVisible && <PaymentsTable />} */}
           </div>
         </div>
       </div>

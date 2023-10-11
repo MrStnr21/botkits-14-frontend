@@ -1,6 +1,6 @@
 @import '../../../components/app/vars';
 
-.referrals {
+.partnershipTable {
   font-family: 'Open-Sans', sans-serif;
   padding: 0 40px 0;
   box-sizing: border-box;
@@ -10,7 +10,7 @@
   overflow-y: scroll;
 
   @media screen and (min-width: 861px) {
-    max-height: 244px;
+    height: 244px;
   }
 
   @media screen and (max-width: 860px) {
@@ -66,6 +66,7 @@
     }
 
     &:last-child {
+      text-align: right;
       @media screen and (max-width: 860px) {
         padding: 0 0 20px;
       }
@@ -79,7 +80,6 @@
       color: $primary-text-color;
     }
   }
-
 
   &__statusDone {
     color: $success-color;

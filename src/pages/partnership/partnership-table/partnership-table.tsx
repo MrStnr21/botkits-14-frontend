@@ -13,28 +13,41 @@ import {
 
 import stylesTable from './partnership-table.module.scss';
 
-type ReferralsData = {
-  taps: string;
-  regs: string;
-  status: boolean;
-  sum: string;
-  fee: string;
-  paid: string;
-  withdrawal: string;
-};
+// type ReferralsData = {
+//   taps: string;
+//   regs: string;
+//   status: boolean;
+//   sum: string;
+//   fee: string;
+//   paid: string;
+//   withdrawal: string;
+// };
 
-type PaymentsData = {
-  reqDate: string;
-  payDate: string;
-  document: any;
-  status: boolean;
-  paid: string;
-};
+// type PaymentsData = {
+//   reqDate: string;
+//   payDate: string;
+//   document: any;
+//   status: boolean;
+//   paid: string;
+// };
+
+interface IRowData {
+  taps?: string;
+  regs?: string;
+  sum?: string;
+  fee?: string;
+  paid?: string;
+  withdrawal?: string;
+  reqDate?: string;
+  payDate?: string;
+  document?: any;
+  status?: boolean;
+}
 
 interface IPartnershipTable {
   isReferralsTableVisible?: boolean;
   cols?: string[];
-  rows: any;
+  rows: IRowData[];
 }
 
 const PartnershipTable: FC<IPartnershipTable> = ({
@@ -76,31 +89,32 @@ const PartnershipTable: FC<IPartnershipTable> = ({
         return '';
     }
   }
+
   return (
     <TableContainer
       component={Paper}
-      className={stylesTable.referrals}
+      className={stylesTable.partnershipTable}
       style={{ maxHeight: maxTableHeight }}
     >
       {isMobile ? (
         <>
           {rows!.map((row: any) => (
-            <Table className={stylesTable.referrals__table}>
-              <TableHead className={stylesTable.referrals__tableHead}>
-                <TableRow className={stylesTable.referrals__row}>
+            <Table className={stylesTable.partnershipTable__table}>
+              <TableHead className={stylesTable.partnershipTable__tableHead}>
+                <TableRow className={stylesTable.partnershipTable__row}>
                   {cols?.map((col) => (
-                    <TableCell className={stylesTable.referrals__cell}>
+                    <TableCell className={stylesTable.partnershipTable__cell}>
                       {col}
                     </TableCell>
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className={stylesTable.referrals__tableBody}>
-                <TableRow className={stylesTable.referrals__row}>
+              <TableBody className={stylesTable.partnershipTable__tableBody}>
+                <TableRow className={stylesTable.partnershipTable_row}>
                   {cols?.map((col) => (
                     <TableCell
                       key={col}
-                      className={`${stylesTable.referrals__cell} + ${stylesTable.referrals__bodyCell}`}
+                      className={`${stylesTable.partnershipTable__cell} + ${stylesTable.partnershipTable__bodyCell}`}
                     >
                       {renderCellContent(col, row)}
                     </TableCell>
@@ -111,21 +125,36 @@ const PartnershipTable: FC<IPartnershipTable> = ({
           ))}
         </>
       ) : (
-        <Table className={stylesTable.referrals__table}>
-          <TableHead className={stylesTable.referrals__tableHead}>
+        <Table className={stylesTable.partnershipTable__table}>
+          <TableHead className={stylesTable.partnershipTable__tableHead}>
             <TableRow className={stylesTable.referrals__row}>
               {cols?.map((col) => (
-                <TableCell key={col} className={stylesTable.referrals__cell}>
+                <TableCell
+                  key={col}
+                  className={stylesTable.partnershipTable__cell}
+                >
                   {col}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody className={stylesTable.referrals__tableBody}>
+          <TableBody className={stylesTable.partnershipTable__tableBody}>
             {rows?.map((row: any) => (
-              <TableRow className={stylesTable.referrals__row}>
+              <TableRow className={stylesTable.partnershipTable__row}>
                 {cols?.map((col) => (
-                  <TableCell key={col} className={stylesTable.referrals__cell}>
+                  <TableCell
+                    sx={{ width: '169px' }}
+                    key={col}
+                    className={`${stylesTable.partnershipTable__cell}
+                      ${
+                        col === 'Статус' || col === 'Оплата'
+                          ? row.status === true
+                            ? stylesTable.partnershipTable__statusDone
+                            : stylesTable.partnershipTable__statusProcessing
+                          : ''
+                      }
+                    `}
+                  >
                     {renderCellContent(col, row)}
                   </TableCell>
                 ))}
