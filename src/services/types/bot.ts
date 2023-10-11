@@ -1,14 +1,14 @@
 // Типизация данных бота
 export type TBot = {
   icon: string;
-  botName: string;
+  title: string;
   profile: string;
-  messenger: {
+  messengers: Array<{
     name: string;
     page: string;
     accessKey: string;
     url: string;
-  };
+  }>;
   botSettings?: any;
   _id: string;
 };

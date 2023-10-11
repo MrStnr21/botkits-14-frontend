@@ -92,15 +92,18 @@ const CreateBot: FC<ICreateBot> = ({
     e.preventDefault();
 
     const dataBot = {
+      type: 'custom',
       icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
-      botName: values?.botName.value,
+      title: values?.botName.value,
       profile,
-      messenger: {
-        name: botName,
-        page: 'страница',
-        accessKey: values?.accessKey.value,
-        url: values?.uri.value,
-      },
+      messengers: [
+        {
+          name: botName,
+          page: 'страница',
+          accessKey: values?.accessKey.value,
+          url: values?.uri.value,
+        },
+      ],
       botSettings: {},
     };
 
