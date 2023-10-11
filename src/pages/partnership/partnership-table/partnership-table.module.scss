@@ -36,16 +36,19 @@
     }
   }
 
-  &__tableHead {
-    @media screen and (max-width: 860px) {
-      display: flex;
-      flex-direction: row;
-    }
-  }
+  // &__tableHead {
+  //   @media screen and (max-width: 860px) {
+  //     display: flex;
+  //     flex-direction: row;
+  //   }
+  // }
 
-  &__tableBody {
-    overflow-y: scroll;
-  }
+  // &__tableBody {
+  //   @media screen and (max-width: 860px) {
+  //     display: flex;
+  //     flex-direction: row;
+  //   }
+  // }
 
   &__row {
     border: none;
@@ -67,7 +70,9 @@
 
     &:last-child {
       text-align: right;
+
       @media screen and (max-width: 860px) {
+        text-align: left;
         padding: 0 0 20px;
       }
     }

@@ -110,11 +110,21 @@ const PartnershipTable: FC<IPartnershipTable> = ({
                 </TableRow>
               </TableHead>
               <TableBody className={stylesTable.partnershipTable__tableBody}>
-                <TableRow className={stylesTable.partnershipTable_row}>
+                <TableRow className={stylesTable.partnershipTable__row}>
                   {cols?.map((col) => (
                     <TableCell
                       key={col}
-                      className={`${stylesTable.partnershipTable__cell} + ${stylesTable.partnershipTable__bodyCell}`}
+                      className={`${stylesTable.partnershipTable__cell} + ${
+                        stylesTable.partnershipTable__bodyCell
+                      }
+                      ${
+                        col === 'Статус' || col === 'Оплата'
+                          ? row.status === true
+                            ? stylesTable.partnershipTable__statusDone
+                            : stylesTable.partnershipTable__statusProcessing
+                          : ''
+                      }
+                      `}
                     >
                       {renderCellContent(col, row)}
                     </TableCell>
