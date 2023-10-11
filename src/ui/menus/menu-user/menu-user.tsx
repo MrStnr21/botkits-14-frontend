@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router';
 
 import stylesMenuUser from './menu-user.module.scss';
 
@@ -35,7 +36,7 @@ const MenuUser: FC<IMenuUser> = ({
   const dispatch = useAppDispatch();
 
   const token = getAccessToken();
-
+  const navigate = useNavigate();
   let boxClassName = stylesMenuUser.box;
 
   if (isActive) {
@@ -45,8 +46,10 @@ const MenuUser: FC<IMenuUser> = ({
     boxClassName = stylesMenuUser.box;
   }
 
-  const onlogout = (accessToken: string): void => {
-    dispatch(logoutAction(accessToken));
+  const onLogout = (accessToken: string): void => {
+    dispatch(
+      logoutAction(accessToken, () => navigate('signup', { replace: true }))
+    );
   };
 
   return (
@@ -80,7 +83,7 @@ const MenuUser: FC<IMenuUser> = ({
       <a
         href="#id"
         className={stylesMenuUser.button}
-        onClick={() => onlogout(token!)}
+        onClick={() => onLogout(token!)}
       >
         <img src={exitIcon} alt="Иконка" />
         <p className={stylesMenuUser.text}>Выйти</p>

@@ -5,6 +5,7 @@ import {
   SIGNIN_ERROR,
   TSigninActions,
 } from '../../actions/auth/signin';
+import { LOGOUT } from '../../actions/logout/logout';
 
 import { TUser } from '../../types/user';
 
@@ -58,6 +59,13 @@ function signinReducer(
         signinRequest: false,
         signinError: true,
         signinErrorText: action.textError,
+      };
+    }
+    case LOGOUT: {
+      return {
+        ...state,
+        user: null,
+        signinSuccess: false,
       };
     }
     default: {

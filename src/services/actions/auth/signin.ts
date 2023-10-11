@@ -5,6 +5,7 @@ import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { IUserAuthError, IUserSigninState, TUser } from '../../types/user';
+import { ILogoutAction } from '../logout/logout';
 
 const SIGNIN_REQUEST = 'SIGNIN_REQUSET';
 const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
@@ -27,7 +28,8 @@ export interface ISigninErrorAction {
 export type TSigninActions =
   | ISigninRequestAction
   | ISigninSuccessAction
-  | ISigninErrorAction;
+  | ISigninErrorAction
+  | ILogoutAction;
 
 // экшн авторизации
 const signinAction: AppThunk = (userInfo: IUserSigninState) => {
