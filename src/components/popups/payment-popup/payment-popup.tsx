@@ -11,15 +11,15 @@ interface IPaymentPopup {
 }
 
 const tariffs = [
-  { id: 'start', name: 'Старт', price: '390' },
-  { id: 'standard', name: 'Стандарт', price: '790' },
-  { id: 'business', name: 'Бизнес', price: '1390' },
+  { id: 'start', name: 'Старт', price: 390 },
+  { id: 'standard', name: 'Стандарт', price: 790 },
+  { id: 'business', name: 'Бизнес', price: 1390 },
 ];
 
 const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
-  const [selectedTariff, setSelectedTariff] = useState('');
+  const [selectedTariff, setSelectedTariff] = useState<number>(790);
 
-  const handleTariffSelection = (tariffPrice: string) => {
+  const handleTariffSelection = (tariffPrice: number) => {
     setSelectedTariff(tariffPrice);
   };
 
@@ -48,7 +48,11 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
             <div
               key={tariff.id}
               onClick={() => handleTariffSelection(tariff.price)}
-              className={stylesPaymentPopup.linkBtn}
+              className={`${stylesPaymentPopup.linkBtn} ${
+                tariff.price === selectedTariff
+                  ? stylesPaymentPopup.selected
+                  : ''
+              }`}
             >
               <Typography className={stylesPaymentPopup.nameTariff} tag="h4">
                 {tariff.name}

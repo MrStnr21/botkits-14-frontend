@@ -71,7 +71,7 @@
   cursor: pointer;
 }
 
-.linkBtn:hover {
+.selected {
   outline: 1.5px solid #433FB8;
   background: var(--Off-white, #FFF);
 }
