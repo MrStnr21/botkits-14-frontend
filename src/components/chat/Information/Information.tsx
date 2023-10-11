@@ -14,41 +14,59 @@ const Information: FC<IInformation> = ({
   name = 'Сергей Надеин',
 }): JSX.Element => {
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className={stylesInformation.container}>
-      <div className={stylesInformation.chevron}>
+      <button
+        className={stylesInformation.chevron}
+        type="button"
+        onClick={() => {
+          setIsVisible(!isVisible);
+        }}
+      >
         <ChevronIcon color="#FFFFFF" position="right" />
-      </div>
-      <img src={image || avatar} alt="Аватар" />
-      <p className={stylesInformation.title}>{name}</p>
-      <p className={stylesInformation.text}>Пользователь</p>
-      <nav className={stylesInformation.nav}>
-        <button
-          type="button"
-          className={stylesInformation.button}
-          disabled={isDisabled}
-          onClick={() => {
-            setIsDisabled(!isDisabled);
-          }}
-        >
-          Информация
-        </button>
-        <button
-          type="button"
-          className={stylesInformation.button}
-          disabled={!isDisabled}
-          onClick={() => {
-            setIsDisabled(!isDisabled);
-          }}
-        >
-          Файлы
-        </button>
-      </nav>
-      <div className={stylesInformation.wrapper}>
-        <DropDownList caption="Информация о пользователе" />
-        <DropDownList caption="История действий" />
-      </div>
+      </button>
+      {isVisible && (
+        <div className={stylesInformation.information}>
+          <img src={image || avatar} alt="Аватар" />
+          <p className={stylesInformation.title}>{name}</p>
+          <p className={stylesInformation.text}>Пользователь</p>
+          <nav className={stylesInformation.nav}>
+            <button
+              type="button"
+              className={stylesInformation.button}
+              disabled={isDisabled}
+              onClick={() => {
+                setIsDisabled(!isDisabled);
+              }}
+            >
+              Информация
+            </button>
+            <button
+              type="button"
+              className={stylesInformation.button}
+              disabled={!isDisabled}
+              onClick={() => {
+                setIsDisabled(!isDisabled);
+              }}
+            >
+              Файлы
+            </button>
+          </nav>
+          {isDisabled ? (
+            <div className={stylesInformation.wrapper}>
+              <DropDownList caption="Информация о пользователе" />
+              <DropDownList caption="История действий" />
+            </div>
+          ) : (
+            <div className={stylesInformation.wrapper}>
+              <p>Загруженные файлы</p>
+              <p>Изображения</p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

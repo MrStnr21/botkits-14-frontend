@@ -1,16 +1,21 @@
 @import '../../app/_vars';
 
 .container {
+  height: 872px;
+  box-sizing: border-box;
+  border-left: 1px solid #D7DEEA;
+  align-items: center;
+  position: relative;
+}
+
+.information {
+  max-width: 331px;
   display: flex;
   flex-direction: column;
-  max-width: 331px;
-  height: 872px;
   background-color: $white-color;
   box-sizing: border-box;
   padding-top: 40px;
   // padding-bottom: 16px;
-  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
-  border-left: 1px solid #D7DEEA;
   align-items: center;
   // justify-content: space-between;
 }
@@ -71,6 +76,7 @@
 }
 
 .chevron{
+  @extend %button-style-reset;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,6 +85,6 @@
   background-color: $default-blue-color;
   border-radius: 20px 0 0 20px;
   position: absolute;
-  top: 725px; 
-  left: 105px;
+  top: 625px; 
+  left: -31px;
 }
