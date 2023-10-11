@@ -25,7 +25,6 @@ import Viber from '../../../images/icon/40x40/viber/hover.svg';
 import WebSite from '../../../images/icon/40x40/web/hover.svg';
 import Alisa from '../../../images/icon/40x40/alisa/hover.svg';
 import VK from '../../../images/icon/40x40/vk/hover.svg';
-import { TBot } from '../../../services/types/bot';
 import { getBotsSel } from '../../../utils/selectorData';
 
 interface IImg {
@@ -80,7 +79,7 @@ const MyBots: FC = (): JSX.Element => {
         )}
       </div>
       <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
-        {bots.map((bot: TBot, index) => (
+        {bots.map((bot, index) => (
           <li key={bot.botName + +index} className={styles.item}>
             <BotCard
               platform_icon={img[bot.messenger.name]}
