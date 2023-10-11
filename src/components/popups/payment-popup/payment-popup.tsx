@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import stylesPaymentPopup from './payment-popup.module.scss';
 import Button from '../../../ui/buttons/button/button';
 import Typography from '../../../ui/typography/typography';
@@ -10,10 +10,25 @@ interface IPaymentPopup {
   onClick?: () => void;
 }
 
+const tariffs = [
+  { id: 'start', name: 'Старт', price: '390' },
+  { id: 'standard', name: 'Стандарт', price: '790' },
+  { id: 'business', name: 'Бизнес', price: '1390' },
+];
+
 const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
+  const [selectedTariff, setSelectedTariff] = useState('');
+
+  const handleTariffSelection = (tariffPrice: string) => {
+    setSelectedTariff(tariffPrice);
+  };
+
   return (
     <div className={stylesPaymentPopup.container}>
-      <Typography tag="h2">Подписаться</Typography>
+      <div className={stylesPaymentPopup.wrapperLightGray} />
+      <Typography className={stylesPaymentPopup.title} tag="h2">
+        Подписаться
+      </Typography>
       <img
         className={stylesPaymentPopup.iconRocketBot}
         src={rocketBot}
@@ -29,31 +44,48 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
           />
         </div>
         <div className={stylesPaymentPopup.linkGroup}>
-          <div className={stylesPaymentPopup.linkBtn}>
-            <h4 style={{ marginLeft: '24px' }}>Старт</h4>
-            <h4 style={{ marginLeft: '94px', color: '#433FB8' }}>390</h4>
-            <h4 style={{ marginLeft: '5px' }}>pуб</h4>
-          </div>
-          <div className={stylesPaymentPopup.linkBtn}>
-            <h4 style={{ marginLeft: '24px' }}>Стандарт</h4>
-            <h4 style={{ marginLeft: '94px', color: '#433FB8' }}>790</h4>
-            <h4 style={{ marginLeft: '5px' }}>pуб</h4>
-          </div>
-          <div className={stylesPaymentPopup.linkBtn}>
-            <h4 style={{ marginLeft: '24px' }}>Бизнес</h4>
-            <h4 style={{ marginLeft: '94px', color: '#433FB8' }}>1390</h4>
-            <h4 style={{ marginLeft: '5px' }}>pуб</h4>
-          </div>
+          {tariffs.map((tariff) => (
+            <div
+              key={tariff.id}
+              onClick={() => handleTariffSelection(tariff.price)}
+              className={stylesPaymentPopup.linkBtn}
+            >
+              <Typography className={stylesPaymentPopup.nameTariff} tag="h4">
+                {tariff.name}
+              </Typography>
+              <div className={stylesPaymentPopup.wrapperPrice}>
+                <Typography tag="h4" className={stylesPaymentPopup.price}>
+                  {tariff.price}
+                </Typography>
+                <Typography className={stylesPaymentPopup.currency} tag="h4">
+                  pуб
+                </Typography>
+              </div>
+            </div>
+          ))}
         </div>
+        <Typography className={stylesPaymentPopup.description} tag="h4">
+          Цены на тарифы указаны за 1 месяц пользования.
+        </Typography>
+        <Typography tag="p">
+          Оплата будет автоматически взиматься каждый месяц до тех пор, пока вы
+          не отмените подписку.
+        </Typography>
       </div>
-      <Typography tag="h4">
-        Цены на тарифы указаны за 1 месяц пользования.
-      </Typography>
-      <Typography tag="p">
-        Оплата будет автоматически взиматься каждый месяц до тех пор, пока вы не
-        отмените подписку.
-      </Typography>
+      <div className={stylesPaymentPopup.wrapperBlack} />
       <div className={stylesPaymentPopup.btnWrapper}>
+        <div className={stylesPaymentPopup.wrapperGray} />
+        <div className={stylesPaymentPopup.wrapperTotalPrice}>
+          <Typography className={stylesPaymentPopup.totalPrice} tag="h4">
+            К оплате:&nbsp;
+          </Typography>
+          <Typography className={stylesPaymentPopup.totalPrice} tag="h4">
+            {selectedTariff}&nbsp;
+          </Typography>
+          <Typography className={stylesPaymentPopup.totalPrice} tag="p">
+            руб
+          </Typography>
+        </div>
         <Button
           onClick={onClick}
           size="large"
