@@ -107,7 +107,7 @@
 .wrapperTotalPrice {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   padding-right: 150px;
@@ -141,7 +141,7 @@
   padding-bottom: 12px;
 }
 
-.blackBackgroundWrapper  {
+.blackBackgroundWrapper {
   width: 970px;
   height: 144px;
   left: 0;
@@ -161,6 +161,7 @@
   opacity: 0.15;
   background: #EFFDFF;
   border-radius: 10px;
+  z-index: -1;
 }
 
 
