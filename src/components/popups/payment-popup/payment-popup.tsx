@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react';
 import stylesPaymentPopup from './payment-popup.module.scss';
 import Button from '../../../ui/buttons/button/button';
 import Typography from '../../../ui/typography/typography';
-import YooMoneyLogo from '../../icons/YooMoneyLogo/YooMoneyLogo';
 import checkMark from '../../../images/icon/template/check-mark.svg';
 import rocketBot from '../../../images/icon/template/rocketBot.svg';
+import logoUkassaIcon from '../../../images/icon/logoUkassaIcon.svg';
 
 interface IPaymentPopup {
   onClick?: () => void;
@@ -97,7 +97,9 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
           color="blue"
           buttonHtmlType="submit"
         >
-          Оплатить через &nbsp; <YooMoneyLogo />
+          Оплатить через &nbsp;
+          <img alt="logoUkassaIcon" src={logoUkassaIcon} />
+          &nbsp;
         </Button>
         <Button
           onClick={onClick}
