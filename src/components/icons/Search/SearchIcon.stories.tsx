@@ -6,7 +6,6 @@ const colors = {
   grey: '#A6B3C9',
 };
 
-
 const sizes = {
   small: 'small',
   medium: 'medium',
