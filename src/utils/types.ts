@@ -1,5 +1,5 @@
 export type IBot = {
   name: string;
-  stepFirst: 'default' | 'upload';
+  pages: boolean;
   botURI?: boolean;
 };

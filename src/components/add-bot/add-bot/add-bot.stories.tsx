@@ -15,7 +15,7 @@ export const AddBotDefault: Story = {
     onClick: () => console.log(1),
     bot: {
       name: '',
-      stepFirst: 'default',
+      pages: false,
     },
   },
 };
@@ -25,7 +25,7 @@ export const AddBotSelectedFacebook: Story = {
     onClick: () => console.log(1),
     bot: {
       name: 'Facebook',
-      stepFirst: 'default',
+      pages: false,
     },
   },
 };
