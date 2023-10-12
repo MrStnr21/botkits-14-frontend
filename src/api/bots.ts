@@ -1,6 +1,11 @@
 import request from './api';
 
-import { IAddBotResponse, IGetBotsResponse, TBot } from '../services/types/bot';
+import {
+  IAddBotResponse,
+  IGetBotsResponse,
+  IGetTemplatesBotsResponse,
+  TBot,
+} from '../services/types/bot';
 
 // запрос получения ботов
 function getBotsApi(token: string) {
@@ -25,4 +30,15 @@ function addBotApi(bot: TBot, token: string) {
   });
 }
 
-export { getBotsApi, addBotApi };
+// запрос получения шаблонов
+function getTemplatesBotsApi(token: string) {
+  return request<IGetTemplatesBotsResponse>('bots/templates', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export { getBotsApi, addBotApi, getTemplatesBotsApi };

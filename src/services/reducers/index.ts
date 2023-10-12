@@ -11,6 +11,7 @@ import logoutReducer from './logout/logout';
 import { getBotsReducer } from './bots/getBots';
 import { addBotReducer } from './bots/addBot';
 import { resetPasswordReducer } from './auth/reset-password';
+import { getTemplatesBotsReducer } from './bots/getTemplatesBots';
 
 const rootReducer = combineReducers({
   signin: signinReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   logout: logoutReducer,
   getBots: getBotsReducer,
   addBot: addBotReducer,
+  getTemplatesBots: getTemplatesBotsReducer,
 });
 
 export default rootReducer;
