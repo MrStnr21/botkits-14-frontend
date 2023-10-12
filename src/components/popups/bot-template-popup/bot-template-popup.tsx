@@ -24,7 +24,11 @@ interface IBotTemplate {
   onClick?: () => void;
 }
 
-const image: any = {
+interface IImage {
+  [key: string]: JSX.Element;
+}
+
+const image: IImage = {
   'Бот автоответчик': (
     <ImageAnswer className={stylesBotTemplate.bot_template_image} />
   ),

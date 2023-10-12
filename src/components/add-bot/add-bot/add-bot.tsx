@@ -5,6 +5,7 @@ import { useDraggable } from 'react-use-draggable-scroll';
 import stylesAddBot from './add-bot.module.scss';
 
 import ButtonAddSocial from '../../../ui/buttons/button-add-social/button-add-social';
+import { IBot } from '../../../utils/types';
 
 interface IAddBot {
   onClick: (
@@ -12,8 +13,9 @@ interface IAddBot {
     stepFirst: 'default' | 'upload',
     botURI: boolean
   ) => void;
-  bot: any;
+  bot: IBot;
 }
+
 const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
   const socials: Array<{
     name: string;

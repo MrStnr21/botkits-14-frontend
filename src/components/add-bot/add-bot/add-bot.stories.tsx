@@ -13,6 +13,10 @@ type Story = StoryObj<typeof meta>;
 export const AddBotDefault: Story = {
   args: {
     onClick: () => console.log(1),
+    bot: {
+      name: '',
+      stepFirst: 'default',
+    },
   },
 };
 
@@ -21,6 +25,7 @@ export const AddBotSelectedFacebook: Story = {
     onClick: () => console.log(1),
     bot: {
       name: 'Facebook',
+      stepFirst: 'default',
     },
   },
 };

@@ -5,6 +5,7 @@ import {
   SIGNUP_ERROR,
   TSignupActions,
 } from '../../actions/auth/signup';
+import { LOGOUT } from '../../actions/logout/logout';
 
 import { TUser } from '../../types/user';
 
@@ -61,6 +62,13 @@ function signupReducer(
         signupSuccess: false,
         signupError: true,
         signupErrorText: action.textError,
+      };
+    }
+    case LOGOUT: {
+      return {
+        ...state,
+        user: null,
+        signupSuccess: false,
       };
     }
     default: {

@@ -5,6 +5,7 @@ import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { IUserAuthError, IUserSignupState, TUser } from '../../types/user';
+import { ILogoutAction } from '../logout/logout';
 
 const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -27,7 +28,8 @@ export interface ISignupErrorAction {
 export type TSignupActions =
   | ISignupRequestAction
   | ISignupSuccesAction
-  | ISignupErrorAction;
+  | ISignupErrorAction
+  | ILogoutAction;
 
 // экшн регистрации
 const signupAction: AppThunk = (userInfo: IUserSignupState) => {

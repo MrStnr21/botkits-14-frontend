@@ -6,7 +6,7 @@ import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
 
 export interface IMenuVariable {
   buttons: string[];
-  onClick?: any;
+  onClick?: Function;
 }
 
 const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
@@ -43,7 +43,7 @@ const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
                   className={`${stylesMenuVariable.button} ${stylesMenuVariable.text}`}
                   onClick={() => {
                     changeVariableHandler(name);
-                    onClick(name);
+                    onClick!(name);
                   }}
                 >
                   {name}
