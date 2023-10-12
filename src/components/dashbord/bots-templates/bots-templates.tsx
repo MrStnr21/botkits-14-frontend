@@ -65,7 +65,6 @@ const Templates: FC = (): JSX.Element => {
     dispatch(getTemplatesBotsAction(token));
   }, [dispatch]);
 
-  console.log(templatesBots);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const ref =
