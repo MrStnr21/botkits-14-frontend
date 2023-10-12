@@ -6,10 +6,30 @@ const colors = {
   grey: '#A6B3C9',
 };
 
+const sizes = {
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+};
+
 const meta: Meta<typeof SearchIcon> = {
   title: 'Components/Icons/SearchIcon',
   component: SearchIcon,
   argTypes: {
+    size: {
+      type: 'string',
+      description: 'Выбор размера',
+      options: Object.keys(sizes),
+      mapping: sizes,
+      control: {
+        type: 'radio',
+        labels: {
+          small: '18х18',
+          medium: '20х20',
+          large: '24х24',
+        },
+      },
+    },
     color: {
       type: 'string',
       description: 'Выбор цвета',
@@ -30,26 +50,9 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const IconSearchBig: Story = {
+export const IconSearch: Story = {
   args: {
     color: '#A6B3C9',
-    width: 24,
-    height: 24,
-  },
-};
-
-export const IconSearchMedium: Story = {
-  args: {
-    color: '#A6B3C9',
-    width: 20,
-    height: 20,
-  },
-};
-
-export const IconSearchSmall: Story = {
-  args: {
-    color: '#A6B3C9',
-    width: 18,
-    height: 18,
+    size: 'medium',
   },
 };
