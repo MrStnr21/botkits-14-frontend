@@ -90,26 +90,36 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
             руб
           </Typography>
         </div>
-        <Button
-          onClick={onClick}
-          size="large"
-          variant="default"
-          color="blue"
-          buttonHtmlType="submit"
-        >
-          Оплатить через &nbsp;
-          <img alt="logoUkassaIcon" src={logoUkassaIcon} />
-          &nbsp;
-        </Button>
-        <Button
-          onClick={onClick}
-          size="large"
-          variant="default"
-          color="light-grey"
-          buttonHtmlType="submit"
-        >
-          Запросить счет
-        </Button>
+        <div className={stylesPaymentPopup.paymentButtonsContainer}>
+          <Button
+            onClick={onClick}
+            size="large"
+            variant="default"
+            color="blue"
+            buttonHtmlType="submit"
+          >
+            <div className={stylesPaymentPopup.logoUkassaIcon}>
+              <Typography className={stylesPaymentPopup.totalPrice} tag="h5">
+                Оплатить через
+              </Typography>
+              <img alt="logoUkassaIcon" src={logoUkassaIcon} />
+            </div>
+          </Button>
+          <Button
+            onClick={onClick}
+            size="large"
+            variant="default"
+            color="light-grey"
+            buttonHtmlType="submit"
+          >
+            <Typography
+              className={stylesPaymentPopup.requestInvoiceText}
+              tag="h5"
+            >
+              Запросить счет
+            </Typography>
+          </Button>
+        </div>
       </div>
     </div>
   );

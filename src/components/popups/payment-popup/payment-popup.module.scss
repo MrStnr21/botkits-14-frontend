@@ -110,7 +110,7 @@
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding-right: 150px;
+  //padding-right: 150px;
 }
 
 .totalPrice {
@@ -162,6 +162,26 @@
   background: #EFFDFF;
   border-radius: 10px;
   z-index: -1;
+}
+
+.logoUkassaIcon {
+  padding-top: 5px;
+  width: 300px;
+  gap: 14px;
+}
+
+.requestInvoiceText {
+  color: #131118;
+  width: 150px;
+  padding: 0 20px;
+}
+.requestInvoiceText:hover {
+  color: #243CBB;
+}
+
+.paymentButtonsContainer {
+  display: flex;
+  gap: 20px;
 }
 
 
