@@ -10,35 +10,23 @@ import {
   useMediaQuery,
 } from '@mui/material';
 
-import stylesTable from './partnership-table.module.scss';
-
-interface IRowData {
-  taps?: string;
-  regs?: string;
-  sum?: string;
-  fee?: string;
-  paid?: string;
-  withdrawal?: string;
-  reqDate?: string;
-  payDate?: string;
-  document?: any;
-  status?: boolean;
-}
+import stylesTable from './tableComponent.module.scss';
+import { TRowData } from '../../utils/types';
 
 interface IPartnershipTable {
   isReferralsTableVisible?: boolean;
   cols?: string[];
-  rows: IRowData[];
+  rows: TRowData[];
 }
 
-const PartnershipTable: FC<IPartnershipTable> = ({
+const TableComponent: FC<IPartnershipTable> = ({
   isReferralsTableVisible,
   cols,
   rows,
 }): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
   const maxTableHeight =
-    isReferralsTableVisible && isMobile ? '240px' : '845px';
+    isReferralsTableVisible && isMobile ? '240px' : '800px';
 
   function renderCellContent(colName: string, rowData: any) {
     switch (colName) {
@@ -74,35 +62,35 @@ const PartnershipTable: FC<IPartnershipTable> = ({
   return (
     <TableContainer
       component={Paper}
-      className={stylesTable.partnershipTable}
+      className={stylesTable.tableContent}
       style={{ maxHeight: maxTableHeight }}
     >
       {isMobile ? (
         <>
           {rows!.map((row: any) => (
-            <Table className={stylesTable.partnershipTable__table}>
-              <TableHead className={stylesTable.partnershipTable__tableHead}>
-                <TableRow className={stylesTable.partnershipTable__row}>
+            <Table className={stylesTable.tableContent__table}>
+              <TableHead>
+                <TableRow className={stylesTable.tableContent__row}>
                   {cols?.map((col) => (
-                    <TableCell className={stylesTable.partnershipTable__cell}>
+                    <TableCell className={stylesTable.tableContent__cell}>
                       {col}
                     </TableCell>
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className={stylesTable.partnershipTable__tableBody}>
-                <TableRow className={stylesTable.partnershipTable__row}>
+              <TableBody>
+                <TableRow className={stylesTable.tableContent__row}>
                   {cols?.map((col) => (
                     <TableCell
                       key={col}
-                      className={`${stylesTable.partnershipTable__cell} + ${
-                        stylesTable.partnershipTable__bodyCell
+                      className={`${stylesTable.tableContent__cell} + ${
+                        stylesTable.tableContent__bodyCell
                       }
                       ${
                         col === 'Статус' || col === 'Оплата'
                           ? row.status === true
-                            ? stylesTable.partnershipTable__statusDone
-                            : stylesTable.partnershipTable__statusProcessing
+                            ? stylesTable.tableContent__statusDone
+                            : stylesTable.tableContent__statusProcessing
                           : ''
                       }
                       `}
@@ -116,32 +104,29 @@ const PartnershipTable: FC<IPartnershipTable> = ({
           ))}
         </>
       ) : (
-        <Table className={stylesTable.partnershipTable__table}>
-          <TableHead className={stylesTable.partnershipTable__tableHead}>
-            <TableRow className={stylesTable.referrals__row}>
+        <Table className={stylesTable.tableContent__table}>
+          <TableHead>
+            <TableRow className={stylesTable.tableContent__row}>
               {cols?.map((col) => (
-                <TableCell
-                  key={col}
-                  className={stylesTable.partnershipTable__cell}
-                >
+                <TableCell key={col} className={stylesTable.tableContent__cell}>
                   {col}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody className={stylesTable.partnershipTable__tableBody}>
+          <TableBody>
             {rows?.map((row: any) => (
-              <TableRow className={stylesTable.partnershipTable__row}>
+              <TableRow className={stylesTable.tableContent__row}>
                 {cols?.map((col) => (
                   <TableCell
                     sx={{ width: '169px' }}
                     key={col}
-                    className={`${stylesTable.partnershipTable__cell}
+                    className={`${stylesTable.tableContent__cell}
                       ${
                         col === 'Статус' || col === 'Оплата'
                           ? row.status === true
-                            ? stylesTable.partnershipTable__statusDone
-                            : stylesTable.partnershipTable__statusProcessing
+                            ? stylesTable.tableContent__statusDone
+                            : stylesTable.tableContent__statusProcessing
                           : ''
                       }
                     `}
@@ -158,4 +143,4 @@ const PartnershipTable: FC<IPartnershipTable> = ({
   );
 };
 
-export default PartnershipTable;
+export default TableComponent;

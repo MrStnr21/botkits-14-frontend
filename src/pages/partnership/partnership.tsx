@@ -6,13 +6,13 @@ import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
 import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
-import PartnershipTable from './partnership-table/partnership-table';
+import TableComponent from '../../components/tableComponent/tableComponent';
 import {
   refCols,
   refRows,
   paymentCols,
   paymentRows,
-} from './referrals-table/data'; // тестовые данные
+} from '../../utils/TableData'; // тестовые данные
 
 const Partnership: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
@@ -94,7 +94,7 @@ const Partnership: FC = (): JSX.Element => {
                 </button>
               )}
             </div>
-            <PartnershipTable
+            <TableComponent
               isReferralsTableVisible={isReferralsTableVisible}
               cols={refCols}
               rows={refRows}
@@ -137,7 +137,7 @@ const Partnership: FC = (): JSX.Element => {
               </button>
             </div>
             {isPaymentsTableVisible && (
-              <PartnershipTable cols={paymentCols} rows={paymentRows} />
+              <TableComponent cols={paymentCols} rows={paymentRows} />
             )}
           </div>
         </div>
