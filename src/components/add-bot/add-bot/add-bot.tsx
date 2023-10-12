@@ -27,68 +27,6 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
     dispatch(getPlatformsAction(token));
   }, [dispatch]);
 
-  console.log(platforms);
-  // const socials: Array<{
-  //   name: string;
-  //   icon: string;
-  //   stepFirst: 'default' | 'upload';
-  //   botURI: boolean;
-  // }> = [
-  //   {
-  //     name: 'Facebook',
-  //     icon: 'facebook',
-  //     stepFirst: 'upload',
-  //     botURI: false,
-  //   },
-  //   {
-  //     name: 'VK',
-  //     icon: 'vk',
-  //     stepFirst: 'upload',
-  //     botURI: false,
-  //   },
-  //   {
-  //     name: 'Odnokassniki',
-  //     icon: 'odnoklassniki',
-  //     stepFirst: 'default',
-  //     botURI: false,
-  //   },
-  //   {
-  //     name: 'Telegram',
-  //     icon: 'telegram',
-  //     stepFirst: 'default',
-  //     botURI: false,
-  //   },
-  //   {
-  //     name: 'Viber',
-  //     icon: 'viber',
-  //     stepFirst: 'default',
-  //     botURI: true,
-  //   },
-  //   {
-  //     name: 'Алиса',
-  //     icon: 'alisa',
-  //     stepFirst: 'default',
-  //     botURI: false,
-  //   },
-  //   {
-  //     name: 'Whatsapp',
-  //     icon: 'whatsapp',
-  //     stepFirst: 'default',
-  //     botURI: false,
-  //   },
-  //   {
-  //     name: 'Instagram',
-  //     icon: 'insta',
-  //     stepFirst: 'default',
-  //     botURI: false,
-  //   },
-  //   {
-  //     name: 'Веб-сайт',
-  //     icon: 'web',
-  //     stepFirst: 'default',
-  //     botURI: false,
-  //   },
-  // ];
   const ref =
     useRef<HTMLDivElement>() as unknown as React.MutableRefObject<HTMLUListElement>;
   const { events } = useDraggable(ref);
