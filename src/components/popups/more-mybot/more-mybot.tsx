@@ -18,7 +18,7 @@ import InfoIcon from '../../icons/info';
 import { POPUP_ITEM } from '../../../utils/constants';
 import routesUrl from '../../../utils/routesData';
 
-import SwitchBotMenuPopup from './SwitchBotMenuPopup';
+import SwitchBotMenuPopup from './switch-bot-menu-popup';
 import useModal from '../../../services/hooks/use-modal';
 
 interface IMoreMybotPopup {

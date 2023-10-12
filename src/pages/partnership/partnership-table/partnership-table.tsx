@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import {
   Paper,
@@ -12,24 +11,6 @@ import {
 } from '@mui/material';
 
 import stylesTable from './partnership-table.module.scss';
-
-// type ReferralsData = {
-//   taps: string;
-//   regs: string;
-//   status: boolean;
-//   sum: string;
-//   fee: string;
-//   paid: string;
-//   withdrawal: string;
-// };
-
-// type PaymentsData = {
-//   reqDate: string;
-//   payDate: string;
-//   document: any;
-//   status: boolean;
-//   paid: string;
-// };
 
 interface IRowData {
   taps?: string;

@@ -21,10 +21,13 @@ import { TAddBotState } from '../reducers/bots/addBot';
 import { TAddBotActions } from '../actions/bots/addBot';
 
 import store from '../store';
+import { TUserResetPasswordActions } from '../actions/auth/reset-password';
+import { TResetPasswordState } from '../reducers/auth/reset-password';
 
 export type TStore = {
   signup: TSignupState;
   signin: TSigninState;
+  resetPassword: TResetPasswordState;
   getUserInfo: TGetUserInfoState;
   logout: TLogoutState;
   getBots: TGetBotsState;
@@ -36,6 +39,7 @@ export type RootState = ReturnType<typeof store.getState>;
 export type TApplicationActions =
   | TSignupActions
   | TSigninActions
+  | TUserResetPasswordActions
   | TGetUserInfoActions
   | TLogoutActions
   | TGetBotsActions

@@ -2,91 +2,17 @@ import { ChangeEvent, FC, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
 import stylesPartnership from './partnership.module.scss';
-// import ReferralsTable from './referrals-table/referrals-table';
-// import PaymentsTable from './payments-table/payments-table';
 import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
 import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
 import PartnershipTable from './partnership-table/partnership-table';
-
-const refCols = [
-  'Перешли по ссылке',
-  'Регистраций',
-  'Оплата',
-  'Сумма',
-  'Комиссия',
-  'Выплачено',
-  'Вывод',
-];
-const paymentCols = [
-  'Дата запроса',
-  'Дата выплаты',
-  'Акт',
-  'Статус',
-  'Сумма выплаты',
-];
-const refRows = [
-  {
-    taps: '28 человек',
-    regs: '15',
-    status: true,
-    sum: '5000 ₽',
-    fee: '1500 ₽',
-    paid: '4500 ₽',
-    withdrawal: '1500 ₽',
-  },
-  {
-    taps: '17 человек',
-    regs: '8',
-    status: true,
-    sum: '15000 ₽',
-    fee: '4500 ₽',
-    paid: '8200 ₽',
-    withdrawal: '4500 ₽',
-  },
-  {
-    taps: '10 человек',
-    regs: '8',
-    status: true,
-    sum: '8000 ₽',
-    fee: '2000 ₽',
-    paid: '6000 ₽',
-    withdrawal: '2300 ₽',
-  },
-  {
-    taps: '11 человек',
-    regs: '5',
-    status: true,
-    sum: '500 ₽',
-    fee: '100 ₽',
-    paid: '300 ₽',
-    withdrawal: '150 ₽',
-  },
-];
-const paymentRows = [
-  {
-    reqDate: '05.07.22',
-    payDate: '07.07.22',
-    document: 'Чек.pdf',
-    status: true,
-    sum: '1500 ₽',
-  },
-  {
-    reqDate: '08.08.22',
-    payDate: '-',
-    document: 'Чек.pdf',
-    status: false,
-    sum: '3000 ₽',
-  },
-  {
-    reqDate: '22.12.2022',
-    payDate: '13.01.2023',
-    document: 'Чек.pdf',
-    status: true,
-    sum: '2500 ₽',
-  },
-];
+import {
+  refCols,
+  refRows,
+  paymentCols,
+  paymentRows,
+} from './referrals-table/data'; // тестовые данные
 
 const Partnership: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
