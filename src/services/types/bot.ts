@@ -13,6 +13,21 @@ export type TBot = {
   _id: string;
 };
 
+// Типизация данных шаблона
+export type TTemplateBot = {
+  _id: string;
+  type: 'template';
+  title: string;
+  description: string;
+  icon: string;
+  messengers: [];
+  profile: null;
+  features: [];
+  commands: Array<string>;
+};
+
 export interface IAddBotResponse extends TBot {}
 
 export interface IGetBotsResponse extends Array<TBot> {}
+
+export interface IGetTemplatesBotsResponse extends Array<TTemplateBot> {}

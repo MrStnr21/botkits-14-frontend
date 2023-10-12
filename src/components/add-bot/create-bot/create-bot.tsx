@@ -93,7 +93,6 @@ const CreateBot: FC<ICreateBot> = ({
 
     const dataBot = {
       type: 'custom',
-      icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
       title: values?.botName.value,
       profile,
       messengers: [

@@ -20,9 +20,13 @@ import { TGetBotsActions } from '../actions/bots/getBot';
 import { TAddBotState } from '../reducers/bots/addBot';
 import { TAddBotActions } from '../actions/bots/addBot';
 
-import store from '../store';
+import { TGetTemplatesBotsState } from '../reducers/bots/getTemplatesBots';
+import { TGetTemplatesBotsActions } from '../actions/bots/getTemplatesBots';
+
 import { TUserResetPasswordActions } from '../actions/auth/reset-password';
 import { TResetPasswordState } from '../reducers/auth/reset-password';
+
+import store from '../store';
 
 export type TStore = {
   signup: TSignupState;
@@ -32,6 +36,7 @@ export type TStore = {
   logout: TLogoutState;
   getBots: TGetBotsState;
   addBot: TAddBotState;
+  getTemplatesBots: TGetTemplatesBotsState;
 };
 
 export type RootState = ReturnType<typeof store.getState>;
@@ -43,7 +48,8 @@ export type TApplicationActions =
   | TGetUserInfoActions
   | TLogoutActions
   | TGetBotsActions
-  | TAddBotActions;
+  | TAddBotActions
+  | TGetTemplatesBotsActions;
 
 export type AppThunk<TReturn = void> = ActionCreator<
   ThunkAction<TReturn, Action, RootState, TApplicationActions>
