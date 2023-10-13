@@ -4,9 +4,10 @@ import Typography from '../../ui/typography/typography';
 import { rows, PaymentTable } from './payment-table/payment-table';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
-import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
+// import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
 import useModal from '../../services/hooks/use-modal';
 import PaymentPopup from '../../components/popups/payment-popup/payment-popup';
+import ChatCompPopup from '../../components/popups/chat-comp-popup/chat-comp-popup';
 
 const Subscription: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
@@ -73,7 +74,7 @@ const Subscription: FC = (): JSX.Element => {
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
           <div className={style.modal}>
-            {popupType === 'activatePromoCode' && <ActivatePromoCodePopup />}
+            {popupType === 'activatePromoCode' && <ChatCompPopup />}
             {popupType === 'subscription' && <PaymentPopup />}
           </div>
         </ModalPopup>
