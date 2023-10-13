@@ -23,14 +23,10 @@ const meta = {
         type: 'select',
       },
     },
-    stepFirst: {
-      type: 'string',
+    pages: {
+      type: 'boolean',
       description: 'Вариант первого шага',
-      defaultValue: 'default',
-      options: ['default', 'upload'],
-      control: {
-        type: 'radio',
-      },
+      defaultValue: false,
     },
     botURI: {
       type: 'boolean',
@@ -47,7 +43,7 @@ type Story = StoryObj<typeof meta>;
 export const CreateBotFacebook: Story = {
   args: {
     botName: 'Facebook',
-    stepFirst: 'upload',
+    pages: true,
     botURI: false,
   },
 };
@@ -55,7 +51,7 @@ export const CreateBotFacebook: Story = {
 export const CreateBotTelegram: Story = {
   args: {
     botName: 'Telegram',
-    stepFirst: 'default',
+    pages: false,
     botURI: false,
   },
 };
@@ -63,7 +59,7 @@ export const CreateBotTelegram: Story = {
 export const CreateBotViber: Story = {
   args: {
     botName: 'Viber',
-    stepFirst: 'default',
+    pages: false,
     botURI: true,
   },
 };

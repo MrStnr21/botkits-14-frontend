@@ -7,6 +7,7 @@ const getUserInfoSel = (store: TStore) => store.getUserInfo;
 const getBotsSel = (store: TStore) => store.getBots;
 const addBotSel = (store: TStore) => store.addBot;
 const getTemplatesBotsSel = (store: TStore) => store.getTemplatesBots;
+const getPlatformsSel = (store: TStore) => store.getPlatforms;
 
 export {
   signupSel,
@@ -16,4 +17,5 @@ export {
   getUserInfoSel,
   resetPasswordSel,
   getTemplatesBotsSel,
+  getPlatformsSel,
 };

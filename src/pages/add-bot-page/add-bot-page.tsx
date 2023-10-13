@@ -10,18 +10,14 @@ import { IBot } from '../../utils/types';
 const AddBotPage: FC = (): JSX.Element => {
   const [bot, setBot] = useState<IBot>({
     name: '',
-    stepFirst: 'default',
+    pages: false,
     botURI: false,
   });
 
-  const onClick = (
-    name: string,
-    stepFirst: 'default' | 'upload',
-    botURI: boolean
-  ) => {
+  const onClick = (name: string, pages: boolean, botURI: boolean) => {
     setBot({
       name,
-      stepFirst,
+      pages,
       botURI,
     });
   };
@@ -30,11 +26,7 @@ const AddBotPage: FC = (): JSX.Element => {
     <div className={stylesAddBotPage.add_bot_page}>
       <AddBot bot={bot} onClick={onClick} />
       <div className={stylesAddBotPage.add_bot_page_container}>
-        <CreateBot
-          botName={bot.name}
-          stepFirst={bot.stepFirst}
-          botURI={bot?.botURI}
-        />
+        <CreateBot botName={bot.name} pages={bot.pages} botURI={bot?.botURI} />
         {bot && (
           <div className={stylesAddBotPage.add_bot_page_works}>
             <HowItWorks />
