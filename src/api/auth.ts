@@ -53,4 +53,14 @@ function resetPasswordApi(userInfo: IUserResetPasswordState) {
   });
 }
 
-export { signupApi, signinApi, logoutApi, resetPasswordApi };
+function socialAuth(code: string, social: string) {
+  return request(`${social}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({ codeAuth: code }),
+  });
+}
+
+export { signupApi, signinApi, logoutApi, resetPasswordApi, socialAuth };
