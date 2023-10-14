@@ -7,7 +7,7 @@ import close from '../../../images/icon/24x24/common/close.svg';
 import docCircle from '../../../images/icon/47x47/doc-circle.svg';
 import Typography from '../../../ui/typography/typography';
 
-const items = [
+const initialItems = [
   {
     title: 'Инфо1.pdf',
     info: '2.4 KB / 2.4 KB',
@@ -73,7 +73,8 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
-  const [shouldRemoveElements, setShouldRemoveElements] = useState(false);
+  const [shouldRemoveElements] = useState(false);
+  const [items, setItems] = useState(initialItems);
 
   const handleDragEnter = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -87,26 +88,10 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
     console.log('сработала функция handleDragLeave');
   };
 
-  // const handleDrop = (e: {
-  //   preventDefault: () => void;
-  //   dataTransfer: { files: string | any[] };
-  // }) => {
-  //   e.preventDefault();
-  //   setIsDragging(false);
-  //   if (e.dataTransfer.files.length > 0) {
-  //     setFile(e.dataTransfer.files[0]);
-  //     console.log(
-  //       'сработала функция handleDrop, Файл был успешно добавлен:',
-  //       e.dataTransfer.files[0].name
-  //     );
-  //   }
-  // };
-
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
 
-    // Проверьте наличие файлов в событии drop
     if (e.dataTransfer.files.length > 0) {
       setFile(e.dataTransfer.files[0]);
       console.log('Файл был успешно добавлен:', e.dataTransfer.files[0].name);
@@ -138,9 +123,10 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
     fileInput.current?.click();
     console.log('срасботала функция handleFileDownload');
   }, [fileInput]);
-  //          {shouldRemoveElements ? null : (          )}
-  const handleRemoveElements = () => {
-    setShouldRemoveElements(true);
+  const handleRemoveItem = (index: number) => {
+    const updatedItems = [...items];
+    updatedItems.splice(index, 1);
+    setItems(updatedItems);
   };
   return (
     <div className={stylesChatCompPopup.container}>
@@ -183,7 +169,6 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
                     className={stylesChatCompPopup.dropSectorTextOverlay}
                   >
                     <input
-                      // ref={fileInput}
                       id="fileInput"
                       className={stylesChatCompPopup.fileInput}
                       type="file"
@@ -215,12 +200,8 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
         <div className={stylesChatCompPopup.itemSector}>
           {shouldRemoveElements ? null : (
             <div className={stylesChatCompPopup.itemsContainer}>
-              {items.map((item) => (
-                <div
-                  key={uuidv4()}
-                  className={stylesChatCompPopup.itemWrapper}
-                  onClick={handleRemoveElements}
-                >
+              {items.map((item, index) => (
+                <div key={uuidv4()} className={stylesChatCompPopup.itemWrapper}>
                   <img
                     className={stylesChatCompPopup.iconDocument}
                     alt=""
@@ -234,11 +215,17 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
                       {item.info}
                     </div>
                   </div>
-                  <img
-                    className={stylesChatCompPopup.iconCommonCheck}
-                    alt=""
-                    src={item.checkIcon}
-                  />
+                  <button
+                    className={stylesChatCompPopup.button}
+                    type="button"
+                    onClick={() => handleRemoveItem(index)}
+                  >
+                    <img
+                      className={stylesChatCompPopup.iconCommonCheck}
+                      alt=""
+                      src={item.checkIcon}
+                    />
+                  </button>
                 </div>
               ))}
             </div>
