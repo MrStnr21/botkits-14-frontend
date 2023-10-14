@@ -34,7 +34,7 @@ const Signin: FC = (): JSX.Element => {
   const currentUrl = new URL(window.location.href);
   // Используем URLSearchParams для получения параметра 'code'
   const code = currentUrl.searchParams.get('code');
-  const cookieData = Cookies.get('auth-social');
+  const cookieData = Cookies.get('auth');
   const { values, handleChange } = useForm({
     email: { value: '', valueValid: false },
     password: { value: '', valueValid: false },
@@ -65,7 +65,7 @@ const Signin: FC = (): JSX.Element => {
     }
     if (cookieData) {
       dispatch(socialAuthAction(code, 'cookie', cookieData));
-      Cookies.remove('auth-social');
+      Cookies.remove('auth');
     }
   }, []);
 
