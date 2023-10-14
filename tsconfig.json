@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "proxy.ts"]
+  "include": ["src", "proxy.ts", "src/components/tableComponent/.tsxe.tsx"]
 }

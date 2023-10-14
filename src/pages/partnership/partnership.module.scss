@@ -1,0 +1,129 @@
+@import '../../components/app/vars';
+
+.partnership {
+  margin-top: 32px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 680px) {
+    margin: 0 auto;
+    max-width: 90vw;
+    width: 100%;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding-bottom: 40px;
+
+    @media screen and (max-width: 620px) {
+      padding-bottom: 26px;
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $h2-font-size;
+    line-height: $h2-line-height;
+    letter-spacing: $h2-letter-space;
+    font-weight: $bold;
+    color: $primary-text-color;
+    margin: 0 0 32px 0;
+
+    @media screen and (max-width: 620px) {
+      font-size: $h3-font-size;
+      line-height: $h3-line-height;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__inputContainer {
+    width: 455px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    @media screen and (max-width: 860px) {
+      min-width: 320px;
+      width: 100%;
+    }
+  }
+
+  &__inputWrapper {
+    max-width: 399px;
+    width: 100%;
+  }
+
+  &__buttonWrapper {
+    width: 20%;
+    padding: 0 0 40px;
+
+    @media screen and (max-width: 860px) {
+      width: 80%;
+      padding: 20px 0 40px;
+    }
+  }
+}
+
+.tables {
+  margin: 0;
+  border-radius: $border-radius-30;
+  background-color: $default-grey-color;
+  width: 100%;
+
+  &__payments {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__referrals {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $white-color;
+    border-radius: $border-radius-30;
+    box-sizing: border-box;
+    box-shadow: 0px 6px 16px 0px #15123314;
+  }
+
+  &__titleContainer {
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $h3-font-size;
+    font-weight: $semi-bold;
+    line-height: $h3-line-height;
+
+    @media screen and (max-width: 860px) {
+      font-size: $h4-font-size;
+      font-weight: $bold;
+      line-height: $h4-line-height;
+    }
+  }
+
+  &__chevron {
+    border: none;
+    background: transparent;
+    cursor: $cursor;
+    transition: all .3s ease-in;
+  }
+}
