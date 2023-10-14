@@ -28,18 +28,51 @@
   border-bottom-left-radius: $border-radius-30;
   width: 364px;
   height: 427px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .dropSectorWrapper {
-  position: absolute;
-  top: 142px;
-  left: 101px;
+  position: relative;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
   text-align: center;
+}
+
+.dropSectorDragging {
+  border-top-left-radius: $border-radius-30;
+  border-bottom-left-radius: $border-radius-30;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  background-color: #F8F9FB;
+  z-index: 1;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
+  }
+  100% {
+    background-color: #f0f0f0;
+  }
 }
 
 .logOutParent {
@@ -58,7 +91,15 @@
 }
 
 .dropSectorText {
+  position: relative;
+  width: 150px;
+  cursor: pointer;
+}
 
+.dropSectorTextOverlay {
+  position: absolute;
+  padding: 0;
+  color: transparent;
 }
 
 .downloadText {
@@ -67,6 +108,17 @@
   text-decoration: underline;
   line-height: 130%;
   font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  visibility: hidden;
+}
+
+.fileInput {
+  display: none;
 }
 
 //_____________Секция с элементами
@@ -93,7 +145,7 @@
   flex-direction: column;
   width: 315px;
   height: 263px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -104,6 +156,7 @@
   width: 3px;
   color: #A6B3C9;
 }
+
 .itemsContainer::-webkit-scrollbar-thumb {
   background-color: #E8EBEF;
 }
@@ -131,7 +184,6 @@
 }
 
 .itemTitle {
-  //position: relative;
   letter-spacing: 0.3px;
   line-height: 150%;
 }
