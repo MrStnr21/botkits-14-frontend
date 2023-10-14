@@ -75,7 +75,10 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
   const fileInput = useRef<HTMLInputElement>(null);
   const [shouldRemoveElements] = useState(false);
   const [items, setItems] = useState(initialItems);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [draggedFile, setDraggedFile] = useState<File | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const handleDragEnter = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setIsDragging(true);
@@ -94,6 +97,16 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
 
     if (e.dataTransfer.files.length > 0) {
       setFile(e.dataTransfer.files[0]);
+      setDraggedFile(e.dataTransfer.files[0]);
+
+      const newItem = {
+        title: e.dataTransfer.files[0].name,
+        info: `${(e.dataTransfer.files[0].size / 1024).toFixed(1)} KB`,
+        icon: docCircle,
+        checkIcon: check,
+      };
+
+      setItems((prevItems) => [...prevItems, newItem]);
       console.log('Файл был успешно добавлен:', e.dataTransfer.files[0].name);
     }
   };
@@ -118,11 +131,27 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
     setIsHovered(false);
     console.log('сработала функция handleMouseLeave');
   };
-
+  // TODO дублирует информацию о добавленном файле несколько раз после отправки, надо пофиксить.
   const handleFileDownload = useCallback(() => {
     fileInput.current?.click();
     console.log('срасботала функция handleFileDownload');
+    // Обновить uploadedFile, когда файл выбран через окно загрузки
+    fileInput.current?.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (target.files && target.files.length > 0) {
+        const selectedFile = target.files[0];
+        setUploadedFile(selectedFile);
+        const newItem = {
+          title: selectedFile.name,
+          info: `${(selectedFile.size / 1024).toFixed(1)} KB`,
+          icon: docCircle,
+          checkIcon: check,
+        };
+        setItems((prevItems) => [...prevItems, newItem]);
+      }
+    });
   }, [fileInput]);
+
   const handleRemoveItem = (index: number) => {
     const updatedItems = [...items];
     updatedItems.splice(index, 1);
