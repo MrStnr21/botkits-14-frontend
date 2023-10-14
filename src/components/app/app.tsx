@@ -17,7 +17,7 @@ import Chat from '../../pages/chat/chat';
 
 import routesUrl from '../../utils/routesData';
 
-import ProtectedRoute from '../../routes/protected-route';
+// import ProtectedRoute from '../../routes/protected-route';
 
 const App: FC = (): JSX.Element => {
   return (
@@ -103,25 +103,25 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.partnership}
             element={
-              <ProtectedRoute>
-                <Partnership />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Partnership />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.share}
             element={
-              <ProtectedRoute>
-                <Share />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Share />
+              // </ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.subscription}
             element={
-              <ProtectedRoute>
-                <Subscription />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Subscription />
+              // </ProtectedRoute>
             }
           />
           <Route path={routesUrl.notFound} element={<NotFound />} />

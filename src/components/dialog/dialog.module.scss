@@ -1,0 +1,67 @@
+@import '../../components/app/vars';
+
+@mixin flexLayout {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.dialog {
+  margin: 32px 0;
+  padding: 0 32px;
+  position: relative;
+  height: 80vh;
+  width: 656px;
+  @include flexLayout();
+  flex-direction: column;
+  border-left: 1px $icon-grey-color solid;
+  border-right: 1px $icon-grey-color solid;
+
+  &__header {
+    @include flexLayout();
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 32px 0;
+    border-bottom: 1px $icon-grey-color solid;
+  }
+
+  &__nameWrapper {
+    @include flexLayout();
+    gap: 16px;
+  }
+
+  &__iconsWrapper {
+    @include flexLayout();
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $l-font-size;
+    line-height: $m-line-height;
+    font-weight: $semi-bold;
+    color: $primary-text-color;
+  }
+
+  &__headerButton {
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__messageBlock {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
