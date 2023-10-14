@@ -3,6 +3,8 @@ import {
   IUserSigninState,
   IUserSignupState,
   IUserLogoutResponse,
+  IUserResetPasswordState,
+  IUserResetPasswordResponse,
 } from '../services/types/user';
 
 import request from './api';
@@ -40,6 +42,17 @@ function logoutApi(token: string) {
   });
 }
 
+// Запрос на сброс пароля
+function resetPasswordApi(userInfo: IUserResetPasswordState) {
+  return request<IUserResetPasswordResponse>('reset-password', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(userInfo),
+  });
+}
+
 function socialAuth(code: string, social: string) {
   return request(`${social}`, {
     method: 'POST',
@@ -50,4 +63,4 @@ function socialAuth(code: string, social: string) {
   });
 }
 
-export { signupApi, signinApi, logoutApi, socialAuth };
+export { signupApi, signinApi, logoutApi, resetPasswordApi, socialAuth };

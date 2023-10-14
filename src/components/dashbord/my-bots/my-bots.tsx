@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router';
 
 import { useMediaQuery } from '@mui/material';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import styles from './my-bots.module.scss';
 
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
@@ -27,10 +25,13 @@ import Viber from '../../../images/icon/40x40/viber/hover.svg';
 import WebSite from '../../../images/icon/40x40/web/hover.svg';
 import Alisa from '../../../images/icon/40x40/alisa/hover.svg';
 import VK from '../../../images/icon/40x40/vk/hover.svg';
-import { TBot } from '../../../services/types/bot';
 import { getBotsSel } from '../../../utils/selectorData';
 
-const img: any = {
+interface IImg {
+  [key: string]: string;
+}
+
+const img: IImg = {
   Facebook,
   Telegram,
   Viber,
@@ -43,7 +44,7 @@ const img: any = {
 };
 
 const MyBots: FC = (): JSX.Element => {
-  const [isHidden, SetIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   const { bots } = useAppSelector(getBotsSel);
 
@@ -71,24 +72,24 @@ const MyBots: FC = (): JSX.Element => {
           <button
             className={styles.header__button}
             type="button"
-            onClick={() => SetIsHidden(!isHidden)}
+            onClick={() => setIsHidden(!isHidden)}
           >
             {isHidden ? 'Все' : 'Cвернуть'}
           </button>
         )}
       </div>
       <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
-        {bots.map((bot: TBot) => (
-          <li key={uuidv4()} className={styles.item}>
+        {bots.map((bot, index) => (
+          <li key={bot.title + +index} className={styles.item}>
             <BotCard
-              platform_icon={img[bot.messenger.name]}
-              bot_name={bot.botName}
+              platform_icon={img[bot.messengers[0].name]}
+              bot_name={bot.title}
               // eslint-disable-next-line no-underscore-dangle
               bot_id={bot._id}
             />
           </li>
         ))}
-        <li key={uuidv4()} className={styles.buttonAddbot}>
+        <li className={styles.buttonAddbot}>
           <ButtonAddBot onClick={addBot}>Добавить бота</ButtonAddBot>
         </li>
       </ul>

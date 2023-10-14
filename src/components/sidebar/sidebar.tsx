@@ -2,14 +2,11 @@ import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import stylesSidebar from './sidebar.module.scss';
 
 import Cover from '../../ui/cover/cover';
 
 import { links, ILink } from './sb-data';
-import BASE_URL from '../../utils/config';
 
 // Элемент заголовка в навигации
 const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
@@ -62,12 +59,7 @@ const Sidebar: FC = (): JSX.Element => {
             aria-label="Показать навигацию сайдбара"
           />
 
-          <div
-            onClick={() => {
-              window.location.href = `${BASE_URL}`;
-            }}
-            className={stylesSidebar.header__logo}
-          />
+          <NavLink to="/" className={stylesSidebar.header__logo} />
         </div>
 
         <div
@@ -85,10 +77,10 @@ const Sidebar: FC = (): JSX.Element => {
             <p className={stylesSidebar.addtext}>Добавить бота</p>
           </NavLink>
           <ul className={stylesSidebar.navigation__list}>
-            {links.map((item) =>
+            {links.map((item, index) =>
               item.child ? (
                 <li
-                  key={uuidv4()}
+                  key={item.text + +index}
                   className={`${stylesSidebar.nestedList} ${
                     isOpenNL
                       ? stylesSidebar.nestedList_open
@@ -111,7 +103,7 @@ const Sidebar: FC = (): JSX.Element => {
                   </ul>
                 </li>
               ) : (
-                <li key={uuidv4()}>
+                <li key={item.text + index.toString()}>
                   <Subheader {...item} />
                 </li>
               )

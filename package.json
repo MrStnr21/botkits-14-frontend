@@ -30,6 +30,7 @@
     "mui-tel-input": "^4.0.0",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "react-router": "^6.15.0",
@@ -61,6 +62,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/js-cookie": "^3.0.4",
+    "@types/react-copy-to-clipboard": "^5.0.5",
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -92,7 +94,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sb": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "storybook": "storybook dev -p 6006"
   },
   "eslintConfig": {
     "extends": [
