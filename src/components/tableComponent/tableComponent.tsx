@@ -13,13 +13,13 @@ import {
 import stylesTable from './tableComponent.module.scss';
 import { TRowData } from '../../utils/types';
 
-interface IPartnershipTable {
+interface ITableComponent {
   isReferralsTableVisible?: boolean;
   cols?: string[];
   rows: TRowData[];
 }
 
-const TableComponent: FC<IPartnershipTable> = ({
+const TableComponent: FC<ITableComponent> = ({
   isReferralsTableVisible,
   cols,
   rows,
