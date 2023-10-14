@@ -28,9 +28,11 @@ export const handlerAuthMailru = () => {
 };
 
 export const handlerAuthVkontakte = () => {
-  // Составляем URL для авторизации обрати внимание на state=random_string_123 Для предотвращения CSRF атак необходимо сохранять случайное значение state в сессии\куке и проверять его при возврате на redirect_uri.
-  const authUrl = `http://localhost:3001/vkontakte`;
-
   // Перенаправляем пользователя на страницу авторизации Яндекса
-  window.location.href = authUrl;
+  window.location.href = AUTH_URL.vk;
+};
+
+export const handlerAuthGoogle = () => {
+  // Перенаправляем пользователя на страницу авторизации Яндекса
+  window.location.href = AUTH_URL.google;
 };

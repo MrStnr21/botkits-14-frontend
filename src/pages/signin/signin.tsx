@@ -1,5 +1,6 @@
 import { FC, FormEvent, useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import stylesSignin from './signin.module.scss';
 
@@ -20,6 +21,7 @@ import useForm from '../../services/hooks/use-form';
 import { signinSel } from '../../utils/selectorData';
 import { getSocial, removeSocial } from '../../auth/authService';
 import {
+  handlerAuthGoogle,
   handlerAuthMailru,
   handlerAuthVkontakte,
   handlerAuthYandex,
@@ -33,7 +35,8 @@ const Signin: FC = (): JSX.Element => {
   const currentUrl = new URL(window.location.href);
   // Используем URLSearchParams для получения параметра 'code'
   const code = currentUrl.searchParams.get('code');
-
+  const vkontakteCookie = Cookies.get('vkontakte-auth');
+  const googleCookie = Cookies.get('google-auth');
   const { values, handleChange } = useForm({
     email: { value: '', valueValid: false },
     password: { value: '', valueValid: false },
@@ -45,6 +48,12 @@ const Signin: FC = (): JSX.Element => {
     if (values.email.valueValid && values.password.valueValid) {
       setButtonDisabled(false);
     } else setButtonDisabled(true);
+    if (vkontakteCookie) {
+      console.log(vkontakteCookie);
+    }
+    if (googleCookie) {
+      console.log(googleCookie);
+    }
   }, [values]);
 
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
@@ -134,6 +143,7 @@ const Signin: FC = (): JSX.Element => {
                 social="google"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthGoogle}
               />
               <ButtonAddSocial
                 social="yandex"
