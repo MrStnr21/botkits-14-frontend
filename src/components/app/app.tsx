@@ -26,73 +26,73 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.signup}
           element={
-            <ProtectedRoute notAuth>
-              <Signup />
-            </ProtectedRoute>
+            // ProtectedRoute notAuth>
+            <Signup />
+            // </ProtectedRoute>
           }
         />
         <Route
           path={routesUrl.signin}
           element={
-            <ProtectedRoute notAuth>
-              <Signin />
-            </ProtectedRoute>
+            // ProtectedRoute notAuth>
+            <Signin />
+            // /ProtectedRoute>
           }
         />
         <Route
           path={routesUrl.reset}
           element={
-            <ProtectedRoute notAuth>
-              <ResetPassword />
-            </ProtectedRoute>
+            // ProtectedRoute notAuth>
+            <ResetPassword />
+            // /ProtectedRoute>
           }
         />
         <Route
           path={routesUrl.homePage}
           element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
+            // ProtectedRoute>
+            <Layout />
+            // /ProtectedRoute>
           }
         >
           <Route
             path={routesUrl.homePage}
             element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
+              // ProtectedRoute>
+              <Dashboard />
+              // /ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.addBot}
             element={
-              <ProtectedRoute>
-                <AddBotPage />
-              </ProtectedRoute>
+              // ProtectedRoute>
+              <AddBotPage />
+              // /ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.botBuilder}
             element={
-              <ProtectedRoute>
-                <BotBuilder />
-              </ProtectedRoute>
+              // ProtectedRoute>
+              <BotBuilder />
+              // /ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.chat}
             element={
-              <ProtectedRoute>
-                <Chat />
-              </ProtectedRoute>
+              // ProtectedRoute>
+              <Chat />
+              // /ProtectedRoute>
             }
           />
           <Route
             path={routesUrl.mailing}
             element={
-              <ProtectedRoute>
-                <Mailing />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <Mailing />
+              // /ProtectedRoute>
             }
           >
             {/* <Route path="" element={<First... />} />
