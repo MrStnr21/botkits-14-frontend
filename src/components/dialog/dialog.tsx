@@ -1,12 +1,13 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import stylesDialog from './dialog.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
 import PlayIcon from '../icons/Play/PlayIcon';
 import avatar from '../../images/avatar/circled/default.svg';
 import Message from './message/message';
+import InputMessage from '../../ui/inputs/input-message/input-message';
 
 const messages = [
   {
@@ -36,6 +37,8 @@ const messages = [
 ];
 
 const Dialog: FC = (): JSX.Element => {
+  const [inputValue, setInputValue] = useState('');
+
   return (
     <div className={stylesDialog.dialog}>
       <div className={stylesDialog.dialog__header}>
@@ -63,6 +66,18 @@ const Dialog: FC = (): JSX.Element => {
         {messages.map((message) => {
           return <Message key={message.id} message={message} />;
         })}
+      </div>
+      <div className={stylesDialog.dialog__messageBlock}>
+        <div className={stylesDialog.dialog__inputWrapper}>
+          <InputMessage
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setInputValue(e.target.value)
+            }
+          />
+        </div>
+        <button type="button" className={stylesDialog.dialog__submitButton}>
+          Кнопка
+        </button>
       </div>
     </div>
   );
