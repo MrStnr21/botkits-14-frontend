@@ -26,7 +26,6 @@ import {
   handlerAuthVkontakte,
   handlerAuthYandex,
 } from '../../utils/utils';
-import TelegramWidget from '../../components/telegram-widget/telegram-widget';
 
 const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector(signinSel);
@@ -35,8 +34,7 @@ const Signin: FC = (): JSX.Element => {
   const currentUrl = new URL(window.location.href);
   // Используем URLSearchParams для получения параметра 'code'
   const code = currentUrl.searchParams.get('code');
-  const vkontakteCookie = Cookies.get('vkontakte-auth');
-  const googleCookie = Cookies.get('google-auth');
+  const cookieData = Cookies.get('auth-social');
   const { values, handleChange } = useForm({
     email: { value: '', valueValid: false },
     password: { value: '', valueValid: false },
@@ -48,12 +46,6 @@ const Signin: FC = (): JSX.Element => {
     if (values.email.valueValid && values.password.valueValid) {
       setButtonDisabled(false);
     } else setButtonDisabled(true);
-    if (vkontakteCookie) {
-      console.log(vkontakteCookie);
-    }
-    if (googleCookie) {
-      console.log(googleCookie);
-    }
   }, [values]);
 
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
@@ -65,11 +57,15 @@ const Signin: FC = (): JSX.Element => {
       })
     );
   };
-
+  // Авторизация через соцсети
   useEffect(() => {
     if (code) {
       dispatch(socialAuthAction(code, getSocial()));
       removeSocial();
+    }
+    if (cookieData) {
+      dispatch(socialAuthAction(code, 'cookie', cookieData));
+      Cookies.remove('auth-social');
     }
   }, []);
 
@@ -180,7 +176,6 @@ const Signin: FC = (): JSX.Element => {
                 size="small"
                 buttonHtmlType="button"
               />
-              <TelegramWidget />
             </div>
           </div>
         </div>
