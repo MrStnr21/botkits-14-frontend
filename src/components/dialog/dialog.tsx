@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-restricted-globals */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
@@ -6,9 +7,11 @@ import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
 import PlayIcon from '../icons/Play/PlayIcon';
 import ChevronIcon from '../icons/Chevron/ChevronIcon';
+import CloseIcon from '../icons/Close/CloseIcon';
 import avatar from '../../images/avatar/circled/default.svg';
 import Message from './message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
+import Input from '../../ui/inputs/input/input';
 
 const messages = [
   {
@@ -42,9 +45,9 @@ interface DateType extends Date {
 }
 
 const Dialog: FC = (): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [isInputVisible, setInputVisible] = useState(false);
 
   const isMobile = useMediaQuery('(max-width: 620px)');
 
@@ -52,7 +55,7 @@ const Dialog: FC = (): JSX.Element => {
     const interval = setInterval(() => {
       const now = new Date() as DateType;
       setCurrentDate(now);
-    }, 1000000);
+    }, 60000);
 
     return () => {
       clearInterval(interval);
@@ -102,9 +105,27 @@ const Dialog: FC = (): JSX.Element => {
           </div>
         </div>
         <div className={stylesDialog.dialog__iconsWrapper}>
+          {isInputVisible && (
+            <div className={stylesDialog.dialog__headerInputWrapper}>
+              <Input
+                placeholder="Поиск..."
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setInputValue(e.target.value)
+                } // заменить на инпут поиска
+              />
+            </div>
+          )}
           {!isMobile && (
-            <button type="button" className={stylesDialog.dialog__headerButton}>
-              <SearchIcon size="large" />
+            <button
+              type="button"
+              className={stylesDialog.dialog__headerButton}
+              onClick={() => setInputVisible(!isInputVisible)}
+            >
+              {!isInputVisible ? (
+                <SearchIcon size="large" />
+              ) : (
+                <CloseIcon color="#a6b3c9" />
+              )}
             </button>
           )}
           <button type="button" className={stylesDialog.dialog__headerButton}>
