@@ -1,6 +1,6 @@
 import { FC, ChangeEvent } from 'react';
 import stylesInput from './InputDialogsues.module.scss';
-import { ReactComponent as File } from '../../../images/icon/24x24/add content/file.svg';
+import FilterIcon from '../../icons/Filter/FilterIcon';
 
 interface IInputDialogsues {
   placeholder?: string;
@@ -17,7 +17,6 @@ const InputDialogsues: FC<IInputDialogsues> = ({
 }): JSX.Element => {
   return (
     <div className={stylesInput.message}>
-      {/* <File className={stylesInput.icon} /> */}
       <input
         className={stylesInput.input}
         type="text"
@@ -30,7 +29,7 @@ const InputDialogsues: FC<IInputDialogsues> = ({
         type="button"
         onClick={onClickFilter}
       >
-        <File className={stylesInput.icon} />
+        <FilterIcon />
       </button>
     </div>
   );
