@@ -1,24 +1,43 @@
 @import '../../../components/app/vars';
 
+
+
+
 [class*='MuiMenu-root'] {
   [class*='MuiMenu-paper'] {
     border-radius: $border-radius-10;
     box-shadow: $m-box-shadow;
-    scrollbar-width: thin;
-    // border-right: 6px solid transparent;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
     box-sizing: border-box;
-    overflow: overlay;
 
-    &::-webkit-scrollbar {
+    [class*='os-theme-dark'] {
+      --os-size: 8px;
+      margin-right: 2px;
+
+      [class*='os-scrollbar-handle'] {
+        background-color: $default-dark-grey-color;
+        max-height: 60px;
+      }
+
+      .os-scrollbar-vertical {
+        --os-size: 20px;
+        background-color: aqua;
+      }
+    }
+
+    /*  &::-webkit-scrollbar {
       display: block;
       width: 3px;
+      padding-right: 20px;
+      position: absolute;
+      right: 20px;
+      border-radius: $border-radius-10;
+      box-sizing: border-box;
     }
 
     &::-webkit-scrollbar-thumb {
       background-color: $default-dark-grey-color;
-      border-radius: 24px;
       border-radius: $border-radius-10;
     }
 
@@ -33,7 +52,7 @@
     &::-webkit-scrollbar-button {
       display: none;
     }
-
+ */
     [class*='MuiList-root'] {
       [class*='MuiMenuItem-root'] {
         position: relative;

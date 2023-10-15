@@ -28,6 +28,7 @@
     "http-proxy-middleware": "^2.0.6",
     "mui-tel-input": "^4.0.0",
     "node-sass": "^7.0.3",
+    "overlayscrollbars": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
