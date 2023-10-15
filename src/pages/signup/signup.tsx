@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState, FormEvent } from 'react';
+import { FC, useEffect, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
@@ -16,7 +16,7 @@ import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
 import useForm from '../../services/hooks/use-form';
 
-import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+import { COUNTRY_COD_LIST, DEFAULT_PHONE_CODE } from '../../utils/constants';
 import { signupSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
 
@@ -24,21 +24,31 @@ import backgroundImage from '../../images/roboSuccess.png';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
-    width: '100%',
-    maxWidth: '570px',
-    height: '100%',
     aspectRatio: '1.06',
     backgroundImage: `url(${backgroundImage})`,
   };
 
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [phoneCode, setPhoneCode] = useState<string>('');
 
   const { values, handleChange, setValues } = useForm({
-    username: '',
-    email: '',
-    password: '',
-    phone: '',
+    username: { value: '', valueValid: false },
+    email: { value: '', valueValid: false },
+    password: { value: '', valueValid: false },
+    phone: { value: '', valueValid: false },
+    phoneNumberMain: { value: '', valueValid: false },
   });
+
+  useEffect(() => {
+    if (
+      values.username.valueValid &&
+      values.email.valueValid &&
+      values.password.valueValid &&
+      values.phoneNumberMain.valueValid
+    ) {
+      setButtonDisabled(false);
+    } else setButtonDisabled(true);
+  }, [values]);
 
   const userData = useAppSelector(signupSel);
 
@@ -48,25 +58,22 @@ const Signup: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    setPhoneCode(DEFAULT_PHONE_CODE);
+    setPhoneCode(DEFAULT_PHONE_CODE.code);
   }, []);
 
   const dispatch = useAppDispatch();
 
-  const handleSignup = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      dispatch(
-        signupAction({
-          username: values.username,
-          email: values.email,
-          password: values.password,
-          phone: values.phone,
-        })
-      );
-    },
-    [values]
-  );
+  const handleSignup = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(
+      signupAction({
+        username: values.username.value,
+        email: values.email.value,
+        password: values.password.value,
+        phone: phoneCode + values.phoneNumberMain.value,
+      })
+    );
+  };
 
   return userData.signupSuccess ? (
     <ConfirmationScreen
@@ -122,55 +129,83 @@ const Signup: FC = (): JSX.Element => {
         </div>
         <div className={stylesSignup.signupInputsContainer}>
           <h2 className={stylesSignup.signupTitleForm}>или</h2>
-          <form className={stylesSignup.inputsForm} onSubmit={handleSignup}>
+          <form
+            className={stylesSignup.inputsForm}
+            onSubmit={handleSignup}
+            noValidate
+          >
             <div className={stylesSignup.inputsContainer}>
               <Input
                 placeholder="Имя"
                 name="username"
+                maxLength={30}
                 onChange={handleChange}
+                value={values.username.value}
                 styled="secondary"
                 required
               />
               <Input
                 placeholder="E-mail"
                 name="email"
+                maxLength={30}
                 onChange={handleChange}
+                value={values.email.value}
+                errorMessage="Введите корректный email"
                 styled="secondary"
+                pattern="^\S+@\S+\.\S+$"
                 required
               />
               <Input
                 placeholder="Пароль"
                 name="password"
+                maxLength={30}
                 onChange={handleChange}
+                value={values.password.value}
                 styled="secondary"
+                password
+                type="password"
                 required
               />
               <div className={stylesSignup.inputsPhoneContainer}>
                 <MuiTelInput
+                  defaultCountry={DEFAULT_PHONE_CODE.country}
                   value={phoneCode}
                   className={stylesSignup.phoneCodeSelect}
                   onChange={handleChangeCodePhone}
+                  langOfCountryName="ru"
+                  onlyCountries={
+                    COUNTRY_COD_LIST.length > 0 ? COUNTRY_COD_LIST : undefined
+                  }
                 />
                 <Input
-                  // добавить максимальную длину номера
                   placeholder="Телефон"
-                  name="phoneNumber"
+                  name="phoneNumberMain"
+                  onChange={handleChange}
+                  value={values.phoneNumberMain.value}
                   maxLength={15}
                   styled="secondary"
+                  pattern="^\d+$"
+                  errorMessage="Номер телефона может содержать только цифры"
                   required
-                  onChange={(e) =>
-                    setValues({
-                      ...values,
-                      phone: phoneCode + e.target.value,
-                    })
-                  }
+                  type="number"
                 />
               </div>
             </div>
             <div className={stylesSignup.formsButton}>
-              <Button variant="default" color="green" buttonHtmlType="submit">
+              <Button
+                variant="default"
+                size="large"
+                color="green"
+                buttonHtmlType="submit"
+                disabled={buttonDisabled}
+              >
                 создать аккаунт
               </Button>
+              {userData.signupError && (
+                <p className={stylesSignup.incorrect_text}>
+                  {userData.signupErrorText}
+                </p>
+              )}
             </div>
           </form>
           <div className={stylesSignup.signupReadyContainer}>

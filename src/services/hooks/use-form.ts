@@ -7,7 +7,7 @@ function useForm(inputValues: any) {
     const { value, name } = event.target;
     setValues({
       ...values,
-      [name]: value,
+      [name]: { value, valueValid: event.target.validity.valid },
     });
   };
   return {

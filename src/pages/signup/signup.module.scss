@@ -1,46 +1,5 @@
 @import '../../components/app/vars';
 
-.signupPage {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: linear-gradient(180deg, $white-color 36%, $default-grey-color 0%);
-}
-
-.contentContainer {
-  width: 100%;
-  max-width: 770px;
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.logo {
-  width: 149px;
-  height: 35px;
-  margin-bottom: 20px;
-  background-image: url('../../images/icon/BOTkitLogo.svg');
-}
-
-.label {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 30px;
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h1-font-size;
-  font-weight: $semi-bold;
-  line-height: $h1-line-height;
-  letter-spacing: 5px;
-  font-style: normal;
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
-}
-
 .signupFormContainer {
   position: relative;
   width: 100%;
@@ -50,17 +9,42 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    border-radius: $border-radius-30 $border-radius-30 0 0;
+  }
 }
 
 .signupBackgroundImage {
   background-image: url('../../images/roboCreate.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
-  max-width: 205px;
-  aspect-ratio: 1.1;
+  max-width: 270px;
+  margin-right: -60px;
+  aspect-ratio: 1.58;
   z-index: 0;
+
+  @media screen and (max-width: 710px) {
+    max-width: 250px;
+    margin-right: -60px;
+  }
+
+  @media screen and (max-width: 650px) {
+    max-width: 220px;
+    margin-right: -60px;
+  }
+
+  @media screen and (max-width: 600px) {
+    position: relative;
+    margin-right: 0;
+    aspect-ratio: 1.58;
+    max-width: 230px;
+  }
 }
 
 .signupTitle {
@@ -74,12 +58,24 @@
   font-size: $xl-font-size;
   font-weight: $bold;
   line-height: $button-line-height-130;
+
+  @media screen and (max-width: 600px) {
+    margin-top: 25px;
+    font-size: $l-font-size;
+    letter-spacing: $h5-letter-space;
+    line-height: $button-line-height-150;
+  }
 }
 
 .socialContainer {
   display: flex;
   gap: 30px;
   margin-bottom: 40px;
+
+  @media screen and (max-width: 600px) {
+    gap: 0;
+    margin-bottom: 35px;
+  }
 }
 
 .socialMain {
@@ -88,6 +84,11 @@
   padding: 10px;
   background-color: $persian-blue-focus;
   border-radius: $border-radius-30;
+
+  @media screen and (max-width: 600px) {
+    gap: 10px;
+    padding: 8px;
+  }
 }
 
 .socialSecond {
@@ -96,15 +97,29 @@
   padding: 10px;
   background-color: $persian-blue-focus;
   border-radius: $border-radius-30;
+
+  @media screen and (max-width: 600px) {
+    gap: 10px;
+    padding: 8px;
+  }
 }
 
 .signupInputsContainer {
   width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
   display: flex;
+  box-sizing: border-box;
   border-radius: $border-radius-30;
   flex-direction: column;
   align-items: center;
   background-color: $default-blue-color;
+
+  @media screen and (max-width: 600px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: $border-radius-30 $border-radius-30 0 0;
+  }
 }
 
 .signupTitleForm {
@@ -122,6 +137,10 @@
   font-size: $l-font-size;
   font-weight: $bold;
   line-height: $button-line-height-150;
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 25px;
+  }
 }
 
 .inputsForm {
@@ -131,38 +150,121 @@
   width: 100%;
   align-items: center;
   gap: 50px;
+
+  @media screen and (max-width: 600px) {
+    gap: 40px;
+    margin-bottom: 30px;
+  }
 }
 
 .inputsContainer {
   width: 100%;
   display: grid;
   justify-content: center;
-  grid-template-columns: 325px 325px;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content max-content;
   gap: 20px;
   z-index: 1;
+
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    gap: 20px;
+  }
 }
 
 .inputsPhoneContainer {
   width: 100%;
   max-width: 325px;
-  display: flex;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 110px 1fr;
+  gap: 15px;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    max-width: none;
+  }
 }
 
+
 .phoneCodeSelect {
-  background-color: $white-color;
+  background-color: $primary-text-color;
   border: none;
-  flex-basis: 110px;
+  border-radius: 4px;
+  width: 110px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
   margin-top: auto;
   margin-bottom: auto;
+  z-index: 0;
+
+  & input {
+    width: 33px;
+    padding: 0;
+    margin: 0;
+    color: $white-color;
+    font-family: 'Open Sans', sans-serif;
+    font-size: $m-font-size;
+    font-weight: $normal;
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    border: none;
+  }
+
+  & :focus {
+    border: none;
+  }
+
+  [class*="MuiInputBase-root-MuiOutlinedInput-root"] {
+    height: 60px;
+    border: none;
+    width: 100%;
+    flex-direction: row-reverse;
+    padding-right: 34px;
+    position: relative;
+  }
+
+  [class*="MuiOutlinedInput-notchedOutline"] {
+    height: 60px;
+    border: none;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  [class*="MuiButtonBase-root-MuiIconButton-root"] {
+    background-image: url('../../images/icon/24x24/common/arrow-drop-down.svg');
+    background-repeat: no-repeat;
+    background-position: left 5px top 18px;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+    justify-content: flex-end;
+    padding-right: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+
 }
+
 
 .formsButton {
   z-index: 1;
   width: 100%;
   max-width: 260px;
+  position: relative;
 }
 
 .signupReadyContainer {
@@ -176,6 +278,10 @@
   line-height: $button-line-height-150;
   margin-bottom: 40px;
   z-index: 1;
+
+  @media screen and (max-width: 600px) {
+    margin-bottom: 30px;
+  }
 }
 
 .signinLink {
@@ -183,67 +289,95 @@
   text-decoration-line: underline;
 }
 
-.successPage {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 98px;
-  align-items: center;
-  background-color: $default-blue-color;
+.incorrect_text {
+  color: $error-red-color;
+  position: absolute;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: $m-letter-space;
+  margin: 2px 0 0 0;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
-.successSigninLink {
-  width: 32px;
-  height: 32px;
-  margin-right: 30px;
-  margin-top: 30px;
-  align-self: flex-end;
-  background-image: url('../../images/icon/32x32/close.svg');
-}
 
-.titleContainer {
-  width: 100%;
-  max-width: 1170px;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-}
+[class*="MuiModal-root-MuiPopover-root-MuiMenu-root"] {
+  [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"] {
+    width: 100%;
+    max-height: 245px;
+    max-width: 268px;
+    border-radius: 12px;
+    scrollbar-width: thin;
+    position: relative;
+    border: 6px solid transparent;
+    box-sizing: border-box;
+    box-shadow: $l-box-shadow;
 
-.title {
-  margin: 0;
-  padding: 0;
-  max-width: 570px;
-  font-family: 'IBM Plex Mono', sans-serif;
-  text-align: left;
-  color: $white-color;
-  font-size: $xl-h1-font-size;
-  font-weight: $bold;
-  line-height: $button-line-height-110;
-  vertical-align: middle;
-}
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      max-width: calc(100% - 40px);
 
-.titleImage {
-  width: 100%;
-  max-width: 570px;
-  height: 100%;
-  aspect-ratio: 1.06;
-}
+    }
+  }
 
-.email {
-  vertical-align: baseline;
-  width: 100%;
-  max-height: 60px;
-  max-width: 158px;
-  padding: 14px 23px 14px 20px;
-  font-size: $h2-font-size;
-  border-radius: $border-radius-15;
-  color: $default-green-color;
-  font-weight: $bold;
-  background-color: $hover-blue-color;
-  line-height: $button-line-height-150;
-  letter-spacing: $h2-letter-space;
-  vertical-align: middle;
+
+  [class*="MuiList-root-MuiMenu-list"] {
+    [class*="Mui-selected"] {
+      background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.08);
+    }
+  }
+
+  .MuiPaper-root {
+    top: 580px;
+  }
+
+  [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"]::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 12px;
+    background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.1);
+  }
+
+  [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"]::-webkit-scrollbar-thumb {
+    background-color: $default-blue-color;
+    border-radius: 15px;
+  }
+
+  [class*="MuiButtonBase-root-MuiMenuItem-root"] {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    [class*="MuiListItemIcon-root"] {
+      width: 32px;
+      aspect-ratio: 2;
+
+      img {
+        width: 32px;
+      }
+    }
+  }
+
+  [class*="MuiListItemText-root"] {
+    [class*="MuiTypography-root"] {
+      max-width: 140px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: $m-font-size;
+      font-weight: $normal;
+      line-height: $button-line-height-150;
+      letter-spacing: $m-letter-space;
+      color: $primary-text-color;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  [class*="MuiTypography-root"] {
+    max-width: 140px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: $m-font-size;
+    font-weight: $bold;
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    color: $default-blue-color;
+  }
 }

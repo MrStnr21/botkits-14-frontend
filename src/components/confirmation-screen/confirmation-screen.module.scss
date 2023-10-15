@@ -11,6 +11,16 @@
   background-color: $default-blue-color;
 }
 
+.contentContainer {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 98px
+}
+
 .successSigninLink {
   width: 32px;
   height: 32px;
@@ -18,20 +28,35 @@
   margin-top: 30px;
   align-self: flex-end;
   background-image: url('../../images/icon/32x32/close.svg');
+
+  @media screen and (max-width: 600px) {
+    margin-right: 20px;
+    margin-top: 20px;
+  }
 }
 
 .titleContainer {
   width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-sizing: border-box;
   max-width: 1170px;
   display: flex;
   gap: 30px;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    gap: 130px;
+  }
+
 }
 
 .title {
   margin: 0;
   padding: 0;
+  width: 100%;
   max-width: 570px;
   font-family: 'IBM Plex Mono', sans-serif;
   text-align: left;
@@ -40,14 +65,30 @@
   font-weight: $bold;
   line-height: $button-line-height-110;
   vertical-align: middle;
+
+  @media screen and (max-width: 1080px) {
+    font-size: $h1-font-size;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: $h2-font-size;
+    line-height: $button-line-height-130;
+  }
 }
 
 .titleImage {
   width: 100%;
   max-width: 570px;
   height: 100%;
-  aspect-ratio: 1.06;
+  background-size: contain;
+  background-repeat: no-repeat;
+  @media screen and (max-width: 600px) {
+    align-self: flex-end;
+    margin-right: -20px;
+  }
+
 }
+
 
 .email {
   vertical-align: baseline;
@@ -63,4 +104,11 @@
   line-height: $button-line-height-150;
   letter-spacing: $h2-letter-space;
   vertical-align: middle;
+
+  @media screen and (max-width: 800px) {
+    border-radius: $border-radius-8;
+    padding: 5px 13px 5px 7px;
+    font-size: $xl-font-size;
+    line-height: $button-line-height-130;
+  }
 }
