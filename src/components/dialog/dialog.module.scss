@@ -21,8 +21,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 32px 0 16px;
-    // border-bottom: 1px $icon-grey-color solid;
+    padding: 0 0 16px;
     position: relative;
   }
 
@@ -48,11 +47,11 @@
   }
 
   &__borderText::before {
-    left: -15%;
+    left: -10%;
   }
 
   &__borderText::after {
-    right: -15%;
+    right: -10%;
   }
 
   &__nameWrapper {
@@ -90,6 +89,7 @@
 
   &__messages {
     margin-top: 40px;
+    max-height: 100%;
     height: 100%;
     width: 100%;
     overflow: scroll;
