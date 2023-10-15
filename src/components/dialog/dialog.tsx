@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import stylesDialog from './dialog.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
@@ -36,8 +36,41 @@ const messages = [
   },
 ];
 
+interface DateType extends Date {
+  toDateString(): string;
+}
+
 const Dialog: FC = (): JSX.Element => {
   const [inputValue, setInputValue] = useState('');
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date() as DateType;
+      setCurrentDate(now);
+    }, 1000000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  function formatDate(date: DateType): string {
+    const now = new Date();
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+
+    if (date.toDateString() === now.toDateString()) {
+      return 'Сегодня';
+    }
+    if (date.toDateString() === yesterday.toDateString()) {
+      return 'Вчера';
+    }
+    const options: any = { day: 'numeric', month: 'long' };
+    return date.toLocaleDateString('ru-RU', options);
+  } // в дальнейшем эта функция должна принимать дату последнего сообщения
+
+  const formattedDate = formatDate(currentDate);
 
   return (
     <div className={stylesDialog.dialog}>
@@ -62,6 +95,7 @@ const Dialog: FC = (): JSX.Element => {
           </button>
         </div>
       </div>
+      <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
       <div className={stylesDialog.dialog__messages}>
         {messages.map((message) => {
           return <Message key={message.id} message={message} />;
