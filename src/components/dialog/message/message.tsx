@@ -25,7 +25,13 @@ const Message: FC<IMessage> = ({ message }): JSX.Element => {
       }
     >
       <div className={stylesMessage.message__avatar}>{message.avatar}</div>
-      <div className={stylesMessage.message__container}>
+      <div
+        className={
+          message.user !== 'Вы'
+            ? stylesMessage.message__container
+            : `${stylesMessage.message__container} ${stylesMessage.message__containerUser}`
+        }
+      >
         <div
           className={
             message.user !== 'Вы'

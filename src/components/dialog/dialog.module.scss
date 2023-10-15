@@ -13,8 +13,13 @@
   position: relative;
   width: 656px;
   flex-direction: column;
-  border-left: 1px $icon-grey-color solid;
-  border-right: 1px $icon-grey-color solid;
+  // border-left: 1px $icon-grey-color solid;
+  // border-right: 1px $icon-grey-color solid;
+
+  @media screen and (max-width: 620px) {
+    margin: 0;
+    padding: 0;
+  }
 
   &__header {
     @include flexLayout();
@@ -23,6 +28,20 @@
     width: 100%;
     padding: 0 0 16px;
     position: relative;
+
+    @media screen and (max-width: 620px) {
+      padding: 0 20px 20px;
+    }
+  }
+
+  &__headerContent {
+    @include flexLayout();
+    flex-direction: row;
+    gap: 16px;
+
+    @media screen and (max-width: 620px) {
+      justify-content: space-between;
+    }
   }
 
   &__borderText {
@@ -34,9 +53,15 @@
     width: 100%;
     max-height: 24px;
     color: $default-dark-grey-color;
+
+    @media screen and (max-width: 620px) {
+      background: $default-grey-color;
+      padding: 32px;
+    }
   }
 
-   &__borderText::before, &__borderText::after {
+  &__borderText::before,
+  &__borderText::after {
     content: '';
     display: block;
     position: absolute;
@@ -48,21 +73,39 @@
 
   &__borderText::before {
     left: -10%;
+
+    @media screen and (max-width: 620px) {
+      left: -15%;
+    }
   }
 
   &__borderText::after {
     right: -10%;
+
+    @media screen and (max-width: 620px) {
+      right: -15%;
+    }
   }
 
   &__nameWrapper {
     @include flexLayout();
     gap: 16px;
+
+    @media screen and (max-width: 620px) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 20px;
+    }
   }
 
   &__iconsWrapper {
     @include flexLayout();
     justify-content: space-between;
-    gap: 8px;
+    gap: 6px;
   }
 
   &__avatar {
@@ -77,6 +120,15 @@
     line-height: $m-line-height;
     font-weight: $semi-bold;
     color: $primary-text-color;
+  }
+
+  &__status {
+    margin: 0;
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $xxs-font-size;
+    line-height: $xxs-line-height;
+    font-weight: $normal;
+    color: $default-blue-color;
   }
 
   &__headerButton {
@@ -97,6 +149,12 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+
+    @media screen and (max-width: 620px) {
+      margin: 0;
+      padding: 0 20px;
+      background: $default-grey-color;
+    }
   }
 
   &__messageInput {
@@ -105,6 +163,10 @@
     justify-content: space-between;
     gap: 20px;
     width: 100%;
+
+    @media screen and (max-width: 620px) {
+      padding: 16px 20px 0;
+    }
   }
 
   &__inputWrapper {

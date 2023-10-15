@@ -1,10 +1,11 @@
 /* eslint-disable no-restricted-globals */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 import stylesDialog from './dialog.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
 import PlayIcon from '../icons/Play/PlayIcon';
+import ChevronIcon from '../icons/Chevron/ChevronIcon';
 import avatar from '../../images/avatar/circled/default.svg';
 import Message from './message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
@@ -12,7 +13,7 @@ import InputMessage from '../../ui/inputs/input-message/input-message';
 const messages = [
   {
     id: 1,
-    avatar: 'Avatar',
+    avatar: '',
     user: 'Вячеслав Баумтрок',
     message: 'Привет, как это сделать?',
     time: '16 мин назад',
@@ -20,7 +21,7 @@ const messages = [
   },
   {
     id: 2,
-    avatar: 'Avatar',
+    avatar: '',
     user: 'Вы',
     message: `Привет, user, вообще делать не надо`,
     time: '14 мин назад',
@@ -28,7 +29,7 @@ const messages = [
   },
   {
     id: 3,
-    avatar: 'Avatar',
+    avatar: '',
     user: 'Вячеслав Баумтрок',
     message: 'Ок, спасибо :)',
     time: '10 мин назад',
@@ -41,8 +42,11 @@ interface DateType extends Date {
 }
 
 const Dialog: FC = (): JSX.Element => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
+
+  const isMobile = useMediaQuery('(max-width: 620px)');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,27 +79,45 @@ const Dialog: FC = (): JSX.Element => {
   return (
     <div className={stylesDialog.dialog}>
       <div className={stylesDialog.dialog__header}>
-        <div className={stylesDialog.dialog__nameWrapper}>
-          <img
-            src={avatar}
-            alt="avatar"
-            className={stylesDialog.dialog__avatar}
-          />
-          <p className={stylesDialog.dialog__name}>Вячеслав Баумтрок</p>
+        <div className={stylesDialog.dialog__headerContent}>
+          {!isMobile ? (
+            <img
+              src={avatar}
+              alt="avatar"
+              className={stylesDialog.dialog__avatar}
+            />
+          ) : (
+            <ChevronIcon
+              width={24}
+              height={24}
+              color="#a6b3c9"
+              position="left"
+            />
+          )}
+          <div className={stylesDialog.dialog__nameWrapper}>
+            <p className={stylesDialog.dialog__name}>Вячеслав Баумтрок</p>
+            {isMobile && (
+              <p className={stylesDialog.dialog__status}>В работе</p>
+            )}
+          </div>
         </div>
         <div className={stylesDialog.dialog__iconsWrapper}>
-          <button type="button" className={stylesDialog.dialog__headerButton}>
-            <SearchIcon size="large" />
-          </button>
+          {!isMobile && (
+            <button type="button" className={stylesDialog.dialog__headerButton}>
+              <SearchIcon size="large" />
+            </button>
+          )}
           <button type="button" className={stylesDialog.dialog__headerButton}>
             <PlayIcon width={24} height={24} />
           </button>
           <button type="button" className={stylesDialog.dialog__headerButton}>
-            <TrashIcon width={24} height={24} />
+            <TrashIcon width={24} height={24} />{' '}
+            {/* добавить условие отрисовки кнопки для открытия попапа */}
           </button>
         </div>
       </div>
       <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
+      {/* задать отступ границе по бокам текста на мобильных устройствах */}
       <div className={stylesDialog.dialog__messages}>
         {messages.map((message) => {
           return <Message key={message.id} message={message} />;

@@ -4,4 +4,9 @@
   justify-content: center;
   height: 100%;
   margin-right: 40px;
+
+  @media screen and (max-width: 620px) {
+    margin: 0;
+    z-index: 666;
+  }
 }
