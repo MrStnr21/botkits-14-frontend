@@ -16,7 +16,7 @@ const messages = [
     user: 'Вячеслав Баумтрок',
     message: 'Привет, как это сделать?',
     time: '16 мин назад',
-    seen: 'Просмотрено в 14:05',
+    seen: '14:05',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const messages = [
     user: 'Вы',
     message: `Привет, user, вообще делать не надо`,
     time: '14 мин назад',
-    seen: 'Просмотрено в 14:12',
+    seen: '14:12',
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const messages = [
     user: 'Вячеслав Баумтрок',
     message: 'Ок, спасибо :)',
     time: '10 мин назад',
-    seen: 'Просмотрено в 14:05',
+    seen: '14:15',
   },
 ];
 
@@ -53,7 +53,7 @@ const Dialog: FC = (): JSX.Element => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, []); // в дальнейшем не пригодится?
 
   function formatDate(date: DateType): string {
     const now = new Date();
@@ -101,7 +101,7 @@ const Dialog: FC = (): JSX.Element => {
           return <Message key={message.id} message={message} />;
         })}
       </div>
-      <div className={stylesDialog.dialog__messageBlock}>
+      <div className={stylesDialog.dialog__messageInput}>
         <div className={stylesDialog.dialog__inputWrapper}>
           <InputMessage
             onChange={(e: ChangeEvent<HTMLInputElement>) =>

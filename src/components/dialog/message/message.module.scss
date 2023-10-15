@@ -1,0 +1,125 @@
+@import '../../app/vars';
+
+@mixin flexLayout {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@mixin font {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: $bold;
+  font-size: $xxs-font-size;
+  letter-spacing: $m-letter-space;
+  line-height: $xxs-line-height;
+  color: $primary-text-color;
+}
+
+.message {
+  max-width: 362px;
+  width: 100%;
+  @include flexLayout();
+  flex-direction: row;
+  gap: 16px;
+
+  &__container {
+    @include flexLayout();
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  &__block {
+    @include flexLayout();
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    width: 100%;
+    min-width: 230px;
+    position: relative;
+    background: $default-grey-color;
+    border-radius: $border-radius-15 $border-radius-15 $border-radius-15 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -5px;
+      width: 20px;
+      height: 20px;
+      background: $default-grey-color;
+      clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+      transform: rotate(180deg);
+    }
+  }
+
+  &__blockUser {
+    @include flexLayout();
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    width: 100%;
+    min-width: 230px;
+    position: relative;
+    border-radius: $border-radius-15 $border-radius-15 0 $border-radius-15;
+    background: $default-blue-color;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      background: $default-blue-color;
+      clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+      transform: rotate(270deg);
+    }
+  }
+
+  &__content {
+    @include flexLayout();
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  &__textWrapper {
+    width: 100%;
+    @include flexLayout();
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__user {
+    @include font();
+  }
+
+  &__text {
+    @include font();
+    font-weight: $normal;
+  }
+
+  &__time {
+    @include font();
+    font-size: 8px;
+    color: $default-dark-grey-color;
+  }
+
+  &__seen {
+    @include font();
+    font-weight: $normal;
+    font-size: 8px;
+  }
+}
+
+.userMessage {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.textColorWhite {
+  color: #FFF;
+}
