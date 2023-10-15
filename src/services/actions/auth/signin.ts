@@ -1,10 +1,12 @@
+import { socialAuth } from '../../../api/auth';
 import { signinApi } from '../../../api/index';
 
 import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
-import { IUserSigninState, TUser } from '../../types/user';
+import { IUserAuthError, IUserSigninState, TUser } from '../../types/user';
+import { ILogoutAction } from '../logout/logout';
 
 const SIGNIN_REQUEST = 'SIGNIN_REQUSET';
 const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
@@ -21,12 +23,14 @@ export interface ISigninSuccessAction {
 
 export interface ISigninErrorAction {
   readonly type: typeof SIGNIN_ERROR;
+  textError: string;
 }
 
 export type TSigninActions =
   | ISigninRequestAction
   | ISigninSuccessAction
-  | ISigninErrorAction;
+  | ISigninErrorAction
+  | ILogoutAction;
 
 // экшн авторизации
 const signinAction: AppThunk = (userInfo: IUserSigninState) => {
@@ -37,8 +41,8 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
     signinApi(userInfo)
       .then((res: TUser) => {
         if (res) {
-          saveAccessToken(res.accounts[0].credentials.accessToken);
-          saveRefreshToken(res.accounts[0].credentials.refreshToken);
+          saveAccessToken(res.credentials.accessToken);
+          saveRefreshToken(res.credentials.refreshToken);
 
           dispatch({
             type: SIGNIN_SUCCESS,
@@ -46,14 +50,70 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
           });
         }
       })
-      .catch((err: { message: string }) => {
-        // eslint-disable-next-line no-console
-        console.log(err.message);
-        dispatch({
-          type: SIGNIN_ERROR,
-        });
+      .catch((err: [string, Promise<IUserAuthError> | undefined]) => {
+        if (err[1]) {
+          // eslint-disable-next-line no-console
+          console.log(err[0]);
+          err[1].then((payload: IUserAuthError) => {
+            dispatch({
+              type: SIGNIN_ERROR,
+              textError: payload.message,
+            });
+          });
+          // eslint-disable-next-line no-console
+        } else console.log(err);
       });
   };
 };
 
-export { SIGNIN_REQUEST, SIGNIN_SUCCESS, SIGNIN_ERROR, signinAction };
+const socialAuthAction: AppThunk = (
+  code: string,
+  social: string,
+  cookieData?: string
+) => {
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: SIGNIN_REQUEST,
+    });
+    if (cookieData && social === 'cookie') {
+      const data = JSON.parse(cookieData);
+
+      saveAccessToken(data.credentials.accessToken);
+      saveRefreshToken(data.credentials.refreshToken);
+
+      dispatch({
+        type: SIGNIN_SUCCESS,
+        user: data,
+      });
+    } else {
+      socialAuth(code, social)
+        .then((res: any) => {
+          if (res) {
+            saveAccessToken(res.credentials.accessToken);
+            saveRefreshToken(res.credentials.refreshToken);
+
+            dispatch({
+              type: SIGNIN_SUCCESS,
+              user: res,
+            });
+          }
+        })
+        .catch((err: { message: string }) => {
+          // eslint-disable-next-line no-console
+          console.log(err.message);
+          dispatch({
+            type: SIGNIN_ERROR,
+            textError: err.message,
+          });
+        });
+    }
+  };
+};
+
+export {
+  SIGNIN_REQUEST,
+  SIGNIN_SUCCESS,
+  SIGNIN_ERROR,
+  signinAction,
+  socialAuthAction,
+};

@@ -5,6 +5,7 @@ import {
   SIGNIN_ERROR,
   TSigninActions,
 } from '../../actions/auth/signin';
+import { LOGOUT } from '../../actions/logout/logout';
 
 import { TUser } from '../../types/user';
 
@@ -16,6 +17,7 @@ export type TSigninState = {
   signinRequest: boolean;
   signinSuccess: boolean;
   signinError: boolean;
+  signinErrorText: string;
 };
 
 const signinInitialState: TSigninState = {
@@ -26,6 +28,7 @@ const signinInitialState: TSigninState = {
   signinRequest: false,
   signinSuccess: false,
   signinError: false,
+  signinErrorText: '',
 };
 
 function signinReducer(
@@ -55,6 +58,14 @@ function signinReducer(
         ...state,
         signinRequest: false,
         signinError: true,
+        signinErrorText: action.textError,
+      };
+    }
+    case LOGOUT: {
+      return {
+        ...state,
+        user: null,
+        signinSuccess: false,
       };
     }
     default: {

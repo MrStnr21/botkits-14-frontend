@@ -8,8 +8,8 @@ import styles from './more-mybot.module.scss';
 
 import NotificationSettingsIcon from '../../icons/notification-settings';
 import CopyBotIcon from '../../icons/copy-bot';
-import TrashIcon from '../../icons/trash';
 import CloseIcon from '../../icons/Close/CloseIcon';
+import TrashIcon from '../../icons/Trash/TrashIcon';
 import ShareIcon from '../../icons/share';
 import EditIcon from '../../icons/edit';
 import LinkIcon from '../../icons/link';
@@ -18,7 +18,7 @@ import InfoIcon from '../../icons/info';
 import { POPUP_ITEM } from '../../../utils/constants';
 import routesUrl from '../../../utils/routesData';
 
-import SwitchBotMenuPopup from './SwitchBotMenuPopup';
+import SwitchBotMenuPopup from './switch-bot-menu-popup';
 import useModal from '../../../services/hooks/use-modal';
 
 interface IMoreMybotPopup {

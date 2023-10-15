@@ -10,6 +10,7 @@
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+
   @media screen and (max-width: 600px) {
     border-radius: $border-radius-30 $border-radius-30 0 0;
   }
@@ -37,6 +38,7 @@
     max-width: 220px;
     margin-right: -60px;
   }
+
   @media screen and (max-width: 600px) {
     position: relative;
     margin-right: 0;
@@ -116,6 +118,7 @@
   @media screen and (max-width: 600px) {
     padding-left: 20px;
     padding-right: 20px;
+    border-radius: $border-radius-30 $border-radius-30 0 0;
   }
 }
 
@@ -174,16 +177,15 @@
 .inputsPhoneContainer {
   width: 100%;
   max-width: 325px;
-  display: flex;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 110px 1fr;
   gap: 15px;
   align-items: center;
   justify-content: center;
 
   @media screen and (max-width: 600px) {
     max-width: none;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 110px 1fr;
   }
 }
 
@@ -192,8 +194,7 @@
   background-color: $primary-text-color;
   border: none;
   border-radius: 4px;
-  min-width: 110px;
-  flex-basis: 110px;
+  width: 110px;
   height: 60px;
   align-items: center;
   justify-content: center;
@@ -263,6 +264,7 @@
   z-index: 1;
   width: 100%;
   max-width: 260px;
+  position: relative;
 }
 
 .signupReadyContainer {
@@ -276,6 +278,7 @@
   line-height: $button-line-height-150;
   margin-bottom: 40px;
   z-index: 1;
+
   @media screen and (max-width: 600px) {
     margin-bottom: 30px;
   }
@@ -284,4 +287,97 @@
 .signinLink {
   color: $white-color;
   text-decoration-line: underline;
+}
+
+.incorrect_text {
+  color: $error-red-color;
+  position: absolute;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: $m-letter-space;
+  margin: 2px 0 0 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+
+[class*="MuiModal-root-MuiPopover-root-MuiMenu-root"] {
+  [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"] {
+    width: 100%;
+    max-height: 245px;
+    max-width: 268px;
+    border-radius: 12px;
+    scrollbar-width: thin;
+    position: relative;
+    border: 6px solid transparent;
+    box-sizing: border-box;
+    box-shadow: $l-box-shadow;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      max-width: calc(100% - 40px);
+
+    }
+  }
+
+
+  [class*="MuiList-root-MuiMenu-list"] {
+    [class*="Mui-selected"] {
+      background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.08);
+    }
+  }
+
+  .MuiPaper-root {
+    top: 580px;
+  }
+
+  [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"]::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 12px;
+    background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.1);
+  }
+
+  [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"]::-webkit-scrollbar-thumb {
+    background-color: $default-blue-color;
+    border-radius: 15px;
+  }
+
+  [class*="MuiButtonBase-root-MuiMenuItem-root"] {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    [class*="MuiListItemIcon-root"] {
+      width: 32px;
+      aspect-ratio: 2;
+
+      img {
+        width: 32px;
+      }
+    }
+  }
+
+  [class*="MuiListItemText-root"] {
+    [class*="MuiTypography-root"] {
+      max-width: 140px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: $m-font-size;
+      font-weight: $normal;
+      line-height: $button-line-height-150;
+      letter-spacing: $m-letter-space;
+      color: $primary-text-color;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  [class*="MuiTypography-root"] {
+    max-width: 140px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: $m-font-size;
+    font-weight: $bold;
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    color: $default-blue-color;
+  }
 }

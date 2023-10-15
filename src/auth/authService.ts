@@ -30,6 +30,18 @@ const removeRefreshToken = (): void => {
   localStorage.removeItem('refreshToken');
 };
 
+const saveSocial = (social: string) => {
+  localStorage.setItem('social', social);
+};
+
+const getSocial = () => {
+  return localStorage.getItem('social');
+};
+
+const removeSocial = (): void => {
+  localStorage.removeItem('social');
+};
+
 export {
   saveAccessToken,
   saveRefreshToken,
@@ -37,4 +49,7 @@ export {
   getRefreshToken,
   removeAccessToken,
   removeRefreshToken,
+  saveSocial,
+  getSocial,
+  removeSocial,
 };
