@@ -1,5 +1,6 @@
 import { FC, FormEvent, useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import stylesSignin from './signin.module.scss';
 
@@ -10,16 +11,30 @@ import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { signinAction } from '../../services/actions/auth/signin';
+import {
+  signinAction,
+  socialAuthAction,
+} from '../../services/actions/auth/signin';
 
 import routesUrl from '../../utils/routesData';
 import useForm from '../../services/hooks/use-form';
 import { signinSel } from '../../utils/selectorData';
+import { getSocial, removeSocial } from '../../auth/authService';
+import {
+  handlerAuthGoogle,
+  handlerAuthMailru,
+  handlerAuthVkontakte,
+  handlerAuthYandex,
+} from '../../utils/utils';
 
 const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector(signinSel);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-
+  // Извлечение текущего URL
+  const currentUrl = new URL(window.location.href);
+  // Используем URLSearchParams для получения параметра 'code'
+  const code = currentUrl.searchParams.get('code');
+  const cookieData = Cookies.get('auth');
   const { values, handleChange } = useForm({
     email: { value: '', valueValid: false },
     password: { value: '', valueValid: false },
@@ -42,6 +57,17 @@ const Signin: FC = (): JSX.Element => {
       })
     );
   };
+  // Авторизация через соцсети
+  useEffect(() => {
+    if (code) {
+      dispatch(socialAuthAction(code, getSocial()));
+      removeSocial();
+    }
+    if (cookieData) {
+      dispatch(socialAuthAction(code, 'cookie', cookieData));
+      Cookies.remove('auth');
+    }
+  }, []);
 
   return userData.signinSuccess ? (
     <Navigate to={routesUrl.homePage} />
@@ -113,16 +139,19 @@ const Signin: FC = (): JSX.Element => {
                 social="google"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthGoogle}
               />
               <ButtonAddSocial
                 social="yandex"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthYandex}
               />
               <ButtonAddSocial
                 social="mailru"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthMailru}
               />
             </div>
             <div className={stylesSignin.socialSecond}>
@@ -130,6 +159,7 @@ const Signin: FC = (): JSX.Element => {
                 social="vk"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthVkontakte}
               />
               <ButtonAddSocial
                 social="odnoklassniki"

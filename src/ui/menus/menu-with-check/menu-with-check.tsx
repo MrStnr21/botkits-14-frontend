@@ -4,8 +4,10 @@ import stylesMenuWitchCheck from './menu-with-check.module.scss';
 
 import checkIcon from '../../../images/icon/24x24/common/check.svg';
 
+type TBottom = { text: string; isChecked: boolean };
+
 export interface IMenuWithCheck {
-  buttons: { text: string; isChecked: boolean }[];
+  buttons: TBottom[];
   isActive?: boolean;
   top?: number;
   left?: number;
@@ -19,7 +21,7 @@ const MenuWithCheck: FC<IMenuWithCheck> = ({
   left = 0,
   onClick,
 }): JSX.Element => {
-  const buttonHandler = (button: any) => {
+  const buttonHandler = (button: TBottom) => {
     const index = buttons.findIndex((item) => item.text === button.text);
     const buttonArr = buttons;
     const newButton = { text: button.text, isChecked: !button.isChecked };

@@ -33,7 +33,7 @@ interface ImageMap {
 
 interface ICreateBot {
   botName: string;
-  stepFirst: 'default' | 'upload';
+  pages: boolean;
   botURI?: boolean;
 }
 
@@ -42,7 +42,7 @@ const img: ImageMap = {
   Telegram: <Telegram className={stylesCreateBot.create_main_bot_name_img} />,
   Viber: <Viber className={stylesCreateBot.create_main_bot_name_img} />,
   VK: <VK className={stylesCreateBot.create_main_bot_name_img} />,
-  Odnokassniki: (
+  Odnoklassniki: (
     <Odnoklassniki className={stylesCreateBot.create_main_bot_name_img} />
   ),
   Алиса: <Alisa className={stylesCreateBot.create_main_bot_name_img} />,
@@ -51,11 +51,7 @@ const img: ImageMap = {
   'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
 };
 
-const CreateBot: FC<ICreateBot> = ({
-  botName,
-  stepFirst,
-  botURI,
-}): JSX.Element => {
+const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
   const [arrPages, setArrPages] = useState<string[]>([]);
 
   const profile = useAppSelector(signupSel || signinSel);
@@ -84,7 +80,7 @@ const CreateBot: FC<ICreateBot> = ({
 
   const disabled = botURI
     ? !disabledBotURI
-    : stepFirst === 'default'
+    : !pages
     ? !disabledDefault
     : !disabledPages;
 
@@ -92,15 +88,17 @@ const CreateBot: FC<ICreateBot> = ({
     e.preventDefault();
 
     const dataBot = {
-      icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
-      botName: values?.botName.value,
+      type: 'custom',
+      title: values?.botName.value,
       profile,
-      messenger: {
-        name: botName,
-        page: 'страница',
-        accessKey: values?.accessKey.value,
-        url: values?.uri.value,
-      },
+      messengers: [
+        {
+          name: botName,
+          page: 'страница',
+          accessKey: values?.accessKey.value,
+          url: values?.uri.value,
+        },
+      ],
       botSettings: {},
     };
 
@@ -139,7 +137,7 @@ const CreateBot: FC<ICreateBot> = ({
             className={stylesCreateBot.create_main_form}
           >
             <div className={stylesCreateBot.create_main_fill_bot}>
-              {stepFirst === 'default' ? (
+              {!pages ? (
                 <StepperFillBot step="1" text="Ключ доступа">
                   <Input
                     name="accessKey"

@@ -15,7 +15,7 @@ export interface ILogoutAction {
 export type TLogoutActions = ILogoutAction;
 
 // экшен разлогина
-const logoutAction: AppThunk = (token: string) => {
+const logoutAction: AppThunk = (token: string, navigate) => {
   return (dispatch: AppDispatch) => {
     logoutApi(token)
       .then((res) => {
@@ -24,6 +24,7 @@ const logoutAction: AppThunk = (token: string) => {
         dispatch({
           type: LOGOUT,
         });
+        navigate();
         // eslint-disable-next-line no-console
         console.log(res.message);
       })

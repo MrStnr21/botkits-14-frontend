@@ -54,11 +54,20 @@
   font-size: $h1-font-size;
   font-weight: $semi-bold;
   line-height: $h1-line-height;
-  letter-spacing: 5px;
+  letter-spacing: 3.5px;
   font-style: normal;
+  text-align: center;
   font-feature-settings:
     'clig' off,
     'liga' off;
+
+  @media screen and (max-width: 750px) {
+    margin-bottom: 20px;
+    font-size: $h2-line-height;
+    line-height: $button-line-height-110;
+    letter-spacing: $h2-letter-space;
+
+  }
 
   @media screen and (max-width: 600px) {
     margin-bottom: 20px;
