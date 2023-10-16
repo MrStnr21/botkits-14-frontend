@@ -31,11 +31,16 @@ const useScrollbar = (
   hasScroll: boolean
 ) => {
   useEffect(() => {
+    let scrollbars: OverlayScrollbars;
     if (root.current && hasScroll) {
-      OverlayScrollbars(root.current, config);
+      scrollbars = OverlayScrollbars(root.current, config);
     }
 
-    return () => {};
+    return () => {
+      if (scrollbars && !hasScroll) {
+        scrollbars.destroy();
+      }
+    };
   }, [root, hasScroll]);
 };
 

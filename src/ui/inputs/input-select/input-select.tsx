@@ -29,13 +29,18 @@ const InputSelect: FC<IInputSelect> = ({
 
   const refI = useRef(null);
 
+  let timeOutOpenModal: NodeJS.Timeout | string = '';
+
   useScrollbar(refI, visible);
 
   useEffect(() => {
-    setInputValues(defaultValue);
+    return () => {
+      clearTimeout(timeOutOpenModal);
+    };
   }, []);
 
   useEffect(() => {
+    setInputValues(defaultValue);
     if (resetSelect) {
       setInputValues(defaultValue);
     }
@@ -49,7 +54,6 @@ const InputSelect: FC<IInputSelect> = ({
     handleFunction(typeof value === 'string' ? value : value.join(','));
   };
 
-  let timeOutOpenModal: NodeJS.Timeout | string = '';
   return (
     <FormControl
       sx={{
