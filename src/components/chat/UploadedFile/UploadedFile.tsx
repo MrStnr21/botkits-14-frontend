@@ -3,8 +3,8 @@ import icon from '../../../images/icon/add content/doc-circle.svg';
 import stylesFile from './UploadedFile.module.scss';
 
 interface IUploadedFile {
-  file_name: string;
-  file_extension: string;
+  file_name?: string;
+  file_extension?: string;
 }
 
 const UploadedFile: FC<IUploadedFile> = ({

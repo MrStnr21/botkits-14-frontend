@@ -3,6 +3,8 @@ import avatar from '../../../images/avatar/circled/bigAvatar.svg';
 import stylesInformation from './Information.module.scss';
 import DropDownList from '../DropDownList/DropDownList';
 import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import UploadedFile from '../UploadedFile/UploadedFile';
+import UploadedImage from '../UploadedImage/UploadedImage';
 
 interface IInformation {
   image?: string;
@@ -60,9 +62,29 @@ const Information: FC<IInformation> = ({
               <DropDownList caption="История действий" />
             </div>
           ) : (
-            <div className={stylesInformation.wrapper}>
-              <p>Загруженные файлы</p>
-              <p>Изображения</p>
+            <div className={stylesInformation.files}>
+              <p> Загруженные файлы </p>
+              <div>
+                <button type="button" className={stylesInformation.button}>
+                  Все
+                </button>
+              </div>
+              <div className={stylesInformation.itemColumn}>
+                <UploadedFile />
+                <UploadedFile />
+                <UploadedFile />
+              </div>
+              <p> Изображения </p>
+              <div>
+                <button type="button" className={stylesInformation.button}>
+                  Все
+                </button>
+              </div>
+              <div className={stylesInformation.itemRow}>
+                <UploadedImage />
+                <UploadedImage />
+                <UploadedImage />
+              </div>
             </div>
           )}
         </div>
