@@ -2,8 +2,6 @@ import { FC } from 'react';
 
 import { useMediaQuery } from '@mui/material';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import stylesKnowledgeBase from './knowledge-base.module.scss';
 
 import prew1 from '../../../images/prewiew/prew1.png';
@@ -63,8 +61,11 @@ const KnowledgeBase: FC = (): JSX.Element => {
         </p>
         <nav>
           <ul className={stylesKnowledgeBase.base__list}>
-            {links.map((item) => (
-              <li className={stylesKnowledgeBase.base__item} key={uuidv4()}>
+            {links.map((item, index) => (
+              <li
+                className={stylesKnowledgeBase.base__item}
+                key={item.text + +index}
+              >
                 <a
                   href={item.link}
                   target="_blank"

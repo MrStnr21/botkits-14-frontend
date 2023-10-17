@@ -39,8 +39,8 @@ export const menuBot = {
   args: {
     isActive: true,
     size: 'large',
-    editFunction: (a: any) => {
-      console.log(a);
+    editFunction: () => {
+      console.log(1);
     },
   },
   render: Template,

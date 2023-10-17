@@ -21,10 +21,15 @@ import routesUrl from '../../../utils/routesData';
 
 interface IBotTemplate {
   title: string;
+  description: string;
   onClick?: () => void;
 }
 
-const image: any = {
+interface IImage {
+  [key: string]: JSX.Element;
+}
+
+const image: IImage = {
   'Бот автоответчик': (
     <ImageAnswer className={stylesBotTemplate.bot_template_image} />
   ),
@@ -61,6 +66,7 @@ const image: any = {
 
 const BotTemplatePopup: FC<IBotTemplate> = ({
   title,
+  description,
   onClick,
 }): JSX.Element | null => {
   const data = [
@@ -81,10 +87,7 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
         {image[title]}
         <div className={stylesBotTemplate.bot_template_description}>
           <h2 className={stylesBotTemplate.bot_template_title}>{title}</h2>
-          <p className={stylesBotTemplate.bot_template_text}>
-            Бот ответит стандартным сообщением на запрос от человека. Подходит
-            для всех мессенджеров. Шаблон возможно изменить под ваши цели.
-          </p>
+          <p className={stylesBotTemplate.bot_template_text}>{description}</p>
           <ul className={stylesBotTemplate.bot_template_list}>
             {data.map((item, index) => (
               <li

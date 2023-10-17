@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const StepperFillBotWithLoadPages: Story = {
   args: {
-    step: '1 Шаг',
+    step: '1',
     text: 'Загрузить страницу',
     // eslint-disable-next-line no-console
     children: <LoadPages arr={[]} onClick={() => console.log(1)} />,
@@ -22,7 +22,7 @@ export const StepperFillBotWithLoadPages: Story = {
 
 export const StepperFillBotWithInput: Story = {
   args: {
-    step: '1 Шаг',
+    step: '1',
     text: 'Ключ доступа',
     children: <Input onChange={() => {}} />,
   },
@@ -30,7 +30,7 @@ export const StepperFillBotWithInput: Story = {
 
 export const StepperFillBotName: Story = {
   args: {
-    step: '2 Шаг',
+    step: '2',
     text: 'Назвавние бота',
     children: <Input onChange={() => {}} />,
   },

@@ -1,12 +1,15 @@
 import request from './api';
 
-import BASE_URL from '../utils/config';
-
-import { IAddBotResponse, IGetBotsResponse, TBot } from '../services/types/bot';
+import {
+  IAddBotResponse,
+  IGetBotsResponse,
+  IGetTemplatesBotsResponse,
+  TBot,
+} from '../services/types/bot';
 
 // запрос получения ботов
 function getBotsApi(token: string) {
-  return request<IGetBotsResponse>(`${BASE_URL}/bots`, {
+  return request<IGetBotsResponse>('bots', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -17,7 +20,7 @@ function getBotsApi(token: string) {
 
 // запрос добавления бота
 function addBotApi(bot: TBot, token: string) {
-  return request<IAddBotResponse>(`${BASE_URL}/bots`, {
+  return request<IAddBotResponse>('bots', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -27,4 +30,15 @@ function addBotApi(bot: TBot, token: string) {
   });
 }
 
-export { getBotsApi, addBotApi };
+// запрос получения шаблонов
+function getTemplatesBotsApi(token: string) {
+  return request<IGetTemplatesBotsResponse>('bots/templates', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export { getBotsApi, addBotApi, getTemplatesBotsApi };

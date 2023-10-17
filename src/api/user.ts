@@ -2,11 +2,9 @@ import { IUserResponse } from '../services/types/user';
 
 import request from './api';
 
-import BASE_URL from '../utils/config';
-
 // Запрос на получение данных пользователя
 function getUserInfoApi(token: string) {
-  return request<IUserResponse>(`${BASE_URL}/profiles/me`, {
+  return request<IUserResponse>('profiles/me', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
