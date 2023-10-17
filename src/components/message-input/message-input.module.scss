@@ -1,0 +1,59 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 494px;
+  height: 24px;
+  border-radius: 10px;
+  background-color: #F8F9FB;
+  padding: 12px 16px;
+}
+
+.inputMenu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.input {
+  max-width: 414px;
+  width: 100%;
+  background-color: #F8F9FB;
+  border: none;
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.55px;
+  padding: 0;
+}
+
+.input::placeholder {
+  font-family: 'Open-Sans', sans-serif;
+  color: #A6B3C9;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.55px;
+}
+
+.input:focus{
+  outline: none;
+}
+
+.inputIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.inputIcon:last-of-type {
+  width: 24px;
+  height: 24px;
+}
+
+.inputIcon:hover {
+  cursor: pointer;
+}
