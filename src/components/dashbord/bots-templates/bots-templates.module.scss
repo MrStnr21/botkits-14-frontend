@@ -39,6 +39,20 @@
     grid-template-columns: repeat(auto-fit, minmax(134px, 188px));
     grid-auto-flow: column;
   }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d7deea;
+    border-radius: 17px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 0;
+  }
 }
 
 .expanded {

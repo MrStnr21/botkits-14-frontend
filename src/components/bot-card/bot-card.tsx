@@ -17,20 +17,20 @@ const BotCard: FC<IBotCard> = ({
   bot_name = 'Название бота',
   bot_id = '980809809',
 }): JSX.Element => {
-  const [isActive, SetIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <div className={stylesBotCard.card}>
       <img className={stylesBotCard.icon} src={platform_icon} alt="иконка" />
       <div
         className={stylesBotCard.more_button}
-        onClick={() => SetIsActive(!isActive)}
+        onClick={() => setIsActive(!isActive)}
         aria-label="Меню настроек бота"
       />
       <div className={stylesBotCard.name_box}>
         <p className={stylesBotCard.name}>{bot_name}</p>
       </div>
-      {isActive && <MoreMybotPopup setIsOpen={SetIsActive} idMyBot={bot_id} />}
+      {isActive && <MoreMybotPopup setIsOpen={setIsActive} idMyBot={bot_id} />}
     </div>
   );
 };

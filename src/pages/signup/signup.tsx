@@ -1,11 +1,4 @@
-import {
-  FC,
-  useCallback,
-  useEffect,
-  useState,
-  FormEvent,
-  ChangeEvent,
-} from 'react';
+import { FC, useEffect, useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
@@ -23,9 +16,15 @@ import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
 import useForm from '../../services/hooks/use-form';
 
-import { DEFAULT_PHONE_CODE } from '../../utils/constants';
+import { COUNTRY_COD_LIST, DEFAULT_PHONE_CODE } from '../../utils/constants';
 import { signupSel } from '../../utils/selectorData';
 import routesUrl from '../../utils/routesData';
+import {
+  handlerAuthGoogle,
+  handlerAuthMailru,
+  handlerAuthVkontakte,
+  handlerAuthYandex,
+} from '../../utils/utils';
 
 import backgroundImage from '../../images/roboSuccess.png';
 
@@ -37,43 +36,25 @@ const Signup: FC = (): JSX.Element => {
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [phoneCode, setPhoneCode] = useState<string>('');
-  const [formValid, setFormValid] = useState<{
-    usernameIsValid: boolean;
-    emailIsValid: boolean;
-    passwordIsValid: boolean;
-    phoneNumberMainIsValid: boolean;
-  }>({
-    usernameIsValid: false,
-    emailIsValid: false,
-    passwordIsValid: false,
-    phoneNumberMainIsValid: false,
-  });
 
   const { values, handleChange, setValues } = useForm({
-    username: '',
-    email: '',
-    password: '',
-    phone: '',
+    username: { value: '', valueValid: false },
+    email: { value: '', valueValid: false },
+    password: { value: '', valueValid: false },
+    phone: { value: '', valueValid: false },
+    phoneNumberMain: { value: '', valueValid: false },
   });
 
   useEffect(() => {
     if (
-      formValid.emailIsValid &&
-      formValid.passwordIsValid &&
-      formValid.phoneNumberMainIsValid &&
-      formValid.usernameIsValid
+      values.username.valueValid &&
+      values.email.valueValid &&
+      values.password.valueValid &&
+      values.phoneNumberMain.valueValid
     ) {
       setButtonDisabled(false);
     } else setButtonDisabled(true);
-  }, [formValid]);
-
-  const customHandleChange = (input: ChangeEvent<HTMLInputElement>) => {
-    setFormValid({
-      ...formValid,
-      [`${input.target?.name}IsValid`]: input.target.validity?.valid,
-    });
-    handleChange(input);
-  };
+  }, [values]);
 
   const userData = useAppSelector(signupSel);
 
@@ -88,20 +69,17 @@ const Signup: FC = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  const handleSignup = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      dispatch(
-        signupAction({
-          username: values.username,
-          email: values.email,
-          password: values.password,
-          phone: phoneCode + values.phoneNumberMain,
-        })
-      );
-    },
-    [values]
-  );
+  const handleSignup = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(
+      signupAction({
+        username: values.username.value,
+        email: values.email.value,
+        password: values.password.value,
+        phone: phoneCode + values.phoneNumberMain.value,
+      })
+    );
+  };
 
   return userData.signupSuccess ? (
     <ConfirmationScreen
@@ -119,16 +97,19 @@ const Signup: FC = (): JSX.Element => {
                 social="google"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthGoogle}
               />
               <ButtonAddSocial
                 social="yandex"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthYandex}
               />
               <ButtonAddSocial
                 social="mailru"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthMailru}
               />
             </div>
             <div className={stylesSignup.socialSecond}>
@@ -136,6 +117,7 @@ const Signup: FC = (): JSX.Element => {
                 social="vk"
                 size="small"
                 buttonHtmlType="button"
+                onClick={handlerAuthVkontakte}
               />
               <ButtonAddSocial
                 social="odnoklassniki"
@@ -167,7 +149,8 @@ const Signup: FC = (): JSX.Element => {
                 placeholder="Имя"
                 name="username"
                 maxLength={30}
-                onChange={customHandleChange}
+                onChange={handleChange}
+                value={values.username.value}
                 styled="secondary"
                 required
               />
@@ -175,7 +158,8 @@ const Signup: FC = (): JSX.Element => {
                 placeholder="E-mail"
                 name="email"
                 maxLength={30}
-                onChange={customHandleChange}
+                onChange={handleChange}
+                value={values.email.value}
                 errorMessage="Введите корректный email"
                 styled="secondary"
                 pattern="^\S+@\S+\.\S+$"
@@ -185,7 +169,8 @@ const Signup: FC = (): JSX.Element => {
                 placeholder="Пароль"
                 name="password"
                 maxLength={30}
-                onChange={customHandleChange}
+                onChange={handleChange}
+                value={values.password.value}
                 styled="secondary"
                 password
                 type="password"
@@ -198,15 +183,21 @@ const Signup: FC = (): JSX.Element => {
                   className={stylesSignup.phoneCodeSelect}
                   onChange={handleChangeCodePhone}
                   langOfCountryName="ru"
+                  onlyCountries={
+                    COUNTRY_COD_LIST.length > 0 ? COUNTRY_COD_LIST : undefined
+                  }
                 />
                 <Input
                   placeholder="Телефон"
                   name="phoneNumberMain"
+                  onChange={handleChange}
+                  value={values.phoneNumberMain.value}
                   maxLength={15}
                   styled="secondary"
                   pattern="^\d+$"
+                  errorMessage="Номер телефона может содержать только цифры"
                   required
-                  onChange={customHandleChange}
+                  type="number"
                 />
               </div>
             </div>
@@ -220,6 +211,11 @@ const Signup: FC = (): JSX.Element => {
               >
                 создать аккаунт
               </Button>
+              {userData.signupError && (
+                <p className={stylesSignup.incorrect_text}>
+                  {userData.signupErrorText}
+                </p>
+              )}
             </div>
           </form>
           <div className={stylesSignup.signupReadyContainer}>
