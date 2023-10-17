@@ -1,8 +1,6 @@
-/* eslint-disable spaced-comment */
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
 import cn from 'classnames';
-//import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
 import { rows, PaymentTable } from './payment-table/payment-table';
@@ -29,11 +27,9 @@ const Subscription: FC = (): JSX.Element => {
   };
 
   const setActiveFilter = (e: MouseEvent<HTMLDivElement>) => {
-    //TODO Исправить типизацию
-    //@ts-ignore
-    setButtonName(e.target.textContent);
-    //@ts-ignore
-    filteredRows(e.target.textContent);
+    const target = e.target as HTMLDivElement;
+    setButtonName(target.textContent as string);
+    filteredRows(target.textContent as string);
     setActiveList(!activeList);
   };
 
