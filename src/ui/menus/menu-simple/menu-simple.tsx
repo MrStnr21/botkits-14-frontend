@@ -1,5 +1,5 @@
-import { FC } from 'react';
-
+import { FC, MouseEventHandler } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames';
 
 import stylesMenuSimple from './menu-simple.module.scss';
@@ -11,7 +11,8 @@ export interface IMenuSimple {
   isActive?: boolean;
   top?: number;
   left?: number;
-  onClick?: VoidFunction;
+  className?: string;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 const MenuSimple: FC<IMenuSimple> = ({
@@ -21,9 +22,14 @@ const MenuSimple: FC<IMenuSimple> = ({
   isActive = false,
   top = 0,
   left = 0,
+  className,
   onClick,
 }) => {
-  let boxClassName = cn(stylesMenuSimple.box, stylesMenuSimple[size]);
+  let boxClassName = cn(
+    stylesMenuSimple.box,
+    stylesMenuSimple[size],
+    className
+  );
 
   if (isScroll) {
     boxClassName += ' ';
@@ -44,7 +50,7 @@ const MenuSimple: FC<IMenuSimple> = ({
       <ul className={stylesMenuSimple.ul}>
         {buttons.map((name) => {
           return (
-            <li className={stylesMenuSimple.li}>
+            <li className={stylesMenuSimple.li} key={uuidv4()}>
               <button type="button" className={stylesMenuSimple.button}>
                 {name}
               </button>
