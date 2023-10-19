@@ -113,7 +113,7 @@ export const PaymentTable: FC<Props> = ({ tableData }) => {
               </StyledTableCell>
               <StyledTableCell sx={{ width: '88px' }}>
                 <Typography tag="span" className={style.text}>
-                  {`${row.operation === 'Списание' ? '-' : '+'}${row.amount}₽`}
+                  {`${row.operation === 'Списания' ? '-' : '+'}${row.amount}₽`}
                 </Typography>
               </StyledTableCell>
               <StyledTableCell sx={{ width: '116px' }}>
