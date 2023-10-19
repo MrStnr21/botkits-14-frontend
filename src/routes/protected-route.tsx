@@ -33,9 +33,9 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
     return <Navigate to={routesUrl.homePage} />;
   }
 
-  if (!notAuth && !token) {
-    return <Navigate to={routesUrl.signup} />;
-  }
+  // if (!notAuth && !token) {
+  //   return <Navigate to={routesUrl.signup} />;
+  // }
 
   return children;
 };

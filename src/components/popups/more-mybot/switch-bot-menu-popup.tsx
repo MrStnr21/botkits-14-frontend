@@ -68,7 +68,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           title="Переименуйте файл"
           placeholder="Переименуйте файл"
           buttonText="Переименовать"
-          value={bots ? bots[0].botName : 'Псевдоним'}
+          value={bots ? bots[0].title : 'Псевдоним'}
           onClose={setIsPopupItemOpen}
           // onClick={() => console.log('переименовывайся')}
         />

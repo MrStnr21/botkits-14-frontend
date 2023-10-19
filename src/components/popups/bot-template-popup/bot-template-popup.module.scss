@@ -8,6 +8,13 @@
   box-shadow: 0px 12px 24px 0px #15123321;
   border-radius: $border-radius-30;
   position: relative;
+  min-width: 320px;
+
+  @media screen and (max-width: 420px) {
+    height: 100vh;
+    padding: 60px 20px;
+    border-radius: 0;
+  }
 }
 
 .bot_template_close {
@@ -87,6 +94,9 @@
   align-items: center;
   justify-content: flex-end;
   margin-top: 60px;
+  @media screen and (max-width: 420px) {
+    display: block;
+  }
 }
 
 .bot_template_cancel {
@@ -98,6 +108,10 @@
   letter-spacing: $button-letter-space;
   text-transform: uppercase;
   color: $primary-text-color;
+
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
 }
 
 .bot_template_add_button {

@@ -53,7 +53,6 @@
 
   &__info {
     grid-area: info;
-    font-size: $s-font-size;
   }
 
   &__button {
@@ -96,5 +95,39 @@
   &__header {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  &__button {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    color: $constructor-add-button-default-color;
+    font-weight: $bold;
+    font-size: $m-font-size;
+    line-height: $p-line-height;
+    letter-spacing: $m-letter-space;
+    cursor: pointer;
+  }
+
+  &__list {
+    top: 100% !important;
+
+    & ul {
+      padding: 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    & ul li button {
+      margin: 0 !important;
+    }
   }
 }

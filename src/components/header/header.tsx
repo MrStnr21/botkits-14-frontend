@@ -67,7 +67,7 @@ const Header: FC = (): JSX.Element => {
           right={matches ? -15 : 0}
           onClick={(e) => {
             setIsAccSet(false);
-            if (e.target.id === 'notification') {
+            if ((e.target as HTMLInputElement).id === 'notification') {
               setIsNotificationOpened(true);
             }
           }}

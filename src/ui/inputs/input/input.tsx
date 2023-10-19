@@ -17,6 +17,7 @@ interface IInput {
   styled?: 'main' | 'secondary';
   pattern?: string;
   password?: boolean;
+  textColor?: 'default' | 'blue';
 }
 
 const Input: FC<IInput> = ({
@@ -34,6 +35,7 @@ const Input: FC<IInput> = ({
   styled,
   pattern,
   password,
+  textColor = 'default',
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -91,13 +93,15 @@ const Input: FC<IInput> = ({
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={`${stylesInput.input} ${
-          styled === 'secondary' ? stylesInput.inputSecondary : ''
-        } ${(error.error || isInvalid) && stylesInput.incorrect} ${
+        className={` ${
+          styled === 'secondary'
+            ? stylesInput.inputSecondary
+            : stylesInput.inputMain
+        } ${error.error || isInvalid ? stylesInput.incorrect : ''} ${
           (error.error || isInvalid) && styled === 'secondary'
             ? stylesInput.inputSecondaryIncorrect
             : ''
-        }`}
+        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}
@@ -112,15 +116,23 @@ const Input: FC<IInput> = ({
       {(error.error || isInvalid) && (
         <p className={stylesInput.incorrect_text}>{error.textError}</p>
       )}
-      <div className={stylesInput.iconContainer}>
+      <div
+        className={`${
+          styled === 'secondary'
+            ? stylesInput.iconContainerSecondary
+            : stylesInput.iconContainerMain
+        } ${disabled && stylesInput.disabled}`}
+      >
         {password && (
           <button
             type="button"
             aria-label="show/hide password"
             onClick={handleShowPassword}
-            className={`${stylesInput.password} ${
-              showPassword && stylesInput.passwordShow
-            }`}
+            className={`${
+              styled === 'secondary'
+                ? stylesInput.passwordSecondary
+                : stylesInput.passwordMain
+            } ${showPassword && stylesInput.passwordShow}`}
           />
         )}
         {required && (

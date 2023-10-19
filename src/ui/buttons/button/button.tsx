@@ -9,7 +9,7 @@ import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
 
 export interface IButton {
   variant: 'default' | 'circle';
-  size?: 'medium' | 'large';
+  size?: 'medium' | 'large' | 'small';
   color?: 'blue' | 'green' | 'grey' | 'light-grey';
   buttonHtmlType?: 'button' | 'submit' | 'reset';
   onClick?: VoidFunction;

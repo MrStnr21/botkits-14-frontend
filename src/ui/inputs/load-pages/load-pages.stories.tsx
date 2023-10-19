@@ -18,21 +18,14 @@ export const LoadPagesDefault: Story = {
 
 export const LoadPagesWithItem: Story = {
   args: {
-    arr: [{ text: 'Пример1' }, { text: 'Пример2' }],
+    arr: ['Пример1', 'Пример2'],
     disabled: false,
   },
 };
 
 export const LoadPagesWithSevenItem: Story = {
   args: {
-    arr: [
-      { text: 'Пример1' },
-      { text: 'Пример2' },
-      { text: 'Пример2' },
-      { text: 'Пример2' },
-      { text: 'Пример2' },
-      { text: 'Пример2' },
-    ],
+    arr: ['Пример1', 'Пример2', 'Пример1', 'Пример2', 'Пример1', 'Пример2'],
     disabled: false,
   },
 };

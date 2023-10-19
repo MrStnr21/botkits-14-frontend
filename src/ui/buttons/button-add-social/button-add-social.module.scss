@@ -22,6 +22,11 @@
   aspect-ratio: 1 / 1;
   transition: background-image 0.1s linear;
   background-size: cover;
+
+  @media screen and (max-width: 500px) {
+    height: $button-add-social-icon-size-xs;
+    background-size: contain;
+  }
 }
 
 .text {
@@ -468,4 +473,8 @@
 .buttonSmall {
   height: $button-add-social-icon-size-s;
   background-color: transparent;
+
+  @media screen and (max-width: 500px) {
+    height: $button-add-social-icon-size-xs;
+  }
 }

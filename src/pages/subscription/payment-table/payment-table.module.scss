@@ -1,0 +1,13 @@
+@import '../../../components/app/vars';
+
+.text {
+  font-family: 'Open Sans', sans-serif;
+
+  &_succsess {
+    color: $success-color;
+  }
+
+  &_failure {
+    color: $error-red-color;
+  }
+}
