@@ -57,7 +57,6 @@ const Subscription: FC = (): JSX.Element => {
       <Typography tag="h2">Подписка и платежи</Typography>
       <div className={style.container__body}>
         <div className={cn(style.subscription, style.container__subscription)}>
-          balance
           <div className={style.subscription}>
             <div className={style.subscription__header}>
               <Typography tag="h3" className={style.subscription__rate}>
