@@ -1,6 +1,6 @@
 @import '../../app/vars';
 
-.container {
+.paymentPopupContainer {
   padding: 40px 40px 37px 40px;
   width: 970px;
   box-sizing: border-box;
@@ -17,6 +17,8 @@
 
 .wrapperTariffTitle {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 213px;
 }
 
@@ -35,9 +37,9 @@
 }
 
 .tariffTitle {
+  padding: 24px 0 20px;
   left: 35px;
   position: relative;
-  text-align: start;
 }
 
 .linkWrapper {

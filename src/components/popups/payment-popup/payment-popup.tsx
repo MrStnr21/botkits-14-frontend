@@ -2,19 +2,15 @@ import React, { FC, useState } from 'react';
 import stylesPaymentPopup from './payment-popup.module.scss';
 import Button from '../../../ui/buttons/button/button';
 import Typography from '../../../ui/typography/typography';
-import checkMark from '../../../images/icon/template/check-mark.svg';
+// import checkMark from '../../../images/icon/template/check-mark.svg';
 import rocketBot from '../../../images/icon/template/rocketBot.svg';
 import logoUkassaIcon from '../../../images/icon/logoUkassaIcon.svg';
+import tariffs from '../../../ui/tariffs/tariffs';
+import CheckIcon from '../../icons/Check/CheckIcon';
 
 interface IPaymentPopup {
   onClick?: () => void;
 }
-
-const tariffs = [
-  { id: 'start', name: 'Старт', price: 390 },
-  { id: 'standard', name: 'Стандарт', price: 790 },
-  { id: 'business', name: 'Бизнес', price: 1390 },
-];
 
 const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
   const [selectedTariff, setSelectedTariff] = useState<number>(790);
@@ -24,7 +20,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
   };
 
   return (
-    <div className={stylesPaymentPopup.container}>
+    <div className={stylesPaymentPopup.paymentPopupContainer}>
       <div className={stylesPaymentPopup.lightGrayBackgroundWrapper} />
       <Typography className={stylesPaymentPopup.title} tag="h2">
         Подписаться
@@ -36,12 +32,10 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
       />
       <div className={stylesPaymentPopup.linkWrapper}>
         <div className={stylesPaymentPopup.wrapperTariffTitle}>
-          <h4 className={stylesPaymentPopup.tariffTitle}>Выбери тариф</h4>
-          <img
-            className={stylesPaymentPopup.iconCheck}
-            src={checkMark}
-            alt="checkMarkIcon"
-          />
+          <Typography tag="h4" className={stylesPaymentPopup.tariffTitle}>
+            Выбери тариф
+          </Typography>
+          <CheckIcon color="#00E98F" width={30} />
         </div>
         <div className={stylesPaymentPopup.linkGroup}>
           {tariffs.map((tariff) => (
