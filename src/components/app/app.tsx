@@ -50,7 +50,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.homePage}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <Layout />
             </ProtectedRoute>
           }
@@ -58,7 +58,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.homePage}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Dashboard />
               </ProtectedRoute>
             }
@@ -82,7 +82,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.chat}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Chat />
               </ProtectedRoute>
             }
