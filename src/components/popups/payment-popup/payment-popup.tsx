@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import stylesPaymentPopup from './payment-popup.module.scss';
 import Button from '../../../ui/buttons/button/button';
 import Typography from '../../../ui/typography/typography';
-// import checkMark from '../../../images/icon/template/check-mark.svg';
 import rocketBot from '../../../images/icon/template/rocketBot.svg';
 import logoUkassaIcon from '../../../images/icon/logoUkassaIcon.svg';
 import tariffs from '../../../ui/tariffs/tariffs';
