@@ -21,7 +21,7 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
   disabled,
   children,
   icon = 'add',
-}): JSX.Element => {
+}) => {
   const getIcon = () => {
     switch (icon) {
       case 'add': {
