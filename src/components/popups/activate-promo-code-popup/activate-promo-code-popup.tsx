@@ -12,7 +12,7 @@ const ActivatePromoCodePopup: FC<IActivatePromoCodePopup> = ({
 }): JSX.Element | null => {
   const [inputValue, setInputValue] = useState('');
   return (
-    <div className={stylesPromoCodePopup.promoCodePopupContainer}>
+    <dialog className={stylesPromoCodePopup.promoCodePopupContainer}>
       <Typography tag="h3">Активация промокода</Typography>
       <Input
         placeholder="Введите промокод"
@@ -28,7 +28,7 @@ const ActivatePromoCodePopup: FC<IActivatePromoCodePopup> = ({
       >
         Активировать
       </Button>
-    </div>
+    </dialog>
   );
 };
 

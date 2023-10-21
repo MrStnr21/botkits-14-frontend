@@ -19,7 +19,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
   };
 
   return (
-    <div className={stylesPaymentPopup.paymentPopupContainer}>
+    <dialog className={stylesPaymentPopup.paymentPopupContainer}>
       <div className={stylesPaymentPopup.lightGrayBackgroundWrapper} />
       <Typography className={stylesPaymentPopup.title} tag="h2">
         Подписаться
@@ -114,7 +114,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
           </Button>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 };
 
