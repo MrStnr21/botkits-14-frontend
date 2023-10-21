@@ -25,6 +25,15 @@ export default {
         type: 'radio',
       },
     },
+    icon: {
+      type: 'string',
+      description: 'Вариант иконки',
+      defaultValue: 'add',
+      options: ['add', 'horizontal inline', 'vertical inline'],
+      control: {
+        type: 'radio',
+      },
+    },
     onClick: {
       action: 'clicked',
       description: 'Callback функция, вызываемая при клике',
