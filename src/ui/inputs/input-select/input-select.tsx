@@ -5,11 +5,16 @@ import { ArrowLeftIcon } from '@mui/x-date-pickers';
 import MenuItem from '@mui/material/MenuItem';
 import useScrollbar from '../../../services/hooks/use-scrollbar';
 import 'overlayscrollbars/overlayscrollbars.css';
-import './input-select.module.scss';
+import styles from './input-select.module.scss';
 
 interface IInputSelect {
   defaultValue: string[];
-  values: { nameValue: string; value: string }[];
+  values: {
+    nameValue: string;
+    value: string;
+    isIcon?: boolean;
+    iconDescription?: string;
+  }[];
   multiple?: boolean;
   maxWidth: number;
   resetSelect?: boolean;
@@ -76,6 +81,17 @@ const InputSelect: FC<IInputSelect> = ({
           clearTimeout(timeOutOpenModal);
         }}
         IconComponent={ArrowLeftIcon}
+        renderValue={(selected) => {
+          const item = values.find((curItem) => curItem.value === selected);
+          if (!item) {
+            return null;
+          }
+          return item.isIcon ? (
+            <img className={styles.chosen} src={item.nameValue} alt="icon" />
+          ) : (
+            item.nameValue
+          );
+        }}
         MenuProps={{
           slotProps: {
             paper: {
@@ -85,9 +101,16 @@ const InputSelect: FC<IInputSelect> = ({
         }}
       >
         {' '}
-        {values?.map(({ nameValue, value }) => (
+        {values?.map(({ nameValue, value, isIcon, iconDescription }) => (
           <MenuItem key={value} value={value}>
-            {nameValue}
+            {isIcon ? (
+              <div className={styles.optionContainer}>
+                <img src={nameValue} alt="icon" />{' '}
+                <span className={styles.optionText}>{iconDescription}</span>
+              </div>
+            ) : (
+              nameValue
+            )}
           </MenuItem>
         ))}
       </Select>
