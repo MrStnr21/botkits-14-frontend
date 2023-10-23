@@ -103,9 +103,18 @@
   }
 
   &__iconsWrapper {
+    position: relative;
     @include flexLayout();
     justify-content: space-between;
     gap: 6px;
+    z-index: 1;
+  }
+
+  &__modal {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 555;
   }
 
   &__avatar {

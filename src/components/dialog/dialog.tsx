@@ -13,8 +13,8 @@ import Message from './message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
 import DialogMenuIcon from '../icons/DialogMenuIcon/DialogMenuIcon';
 import InputDialogsues from '../chat/InputDialogsues/InputDialogsues';
-import useModal from '../../services/hooks/use-modal';
 import Typography from '../../ui/typography/typography';
+import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
 
 const messages = [
   {
@@ -47,13 +47,22 @@ interface DateType extends Date {
   toDateString(): string;
 }
 
-const Dialog: FC = (): JSX.Element => {
+const Dialog: FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
-  const { isModalOpen, closeModal, openModal } = useModal();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const isMobile = useMediaQuery('(max-width: 620px)');
+
+  const handleSearchClick = () => {
+    setInputVisible(!isInputVisible);
+  };
+
+  const handleMenuClick = () => {
+    setModalOpen(!isModalOpen);
+    setInputVisible(false);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -101,14 +110,16 @@ const Dialog: FC = (): JSX.Element => {
               position="left"
             />
           )}
-          <div className={stylesDialog.dialog__nameWrapper}>
-            <Typography tag="p">Вячеслав Баумтрок</Typography>
-            {isMobile && (
-              <Typography tag="p" className={stylesDialog.dialog__status}>
-                В работе
-              </Typography>
-            )}
-          </div>
+          {!isInputVisible && (
+            <div className={stylesDialog.dialog__nameWrapper}>
+              <Typography tag="p">Вячеслав Баумтрок</Typography>
+              {isMobile && (
+                <Typography tag="p" className={stylesDialog.dialog__status}>
+                  В работе
+                </Typography>
+              )}
+            </div>
+          )}
         </div>
         <div className={stylesDialog.dialog__iconsWrapper}>
           {isInputVisible && (
@@ -137,14 +148,24 @@ const Dialog: FC = (): JSX.Element => {
           <button type="button" className={stylesDialog.dialog__headerButton}>
             <PlayIcon width={24} height={24} />
           </button>
-          <button type="button" className={stylesDialog.dialog__headerButton}>
-            {!isMobile ? (
+          {!isMobile ? (
+            <button type="button" className={stylesDialog.dialog__headerButton}>
               <TrashIcon width={24} height={24} />
-            ) : (
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={stylesDialog.dialog__headerButton}
+              onClick={handleMenuClick}
+            >
               <DialogMenuIcon />
-            )}
-            {/* добавить условие отрисовки кнопки для открытия попапа */}
-          </button>
+            </button>
+          )}
+          {isModalOpen && (
+            <div className={stylesDialog.dialog__modal}>
+              <DialogMobilePopup handleClick={handleSearchClick} />
+            </div>
+          )}
         </div>
       </div>
       <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
