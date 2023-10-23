@@ -113,18 +113,7 @@
     height: 40px;
   }
 
-  &__name {
-    margin: 0;
-    font-family: 'IBM Plex Mono', sans-serif;
-    font-size: $l-font-size;
-    line-height: $m-line-height;
-    font-weight: $semi-bold;
-    color: $primary-text-color;
-  }
-
   &__status {
-    margin: 0;
-    font-family: 'IBM Plex Mono', sans-serif;
     font-size: $xxs-font-size;
     line-height: $xxs-line-height;
     font-weight: $normal;

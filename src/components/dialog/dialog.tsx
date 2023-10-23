@@ -11,7 +11,10 @@ import CloseIcon from '../icons/Close/CloseIcon';
 import avatar from '../../images/avatar/circled/default.svg';
 import Message from './message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
-import Input from '../../ui/inputs/input/input';
+import DialogMenuIcon from '../icons/DialogMenuIcon/DialogMenuIcon';
+import InputDialogsues from '../chat/InputDialogsues/InputDialogsues';
+import useModal from '../../services/hooks/use-modal';
+import Typography from '../../ui/typography/typography';
 
 const messages = [
   {
@@ -48,6 +51,7 @@ const Dialog: FC = (): JSX.Element => {
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
+  const { isModalOpen, closeModal, openModal } = useModal();
 
   const isMobile = useMediaQuery('(max-width: 620px)');
 
@@ -98,16 +102,18 @@ const Dialog: FC = (): JSX.Element => {
             />
           )}
           <div className={stylesDialog.dialog__nameWrapper}>
-            <p className={stylesDialog.dialog__name}>Вячеслав Баумтрок</p>
+            <Typography tag="p">Вячеслав Баумтрок</Typography>
             {isMobile && (
-              <p className={stylesDialog.dialog__status}>В работе</p>
+              <Typography tag="p" className={stylesDialog.dialog__status}>
+                В работе
+              </Typography>
             )}
           </div>
         </div>
         <div className={stylesDialog.dialog__iconsWrapper}>
           {isInputVisible && (
             <div className={stylesDialog.dialog__headerInputWrapper}>
-              <Input
+              <InputDialogsues
                 placeholder="Поиск..."
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setInputValue(e.target.value)
@@ -132,7 +138,11 @@ const Dialog: FC = (): JSX.Element => {
             <PlayIcon width={24} height={24} />
           </button>
           <button type="button" className={stylesDialog.dialog__headerButton}>
-            <TrashIcon width={24} height={24} />{' '}
+            {!isMobile ? (
+              <TrashIcon width={24} height={24} />
+            ) : (
+              <DialogMenuIcon />
+            )}
             {/* добавить условие отрисовки кнопки для открытия попапа */}
           </button>
         </div>
