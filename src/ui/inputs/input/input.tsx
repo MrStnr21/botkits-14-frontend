@@ -97,11 +97,11 @@ const Input: FC<IInput> = ({
           styled === 'secondary'
             ? stylesInput.inputSecondary
             : stylesInput.inputMain
-        } ${(error.error || isInvalid) && stylesInput.incorrect} ${
+        } ${error.error || isInvalid ? stylesInput.incorrect : ''} ${
           (error.error || isInvalid) && styled === 'secondary'
             ? stylesInput.inputSecondaryIncorrect
             : ''
-        } ${textColor === 'blue' && stylesInput.colorBlue}`}
+        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}

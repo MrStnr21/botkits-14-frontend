@@ -2,14 +2,25 @@
 
 .container {
   width: 296px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: $border-radius-10;
-  padding-left: 19px;
-  padding-right: 19px;
+  background-color: $white-color;
+  padding: 20px 19px 18px 19px;
   box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+
+  [class*="MuiFormControl-root-MuiTextField-root"] {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 296px;
+  }
 }
 
 .containerTimeZone {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   padding-top: 8px;
@@ -28,11 +39,20 @@
   padding-left: 5px;
 }
 
+.containerButton {
+  margin-top: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding-left: 5px;
-  padding-top: 18px;
-  padding-bottom: 18px;
   background-color: transparent;
   border: none;
   font-family: 'Open Sans', sans-serif;
@@ -45,4 +65,127 @@
 
 .button:hover {
   color: $default-dark-grey-color;
+}
+
+.dataFiled {
+  max-height: 40px;
+  background-color: $default-grey-color;
+
+  [class*="MuiInputBase-input"] {
+    font-size: $s-font-size;
+    font-weight: $normal;
+    font-style: 'normal';
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    color: $primary-text-color;
+    padding: 10px 8px 10px 8px;
+  }
+
+  [class*="MuiOutlinedInput-notchedOutline"] {
+    border: none;
+    border-radius: $border-radius-5;
+    max-height: 40px;
+  }
+}
+
+.staticDatePicker {
+  margin-bottom: 26px;
+
+  [class*="MuiDateCalendar-root"] {
+    width: 100%;
+    max-width: 296px;
+  }
+
+  [class*="MuiDayCalendar-weekDayLabel"] {
+    max-width: 26px;
+    box-sizing: content-box;
+    height: 100%;
+    font-size: $s-font-size;
+    font-weight: $normal;
+    font-style: normal;
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    color: $primary-text-color;
+    margin: 0;
+    padding: 0;
+  }
+
+  [class*="MuiDayCalendar-header"] {
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  [class*="MuiDayCalendar-slideTransition"] {
+    min-height: 200px;
+  }
+
+  [class*="MuiDayCalendar-weekContainer"] {
+    margin: 0px;
+    margin-bottom: 6px;
+    justify-content: space-between;
+  }
+
+  [class*="MuiPickersDay-today"] {
+    border-radius: $border-radius-4;
+  }
+
+
+  [class*="MuiPickersYear-yearButton"]:hover {
+    border-radius: $border-radius-4;
+  }
+
+  [class*="MuiPickersCalendarHeader-root"] {
+    padding-left: 5px;
+    padding-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+
+    [class*="MuiPickersCalendarHeader-switchViewIcon"] {
+      display: none;
+    }
+
+    [class*="MuiPickersCalendarHeader-label"] {
+      font-size: $s-font-size;
+      font-weight: $bold;
+      font-style: normal;
+      line-height: $button-line-height-150;
+      letter-spacing: $m-letter-space;
+      color: $primary-text-color;
+      text-transform: capitalize;
+      margin: 0;
+      padding: 0;
+    }
+
+    [class*="MuiPickersArrowSwitcher"] {
+      padding: 0px;
+      color: $default-dark-grey-color;
+    }
+  }
+
+  [class*="MuiPickersDay-root"] {
+    max-width: 26px;
+    max-height: 26px;
+    margin: 0px;
+    font-size: $s-font-size;
+    font-weight: $normal;
+    font-style: normal;
+    line-height: $button-line-height-150;
+    letter-spacing: $m-letter-space;
+    color: $primary-text-color;
+
+    &:hover {
+      border-radius: 4px;
+    }
+  }
+
+  [class*="Mui-selected"] {
+    border-radius: $border-radius-4;
+    color: $white-color;
+  }
+
+  [class*="MuiPickersDay-dayOutsideMonth"] {
+    color: $default-dark-grey-color;
+  }
+
 }

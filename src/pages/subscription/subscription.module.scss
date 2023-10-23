@@ -1,0 +1,133 @@
+@import '../../components/app/vars';
+
+.container {
+  padding-top: 32px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__body {
+    display: flex;
+    gap: 28px;
+  }
+}
+
+.subscription {
+  width: 100%;
+  max-width: 404px;
+  height: 352px;
+  position: relative;
+
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'rate status'
+      'info info'
+      'button button';
+    row-gap: 8px;
+    position: absolute;
+    box-sizing: border-box;
+    background-color: $white-color;
+    border-radius: $border-radius-30;
+    box-shadow: $l-box-shadow;
+    overflow: hidden;
+    width: 100%;
+    height: 228px;
+    padding: 32px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  &__rate {
+    grid-area: rate;
+  }
+
+  &__status {
+    grid-area: status;
+    justify-self: end;
+    color: $error-red-color;
+  }
+
+  &__info {
+    grid-area: info;
+  }
+
+  &__button {
+    margin-top: 16px;
+    grid-area: button;
+  }
+
+  &__body {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 205px;
+    border-radius: $border-radius-30;
+    background-color: $hover-grey-color;
+    padding: 113px 32px 32px;
+    display: flex;
+    gap: 24px;
+  }
+
+  &__balance {
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.payment {
+  width: 100%;
+  padding: 36px 32px 24px;
+  box-sizing: border-box;
+  background-color: $hover-grey-color;
+  border-radius: $border-radius-30;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  &__button {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    color: $constructor-add-button-default-color;
+    font-weight: $bold;
+    font-size: $m-font-size;
+    line-height: $p-line-height;
+    letter-spacing: $m-letter-space;
+    cursor: pointer;
+  }
+
+  &__list {
+    top: 100% !important;
+
+    & ul {
+      padding: 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    & ul li button {
+      margin: 0 !important;
+    }
+  }
+}

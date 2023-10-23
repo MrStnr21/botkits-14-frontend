@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import icon from '../../../images/icon/add content/doc-circle.svg';
 import stylesFile from './UploadedFile.module.scss';
+import AttachedFileIcon from '../../icons/AttachedFile/AttachedFileIcon';
 
 interface IUploadedFile {
   file_name?: string;
@@ -13,7 +13,7 @@ const UploadedFile: FC<IUploadedFile> = ({
 }): JSX.Element => {
   return (
     <div className={stylesFile.container}>
-      <img src={icon} alt="иконка" />
+      <AttachedFileIcon />
       <p className={stylesFile.text}>
         {file_name}.{file_extension}
       </p>

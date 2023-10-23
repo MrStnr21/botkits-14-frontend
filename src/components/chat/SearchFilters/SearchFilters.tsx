@@ -18,6 +18,8 @@ const SearchFilters: FC<ISearchFilters> = ({
         buttons={array}
         isScroll={false}
         isActive={active}
+        top={40}
+        left={133}
         size="chat"
         onClick={onClick}
       />

@@ -1,0 +1,190 @@
+@import '../../app/vars';
+
+.paymentPopupContainer {
+  padding: 40px 40px 37px 40px;
+  width: 970px;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0 12px 24px 0 #15123321;
+  border: none;
+  border-radius: $border-radius-30;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.wrapperTariffTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 213px;
+}
+
+.iconRocketBot {
+  width: 193px;
+  height: 139px;
+  position: absolute;
+  top: -37px;
+  left: 44px;
+}
+
+.iconCheck {
+  margin-left: 0;
+  left: 45px;
+  position: relative;
+}
+
+.tariffTitle {
+  padding: 24px 0 20px;
+  left: 35px;
+  position: relative;
+}
+
+.linkWrapper {
+  width: 890px;
+  height: 257px;
+  background: #F8F9FB;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.linkGroup {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding-bottom: 33px;
+}
+
+.linkBtn {
+  width: 260px;
+  height: 70px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  outline: solid 1.5px #060C234D;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  cursor: pointer;
+}
+
+.selected {
+  outline: 1.5px solid #433FB8;
+  background: var(--Off-white, #FFF);
+}
+
+.nameTariff {
+  padding: 0 24px;
+}
+
+.wrapperPrice {
+  display: flex;
+  gap: 5px;
+}
+
+.price {
+  color: #433FB8;
+}
+
+.currency {
+  position: relative;
+  padding-right: 24px;
+}
+
+.paymentButtonsWrapper {
+  display: flex;
+  gap: 20px;
+  z-index: 2;
+  left: 40px;
+  top: 460px;
+  padding: 80px 35px 0;
+  justify-content: space-between;
+}
+
+.wrapperTotalPrice {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  //padding-right: 150px;
+}
+
+.totalPrice {
+  color: white;
+  display: inline;
+}
+
+.lightGrayBackgroundWrapper {
+  width: 970px;
+  height: 207px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: #D7DEEA;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  border-top-left-radius: $border-radius-30;
+  border-top-right-radius: $border-radius-30;
+}
+
+.title {
+  z-index: 1;
+}
+
+.description {
+  padding-bottom: 12px;
+}
+
+.blackBackgroundWrapper {
+  width: 970px;
+  height: 144px;
+  left: 0;
+  top: 420px;
+  position: absolute;
+  background: #131118;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.greyBackgroundWrapper {
+  width: 890px;
+  height: 64px;
+  left: 40px;
+  top: 460px;
+  position: absolute;
+  opacity: 0.15;
+  background: #EFFDFF;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.logoUkassaIcon {
+  padding-top: 5px;
+  width: 300px;
+  gap: 14px;
+}
+
+.requestInvoiceText {
+  color: #131118;
+  width: 150px;
+  padding: 0 20px;
+}
+.requestInvoiceText:hover {
+  color: #243CBB;
+}
+
+.paymentButtonsContainer {
+  display: flex;
+  gap: 20px;
+}
+
+
