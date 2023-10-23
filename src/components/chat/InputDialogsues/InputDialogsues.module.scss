@@ -24,6 +24,7 @@
   letter-spacing: $m-letter-space;
   color: $primary-text-color;
   text-indent: 25px;
+  padding: 0;
 
   &::placeholder {
     color: $default-dark-grey-color;

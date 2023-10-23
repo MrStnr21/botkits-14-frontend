@@ -110,16 +110,14 @@ const Dialog: FC = () => {
               position="left"
             />
           )}
-          {!isInputVisible && (
-            <div className={stylesDialog.dialog__nameWrapper}>
-              <Typography tag="p">Вячеслав Баумтрок</Typography>
-              {isMobile && (
-                <Typography tag="p" className={stylesDialog.dialog__status}>
-                  В работе
-                </Typography>
-              )}
-            </div>
-          )}
+          <div className={stylesDialog.dialog__nameWrapper}>
+            <Typography tag="p">Вячеслав Баумтрок</Typography>
+            {isMobile && (
+              <Typography tag="p" className={stylesDialog.dialog__status}>
+                В работе
+              </Typography>
+            )}
+          </div>
         </div>
         <div className={stylesDialog.dialog__iconsWrapper}>
           {isInputVisible && (
@@ -128,7 +126,7 @@ const Dialog: FC = () => {
                 placeholder="Поиск..."
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setInputValue(e.target.value)
-                } // заменить на инпут поиска
+                }
               />
             </div>
           )}

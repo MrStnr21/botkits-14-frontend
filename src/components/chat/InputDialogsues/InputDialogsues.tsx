@@ -7,12 +7,14 @@ interface IInputDialogsues {
   placeholder?: string;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  iconVisible?: boolean;
 }
 
 const InputDialogsues: FC<IInputDialogsues> = ({
   value,
   placeholder = 'Поиск...',
   onChange,
+  iconVisible = false,
 }): JSX.Element => {
   const [isOpenFilters, setIsOpenFilters] = useState(false);
 
@@ -34,7 +36,7 @@ const InputDialogsues: FC<IInputDialogsues> = ({
         type="button"
         onClick={toggleIsOpenFilters}
       >
-        <FilterIcon />
+        {iconVisible && <FilterIcon />}
       </button>
       <SearchFilters active={isOpenFilters} />
     </div>
