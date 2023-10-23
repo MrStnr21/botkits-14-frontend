@@ -1,3 +1,4 @@
+import { socialAuth } from '../../../api/auth';
 import { signinApi } from '../../../api/index';
 
 import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
@@ -65,4 +66,54 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
   };
 };
 
-export { SIGNIN_REQUEST, SIGNIN_SUCCESS, SIGNIN_ERROR, signinAction };
+const socialAuthAction: AppThunk = (
+  code: string,
+  social: string,
+  cookieData?: string
+) => {
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: SIGNIN_REQUEST,
+    });
+    if (cookieData && social === 'cookie') {
+      const data = JSON.parse(cookieData);
+
+      saveAccessToken(data.credentials.accessToken);
+      saveRefreshToken(data.credentials.refreshToken);
+
+      dispatch({
+        type: SIGNIN_SUCCESS,
+        user: data,
+      });
+    } else {
+      socialAuth(code, social)
+        .then((res: any) => {
+          if (res) {
+            saveAccessToken(res.credentials.accessToken);
+            saveRefreshToken(res.credentials.refreshToken);
+
+            dispatch({
+              type: SIGNIN_SUCCESS,
+              user: res,
+            });
+          }
+        })
+        .catch((err: { message: string }) => {
+          // eslint-disable-next-line no-console
+          console.log(err.message);
+          dispatch({
+            type: SIGNIN_ERROR,
+            textError: err.message,
+          });
+        });
+    }
+  };
+};
+
+export {
+  SIGNIN_REQUEST,
+  SIGNIN_SUCCESS,
+  SIGNIN_ERROR,
+  signinAction,
+  socialAuthAction,
+};
