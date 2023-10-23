@@ -73,7 +73,7 @@ const Dialog: FC = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []); // в дальнейшем не пригодится?
+  }, []);
 
   function formatDate(date: DateType): string {
     const now = new Date();
@@ -88,7 +88,7 @@ const Dialog: FC = () => {
     }
     const options: any = { day: 'numeric', month: 'long' };
     return date.toLocaleDateString('ru-RU', options);
-  } // в дальнейшем эта функция должна принимать дату последнего сообщения
+  }
 
   const formattedDate = formatDate(currentDate);
 
