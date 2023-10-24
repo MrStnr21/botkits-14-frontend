@@ -1,0 +1,36 @@
+@use '../../app/vars';
+
+.wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 364px;
+  overflow: scroll;
+  background-color: vars.$white-color;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+    }
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  .triggers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+}
