@@ -12,10 +12,14 @@ export interface ITriggerProps {
   id: string;
 }
 
+type TButtons = 'Приветствие' | 'Какое-нибудь действие' | 'Прощание';
+
 const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
   const [tag, setTag] = useState<string>('start');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [answerType, setAnswerType] = useState<'block' | 'text'>('block');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [action, setAction] = useState<TButtons>('Приветствие');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTag(e.target.value);
@@ -51,7 +55,14 @@ const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
             Текстом
           </ConstructorDefaultButton>
         </div>
-        <MenuVariable nameMenu={getButtons()[0]} buttons={getButtons()} />
+        <MenuVariable
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          onClick={(action: TButtons) => {
+            setAction(action);
+          }}
+          nameMenu={getButtons()[0]}
+          buttons={getButtons()}
+        />
       </div>
     </article>
   );

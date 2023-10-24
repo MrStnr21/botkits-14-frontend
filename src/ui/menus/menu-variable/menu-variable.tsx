@@ -49,6 +49,7 @@ const MenuVariable: FC<IMenuVariable> = ({
                   onClick={() => {
                     changeVariableHandler(name);
                     onClick!(name);
+                    setIsActive('');
                   }}
                 >
                   {name}

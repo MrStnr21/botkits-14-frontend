@@ -7,6 +7,7 @@ import Trigger from '../trigger/trigger';
 
 const TriggerBlock: FC = () => {
   const [triggers, setTriggers] = useState<string[]>([]);
+  const [opened, setOpened] = useState<boolean>(true);
 
   const deleteTrigger = (delId: string) => {
     const newTriggers = triggers.filter((id) => id !== delId);
@@ -19,11 +20,13 @@ const TriggerBlock: FC = () => {
     setTriggers(newTriggers);
   };
 
-  return (
+  return opened ? (
     <aside className={styles.wrap}>
       <div className={styles.header}>
         <h2 className={styles.title}>Триггеры</h2>
-        <CloseIcon color="#A6B3C9" />
+        <div onClick={() => setOpened(false)} className={styles.close}>
+          <CloseIcon color="#A6B3C9" />
+        </div>
       </div>
       <div className={styles.triggers}>
         {triggers.map((id) => {
@@ -34,7 +37,7 @@ const TriggerBlock: FC = () => {
         </ConstructorAddButton>
       </div>
     </aside>
-  );
+  ) : null;
 };
 
 export default TriggerBlock;

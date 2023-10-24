@@ -6,12 +6,13 @@
   right: 0;
   bottom: 0;
   width: 364px;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: vars.$white-color;
   padding: 24px 28px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+  filter: drop-shadow(-4px 4px 4px rgba(0,0,0,.25));
 
   .header {
     display: flex;
@@ -23,7 +24,7 @@
     }
 
     svg {
-      cursor: pointer;
+      cursor: vars.$cursor;
     }
   }
 
