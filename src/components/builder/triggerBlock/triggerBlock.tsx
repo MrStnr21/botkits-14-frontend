@@ -1,33 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import styles from './triggerBlock.module.scss';
 import CloseIcon from '../../icons/Close/CloseIcon';
 import ConstructorAddButton from '../../../ui/buttons/constructor-add-button/constructor-add-button';
 import Trigger from '../trigger/trigger';
 
 const TriggerBlock: FC = () => {
-  const [triggers, setTriggers] = useState<React.ReactNode[]>([]);
+  const [triggers, setTriggers] = useState<string[]>([]);
 
-  const deleteTrigger = (_delIndex: number) => {
-    console.log(triggers);
-    // const newTriggers = [...triggers];
-    // newTriggers.splice(delIndex, 1);
-    // setTriggers(newTriggers);
+  const deleteTrigger = (delId: string) => {
+    const newTriggers = triggers.filter((id) => id !== delId);
+    setTriggers(newTriggers);
   };
-
-  React.useEffect(() => {
-    console.log(triggers);
-  }, [triggers]);
 
   const addTrigger = () => {
     const newTriggers = [...triggers];
-    newTriggers.push(
-      <Trigger
-        deleteTrigger={deleteTrigger}
-        id={triggers.length}
-        key={triggers.length}
-      />
-    );
+    newTriggers.push(uuidv4());
     setTriggers(newTriggers);
   };
 
@@ -38,12 +26,10 @@ const TriggerBlock: FC = () => {
         <CloseIcon color="#A6B3C9" />
       </div>
       <div className={styles.triggers}>
-        {triggers}
-        <ConstructorAddButton
-          onClick={() => {
-            addTrigger();
-          }}
-        >
+        {triggers.map((id) => {
+          return <Trigger deleteTrigger={deleteTrigger} id={id} key={id} />;
+        })}
+        <ConstructorAddButton onClick={addTrigger}>
           Добавить тэг
         </ConstructorAddButton>
       </div>

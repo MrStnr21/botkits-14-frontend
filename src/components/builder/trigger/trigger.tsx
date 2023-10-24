@@ -8,8 +8,8 @@ import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import TrashIcon from '../../icons/Trash/TrashIcon';
 
 interface ITriggerProps {
-  deleteTrigger: (id: number) => void;
-  id: number;
+  deleteTrigger: (id: string) => void;
+  id: string;
 }
 
 const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
@@ -37,7 +37,7 @@ const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
         </div>
         <Input
           placeholder="Введите тэг"
-          value={`${id} ${tag}`}
+          value={`${tag}`}
           onChange={handleChange}
         />
       </div>
