@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
 import cn from 'classnames';
@@ -6,11 +7,80 @@ import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
 import { rows, PaymentTable } from './payment-table/payment-table';
 import icon from '../../images/icon/20x20/chevron/down.svg';
+import TableComponent from './table/table-component';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
 import useModal from '../../services/hooks/use-modal';
 import PaymentPopup from '../../components/popups/payment-popup/payment-popup';
+
+const columns = [
+  {
+    key: 'date',
+    value: 'Дата',
+  },
+  {
+    key: 'amount',
+    value: 'Сумма',
+  },
+  {
+    key: 'operation',
+    value: 'Операция',
+  },
+  {
+    key: 'note',
+    value: 'Примечание',
+  },
+  {
+    key: 'successful',
+    value: 'Статус',
+  },
+];
+
+export const tableData = [
+  {
+    date: '2023-09-17T14:08:39.904Z',
+    amount: 1000,
+    successful: true,
+    operation: 'Списания',
+    note: 'Пополнение счета',
+  },
+  {
+    date: '2022-03-09T11:22:33.456Z',
+    amount: 523,
+    successful: false,
+    operation: 'Поступления',
+    note: 'Оплата услуг',
+  },
+  {
+    date: '2022-06-15T14:30:45.789Z',
+    amount: 275,
+    successful: true,
+    operation: 'Поступления',
+    note: 'Возврат средств',
+  },
+  {
+    date: '2022-08-20T09:05:12.345Z',
+    amount: 789,
+    successful: true,
+    operation: 'Поступления',
+    note: '',
+  },
+  {
+    date: '2023-01-05T16:45:30.678Z',
+    amount: 432,
+    successful: false,
+    operation: 'Списания',
+    note: 'Оплата услуг',
+  },
+  {
+    date: '2022-10-12T12:15:00.123Z',
+    amount: 600,
+    successful: true,
+    operation: 'Поступления',
+    note: 'Возврат средств',
+  },
+];
 
 const Subscription: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
@@ -119,7 +189,8 @@ const Subscription: FC = (): JSX.Element => {
           </div>
         </div>
         <div className={style.payment}>
-          <div className={style.payment__header}>
+          {/* TODO Раскомментировать строки 148 - 167 */}
+          {/* <div className={style.payment__header}>
             <Typography tag="h4">История платежей</Typography>
             <div className={style.dropdown}>
               <button
@@ -137,8 +208,9 @@ const Subscription: FC = (): JSX.Element => {
                 className={style.dropdown__list}
               />
             </div>
-          </div>
-          <PaymentTable tableData={rowList} />
+          </div> */}
+          {/* <PaymentTable tableData={rowList} /> */}
+          <TableComponent columns={columns} tableData={tableData} />
         </div>
       </div>
       {isModalOpen && (
