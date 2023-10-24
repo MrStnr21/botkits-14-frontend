@@ -1,6 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import ConstructorAddButton, {
   IConstructorAddButton,
+  Icons,
 } from './constructor-add-button';
 
 export default {
@@ -29,7 +30,7 @@ export default {
       type: 'string',
       description: 'Вариант иконки',
       defaultValue: 'add',
-      options: ['add', 'horizontal inline', 'vertical inline'],
+      options: Icons,
       control: {
         type: 'radio',
       },

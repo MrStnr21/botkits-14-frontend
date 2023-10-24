@@ -1,6 +1,13 @@
 @import '../../../components/app/vars';
 
-.button {
+@mixin button-main(
+  $s-font-size,
+  $normal,
+  $m-letter-space,
+  $button-line-height-150,
+  $constructor-add-button-height,
+  $border-radius-10
+) {
   @extend %button-style-reset;
   display: flex;
   align-items: center;
@@ -15,6 +22,31 @@
   height: $constructor-add-button-height;
   width: 100%;
   border-radius: $border-radius-10;
+}
+
+@mixin wrapper {
+  width: 100%;  
+}
+
+.button {
+  @include button-main(
+    $s-font-size,
+    $normal,
+    $m-letter-space,
+    $button-line-height-150,
+    $constructor-add-button-height,
+    $border-radius-10
+  );
+  height: 100%;
+}
+
+.wrapper {
+  @include wrapper;
+}
+
+.wrapperAddNewBlock {
+  width: 196px;
+  height: 64px;
 }
 
 .button div {
