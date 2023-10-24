@@ -7,28 +7,6 @@ const meta: Meta<typeof Input> = {
   title: 'UI/Fields/Input',
   component: Input,
   argTypes: {
-    value: {
-      type: 'string',
-      description: 'value',
-    },
-    placeholder: {
-      type: 'string',
-      description: 'placeholder',
-    },
-    errorMessage: {
-      type: 'string',
-      description: 'сообщение об ошибке',
-    },
-    disabled: {
-      type: 'boolean',
-      discription: 'disabled',
-      options: [true, false],
-    },
-    isInvalid: {
-      type: 'boolean',
-      discription: 'disabled',
-      options: [true, false],
-    },
     minLength: {
       type: 'number',
       description: 'минимальная длина',
