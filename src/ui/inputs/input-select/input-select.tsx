@@ -82,6 +82,14 @@ const InputSelect: FC<IInputSelect> = ({
         }}
         IconComponent={ArrowLeftIcon}
         renderValue={(selected) => {
+          if (Array.isArray(selected)) {
+            return selected
+              .map((selectedItem) => {
+                return values.find((curItem) => curItem.value === selectedItem)
+                  ?.nameValue;
+              })
+              .join(', ');
+          }
           const item = values.find((curItem) => curItem.value === selected);
           if (!item) {
             return null;

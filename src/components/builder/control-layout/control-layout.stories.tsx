@@ -22,24 +22,41 @@ export default meta;
 
 type Story = StoryObj<typeof ControlLayout>;
 
-export const LayoutFilled: Story = {
+// Вариант с рендером сразу двух блоков
+/* export const LayoutFilled: Story = {
   render: () => (
-    <ControlLayout name="Название блока" type="Тип блока" nameSetter={() => {}}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+      <ControlLayout
+        name="Название блока"
+        type="Тип блока"
+        nameSetter={() => {}}
+      >
+        <div style={styleContainer}>
+          <div style={stylesInner} />
+          <div style={stylesInner} />
+          <div style={stylesInner} />
+        </div>
+      </ControlLayout>
+      <ControlLayout
+        name="Название блока"
+        type="Тип блока"
+        nameSetter={() => {}}
+      />
+    </div>
+  ),
+}; */
+
+export const LayoutFilled: Story = {
+  args: {
+    name: 'Название блока',
+    type: 'Тип блока',
+    nameSetter: () => {},
+    children: (
       <div style={styleContainer}>
         <div style={stylesInner} />
         <div style={stylesInner} />
         <div style={stylesInner} />
       </div>
-    </ControlLayout>
-  ),
-};
-
-export const LayoutEmpty: Story = {
-  render: () => (
-    <ControlLayout
-      name="Название блока"
-      type="Тип блока"
-      nameSetter={() => {}}
-    />
-  ),
+    ),
+  },
 };

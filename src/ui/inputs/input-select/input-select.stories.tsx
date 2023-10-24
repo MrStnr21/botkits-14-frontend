@@ -15,6 +15,15 @@ import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg
 const meta: Meta<typeof InputSelect> = {
   title: 'COMPONENTS/Fields/InputSelect',
   component: InputSelect,
+  argTypes: {
+    maxWidth: {
+      type: 'number',
+      description: 'ширина',
+    },
+    multiple: {
+      type: 'boolean',
+    },
+  },
 };
 
 export default meta;
@@ -30,20 +39,6 @@ export const InputSelectDefault: Story = {
     defaultValue: ['1'],
     maxWidth: 240,
     handleFunction: (payload) => console.log(payload),
-  },
-};
-
-export const InputSelectMultiple: Story = {
-  args: {
-    values: [
-      { nameValue: 'выбор 1', value: '1' },
-      { nameValue: 'выбор 2', value: '2' },
-      { nameValue: 'выбор 3', value: '3' },
-    ],
-    defaultValue: ['1'],
-    maxWidth: 240,
-    handleFunction: (payload) => console.log(payload),
-    multiple: true,
   },
 };
 
