@@ -1,5 +1,8 @@
 /* bring in normalize.css styles */
 // @import-normalize;
+@use './stylesheets/functions';
+@use './stylesheets/mixins';
+@use './stylesheets/variables';
 @import url('./fonts/fonts.css');
 
 body {
