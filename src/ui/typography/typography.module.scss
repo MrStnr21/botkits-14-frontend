@@ -3,9 +3,9 @@
 @mixin typography {
   font-family: 'IBM Plex Mono', sans-serif;
   margin: 0;
-  color: $primary-text-color;
-  font-weight: $bold;
-  line-height: $h-line-height;
+  color: $primary-text-color; //#060c23
+  font-weight: $bold; //600
+  line-height: $h-line-height; //130%
 }
 
 .h2 {
