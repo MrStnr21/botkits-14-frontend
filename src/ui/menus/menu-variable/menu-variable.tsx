@@ -7,10 +7,15 @@ import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
 export interface IMenuVariable {
   buttons: string[];
   onClick?: Function;
+  nameMenu?: string;
 }
 
-const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
-  const [variable, setVariable] = useState<string>('Переменная');
+const MenuVariable: FC<IMenuVariable> = ({
+  buttons,
+  onClick,
+  nameMenu = 'Переменная',
+}): JSX.Element => {
+  const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
   const [textColor, setTextColor] = useState<string>('');
 
