@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
+import classNames from 'classnames/bind';
 
 import PlusIcon from '../../../images/icon/24x24/constructor/plus.svg';
 import Horizontal from '../../../images/icon/24x24/constructor/horizontal.svg';
@@ -48,6 +49,8 @@ export interface IConstructorAddButton {
   children: React.ReactNode;
   icon?: typeof Icons;
 }
+
+const cx = classNames.bind(stylesConstructorAddButton);
 
 const ConstructorAddButton: FC<IConstructorAddButton> = ({
   buttonHtmlType = 'button',
@@ -108,13 +111,11 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
   return (
     <section
       className={
-        buttonType === 'free'
-          ? stylesConstructorAddButton.wrapper
-          : stylesConstructorAddButton.wrapperAddNewBlock
+        buttonType === 'free' ? cx('wrapper') : cx('wrapperAddNewBlock')
       }
     >
       <button
-        className={stylesConstructorAddButton.button}
+        className={cx('button')}
         onClick={onClick}
         // eslint-disable-next-line react/button-has-type
         type={buttonHtmlType}
@@ -122,7 +123,7 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
       >
         {' '}
         <ReactSVG src={getIcon()} />
-        <Typography tag="p" className={stylesConstructorAddButton.text}>
+        <Typography tag="p" className={cx('text')}>
           {children}
         </Typography>
       </button>
