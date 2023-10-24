@@ -2,14 +2,13 @@ import React, { FC } from 'react';
 
 interface IDoneIcon {
   color?: string;
-  width?: number;
-  height?: number;
+  size?: number;
 }
 
-const DoneIcon: FC<IDoneIcon> = ({ color = '#A6B3C9', width, height }) => (
+const DoneIcon: FC<IDoneIcon> = ({ color = '#A6B3C9', size }) => (
   <svg
-    width={width || 16}
-    height={height || 16}
+    width={size || 16}
+    height={size || 16}
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

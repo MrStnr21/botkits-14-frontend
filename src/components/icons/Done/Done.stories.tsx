@@ -4,36 +4,20 @@ import DoneIcon from './Done';
 const sizes = {
   '16px': 16,
   '20px': 20,
+  '24px': 24,
 };
 
 const meta: Meta<typeof DoneIcon> = {
   title: 'Components/Icons/DoneIcon',
   component: DoneIcon,
   argTypes: {
-    width: {
-      type: 'number',
-      description: 'выбор ширины',
+    size: {
+      type: 'string',
+      description: 'Выбор размера',
       options: Object.keys(sizes),
       mapping: sizes,
       control: {
         type: 'radio',
-        labels: {
-          small: '16х16',
-          large: '20х20',
-        },
-      },
-    },
-    height: {
-      type: 'number',
-      description: 'выбор высоты',
-      options: Object.keys(sizes),
-      mapping: sizes,
-      control: {
-        type: 'radio',
-        labels: {
-          small: '16х16',
-          large: '20х20',
-        },
       },
     },
   },
@@ -46,7 +30,6 @@ type Story = StoryObj<typeof meta>;
 export const DoneDefault: Story = {
   args: {
     color: '#A6B3C9',
-    width: 16,
-    height: 16,
+    size: 16,
   },
 };

@@ -12,7 +12,7 @@ const BotName: FC<IBotName> = ({ platform_icon = fb }): JSX.Element => {
     <div className={stylesBotName.container}>
       <img className={stylesBotName.icon} src={platform_icon} alt="иконка" />
       <p className={stylesBotName.text}>Название бота</p>
-      <DoneIcon width={20} height={20} />
+      <DoneIcon size={20} />
     </div>
   );
 };
