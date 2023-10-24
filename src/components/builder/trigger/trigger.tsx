@@ -7,7 +7,7 @@ import ConstructorDefaultButton from '../../../ui/buttons/constructor-default-bu
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import TrashIcon from '../../icons/Trash/TrashIcon';
 
-interface ITriggerProps {
+export interface ITriggerProps {
   deleteTrigger: (id: string) => void;
   id: string;
 }

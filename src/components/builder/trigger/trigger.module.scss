@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   border-radius: vars.$border-radius-10;
+  max-width: 296px;
 
   .header {
     display: flex;
@@ -13,13 +14,13 @@
     align-items: center;
 
     svg {
-      cursor: pointer;
+      cursor: vars.$cursor;
     }
   }
 
   .title {
     margin: 0 0 12px 0;
-    font-size: vars.$s-font-size;
+    font-size: vars.$m-font-size;
   }
 
   .buttons {
