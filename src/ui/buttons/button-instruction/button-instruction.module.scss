@@ -85,13 +85,9 @@
   text-align: left;
   padding-left: 201px;
   padding-right: 20px;
-  margin: 0;
   line-height: $button-line-height-150;
   font-family: 'Open Sans';
-  font-size: $m-font-size;
-  font-weight: $bold;
   letter-spacing: $l-letter-space;
-
   @media screen and (max-width: 670px) {
     padding-left: 137px;
   }

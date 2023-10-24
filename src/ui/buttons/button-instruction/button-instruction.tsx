@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
-
+import Typography from '../../typography/typography';
 import stylesButtonInstruction from './button-instruction.module.scss';
 
 export interface IButtonInstruction {
@@ -34,7 +34,9 @@ const ButtonInstruction: FC<IButtonInstruction> = ({
         <ReactSVG src={icon} />
       </div>
       <div className={stylesButtonInstruction.text_container}>
-        <p className={stylesButtonInstruction.text}>{children}</p>
+        <Typography tag="p" className={stylesButtonInstruction.text}>
+          {children}
+        </Typography>
       </div>
     </button>
   );
