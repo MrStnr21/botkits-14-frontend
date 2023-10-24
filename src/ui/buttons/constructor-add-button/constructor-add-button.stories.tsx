@@ -30,7 +30,7 @@ export default {
       type: 'string',
       description: 'Вариант иконки',
       defaultValue: 'add',
-      options: Icons,
+      options: Object.values(Icons),
       control: {
         type: 'radio',
       },
