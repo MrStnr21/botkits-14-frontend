@@ -13,7 +13,7 @@ import CreditCard from '../../../images/icon/24x24/add block/credit-card.svg';
 import Sliders from '../../../images/icon/24x24/add block/sliders.svg';
 import Api from '../../../images/icon/24x24/add block/api.svg';
 import MapPin from '../../../images/icon/24x24/add block/map-pin.svg';
-
+import Typography from '../../typography/typography';
 import stylesConstructorAddButton from './constructor-add-button.module.scss';
 
 enum IconsFree {
@@ -40,21 +40,6 @@ export const Icons = {
 };
 
 // type Icons = IconsFree | IconsHard;
-
-/* export enum Icons1 {
-  add = 'add',
-  horizontalInline = 'horizontal inline',
-  verticalInline = 'vertical inline',
-  message = 'message block',
-  table = 'saving data in CRM',
-  deeplink = 'deeplink',
-  gitBranch = 'conditional block',
-  headphones = 'transfer to the operator',
-  creditCard = 'payment',
-  sliders = 'managing variables',
-  api = 'api',
-  mapPin = 'coordinates',
-} */
 
 export interface IConstructorAddButton {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
@@ -137,7 +122,9 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
       >
         {' '}
         <ReactSVG src={getIcon()} />
-        <p className={stylesConstructorAddButton.text}>{children}</p>
+        <Typography tag="p" className={stylesConstructorAddButton.text}>
+          {children}
+        </Typography>
       </button>
     </section>
   );
