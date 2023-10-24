@@ -6,6 +6,11 @@ const colors = {
   grey: '#8392AB',
 };
 
+const positions = {
+  folded: 'folded',
+  unfolded: 'unfolded',
+};
+
 const meta: Meta<typeof AddIcon> = {
   title: 'Components/Icons/AddIcon',
   component: AddIcon,
@@ -23,6 +28,19 @@ const meta: Meta<typeof AddIcon> = {
         },
       },
     },
+    position: {
+      type: 'string',
+      description: 'Выбор положения',
+      options: Object.keys(positions),
+      mapping: positions,
+      control: {
+        type: 'radio',
+        labels: {
+          folded: 'folded',
+          unfolded: 'unfolded',
+        },
+      },
+    },
   },
 };
 
@@ -33,6 +51,7 @@ type Story = StoryObj<typeof meta>;
 export const IconAdd: Story = {
   args: {
     color: '#8392AB',
+    position: 'folded',
     width: 36,
     height: 36,
   },

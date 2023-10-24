@@ -1,0 +1,35 @@
+//используемая палитра цветов
+$green: #22FFAA;
+$white: #FFFFFF;
+
+@mixin containerWidth {
+  width: 40px;
+  height: 40px;
+}
+
+.mainContainer {
+  @include containerWidth;
+}
+
+.avatar {
+  @include containerWidth;
+  border-radius: 50%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
+
+.onlineIndicator {
+  width: 8px;
+  height: 8px;
+  background-color: $green;
+  border-radius: 10px;
+  border: 2px solid $white;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.avatarContainer {
+  position: relative;
+  @include containerWidth;
+}

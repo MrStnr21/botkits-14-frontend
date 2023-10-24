@@ -6,7 +6,7 @@
   min-width: 272px;
   background-color: $default-grey-color;
   border-radius: $border-radius-10;
-  min-height: 48px;
+  max-height: 48px;
 }
 
 .message_input {
@@ -22,6 +22,7 @@
   line-height: 20px;
   letter-spacing: $m-letter-space;
   color: $primary-text-color;
+  resize: none;
 
   &::placeholder {
     color: $default-dark-grey-color;
@@ -44,22 +45,4 @@
   border: 0;
   cursor: pointer;
   padding: 0;
-}
-
-.icon_plus {
-  width: 28px;
-  transition: 0.2s linear;
-
-  * {
-    fill: $default-dark-grey-color;
-  }
-}
-
-.icon_plus_rotate {
-  transform: rotate(-45deg);
-  transition: 0.2s linear;
-}
-
-.icon_clip * {
-  stroke: $default-dark-grey-color;
 }
