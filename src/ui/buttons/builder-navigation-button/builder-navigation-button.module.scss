@@ -1,0 +1,12 @@
+@import '../../../components/app/vars';
+
+.button {
+  @extend %button-style-reset;
+  background-color: $white-color;
+  transition: background-color 0.1s linear;
+  align-items: center;
+}
+
+.button:hover {
+  background-color: $hover-grey-color;
+}

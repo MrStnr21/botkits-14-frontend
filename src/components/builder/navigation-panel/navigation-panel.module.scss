@@ -1,0 +1,12 @@
+@import '../../app/vars';
+
+.panel {
+  box-sizing: border-box;
+  padding: 8px 16px;
+  background-color: $white-color;
+  border-radius: $border-radius-10;
+  list-style: none;
+  display: flex;
+  gap: 12px;
+}
+
