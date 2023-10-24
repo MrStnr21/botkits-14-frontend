@@ -14,11 +14,18 @@ interface IInput {
   maxLength?: number;
   type?: string;
   required?: boolean;
-  styled?: 'main' | 'secondary';
+  styled?: 'main' | 'secondary' | 'bot-builder-default' | 'bot-builder-num';
   pattern?: string;
   password?: boolean;
   textColor?: 'default' | 'blue';
 }
+
+const classNames = {
+  main: stylesInput.inputMain,
+  secondary: stylesInput.inputSecondary,
+  'bot-builder-default': stylesInput.inputBuilderDefault,
+  'bot-builder-num': stylesInput.inputBuilderNum,
+};
 
 const Input: FC<IInput> = ({
   placeholder = 'Введите ключ доступа',
@@ -32,7 +39,7 @@ const Input: FC<IInput> = ({
   maxLength,
   type = 'text',
   required,
-  styled,
+  styled = 'main',
   pattern,
   password,
   textColor = 'default',
@@ -58,6 +65,8 @@ const Input: FC<IInput> = ({
       setTypeValues('password');
     }
   };
+
+  const className = classNames[styled];
 
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
     const validityState = input.currentTarget.validity;
@@ -93,15 +102,13 @@ const Input: FC<IInput> = ({
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={` ${
-          styled === 'secondary'
-            ? stylesInput.inputSecondary
-            : stylesInput.inputMain
-        } ${(error.error || isInvalid) && stylesInput.incorrect} ${
+        className={` ${className} ${
+          error.error || isInvalid ? stylesInput.incorrect : ''
+        } ${
           (error.error || isInvalid) && styled === 'secondary'
             ? stylesInput.inputSecondaryIncorrect
             : ''
-        } ${textColor === 'blue' && stylesInput.colorBlue}`}
+        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}

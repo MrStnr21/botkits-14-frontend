@@ -1,0 +1,20 @@
+import { FC } from 'react';
+import stylesBotName from './bot-name.module.scss';
+import fb from '../../images/icon/40x40/facebook/hover.svg';
+import DoneIcon from '../../components/icons/Done/Done';
+
+export interface IBotName {
+  platform_icon: string;
+}
+
+const BotName: FC<IBotName> = ({ platform_icon = fb }): JSX.Element => {
+  return (
+    <div className={stylesBotName.container}>
+      <img className={stylesBotName.icon} src={platform_icon} alt="иконка" />
+      <p className={stylesBotName.text}>Название бота</p>
+      <DoneIcon size={20} />
+    </div>
+  );
+};
+
+export default BotName;

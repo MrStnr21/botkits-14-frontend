@@ -1,0 +1,21 @@
+@import '../../app/vars';
+
+.promoCodePopupContainer {
+  padding: 40px 40px 37px 40px;
+  width: 400px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 12px 24px 0 #15123321;
+  border: none;
+  border-radius: $border-radius-30;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+
+  @media (max-width: $min-content-width) {
+    width: 320px;
+  }
+}
+

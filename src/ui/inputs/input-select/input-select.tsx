@@ -1,16 +1,20 @@
-import { FC, useState, useEffect } from 'react';
-
+import { FC, useState, useEffect, useRef } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { ThemeProvider, createTheme } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import { ArrowLeftIcon } from '@mui/x-date-pickers';
 import MenuItem from '@mui/material/MenuItem';
-
-import './input-select.module.scss';
+import useScrollbar from '../../../services/hooks/use-scrollbar';
+import 'overlayscrollbars/overlayscrollbars.css';
+import styles from './input-select.module.scss';
 
 interface IInputSelect {
   defaultValue: string[];
-  values: { nameValue: string; value: string }[];
+  values: {
+    nameValue: string;
+    value: string;
+    isIcon?: boolean;
+    iconDescription?: string;
+  }[];
   multiple?: boolean;
   maxWidth: number;
   resetSelect?: boolean;
@@ -26,31 +30,26 @@ const InputSelect: FC<IInputSelect> = ({
   maxWidth,
 }): JSX.Element => {
   const [inputValues, setInputValues] = useState<string[]>([]);
+  const [visible, setVisible] = useState<boolean>(false);
+
+  const refI = useRef(null);
+
+  let timeOutOpenModal: NodeJS.Timeout | string = '';
+
+  useScrollbar(refI, visible);
 
   useEffect(() => {
-    setInputValues(defaultValue);
+    return () => {
+      clearTimeout(timeOutOpenModal);
+    };
   }, []);
 
   useEffect(() => {
+    setInputValues(defaultValue);
     if (resetSelect) {
       setInputValues(defaultValue);
     }
   }, [resetSelect]);
-
-  const inputSelectTheme = createTheme({
-    typography: {
-      fontFamily: 'Open Sans, sans-serif',
-    },
-    components: {
-      MuiPaper: {
-        styleOverrides: {
-          root: {
-            boxShadow: '0px 6px 16px 0px rgba(21, 18, 51, 0.08)',
-          },
-        },
-      },
-    },
-  });
 
   const handleChange = (event: SelectChangeEvent<string | string[]>) => {
     const {
@@ -61,81 +60,69 @@ const InputSelect: FC<IInputSelect> = ({
   };
 
   return (
-    <ThemeProvider theme={inputSelectTheme}>
-      <FormControl
-        sx={{
-          maxWidth: `${maxWidth}px`,
+    <FormControl
+      sx={{
+        maxWidth: `${maxWidth}px`,
+      }}
+      fullWidth
+    >
+      <Select
+        displayEmpty
+        inputProps={{ 'aria-label': 'Without label' }}
+        multiple={multiple}
+        defaultValue={defaultValue.join()}
+        value={multiple ? inputValues : inputValues.join()}
+        onChange={handleChange}
+        onOpen={() => {
+          timeOutOpenModal = setTimeout(() => setVisible(true), 0);
         }}
-        fullWidth
+        onClose={() => {
+          setVisible(false);
+          clearTimeout(timeOutOpenModal);
+        }}
+        IconComponent={ArrowLeftIcon}
+        renderValue={(selected) => {
+          if (Array.isArray(selected)) {
+            return selected
+              .map((selectedItem) => {
+                return values.find((curItem) => curItem.value === selectedItem)
+                  ?.nameValue;
+              })
+              .join(', ');
+          }
+          const item = values.find((curItem) => curItem.value === selected);
+          if (!item) {
+            return null;
+          }
+          return item.isIcon ? (
+            <img className={styles.chosen} src={item.nameValue} alt="icon" />
+          ) : (
+            item.nameValue
+          );
+        }}
+        MenuProps={{
+          slotProps: {
+            paper: {
+              ref: refI,
+            },
+          },
+        }}
       >
-        <Select
-          displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
-          multiple={multiple}
-          defaultValue={defaultValue.join()}
-          value={multiple ? inputValues : inputValues.join()}
-          onChange={handleChange}
-          IconComponent={ArrowLeftIcon}
-          sx={{
-            backgroundColor: '#F2F4F8',
-            fontSize: '13px',
-            fontWeight: 400,
-            fontStyle: 'normal',
-            lineHeight: '150%',
-            letterSpacing: '0.3px',
-            color: '#060C23',
-            textTransform: 'capitalize',
-            paddingTop: '10px',
-            paddingLeft: '8px',
-            paddingBottom: '10px',
-            maxHeight: '40px',
-            '.MuiOutlinedInput-notchedOutline': {
-              border: 'none',
-            },
-            '.MuiOutlinedInput-input': {
-              padding: 0,
-            },
-            '.MuiSelect-icon': {
-              maxWidth: '16px',
-              transform: 'rotate(-90deg)',
-            },
-          }}
-        >
-          {values.map(({ nameValue, value }) => (
-            <MenuItem
-              key={value}
-              value={value}
-              sx={{
-                '&:focus': {
-                  backgroundColor: '#F2F4F8',
-                },
-                '&.Mui-selected': {
-                  backgroundColor: '#F2F4F8',
-                },
-                '&.Mui-selected:hover': {
-                  backgroundColor: '#F2F4F8',
-                },
-                '&.MuiMenuItem-root': {
-                  fontSize: '13px',
-                  fontWeight: 400,
-                  fontStyle: 'normal',
-                  lineHeight: '150%',
-                  letterSpacing: '0.3px',
-                  color: '#060C23',
-                  textTransform: 'capitalize',
-                  maxHeight: '37px',
-                  paddingTop: '9px',
-                  paddingLeft: '16px',
-                  paddingBottom: '8px',
-                },
-              }}
-            >
-              {nameValue}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </ThemeProvider>
+        {' '}
+        {values?.map(({ nameValue, value, isIcon, iconDescription }) => (
+          <MenuItem key={value} value={value}>
+            {isIcon ? (
+              <div className={styles.optionContainer}>
+                <img src={nameValue} alt="icon" />{' '}
+                <span className={styles.optionText}>{iconDescription}</span>
+              </div>
+            ) : (
+              nameValue
+            )}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 

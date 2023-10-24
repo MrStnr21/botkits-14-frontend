@@ -1,9 +1,7 @@
-import { FC, useEffect, useState, FormEvent } from 'react';
+import { FC, useEffect, useState, FormEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MuiTelInput } from 'mui-tel-input';
-
-import stylesSignup from './signup.module.scss';
 
 import ConfirmationScreen from '../../components/confirmation-screen/confirmation-screen';
 import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-layout';
@@ -27,6 +25,10 @@ import {
 } from '../../utils/utils';
 
 import backgroundImage from '../../images/roboSuccess.png';
+import useScrollbar from '../../services/hooks/use-scrollbar';
+
+import stylesSignup from './signup.module.scss';
+import 'overlayscrollbars/overlayscrollbars.css';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
@@ -36,6 +38,13 @@ const Signup: FC = (): JSX.Element => {
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [phoneCode, setPhoneCode] = useState<string>('');
+  const [visible, setVisible] = useState<boolean>(false);
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
+
+  const refI = useRef(null);
+  let timeOutOpenModal: NodeJS.Timeout | string = '';
+
+  useScrollbar(refI, visible);
 
   const { values, handleChange, setValues } = useForm({
     username: { value: '', valueValid: false },
@@ -44,6 +53,12 @@ const Signup: FC = (): JSX.Element => {
     phone: { value: '', valueValid: false },
     phoneNumberMain: { value: '', valueValid: false },
   });
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeOutOpenModal);
+    };
+  }, []);
 
   useEffect(() => {
     if (
@@ -61,6 +76,8 @@ const Signup: FC = (): JSX.Element => {
   const handleChangeCodePhone = (newCode: string) => {
     setPhoneCode(newCode);
     setValues({ ...values, phone: newCode + values.phone });
+    setVisibleModal(false);
+    setVisible(false);
   };
 
   useEffect(() => {
@@ -182,6 +199,25 @@ const Signup: FC = (): JSX.Element => {
                   value={phoneCode}
                   className={stylesSignup.phoneCodeSelect}
                   onChange={handleChangeCodePhone}
+                  InputProps={{
+                    onClick: () => {
+                      setVisibleModal(true);
+                      timeOutOpenModal = setTimeout(() => setVisible(true), 0);
+                    },
+                  }}
+                  MenuProps={{
+                    onClose: () => {
+                      setVisibleModal(false);
+                      setVisible(false);
+                      clearTimeout(timeOutOpenModal);
+                    },
+                    open: visibleModal,
+                    slotProps: {
+                      paper: {
+                        ref: refI,
+                      },
+                    },
+                  }}
                   langOfCountryName="ru"
                   onlyCountries={
                     COUNTRY_COD_LIST.length > 0 ? COUNTRY_COD_LIST : undefined
@@ -196,8 +232,8 @@ const Signup: FC = (): JSX.Element => {
                   styled="secondary"
                   pattern="^\d+$"
                   errorMessage="Номер телефона может содержать только цифры"
+                  type="text"
                   required
-                  type="number"
                 />
               </div>
             </div>
