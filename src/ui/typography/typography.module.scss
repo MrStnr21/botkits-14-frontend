@@ -31,9 +31,9 @@
 
 .p {
   @include typography;
-  font-size: $m-font-size;
-  line-height: $p-line-height;
-  letter-spacing: $m-letter-space;
+  font-size: $m-font-size; //14px
+  line-height: $p-line-height; //150%
+  letter-spacing: $m-letter-space; //0.3px
 }
 
 .span {
