@@ -29,6 +29,7 @@ import useScrollbar from '../../services/hooks/use-scrollbar';
 
 import stylesSignup from './signup.module.scss';
 import 'overlayscrollbars/overlayscrollbars.css';
+import Typography from '../../ui/typography/typography';
 
 const Signup: FC = (): JSX.Element => {
   const titleImageStyle = {
@@ -107,7 +108,9 @@ const Signup: FC = (): JSX.Element => {
     <RegLogResLayout title="Регистрация">
       <div className={stylesSignup.signupFormContainer}>
         <div className={stylesSignup.signupSocialContainer}>
-          <h2 className={stylesSignup.signupTitle}>Создай аккаунт с помощью</h2>
+          <Typography tag="h2" className={stylesSignup.signupTitle}>
+            Создай аккаунт с помощью
+          </Typography>
           <div className={stylesSignup.socialContainer}>
             <div className={stylesSignup.socialMain}>
               <ButtonAddSocial
@@ -155,7 +158,9 @@ const Signup: FC = (): JSX.Element => {
           </div>
         </div>
         <div className={stylesSignup.signupInputsContainer}>
-          <h2 className={stylesSignup.signupTitleForm}>или</h2>
+          <Typography tag="h2" className={stylesSignup.signupTitleForm}>
+            или
+          </Typography>
           <form
             className={stylesSignup.inputsForm}
             onSubmit={handleSignup}
@@ -248,16 +253,16 @@ const Signup: FC = (): JSX.Element => {
                 создать аккаунт
               </Button>
               {userData.signupError && (
-                <p className={stylesSignup.incorrect_text}>
+                <Typography tag="p" className={stylesSignup.incorrect_text}>
                   {userData.signupErrorText}
-                </p>
+                </Typography>
               )}
             </div>
           </form>
           <div className={stylesSignup.signupReadyContainer}>
-            <span className={stylesSignup.signupReadyTitle}>
+            <Typography tag="span" className={stylesSignup.signupReadyTitle}>
               Уже прошли регистрацию?
-            </span>
+            </Typography>
             <Link
               to={{ pathname: routesUrl.signin }}
               className={stylesSignup.signinLink}
