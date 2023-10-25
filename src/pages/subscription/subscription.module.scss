@@ -7,6 +7,15 @@
   flex-direction: column;
   gap: 32px;
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    width: 188px;
+  }
+
   &__body {
     display: flex;
     gap: 28px;
@@ -48,10 +57,10 @@
   &__status {
     grid-area: status;
     justify-self: end;
-    color: $error-red-color;
   }
 
   &__info {
+    font-family: 'Open Sans', sans-serif;
     grid-area: info;
   }
 

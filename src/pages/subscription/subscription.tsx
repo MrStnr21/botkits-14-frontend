@@ -114,6 +114,14 @@ const tableData = [
   },
 ];
 
+const subscriptionStatus = {
+  tariff: 'Бизнес',
+  status: true,
+  cardMask: '4500 *** 1119',
+  debitDate: '2023-09-12',
+  balance: 1234,
+};
+
 const Subscription: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
   const [popupType, setPopupType] = useState<
@@ -156,43 +164,41 @@ const Subscription: FC = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <Typography tag="h2">Подписка и платежи</Typography>
-      <div className={style.container__body}>
-        <div className={cn(style.subscription, style.container__subscription)}>
-          <div className={style.subscription__header}>
-            <Typography tag="h3" className={style.subscription__rate}>
-              Тариф
-            </Typography>
-            <Typography tag="h4" className={style.subscription__status}>
-              Статус
-            </Typography>
-            <Typography tag="span" className={style.subscription__info}>
-              Инфо
-            </Typography>
-            <div className={style.subscription__button}>
-              <Button variant="default" color="green">
-                Активировать подписку
-              </Button>
-            </div>
-          </div>
-          <div className={style.subscription__body}>
-            <div className={style.subscription__balance}>
-              <Typography tag="span">Баланс</Typography>
-              <Typography tag="h3">{`${0}₽`}</Typography>
-            </div>
-            <Button variant="default" color="grey">
-              Активировать промокод
+      <div className={style.container__header}>
+        <Typography tag="h2">Подписка и платежи</Typography>
+        {subscriptionStatus.status && (
+          <div className={style.container__button}>
+            <Button
+              variant="default"
+              size="small"
+              color="green"
+              onClick={() => handleActivateSubscription('subscription')}
+            >
+              Сменить тариф
             </Button>
           </div>
+        )}
+      </div>
+      <div className={style.container__body}>
+        <div className={cn(style.subscription, style.container__subscription)}>
           <div className={style.subscription}>
             <div className={style.subscription__header}>
               <Typography tag="h3" className={style.subscription__rate}>
-                Тариф
+                {subscriptionStatus.tariff}
               </Typography>
-              <Typography tag="h4" className={style.subscription__status}>
-                Статус
+              <Typography
+                tag="h4"
+                className={cn(
+                  style.subscription__status,
+                  style.text,
+                  subscriptionStatus.status
+                    ? style.text_succsess
+                    : style.text_failure
+                )}
+              >
+                {subscriptionStatus.status ? 'активен' : 'неактивен'}
               </Typography>
-              <Typography tag="p" className={style.subscription__info}>
+              <Typography tag="span" className={style.subscription__info}>
                 Инфо
               </Typography>
               <div className={style.subscription__button}>
@@ -208,7 +214,7 @@ const Subscription: FC = (): JSX.Element => {
             <div className={style.subscription__body}>
               <div className={style.subscription__balance}>
                 <Typography tag="p">Баланс</Typography>
-                <Typography tag="h3">{`${0}₽`}</Typography>
+                <Typography tag="h3">{`${subscriptionStatus.balance}₽`}</Typography>
               </div>
               <Button
                 variant="default"
