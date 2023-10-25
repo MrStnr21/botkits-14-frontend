@@ -37,32 +37,23 @@ $error: #ff5555;
 $success: #00e98f;
 
 /* Переменные размеров шрифта */
-$xl-h1-font-size: 64px;
-$h1-font-size: 48px;
-$h2-font-size: 32px;
-$h3-font-size: 24px;
-$h4-font-size: 18px;
+//$xl-h1-font-size: 64px;  Используется в 1 компоненте
+//$h1-font-size: 48px;  Используется в 2 компонентах
+$xxxl-font-size: 32px;
+$xxl-font-size: 24px;
 $xl-font-size: 20px;
-$l-font-size: 16px;
-$m-font-size: 14px;
-$s-font-size: 13px;
-$xs-font-size: 12px;
+$l-font-size: 18px;
+$m-font-size: 16px;
+$s-font-size: 14px;
+$xs-font-size: 13px;
+$xxs-font-size: 12px;
 
 /* Переменные высоты строки */
-$h-line-height: 130%;
-$p-line-height: 150%;
-$h1-line-height: 52.8px;
-$h2-line-height: 41.6px;
-$h3-line-height: 31.2px;
-$h4-line-height: 23.4px;
-$l-line-height: 24px;
-$m-line-height: 21px;
-$s-line-height: 19.5px;
-$xs-line-height: 18px;
-$button-line-height-150: 150%;
-$button-line-height-134: 134%;
-$button-line-height-130: 130%;
-$button-line-height-110: 110%;
+$xl-line-height: 150%;
+$l-line-height: 140%;
+$m-line-height: 130%;
+$s-line-height: 120%;
+$xs-line-height: 110%;
 
 /* Переменные жирности шрифта */
 $bold: 600;
@@ -70,23 +61,22 @@ $semi-bold: 500;
 $normal: 400;
 
 /* Переменные расстояния между буквами */
-$h2-letter-space: -0.2px;
-$h5-letter-space: 0.5px;
-$lx-letter-space: 0.75px;
-$l-letter-space: 0.3px; // ??
+$l-letter-space: 0.5px;
+//$lx-letter-space: 0.75px; используется в 2-х компонентах
 $m-letter-space: 0.3px;
-$s-letter-space: 0.2px;
-$button-letter-space: 1px;
+$s-letter-space: -0.2px;
+// $s-letter-space: 0.2px;  используется в 1 компоненте
+//$button-letter-space: 1px;  используется в 2-х компонентах
 
 /* Переменные радиуса скругления */
-$border-radius-185: 185px;
-$border-radius-50: 50px;
-$border-radius-30: 30px;
-$border-radius-15: 15px;
-$border-radius-10: 10px;
-$border-radius-8: 8px;
-$border-radius-5: 5px;
-$border-radius-4: 4px;
+// $border-radius-185: 185px; используется в 1 компоненте
+// $border-radius-50: 50px; используется в 2-х компонентах
+$xxl-border-radius-30: 30px;
+$xl-border-radius-15: 15px;
+$l-border-radius-10: 10px;
+$m-border-radius-8: 8px;
+$s-border-radius-5: 5px;
+$xs-border-radius: 4px;
 $border-radius-circle: 50%;
 
 /* Переменные тени элемента */
@@ -96,7 +86,7 @@ $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
 /* Шаблонныe селекторы
 для скрытия блока с текстом объяснения, что это за ссылка */
-%screen-reader {
+/* %screen-reader {  // Используется в 1 компоненте
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -106,7 +96,7 @@ $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   position: absolute;
   white-space: nowrap;
   width: 1px;
-}
+} */
 
 %button-style-reset {
   border: none;
