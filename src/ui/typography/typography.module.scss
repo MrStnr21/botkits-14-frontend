@@ -8,6 +8,11 @@
   color: $primary-text-color; //#060c23
 }
 
+.h1 {
+  @include typography;
+  font-size: $h1-font-size;  
+}
+
 .h2 {
   @include typography;
   font-size: $h2-font-size;

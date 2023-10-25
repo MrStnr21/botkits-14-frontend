@@ -54,15 +54,12 @@
 }
 
 .title {
-  margin: 0;
   padding: 0;
   width: 100%;
   max-width: 570px;
-  font-family: 'IBM Plex Mono', sans-serif;
   text-align: left;
   color: $white-color;
-  font-size: $xl-h1-font-size;
-  font-weight: $bold;
+  font-size: $xl-h1-font-size; 
   line-height: $button-line-height-110;
   vertical-align: middle;
 
@@ -99,9 +96,7 @@
   font-size: $h2-font-size;
   border-radius: $border-radius-15;
   color: $default-green-color;
-  font-weight: $bold;
   background-color: $hover-blue-color;
-  line-height: $button-line-height-150;
   letter-spacing: $h2-letter-space;
   vertical-align: middle;
 
