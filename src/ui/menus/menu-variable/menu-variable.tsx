@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 
 import stylesMenuVariable from './menu-variable.module.scss';
-
+import Typography from '../../typography/typography';
 import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
 
 export interface IMenuVariable {
@@ -26,7 +26,12 @@ const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
   return (
     <div>
       <div className={stylesMenuVariable.open_button} onClick={openHandler}>
-        <p className={`${stylesMenuVariable.text} ${textColor}`}>{variable}</p>
+        <Typography
+          tag="p"
+          className={`${stylesMenuVariable.text} ${textColor}`}
+        >
+          {variable}
+        </Typography>
         <img
           src={arrowIcon}
           alt="стрелка"
