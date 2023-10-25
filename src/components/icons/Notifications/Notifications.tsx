@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import styles from './Notifications.module.css';
+import Typography from '../../../ui/typography/typography';
 
 interface INotifications {
   number?: number;
@@ -13,7 +14,11 @@ const Notifications: FC<INotifications> = ({
   onClick,
 }) => (
   <div className={styles.container} onClick={onClick} id="notification">
-    {number && number > 0 ? <p className={styles.text}>{number}</p> : null}
+    {number && number > 0 ? (
+      <Typography tag="p" className={styles.text}>
+        {number}
+      </Typography>
+    ) : null}
     <svg
       width="25"
       height="29"
