@@ -5,6 +5,7 @@ import stylesInput from './page-item.module.scss';
 import { ReactComponent as Check } from '../../../images/icon/24x24/common/check.svg';
 import imgDefault from '../../../images/avatar/circled/for group/default.svg';
 import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
+import Typography from '../../typography/typography';
 
 interface IPageItem {
   text?: string;
@@ -34,7 +35,9 @@ const PageItem: FC<IPageItem> = ({
       {type === 'upload' ? (
         <>
           <Plus className={stylesInput.upload_img} />
-          <p className={stylesInput.upload_text}>Загрузить</p>
+          <Typography tag="p" className={stylesInput.upload_text}>
+            Загрузить
+          </Typography>
         </>
       ) : (
         <>
@@ -48,7 +51,9 @@ const PageItem: FC<IPageItem> = ({
             )}
           </div>
 
-          <p className={stylesInput.text}>{text}</p>
+          <Typography tag="p" className={stylesInput.text}>
+            {text}
+          </Typography>
         </>
       )}
     </button>
