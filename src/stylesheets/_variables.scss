@@ -113,32 +113,32 @@ $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 /*  Курсор  */
 $cursor: url('../../images/icon/cursor/pointing-hand.svg'), pointer;
 
+/* Иконки */
+// возможно не будут нужны после рефакторинга иконок
+$l-icon-stroke-width: 3px;
+$m-icon-stroke-width: 2px;
+
 /* КНОПКИ */
 /* Элемент Button */
-$l-button-height: 65px;
-$m-button-height: 52px;
-$s-button-height: 46px;
+// $l-button-height: 65px; // используется в 1 компоненте
+// $m-button-height: 52px; // используется в 1 компоненте
+// $s-button-height: 46px; // используется в 1 компоненте
 
-$l-button-icon-size: 30px;
-
-$l-button-icon-stroke-width: 3px;
-$m-button-icon-stroke-width: 2px;
+// $l-button-icon-size: 30px; // используется в 1 компоненте
 
 /* Элемент ButtonIconCopy */
-$button-icon-copy-height: 40px;
+// $button-icon-copy-height: 40px; // используется в 1 компоненте
 
 /* Элемент ButtonAddBot */
-$button-add-bot-height: 172px;
+// $button-add-bot-height: 172px; // используется в 1 компоненте
 
-$button-add-bot-icon-size: 46px;
+// $button-add-bot-icon-size: 46px; // используется в 1 компоненте
 
-$button-add-bot-border-width: 3px;
-$button-add-bot-stroke-width: 2px;
+// $button-add-bot-border-width: 3px; // используется в 1 компоненте
 
 /* Элемент ButtonAddSampleBot */
-$button-add-sample-bot-height: 88px;
-$button-add-sample-bot-width: 188px;
-$button-add-sample-bot-stroke-width: 2px;
+// $button-add-sample-bot-height: 88px; // используется в 1 компоненте
+// $button-add-sample-bot-width: 188px; // используется в 1 компоненте
 
 /* Элемент ButtonAddSocial TODO удалить */
 // $button-add-social-pressed-background-color: transparent;
@@ -149,23 +149,22 @@ $button-add-social-icon-size-s: 40px;
 $button-add-social-icon-size-xs: 34px;
 
 /* Элемент ConstructorDefaultButton */
-$constructor-default-button-height: 35px;
+$constructor-default-button-height: 35px; // используется в 1 компоненте
 
 /* Элемент ConstructorIconBotton */
-$constructor-icon-button-height: 52px;
-$constructor-icon-button-width: 56px;
+$constructor-icon-button-height: 52px; // используется в 1 компоненте
+// $constructor-icon-button-width: 56px; // используется в 1 компоненте
 
 /* Элемент ConstructorAddButton */
-$constructor-add-button-height: 44px;
+//$constructor-add-button-height: 44px; // используется в 1 компоненте
 
 /* Элемент ConstructorHelperButton */
-$constructor-helper-button-height: 40px;
-$constructor-helper-button-width: 96px;
+$constructor-helper-button-height: 40px; // используется в 1 компоненте
+// $constructor-helper-button-width: 96px; // используется в 1 компоненте
 
 /* ADD BOT */
 /* Секция HowItWorks */
-$how-it-works-arrow-icon-size: 26px;
-$how-it-works-arrow-icon-stroke-width: 3px;
+$how-it-works-arrow-icon-size: 26px; // используется в 1 компоненте
 
 /* Partnership Program */
 /* Таблица */
@@ -173,4 +172,3 @@ $how-it-works-arrow-icon-stroke-width: 3px;
 //$partnership-table-chevron-icon-default-color: #000; // не используется, и там oxfordblue
 //$partnership-table-chevron-icon-hover-color: #232323; // не используется
 $partnership-table-chevron-icon-size: 26px;
-$partnership-table-chevron-icon-stroke-width: 3px;
