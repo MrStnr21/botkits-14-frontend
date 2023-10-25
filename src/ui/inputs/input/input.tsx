@@ -1,5 +1,5 @@
 import { FC, ChangeEvent, useState, useEffect } from 'react';
-
+import Typography from '../../typography/typography';
 import stylesInput from './input.module.scss';
 
 interface IInput {
@@ -121,7 +121,9 @@ const Input: FC<IInput> = ({
         required={required}
       />
       {(error.error || isInvalid) && (
-        <p className={stylesInput.incorrect_text}>{error.textError}</p>
+        <Typography tag="p" className={stylesInput.incorrect_text}>
+          {error.textError}
+        </Typography>
       )}
       <div
         className={`${
@@ -143,13 +145,14 @@ const Input: FC<IInput> = ({
           />
         )}
         {required && (
-          <span
+          <Typography
+            tag="span"
             className={`${stylesInput.required} ${
               (error.error || isInvalid) && stylesInput.requiredIncorrect
             }`}
           >
             *
-          </span>
+          </Typography>
         )}
       </div>
     </div>
