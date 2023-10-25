@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import stylesMenuVariable from './menu-variable.module.scss';
 
@@ -28,9 +28,33 @@ const MenuVariable: FC<IMenuVariable> = ({
     setIsActive(isActive === '' ? stylesMenuVariable.active : '');
   };
 
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsActive('');
+      }
+    };
+
+    if (isActive !== '') {
+      document.addEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [isActive]);
+
   return (
     <div>
       <div className={stylesMenuVariable.open_button} onClick={openHandler}>
+        <div
+          onClick={() => {
+            if (isActive !== '') setIsActive('');
+          }}
+          className={`${stylesMenuVariable.overlay} ${
+            isActive !== '' ? stylesMenuVariable.overlayActive : ''
+          }`}
+        />
         <p className={`${stylesMenuVariable.text} ${textColor}`}>{variable}</p>
         <img
           src={arrowIcon}
