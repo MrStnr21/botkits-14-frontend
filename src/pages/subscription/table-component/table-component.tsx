@@ -12,7 +12,7 @@ import Typography from '../../../ui/typography/typography';
 type Columns = {
   key: string;
   label: ReactNode;
-  colStyle?: SxProps;
+  colHeadStyle?: SxProps;
   cellComponent?: (data: any) => ReactNode;
 };
 
@@ -22,8 +22,8 @@ type TableData = {
 
 type Props = {
   columns: Columns[];
-  tableData: TableData[];
-  headComponent: (data: any) => ReactNode;
+  tableData?: TableData[];
+  headComponent?: (data: any) => ReactNode;
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
@@ -35,8 +35,8 @@ const TableComponent: FC<Props> = ({ columns, tableData, ...props }) => {
       <Table>
         <TableHead>
           <TableRow sx={props.headStyle}>
-            {columns?.map(({ label, colStyle }) => (
-              <TableCell key={uuidv4()} sx={colStyle}>
+            {columns?.map(({ label, colHeadStyle }) => (
+              <TableCell key={uuidv4()} sx={colHeadStyle}>
                 {props.headComponent ? (
                   props.headComponent(label)
                 ) : (

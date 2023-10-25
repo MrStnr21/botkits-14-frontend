@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import cn from 'classnames';
 import { ChangeEvent, FC, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
@@ -6,13 +8,188 @@ import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
 import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
-import TableComponent from '../../components/tableComponent/tableComponent';
-import {
-  refCols,
-  refRows,
-  paymentCols,
-  paymentRows,
-} from '../../utils/TableData'; // тестовые данные
+import TableComponent from '../subscription/table-component/table-component';
+import Typography from '../../ui/typography/typography';
+
+const headStyle = { border: 'none' };
+
+const headCell = (data: string) => <Typography tag="h5">{data}</Typography>;
+
+const baseCell = (data: string) => (
+  <Typography className={stylesPartnership.text} tag="span">
+    {data}
+  </Typography>
+);
+
+const moneyCell = (data: string) => (
+  <Typography className={stylesPartnership.text} tag="span">
+    {`${data} ₽`}
+  </Typography>
+);
+
+const refStatusCell = (status: boolean) => (
+  <Typography
+    className={cn(stylesPartnership.text, stylesPartnership.text_succsess)}
+    tag="span"
+  >
+    Оплачено
+  </Typography>
+);
+
+const paymentStatusCell = (status: boolean) => (
+  <Typography
+    className={cn(
+      stylesPartnership.text,
+      status
+        ? stylesPartnership.text_succsess
+        : stylesPartnership.text_processing
+    )}
+    tag="span"
+  >
+    {status ? 'Оплачено' : 'В обработке'}
+  </Typography>
+);
+
+const refCols = [
+  {
+    key: 'taps',
+    label: 'Перешли по ссылке',
+    colHeadStyle: headStyle,
+    cellComponent: baseCell,
+  },
+  {
+    key: 'regs',
+    label: 'Регистраций',
+    colHeadStyle: headStyle,
+    cellComponent: baseCell,
+  },
+  {
+    key: 'status',
+    label: 'Оплата',
+    colHeadStyle: headStyle,
+    cellComponent: refStatusCell,
+  },
+  {
+    key: 'sum',
+    label: 'Сумма',
+    colHeadStyle: headStyle,
+    cellComponent: moneyCell,
+  },
+  {
+    key: 'fee',
+    label: 'Комиссия',
+    colHeadStyle: headStyle,
+    cellComponent: moneyCell,
+  },
+  {
+    key: 'paid',
+    label: 'Выплачено',
+    colHeadStyle: headStyle,
+    cellComponent: moneyCell,
+  },
+  {
+    key: 'withdrawal',
+    label: 'Вывод',
+    colHeadStyle: headStyle,
+    cellComponent: moneyCell,
+  },
+];
+
+const refRows = [
+  {
+    taps: '28 человек',
+    regs: '15',
+    status: true,
+    sum: '5000',
+    fee: '1500',
+    paid: '4500',
+    withdrawal: '1500',
+  },
+  {
+    taps: '17 человек',
+    regs: '8',
+    status: true,
+    sum: '15000',
+    fee: '4500',
+    paid: '8200',
+    withdrawal: '4500',
+  },
+  {
+    taps: '10 человек',
+    regs: '8',
+    status: true,
+    sum: '8000',
+    fee: '2000',
+    paid: '6000',
+    withdrawal: '2300',
+  },
+  {
+    taps: '11 человек',
+    regs: '5',
+    status: true,
+    sum: '500',
+    fee: '100',
+    paid: '300',
+    withdrawal: '150',
+  },
+];
+
+const paymentCols = [
+  {
+    key: 'reqDate',
+    label: 'Дата запроса',
+    colHeadStyle: headStyle,
+    cellComponent: baseCell,
+  },
+  {
+    key: 'payDate',
+    label: 'Дата выплаты',
+    colHeadStyle: headStyle,
+    cellComponent: baseCell,
+  },
+  {
+    key: 'document',
+    label: 'Акт',
+    colHeadStyle: headStyle,
+    cellComponent: baseCell,
+  },
+  {
+    key: 'status',
+    label: 'Статус',
+    colHeadStyle: headStyle,
+    cellComponent: paymentStatusCell,
+  },
+  {
+    key: 'sum',
+    label: 'Сумма выплаты',
+    colHeadStyle: headStyle,
+    cellComponent: baseCell,
+  },
+];
+
+const paymentRows = [
+  {
+    reqDate: '05.07.22',
+    payDate: '07.07.22',
+    document: 'Чек.pdf',
+    status: true,
+    sum: '1500 ₽',
+  },
+  {
+    reqDate: '08.08.22',
+    payDate: '-',
+    document: 'Чек.pdf',
+    status: false,
+    sum: '3000 ₽',
+  },
+  {
+    reqDate: '22.12.22',
+    payDate: '13.01.23',
+    document: 'Чек.pdf',
+    status: true,
+    sum: '2500 ₽',
+  },
+];
 
 const Partnership: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
@@ -75,11 +252,9 @@ const Partnership: FC = (): JSX.Element => {
         </div>
         <div className={stylesPartnership.tables}>
           <div className={stylesPartnership.tables__referrals}>
-            <div className={stylesPartnership.tables__titleContainer}>
-              <h2 className={stylesPartnership.tables__title}>
-                Cтатистика рефераллов
-              </h2>
-              {isMobile && (
+            <Typography tag="h3">Cтатистика рефераллов</Typography>
+            {/* TODO Не очень понятно как с этим быть, пока закоментил */}
+            {/* {isMobile && (
                 <button
                   type="button"
                   onClick={toggleReferralsTable}
@@ -92,14 +267,16 @@ const Partnership: FC = (): JSX.Element => {
                     position={refChevronActive ? 'up' : 'down'}
                   />
                 </button>
-              )}
-            </div>
+              )} */}
             <TableComponent
-              isReferralsTableVisible={isReferralsTableVisible}
-              cols={refCols}
-              rows={refRows}
+              columns={refCols}
+              headComponent={headCell}
+              tableData={refRows}
+              cellStyle={{ border: 'none' }}
             />
-            {isMobile && (
+
+            {/* TODO Не очень понятно как с этим быть, пока закоментил */}
+            {/* {isMobile && (
               <div className={stylesPartnership.partnership__buttonWrapper}>
                 <Button
                   variant="default"
@@ -110,11 +287,11 @@ const Partnership: FC = (): JSX.Element => {
                   Запросить выплату
                 </Button>
               </div>
-            )}
+            )} */}
           </div>
           <div className={stylesPartnership.tables__payments}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <h2 className={stylesPartnership.tables__title}>Выплаты</h2>
+              <Typography tag="h3">Выплаты</Typography>
               <button
                 type="button"
                 onClick={togglePaymentsTable}
@@ -137,7 +314,12 @@ const Partnership: FC = (): JSX.Element => {
               </button>
             </div>
             {isPaymentsTableVisible && (
-              <TableComponent cols={paymentCols} rows={paymentRows} />
+              <TableComponent
+                columns={paymentCols}
+                headComponent={headCell}
+                tableData={paymentRows}
+                cellStyle={{ border: 'none' }}
+              />
             )}
           </div>
         </div>
