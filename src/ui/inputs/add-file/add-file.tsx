@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import stylesAddfile from './add-file.module.scss';
 
 import { ReactComponent as Upload } from '../../../images/icon/24x24/common/upload.svg';
-
+import Typography from '../../typography/typography';
 import { SIZE_INPUT } from '../../../utils/constants';
 
 interface IDownloadFile {
@@ -47,11 +47,13 @@ const DownloadFile: FC<IDownloadFile> = ({
         htmlFor="file-input-button"
       >
         <Upload className={stylesAddfile.download__icon} />
-        <span className={stylesAddfile.download__text}>Загрузить файл</span>
+        <Typography tag="span" className={stylesAddfile.download__text}>
+          Загрузить файл
+        </Typography>
       </label>
-      <span className={stylesAddfile.textError}>
+      <Typography tag="span" className={stylesAddfile.textError}>
         Размер файла не должен превышать 20 Мб
-      </span>
+      </Typography>
     </div>
   );
 };
