@@ -1,10 +1,9 @@
 import { FC, useState } from 'react';
 
 import stylesBotCard from './bot-card.module.scss';
-
 import tg from '../../images/icon/40x40/telegram/default.svg';
-
 import MoreMybotPopup from '../popups/more-mybot/more-mybot';
+import Typography from '../../ui/typography/typography';
 
 export interface IBotCard {
   platform_icon: string;
@@ -28,7 +27,9 @@ const BotCard: FC<IBotCard> = ({
         aria-label="Меню настроек бота"
       />
       <div className={stylesBotCard.name_box}>
-        <p className={stylesBotCard.name}>{bot_name}</p>
+        <Typography tag="p" className={stylesBotCard.name}>
+          {bot_name}
+        </Typography>
       </div>
       {isActive && <MoreMybotPopup setIsOpen={setIsActive} idMyBot={bot_id} />}
     </div>
