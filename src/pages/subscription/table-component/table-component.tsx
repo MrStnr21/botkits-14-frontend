@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, ReactNode } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,7 +11,9 @@ import Typography from '../../../ui/typography/typography';
 
 type Columns = {
   key: string;
-  value: ReactNode;
+  label: ReactNode;
+  colStyle?: SxProps;
+  cellComponent?: (data: any) => ReactNode;
 };
 
 type TableData = {
@@ -21,38 +21,41 @@ type TableData = {
 };
 
 type Props = {
-  columns?: Columns[];
-  tableData?: TableData[];
+  columns: Columns[];
+  tableData: TableData[];
+  headComponent: (data: any) => ReactNode;
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
 };
 
-const TableComponent: FC<Props> = ({
-  columns,
-  tableData,
-  headStyle,
-  rowStyle,
-  cellStyle,
-}) => {
+const TableComponent: FC<Props> = ({ columns, tableData, ...props }) => {
   return (
     <TableContainer>
       <Table>
         <TableHead>
-          <TableRow>
-            {columns?.map(({ value }) => (
-              <TableCell key={uuidv4()} sx={headStyle}>
-                <Typography tag="p">{value}</Typography>
+          <TableRow sx={props.headStyle}>
+            {columns?.map(({ label, colStyle }) => (
+              <TableCell key={uuidv4()} sx={colStyle}>
+                {props.headComponent ? (
+                  props.headComponent(label)
+                ) : (
+                  <Typography tag="p">{label}</Typography>
+                )}
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {tableData?.map((row) => (
-            <TableRow key={uuidv4()} sx={rowStyle}>
-              {columns?.map(({ key }) => (
-                <TableCell key={uuidv4()} sx={cellStyle}>
-                  <Typography tag="p">{row[key]}</Typography>
+            <TableRow key={uuidv4()} sx={props.rowStyle}>
+              {columns?.map(({ key, cellComponent }) => (
+                <TableCell key={uuidv4()} sx={props.cellStyle}>
+                  {cellComponent ? (
+                    cellComponent(row[key])
+                  ) : (
+                    <Typography tag="p">{row[key]}</Typography>
+                  )}
                 </TableCell>
               ))}
             </TableRow>

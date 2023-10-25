@@ -1,43 +1,75 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
 import cn from 'classnames';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
-import { rows, PaymentTable } from './payment-table/payment-table';
 import icon from '../../images/icon/20x20/chevron/down.svg';
-import TableComponent from './table/table-component';
+import TableComponent from './table-component/table-component';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
 import useModal from '../../services/hooks/use-modal';
 import PaymentPopup from '../../components/popups/payment-popup/payment-popup';
+import { convertTimeFormat } from '../../utils/timeFormat';
+
+const headComponent = (label: string) => (
+  <Typography className={style.text} tag="p">
+    {label}
+  </Typography>
+);
+const dateCell = (date: string) => (
+  <Typography className={style.text} tag="span">
+    {convertTimeFormat(date)}
+  </Typography>
+);
+const baseCell = (data: any) => (
+  <Typography className={style.text} tag="span">
+    {data ?? '-'}
+  </Typography>
+);
+
+const statusCell = (status: boolean) => (
+  <Typography
+    tag="p"
+    className={cn(
+      style.text,
+      status ? style.text_succsess : style.text_failure
+    )}
+  >
+    {status ? 'Успешно' : 'Отклонено'}
+  </Typography>
+);
 
 const columns = [
   {
     key: 'date',
-    value: 'Дата',
+    label: 'Дата',
+    cellComponent: dateCell,
   },
   {
     key: 'amount',
-    value: 'Сумма',
+    label: 'Сумма',
+    cellComponent: baseCell,
   },
   {
     key: 'operation',
-    value: 'Операция',
+    label: 'Операция',
+    cellComponent: baseCell,
   },
   {
     key: 'note',
-    value: 'Примечание',
+    label: 'Примечание',
+    cellComponent: baseCell,
   },
   {
     key: 'successful',
-    value: 'Статус',
+    label: 'Статус',
+    cellComponent: statusCell,
   },
 ];
 
-export const tableData = [
+const tableData = [
   {
     date: '2023-09-17T14:08:39.904Z',
     amount: 1000,
@@ -64,7 +96,7 @@ export const tableData = [
     amount: 789,
     successful: true,
     operation: 'Поступления',
-    note: '',
+    note: null,
   },
   {
     date: '2023-01-05T16:45:30.678Z',
@@ -100,7 +132,7 @@ const Subscription: FC = (): JSX.Element => {
   const buttonList = ['Все', 'Списания', 'Поступления'];
   const [activeList, setActiveList] = useState(false);
   const [buttonName, setButtonName] = useState('Все');
-  const [rowList, setRowList] = useState(rows);
+  const [rowList, setRowList] = useState(tableData);
 
   const click = () => {
     setActiveList(!activeList);
@@ -109,9 +141,9 @@ const Subscription: FC = (): JSX.Element => {
   const filteredRows = (filterName: string): void => {
     setRowList(() => {
       if (filterName === 'Все') {
-        return rows;
+        return tableData;
       }
-      return rows.filter((row) => row.operation === filterName);
+      return tableData.filter((row) => row.operation === filterName);
     });
   };
 
@@ -189,8 +221,7 @@ const Subscription: FC = (): JSX.Element => {
           </div>
         </div>
         <div className={style.payment}>
-          {/* TODO Раскомментировать строки 148 - 167 */}
-          {/* <div className={style.payment__header}>
+          <div className={style.payment__header}>
             <Typography tag="h4">История платежей</Typography>
             <div className={style.dropdown}>
               <button
@@ -208,9 +239,12 @@ const Subscription: FC = (): JSX.Element => {
                 className={style.dropdown__list}
               />
             </div>
-          </div> */}
-          {/* <PaymentTable tableData={rowList} /> */}
-          <TableComponent columns={columns} tableData={tableData} />
+          </div>
+          <TableComponent
+            columns={columns}
+            tableData={rowList}
+            headComponent={headComponent}
+          />
         </div>
       </div>
       {isModalOpen && (
