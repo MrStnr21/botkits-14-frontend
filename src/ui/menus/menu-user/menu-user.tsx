@@ -15,7 +15,7 @@ import { useAppDispatch } from '../../../services/hooks/hooks';
 
 import BASE_URL from '../../../utils/config';
 import routesUrl from '../../../utils/routesData';
-
+import Typography from '../../typography/typography';
 import { getAccessToken } from '../../../auth/authService';
 
 export interface IMenuUser {
@@ -63,22 +63,32 @@ const MenuUser: FC<IMenuUser> = ({
       id="id"
     >
       <div className={stylesMenuUser.userInfo}>
-        <p className={stylesMenuUser.userInfo__name}>Иванов Александр</p>
+        <Typography tag="p" className={stylesMenuUser.userInfo__name}>
+          Иванов Александр
+        </Typography>
         <div className={stylesMenuUser.tariff_container}>
-          <p className={stylesMenuUser.tariff}>Тариф</p>
-          <p className={stylesMenuUser.tariff_name}>Демо</p>
+          <Typography tag="p" className={stylesMenuUser.tariff}>
+            Тариф
+          </Typography>
+          <Typography tag="p" className={stylesMenuUser.tariff_name}>
+            Демо
+          </Typography>
         </div>
       </div>
       <a href="#id" className={stylesMenuUser.button}>
         <img src={settingsIcon} alt="Иконка" />
-        <p className={stylesMenuUser.text}>Настройки аккаунта</p>
+        <Typography tag="p" className={stylesMenuUser.text}>
+          Настройки аккаунта
+        </Typography>
       </a>
       <a
         href={`${BASE_URL}/${routesUrl.subscription}`}
         className={stylesMenuUser.button}
       >
         <img src={paymentsIcon} alt="Иконка" />
-        <p className={stylesMenuUser.text}>Подписка и платежи</p>
+        <Typography tag="p" className={stylesMenuUser.text}>
+          Подписка и платежи
+        </Typography>
       </a>
       <a
         href="#id"
@@ -86,7 +96,9 @@ const MenuUser: FC<IMenuUser> = ({
         onClick={() => onLogout(token!)}
       >
         <img src={exitIcon} alt="Иконка" />
-        <p className={stylesMenuUser.text}>Выйти</p>
+        <Typography tag="p" className={stylesMenuUser.text}>
+          Выйти
+        </Typography>
       </a>
       <div className={stylesMenuUser.addition}>
         <div
@@ -95,13 +107,18 @@ const MenuUser: FC<IMenuUser> = ({
           id="notification"
         >
           <Notifications number={2} />
-          <p className={stylesMenuUser.text} id="notification">
+          <Typography
+            tag="p"
+            className={stylesMenuUser.text} /* id="notification" */
+          >
             Уведомления
-          </p>
+          </Typography>
         </div>
         <a href="#id" className={stylesMenuUser.button}>
           <Help />
-          <p className={stylesMenuUser.text}>Справка</p>
+          <Typography tag="p" className={stylesMenuUser.text}>
+            Справка
+          </Typography>
         </a>
       </div>
     </div>
