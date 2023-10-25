@@ -4,7 +4,7 @@ import { useMediaQuery } from '@mui/material';
 
 import Notifications from '../../icons/Notifications/Notifications';
 import CloseIcon from '../../icons/Close/CloseIcon';
-
+import Typography from '../../../ui/typography/typography';
 import stylesNotification from './notification-popup.module.scss';
 
 interface INotificationPopup {
@@ -39,7 +39,9 @@ const NotificationPopup: FC<INotificationPopup> = ({
           <div className={stylesNotification.wrapper}>
             <Notifications number={2} color="#060c23" />
 
-            <p className={stylesNotification.title}>Уведомления</p>
+            <Typography tag="p" className={stylesNotification.title}>
+              Уведомления
+            </Typography>
           </div>
           {!matches && (
             <button
