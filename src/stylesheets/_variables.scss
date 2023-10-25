@@ -3,38 +3,34 @@ $max-content-width: 1440px;
 $min-content-width: 320px;
 $switching-width: ($min-content-width + 300px);
 
-/* Цветовая схема приложения*/
-$grey-1: #ccd4e0;
-$grey-2: #bfc9d9;
-$grey-3: #a6b3c9;
-$grey-4: #8392ab;
+/* Цветовая схема приложения */
+$grey-1: #CCD4E0;
+$grey-2: #BFC9D9;
+$grey-3: #A6B3C9;
+$grey-4: #8392AB;
+$blue-disabled: #ECEFFF;
+$off-white: #FFFFFF;
 
-$blue-default: #243cbb;
-$blue-hover: #435cdb;
-$blue-active: #2743ce;
-$blue-disabled: #ecefff;
-$blue-focus: #314dd8;
+$primary-persian-blue-default: #243CBB;
+$primary-persian-blue-press: #435CDB;
+$primary-persian-blue-hover: #2743CE;
+$primary-persian-blue-focus: #314DD8; // только signin-signup
 
-$oxfordblue-default: #060c23;
+$primary-oxford-blue-default: #060C23;
 
-$green-default: #22ffaa;
-$green-hover: #70ffc8;
-$green-disabled: #85ffd0;
+$primary-medium-spring-green-default: #22FFAA;
+$primary-medium-spring-green-hover: #70FFC8;
+$primary-medium-spring-green-disabled: #85FFD0;
 
-$green-default: #22ffaa;
-$green-hover: #70ffc8;
-$green-disabled: #85ffd0;
+$secondary-cultured-hover: #F2F4F8;
+$secondary-cultured-default: #F8F9FB;
+$secondary-cultured-press: #D7DEEA;
+$secondary-cultured-focus: #E4E9F1;
 
-$cultured-hover-color: #f2f4f8;
-$cultured-default-color: #f8f9fb;
-$cultured-press-color: #d7deea;
-$cultured-focus-color: #e4e9f1;
+$error-default: #FF5656;
+$success-default: #00E98F;
 
 $xiketic-default: #131118;
-
-$off-white: #ffffff;
-$error: #ff5555;
-$success: #00e98f;
 
 /* Переменные размеров шрифта */
 //$xl-h1-font-size: 64px;  Используется в 1 компоненте
