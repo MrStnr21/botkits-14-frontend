@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 
 import stylesTextField from './text-field.module.scss';
-
+import Typography from '../typography/typography';
 import { ReactComponent as Bracket } from '../../images/icon/24x24/constructor/bracket.svg';
 import { ReactComponent as EmojiIcon } from '../../images/icon/24x24/constructor/emoji.svg';
 
@@ -25,12 +25,17 @@ const TextField: FC = (): JSX.Element => {
         draggable={false}
         className={stylesTextField.textarea__input}
       />
-      <span className={stylesTextField.textarea__outline} />
+      <Typography
+        tag="span"
+        className={stylesTextField.textarea__outline}
+        // eslint-disable-next-line react/no-children-prop
+        children={null}
+      />
 
       <div className={stylesTextField.textarea__footer}>
-        <p className={stylesTextField.textarea__counter}>
+        <Typography tag="p" className={stylesTextField.textarea__counter}>
           {text.length}/{textareaTextLength}
-        </p>
+        </Typography>
         <Bracket
           className={stylesTextField.textarea__icon}
           onClick={() => console.log('Что-то не происходит')}
