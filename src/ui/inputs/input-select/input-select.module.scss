@@ -120,3 +120,25 @@
     transform: rotate(-90deg);
   }
 }
+
+.optionContainer{
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ gap: 12px;
+}
+
+.optionText{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: $normal;
+  font-size: $xs-font-size;
+  line-height: $xs-line-height;
+  color: $primary-text-color;
+  letter-spacing: $m-letter-space;
+}
+
+.chosen{
+  position: absolute;
+  top: 8px;
+  left: 6px;
+}
