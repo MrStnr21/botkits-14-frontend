@@ -7,6 +7,7 @@ import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
 import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
 import TableComponent from '../../components/tableComponent/tableComponent';
+import Typography from '../../ui/typography/typography';
 import {
   refCols,
   refRows,
@@ -41,9 +42,12 @@ const Partnership: FC = (): JSX.Element => {
       <div className={stylesPartnership.partnership}>
         <div className={stylesPartnership.partnership__wrapper}>
           <div>
-            <h2 className={stylesPartnership.partnership__title}>
+            <Typography
+              tag="h2"
+              className={stylesPartnership.partnership__title}
+            >
               Партнерская программа
-            </h2>
+            </Typography>
             <div className={stylesPartnership.partnership__inputContainer}>
               <div className={stylesPartnership.partnership__inputWrapper}>
                 <Input
@@ -76,9 +80,9 @@ const Partnership: FC = (): JSX.Element => {
         <div className={stylesPartnership.tables}>
           <div className={stylesPartnership.tables__referrals}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <h2 className={stylesPartnership.tables__title}>
+              <Typography tag="h3" className={stylesPartnership.tables__title}>
                 Cтатистика рефераллов
-              </h2>
+              </Typography>
               {isMobile && (
                 <button
                   type="button"
@@ -114,7 +118,9 @@ const Partnership: FC = (): JSX.Element => {
           </div>
           <div className={stylesPartnership.tables__payments}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <h2 className={stylesPartnership.tables__title}>Выплаты</h2>
+              <Typography tag="h3" className={stylesPartnership.tables__title}>
+                Выплаты
+              </Typography>
               <button
                 type="button"
                 onClick={togglePaymentsTable}
