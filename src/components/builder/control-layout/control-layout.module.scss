@@ -39,6 +39,8 @@
   @include line-sizes($m-line-height, 0px);
   outline: 0;
   border: 0;
+  text-overflow: ellipsis;
+  max-width: 250px;
   @media screen and (max-width: 520px) {
     font-size: 9.12px;
     line-height: $m-line-height;

@@ -1,0 +1,21 @@
+@use '../../app/vars';
+
+.label {
+  width: 100%;
+  width: 264px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: vars.$hover-grey-color;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: vars.$h4-font-size;
+  font-weight: vars.$semi-bold;
+  font-family: inherit;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
