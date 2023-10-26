@@ -48,6 +48,8 @@
   color: $primary-text-color;
   outline: 0;
   border: 0;
+  text-overflow: ellipsis;
+  max-width: 250px;
   @media screen and (max-width: 520px) {
     font-size: 9.12px;
     line-height: 11.86px;
