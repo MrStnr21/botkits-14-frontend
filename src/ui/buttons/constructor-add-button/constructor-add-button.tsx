@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
+import classNames from 'classnames/bind';
 
 import PlusIcon from '../../../images/icon/24x24/constructor/plus.svg';
 import Horizontal from '../../../images/icon/24x24/constructor/horizontal.svg';
@@ -13,7 +14,7 @@ import CreditCard from '../../../images/icon/24x24/add block/credit-card.svg';
 import Sliders from '../../../images/icon/24x24/add block/sliders.svg';
 import Api from '../../../images/icon/24x24/add block/api.svg';
 import MapPin from '../../../images/icon/24x24/add block/map-pin.svg';
-
+import Typography from '../../typography/typography';
 import stylesConstructorAddButton from './constructor-add-button.module.scss';
 
 enum IconsFree {
@@ -41,21 +42,6 @@ export const Icons = {
 
 // type Icons = IconsFree | IconsHard;
 
-/* export enum Icons1 {
-  add = 'add',
-  horizontalInline = 'horizontal inline',
-  verticalInline = 'vertical inline',
-  message = 'message block',
-  table = 'saving data in CRM',
-  deeplink = 'deeplink',
-  gitBranch = 'conditional block',
-  headphones = 'transfer to the operator',
-  creditCard = 'payment',
-  sliders = 'managing variables',
-  api = 'api',
-  mapPin = 'coordinates',
-} */
-
 export interface IConstructorAddButton {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
   onClick?: VoidFunction;
@@ -63,6 +49,8 @@ export interface IConstructorAddButton {
   children: React.ReactNode;
   icon?: typeof Icons;
 }
+
+const cx = classNames.bind(stylesConstructorAddButton);
 
 const ConstructorAddButton: FC<IConstructorAddButton> = ({
   buttonHtmlType = 'button',
@@ -123,13 +111,11 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
   return (
     <section
       className={
-        buttonType === 'free'
-          ? stylesConstructorAddButton.wrapper
-          : stylesConstructorAddButton.wrapperAddNewBlock
+        buttonType === 'free' ? cx('wrapper') : cx('wrapperAddNewBlock')
       }
     >
       <button
-        className={stylesConstructorAddButton.button}
+        className={cx('button')}
         onClick={onClick}
         // eslint-disable-next-line react/button-has-type
         type={buttonHtmlType}
@@ -137,7 +123,9 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
       >
         {' '}
         <ReactSVG src={getIcon()} />
-        <p className={stylesConstructorAddButton.text}>{children}</p>
+        <Typography tag="p" className={cx('text')}>
+          {children}
+        </Typography>
       </button>
     </section>
   );

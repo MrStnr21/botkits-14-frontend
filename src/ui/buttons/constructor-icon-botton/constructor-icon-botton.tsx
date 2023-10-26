@@ -4,7 +4,7 @@ import { ReactSVG } from 'react-svg';
 import classNames from 'classnames/bind';
 
 import stylesConstructorIconBotton from './constructor-icon-botton.module.scss';
-
+import Typography from '../../typography/typography';
 import { BUTTON_NAME } from '../../../utils/constants';
 
 export interface IConstructorIconBotton {
@@ -57,7 +57,11 @@ const ConstructorIconBotton: FC<IConstructorIconBotton> = ({
       disabled={disabled}
     >
       <ReactSVG src={icon} className={cnIcon} />
-      {text && styleBtn === 'mailing' && <p className={cx('text')}>{text}</p>}
+      {text && styleBtn === 'mailing' && (
+        <Typography tag="p" className={cx('text')}>
+          {text}
+        </Typography>
+      )}
     </button>
   );
 };

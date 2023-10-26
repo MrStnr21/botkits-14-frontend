@@ -35,7 +35,6 @@
 }
 
 .signinSocialTitle {
-  margin: 0;
   padding: 0;
   width: 100%;
   max-width: 172px;
@@ -48,7 +47,6 @@
   text-align: center;
   color: $white-color;
   font-size: $l-font-size;
-  font-weight: $bold;
   line-height: $button-line-height-150;
 
   @media screen and (max-width: 600px) {
@@ -172,9 +170,8 @@
   color: $error-red-color;
   position: absolute;
   font-size: 10px;
-  line-height: 15px;
-  letter-spacing: $m-letter-space;
-  margin: 2px 0 0 0;
+  line-height: 15px;  
+  margin-top: 2px;
   left: 0;
   right: 0;
   text-align: center;

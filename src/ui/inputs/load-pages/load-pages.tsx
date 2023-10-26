@@ -3,7 +3,7 @@ import { FC } from 'react';
 import stylesInput from './load-pages.module.scss';
 
 import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
-
+import Typography from '../../typography/typography';
 import PageItem from '../page-item/page-item';
 
 interface ILoadPages {
@@ -27,7 +27,9 @@ const LoadPages: FC<ILoadPages> = ({
           onClick={onClick}
         >
           <Plus className={stylesInput.upload_img} />
-          <p className={stylesInput.selects_text}>Загрузить страницу</p>
+          <Typography tag="p" className={stylesInput.selects_text}>
+            Загрузить страницу
+          </Typography>
         </button>
       ) : (
         <ul

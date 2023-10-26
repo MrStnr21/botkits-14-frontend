@@ -16,13 +16,13 @@
   display: flex;
 }
 
-.text {
+.text.text {
   font-size: $s-font-size;
   font-weight: $normal;
   line-height: $s-line-height;
-  font-family: 'Open Sans';
-  letter-spacing: $m-letter-space;
-  margin-left: 16px;
+  font-family: 'Open Sans';  
+  padding-left: 16px;
+  color: inherit;
 }
 
 .button {

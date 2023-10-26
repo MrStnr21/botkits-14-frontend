@@ -59,13 +59,10 @@
 }
 
 .name {
-  font: {
-    weight: $bold;
-    size: $l-font-size;
-    family: 'IBM Plex Mono', sans-serif;
+  font: {    
+    size: $l-font-size;    
   }
 
-  margin: 0;
   line-height: $m-line-height;
   letter-spacing: 0.5px;
   // переполнение, имя бота

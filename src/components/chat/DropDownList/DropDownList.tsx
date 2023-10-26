@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import ChevronIcon from '../../icons/Chevron/ChevronIcon';
 import stylesList from './DropDownList.module.scss';
+import Typography from '../../../ui/typography/typography';
 
 interface IDropDownList {
   caption: string;
@@ -29,19 +30,25 @@ const DropDownList: FC<IDropDownList> = ({
           setIsOpened(!isOpened);
         }}
       >
-        <p className={stylesList.text}>{caption}</p>
+        <Typography tag="p" className={stylesList.text}>
+          {caption}
+        </Typography>
         <ChevronIcon position={`${isOpened ? 'up' : 'down'}`} />
       </div>
       {isOpened && (
         <div className={stylesList.container}>
-          <p className={stylesList.textinfo}>
-            <span className={stylesList.title}>{info.one.title}</span>
+          <Typography tag="p" className={stylesList.textinfo}>
+            <Typography tag="span" className={stylesList.title}>
+              {info.one.title}
+            </Typography>
             {` ${info.one.paragraph}`}
-          </p>
-          <p className={stylesList.textinfo}>
-            <span className={stylesList.title}>{info.two.title}</span>
+          </Typography>
+          <Typography tag="p" className={stylesList.textinfo}>
+            <Typography tag="span" className={stylesList.title}>
+              {info.two.title}
+            </Typography>
             {` ${info.two.paragraph}`}
-          </p>
+          </Typography>
         </div>
       )}
     </div>

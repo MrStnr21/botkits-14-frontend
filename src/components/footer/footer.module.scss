@@ -27,10 +27,8 @@
 .text {
   font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
-  font-size: $m-font-size;
   line-height: $m-line-height;
   // width: fit-content;
-  margin: 0;
   white-space: nowrap;
   @media (max-width: $switching-width) {
     margin: 0 auto;

@@ -30,11 +30,7 @@
 }
 
 .text {
-  font-size: $m-font-size;
   font-weight: $normal;
-  line-height: $m-line-height;
-  font-family: 'IBM Plex Sans', sans-serif;
-  margin: 0;
   margin-left: 16px;
   color: #2e293d;
 
@@ -107,12 +103,8 @@
 }
 
 .userInfo__name {
-  margin: 0;
   color: #060c23;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 130%;
+  font-size: 18px;  
 }
 
 .tariff_container {
@@ -128,12 +120,10 @@
 }
 
 .tariff {
-  margin: 0;
   font-weight: 400;
 }
 
 .tariff_name {
-  margin: 0;
   font-weight: 600;
 }
 
