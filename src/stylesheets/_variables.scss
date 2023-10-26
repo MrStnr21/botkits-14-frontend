@@ -67,18 +67,17 @@ $s-letter-space: -0.2px;
 /* Переменные радиуса скругления */
 // $border-radius-185: 185px; используется в 1 компоненте
 // $border-radius-50: 50px; используется в 2-х компонентах
-$xxl-border-radius-30: 30px;
-$xl-border-radius-15: 15px;
-$l-border-radius-10: 10px;
-$m-border-radius-8: 8px;
-$s-border-radius-5: 5px;
+$xxl-border-radius: 30px;
+$xl-border-radius: 15px;
+$l-border-radius: 10px;
+$m-border-radius: 8px;
+$s-border-radius: 5px;
 $xs-border-radius: 4px;
 $border-radius-circle: 50%;
 
 /* Переменные тени элемента */
 $l-box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
 $m-box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
-$s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
 /* Шаблонныe селекторы
 для скрытия блока с текстом объяснения, что это за ссылка */
@@ -93,22 +92,6 @@ $s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   white-space: nowrap;
   width: 1px;
 } */
-
-%button-style-reset {
-  border: none;
-  padding: 0;
-  background: transparent;
-
-  &:hover {
-    cursor: url('../../images/icon/cursor/pointing-hand.svg'), pointer;
-  }
-}
-
-%flex-element-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 /*  Курсор  */
 $cursor: url('../../images/icon/cursor/pointing-hand.svg'), pointer;
