@@ -16,7 +16,6 @@ import avatar from '../../images/avatar/circled/default.svg';
 import MenuUser from '../../ui/menus/menu-user/menu-user';
 
 import NotificationPopup from '../popups/notification-popup/notification-popup';
-import Typography from '../../ui/typography/typography';
 
 const Header: FC = (): JSX.Element => {
   const [isOpenAccontSettings, setIsAccSet] = useState(false);
@@ -36,30 +35,23 @@ const Header: FC = (): JSX.Element => {
     <header className={styles.header}>
       <div className={styles.container}>
         {matches ? <MenuMobile /> : <Menu24px />}
-        <Typography tag="span" className={styles.logo}>
+        <span className={styles.logo}>
           <Logo />
-        </Typography>
+        </span>
       </div>
       <div className={styles.wrapper}>
-        <Typography tag="p" className={styles.text}>
-          Тариф
-        </Typography>
-        <Typography tag="p" className={styles.text}>
-          Демо
-        </Typography>
+        <p className={styles.text}>Тариф</p>
+        <p className={styles.text}>Демо</p>
         <div className={styles.icons}>
           <Help />
           <Notifications number={2} onClick={toggleNotifPopup} />
         </div>
         <div className={styles.userInfo} onClick={toggleAccSet}>
-          <Typography tag="span" className={styles.userInfo__avatar}>
+          <span className={styles.userInfo__avatar}>
             <img src={avatar} alt="Avatar" className={styles.userInfo__image} />
-          </Typography>
-          <Typography tag="p" className={styles.text}>
-            User Name
-          </Typography>
-          <Typography
-            tag="span"
+          </span>
+          <p className={styles.text}>User Name</p>
+          <span
             className={`${styles.userInfo__button} ${
               !isOpenAccontSettings
                 ? styles.button_default
@@ -67,7 +59,7 @@ const Header: FC = (): JSX.Element => {
             }`}
           >
             <ArrowSmall />
-          </Typography>
+          </span>
         </div>
         <MenuUser
           isActive={isOpenAccontSettings}

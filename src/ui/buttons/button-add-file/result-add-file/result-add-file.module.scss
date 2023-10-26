@@ -20,7 +20,10 @@
 }
 
 .result__name {
+  color: #060c23;
+  margin: 0;
   margin-right: auto;
+  font-weight: $bold;
   width: 120px;
   text-align: left;
   // многоточие
@@ -29,7 +32,8 @@
   overflow: hidden;
 }
 
-.result__size {  
+.result__size {
+  margin: 0;
   margin-right: 12px;
   color: #ccd4e0;
   font-weight: $normal;

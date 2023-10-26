@@ -20,7 +20,6 @@ import routesUrl from '../../../utils/routesData';
 
 import SwitchBotMenuPopup from './switch-bot-menu-popup';
 import useModal from '../../../services/hooks/use-modal';
-import Typography from '../../../ui/typography/typography';
 
 interface IMoreMybotPopup {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -64,66 +63,52 @@ const MoreMybotPopup: FC<IMoreMybotPopup> = ({
         <ul className={styles.list}>
           <li onClick={copyBot} className={styles.item}>
             <CopyBotIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
+            <p className={styles.text}>
               {!matches ? 'Копировать бота' : 'Копировать'}
-            </Typography>
+            </p>
           </li>
           <li
             onClick={() => selectItem(POPUP_ITEM.SHARE)}
             className={styles.item}
           >
             <ShareIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
-              Общий доступ
-            </Typography>
+            <p className={styles.text}>Общий доступ</p>
           </li>
           <li
             onClick={() => selectItem(POPUP_ITEM.RENAME)}
             className={styles.item}
           >
             <EditIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
-              Переименовать
-            </Typography>
+            <p className={styles.text}>Переименовать</p>
           </li>
           <li
             onClick={() => selectItem(POPUP_ITEM.LINK)}
             className={`${styles.item} ${styles.flexItem}`}
           >
             <LinkIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
-              Получить ссылку
-            </Typography>
+            <p className={styles.text}>Получить ссылку</p>
           </li>
           <li
             onClick={() => selectItem(POPUP_ITEM.INFO)}
             className={styles.item}
           >
             <InfoIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
-              Информация
-            </Typography>
+            <p className={styles.text}>Информация</p>
           </li>
           <li
             onClick={() => selectItem(POPUP_ITEM.NOTIFSETT)}
             className={styles.item}
           >
             <NotificationSettingsIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
-              Настройка уведомлений
-            </Typography>
+            <p className={styles.text}>Настройка уведомлений</p>
           </li>
           <li className={styles.item} onClick={deleteBot}>
             <TrashIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
-              Удалить
-            </Typography>
+            <p className={styles.text}>Удалить</p>
           </li>
           <li onClick={() => setIsOpen(false)} className={styles.item}>
             <CloseIcon color="#A6B3C9" />
-            <Typography tag="p" className={styles.text}>
-              Отмена
-            </Typography>
+            <p className={styles.text}>Отмена</p>
           </li>
         </ul>
       </div>

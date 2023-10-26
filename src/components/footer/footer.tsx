@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import Typography from '../../ui/typography/typography';
-
 import stylesFooter from './footer.module.scss';
 
 const Footer: FC = (): JSX.Element => {
@@ -15,9 +13,7 @@ const Footer: FC = (): JSX.Element => {
 
   return (
     <footer className={stylesFooter.footer}>
-      <Typography tag="p" className={stylesFooter.text}>
-        &copy; {year} BotKits
-      </Typography>
+      <p className={stylesFooter.text}>&copy; {year} BotKits</p>
     </footer>
   );
 };

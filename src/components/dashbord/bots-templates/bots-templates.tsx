@@ -10,7 +10,6 @@ import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 import { getTemplatesBotsAction } from '../../../services/actions/bots/getTemplatesBots';
 import { getAccessToken } from '../../../auth/authService';
 import { getTemplatesBotsSel } from '../../../utils/selectorData';
-import Typography from '../../../ui/typography/typography';
 
 const Template: FC<{ name: string; description: string; fileName: string }> = ({
   name,
@@ -75,9 +74,7 @@ const Templates: FC = (): JSX.Element => {
   return (
     <div className={stylesTemplates.container}>
       <div className={stylesTemplates.header_wrapper}>
-        <Typography tag="h2" className={stylesTemplates.title}>
-          Шаблоны
-        </Typography>
+        <h2 className={stylesTemplates.title}>Шаблоны</h2>
         <div className={stylesTemplates.accordion_wrapper}>
           <button
             className={stylesTemplates.accordion_button}

@@ -10,7 +10,6 @@ import ButtonInstruction from '../../../ui/buttons/button-instruction/button-ins
 import ArrowIcon from '../../../images/icon/20x20/chevron/down.svg';
 import FaqIcon from '../../../images/icon/add bot/tutorial.svg';
 import VideoIcon from '../../../images/icon/add bot/video.svg';
-import Typography from '../../../ui/typography/typography';
 
 const HowItWorks: FC = (): JSX.Element => {
   const [isActive, setIsActive] = useState(true);
@@ -27,7 +26,7 @@ const HowItWorks: FC = (): JSX.Element => {
 
   return (
     <div className={stylesHowItWorks.container}>
-      <Typography tag="p" className={stylesHowItWorks.header}>
+      <p className={stylesHowItWorks.header}>
         Как это работает?
         <button
           onClick={() => setIsActive(!isActive)}
@@ -36,7 +35,7 @@ const HowItWorks: FC = (): JSX.Element => {
         >
           <ReactSVG src={ArrowIcon} />
         </button>
-      </Typography>
+      </p>
       <div className={buttonsContainerCn}>
         <ButtonInstruction url="#" icon={FaqIcon}>
           Пошаговая инструкция

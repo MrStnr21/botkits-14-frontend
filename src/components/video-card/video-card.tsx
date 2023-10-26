@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import Typography from '../../ui/typography/typography';
+
 import stylesVideo from './video-card.module.scss';
 
 interface IVideoElement {
@@ -69,11 +69,7 @@ const VideoCard: FC<IVideoElement> = ({
             />
           </div>
         </div>
-        {hiddenRemoveButton && (
-          <Typography tag="p" className={stylesVideo.caption}>
-            {title}
-          </Typography>
-        )}
+        {hiddenRemoveButton && <p className={stylesVideo.caption}>{title}</p>}
       </div>
       {isPlay && (
         <div className={stylesVideo.video__box}>

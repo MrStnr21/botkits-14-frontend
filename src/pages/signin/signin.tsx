@@ -26,7 +26,6 @@ import {
   handlerAuthVkontakte,
   handlerAuthYandex,
 } from '../../utils/utils';
-import Typography from '../../ui/typography/typography';
 
 const Signin: FC = (): JSX.Element => {
   const userData = useAppSelector(signinSel);
@@ -125,17 +124,15 @@ const Signin: FC = (): JSX.Element => {
                 Войти
               </Button>
               {userData.signinError && (
-                <Typography tag="p" className={stylesSignin.incorrect_text}>
+                <p className={stylesSignin.incorrect_text}>
                   {userData.signinErrorText}
-                </Typography>
+                </p>
               )}
             </div>
           </form>
         </div>
         <div className={stylesSignin.signinSocialContainer}>
-          <Typography tag="h2" className={stylesSignin.signinSocialTitle}>
-            Быстрый вход
-          </Typography>
+          <h2 className={stylesSignin.signinSocialTitle}>Быстрый вход</h2>
           <div className={stylesSignin.socialContainer}>
             <div className={stylesSignin.socialMain}>
               <ButtonAddSocial

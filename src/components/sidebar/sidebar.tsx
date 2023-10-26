@@ -5,7 +5,7 @@ import { useMediaQuery } from '@mui/material';
 import stylesSidebar from './sidebar.module.scss';
 
 import Cover from '../../ui/cover/cover';
-import Typography from '../../ui/typography/typography';
+
 import { links, ILink } from './sb-data';
 
 // Элемент заголовка в навигации
@@ -20,9 +20,7 @@ const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
       }
     >
       {icon}
-      <Typography tag="p" className={stylesSidebar.navigation__text}>
-        {text}
-      </Typography>
+      <p className={stylesSidebar.navigation__text}>{text}</p>
     </NavLink>
   );
 };
@@ -76,9 +74,7 @@ const Sidebar: FC = (): JSX.Element => {
                 : stylesSidebar.addbutton
             }
           >
-            <Typography tag="p" className={stylesSidebar.addtext}>
-              Добавить бота
-            </Typography>
+            <p className={stylesSidebar.addtext}>Добавить бота</p>
           </NavLink>
           <ul className={stylesSidebar.navigation__list}>
             {links.map((item, index) =>
@@ -115,9 +111,7 @@ const Sidebar: FC = (): JSX.Element => {
           </ul>
           <div className={stylesSidebar.addbutton_mobile}>
             <NavLink to="/add-bot" className={stylesSidebar.addcircle_mobile} />
-            <Typography tag="p" className={stylesSidebar.addtext_mobile}>
-              Добавить бота
-            </Typography>
+            <p className={stylesSidebar.addtext_mobile}>Добавить бота</p>
           </div>
         </div>
       </div>

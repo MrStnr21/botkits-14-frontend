@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import Typography from '../ui/typography/typography';
+
 import { Button } from './Button';
 import './header.css';
 
@@ -45,14 +45,14 @@ export const Header = ({
             />
           </g>
         </svg>
-        <Typography tag="h1">Acme</Typography>
+        <h1>Acme</h1>
       </div>
       <div>
         {user ? (
           <>
-            <Typography tag="span" className="welcome">
+            <span className="welcome">
               Welcome, <b>{user.name}</b>!
-            </Typography>
+            </span>
             <Button size="small" onClick={onLogout} label="Log out" />
           </>
         ) : (

@@ -10,7 +10,6 @@ import videoIcon from '../../../images/icon/24x24/add content/video.svg';
 import musicIcon from '../../../images/icon/24x24/add content/music.svg';
 import imageIcon from '../../../images/icon/24x24/add content/image.svg';
 import btnIcon from '../../../images/icon/24x24/add content/button.svg';
-import Typography from '../../typography/typography';
 
 // import Button from '../button/button';
 
@@ -36,9 +35,7 @@ const ButtonAddContent: FC = (): JSX.Element => {
       className={stylesButtonAddContent.wrapper}
     >
       {/* @TODO  add style for h2 */}
-      <Typography tag="h2" className={stylesButtonAddContent.header}>
-        Добавить
-      </Typography>
+      <h2 className={stylesButtonAddContent.header}>Добавить</h2>
       <div className={stylesButtonAddContent.butbox}>
         <ConstructorIconBotton
           text={BUTTON_NAME.IMAGE}

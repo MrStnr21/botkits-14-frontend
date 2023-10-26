@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import stylesFile from './UploadedFile.module.scss';
 import AttachedFileIcon from '../../icons/AttachedFile/AttachedFileIcon';
-import Typography from '../../../ui/typography/typography';
 
 interface IUploadedFile {
   file_name: string;
@@ -15,9 +14,9 @@ const UploadedFile: FC<IUploadedFile> = ({
   return (
     <div className={stylesFile.container}>
       <AttachedFileIcon />
-      <Typography tag="p" className={stylesFile.text}>
+      <p className={stylesFile.text}>
         {file_name}.{file_extension}
-      </Typography>
+      </p>
     </div>
   );
 };

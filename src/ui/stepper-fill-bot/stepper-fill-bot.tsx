@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Typography from '../typography/typography';
+
 import stylesStepperFillBot from './stepper-fill-bot.module.scss';
 
 interface IStepperFillBot {
@@ -16,10 +16,10 @@ const StepperFillBot: FC<IStepperFillBot> = ({
   return (
     <div className={stylesStepperFillBot.stepper}>
       <div className={stylesStepperFillBot.stepper_step}>
-        <Typography tag="p">
+        <p>
           {step} Шаг {`>`}
-        </Typography>
-        <Typography tag="p">{text}</Typography>
+        </p>
+        <p>{text}</p>
       </div>
       <div className={stylesStepperFillBot.stepper_children}>{children}</div>
     </div>

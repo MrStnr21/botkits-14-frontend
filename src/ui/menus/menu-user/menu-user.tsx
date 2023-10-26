@@ -15,14 +15,14 @@ import { useAppDispatch } from '../../../services/hooks/hooks';
 
 import BASE_URL from '../../../utils/config';
 import routesUrl from '../../../utils/routesData';
-import Typography from '../../typography/typography';
+
 import { getAccessToken } from '../../../auth/authService';
 
 export interface IMenuUser {
   isActive?: boolean;
   top?: number;
   left?: number;
-  right?: number; 
+  right?: number;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void; // Пока что слушаем только "Уведомления"
 }
 
@@ -63,32 +63,22 @@ const MenuUser: FC<IMenuUser> = ({
       id="id"
     >
       <div className={stylesMenuUser.userInfo}>
-        <Typography tag="p" className={stylesMenuUser.userInfo__name}>
-          Иванов Александр
-        </Typography>
+        <p className={stylesMenuUser.userInfo__name}>Иванов Александр</p>
         <div className={stylesMenuUser.tariff_container}>
-          <Typography tag="p" className={stylesMenuUser.tariff}>
-            Тариф
-          </Typography>
-          <Typography tag="p" className={stylesMenuUser.tariff_name}>
-            Демо
-          </Typography>
+          <p className={stylesMenuUser.tariff}>Тариф</p>
+          <p className={stylesMenuUser.tariff_name}>Демо</p>
         </div>
       </div>
       <a href="#id" className={stylesMenuUser.button}>
         <img src={settingsIcon} alt="Иконка" />
-        <Typography tag="p" className={stylesMenuUser.text}>
-          Настройки аккаунта
-        </Typography>
+        <p className={stylesMenuUser.text}>Настройки аккаунта</p>
       </a>
       <a
         href={`${BASE_URL}/${routesUrl.subscription}`}
         className={stylesMenuUser.button}
       >
         <img src={paymentsIcon} alt="Иконка" />
-        <Typography tag="p" className={stylesMenuUser.text}>
-          Подписка и платежи
-        </Typography>
+        <p className={stylesMenuUser.text}>Подписка и платежи</p>
       </a>
       <a
         href="#id"
@@ -96,9 +86,7 @@ const MenuUser: FC<IMenuUser> = ({
         onClick={() => onLogout(token!)}
       >
         <img src={exitIcon} alt="Иконка" />
-        <Typography tag="p" className={stylesMenuUser.text}>
-          Выйти
-        </Typography>
+        <p className={stylesMenuUser.text}>Выйти</p>
       </a>
       <div className={stylesMenuUser.addition}>
         <div
@@ -107,18 +95,13 @@ const MenuUser: FC<IMenuUser> = ({
           id="notification"
         >
           <Notifications number={2} />
-          <Typography
-            tag="p"
-            className={stylesMenuUser.text} /* id="notification" */
-          >
+          <p className={stylesMenuUser.text} id="notification">
             Уведомления
-          </Typography>
+          </p>
         </div>
         <a href="#id" className={stylesMenuUser.button}>
           <Help />
-          <Typography tag="p" className={stylesMenuUser.text}>
-            Справка
-          </Typography>
+          <p className={stylesMenuUser.text}>Справка</p>
         </a>
       </div>
     </div>

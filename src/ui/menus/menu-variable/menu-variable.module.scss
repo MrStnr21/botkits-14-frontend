@@ -18,7 +18,6 @@
 
 .open_button {
   display: flex;
-  align-items: center;
   flex-direction: row;
   width: 240px;
   height: 40px;
@@ -44,11 +43,12 @@
   display: flex;
 }
 
-.text.text {
+.text {
   font-size: $s-font-size;
   font-weight: $normal;
   line-height: $s-line-height;
-  font-family: 'Open Sans';  
+  font-family: 'Open Sans';
+  letter-spacing: $m-letter-space;
   color: black;
   transition: color 0.3s linear;
 }

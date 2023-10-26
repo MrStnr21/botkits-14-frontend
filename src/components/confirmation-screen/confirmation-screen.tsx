@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import stylesConfirmationScreen from './confirmation-screen.module.scss';
 import routesUrl from '../../utils/routesData';
-import Typography from '../../ui/typography/typography';
 
 interface IConfirmationScreen {
   text: string;
@@ -25,13 +24,10 @@ const ConfirmationScreen: FC<IConfirmationScreen> = ({
           className={stylesConfirmationScreen.successSigninLink}
         />
         <div className={stylesConfirmationScreen.titleContainer}>
-          <Typography tag="h1" className={stylesConfirmationScreen.title}>
+          <h1 className={stylesConfirmationScreen.title}>
             {text}{' '}
-            <Typography tag="span" className={stylesConfirmationScreen.email}>
-              /email
-            </Typography>{' '}
-            !
-          </Typography>
+            <span className={stylesConfirmationScreen.email}>/email</span> !
+          </h1>
           <div style={style} className={stylesConfirmationScreen.titleImage} />
         </div>
       </div>

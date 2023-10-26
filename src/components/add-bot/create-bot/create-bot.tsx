@@ -26,7 +26,6 @@ import Input from '../../../ui/inputs/input/input';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
 import { signinSel, signupSel } from '../../../utils/selectorData';
-import Typography from '../../../ui/typography/typography';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -123,24 +122,15 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
         <div className={stylesCreateBot.create_main}>
           <div className={stylesCreateBot.create_main_bot_name}>
             {img[botName]}
-            <Typography
-              tag="h3"
-              className={stylesCreateBot.create_main_bot_name_title}
-            >
+            <h3 className={stylesCreateBot.create_main_bot_name_title}>
               {botName}
-            </Typography>
-            <Typography
-              tag="p"
-              className={stylesCreateBot.create_main_bot_name_text}
-            >
+            </h3>
+            <p className={stylesCreateBot.create_main_bot_name_text}>
               Бот будет создан на основе{' '}
-              <Typography
-                tag="span"
-                className={stylesCreateBot.create_main_bot_name_span}
-              >
+              <span className={stylesCreateBot.create_main_bot_name_span}>
                 BotName
-              </Typography>
-            </Typography>
+              </span>
+            </p>
           </div>
           <form
             onSubmit={handleSubmit}
@@ -213,12 +203,12 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
         </div>
       ) : (
         <div className={stylesCreateBot.create_message}>
-          <Typography tag="h3" className={stylesCreateBot.create_message_title}>
+          <h3 className={stylesCreateBot.create_message_title}>
             К какому мессенджеру подключим бота?
-          </Typography>
-          <Typography tag="p" className={stylesCreateBot.create_message_text}>
+          </h3>
+          <p className={stylesCreateBot.create_message_text}>
             Выберите из предложенного списка
-          </Typography>
+          </p>
         </div>
       )}
     </div>

@@ -15,7 +15,6 @@ import useForm from '../../services/hooks/use-form';
 
 import { resetPasswordSel } from '../../utils/selectorData';
 import { resetPasswordAction } from '../../services/actions/auth/reset-password';
-import Typography from '../../ui/typography/typography';
 
 const ResetPassword: FC = (): JSX.Element => {
   const userData = useAppSelector(resetPasswordSel);
@@ -59,9 +58,7 @@ const ResetPassword: FC = (): JSX.Element => {
     <RegLogResLayout title="Восстановление пароля">
       <div className={stylesResetPassword.resetFormContainer}>
         <div className={stylesResetPassword.resetInputsContainer}>
-          <Typography tag="h2" className={stylesResetPassword.resetTitle}>
-            Введи свой e-mail:
-          </Typography>
+          <h2 className={stylesResetPassword.resetTitle}>Введи свой e-mail:</h2>
           <form
             className={stylesResetPassword.inputsForm}
             onSubmit={handleReset}
@@ -89,12 +86,9 @@ const ResetPassword: FC = (): JSX.Element => {
                 сбросить пароль
               </Button>
               {userData.resetPasswordError && (
-                <Typography
-                  tag="p"
-                  className={stylesResetPassword.incorrect_text}
-                >
+                <p className={stylesResetPassword.incorrect_text}>
                   {userData.resetPasswordErrorText}
-                </Typography>
+                </p>
               )}
             </div>
           </form>

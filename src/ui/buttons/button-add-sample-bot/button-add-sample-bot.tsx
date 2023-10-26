@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
-import Typography from '../../typography/typography';
+
 import stylesButtonAddSampleBot from './button-add-sample-bot.module.scss';
 
 export interface IButtonAddSampleBot {
@@ -38,9 +38,7 @@ const ButtonAddSampleBot: FC<IButtonAddSampleBot> = ({
           src={PlusIcon}
         />
       </div>
-      <Typography tag="p" className={stylesButtonAddSampleBot.text}>
-        {children}
-      </Typography>
+      <p className={stylesButtonAddSampleBot.text}>{children}</p>
     </button>
   );
 };

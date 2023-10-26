@@ -21,7 +21,8 @@
   font-weight: $normal;
   font-size: $s-font-size;
   line-height: $s-line-height;
-  letter-spacing: $lx-letter-space;  
+  letter-spacing: $lx-letter-space;
+  margin: 0;
   white-space: nowrap;
   color: $primary-text-color;
 }

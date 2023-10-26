@@ -48,7 +48,8 @@
 
 .text {
   text-align: left;
-  padding: 0;  
+  padding: 0;
+  margin: 0;
   /* Обрезаем всё за пределами блока */
   /* Позволим тексту уменьшаться по ширине */
   -webkit-line-clamp: 1;

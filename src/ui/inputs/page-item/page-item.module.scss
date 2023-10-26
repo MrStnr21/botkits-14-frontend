@@ -42,7 +42,7 @@
 .text {
   font-size: $s-font-size;
   line-height: 20px;
-  color: inherit;
+  margin: 0;
 }
 
 .select_upload {
@@ -62,7 +62,7 @@
 .upload_text {
   font-size: $s-font-size;
   line-height: 20px;
-  color: inherit;
+  margin: 0;
 }
 
 .selects {

@@ -6,13 +6,16 @@
   gap: 16px;
 }
 
-.header {  
+.header {
+  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   font-size: $h4-font-size;
+  font-weight: $bold;
   line-height: $button-line-height-130;
+  font-family: 'IBM Plex Mono', Arial, sans-serif;
 }
 
 .arrow_button {

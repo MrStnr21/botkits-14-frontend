@@ -18,7 +18,6 @@ import { ReactComponent as ImagePoll } from '../../../images/icon/template/poll.
 
 import Button from '../../../ui/buttons/button/button';
 import routesUrl from '../../../utils/routesData';
-import Typography from '../../../ui/typography/typography';
 
 interface IBotTemplate {
   title: string;
@@ -87,31 +86,21 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
       <div>
         {image[title]}
         <div className={stylesBotTemplate.bot_template_description}>
-          <Typography tag="h2" className={stylesBotTemplate.bot_template_title}>
-            {title}
-          </Typography>
-          <Typography tag="p" className={stylesBotTemplate.bot_template_text}>
-            {description}
-          </Typography>
+          <h2 className={stylesBotTemplate.bot_template_title}>{title}</h2>
+          <p className={stylesBotTemplate.bot_template_text}>{description}</p>
           <ul className={stylesBotTemplate.bot_template_list}>
             {data.map((item, index) => (
               <li
                 key={item + +index}
                 className={stylesBotTemplate.bot_template_item}
               >
-                <Typography
-                  tag="span"
-                  className={stylesBotTemplate.bot_template_item_index}
-                >
+                <span className={stylesBotTemplate.bot_template_item_index}>
                   {index + 1}
                   {'>'}
-                </Typography>
-                <Typography
-                  tag="span"
-                  className={stylesBotTemplate.bot_template_item_text}
-                >
+                </span>
+                <span className={stylesBotTemplate.bot_template_item_text}>
                   {item}
-                </Typography>
+                </span>
               </li>
             ))}
           </ul>

@@ -7,7 +7,6 @@ import ModalPopup from '../modal-popup/modal-popup';
 import ButtonIconCopy from '../../../ui/buttons/button-icon-copy/button-icon-copy';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
-import Typography from '../../../ui/typography/typography';
 
 export interface IBotMenuPopup {
   type?: 'default' | 'info' | 'notify';
@@ -40,9 +39,7 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
   return (
     <ModalPopup onClick={onClose}>
       <div className={stylesBotMenuPopup.bot_menu}>
-        <Typography tag="h3" className={stylesBotMenuPopup.title}>
-          {title}
-        </Typography>
+        <h3 className={stylesBotMenuPopup.title}>{title}</h3>
         {type === 'default' ? (
           <>
             <Input
@@ -87,22 +84,14 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
         ) : type === 'notify' ? (
           <>
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
-                Название канала
-              </Typography>
-              <Typography tag="p" className={stylesBotMenuPopup.value}>
-                ChanelName
-              </Typography>
+              <p className={stylesBotMenuPopup.text}>Название канала</p>
+              <p className={stylesBotMenuPopup.value}>ChanelName</p>
             </div>
             <hr className={stylesBotMenuPopup.hr} />
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
-                Ключ доступа
-              </Typography>
+              <p className={stylesBotMenuPopup.text}>Ключ доступа</p>
               <div className={stylesBotMenuPopup.value}>
-                <Typography tag="p">
-                  1842016250:AAF8uWUV1wE9B8XxZvfbmRiZkmh1tWXu-Ns
-                </Typography>
+                <p>1842016250:AAF8uWUV1wE9B8XxZvfbmRiZkmh1tWXu-Ns</p>
                 <ButtonIconCopy onClick={onClickURL} />
               </div>
             </div>
@@ -110,34 +99,28 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
         ) : (
           <>
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
+              <p className={stylesBotMenuPopup.text}>
                 Подписаться на уведомления
-              </Typography>
+              </p>
               <div className={stylesBotMenuPopup.value}>
-                <Typography tag="p">
-                  /notify 60a280e3f7b15d37975ccb69
-                </Typography>
+                <p>/notify 60a280e3f7b15d37975ccb69</p>
                 <ButtonIconCopy onClick={onClickURL} />
               </div>
             </div>
             <hr className={stylesBotMenuPopup.hr} />
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
+              <p className={stylesBotMenuPopup.text}>
                 Отписаться от уведомлений
-              </Typography>
+              </p>
               <div className={stylesBotMenuPopup.value}>
-                <Typography tag="p">
-                  /disable_notify 60a280e3f7b15d37975ccb69
-                </Typography>
+                <p>/disable_notify 60a280e3f7b15d37975ccb69</p>
                 <ButtonIconCopy onClick={onClickURL} />
               </div>
             </div>
           </>
         )}
         {open && (
-          <Typography tag="p" className={stylesBotMenuPopup.open_modal}>
-            Ссылка скопирована
-          </Typography>
+          <p className={stylesBotMenuPopup.open_modal}>Ссылка скопирована</p>
         )}
       </div>
     </ModalPopup>

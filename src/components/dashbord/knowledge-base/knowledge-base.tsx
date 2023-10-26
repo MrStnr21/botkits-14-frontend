@@ -11,7 +11,6 @@ import prew3 from '../../../images/prewiew/prew3.png';
 import VideoCard from '../../video-card/video-card';
 
 import links from './kb-data';
-import Typography from '../../../ui/typography/typography';
 
 const KnowledgeBase: FC = (): JSX.Element => {
   const matches = useMediaQuery('(max-width: 560px)');
@@ -19,9 +18,7 @@ const KnowledgeBase: FC = (): JSX.Element => {
   return (
     <section className={stylesKnowledgeBase.wrapper}>
       <div className={stylesKnowledgeBase.video}>
-        <Typography tag="h2" className={stylesKnowledgeBase.video__header}>
-          С чего начать?
-        </Typography>
+        <h2 className={stylesKnowledgeBase.video__header}>С чего начать?</h2>
         <div className={stylesKnowledgeBase.video__container}>
           <VideoCard
             src="https://www.youtube.com/embed/FKOn5DfpJDA"
@@ -59,9 +56,9 @@ const KnowledgeBase: FC = (): JSX.Element => {
         >
           База знаний
         </a>
-        <Typography tag="p" className={stylesKnowledgeBase.base__text}>
+        <p className={stylesKnowledgeBase.base__text}>
           Узнай, как создать чат бота. Примеры и описание опций сервиса!
-        </Typography>
+        </p>
         <nav>
           <ul className={stylesKnowledgeBase.base__list}>
             {links.map((item, index) => (

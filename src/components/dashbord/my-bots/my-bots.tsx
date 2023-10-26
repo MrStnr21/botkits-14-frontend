@@ -26,7 +26,6 @@ import WebSite from '../../../images/icon/40x40/web/hover.svg';
 import Alisa from '../../../images/icon/40x40/alisa/hover.svg';
 import VK from '../../../images/icon/40x40/vk/hover.svg';
 import { getBotsSel } from '../../../utils/selectorData';
-import Typography from '../../../ui/typography/typography';
 
 interface IImg {
   [key: string]: string;
@@ -68,9 +67,7 @@ const MyBots: FC = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <Typography tag="h1" className={styles.header__text}>
-          Мои боты
-        </Typography>
+        <h1 className={styles.header__text}>Мои боты</h1>
         {matches && (
           <button
             className={styles.header__button}

@@ -19,7 +19,6 @@ import stylesCalendar from './calendar.module.scss';
 import InputSelect from '../../ui/inputs/input-select/input-select';
 
 import { TIME_ZONE } from '../../utils/constants';
-import Typography from '../../ui/typography/typography';
 
 interface ICalendar {
   handleFunction: (payload: string) => void;
@@ -99,9 +98,7 @@ const Calendar: FC<ICalendar> = ({ handleFunction }): JSX.Element => {
             defaultValue={date}
           />
           <div className={stylesCalendar.containerTimeZone}>
-            <Typography tag="span" className={stylesCalendar.timeZoneLabel}>
-              Часовой пояс
-            </Typography>
+            <span className={stylesCalendar.timeZoneLabel}>Часовой пояс</span>
             <InputSelect
               maxWidth={144}
               values={TIME_ZONE}

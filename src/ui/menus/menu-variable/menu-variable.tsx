@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 
 import stylesMenuVariable from './menu-variable.module.scss';
-import Typography from '../../typography/typography';
+
 import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
 
 export interface IMenuVariable {
@@ -55,12 +55,7 @@ const MenuVariable: FC<IMenuVariable> = ({
             isActive !== '' ? stylesMenuVariable.overlayActive : ''
           }`}
         />
-        <Typography
-          tag="p"
-          className={`${stylesMenuVariable.text} ${textColor}`}
-        >
-          {variable}
-        </Typography>
+        <p className={`${stylesMenuVariable.text} ${textColor}`}>{variable}</p>
         <img
           src={arrowIcon}
           alt="стрелка"

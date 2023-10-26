@@ -20,9 +20,12 @@
   text-align: center;
 }
 
-.create_message_title {  
+.create_message_title {
+  font-family: 'IBM Plex Mono';
+  font-size: $h3-font-size;
   line-height: $h3-line-height;
-  letter-spacing: 0px;  
+  letter-spacing: 0px;
+  margin: 0;
 
   @media screen and (max-width: 520px) {
     font-size: $h4-font-size;
@@ -31,6 +34,7 @@
 }
 
 .create_message_text {
+  font-family: 'Open Sans';
   font-size: $l-font-size;
   line-height: $l-line-height;
   letter-spacing: $l-letter-space;
@@ -65,13 +69,18 @@
   max-height: 25px;
 }
 
-.create_main_bot_name_title {  
+.create_main_bot_name_title {
+  font-family: 'IBM Plex Mono';
+  font-size: $h3-font-size;
+  font-weight: $bold;
   line-height: $h3-line-height;
-  letter-spacing: 0px;  
+  letter-spacing: 0px;
+  margin: 0;
   margin-left: 15px;
 }
 
-.create_main_bot_name_text {  
+.create_main_bot_name_text {
+  font-family: 'Open Sans';
   font-size: $s-font-size;
   font-weight: $normal;
   line-height: $s-line-height;
@@ -79,7 +88,8 @@
   color: $default-blue-color;
   background-color: #ecefff;
   padding: 6px 16px;
-  border-radius: 16px;  
+  border-radius: 16px;
+  margin: 0;
   margin-left: 20px;
 
   @media screen and (max-width: 670px) {
