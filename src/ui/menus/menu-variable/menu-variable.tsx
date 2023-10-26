@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import stylesMenuVariable from './menu-variable.module.scss';
 
@@ -7,10 +7,15 @@ import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
 export interface IMenuVariable {
   buttons: string[];
   onClick?: Function;
+  nameMenu?: string;
 }
 
-const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
-  const [variable, setVariable] = useState<string>('Переменная');
+const MenuVariable: FC<IMenuVariable> = ({
+  buttons,
+  onClick,
+  nameMenu = 'Переменная',
+}): JSX.Element => {
+  const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
   const [textColor, setTextColor] = useState<string>('');
 
@@ -23,9 +28,33 @@ const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
     setIsActive(isActive === '' ? stylesMenuVariable.active : '');
   };
 
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsActive('');
+      }
+    };
+
+    if (isActive !== '') {
+      document.addEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [isActive]);
+
   return (
     <div>
       <div className={stylesMenuVariable.open_button} onClick={openHandler}>
+        <div
+          onClick={() => {
+            if (isActive !== '') setIsActive('');
+          }}
+          className={`${stylesMenuVariable.overlay} ${
+            isActive !== '' ? stylesMenuVariable.overlayActive : ''
+          }`}
+        />
         <p className={`${stylesMenuVariable.text} ${textColor}`}>{variable}</p>
         <img
           src={arrowIcon}
@@ -44,6 +73,7 @@ const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
                   onClick={() => {
                     changeVariableHandler(name);
                     onClick!(name);
+                    setIsActive('');
                   }}
                 >
                   {name}
