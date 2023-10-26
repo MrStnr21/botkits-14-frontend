@@ -2,13 +2,13 @@
 @use '../../../stylesheets/mixins' as *;
 
 @mixin button-main(
-  13px,
+  $s-font-size,
   $normal,
-  0.3px,
-  150%,
-  44px,
-  $l-border-radius
-) {
+  $m-letter-space,
+  $button-line-height-150,
+  $constructor-add-button-height,
+  $border-radius-10
+  ) {
   @include button-style-reset;
   display: flex;
   align-items: center;
