@@ -18,6 +18,17 @@ $white: #FFFFFF;
   background-repeat: no-repeat;
 }
 
+.avatarBot {
+  @include containerWidth;
+  border-radius: 50%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
 .onlineIndicator {
   width: 8px;
   height: 8px;
@@ -27,9 +38,23 @@ $white: #FFFFFF;
   position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 2;
+}
+
+.botIndicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
 .avatarContainer {
   position: relative;
   @include containerWidth;
+}
+
+.avatarContainerBot {
+  position: relative;
+  width: 44px;
+  height: 44px;
 }

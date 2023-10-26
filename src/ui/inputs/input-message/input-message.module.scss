@@ -6,12 +6,12 @@
   min-width: 272px;
   background-color: $default-grey-color;
   border-radius: $border-radius-10;
-  max-height: 48px;
+  min-height: 48px;
 }
 
 .message_input {
   width: 100%;
-  padding: 14px 16px;
+  margin: 14px 16px;
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
@@ -23,6 +23,7 @@
   letter-spacing: $m-letter-space;
   color: $primary-text-color;
   resize: none;
+  overflow: hidden;
 
   &::placeholder {
     color: $default-dark-grey-color;
@@ -36,8 +37,9 @@
 
 .message_buttons {
   display: flex;
+  align-items: start;
   gap: 8px;
-  padding-right: 16px;
+  padding: 14px 16px 0 0;
 }
 
 .message_button {
@@ -45,4 +47,8 @@
   border: 0;
   cursor: pointer;
   padding: 0;
+}
+
+.message_button:last-of-type {
+  margin-top: -2px;
 }

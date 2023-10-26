@@ -1,4 +1,5 @@
 import React, { FC, ChangeEvent, useState } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 import stylesInput from './input-message.module.scss';
 import PaperClipIcon from '../../../components/icons/PaperClip/PaperClipIcon';
 import EmojiIcon from '../../../components/icons/Emoji/EmojiIcon';
@@ -30,7 +31,7 @@ const InputMessage: FC<IInputMessage> = ({
   const rotate = rotateAddIcon ? 'unfolded' : 'folded';
   return (
     <div className={stylesInput.message}>
-      <textarea
+      <TextareaAutosize
         className={stylesInput.message_input}
         placeholder={placeholder}
         value={value}
