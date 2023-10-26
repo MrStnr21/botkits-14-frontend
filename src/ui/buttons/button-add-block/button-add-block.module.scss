@@ -3,21 +3,23 @@
 
 .button {
   @include button-style-reset;
-  width: 196px;
-  height: 64px;
-  display: flex;
+  @include size(196px, 64px);
+  @include flex($align-items: center);
   background-color: white;
   transition: background-color 0.1s linear;
   border-radius: $l-border-radius;
-  align-items: center;
-}
 
-.button:hover {
-  background-color: $secondary-cultured-hover;
-}
+  & :hover {
+    background-color: $secondary-cultured-hover;
+  }
 
-.button:active {
-  background-color: $blue-disabled;
+  & :active {
+    background-color: $blue-disabled;
+  }
+
+  & :disabled {
+    background-color: white;
+  }
 }
 
 .button:disabled {

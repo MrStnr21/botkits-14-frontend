@@ -12,7 +12,7 @@
 .text {
   @include size(141px, 23px);
   @include font('IBMPlexMonno', 18px, 600);
-  line-height: 21px;
+  line-height: 130%;
   margin: 0px 52px 0px 16px;
 }
 
