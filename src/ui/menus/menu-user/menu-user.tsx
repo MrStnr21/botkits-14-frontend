@@ -22,7 +22,7 @@ export interface IMenuUser {
   isActive?: boolean;
   top?: number;
   left?: number;
-  right?: number;
+  right?: number; 
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void; // Пока что слушаем только "Уведомления"
 }
 
