@@ -3,24 +3,17 @@
 
 .button {
   @include button-style-reset;
-  @include flex(row, center, center);
-  flex-direction: column;
-  gap: 14px;
-  font-size: 16px;
-  font-weight: $bold;
-  letter-spacing: 0.5px;
-  line-height: 130%;
-  font-family: 'IBM Plex Mono', sans-serif;
+  @include flex(column, center, center, 14px);
+  @include font('IBM Plex Mono', $m-font-size, $bold);
+  @include line-sizes($m-line-height, $l-letter-space);
+  @include size(100%, 172px);
   transition: all 0.1s linear;
-  height: 172px;
-  width: 100%;
   border-radius: $xxl-border-radius;
 }
 
 .icon {
   @include flex(row, center, center);
-  width: 46px;
-  height: 46px;
+  @include size(46px, 46px);
   box-sizing: border-box;
   border: 3px solid;
   border-radius: $border-radius-circle;
@@ -37,59 +30,58 @@
 }
 
 .text {
-  padding: 0;
-  margin: 0;
+  @include indents;
 }
 
 /* Стили цвета кнопки*/
-
-.button {
-  color: $grey-3;
-  background-color: $secondary-cultured-hover;
-}
 
 .icon {
   border-color: $grey-3;
 }
 
-.button svg {
-  stroke: $grey-3;
-}
-
-.button:hover {
-  color: $primary-persian-blue-default;
-}
-
-.button:hover .icon {
-  border-color: $primary-persian-blue-default;
-}
-
-.button:hover svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.button:active {
-  color: $primary-persian-blue-default;
-  background-color: $blue-disabled;
-}
-
-.button:active .icon {
-  border-color: $primary-persian-blue-default;
-}
-
-.button:active svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.button:disabled {
-  color: $grey-1;
+.button {
+  color: $grey-3;
   background-color: $secondary-cultured-hover;
-}
 
-.button:disabled .icon {
-  border-color: $grey-1;
-}
+  svg {
+    stroke: $grey-3;
+  }
 
-.button:disabled svg {
-  stroke: $grey-1;
+  &:hover {
+    color: $primary-persian-blue-default;
+
+    .icon {
+      border-color: $primary-persian-blue-default;
+    }
+
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:active {
+    color: $primary-persian-blue-default;
+    background-color: $blue-disabled;
+
+    .icon {
+      border-color: $primary-persian-blue-default;
+    }
+
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:disabled {
+    color: $grey-1;
+    background-color: $secondary-cultured-hover;
+
+    .icon {
+      border-color: $grey-1;
+    }
+
+    svg {
+      stroke: $grey-1;
+    }
+  }
 }

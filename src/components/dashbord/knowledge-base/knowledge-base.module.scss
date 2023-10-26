@@ -3,7 +3,7 @@
 
 %typography-header {
   font-family: 'IBM Plex Mono', sans-serif;
-  font-size: 18px;
+  font-size: $l-font-size;
   font-weight: $bold;
   line-height: 130%;
 }
@@ -21,8 +21,8 @@
 
   font-family: 'Open Sans', sans-serif;
   color: $primary-oxford-blue-default;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
 
   @media (max-width: $switching-width) {
     margin-right: 20px;
@@ -87,7 +87,7 @@
 .base__text {
   margin-top: 0;
   margin-bottom: 24px;
-  font-size: 14px;
+  font-size: $s-font-size;
   font-weight: $bold;
 }
 
@@ -111,7 +111,7 @@
   text-decoration: none;
   color: inherit;
   font-family: inherit;
-  font-size: 14px;
+  font-size: $s-font-size;
   font-weight: $normal;
 
   &:hover {

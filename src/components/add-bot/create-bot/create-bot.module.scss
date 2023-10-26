@@ -23,26 +23,26 @@
 
 .create_message_title {
   font-family: 'IBM Plex Mono';
-  font-size: 24px;
+  font-size: $xxl-font-size;
   line-height: 31.2px;
   letter-spacing: 0px;
   margin: 0;
 
   @media screen and (max-width: 520px) {
-    font-size: 18px;
+    font-size: $l-font-size;
     line-height: 23.4px;
   }
 }
 
 .create_message_text {
   font-family: 'Open Sans';
-  font-size: 16px;
+  font-size: $m-font-size;
   line-height: 24px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   margin: 16px 0 0;
 
   @media screen and (max-width: 520px) {
-    font-size: 14px;
+    font-size: $s-font-size;
     line-height: 21px;
   }
 }
@@ -72,7 +72,7 @@
 
 .create_main_bot_name_title {
   font-family: 'IBM Plex Mono';
-  font-size: 24px;
+  font-size: $xxl-font-size;
   font-weight: $bold;
   line-height: 31.2px;
   letter-spacing: 0px;
@@ -82,10 +82,10 @@
 
 .create_main_bot_name_text {
   font-family: 'Open Sans';
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $normal;
   line-height: 19.5px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   color: $primary-persian-blue-default;
   background-color: #ecefff;
   padding: 6px 16px;

@@ -31,7 +31,7 @@
 }
 
 .text {
-  font-size: 14px;
+  font-size: $s-font-size;
   font-weight: $normal;
   line-height: 21px;
   font-family: 'IBM Plex Sans', sans-serif;
@@ -40,12 +40,12 @@
   color: #2e293d;
 
   &hover {
-    color: #060c23;
+    color: $primary-oxford-blue-default;
   }
 
   @media (max-width: ($switching-width)) {
     font-family: 'Open Sans', sans-serif;
-    color: #060c23;
+    color: $primary-oxford-blue-default;
   }
 }
 
@@ -109,10 +109,10 @@
 
 .userInfo__name {
   margin: 0;
-  color: #060c23;
+  color: $primary-oxford-blue-default;
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: $l-font-size;
+  font-weight: $bold;
   line-height: 130%;
 }
 
@@ -123,9 +123,9 @@
 
   color: #8392ab;
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  font-size: $xs-font-size;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
 }
 
 .tariff {
@@ -135,7 +135,7 @@
 
 .tariff_name {
   margin: 0;
-  font-weight: 600;
+  font-weight: $bold;
 }
 
 .addition {

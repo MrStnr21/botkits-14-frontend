@@ -29,10 +29,10 @@
   border-top: 1px solid $secondary-cultured-hover;
   border-bottom: 1px solid $secondary-cultured-hover;
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $normal;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
   color: $primary-oxford-blue-default;
 }
 
@@ -57,10 +57,10 @@
   background-color: transparent;
   border: none;
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $normal;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
   transition: color 0.4s ease-in-out;
 }
 
@@ -73,11 +73,11 @@
   background-color: $secondary-cultured-default;
 
   [class*="MuiInputBase-input"] {
-    font-size: 13px;
+    font-size: $xs-font-size;
     font-weight: $normal;
     font-style: 'normal';
-    line-height: 150%;
-    letter-spacing: 0.3px;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
     color: $primary-oxford-blue-default;
     padding: 10px 8px 10px 8px;
   }
@@ -101,11 +101,11 @@
     max-width: 26px;
     box-sizing: content-box;
     height: 100%;
-    font-size: 13px;
+    font-size: $xs-font-size;
     font-weight: $normal;
     font-style: normal;
-    line-height: 150%;
-    letter-spacing: 0.3px;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
     color: $primary-oxford-blue-default;
     margin: 0;
     padding: 0;
@@ -147,11 +147,11 @@
     }
 
     [class*="MuiPickersCalendarHeader-label"] {
-      font-size: 13px;
+      font-size: $xs-font-size;
       font-weight: $bold;
       font-style: normal;
-      line-height: 150%;
-      letter-spacing: 0.3px;
+      line-height: $xl-line-height;
+      letter-spacing: $m-letter-space;
       color: $primary-oxford-blue-default;
       text-transform: capitalize;
       margin: 0;
@@ -168,11 +168,11 @@
     max-width: 26px;
     max-height: 26px;
     margin: 0px;
-    font-size: 13px;
+    font-size: $xs-font-size;
     font-weight: $normal;
     font-style: normal;
-    line-height: 150%;
-    letter-spacing: 0.3px;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
     color: $primary-oxford-blue-default;
 
     &:hover {

@@ -10,7 +10,7 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: $bold;
   line-height: 19.5px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   border-radius: 50px;
   border: 0;
   background-color: $secondary-cultured-hover;
@@ -41,7 +41,7 @@
 }
 
 .text {
-  font-size: 13px;
+  font-size: $xs-font-size;
   line-height: 20px;
   margin: 0;
 }
@@ -61,7 +61,7 @@
 }
 
 .upload_text {
-  font-size: 13px;
+  font-size: $xs-font-size;
   line-height: 20px;
   margin: 0;
 }
@@ -110,9 +110,9 @@
   justify-content: center;
   font-family: 'Open Sans', sans-serif;
   font-weight: $bold;
-  font-size: 14px;
+  font-size: $s-font-size;
   line-height: 21px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   gap: 17px;
   border: 0;
   padding: 16px 12px;

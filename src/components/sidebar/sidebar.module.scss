@@ -25,7 +25,7 @@
   // общее оформление текста в навигации
   font-family: 'Open Sans', sans-serif;
   font-weight: $normal;
-  font-size: 16px;
+  font-size: $m-font-size;
   letter-spacing: 0.2px;
   line-height: 24px;
 }
@@ -68,7 +68,7 @@
   background-color: $secondary-cultured-default;
   box-sizing: border-box;
   padding: 8px;
-  border-radius: 10px;
+  border-radius: $l-border-radius;
 
   @media (max-width: $switching-width) {
     background-color: $off-white;
@@ -92,7 +92,7 @@
     overflow: visible;
     background-color: $primary-persian-blue-default;
     width: 182px;
-    border-radius: 10px;
+    border-radius: $l-border-radius;
     margin-left: 8px;
 
     background-image: none; // Будет плюс на синем блоке при закрытии)
@@ -248,8 +248,8 @@
 .addtext {
   font-family: 'IBM Plex Mono', sans-serif;
   font-weight: $bold;
-  letter-spacing: 0.3px;
-  font-size: 14px;
+  letter-spacing: $m-letter-space;
+  font-size: $s-font-size;
   color: $off-white;
   text-transform: uppercase;
   margin: 0;

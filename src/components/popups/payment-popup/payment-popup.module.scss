@@ -48,7 +48,7 @@
   width: 890px;
   height: 257px;
   background: #F8F9FB;
-  border-radius: 10px;
+  border-radius: $l-border-radius;
   display: flex;
   flex-direction: column;
   z-index: 2;
@@ -152,7 +152,7 @@
   top: 420px;
   position: absolute;
   background: #131118;
-  border-radius: 10px;
+  border-radius: $l-border-radius;
   z-index: 0;
 }
 
@@ -164,7 +164,7 @@
   position: absolute;
   opacity: 0.15;
   background: #EFFDFF;
-  border-radius: 10px;
+  border-radius: $l-border-radius;
   z-index: -1;
 }
 

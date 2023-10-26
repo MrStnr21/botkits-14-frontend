@@ -98,9 +98,9 @@
 }
 
 .caption {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 150%; /* 18px */
+  font-size: $xxs-font-size;
+  font-weight: $bold;
+  line-height: $xl-line-height; /* 18px */
   margin-top: 12px;
   margin-bottom: 0;
   text-align: start;

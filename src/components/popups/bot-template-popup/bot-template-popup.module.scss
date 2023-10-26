@@ -45,19 +45,19 @@
 
 .bot_template_title {
   font-family: 'IBM Plex Mono';
-  font-size: 32px;
+  font-size: $xxxl-font-size;
   font-weight: $bold;
   line-height: 41.6px;
-  letter-spacing: -0.2px;
+  letter-spacing: s-letter-space;
   margin: 0;
 }
 
 .bot_template_text {
   font-family: 'Open Sans';
-  font-size: 18px;
+  font-size: $l-font-size;
   font-weight: $bold;
   line-height: 27px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   margin: 0;
 }
 
@@ -72,20 +72,20 @@
 
 .bot_template_item_index {
   font-family: 'IBM Plex Mono';
-  font-size: 16px;
+  font-size: $m-font-size;
   font-weight: $bold;
   line-height: 21px;
-  letter-spacing: 0.5px;
+  letter-spacing: $l-letter-space;
   color: $primary-persian-blue-default;
   margin-right: 28px;
 }
 
 .bot_template_item_text {
   font-family: 'Open Sans';
-  font-size: 14px;
+  font-size: $s-font-size;
   font-weight: $bold;
   line-height: 21px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   color: $primary-oxford-blue-default;
 }
 
@@ -103,7 +103,7 @@
 .bot_template_cancel {
   @include button-style-reset;
   font-family: 'IBM Plex Mono';
-  font-size: 18px;
+  font-size: $l-font-size;
   font-weight: $bold;
   line-height: 24px;
   letter-spacing: 1px;

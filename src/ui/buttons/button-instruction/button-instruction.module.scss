@@ -87,11 +87,11 @@
   padding-left: 201px;
   padding-right: 20px;
   margin: 0;
-  line-height: 150%;
+  line-height: $xl-line-height;
   font-family: 'Open Sans';
-  font-size: 14px;
+  font-size: $s-font-size;
   font-weight: $bold;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
 
   @media screen and (max-width: 670px) {
     padding-left: 137px;

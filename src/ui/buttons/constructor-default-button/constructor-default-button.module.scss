@@ -4,10 +4,10 @@
 .button {
   @include button-style-reset;
   @include flex(row, center, center);
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $bold;
-  letter-spacing: 0.3px;
-  line-height: 150%;
+  letter-spacing: $m-letter-space;
+  line-height: $xl-line-height;
   font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
   height: 35px;

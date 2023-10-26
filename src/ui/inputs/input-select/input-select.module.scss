@@ -58,12 +58,12 @@
       [class*='MuiMenuItem-root'] {
         position: relative;
         background-color: $off-white;
-        font-size: 13px;
+        font-size: $xs-font-size;
         font-weight: $normal;
         font-family: 'Open Sans', sans-serif;
         font-style: normal;
-        line-height: 150%;
-        letter-spacing: 0.3px;
+        line-height: $xl-line-height;
+        letter-spacing: $m-letter-space;
         color: $primary-oxford-blue-default;
         text-transform: capitalize;
         max-height: 37px;
@@ -105,12 +105,12 @@
   }
 
   [class*='MuiOutlinedInput-input'] {
-    font-size: 13px;
+    font-size: $xs-font-size;
     font-weight: $normal;
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
-    line-height: 150%;
-    letter-spacing: 0.3px;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
     color: $primary-oxford-blue-default;
     text-transform: capitalize;
     padding: 0;
@@ -135,7 +135,7 @@
   font-size: $xxs-font-size;
   line-height: 18px;
   color: $primary-oxford-blue-default;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
 }
 
 .chosen{

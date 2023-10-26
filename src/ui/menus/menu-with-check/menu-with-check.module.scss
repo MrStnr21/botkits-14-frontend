@@ -24,11 +24,11 @@
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $normal;
   line-height: 19.5px;
   font-family: 'Open Sans';
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   cursor: pointer;
   position: relative;
 }

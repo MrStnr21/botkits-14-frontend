@@ -28,7 +28,7 @@
 .text {
   font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
-  font-size: 14px;
+  font-size: $s-font-size;
   line-height: 21px;
   // width: fit-content;
   margin: 0;

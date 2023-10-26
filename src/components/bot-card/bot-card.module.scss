@@ -68,7 +68,7 @@
 
   margin: 0;
   line-height: 21px;
-  letter-spacing: 0.5px;
+  letter-spacing: $l-letter-space;
   // переполнение, имя бота
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -1,6 +1,12 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
+.name {
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  margin: 0;
+}
+
 .button {
   @include button-style-reset;
   @include size(196px, 64px);
@@ -11,6 +17,16 @@
 
   & :hover {
     background-color: $secondary-cultured-hover;
+
+    .icon {
+      opacity: 1;
+      filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg)
+        brightness(77%) contrast(87%);
+    }
+
+    .name {
+      color: $primary-persian-blue-default;
+    }
   }
 
   & :active {
@@ -19,11 +35,16 @@
 
   & :disabled {
     background-color: white;
-  }
-}
 
-.button:disabled {
-  background-color: white;
+    .icon {
+      opacity: 0.3;
+      filter: none;
+    }
+
+    .name {
+      color: $grey-2;
+    }
+  }
 }
 
 .icon {
@@ -31,32 +52,4 @@
   opacity: 0.3;
   filter: none;
   transition: opacity 0.1s linear;
-}
-
-.button:hover .icon {
-  opacity: 1;
-  filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg)
-    brightness(77%) contrast(87%);
-}
-
-.button:disabled .icon {
-  opacity: 0.3;
-  filter: none;
-}
-
-.name {
-  font-size: 14px;
-  font-weight: $bold;
-  letter-spacing: 0.3px;
-  line-height: 21px;
-  font-family: 'Open Sans';
-  margin: 0;
-}
-
-.button:hover .name {
-  color: $primary-persian-blue-default;
-}
-
-.button:disabled .name {
-  color: $grey-2;
 }

@@ -48,16 +48,16 @@
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   color: $off-white;
-  font-size: 16px;
+  font-size: $m-font-size;
   font-weight: $bold;
-  line-height: 150%;
+  line-height: $xl-line-height;
 
   @media screen and (max-width: 600px) {
     margin-top: -15px;
     margin-bottom: 24px;
-    font-size: 16px;
-    letter-spacing: 0.5px;
-    line-height: 150%;
+    font-size: $m-font-size;
+    letter-spacing: $l-letter-space;
+    line-height: $xl-line-height;
   }
 }
 
@@ -144,10 +144,10 @@
   justify-content: center;
   gap: 30px;
   color: $off-white;
-  font-size: 14px;
+  font-size: $s-font-size;
   font-weight: $bold;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
   font-feature-settings:
     'clig' off,
     'liga' off;
@@ -174,7 +174,7 @@
   position: absolute;
   font-size: 10px;
   line-height: 15px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   margin: 2px 0 0 0;
   left: 0;
   right: 0;

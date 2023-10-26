@@ -31,15 +31,15 @@
 
   &__title {
     font-family: 'IBM Plex Mono', sans-serif;
-    font-size: 32px;
+    font-size: $xxxl-font-size;
     line-height: 41.6px;
-    letter-spacing: -0.2px;
+    letter-spacing: s-letter-space;
     font-weight: $bold;
     color: $primary-oxford-blue-default;
     margin: 0 0 32px 0;
 
     @media screen and (max-width: 620px) {
-      font-size: 24px;
+      font-size: $xxl-font-size;
       line-height: 31.2px;
       margin-bottom: 20px;
     }
@@ -110,12 +110,12 @@
   &__title {
     margin: 0;
     font-family: 'IBM Plex Mono', sans-serif;
-    font-size: 24px;
+    font-size: $xxl-font-size;
     font-weight: $semi-bold;
     line-height: 31.2px;
 
     @media screen and (max-width: 860px) {
-      font-size: 18px;
+      font-size: $l-font-size;
       font-weight: $bold;
       line-height: 23.4px;
     }

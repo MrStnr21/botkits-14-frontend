@@ -18,11 +18,11 @@
 }
 
 .text {
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $normal;
   line-height: 19.5px;
   font-family: 'Open Sans';
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   margin-left: 16px;
 }
 

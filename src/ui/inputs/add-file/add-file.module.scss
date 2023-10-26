@@ -14,7 +14,7 @@
   @include flex(row, center, center);
   height: 65px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: $l-border-radius;
   box-sizing: border-box;
   border: 2px dashed #a6b3c9;
   margin-bottom: 2px;
@@ -31,10 +31,10 @@
 .download__text {
   color: $grey-3;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 150%; /* 21px */
-  letter-spacing: 0.3px;
+  font-size: $s-font-size;
+  font-weight: $bold;
+  line-height: $xl-line-height; /* 21px */
+  letter-spacing: $m-letter-space;
 }
 
 .textError {
@@ -47,13 +47,13 @@
   font-family: 'Open Sans', sans-serif;
   font-size: 10px;
   font-weight: 400;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
 }
 
 .download_error {
   .download__label {
-    border-radius: 10px;
+    border-radius: $l-border-radius;
     border: 1px solid #ff5656;
   }
 

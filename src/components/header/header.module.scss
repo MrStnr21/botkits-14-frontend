@@ -25,7 +25,7 @@
 .wrapper {
   display: flex;
   align-items: center;
-  color: #060c23;
+  color: $primary-oxford-blue-default;
   position: relative; //цепляем абсол.позиц.account setting
 }
 
@@ -39,7 +39,7 @@
 
 .text {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 16px;
+  font-size: $m-font-size;
   line-height: 24px;
   font-weight: 400;
 

@@ -111,9 +111,9 @@
     font-family: 'Open Sans', sans-serif;
     color: $grey-4;
     font-weight: $bold;
-    font-size: 14px;
-    line-height: 150%;
-    letter-spacing: 0.3px;
+    font-size: $s-font-size;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
     cursor: pointer;
   }
 

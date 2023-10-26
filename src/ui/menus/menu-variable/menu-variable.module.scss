@@ -28,11 +28,11 @@
 }
 
 .text {
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $normal;
   line-height: 19.5px;
   font-family: 'Open Sans';
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   color: black;
   transition: color 0.3s linear;
 }

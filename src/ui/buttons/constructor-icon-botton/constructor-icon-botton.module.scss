@@ -45,7 +45,7 @@
 }
 
 .buttonMln {
-  background-color: #f8f9fb;
+  background-color: $secondary-cultured-default;
   @include flex(row, center, center);
   flex-direction: column;
 }
@@ -104,12 +104,12 @@
 }
 
 .text {
-  color: #060c23;
+  color: $primary-oxford-blue-default;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 150%; /* 21px */
-  letter-spacing: 0.3px;
+  font-size: $s-font-size;
+  font-weight: $bold;
+  line-height: $xl-line-height; /* 21px */
+  letter-spacing: $m-letter-space;
   margin: 12px 0 0;
 }

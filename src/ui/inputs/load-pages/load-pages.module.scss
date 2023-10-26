@@ -51,9 +51,9 @@
   justify-content: center;
   font-family: 'Open Sans', sans-serif;
   font-weight: $bold;
-  font-size: 14px;
+  font-size: $s-font-size;
   line-height: 21px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   gap: 17px;
   border: 0;
   padding: 16px 12px;

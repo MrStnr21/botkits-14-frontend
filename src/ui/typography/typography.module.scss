@@ -11,36 +11,36 @@
 
 .h2 {
   @include typography;
-  font-size: 32px;
-  letter-spacing: -0.2px;
+  font-size: $xxxl-font-size;
+  letter-spacing: s-letter-space;
 }
 
 .h3 {
   @include typography;
-  font-size: 24px;
+  font-size: $xxl-font-size;
 }
 
 .h4 {
   @include typography;
-  font-size: 18px;
+  font-size: $l-font-size;
 }
 
 .h5 {
   @include typography;
-  font-size: 14px;
+  font-size: $s-font-size;
 }
 
 .p {
   @include typography;
-  font-size: 14px;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  font-size: $s-font-size;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
 }
 
 .span {
   @include typography;
-  font-size: 13px;
+  font-size: $xs-font-size;
   font-weight: $normal;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
 }

@@ -21,9 +21,9 @@
 .text {
   font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
-  font-size: 13px;
+  font-size: $xs-font-size;
   line-height: 19.5px;
-  letter-spacing: 0.3px;
+  letter-spacing: $m-letter-space;
   // width: fit-content;
   margin: 0;
   white-space: nowrap;
