@@ -1,4 +1,3 @@
-/* eslint-disable object-shorthand */
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
 import cn from 'classnames';
@@ -14,81 +13,12 @@ import useModal from '../../services/hooks/use-modal';
 import PaymentPopup from '../../components/popups/payment-popup/payment-popup';
 import {
   tableData,
-  colStyle,
+  columns,
   cellStyle,
   rowStyle,
-} from '../../utils/paymenTable';
-import { convertTimeFormat } from '../../utils/timeFormat';
-
-const headComponent = (label: string) => (
-  <Typography className={style.text} tag="p">
-    {label}
-  </Typography>
-);
-
-const dateCell = (date: string) => (
-  <Typography className={style.text} tag="span">
-    {convertTimeFormat(date)}
-  </Typography>
-);
-const baseCell = (data: any) => (
-  <Typography className={style.text} tag="span">
-    {data ?? '-'}
-  </Typography>
-);
-
-const statusCell = (status: boolean) => (
-  <Typography
-    tag="p"
-    className={cn(
-      style.text,
-      status ? style.text_succsess : style.text_failure
-    )}
-  >
-    {status ? 'Успешно' : 'Отклонено'}
-  </Typography>
-);
-
-const columns = [
-  {
-    key: 'date',
-    label: 'Дата',
-    colStyle: { ...colStyle, width: '136px' },
-    cellComponent: dateCell,
-  },
-  {
-    key: 'amount',
-    label: 'Сумма',
-    colStyle: { ...colStyle, width: '136px' },
-    cellComponent: baseCell,
-  },
-  {
-    key: 'operation',
-    label: 'Операция',
-    colStyle: { ...colStyle, width: '136px' },
-    cellComponent: baseCell,
-  },
-  {
-    key: 'note',
-    label: 'Примечание',
-    colStyle: colStyle,
-    cellComponent: baseCell,
-  },
-  {
-    key: 'successful',
-    label: 'Статус',
-    colStyle: { ...colStyle, width: '76px' },
-    cellComponent: statusCell,
-  },
-];
-
-const subscriptionStatus = {
-  tariff: 'Бизнес',
-  status: true,
-  cardMask: '4500 *** 1119',
-  debitDate: '2023-09-12',
-  balance: 1234,
-};
+  subscriptionStatus,
+} from '../../utils/payment-table/paymenTable';
+import { headComponent } from '../../utils/payment-table/paymen-table-cells';
 
 const Subscription: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();

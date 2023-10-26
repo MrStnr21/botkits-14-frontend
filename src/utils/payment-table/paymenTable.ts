@@ -1,4 +1,6 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable object-shorthand */
+import { baseCell, dateCell, statusCell } from './paymen-table-cells';
+
 export const colStyle = {
   border: 'none',
   padding: '0 0 12px',
@@ -28,6 +30,47 @@ export const rowStyle = {
   },
   cursor: 'pointer',
 };
+
+export const subscriptionStatus = {
+  tariff: 'Бизнес',
+  status: true,
+  cardMask: '4500 *** 1119',
+  debitDate: '2023-09-12',
+  balance: 1234,
+};
+
+export const columns = [
+  {
+    key: 'date',
+    label: 'Дата',
+    colStyle: { ...colStyle, width: '136px' },
+    cellComponent: dateCell,
+  },
+  {
+    key: 'amount',
+    label: 'Сумма',
+    colStyle: { ...colStyle, width: '136px' },
+    cellComponent: baseCell,
+  },
+  {
+    key: 'operation',
+    label: 'Операция',
+    colStyle: { ...colStyle, width: '136px' },
+    cellComponent: baseCell,
+  },
+  {
+    key: 'note',
+    label: 'Примечание',
+    colStyle: colStyle,
+    cellComponent: baseCell,
+  },
+  {
+    key: 'successful',
+    label: 'Статус',
+    colStyle: { ...colStyle, width: '76px' },
+    cellComponent: statusCell,
+  },
+];
 
 export const tableData = [
   {
