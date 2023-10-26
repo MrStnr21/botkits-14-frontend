@@ -17,21 +17,28 @@
   }
 };
 
-@mixin size($width: auto, $height: auto, $max-width: unset, $max-height:unset){
-  max-width: $max-width;
-  max-height: $max-height;
+@mixin size($width: auto, $height: auto){
   width: $width;
   height: $height;
 };
 
-@mixin font($font-family, $font-size: inherit, $font-weight: inherit, $line-height: inherit, $letter-spacing: inherit){
+@mixin max-size($max-width: unset, $max-height:unset){
+  max-width: $max-width;
+  max-height: $max-height;
+}
+
+@mixin font($font-family, $font-size: inherit, $font-weight: inherit, $color: inherit){
   font-family: $font-family, sans-serif;
   font-size: $font-size;
   font-weight: $font-weight;
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
+  color: $color;
   @content
 };
+
+@mixin line-sizes($line-height: inherit, $letter-spacing: inherit){
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
 
 @mixin button-style-reset {
   border: none;
