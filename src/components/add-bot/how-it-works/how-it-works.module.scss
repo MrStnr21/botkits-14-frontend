@@ -33,13 +33,13 @@
 .arrow_button svg {
   height: $how-it-works-arrow-icon-size;
   width: $how-it-works-arrow-icon-size;
-  stroke: $how-it-works-arrow-icon-default-color;
+  stroke: $grey-2;
   stroke-width: $how-it-works-arrow-icon-stroke-width;
   transition: all 0.1s linear;
 }
 
 .arrow_button:hover svg {
-  stroke: $how-it-works-arrow-icon-hover-color;
+  stroke: $secondary-cultured-press;
 }
 
 .arrow_button_active {

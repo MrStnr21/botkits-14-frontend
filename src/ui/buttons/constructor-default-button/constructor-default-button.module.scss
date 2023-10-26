@@ -17,20 +17,20 @@
 /* Стили цвета кнопки*/
 
 .button {
-  color: $constructor-default-button-default-color;
-  background-color: $constructor-default-button-default-background-color;
+  color: $xiketic-default;
+  background-color: $secondary-cultured-focus;
 }
 
 .button:hover {
-  color: $constructor-default-button-hover-color;
+  color: $primary-persian-blue-default;
 }
 
 .button:active {
-  color: $constructor-default-button-pressed-color;
-  background-color: $constructor-default-button-pressed-background-color;
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
 }
 
 .button:disabled {
-  color: $constructor-default-button-disabled-color;
-  background-color: $constructor-default-button-default-background-color;
+  color: $grey-1;
+  background-color: $secondary-cultured-focus;
 }

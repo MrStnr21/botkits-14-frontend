@@ -8,7 +8,7 @@
   justify-content: flex-start;
   gap: 98px;
   align-items: center;
-  background-color: $default-blue-color;
+  background-color: $primary-persian-blue-default;
 }
 
 .contentContainer {
@@ -60,7 +60,7 @@
   max-width: 570px;
   font-family: 'IBM Plex Mono', sans-serif;
   text-align: left;
-  color: $white-color;
+  color: $off-white;
   font-size: $xl-h1-font-size;
   font-weight: $bold;
   line-height: $button-line-height-110;
@@ -98,9 +98,9 @@
   padding: 14px 23px 14px 20px;
   font-size: $h2-font-size;
   border-radius: $border-radius-15;
-  color: $default-green-color;
+  color: $primary-medium-spring-green-default;
   font-weight: $bold;
-  background-color: $hover-blue-color;
+  background-color: $primary-persian-blue-press;
   line-height: $button-line-height-150;
   letter-spacing: $h2-letter-space;
   vertical-align: middle;

@@ -3,7 +3,7 @@
 .signupFormContainer {
   position: relative;
   width: 100%;
-  background-color: $active-blue-color;
+  background-color: $primary-persian-blue-hover;
   border-radius: $border-radius-30;
   display: flex;
   justify-content: center;
@@ -54,7 +54,7 @@
   margin-bottom: 15px;
   font-family: 'IBM Plex Mono', sans-serif;
   text-align: center;
-  color: $white-color;
+  color: $off-white;
   font-size: $xl-font-size;
   font-weight: $bold;
   line-height: $button-line-height-130;
@@ -82,7 +82,7 @@
   display: flex;
   gap: 40px;
   padding: 10px;
-  background-color: $persian-blue-focus;
+  background-color: $primary-persian-blue-focus;
   border-radius: $border-radius-30;
 
   @media screen and (max-width: 600px) {
@@ -95,7 +95,7 @@
   display: flex;
   gap: 40px;
   padding: 10px;
-  background-color: $persian-blue-focus;
+  background-color: $primary-persian-blue-focus;
   border-radius: $border-radius-30;
 
   @media screen and (max-width: 600px) {
@@ -113,7 +113,7 @@
   border-radius: $border-radius-30;
   flex-direction: column;
   align-items: center;
-  background-color: $default-blue-color;
+  background-color: $primary-persian-blue-default;
 
   @media screen and (max-width: 600px) {
     padding-left: 20px;
@@ -130,10 +130,10 @@
   width: 80px;
   height: 30px;
   border-radius: $border-radius-15;
-  background-color: $default-blue-color;
+  background-color: $primary-persian-blue-default;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
-  color: $white-color;
+  color: $off-white;
   font-size: $l-font-size;
   font-weight: $bold;
   line-height: $button-line-height-150;
@@ -191,7 +191,7 @@
 
 
 .phoneCodeSelect {
-  background-color: $primary-text-color;
+  background-color: $primary-oxford-blue-default;
   border: none;
   border-radius: 4px;
   width: 110px;
@@ -207,7 +207,7 @@
     width: 33px;
     padding: 0;
     margin: 0;
-    color: $white-color;
+    color: $off-white;
     font-family: 'Open Sans', sans-serif;
     font-size: $m-font-size;
     font-weight: $normal;
@@ -272,7 +272,7 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-  color: $white-color;
+  color: $off-white;
   font-size: $m-font-size;
   font-weight: $normal;
   line-height: $button-line-height-150;
@@ -285,12 +285,12 @@
 }
 
 .signinLink {
-  color: $white-color;
+  color: $off-white;
   text-decoration-line: underline;
 }
 
 .incorrect_text {
-  color: $error-red-color;
+  color: $error-default;
   position: absolute;
   font-size: 10px;
   line-height: 15px;
@@ -329,12 +329,12 @@
       margin-right: 4px;
 
       [class*='os-scrollbar-handle'] {
-        background-color: $default-blue-color;
+        background-color: $primary-persian-blue-default;
         max-height: 60px;
       }
 
       [class*='os-scrollbar-track'] {
-        background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.1);
+        background-color: rgba(red($primary-persian-blue-default), green($primary-persian-blue-default), blue($primary-persian-blue-default), 0.1);
       }
     }
 
@@ -343,7 +343,7 @@
 
   [class*="MuiList-root-MuiMenu-list"] {
     [class*="Mui-selected"] {
-      background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.08);
+      background-color: rgba(red($primary-persian-blue-default), green($primary-persian-blue-default), blue($primary-persian-blue-default), 0.08);
     }
   }
 
@@ -373,7 +373,7 @@
       font-weight: $normal;
       line-height: $button-line-height-150;
       letter-spacing: $m-letter-space;
-      color: $primary-text-color;
+      color: $primary-oxford-blue-default;
       text-overflow: ellipsis;
       overflow: hidden;
     }
@@ -386,6 +386,6 @@
     font-weight: $bold;
     line-height: $button-line-height-150;
     letter-spacing: $m-letter-space;
-    color: $default-blue-color;
+    color: $primary-persian-blue-default;
   }
 }

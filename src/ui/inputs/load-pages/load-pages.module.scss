@@ -1,13 +1,13 @@
 @import '../../../components/app/vars';
 
 .upload_img * {
-  fill: $disabled-grey-color;
+  fill: $grey-1;
 }
 
 .selects {
   width: 100%;
   max-width: 580px;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   border-radius: $border-radius-10;
   padding-right: 4px;
   box-sizing: border-box;
@@ -44,7 +44,7 @@
 
 .selects_button {
   width: 100%;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,19 +63,19 @@
 
   &:hover * {
     transition: 0.2s linear;
-    fill: $default-dark-grey-color;
+    fill: $grey-3;
     color: #6392ab;
   }
 
   &:disabled * {
-    fill: $disabled-grey-color;
+    fill: $grey-1;
     color: #d7deea;
   }
 }
 
 .selects_text {
   margin: 0;
-  color: $placeholder-grey-color;
+  color: $grey-2;
 }
 
 .selects_item {

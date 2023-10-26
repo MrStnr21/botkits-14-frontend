@@ -43,52 +43,52 @@
 /* Стили цвета кнопки*/
 
 .button {
-  color: $button-add-bot-default-color;
-  background-color: $button-add-bot-default-background-color;
+  color: $grey-3;
+  background-color: $secondary-cultured-hover;
 }
 
 .icon {
-  border-color: $default-dark-grey-color;
+  border-color: $grey-3;
 }
 
 .button svg {
-  stroke: $button-add-bot-default-color;
+  stroke: $grey-3;
 }
 
 .button:hover {
-  color: $button-add-bot-hover-color;
+  color: $primary-persian-blue-default;
 }
 
 .button:hover .icon {
-  border-color: $button-add-bot-hover-color;
+  border-color: $primary-persian-blue-default;
 }
 
 .button:hover svg {
-  stroke: $button-add-bot-hover-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:active {
-  color: $button-add-bot-pressed-color;
-  background-color: $button-add-bot-pressed-background-color;
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
 }
 
 .button:active .icon {
-  border-color: $button-add-bot-pressed-color;
+  border-color: $primary-persian-blue-default;
 }
 
 .button:active svg {
-  stroke: $button-add-bot-pressed-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:disabled {
-  color: $button-add-bot-disabled-color;
-  background-color: $button-add-bot-default-background-color;
+  color: $grey-1;
+  background-color: $secondary-cultured-hover;
 }
 
 .button:disabled .icon {
-  border-color: $button-add-bot-disabled-color;
+  border-color: $grey-1;
 }
 
 .button:disabled svg {
-  stroke: $button-add-bot-disabled-color;
+  stroke: $grey-1;
 }

@@ -65,8 +65,8 @@
 
 @mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color){
   @include input-main(100%, 240px, $padding, $bg-color, 0, 5px);
-  @include set-font($primary-text-color, $font-weight, $s-font-size, $s-line-height, $m-letter-space);
-  @include input-pseudo($ph-color, $hph-color, $icon-grey-color, $focus-grey-color, 1);
+  @include set-font($primary-oxford-blue-default, $font-weight, $s-font-size, $s-line-height, $m-letter-space);
+  @include input-pseudo($ph-color, $hph-color, $secondary-cultured-press, $secondary-cultured-focus, 1);
 
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -79,9 +79,9 @@
 }
 
 .inputMain {
-  @include input-main(100%, 580px, 22px 24px, $default-grey-color, 1px solid transparent, $border-radius-10);
-  @include set-font($primary-text-color, $bold, $m-font-size, $m-line-height, $l-letter-space);
-  @include input-pseudo($placeholder-grey-color, $default-dark-grey-color, $focus-grey-color, $focus-grey-color, .5);
+  @include input-main(100%, 580px, 22px 24px, $secondary-cultured-default, 1px solid transparent, $border-radius-10);
+  @include set-font($primary-oxford-blue-default, $bold, $m-font-size, $m-line-height, $l-letter-space);
+  @include input-pseudo($grey-2, $grey-3, $secondary-cultured-focus, $secondary-cultured-focus, .5);
 
   font-family: 'Open Sans', sans-serif;
   outline: 0;
@@ -92,11 +92,11 @@
 }
 
 .incorrect {
-  border: 1px solid $error-red-color;
+  border: 1px solid $error-default;
 }
 
 .incorrect_text {
-  color: $error-red-color;
+  color: $error-default;
   position: absolute;
   font-size: 10px;
   line-height: 15px;
@@ -107,11 +107,11 @@
 
 .inputSecondary {
   @include input-main(100%, 570px, 16px 50px 17px 0, transparent, none, 0);
-  @include set-font($white-color, $normal, $h4-font-size, $button-line-height-150, $lx-letter-space);
-  @include input-pseudo($placeholder-grey-color, $default-dark-grey-color, $focus-grey-color, $focus-grey-color, .5);
+  @include set-font($off-white, $normal, $h4-font-size, $button-line-height-150, $lx-letter-space);
+  @include input-pseudo($grey-2, $grey-3, $secondary-cultured-focus, $secondary-cultured-focus, .5);
   margin: 0;
   max-height: 60px;
-  border-bottom: 1px solid $white-color;
+  border-bottom: 1px solid $off-white;
   box-sizing: border-box;
   outline: 0;
   text-overflow: ellipsis;
@@ -124,11 +124,11 @@
 }
 
 .inputBuilderNum{
-  @include input-builder(6px 4px, $default-grey-color, $bold, $default-dark-grey-color, $default-dark-grey-color)
+  @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3)
 }
 
  .inputBuilderDefault{
-  @include input-builder(10px 8px, $hover-grey-color, $normal, $placeholder-grey-color, $placeholder-grey-color);
+  @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
 }
 
 .iconContainerSecondary {
@@ -140,12 +140,12 @@
 }
 
 .disabled {
-  color: $focus-grey-color;
+  color: $secondary-cultured-focus;
   opacity: 0.5;
 }
 
 .required {
-  @include set-font($placeholder-grey-color, $normal, $h4-font-size, $button-line-height-150, $lx-letter-space);
+  @include set-font($grey-2, $normal, $h4-font-size, $button-line-height-150, $lx-letter-space);
   width: 24px;
   height: 24px;
   display: flex;
@@ -167,21 +167,21 @@
 
 .inputSecondaryIncorrect {
   border: 0;
-  border-bottom: 1px solid $error-red-color;
+  border-bottom: 1px solid $error-default;
 
   &::placeholder {
-    color: $error-red-color;
+    color: $error-default;
   }
 
   &:hover::placeholder {
-    color: $error-red-color;
+    color: $error-default;
   }
 }
 
 .requiredIncorrect {
-  color: $error-red-color;
+  color: $error-default;
 }
 
 .colorBlue {
-  color: $default-blue-color
+  color: $primary-persian-blue-default
 }

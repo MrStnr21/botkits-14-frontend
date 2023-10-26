@@ -62,19 +62,19 @@
 /* Стили цвета кнопки*/
 
 .button {
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
 }
 
 .container {
-  background-color: $button-add-sample-bot-default-background-color;
+  background-color: $secondary-cultured-hover;
 }
 
 .plus_icon svg {
-  stroke: $button-add-sample-bot-default-color;
+  stroke: $grey-1;
 }
 
 .button:hover {
-  color: $button-add-sample-bot-hover-color;
+  color: $primary-persian-blue-default;
 }
 
 .button:hover .container {
@@ -83,11 +83,11 @@
 }
 
 .button:hover .plus_icon svg {
-  stroke: $button-add-sample-bot-hover-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:active {
-  color: $button-add-sample-bot-pressed-color;
+  color: $primary-persian-blue-press;
 }
 
 .button:active .container {
@@ -96,20 +96,20 @@
 }
 
 .button:active .plus_icon svg {
-  stroke: $button-add-sample-bot-pressed-color;
+  stroke: $primary-persian-blue-press;
 }
 
 .button:disabled {
-  color: $button-add-sample-bot-disabled-color;
+  color: $grey-1;
 }
 
 .button:disabled .container {
-  background-color: $button-add-sample-bot-default-background-color;
+  background-color: $secondary-cultured-hover;
   box-shadow: none;
 }
 
 .button:disabled .plus_icon svg {
-  stroke: $button-add-sample-bot-disabled-color;
+  stroke: $grey-1;
 }
 
 .button:disabled .template_icon svg {

@@ -5,7 +5,7 @@
   flex-direction: row;
   width: 240px;
   height: 40px;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   border-radius: $border-radius-5;
   position: relative;
   cursor: pointer;
@@ -41,7 +41,7 @@
 }
 
 .grey {
-  color: $placeholder-grey-color;
+  color: $grey-2;
 }
 
 .li {
@@ -74,7 +74,7 @@
 }
 
 .button:hover {
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
 }
 
 .icon {

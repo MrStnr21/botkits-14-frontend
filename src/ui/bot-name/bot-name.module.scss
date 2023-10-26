@@ -1,27 +1,19 @@
 .container {
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  align-items: center;
-  max-width: 281px;
-  max-height: 48px;
-  border-radius: 10px;
-  padding: 12px 14px 12px 12px;
+  @include max-size(281px, 48px);
+  @include flex(row, flex-start, center);
+  @include indents(12px 14px 12px 12px);
+  border-radius: $l-border-radius;
   box-sizing: border-box;
 }
 
 .text {
-  width: 141px;
-  height: 23px;
-  font-family: 'IBMPlexMonno', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 23.4px;
+  @include size(141px, 23px);
+  @include font('IBMPlexMonno', 18px, 600);
+  line-height: $m-line-height;
   margin: 0px 52px 0px 16px;
 }
 
 .icon {
+  @include size(24px, 24px);
   margin: 0;
-  width: 24px;
-  height: 24px;
 }

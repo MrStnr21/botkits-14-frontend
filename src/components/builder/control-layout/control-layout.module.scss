@@ -32,9 +32,9 @@
 }
 
 .type{
- font-size: $xs-font-size;
+ font-size: $xxs-font-size;
  line-height: 15.6px;
- color: $default-dark-grey-color;
+ color: $grey-3;
  @media screen and (max-width: 520px) {
   font-size: 6.84px;
   line-height: 8.89px;
@@ -45,7 +45,7 @@
   font-size: $l-font-size;
   line-height: 20px;
   font-weight: $semi-bold;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
   outline: 0;
   border: 0;
   @media screen and (max-width: 520px) {
@@ -83,7 +83,7 @@
 }
 
 .hr{
-  background-color: $hover-grey-color;
+  background-color: $secondary-cultured-hover;
   height: 1px;
   width: 100%;
   margin: 0;

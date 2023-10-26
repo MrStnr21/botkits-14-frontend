@@ -4,7 +4,7 @@
   display: flex;
   max-width: 526px;
   min-width: 272px;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   border-radius: $border-radius-10;
   min-height: 48px;
 }
@@ -15,16 +15,16 @@
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   font-family: 'Open Sans', sans-serif;
   font-size: $s-font-size;
   font-weight: $normal;
   line-height: 20px;
   letter-spacing: $m-letter-space;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
 
   &::placeholder {
-    color: $default-dark-grey-color;
+    color: $grey-3;
   }
 }
 
@@ -51,7 +51,7 @@
   transition: 0.2s linear;
 
   * {
-    fill: $default-dark-grey-color;
+    fill: $grey-3;
   }
 }
 
@@ -61,5 +61,5 @@
 }
 
 .icon_clip * {
-  stroke: $default-dark-grey-color;
+  stroke: $grey-3;
 }

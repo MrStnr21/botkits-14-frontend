@@ -34,7 +34,7 @@
     line-height: $h2-line-height;
     letter-spacing: $h2-letter-space;
     font-weight: $bold;
-    color: $primary-text-color;
+    color: $primary-oxford-blue-default;
     margin: 0 0 32px 0;
 
     @media screen and (max-width: 620px) {
@@ -75,7 +75,7 @@
 .tables {
   margin: 0;
   border-radius: $border-radius-30;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   width: 100%;
 
   &__payments {
@@ -90,7 +90,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $white-color;
+    background-color: $off-white;
     border-radius: $border-radius-30;
     box-sizing: border-box;
     box-shadow: 0px 6px 16px 0px #15123314;

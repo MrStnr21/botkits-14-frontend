@@ -75,7 +75,7 @@
   font-weight: $bold;
   line-height: $m-line-height;
   letter-spacing: $h5-letter-space;
-  color: $default-blue-color;
+  color: $primary-persian-blue-default;
   margin-right: 28px;
 }
 
@@ -85,7 +85,7 @@
   font-weight: $bold;
   line-height: $m-line-height;
   letter-spacing: $l-letter-space;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
 }
 
 .bot_template_buttons {
@@ -107,7 +107,7 @@
   line-height: $l-line-height;
   letter-spacing: $button-letter-space;
   text-transform: uppercase;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
 
   @media screen and (max-width: 420px) {
     display: none;

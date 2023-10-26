@@ -12,7 +12,7 @@
   letter-spacing: $l-letter-space;
   border-radius: $border-radius-50;
   border: 0;
-  background-color: $hover-grey-color;
+  background-color: $secondary-cultured-hover;
   padding: 8px;
   cursor: pointer;
 
@@ -27,16 +27,16 @@
 
 .select_item {
   &:hover {
-    color: $default-blue-color;
+    color: $primary-persian-blue-default;
   }
   &:disabled {
-    color: $placeholder-grey-color;
+    color: $grey-2;
   }
 }
 
 .selected {
-  color: $default-blue-color;
-  background-color: $disabled-blue-color;
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
 }
 
 .text {
@@ -46,17 +46,17 @@
 }
 
 .select_upload {
-  color: $default-dark-grey-color;
+  color: $grey-3;
 
   &:hover * {
     transition: 0.2s linear;
-    fill: $default-dark-grey-color;
+    fill: $grey-3;
     color: #6392ab;
   }
 }
 
 .upload_img * {
-  fill: $disabled-grey-color;
+  fill: $grey-1;
 }
 
 .upload_text {
@@ -68,7 +68,7 @@
 .selects {
   width: 100%;
   max-width: 580px;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   border-radius: $border-radius-10;
   padding-right: 4px;
 }
@@ -103,7 +103,7 @@
 
 .selects_button {
   width: 100%;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,19 +122,19 @@
 
   &:hover * {
     transition: 0.2s linear;
-    fill: $default-dark-grey-color;
+    fill: $grey-3;
     color: #6392ab;
   }
 
   &:disabled * {
-    fill: $disabled-grey-color;
+    fill: $grey-1;
     color: #d7deea;
   }
 }
 
 .selects_text {
   margin: 0;
-  color: $placeholder-grey-color;
+  color: $grey-2;
 }
 
 .image {

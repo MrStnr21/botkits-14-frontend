@@ -4,10 +4,10 @@
   font-family: 'Open Sans', sans-serif;
 
   &_succsess {
-    color: $success-color;
+    color: $success-default;
   }
 
   &_failure {
-    color: $error-red-color;
+    color: $error-default;
   }
 }

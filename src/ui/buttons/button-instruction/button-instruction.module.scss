@@ -24,7 +24,7 @@
 }
 
 .button:disabled svg {
-  fill: $button-add-bot-disabled-color;
+  fill: $grey-1;
 }
 
 .image_box {
@@ -32,7 +32,7 @@
   width: 173px;
   height: 173px;
   border-radius: $border-radius-circle;
-  background-color: $button-default-grey-color;
+  background-color: $secondary-cultured-focus;
   transition: background-color 0.1s linear;
   position: absolute;
   z-index: 1;
@@ -50,7 +50,7 @@
 }
 
 .image_box svg {
-  fill: $default-dark-grey-color;
+  fill: $grey-3;
   transition: all 0.1s linear;
 
   @media screen and (max-width: 670px) {
@@ -59,18 +59,18 @@
 }
 
 .button:hover .image_box {
-  background-color: $button-disabled-green-color;
+  background-color: $primary-medium-spring-green-disabled;
 }
 
 .button:hover .image_box svg {
-  fill: $button-default-green-color;
+  fill: $primary-medium-spring-green-default;
 }
 
 .text_container {
   @extend %flex-element-center;
   width: 100%;
   height: 76px;
-  border: 2px solid $button-default-grey-color;
+  border: 2px solid $secondary-cultured-focus;
   box-sizing: border-box;
   transition: border 0.1s linear;
   border-radius: $border-radius-10;
@@ -99,5 +99,5 @@
 
 .button:disabled .text {
   //@extend .text;
-  color: $button-add-bot-disabled-color;
+  color: $grey-1;
 }

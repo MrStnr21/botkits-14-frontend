@@ -26,7 +26,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px $disabled-grey-color solid;
+      border-bottom: 1px $grey-1 solid;
     }
 
     &:last-child {
@@ -50,7 +50,7 @@
     padding: 0 0 40px;
 
     @media screen and (max-width: 860px) {
-      color: $default-dark-grey-color;
+      color: $grey-3;
       padding: 0 0 10px;
     }
 
@@ -68,15 +68,15 @@
     border: none;
 
     @media screen and (max-width: 860px) {
-      color: $primary-text-color;
+      color: $primary-oxford-blue-default;
     }
   }
 
   &__statusDone {
-    color: $success-color;
+    color: $success-default;
   }
 
   &__statusProcessing {
-    color: $default-blue-color;
+    color: $primary-persian-blue-default;
   }
 }

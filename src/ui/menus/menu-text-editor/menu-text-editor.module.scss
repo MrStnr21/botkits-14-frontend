@@ -20,14 +20,14 @@
   background-color: white;
   border-radius: $border-radius-5;
   border: none;
-  border-right: 1px solid $hover-grey-color;
+  border-right: 1px solid $secondary-cultured-hover;
   cursor: pointer;
 }
 .button:last-of-type {
   border: none;
 }
 .button:hover {
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
 }
 
 .icon {

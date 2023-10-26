@@ -3,7 +3,7 @@
 .textarea {
   position: relative;
   width: 264px;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   border-radius: 12px;
   height: 102px;
   box-sizing: border-box;
@@ -27,11 +27,11 @@
   font-weight: $normal;
   line-height: $m-line-height;
   text-align: left;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
 }
 
 .textarea__input::placeholder {
-  color: $default-dark-grey-color;
+  color: $grey-3;
 }
 
 .textarea__input:focus {
@@ -44,7 +44,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  border: 1px solid $default-green-color;
+  border: 1px solid $primary-medium-spring-green-default;
   background-color: transparent;
   z-index: 0;
   border-radius: 12px;

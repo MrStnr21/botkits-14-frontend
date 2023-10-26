@@ -30,7 +30,7 @@
   box-sizing: border-box;
   width: 132px;
   border: none;
-  border-top: 1px solid $hover-grey-color;
+  border-top: 1px solid $secondary-cultured-hover;
   border-radius: $border-radius-10;
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
 }
 
 .button:hover {
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
 }
 
 .flex_row {
@@ -61,13 +61,13 @@
 }
 
 .numbers_box::-webkit-scrollbar-thumb {
-  background-color: $default-dark-grey-color;
+  background-color: $grey-3;
   border-radius: 2px;
   border: solid 4px white;
 }
 
 .numbers_box:first-of-type {
-  border-right: 1px solid $hover-grey-color;
+  border-right: 1px solid $secondary-cultured-hover;
 }
 
 .number_unit {
@@ -75,5 +75,5 @@
 }
 
 .number_unit:hover {
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
 }

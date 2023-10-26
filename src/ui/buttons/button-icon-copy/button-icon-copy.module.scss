@@ -21,19 +21,19 @@
 /* Стили цвета кнопки*/
 
 .button svg {
-  stroke: $button-icon-copy-default-color;
+  stroke: $grey-3;
 }
 
 .button:hover svg {
-  stroke: $button-icon-copy-hover-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:active {
-  background-color: $button-icon-copy-pressed-background-color;
+  background-color: $blue-disabled;
 }
 
 .button:active svg {
-  stroke: $button-icon-copy-pressed-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:disabled {
@@ -41,5 +41,5 @@
 }
 
 .button:disabled svg {
-  stroke: $button-icon-copy-disabled-color;
+  stroke: $secondary-cultured-press;
 }

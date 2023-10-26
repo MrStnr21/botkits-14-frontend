@@ -2,7 +2,7 @@
 
 .container {
   text-align: start;
-  background-color: $white-color;
+  background-color: $off-white;
   max-width: 100%;
 }
 
@@ -22,7 +22,7 @@
   font-weight: $bold;
   line-height: $h2-line-height;
   letter-spacing: $h2-letter-space;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
   margin: 0;
 }
 
@@ -96,12 +96,12 @@
 .accordion_button {
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
-  background-color: $white-color;
+  background-color: $off-white;
   border: none;
   font-weight: $bold;
   font-size: $l-font-size;
   line-height: $l-line-height;
-  color: $default-dark-grey-color;
+  color: $grey-3;
   @media (max-width: $switching-width) {
     display: none;
   }
@@ -112,7 +112,7 @@
   width: 26px;
   height: 26px;
   background-image: url('../../../images/icon/24x24/common/chevron-big.svg');
-  background-color: $white-color;
+  background-color: $off-white;
   background-position: center;
   border: none;
   align-self: center;

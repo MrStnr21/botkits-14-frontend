@@ -15,7 +15,7 @@
 
   @media (max-width: ($switching-width)) {
     box-sizing: border-box;
-    border-top: 1px solid $icon-grey-color;
+    border-top: 1px solid $secondary-cultured-press;
     max-width: 360px;
     min-width: $min-content-width;
     width: 96vw;
@@ -61,7 +61,7 @@
   text-decoration: none;
 
   &:hover {
-    background-color: $default-grey-color;
+    background-color: $secondary-cultured-default;
   }
 
   @media (max-width: ($switching-width)) {
@@ -81,7 +81,7 @@
 
 .button:nth-child(4) {
   // выйти
-  border-top: 1px solid $icon-grey-color;
+  border-top: 1px solid $secondary-cultured-press;
   padding-top: 18px;
   padding-bottom: 6px;
 
@@ -138,7 +138,7 @@
 }
 
 .addition {
-  border-top: 1px solid $icon-grey-color;
+  border-top: 1px solid $secondary-cultured-press;
   padding-top: 20px;
 
   .button:first-child {

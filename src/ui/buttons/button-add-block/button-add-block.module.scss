@@ -12,11 +12,11 @@
 }
 
 .button:hover {
-  background-color: $hover-grey-color;
+  background-color: $secondary-cultured-hover;
 }
 
 .button:active {
-  background-color: $disabled-blue-color;
+  background-color: $blue-disabled;
 }
 
 .button:disabled {
@@ -51,9 +51,9 @@
 }
 
 .button:hover .name {
-  color: $default-blue-color;
+  color: $primary-persian-blue-default;
 }
 
 .button:disabled .name {
-  color: $placeholder-grey-color;
+  color: $grey-2;
 }

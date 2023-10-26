@@ -22,13 +22,13 @@
 }
 
 .download__icon {
-  stroke: $default-dark-grey-color;
+  stroke: $grey-3;
   width: 24px;
   margin-right: 12px;
 }
 
 .download__text {
-  color: $default-dark-grey-color;
+  color: $grey-3;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -61,10 +61,10 @@
   }
 
   .download__icon {
-    stroke: $disabled-grey-color;
+    stroke: $grey-1;
   }
 
   .download__text {
-    color: $disabled-grey-color;
+    color: $grey-1;
   }
 }

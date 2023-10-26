@@ -8,15 +8,15 @@
   background-image: url('../../images/icon/24x24/screen navigation/plus1.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-color: $default-blue-color;
+  background-color: $primary-persian-blue-default;
   transition: all 0.3s;
   flex-shrink: 0;
 
   &:hover {
-    background-color: $hover-blue-color;
+    background-color: $primary-persian-blue-press;
   }
   &:active {
-    background-color: $active-blue-color;
+    background-color: $primary-persian-blue-hover;
   }
 }
 
@@ -64,13 +64,13 @@
   flex-shrink: 0;
 
   // для десктоп
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   box-sizing: border-box;
   padding: 8px;
   border-radius: 10px;
 
   @media (max-width: $switching-width) {
-    background-color: $white-color;
+    background-color: $off-white;
     padding: 0;
     border-radius: 0;
     max-width: 100%;
@@ -78,7 +78,7 @@
 }
 
 .sidebar_open {
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   width: 224px;
 
   .navigation__text,
@@ -89,7 +89,7 @@
 
   .addbutton {
     overflow: visible;
-    background-color: $default-blue-color;
+    background-color: $primary-persian-blue-default;
     width: 182px;
     border-radius: 10px;
     margin-left: 8px;
@@ -98,16 +98,16 @@
   }
   .addbutton_active {
     //Эти стили здесь для "веса"
-    background-color: $active-blue-color;
+    background-color: $primary-persian-blue-hover;
     &:hover {
-      background-color: $active-blue-color;
+      background-color: $primary-persian-blue-hover;
       cursor: default;
     }
   }
 
   @media (max-width: $switching-width) {
     width: 100%; // растянуть sidebar_open на весь экран
-    background-color: $white-color;
+    background-color: $off-white;
     margin: 0;
 
     .header__toggle {
@@ -122,7 +122,7 @@
     }
 
     .header {
-      background-color: $default-grey-color; // при открытии сайдбара шапка серая
+      background-color: $secondary-cultured-default; // при открытии сайдбара шапка серая
     }
   }
 }
@@ -198,12 +198,12 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: 24px 24px;
-  background-color: $icon-grey-color;
+  background-color: $secondary-cultured-press;
   flex-shrink: 0;
 
   @media (max-width: $switching-width) {
     position: static;
-    background-color: $primary-text-color;
+    background-color: $primary-oxford-blue-default;
     margin-right: 8px;
   }
 }
@@ -240,7 +240,7 @@
   @extend %button-style-reset;
 
   &:hover {
-    background-color: $hover-blue-color;
+    background-color: $primary-persian-blue-press;
   }
 }
 
@@ -249,7 +249,7 @@
   font-weight: $bold;
   letter-spacing: $m-letter-space;
   font-size: $m-font-size;
-  color: $white-color;
+  color: $off-white;
   text-transform: uppercase;
   margin: 0;
   opacity: 0;
@@ -281,16 +281,16 @@
   @include font-nav();
 
   text-decoration: none;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
   transition: all 0.3s;
 
   svg {
     flex-shrink: 0;
-    stroke: $icon-grey-color;
+    stroke: $secondary-cultured-press;
   }
 
   &:hover {
-    background-color: $hover-grey-color;
+    background-color: $secondary-cultured-hover;
   }
 
   @media (max-width: $switching-width) {
@@ -299,8 +299,8 @@
 }
 
 .navigation__link_active {
-  stroke: $default-blue-color;
-  color: $default-blue-color;
+  stroke: $primary-persian-blue-default;
+  color: $primary-persian-blue-default;
   &:hover {
     background-color: inherit;
     cursor: default;
@@ -326,9 +326,9 @@
     display: flex;
     gap: 12px;
     align-items: center;
-    border-top: 1px solid $hover-grey-color;
+    border-top: 1px solid $secondary-cultured-hover;
     padding-top: 20px;
-    border-top: 1px solid $hover-grey-color;
+    border-top: 1px solid $secondary-cultured-hover;
   }
   .addcircle_mobile {
     @include add-button-circle();

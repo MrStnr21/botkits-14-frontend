@@ -37,8 +37,8 @@
 /* Стили цвета кнопки*/
 
 .button {
-  color: $primary-text-color;
-  background-color: $button-add-social-default-background-color;
+  color: $primary-oxford-blue-default;
+  background-color: $secondary-cultured-default;
 }
 
 .button.active {
@@ -47,8 +47,8 @@
 }
 
 .button.disabled {
-  color: $default-dark-grey-color;
-  background-color: $button-add-social-default-background-color;
+  color: $grey-3;
+  background-color: $secondary-cultured-default;
   box-shadow: none;
 }
 
@@ -58,8 +58,8 @@
 }
 
 .button:disabled {
-  color: $default-dark-grey-color;
-  background-color: $button-add-social-default-background-color;
+  color: $grey-3;
+  background-color: $secondary-cultured-default;
   box-shadow: none;
 }
 

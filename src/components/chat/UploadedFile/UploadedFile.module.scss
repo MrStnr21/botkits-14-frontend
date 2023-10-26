@@ -5,7 +5,7 @@
   gap:8px;
   width:fit-content;
   height: 47px;
-  background-color: $white-color;
+  background-color: $off-white;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -15,11 +15,11 @@
 .text {
   font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
-  font-size: $xs-font-size;
+  font-size: $xxs-font-size;
   line-height: $xs-line-height;
   letter-spacing: $l-letter-space;
   // width: fit-content;
   margin: 0;
   white-space: nowrap;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
 }

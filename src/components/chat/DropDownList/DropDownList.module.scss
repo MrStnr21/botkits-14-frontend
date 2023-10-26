@@ -4,7 +4,7 @@
   display: flex;
   width: 250px;
   height: 40px;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   box-sizing: border-box;
   padding-top: 10px;
   padding-left: 8px;
@@ -24,7 +24,7 @@
   letter-spacing: $lx-letter-space;
   margin: 0;
   white-space: nowrap;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
 }
 
 .text {
@@ -33,7 +33,7 @@
 }
 
 .container{
-  background-color: $white-color;
+  background-color: $off-white;
   width: 250px;
   padding: 8px;
   box-sizing: border-box;

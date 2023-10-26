@@ -25,7 +25,7 @@
 }
 
 @mixin wrapper {
-  width: 100%;  
+  width: 100%;
 }
 
 .button {
@@ -65,36 +65,36 @@
 /* Стили цвета кнопки*/
 
 .button {
-  color: $constructor-add-button-default-color;
-  background-color: $constructor-add-button-default-background-color;
+  color: $grey-4;
+  background-color: $secondary-cultured-default;
 }
 
 .button svg {
-  stroke: $constructor-add-button-default-icon-color;
+  stroke: $grey-3;
 }
 
 .button:hover {
-  color: $constructor-add-button-hover-color;
+  color: $primary-persian-blue-default;
 }
 
 .button:hover svg {
-  stroke: $constructor-add-button-hover-icon-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:active {
-  color: $constructor-add-button-pressed-color;
-  background-color: $constructor-add-button-pressed-background-color;
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
 }
 
 .button:active svg {
-  stroke: $constructor-add-button-pressed-icon-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:disabled {
-  color: $constructor-add-button-disabled-color;
-  background-color: $constructor-add-button-default-background-color;
+  color: $secondary-cultured-press;
+  background-color: $secondary-cultured-default;
 }
 
 .button:disabled svg {
-  stroke: $constructor-add-button-disabled-icon-color;
+  stroke: $grey-1;
 }

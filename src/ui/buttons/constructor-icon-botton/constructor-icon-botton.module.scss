@@ -40,7 +40,7 @@
 /* Стили цвета кнопки*/
 
 .buttonBld {
-  background-color: $constructor-icon-button-default-background-color;
+  background-color: $secondary-cultured-hover;
 }
 
 .buttonMln {
@@ -50,7 +50,7 @@
 }
 
 .iconBld svg {
-  stroke: $constructor-icon-button-default-color;
+  stroke: $grey-3;
 }
 
 .iconMln svg {
@@ -58,47 +58,47 @@
 }
 
 .buttonBld:hover .iconBld svg {
-  stroke: $constructor-icon-button-hover-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .buttonMln:hover {
   background-color: white;
   box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
   .iconMln {
-    background-color: $constructor-icon-button-hover-color;
+    background-color: $primary-persian-blue-default;
   }
 }
 
 // cтили в момент нажатия нужны?
 .button:active {
-  background-color: $constructor-icon-button-pressed-background-color;
+  background-color: $blue-disabled;
 }
 
 .button:active svg {
-  stroke: $constructor-icon-button-pressed-color;
+  stroke: $primary-persian-blue-default;
 }
 
 .button:disabled {
-  background-color: $constructor-icon-button-default-background-color;
+  background-color: $secondary-cultured-hover;
 }
 
 .button:disabled svg {
-  stroke: $constructor-icon-button-disabled-color;
+  stroke: $grey-1;
 }
 
 // стили нажатой кнопки
 .buttonBld_active {
-  background-color: $constructor-icon-button-pressed-background-color;
+  background-color: $blue-disabled;
   svg {
-    stroke: $constructor-icon-button-pressed-color;
+    stroke: $primary-persian-blue-default;
   }
 }
 
 .buttonMln_active {
   // @TODO уточнить стили после нажатия кнопки, по макету вроде только hover
-  background-color: $constructor-icon-button-pressed-background-color;
+  background-color: $blue-disabled;
   .iconMln {
-    background-color: $constructor-icon-button-pressed-color;
+    background-color: $primary-persian-blue-default;
   }
 }
 

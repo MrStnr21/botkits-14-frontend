@@ -6,7 +6,7 @@
 }
 
 .create_message {
-  color: $default-dark-grey-color;
+  color: $grey-3;
   font-weight: $bold;
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@
   font-weight: $normal;
   line-height: $s-line-height;
   letter-spacing: $l-letter-space;
-  color: $default-blue-color;
+  color: $primary-persian-blue-default;
   background-color: #ecefff;
   padding: 6px 16px;
   border-radius: 16px;
