@@ -85,32 +85,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-weight: 400;
-  src:
-    url('./IBMPlexSans/ibmplexsans-regular-webfont.woff2') format('woff2'),
-    url('./IBMPlexSans/ibmplexsans-regular-webfont.woff') format('woff'),
-    url('./IBMPlexSans/IBMPlexSans-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-weight: 500;
-  src:
-  /* url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
-  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'), */ url('./IBMPlexSans/IBMPlexSans-Medium.ttf')
-    format('truetype');
-}
-
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-weight: 600;
-  src:
-    url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff2') format('woff2'),
-    url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff') format('woff'),
-    url('./IBMPlexSans/IBMPlexSans-SemiBold.ttf') format('truetype');
-}
 
 @font-face {
   font-family: 'PT Sans';
