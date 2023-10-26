@@ -85,25 +85,6 @@
   font-style: normal;
 }
 
-
-@font-face {
-  font-family: 'PT Sans';
-  font-weight: 400;
-  src:
-    url('./PTSans/ptsans-regular-webfont.woff2') format('woff2'),
-    url('./PTSans/ptsans-regular-webfont.woff') format('woff'),
-    url('./PTSans/PTSans-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Century Gothic';
-  font-weight: 700;
-  src:
-    url('./CenturyGothic/centurygothic-bold-webfont.woff2') format('woff2'),
-    url('./CenturyGothic/centurygothic-bold-webfont.woff') format('woff'),
-    url('./CenturyGothic/CenturyGothic-Bold.ttf') format('truetype');
-}
-
 @font-face {
   font-family: 'Helvetica Neue';
   font-weight: 100;
