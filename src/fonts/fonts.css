@@ -1,6 +1,6 @@
 /* варианты импорта шрифтов с гугла */
 /* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=PT+Sans:wght@400&display=swap"); */
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 /* @font-face {
   font-family: 'Open Sans';
   font-weight: 400;
@@ -21,47 +21,77 @@
 
 @font-face {
   font-family: 'IBM Plex Mono';
-  font-weight: 400;
   src:
-  url('./IBMPlexMono/ibmplexmono-regular-webfont.woff2') format('woff2'),
-  url('./IBMPlexMono/ibmplexmono-regular-webfont.woff') format('woff'),
-  url('./IBMPlexMono/IBMPlexMono-Regular.ttf') format('truetype');
+    local('IBM Plex Mono Thin'),
+    local('IBMPlexMono-Thin'),
+    url('./IBMPlexMono/IBMPlexMono-Thin.woff') format('woff'),
+    url('./IBMPlexMono/IBMPlexMono-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'IBM Plex Mono';
+  src:
+    local('IBM Plex Mono Light'),
+    local('IBMPlexMono-Light'),
+    url('./IBMPlexMono/IBMPlexMono-Light.woff') format('woff'),
+    url('./IBMPlexMono/IBMPlexMono-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src:
+    local('IBM Plex Mono Light Italic'),
+    local('IBMPlexMono-LightItalic'),
+    url('./IBMPlexMono/IBMPlexMono-LightItalic.woff') format('woff'),
+    url('./IBMPlexMono/IBMPlexMono-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src:
+    local('IBM Plex Mono Medium'),
+    local('IBMPlexMono-Medium'),
+    url('./IBMPlexMono/IBMPlexMono-Medium.woff') format('woff'),
+    url('./IBMPlexMono/IBMPlexMono-Medium.ttf') format('truetype');
   font-weight: 500;
-  src:
-  url('./IBMPlexMono/ibmplexmono-medium-webfont.woff2') format('woff2'),
-  url('./IBMPlexMono/ibmplexmono-medium-webfont.woff') format('woff'),
-  url('./IBMPlexMono/IBMPlexMono-Medium.ttf') format('truetype');
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'IBM Plex Mono';
+  src:
+    local('IBM Plex Mono SemiBold'),
+    local('IBMPlexMono-SemiBold'),
+    url('./IBMPlexMono/IBMPlexMono-SemiBold.woff') format('woff'),
+    url('./IBMPlexMono/IBMPlexMono-SemiBold.ttf') format('truetype');
   font-weight: 600;
-  src:
-  url('./IBMPlexMono/ibmplexmono-semibold-webfont.woff2') format('woff2'),
-  url('./IBMPlexMono/ibmplexmono-semibold-webfont.woff') format('woff'),
-  url('./IBMPlexMono/IBMPlexMono-SemiBold.ttf') format('truetype');
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'IBM Plex Mono';
-  font-weight: 700;
   src:
-  url('./IBMPlexMono/ibmplexmono-bold-webfont.woff2') format('woff2'),
-  url('./IBMPlexMono/ibmplexmono-bold-webfont.woff') format('woff'),
-  url('./IBMPlexMono/IBMPlexMono-Bold.ttf') format('truetype');
+    local('IBM Plex Mono Bold'),
+    local('IBMPlexMono-Bold'),
+    url('./IBMPlexMono/IBMPlexMono-Bold.woff') format('woff'),
+    url('./IBMPlexMono/IBMPlexMono-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'IBM Plex Sans';
   font-weight: 400;
   src:
-  url('./IBMPlexSans/ibmplexsans-regular-webfont.woff2') format('woff2'),
-  url('./IBMPlexSans/ibmplexsans-regular-webfont.woff') format('woff'),
-  url('./IBMPlexSans/IBMPlexSans-Regular.ttf') format('truetype');
+    url('./IBMPlexSans/ibmplexsans-regular-webfont.woff2') format('woff2'),
+    url('./IBMPlexSans/ibmplexsans-regular-webfont.woff') format('woff'),
+    url('./IBMPlexSans/IBMPlexSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -69,34 +99,33 @@
   font-weight: 500;
   src:
   /* url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
-  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'), */
-  url('./IBMPlexSans/IBMPlexSans-Medium.ttf') format('truetype');
+  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'), */ url('./IBMPlexSans/IBMPlexSans-Medium.ttf')
+    format('truetype');
 }
 
 @font-face {
   font-family: 'IBM Plex Sans';
   font-weight: 600;
   src:
-  url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff2') format('woff2'),
-         url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff') format('woff'),
-  url('./IBMPlexSans/IBMPlexSans-SemiBold.ttf') format('truetype');
+    url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff2') format('woff2'),
+    url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff') format('woff'),
+    url('./IBMPlexSans/IBMPlexSans-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'PT Sans';
   font-weight: 400;
   src:
-  url('./PTSans/ptsans-regular-webfont.woff2') format('woff2'),
-         url('./PTSans/ptsans-regular-webfont.woff') format('woff'),
-  url('./PTSans/PTSans-Regular.ttf') format('truetype');
+    url('./PTSans/ptsans-regular-webfont.woff2') format('woff2'),
+    url('./PTSans/ptsans-regular-webfont.woff') format('woff'),
+    url('./PTSans/PTSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Century Gothic';
   font-weight: 700;
   src:
-    url('./CenturyGothic/centurygothic-bold-webfont.woff2')
-      format('woff2'),
+    url('./CenturyGothic/centurygothic-bold-webfont.woff2') format('woff2'),
     url('./CenturyGothic/centurygothic-bold-webfont.woff') format('woff'),
     url('./CenturyGothic/CenturyGothic-Bold.ttf') format('truetype');
 }
@@ -105,7 +134,7 @@
   font-family: 'Helvetica Neue';
   font-weight: 100;
   src:
-  url('./HelveticaNeue/helveticaneue-thin.woff2') format('woff2'),
-         url('./HelveticaNeue/helveticaneue-thin.woff') format('woff'),
-  url('./HelveticaNeue/HelveticaNeue-Thin.ttf') format('truetype');
+    url('./HelveticaNeue/helveticaneue-thin.woff2') format('woff2'),
+    url('./HelveticaNeue/helveticaneue-thin.woff') format('woff'),
+    url('./HelveticaNeue/HelveticaNeue-Thin.ttf') format('truetype');
 }
