@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
 import cn from 'classnames';
@@ -5,12 +6,18 @@ import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
 import icon from '../../images/icon/20x20/chevron/down.svg';
-import TableComponent from './table-component/table-component';
+import TableComponent from '../../components/table-component/table-component';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
 import useModal from '../../services/hooks/use-modal';
 import PaymentPopup from '../../components/popups/payment-popup/payment-popup';
+import {
+  tableData,
+  colStyle,
+  cellStyle,
+  rowStyle,
+} from '../../utils/paymenTable';
 import { convertTimeFormat } from '../../utils/timeFormat';
 
 const headComponent = (label: string) => (
@@ -18,6 +25,7 @@ const headComponent = (label: string) => (
     {label}
   </Typography>
 );
+
 const dateCell = (date: string) => (
   <Typography className={style.text} tag="span">
     {convertTimeFormat(date)}
@@ -45,72 +53,32 @@ const columns = [
   {
     key: 'date',
     label: 'Дата',
+    colStyle: { ...colStyle, width: '136px' },
     cellComponent: dateCell,
   },
   {
     key: 'amount',
     label: 'Сумма',
+    colStyle: { ...colStyle, width: '136px' },
     cellComponent: baseCell,
   },
   {
     key: 'operation',
     label: 'Операция',
+    colStyle: { ...colStyle, width: '136px' },
     cellComponent: baseCell,
   },
   {
     key: 'note',
     label: 'Примечание',
+    colStyle: colStyle,
     cellComponent: baseCell,
   },
   {
     key: 'successful',
     label: 'Статус',
+    colStyle: { ...colStyle, width: '76px' },
     cellComponent: statusCell,
-  },
-];
-
-const tableData = [
-  {
-    date: '2023-09-17T14:08:39.904Z',
-    amount: 1000,
-    successful: true,
-    operation: 'Списания',
-    note: 'Пополнение счета',
-  },
-  {
-    date: '2022-03-09T11:22:33.456Z',
-    amount: 523,
-    successful: false,
-    operation: 'Поступления',
-    note: 'Оплата услуг',
-  },
-  {
-    date: '2022-06-15T14:30:45.789Z',
-    amount: 275,
-    successful: true,
-    operation: 'Поступления',
-    note: 'Возврат средств',
-  },
-  {
-    date: '2022-08-20T09:05:12.345Z',
-    amount: 789,
-    successful: true,
-    operation: 'Поступления',
-    note: null,
-  },
-  {
-    date: '2023-01-05T16:45:30.678Z',
-    amount: 432,
-    successful: false,
-    operation: 'Списания',
-    note: 'Оплата услуг',
-  },
-  {
-    date: '2022-10-12T12:15:00.123Z',
-    amount: 600,
-    successful: true,
-    operation: 'Поступления',
-    note: 'Возврат средств',
   },
 ];
 
@@ -247,6 +215,8 @@ const Subscription: FC = (): JSX.Element => {
             </div>
           </div>
           <TableComponent
+            cellStyle={cellStyle}
+            rowStyle={rowStyle}
             columns={columns}
             tableData={rowList}
             headComponent={headComponent}

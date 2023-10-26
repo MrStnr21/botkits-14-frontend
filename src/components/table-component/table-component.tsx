@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
-import Typography from '../../../ui/typography/typography';
+import Typography from '../../ui/typography/typography';
 
 type Columns = {
   key: string;
@@ -34,7 +34,7 @@ const TableComponent: FC<Props> = ({ columns, tableData, ...props }) => {
     <TableContainer>
       <Table>
         <TableHead>
-          <TableRow sx={props.headStyle}>
+          <TableRow sx={{ boxSizing: 'border-box' }}>
             {columns?.map(({ label, colStyle }) => (
               <TableCell key={uuidv4()} sx={colStyle}>
                 {props.headComponent ? (
