@@ -1,4 +1,5 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .add_bot_page {
   max-width: 1268px;
@@ -16,7 +17,7 @@
 
 .add_bot_page_container {
   background-color: $secondary-cultured-hover;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   min-width: 320px;
 
   @media screen and (max-width: 520px) {

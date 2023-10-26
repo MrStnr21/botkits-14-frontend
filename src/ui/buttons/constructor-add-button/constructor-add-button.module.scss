@@ -1,27 +1,28 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 @mixin button-main(
-  $s-font-size,
+  13px,
   $normal,
-  $m-letter-space,
-  $button-line-height-150,
-  $constructor-add-button-height,
-  $border-radius-10
+  0.3px,
+  150%,
+  44px,
+  $l-border-radius
 ) {
-  @extend %button-style-reset;
+  @include button-style-reset;
   display: flex;
   align-items: center;
   padding: 0 12px;
   gap: 8px;
-  font-size: $s-font-size;
+  font-size: 13px;
   font-weight: $normal;
-  letter-spacing: $m-letter-space;
-  line-height: $button-line-height-150;
+  letter-spacing: 0.3px;
+  line-height: 150%;
   font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
-  height: $constructor-add-button-height;
+  height: 44px;
   width: 100%;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
 }
 
 @mixin wrapper {
@@ -30,12 +31,12 @@
 
 .button {
   @include button-main(
-    $s-font-size,
+    13px,
     $normal,
-    $m-letter-space,
-    $button-line-height-150,
-    $constructor-add-button-height,
-    $border-radius-10
+    0.3px,
+    150%,
+    44px,
+    $l-border-radius
   );
   height: 100%;
 }
@@ -50,7 +51,7 @@
 }
 
 .button div {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .button svg {

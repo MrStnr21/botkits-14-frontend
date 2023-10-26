@@ -1,17 +1,18 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
+  @include button-style-reset;
+  @include flex(row, center, center);
   transition: all 0.1s linear;
-  border-radius: $border-radius-10;
-  height: $button-icon-copy-height;
+  border-radius: $l-border-radius;
+  height: 40px;
   background-color: transparent;
   aspect-ratio: 1 / 1;
 }
 
 .button div {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .button svg {

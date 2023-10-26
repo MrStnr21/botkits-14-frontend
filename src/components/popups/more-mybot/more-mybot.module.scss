@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 $switching-width-menu: ($min-content-width + 100px);
 

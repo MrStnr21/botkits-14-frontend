@@ -1,10 +1,11 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .message {
   display: flex;
   max-width: 308px;
   background-color: $secondary-cultured-default;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   min-height: 40px;
   padding: 10px;
   box-sizing: border-box;
@@ -18,10 +19,10 @@
   border: 0;
   background-color: $secondary-cultured-default;
   font-family: 'Open Sans', sans-serif;
-  font-size: $s-font-size;
+  font-size: 13px;
   font-weight: $normal;
   line-height: 20px;
-  letter-spacing: $m-letter-space;
+  letter-spacing: 0.3px;
   color: $primary-oxford-blue-default;
   text-indent: 25px;
 

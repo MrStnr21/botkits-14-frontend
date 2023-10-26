@@ -1,4 +1,5 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .box {
   display: none;
@@ -7,7 +8,7 @@
   width: 264px;
   box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   position: absolute;
 }
 
@@ -23,11 +24,11 @@
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  font-size: $s-font-size;
+  font-size: 13px;
   font-weight: $normal;
-  line-height: $s-line-height;
+  line-height: 19.5px;
   font-family: 'Open Sans';
-  letter-spacing: $m-letter-space;
+  letter-spacing: 0.3px;
   cursor: pointer;
   position: relative;
 }

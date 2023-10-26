@@ -1,4 +1,5 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .signupPage {
   width: 100%;
@@ -51,9 +52,9 @@
   padding: 0;
   margin-bottom: 30px;
   font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h1-font-size;
+  font-size: 48px;
   font-weight: $semi-bold;
-  line-height: $h1-line-height;
+  line-height: 52.8px;
   letter-spacing: 3.5px;
   font-style: normal;
   text-align: center;
@@ -63,17 +64,17 @@
 
   @media screen and (max-width: 750px) {
     margin-bottom: 20px;
-    font-size: $h2-line-height;
-    line-height: $button-line-height-110;
-    letter-spacing: $h2-letter-space;
+    font-size: 41.6px;
+    line-height: 110%;
+    letter-spacing: -0.2px;
 
   }
 
   @media screen and (max-width: 600px) {
     margin-bottom: 20px;
-    font-size: $h3-line-height;
-    line-height: $button-line-height-110;
-    letter-spacing: $h2-letter-space;
+    font-size: 31.2px;
+    line-height: 110%;
+    letter-spacing: -0.2px;
 
   }
 }

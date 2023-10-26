@@ -1,11 +1,12 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .bot_menu {
   width: 100%;
   padding: 40px;
   background-color: #fff;
   box-shadow: 0px 12px 24px 0px #15123321;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   max-width: 464px;
   box-sizing: border-box;
   display: flex;
@@ -22,18 +23,18 @@
 .title {
   margin: 0;
   font-family: 'IBM Plex Mono';
-  font-size: $h3-font-size;
+  font-size: 24px;
   font-weight: $bold;
-  line-height: $h3-line-height;
+  line-height: 31.2px;
   letter-spacing: 0px;
 }
 
 .cancel {
-  @extend %button-style-reset;
+  @include button-style-reset;
   font-family: 'IBM Plex Mono';
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $bold;
-  line-height: $xs-line-height;
+  line-height: 18px;
   letter-spacing: 1;
   text-transform: uppercase;
   color: #8392ab;
@@ -62,13 +63,13 @@
   padding: 13px 20px;
   color: #fff;
   font-family: 'IBM Plex Mono';
-  font-size: $l-font-size;
+  font-size: 16px;
   font-weight: $bold;
-  line-height: $m-line-height;
+  line-height: 21px;
   letter-spacing: 0px;
   box-sizing: border-box;
   background-color: #2e293d;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
 }
 
 .hr {
@@ -81,19 +82,19 @@
 
 .text {
   font-family: 'Open Sans';
-  font-size: $s-font-size;
+  font-size: 13px;
   font-weight: $normal;
   line-height: 20px;
-  letter-spacing: $m-letter-space;
+  letter-spacing: 0.3px;
   margin: 0;
 }
 
 .value {
   font-family: 'Open Sans';
-  font-size: $l-font-size;
+  font-size: 16px;
   font-weight: $bold;
-  line-height: $l-line-height;
-  letter-spacing: $m-letter-space;
+  line-height: 24px;
+  letter-spacing: 0.3px;
   margin: 0;
   margin-top: 8px;
   display: flex;

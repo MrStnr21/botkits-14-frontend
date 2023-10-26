@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .create {
   width: 100%;
@@ -14,7 +15,7 @@
   min-height: inherit;
   flex-direction: column;
   background-color: #f2f4f8;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   padding: 40px;
   box-sizing: border-box;
   text-align: center;
@@ -22,34 +23,34 @@
 
 .create_message_title {
   font-family: 'IBM Plex Mono';
-  font-size: $h3-font-size;
-  line-height: $h3-line-height;
+  font-size: 24px;
+  line-height: 31.2px;
   letter-spacing: 0px;
   margin: 0;
 
   @media screen and (max-width: 520px) {
-    font-size: $h4-font-size;
-    line-height: $h4-line-height;
+    font-size: 18px;
+    line-height: 23.4px;
   }
 }
 
 .create_message_text {
   font-family: 'Open Sans';
-  font-size: $l-font-size;
-  line-height: $l-line-height;
-  letter-spacing: $l-letter-space;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.3px;
   margin: 16px 0 0;
 
   @media screen and (max-width: 520px) {
-    font-size: $m-font-size;
-    line-height: $m-line-height;
+    font-size: 14px;
+    line-height: 21px;
   }
 }
 
 .create_main {
   min-height: inherit;
   background-color: #ffffff;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   box-shadow: 0px 6px 16px 0px #15123314;
   padding: 40px 40px 36px;
   box-sizing: border-box;
@@ -71,9 +72,9 @@
 
 .create_main_bot_name_title {
   font-family: 'IBM Plex Mono';
-  font-size: $h3-font-size;
+  font-size: 24px;
   font-weight: $bold;
-  line-height: $h3-line-height;
+  line-height: 31.2px;
   letter-spacing: 0px;
   margin: 0;
   margin-left: 15px;
@@ -81,10 +82,10 @@
 
 .create_main_bot_name_text {
   font-family: 'Open Sans';
-  font-size: $s-font-size;
+  font-size: 13px;
   font-weight: $normal;
-  line-height: $s-line-height;
-  letter-spacing: $l-letter-space;
+  line-height: 19.5px;
+  letter-spacing: 0.3px;
   color: $primary-persian-blue-default;
   background-color: #ecefff;
   padding: 6px 16px;

@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .paymentPopupContainer {
   padding: 40px 40px 37px 40px;
@@ -7,7 +8,7 @@
   background-color: white;
   box-shadow: 0 12px 24px 0 #15123321;
   border: none;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -132,8 +133,8 @@
   justify-content: center;
   align-items: center;
   z-index: 0;
-  border-top-left-radius: $border-radius-30;
-  border-top-right-radius: $border-radius-30;
+  border-top-left-radius: $xxl-border-radius;
+  border-top-right-radius: $xxl-border-radius;
 }
 
 .title {

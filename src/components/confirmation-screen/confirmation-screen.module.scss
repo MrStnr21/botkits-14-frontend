@@ -1,4 +1,5 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .successPage {
   width: 100%;
@@ -61,18 +62,18 @@
   font-family: 'IBM Plex Mono', sans-serif;
   text-align: left;
   color: $off-white;
-  font-size: $xl-h1-font-size;
+  font-size: 64px;
   font-weight: $bold;
-  line-height: $button-line-height-110;
+  line-height: 110%;
   vertical-align: middle;
 
   @media screen and (max-width: 1080px) {
-    font-size: $h1-font-size;
+    font-size: 48px;
   }
 
   @media screen and (max-width: 800px) {
-    font-size: $h2-font-size;
-    line-height: $button-line-height-130;
+    font-size: 32px;
+    line-height: 130%;
   }
 }
 
@@ -96,19 +97,19 @@
   max-height: 60px;
   max-width: 158px;
   padding: 14px 23px 14px 20px;
-  font-size: $h2-font-size;
-  border-radius: $border-radius-15;
+  font-size: 32px;
+  border-radius: $xl-border-radius;
   color: $primary-medium-spring-green-default;
   font-weight: $bold;
   background-color: $primary-persian-blue-press;
-  line-height: $button-line-height-150;
-  letter-spacing: $h2-letter-space;
+  line-height: 150%;
+  letter-spacing: -0.2px;
   vertical-align: middle;
 
   @media screen and (max-width: 800px) {
-    border-radius: $border-radius-8;
+    border-radius: $m-border-radius;
     padding: 5px 13px 5px 7px;
-    font-size: $xl-font-size;
-    line-height: $button-line-height-130;
+    font-size: 20px;
+    line-height: 130%;
   }
 }

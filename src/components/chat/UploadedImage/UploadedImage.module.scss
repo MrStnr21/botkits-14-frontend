@@ -1,4 +1,5 @@
-@import '../../app/_vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
   // display: flex;

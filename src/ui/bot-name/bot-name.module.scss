@@ -1,6 +1,9 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
 .container {
   @include max-size(281px, 48px);
-  @include flex(row, flex-start, center);
+  @include flex(row, center, center);
   @include indents(12px 14px 12px 12px);
   border-radius: $l-border-radius;
   box-sizing: border-box;
@@ -9,7 +12,7 @@
 .text {
   @include size(141px, 23px);
   @include font('IBMPlexMonno', 18px, 600);
-  line-height: $m-line-height;
+  line-height: 21px;
   margin: 0px 52px 0px 16px;
 }
 

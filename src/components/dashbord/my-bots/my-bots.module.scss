@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .wrapper {
   max-width: 100%;
@@ -27,7 +28,7 @@
 }
 
 .header__button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   display: block;
   margin-right: 20px;
 

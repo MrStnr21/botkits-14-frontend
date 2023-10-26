@@ -1,10 +1,11 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 %typography-header {
   font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h4-font-size;
+  font-size: 18px;
   font-weight: $bold;
-  line-height: $button-line-height-130;
+  line-height: 130%;
 }
 
 .wrapper {
@@ -20,8 +21,8 @@
 
   font-family: 'Open Sans', sans-serif;
   color: $primary-oxford-blue-default;
-  line-height: $button-line-height-150;
-  letter-spacing: $m-letter-space;
+  line-height: 150%;
+  letter-spacing: 0.3px;
 
   @media (max-width: $switching-width) {
     margin-right: 20px;
@@ -86,7 +87,7 @@
 .base__text {
   margin-top: 0;
   margin-bottom: 24px;
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $bold;
 }
 
@@ -110,7 +111,7 @@
   text-decoration: none;
   color: inherit;
   font-family: inherit;
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $normal;
 
   &:hover {

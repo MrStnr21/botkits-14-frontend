@@ -1,10 +1,11 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
   @include button-style-reset;
   @include flex(row, center, center);
-  @include font('IBM Plex Mono', $s-font-size);
-  @include line-sizes($m-line-height, 1px);
+  @include font('IBM Plex Mono', 13px);
+  @include line-sizes(21px, 1px);
   text-transform: uppercase;
   transition: all 0.1s linear;
 }
@@ -111,7 +112,7 @@
 .grey:active {
   color: $primary-persian-blue-default;
   background-color: $blue-disabled;
-  box-shadow: $s-box-shadow;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .grey:disabled {

@@ -1,4 +1,5 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .select {
   display: flex;
@@ -8,9 +9,9 @@
   align-items: center;
   font-family: 'Open Sans', sans-serif;
   font-weight: $bold;
-  line-height: $s-line-height;
-  letter-spacing: $l-letter-space;
-  border-radius: $border-radius-50;
+  line-height: 19.5px;
+  letter-spacing: 0.3px;
+  border-radius: 50px;
   border: 0;
   background-color: $secondary-cultured-hover;
   padding: 8px;
@@ -40,7 +41,7 @@
 }
 
 .text {
-  font-size: $s-font-size;
+  font-size: 13px;
   line-height: 20px;
   margin: 0;
 }
@@ -60,7 +61,7 @@
 }
 
 .upload_text {
-  font-size: $s-font-size;
+  font-size: 13px;
   line-height: 20px;
   margin: 0;
 }
@@ -69,7 +70,7 @@
   width: 100%;
   max-width: 580px;
   background-color: $secondary-cultured-default;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   padding-right: 4px;
 }
 
@@ -109,13 +110,13 @@
   justify-content: center;
   font-family: 'Open Sans', sans-serif;
   font-weight: $bold;
-  font-size: $m-font-size;
-  line-height: $m-line-height;
-  letter-spacing: $l-letter-space;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.3px;
   gap: 17px;
   border: 0;
   padding: 16px 12px;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   cursor: pointer;
 
   transition: 0.2s linear;

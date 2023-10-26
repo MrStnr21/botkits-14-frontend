@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
   text-align: start;
@@ -18,10 +19,10 @@
 
 .title {
   font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h2-font-size;
+  font-size: 32px;
   font-weight: $bold;
-  line-height: $h2-line-height;
-  letter-spacing: $h2-letter-space;
+  line-height: 41.6px;
+  letter-spacing: -0.2px;
   color: $primary-oxford-blue-default;
   margin: 0;
 }
@@ -99,8 +100,8 @@
   background-color: $off-white;
   border: none;
   font-weight: $bold;
-  font-size: $l-font-size;
-  line-height: $l-line-height;
+  font-size: 16px;
+  line-height: 24px;
   color: $grey-3;
   @media (max-width: $switching-width) {
     display: none;

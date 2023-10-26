@@ -1,11 +1,12 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container{
   font-family: 'IBM Plex Mono';
   display: flex;
   flex-direction: column;
 
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
 
   max-width: 296px;
   height: min-content;
@@ -42,7 +43,7 @@
 }
 
 .name{
-  font-size: $l-font-size;
+  font-size: 16px;
   line-height: 20px;
   font-weight: $semi-bold;
   color: $primary-oxford-blue-default;

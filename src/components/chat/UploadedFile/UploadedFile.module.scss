@@ -1,4 +1,5 @@
-@import '../../app/_vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
   display: flex;
@@ -16,8 +17,8 @@
   font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
   font-size: $xxs-font-size;
-  line-height: $xs-line-height;
-  letter-spacing: $l-letter-space;
+  line-height: 18px;
+  letter-spacing: 0.3px;
   // width: fit-content;
   margin: 0;
   white-space: nowrap;

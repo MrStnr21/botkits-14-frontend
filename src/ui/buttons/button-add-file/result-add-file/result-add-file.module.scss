@@ -1,4 +1,5 @@
-@import '../../../../components/app/vars';
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
 
 .result {
   width: 261px;
@@ -8,8 +9,8 @@
   justify-content: space-between;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
-  line-height: $button-line-height-150;
-  letter-spacing: $m-letter-space;
+  line-height: 150%;
+  letter-spacing: 0.3px;
 }
 
 .result__icon {

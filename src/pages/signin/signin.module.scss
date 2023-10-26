@@ -1,16 +1,17 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .signinFormContainer {
   width: 100%;
   background-color: $primary-persian-blue-hover;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
   @media screen and (max-width: 600px) {
-    border-radius: $border-radius-30 $border-radius-30 0 0;
+    border-radius: $xxl-border-radius $xxl-border-radius 0 0;
     height: calc(100vh - 119px);
     justify-content: flex-start;
   }
@@ -39,7 +40,7 @@
   padding: 0;
   width: 100%;
   max-width: 172px;
-  border-radius: $border-radius-15;
+  border-radius: $xl-border-radius;
   background-color: $primary-persian-blue-default;
   height: 30px;
   margin-top: -15px;
@@ -47,16 +48,16 @@
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   color: $off-white;
-  font-size: $l-font-size;
+  font-size: 16px;
   font-weight: $bold;
-  line-height: $button-line-height-150;
+  line-height: 150%;
 
   @media screen and (max-width: 600px) {
     margin-top: -15px;
     margin-bottom: 24px;
-    font-size: $l-font-size;
-    letter-spacing: $h5-letter-space;
-    line-height: $button-line-height-150;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 150%;
   }
 }
 
@@ -65,7 +66,7 @@
   gap: 40px;
   padding: 10px;
   background-color: $primary-persian-blue-focus;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
 
   @media screen and (max-width: 600px) {
     gap: 10px;
@@ -78,7 +79,7 @@
   gap: 40px;
   padding: 10px;
   background-color: $primary-persian-blue-focus;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
 
   @media screen and (max-width: 600px) {
     gap: 10px;
@@ -92,7 +93,7 @@
   padding-left: 100px;
   padding-right: 100px;
   box-sizing: border-box;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   flex-direction: column;
   align-items: center;
   background-color: $primary-persian-blue-default;
@@ -143,10 +144,10 @@
   justify-content: center;
   gap: 30px;
   color: $off-white;
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $bold;
-  line-height: $button-line-height-150;
-  letter-spacing: $l-letter-space;
+  line-height: 150%;
+  letter-spacing: 0.3px;
   font-feature-settings:
     'clig' off,
     'liga' off;
@@ -173,7 +174,7 @@
   position: absolute;
   font-size: 10px;
   line-height: 15px;
-  letter-spacing: $m-letter-space;
+  letter-spacing: 0.3px;
   margin: 2px 0 0 0;
   left: 0;
   right: 0;

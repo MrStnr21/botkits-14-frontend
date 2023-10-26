@@ -1,4 +1,5 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 // @TODO перенести в нужную папку, доделать стили
 .wrapper {
   width: fit-content;
@@ -10,7 +11,7 @@
 .butbox {
   margin-top: 16px;
   margin-bottom: 32px;
-  @extend %flex-element-center;
+  @include flex(row, center, center);
   flex-wrap: wrap;
   gap: 20px;
 }

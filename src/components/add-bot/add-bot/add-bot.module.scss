@@ -1,9 +1,12 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
 .add_bot_title {
   font-family: 'IBM Plex Mono';
-  font-size: $h2-font-size;
+  font-size: 32px;
   font-weight: $bold;
-  line-height: $h2-line-height;
-  letter-spacing: $h2-letter-space;
+  line-height: 41.6px;
+  letter-spacing: -0.2px;
   margin: 0 0 32px 0;
   padding: 0;
   text-align: left;

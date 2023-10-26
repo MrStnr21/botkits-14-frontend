@@ -1,15 +1,16 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $bold;
-  letter-spacing: $l-letter-space;
-  line-height: $button-line-height-150;
+  letter-spacing: 0.3px;
+  line-height: 150%;
   font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
   flex-direction: column;
@@ -20,14 +21,14 @@
 .container {
   display: flex;
   //gap: 34px; использую margin: auto;
-  border-radius: $border-radius-185;
-  height: $button-add-sample-bot-height;
+  border-radius: 185px;
+  height: 88px;
   width: 100%;
   transition: all 0.1s linear;
 }
 
 .container div {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .plus_icon {
@@ -35,14 +36,14 @@
 }
 
 .plus_icon svg {
-  stroke-width: $button-add-sample-bot-stroke-width;
+  stroke-width: 2px;
   transition: all 0.1s linear;
   align-self: center;
 }
 
 .template_icon svg {
-  height: $button-add-sample-bot-height;
-  width: $button-add-sample-bot-height;
+  height: 88px;
+  width: 88px;
   transition: all 0.1s linear;
 }
 

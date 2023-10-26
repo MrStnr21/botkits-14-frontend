@@ -1,10 +1,11 @@
-@import '../app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .card {
   width: 296px;
   height: 172px;
   background-color: $off-white;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   box-shadow: 0 12px 24px rgba(21, 18, 51, 0.13);
   position: relative;
   display: flex;
@@ -61,12 +62,12 @@
 .name {
   font: {
     weight: $bold;
-    size: $l-font-size;
+    size: 16px;
     family: 'IBM Plex Mono', sans-serif;
   }
 
   margin: 0;
-  line-height: $m-line-height;
+  line-height: 21px;
   letter-spacing: 0.5px;
   // переполнение, имя бота
   text-overflow: ellipsis;

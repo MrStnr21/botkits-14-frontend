@@ -1,17 +1,18 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
   transition: all 0.1s linear;
-  height: $constructor-helper-button-height;
-  width: $constructor-helper-button-width;
-  border-radius: $border-radius-10;
+  height: 40px;
+  width: 96px;
+  border-radius: $l-border-radius;
   box-shadow: $m-box-shadow;
 }
 
 .container div {
-  height: $constructor-helper-button-height;
-  @extend %flex-element-center;
+  height: 40px;
+  @include flex(row, center, center);
 }
 
 .container svg {
@@ -19,13 +20,13 @@
 }
 
 .ask_button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   padding-right: 12px;
   border-right: solid 1px $secondary-cultured-hover;
 }
 
 .delete_button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   padding-left: 12px;
 }
 

@@ -1,4 +1,5 @@
-@import '../app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 @mixin add-button-circle() {
   // Это синяя круглая кнопка
@@ -24,9 +25,9 @@
   // общее оформление текста в навигации
   font-family: 'Open Sans', sans-serif;
   font-weight: $normal;
-  font-size: $l-font-size;
-  letter-spacing: $s-letter-space;
-  line-height: $l-line-height;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  line-height: 24px;
 }
 
 /* **     Общий блок открытое/закрытое состояние сайдбара и блок затемнения   ** */
@@ -192,7 +193,7 @@
   top: 2px;
   width: 24px;
   height: 24px;
-  @extend %button-style-reset;
+  @include button-style-reset;
   z-index: 1;
   mask-image: url('../../images/icon/24x24/common/menu.svg');
   mask-repeat: no-repeat;
@@ -237,7 +238,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  @extend %button-style-reset;
+  @include button-style-reset;
 
   &:hover {
     background-color: $primary-persian-blue-press;
@@ -247,8 +248,8 @@
 .addtext {
   font-family: 'IBM Plex Mono', sans-serif;
   font-weight: $bold;
-  letter-spacing: $m-letter-space;
-  font-size: $m-font-size;
+  letter-spacing: 0.3px;
+  font-size: 14px;
   color: $off-white;
   text-transform: uppercase;
   margin: 0;
@@ -269,8 +270,8 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  @extend %button-style-reset;
-  border-radius: $border-radius-50;
+  @include button-style-reset;
+  border-radius: 50px;
   margin-bottom: 8px;
   min-width: 46px;
   width: 100%;
@@ -354,7 +355,7 @@
 }
 
 .navigation__expandButton {
-  @extend %button-style-reset;
+  @include button-style-reset;
   position: absolute;
   right: 10px;
   top: 13px;

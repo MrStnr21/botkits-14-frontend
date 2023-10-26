@@ -1,4 +1,5 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .partnership {
   margin-top: 32px;
@@ -30,16 +31,16 @@
 
   &__title {
     font-family: 'IBM Plex Mono', sans-serif;
-    font-size: $h2-font-size;
-    line-height: $h2-line-height;
-    letter-spacing: $h2-letter-space;
+    font-size: 32px;
+    line-height: 41.6px;
+    letter-spacing: -0.2px;
     font-weight: $bold;
     color: $primary-oxford-blue-default;
     margin: 0 0 32px 0;
 
     @media screen and (max-width: 620px) {
-      font-size: $h3-font-size;
-      line-height: $h3-line-height;
+      font-size: 24px;
+      line-height: 31.2px;
       margin-bottom: 20px;
     }
   }
@@ -74,7 +75,7 @@
 
 .tables {
   margin: 0;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   background-color: $secondary-cultured-default;
   width: 100%;
 
@@ -91,7 +92,7 @@
     flex-direction: column;
     align-items: center;
     background-color: $off-white;
-    border-radius: $border-radius-30;
+    border-radius: $xxl-border-radius;
     box-sizing: border-box;
     box-shadow: 0px 6px 16px 0px #15123314;
   }
@@ -109,14 +110,14 @@
   &__title {
     margin: 0;
     font-family: 'IBM Plex Mono', sans-serif;
-    font-size: $h3-font-size;
+    font-size: 24px;
     font-weight: $semi-bold;
-    line-height: $h3-line-height;
+    line-height: 31.2px;
 
     @media screen and (max-width: 860px) {
-      font-size: $h4-font-size;
+      font-size: 18px;
       font-weight: $bold;
-      line-height: $h4-line-height;
+      line-height: 23.4px;
     }
   }
 

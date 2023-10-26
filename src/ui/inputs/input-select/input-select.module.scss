@@ -1,11 +1,12 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 
 
 
 [class*='MuiMenu-root'] {
   [class*='MuiMenu-paper'] {
-    border-radius: $border-radius-10;
+    border-radius: $l-border-radius;
     box-shadow: $m-box-shadow;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
@@ -32,13 +33,13 @@
       padding-right: 20px;
       position: absolute;
       right: 20px;
-      border-radius: $border-radius-10;
+      border-radius: $l-border-radius;
       box-sizing: border-box;
     }
 
     &::-webkit-scrollbar-thumb {
       background-color: $grey-3;
-      border-radius: $border-radius-10;
+      border-radius: $l-border-radius;
     }
 
     &::-webkit-scrollbar-track {
@@ -57,12 +58,12 @@
       [class*='MuiMenuItem-root'] {
         position: relative;
         background-color: $off-white;
-        font-size: $s-font-size;
+        font-size: 13px;
         font-weight: $normal;
         font-family: 'Open Sans', sans-serif;
         font-style: normal;
-        line-height: $button-line-height-150;
-        letter-spacing: $m-letter-space;
+        line-height: 150%;
+        letter-spacing: 0.3px;
         color: $primary-oxford-blue-default;
         text-transform: capitalize;
         max-height: 37px;
@@ -104,12 +105,12 @@
   }
 
   [class*='MuiOutlinedInput-input'] {
-    font-size: $s-font-size;
+    font-size: 13px;
     font-weight: $normal;
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
+    line-height: 150%;
+    letter-spacing: 0.3px;
     color: $primary-oxford-blue-default;
     text-transform: capitalize;
     padding: 0;
@@ -132,9 +133,9 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: $normal;
   font-size: $xxs-font-size;
-  line-height: $xs-line-height;
+  line-height: 18px;
   color: $primary-oxford-blue-default;
-  letter-spacing: $m-letter-space;
+  letter-spacing: 0.3px;
 }
 
 .chosen{

@@ -1,4 +1,5 @@
-@import '../../app/_vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .accordion {
   display: flex;
@@ -10,7 +11,7 @@
   padding-left: 8px;
   padding-right: 8px;
   padding-bottom: 10px;
-  border-radius: $border-radius-5;
+  border-radius: $s-border-radius;
   align-items: flex-start;
   justify-content: space-between;
   cursor: pointer;
@@ -19,9 +20,9 @@
 @mixin font {
   font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
-  font-size: $s-font-size;
-  line-height: $s-line-height;
-  letter-spacing: $lx-letter-space;
+  font-size: 13px;
+  line-height: 19.5px;
+  letter-spacing: 0.75px;
   margin: 0;
   white-space: nowrap;
   color: $primary-oxford-blue-default;

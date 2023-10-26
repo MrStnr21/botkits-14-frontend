@@ -1,4 +1,5 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .text {
   font-family: 'Open Sans', sans-serif;

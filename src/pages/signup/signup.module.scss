@@ -1,10 +1,11 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .signupFormContainer {
   position: relative;
   width: 100%;
   background-color: $primary-persian-blue-hover;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +13,7 @@
   overflow: hidden;
 
   @media screen and (max-width: 600px) {
-    border-radius: $border-radius-30 $border-radius-30 0 0;
+    border-radius: $xxl-border-radius $xxl-border-radius 0 0;
   }
 }
 
@@ -55,15 +56,15 @@
   font-family: 'IBM Plex Mono', sans-serif;
   text-align: center;
   color: $off-white;
-  font-size: $xl-font-size;
+  font-size: 20px;
   font-weight: $bold;
-  line-height: $button-line-height-130;
+  line-height: 130%;
 
   @media screen and (max-width: 600px) {
     margin-top: 25px;
-    font-size: $l-font-size;
-    letter-spacing: $h5-letter-space;
-    line-height: $button-line-height-150;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 150%;
   }
 }
 
@@ -83,7 +84,7 @@
   gap: 40px;
   padding: 10px;
   background-color: $primary-persian-blue-focus;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
 
   @media screen and (max-width: 600px) {
     gap: 10px;
@@ -96,7 +97,7 @@
   gap: 40px;
   padding: 10px;
   background-color: $primary-persian-blue-focus;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
 
   @media screen and (max-width: 600px) {
     gap: 10px;
@@ -110,7 +111,7 @@
   padding-right: 50px;
   display: flex;
   box-sizing: border-box;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   flex-direction: column;
   align-items: center;
   background-color: $primary-persian-blue-default;
@@ -118,7 +119,7 @@
   @media screen and (max-width: 600px) {
     padding-left: 20px;
     padding-right: 20px;
-    border-radius: $border-radius-30 $border-radius-30 0 0;
+    border-radius: $xxl-border-radius $xxl-border-radius 0 0;
   }
 }
 
@@ -129,14 +130,14 @@
   margin-bottom: 45px;
   width: 80px;
   height: 30px;
-  border-radius: $border-radius-15;
+  border-radius: $xl-border-radius;
   background-color: $primary-persian-blue-default;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   color: $off-white;
-  font-size: $l-font-size;
+  font-size: 16px;
   font-weight: $bold;
-  line-height: $button-line-height-150;
+  line-height: 150%;
 
   @media screen and (max-width: 600px) {
     margin-bottom: 25px;
@@ -209,10 +210,10 @@
     margin: 0;
     color: $off-white;
     font-family: 'Open Sans', sans-serif;
-    font-size: $m-font-size;
+    font-size: 14px;
     font-weight: $normal;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
+    line-height: 150%;
+    letter-spacing: 0.3px;
     border: none;
   }
 
@@ -273,9 +274,9 @@
   justify-content: center;
   gap: 10px;
   color: $off-white;
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $normal;
-  line-height: $button-line-height-150;
+  line-height: 150%;
   margin-bottom: 40px;
   z-index: 1;
 
@@ -294,7 +295,7 @@
   position: absolute;
   font-size: 10px;
   line-height: 15px;
-  letter-spacing: $m-letter-space;
+  letter-spacing: 0.3px;
   margin: 2px 0 0 0;
   left: 0;
   right: 0;
@@ -369,10 +370,10 @@
     [class*="MuiTypography-root"] {
       max-width: 140px;
       font-family: 'Open Sans', sans-serif;
-      font-size: $m-font-size;
+      font-size: 14px;
       font-weight: $normal;
-      line-height: $button-line-height-150;
-      letter-spacing: $m-letter-space;
+      line-height: 150%;
+      letter-spacing: 0.3px;
       color: $primary-oxford-blue-default;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -382,10 +383,10 @@
   [class*="MuiTypography-root"] {
     max-width: 140px;
     font-family: 'Open Sans', sans-serif;
-    font-size: $m-font-size;
+    font-size: 14px;
     font-weight: $bold;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
+    line-height: 150%;
+    letter-spacing: 0.3px;
     color: $primary-persian-blue-default;
   }
 }

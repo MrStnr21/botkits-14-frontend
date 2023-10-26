@@ -81,7 +81,7 @@ $m-box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
 
 /* Шаблонныe селекторы
 для скрытия блока с текстом объяснения, что это за ссылка */
-/* %screen-reader {  // Используется в 1 компоненте
+%screen-reader {  // Используется в 1 компоненте
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -91,10 +91,10 @@ $m-box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
   position: absolute;
   white-space: nowrap;
   width: 1px;
-} */
+}
 
 /*  Курсор  */
-$cursor: url('../../images/icon/cursor/pointing-hand.svg'), pointer;
+$cursor: url('../images/icon/cursor/pointing-hand.svg'), pointer;
 
 /* Иконки */
 // возможно не будут нужны после рефакторинга иконок

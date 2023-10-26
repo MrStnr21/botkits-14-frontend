@@ -1,10 +1,11 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .tableContent {
   font-family: 'Open-Sans', sans-serif;
   padding: 0 40px 0;
   box-sizing: border-box;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   background-color: transparent;
   box-shadow: none;
   overflow-y: scroll;

@@ -1,23 +1,24 @@
-@import '../app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 // Размер элемента
 %size-m {
   width: 264px;
   height: 132px;
-  border-radius: $border-radius-15;
+  border-radius: $xl-border-radius;
 }
 
 %size-s {
   width: 172px;
   height: 96px;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   margin-right: 20px;
 }
 
 %size-x {
   width: 130px;
   height: 72px;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
 }
 
 .size-m {
@@ -74,7 +75,7 @@
 }
 
 .playButton {
-  @extend %button-style-reset;
+  @include button-style-reset;
 }
 
 .button__remove {
@@ -87,7 +88,7 @@
   background-color: $grey-1;
   mask-position: center;
   mask-size: 15px 15px;
-  @extend %button-style-reset;
+  @include button-style-reset;
   z-index: 2;
 
   &:hover {
@@ -112,7 +113,7 @@
   width: 100%;
   height: 100%;
   z-index: 10;
-  @extend %flex-element-center;
+  @include flex(row, center, center);
   background-color: rgba($primary-oxford-blue-default, 0.4);
 }
 
@@ -136,7 +137,7 @@
   background-color: $grey-1;
   mask-position: center;
   mask-size: 35px 35px;
-  @extend %button-style-reset;
+  @include button-style-reset;
   z-index: 11;
 
   &:hover {

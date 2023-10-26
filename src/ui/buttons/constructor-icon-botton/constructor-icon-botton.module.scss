@@ -1,29 +1,30 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
+  @include button-style-reset;
+  @include flex(row, center, center);
   transition: all 0.1s linear;
-  // border-radius: $border-radius-10;
-  // height: $constructor-icon-button-height;
-  // width: $constructor-icon-button-width;
+  // border-radius: $l-border-radius;
+  // height: 52px;
+  // width: 56px;
   flex-shrink: 0;
 }
 
 .buttonBld {
-  border-radius: $border-radius-10;
-  height: $constructor-icon-button-height;
-  width: $constructor-icon-button-width;
+  border-radius: $l-border-radius;
+  height: 52px;
+  width: 56px;
 }
 
 .buttonMln {
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   height: 124px;
   width: 124px;
 }
 
 .icon {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .button svg {
@@ -45,7 +46,7 @@
 
 .buttonMln {
   background-color: #f8f9fb;
-  @extend %flex-element-center;
+  @include flex(row, center, center);
   flex-direction: column;
 }
 

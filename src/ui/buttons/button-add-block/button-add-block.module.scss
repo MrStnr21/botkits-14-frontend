@@ -1,13 +1,14 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   width: 196px;
   height: 64px;
   display: flex;
   background-color: white;
   transition: background-color 0.1s linear;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   align-items: center;
 }
 
@@ -42,10 +43,10 @@
 }
 
 .name {
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $bold;
-  letter-spacing: $m-letter-space;
-  line-height: $m-line-height;
+  letter-spacing: 0.3px;
+  line-height: 21px;
   font-family: 'Open Sans';
   margin: 0;
 }

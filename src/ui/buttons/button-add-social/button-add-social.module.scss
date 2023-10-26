@@ -1,30 +1,31 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
+  @include button-style-reset;
+  @include flex(row, center, center);
   flex-direction: column;
   gap: 13px;
-  font-size: $m-font-size;
+  font-size: 14px;
   font-weight: $bold;
-  letter-spacing: $l-letter-space;
-  line-height: $button-line-height-150;
+  letter-spacing: 0.3px;
+  line-height: 150%;
   font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
-  height: $button-add-social-size;
+  height: 124px;
   aspect-ratio: 1 / 1;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
 }
 
 .icon {
-  @extend %flex-element-center;
-  height: $button-add-social-icon-size;
+  @include flex(row, center, center);
+  height: 52px;
   aspect-ratio: 1 / 1;
   transition: background-image 0.1s linear;
   background-size: cover;
 
   @media screen and (max-width: 500px) {
-    height: $button-add-social-icon-size-xs;
+    height: 34px;
     background-size: contain;
   }
 }
@@ -42,7 +43,7 @@
 }
 
 .button.active {
-  background-color: $button-add-social-pressed-background-color;
+  background-color: transparent;
   box-shadow: $m-box-shadow;
 }
 
@@ -53,7 +54,7 @@
 }
 
 .button:active {
-  background-color: $button-add-social-pressed-background-color;
+  background-color: transparent;
   box-shadow: $m-box-shadow;
 }
 
@@ -471,10 +472,10 @@
 }
 
 .buttonSmall {
-  height: $button-add-social-icon-size-s;
+  height: 40px;
   background-color: transparent;
 
   @media screen and (max-width: 500px) {
-    height: $button-add-social-icon-size-xs;
+    height: 34px;
   }
 }

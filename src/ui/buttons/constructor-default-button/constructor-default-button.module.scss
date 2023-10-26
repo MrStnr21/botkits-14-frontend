@@ -1,17 +1,18 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
-  font-size: $s-font-size;
+  @include button-style-reset;
+  @include flex(row, center, center);
+  font-size: 13px;
   font-weight: $bold;
-  letter-spacing: $m-letter-space;
-  line-height: $button-line-height-150;
+  letter-spacing: 0.3px;
+  line-height: 150%;
   font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
-  height: $constructor-default-button-height;
+  height: 35px;
   width: 100%;
-  border-radius: $border-radius-5;
+  border-radius: $s-border-radius;
 }
 
 /* Стили цвета кнопки*/
