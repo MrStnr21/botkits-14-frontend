@@ -88,9 +88,3 @@ const MenuVariable: FC<IMenuVariable> = ({
 };
 
 export default MenuVariable;
-
-
-
-
-Typography
-          tag="p"
