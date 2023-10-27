@@ -32,12 +32,8 @@
 }
 
 .type{
- font-size: $xs-font-size;
- line-height: 15.6px;
  color: $default-dark-grey-color;
  @media screen and (max-width: 520px) {
-  font-size: 6.84px;
-  line-height: 8.89px;
 }
 }
 
