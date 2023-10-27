@@ -9,7 +9,7 @@
 
 .h1 {
   @include typography;
-  font-size: $h1-font-size;
+  font-size: $h1-font-size; //48px
   line-height: $h1-line-height; //52.8px
   letter-spacing: $h2-letter-space;
 }
