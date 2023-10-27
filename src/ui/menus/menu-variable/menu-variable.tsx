@@ -55,7 +55,12 @@ const MenuVariable: FC<IMenuVariable> = ({
             isActive !== '' ? stylesMenuVariable.overlayActive : ''
           }`}
         />
-        <p className={`${stylesMenuVariable.text} ${textColor}`}>{variable}</p>
+        <Typography
+          tag="p"
+          className={`${stylesMenuVariable.text} ${textColor}`}
+        >
+          {variable}
+        </Typography>
         <img
           src={arrowIcon}
           alt="стрелка"

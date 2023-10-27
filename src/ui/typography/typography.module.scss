@@ -3,35 +3,43 @@
 @mixin typography {
   margin: 0;
   font-weight: $bold; //600
-  line-height: $h-line-height; //130%
   font-family: 'IBM Plex Mono', sans-serif;
   color: $primary-text-color; //#060c23
 }
 
 .h1 {
   @include typography;
-  font-size: $h1-font-size;  
+  font-size: $h1-font-size;
+  line-height: $h1-line-height; //52.8px
+  letter-spacing: $h2-letter-space;
 }
 
 .h2 {
   @include typography;
   font-size: $h2-font-size;
-  letter-spacing: $h2-letter-space;
+  line-height: $h2-line-height; //41.6px
+  letter-spacing: $h2-letter-space; //-0.2px
 }
 
 .h3 {
   @include typography;
   font-size: $h3-font-size;
+  line-height: $h3-line-height; //31.2px
+  letter-spacing: $h3-letter-space;
 }
 
 .h4 {
   @include typography;
   font-size: $h4-font-size;
+  line-height: $h4-line-height; //23.4px
+  letter-spacing: $h3-letter-space; //0px
 }
 
 .h5 {
   @include typography;
   font-size: $m-font-size;
+  line-height: $h-line-height; //130%
+  letter-spacing: $h5-letter-space; //0.5px
 }
 
 .p {
@@ -45,6 +53,6 @@
   @include typography;
   font-size: $s-font-size; //13px
   font-weight: $normal; //400
-  line-height: $p-line-height; //150%
-  letter-spacing: $m-letter-space; //0.3px
+  line-height: $p-line-height;
+  letter-spacing: $m-letter-space;
 }
