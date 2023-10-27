@@ -36,20 +36,6 @@
   }
 }
 
-// .more_box {
-//   display: none;
-// }
-
-// .more_box__active {
-//   display: inline;
-//   background-color: white;
-//   border: 1px solid black;
-//   position: absolute;
-//   left: 185px;
-//   width: 150px;
-//   top: 65px;
-// }
-
 .name_box {
   height: 56px;
   margin: 24px 0 0 32px;
@@ -59,13 +45,7 @@
 }
 
 .name {
-  font: {    
-    size: $l-font-size;    
-  }
-
-  line-height: $m-line-height;
   letter-spacing: 0.5px;
-  // переполнение, имя бота
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
