@@ -1,0 +1,37 @@
+@import '../../../components/app/vars';
+
+@mixin text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@mixin textStopTest {
+  @include text;
+  width: 151px;
+  height: 48px;
+}
+
+.textStop {
+  @include textStopTest;
+}
+
+.textTest {
+  @include textStopTest;
+}
+
+.textStart {
+  @include text;
+  align-items: flex-start;
+  padding-bottom: 15px;
+}
+
+.wrapper {
+  border-radius: 32px;
+  overflow: hidden;
+  width: 80px;
+  height: 29px;
+}

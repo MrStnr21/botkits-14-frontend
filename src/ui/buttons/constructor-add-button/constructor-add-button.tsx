@@ -63,7 +63,8 @@ export interface IConstructorAddButton {
   onClick?: VoidFunction;
   disabled?: boolean;
   children: React.ReactNode;
-  icon?: typeof Icons;
+  icon?: string;
+  picture?: React.ReactNode;
 }
 
 const cx = classNames.bind(stylesConstructorAddButton);
@@ -74,6 +75,7 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
   disabled,
   children,
   icon = 'add',
+  picture,
 }) => {
   const getIcon = () => {
     switch (icon) {
