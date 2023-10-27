@@ -34,7 +34,7 @@ const TableComponent: FC<Props> = ({ columns, tableData, ...props }) => {
     <TableContainer>
       <Table>
         <TableHead>
-          <TableRow sx={{ boxSizing: 'border-box' }}>
+          <TableRow>
             {columns?.map(({ label, colStyle }) => (
               <TableCell key={uuidv4()} sx={colStyle}>
                 {props.headComponent ? (

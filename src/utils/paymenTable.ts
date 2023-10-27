@@ -1,5 +1,9 @@
 /* eslint-disable object-shorthand */
-import { baseCell, dateCell, statusCell } from './paymen-table-cells';
+import {
+  baseCell,
+  dateCell,
+  statusCell,
+} from '../components/table-cells/table-cells';
 
 export const colStyle = {
   border: 'none',
