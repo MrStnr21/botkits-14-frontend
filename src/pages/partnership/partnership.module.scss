@@ -29,7 +29,6 @@
   }
 
   &__title {
-    line-height: $h2-line-height;
     color: $primary-text-color;
     margin-bottom: 32px;
 
@@ -107,7 +106,6 @@
 
     @media screen and (max-width: 860px) {
       font-size: $h4-font-size;
-      font-weight: $bold;
       line-height: $h4-line-height;
     }
   }
