@@ -42,10 +42,6 @@
   gap: 20px;
 }
 
-.bot_template_title {
-  line-height: $h2-line-height;
-}
-
 .bot_template_text {
   font-family: 'Open Sans';
   font-size: $h4-font-size;
@@ -74,7 +70,6 @@
   font-size: $m-font-size;
   line-height: $m-line-height;
   letter-spacing: $l-letter-space;
-  color: $primary-text-color;
 }
 
 .bot_template_buttons {
