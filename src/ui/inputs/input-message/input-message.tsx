@@ -1,17 +1,16 @@
-import { FC, ChangeEvent, useState } from 'react';
-
+import React, { FC, ChangeEvent, useState } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 import stylesInput from './input-message.module.scss';
-
-import { ReactComponent as Emoji } from '../../../images/icon/24x24/constructor/emoji.svg';
-import { ReactComponent as File } from '../../../images/icon/24x24/add content/file.svg';
-import { ReactComponent as Slash } from '../../../images/icon/24x24/common/slash.svg';
-import { ReactComponent as Zap } from '../../../images/icon/24x24/common/zap.svg';
-import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
+import PaperClipIcon from '../../../components/icons/PaperClip/PaperClipIcon';
+import EmojiIcon from '../../../components/icons/Emoji/EmojiIcon';
+import InvisibleMessageIcon from '../../../components/icons/InvisibleMessage/InvisibleMessageIcon';
+import QuickAnswerIcon from '../../../components/icons/QuickAnswer/QuickAnswerIcon';
+import AddIcon from '../../../components/icons/Add/AddIcon';
 
 interface IInputMessage {
   placeholder?: string;
   value?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onClickClip?: () => void;
   onClickEmoji?: () => void;
   onClickSlash?: () => void;
@@ -27,12 +26,13 @@ const InputMessage: FC<IInputMessage> = ({
   onClickSlash,
   onClickZap,
 }): JSX.Element => {
-  const [toggle, setToggle] = useState(false);
+  const [rotateAddIcon, setRotateAddIcon] = useState(false);
+  const handleRotate = () => setRotateAddIcon(!rotateAddIcon);
+  const rotate = rotateAddIcon ? 'unfolded' : 'folded';
   return (
     <div className={stylesInput.message}>
-      <input
+      <TextareaAutosize
         className={stylesInput.message_input}
-        type="text"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
@@ -43,43 +43,39 @@ const InputMessage: FC<IInputMessage> = ({
           type="button"
           onClick={onClickClip}
         >
-          <File className={stylesInput.icon_clip} />
+          <PaperClipIcon width={20} height={20} />
         </button>
         <button
           className={stylesInput.message_button}
           type="button"
           onClick={onClickEmoji}
         >
-          <Emoji className={stylesInput.icon} />
+          <EmojiIcon width={20} height={20} />
         </button>
-        {toggle && (
+        {rotateAddIcon && (
           <div className={stylesInput.message_hidden}>
             <button
               className={stylesInput.message_button}
               type="button"
               onClick={onClickSlash}
             >
-              <Slash />
+              <InvisibleMessageIcon width={20} height={20} />
             </button>
             <button
               className={stylesInput.message_button}
               type="button"
               onClick={onClickZap}
             >
-              <Zap />
+              <QuickAnswerIcon width={20} height={20} />
             </button>
           </div>
         )}
         <button
           className={stylesInput.message_button}
           type="button"
-          onClick={() => setToggle(!toggle)}
+          onClick={handleRotate}
         >
-          <Plus
-            className={`${stylesInput.icon_plus} ${
-              toggle && stylesInput.icon_plus_rotate
-            }`}
-          />
+          <AddIcon width={24} height={24} position={rotate} />
         </button>
       </div>
     </div>

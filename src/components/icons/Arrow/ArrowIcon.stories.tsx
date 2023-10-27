@@ -1,19 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import AddIcon from './AddIcon';
+import ArrowIcon from './ArrowIcon';
 
 const colors = {
   black: '#060C23',
-  grey: '#8392AB',
+  white: '#FFFFFF',
 };
 
 const positions = {
-  folded: 'folded',
-  unfolded: 'unfolded',
+  down: 'down',
+  up: 'up',
+  left: 'left',
+  right: 'right',
 };
 
-const meta: Meta<typeof AddIcon> = {
-  title: 'Components/Icons/AddIcon',
-  component: AddIcon,
+const meta: Meta<typeof ArrowIcon> = {
+  title: 'Components/Icons/ArrowIcon',
+  component: ArrowIcon,
   argTypes: {
     color: {
       type: 'string',
@@ -24,7 +26,7 @@ const meta: Meta<typeof AddIcon> = {
         type: 'radio',
         labels: {
           black: 'Черный',
-          grey: 'Серый',
+          white: 'Белый',
         },
       },
     },
@@ -36,8 +38,10 @@ const meta: Meta<typeof AddIcon> = {
       control: {
         type: 'radio',
         labels: {
-          folded: 'folded',
-          unfolded: 'unfolded',
+          down: 'Вниз',
+          up: 'Вверх',
+          left: 'Влево',
+          right: 'Вправо',
         },
       },
     },
@@ -48,11 +52,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const IconAdd: Story = {
+export const IconArrow: Story = {
   args: {
-    color: '#8392AB',
-    position: 'folded',
-    width: 36,
-    height: 36,
+    color: '#FFFFFF',
+    position: 'up',
+    width: 24,
+    height: 24,
   },
 };
