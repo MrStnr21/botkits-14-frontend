@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 4px;
   width: 200px;
-  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.08);
+  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.08); // $l-box-shadow?
   background-color: white;
   border-radius: $l-border-radius;
   position: absolute;
@@ -31,13 +31,9 @@
 }
 
 .text {
-  font-size: $s-font-size;
-  font-weight: $normal;
+  @include font('IBM Plex Sans', $s-font-size, $normal, #2e293d);
   line-height: 21px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  margin: 0;
-  margin-left: 16px;
-  color: #2e293d;
+  margin: 0 0 0 16px;
 
   &hover {
     color: $primary-oxford-blue-default;
@@ -50,14 +46,12 @@
 }
 
 .button {
+  @include flex(row, $align-items: center);
   min-height: 37px;
   box-sizing: border-box;
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   cursor: $cursor;
   text-decoration: none;
 
@@ -108,24 +102,16 @@
 }
 
 .userInfo__name {
+  @include font('IBM Plex Sans', $l-font-size, $bold, $primary-oxford-blue-default);
   margin: 0;
-  color: $primary-oxford-blue-default;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: $l-font-size;
-  font-weight: $bold;
-  line-height: 130%;
+  line-height: $m-line-height;
 }
 
 .tariff_container {
-  display: flex;
-  gap: 5px;
+  @include flex($gap: 5px);
+  @include font('Open Sans', $xs-font-size, $color: #8392ab);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin-top: 4px;
-
-  color: #8392ab;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $xs-font-size;
-  line-height: $xl-line-height;
-  letter-spacing: $m-letter-space;
 }
 
 .tariff {

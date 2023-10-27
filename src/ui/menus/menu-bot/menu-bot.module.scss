@@ -2,11 +2,9 @@
 @use '../../../stylesheets/mixins' as *;
 
 .box {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
+  @include flex(column, $gap: 4px);
   width: 175px;
-  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.08);
+  box-shadow: $l-box-shadow;
   background-color: white;
   border-radius: $l-border-radius;
   position: absolute;
@@ -18,25 +16,19 @@
 }
 
 .text {
-  font-size: $xs-font-size;
-  font-weight: $normal;
-  line-height: 19.5px;
-  font-family: 'Open Sans';
-  letter-spacing: $m-letter-space;
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin-left: 16px;
 }
 
 .button {
-  height: 37px;
+  @include size(100%, 37px);
+  @include flex(row, flex-start, center);
   background-color: white;
   box-sizing: border-box;
-  width: 100%;
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   cursor: pointer;
 }
 .button:first-of-type {
@@ -50,8 +42,7 @@
 }
 
 .icon {
-  height: 24px;
-  width: 24px;
+  @include size(24px, 24px);
 }
 
 .icon__grey {

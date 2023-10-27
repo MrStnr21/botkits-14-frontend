@@ -3,59 +3,61 @@
 
 .container {
   @include flex(row, center, center);
+  @include size(96px, 40px);
   transition: all 0.1s linear;
-  height: 40px;
-  width: 96px;
   border-radius: $l-border-radius;
   box-shadow: $m-box-shadow;
-}
+  background-color: transparent;
 
-.container div {
-  height: 40px;
-  @include flex(row, center, center);
-}
+  div {
+    @include flex(row, center, center);
+    height: 40px;
+  }
 
-.container svg {
-  transition: stroke 0.1s linear;
+  svg {
+    transition: stroke 0.1s linear;
+  }
 }
 
 .ask_button {
   @include button-style-reset;
   padding-right: 12px;
   border-right: solid 1px $secondary-cultured-hover;
+
+  svg {
+    stroke: $primary-persian-blue-default;
+  }
+
+  &:hover {
+    svg {
+      stroke: #435cdb;
+    }
+  }
+
+  &:active {
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
 }
 
 .delete_button {
   @include button-style-reset;
   padding-left: 12px;
-}
 
-/* Стили цвета кнопки*/
+  svg {
+    stroke: $grey-3;
+  }
 
-.container {
-  background-color: transparent;
-}
+  &:hover {
+    svg {
+      stroke: $grey-1;
+    }
+  }
 
-.ask_button svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.delete_button svg {
-  stroke: $grey-3;
-}
-
-.ask_button:hover svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.delete_button:hover svg {
-  stroke: $grey-1;
-}
-
-.ask_button:active svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.delete_button:active svg {
-  stroke: $grey-3;
+  &:active {
+    svg {
+      stroke: $grey-3;
+    }
+  }
 }

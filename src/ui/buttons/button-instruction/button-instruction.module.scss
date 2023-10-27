@@ -4,34 +4,47 @@
 .button {
   @include button-style-reset;
   @include flex(row, center, center);
-  width: 100%;
-  height: 76px;
+  @include size(100%, 76px);
   transition: box-shadow 0.1s linear;
   border-radius: $l-border-radius;
   overflow: hidden;
   position: relative;
   z-index: 0;
   box-sizing: border-box;
-}
 
-.button:hover {
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
-  background-color: white;
-}
+  &:hover {
+    box-shadow: $m-box-shadow;
+    background-color: white;
 
-.button:disabled {
-  @extend .button;
-  pointer-events: none;
-}
+    .text_container {
+      border: 2px solid rgba(0, 0, 0, 0);
+    }
 
-.button:disabled svg {
-  fill: $grey-1;
+    .image_box {
+      background-color: $primary-medium-spring-green-disabled;
+
+      svg {
+        fill: $primary-medium-spring-green-default;
+      }
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+
+    svg {
+      fill: $grey-1;
+    }
+
+    .text {
+      color: $grey-1;
+    }
+  }
 }
 
 .image_box {
   @include flex(row, center, center);
-  width: 173px;
-  height: 173px;
+  @include size(173px, 173px);
   border-radius: $border-radius-circle;
   background-color: $secondary-cultured-focus;
   transition: background-color 0.1s linear;
@@ -40,58 +53,40 @@
   top: -48px;
   left: -26px;
 
+  div {
+    @include flex(row, center, center);
+  }
+
+  svg {
+    fill: $grey-3;
+    transition: all 0.1s linear;
+
+    @media screen and (max-width: 670px) {
+      padding-right: 32px;
+    }
+  }
+
   @media screen and (max-width: 670px) {
     justify-content: end;
     left: -56px;
   }
 }
 
-.image_box div {
-  @include flex(row, center, center);
-}
-
-.image_box svg {
-  fill: $grey-3;
-  transition: all 0.1s linear;
-
-  @media screen and (max-width: 670px) {
-    padding-right: 32px;
-  }
-}
-
-.button:hover .image_box {
-  background-color: $primary-medium-spring-green-disabled;
-}
-
-.button:hover .image_box svg {
-  fill: $primary-medium-spring-green-default;
-}
-
 .text_container {
   @include flex(row, center, center);
-  width: 100%;
-  height: 76px;
+  @include size(100%, 76px);
   border: 2px solid $secondary-cultured-focus;
   box-sizing: border-box;
   transition: border 0.1s linear;
   border-radius: $l-border-radius;
 }
 
-.button:hover .text_container {
-  border: 2px solid rgba(0, 0, 0, 0);
-}
-
 .text {
+  @include indents(0 20px 0 201px);
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
   text-align: left;
-  padding-left: 201px;
-  padding-right: 20px;
-  margin: 0;
-  line-height: $xl-line-height;
-  font-family: 'Open Sans';
-  font-size: $s-font-size;
-  font-weight: $bold;
-  letter-spacing: $m-letter-space;
 
   @media screen and (max-width: 670px) {
     padding-left: 137px;
@@ -99,6 +94,5 @@
 }
 
 .button:disabled .text {
-  //@extend .text;
   color: $grey-1;
 }

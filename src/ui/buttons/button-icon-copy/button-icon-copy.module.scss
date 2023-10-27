@@ -9,38 +9,35 @@
   height: 40px;
   background-color: transparent;
   aspect-ratio: 1 / 1;
-}
 
-.button div {
-  @include flex(row, center, center);
-}
+  div{
+    @include flex(row, center, center);
+  }
 
-.button svg {
-  transition: stroke 0.1s linear;
-}
+  svg{
+    transition: stroke 0.1s linear;
+    stroke: $grey-3;
+  }
 
-/* Стили цвета кнопки*/
+  &:hover{
+    svg{
+      stroke: $primary-persian-blue-default;
+    }
+  }
 
-.button svg {
-  stroke: $grey-3;
-}
+  &:active{
+    background-color: $blue-disabled;
 
-.button:hover svg {
-  stroke: $primary-persian-blue-default;
-}
+    svg{
+      stroke: $primary-persian-blue-default;
+    }
+  }
 
-.button:active {
-  background-color: $blue-disabled;
-}
+  &:disabled{
+    background-color: transparent;
 
-.button:active svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.button:disabled {
-  background-color: transparent;
-}
-
-.button:disabled svg {
-  stroke: $secondary-cultured-press;
+    svg{
+      stroke: $secondary-cultured-press;
+    }
+  }
 }

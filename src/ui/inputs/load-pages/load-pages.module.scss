@@ -15,18 +15,15 @@
 }
 
 .selects_items {
-  display: flex;
-  padding: 16px 8px 16px 12px;
-  gap: 8px;
+  @include indents(16px 8px 16px 12px);
+  @include flex($gap: 8px);
   flex-wrap: wrap;
   max-height: 146px;
   box-sizing: border-box;
   overflow-y: auto;
-  margin: 0;
   list-style: none;
   &::-webkit-scrollbar {
-    width: 4px;
-    height: 8px;
+    @include size(4px, 8px)
   }
 
   &::-webkit-scrollbar-thumb {
@@ -44,17 +41,11 @@
 }
 
 .selects_button {
+  @include flex(row, center, center, 17px);
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
   background-color: $secondary-cultured-default;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: $bold;
-  font-size: $s-font-size;
-  line-height: 21px;
-  letter-spacing: $m-letter-space;
-  gap: 17px;
   border: 0;
   padding: 16px 12px;
   border-radius: $l-border-radius;
@@ -70,7 +61,7 @@
 
   &:disabled * {
     fill: $grey-1;
-    color: #d7deea;
+    color: $secondary-cultured-press;
   }
 }
 

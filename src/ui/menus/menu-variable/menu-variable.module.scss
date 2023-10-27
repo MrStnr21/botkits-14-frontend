@@ -2,10 +2,8 @@
 @use '../../../stylesheets/mixins' as *;
 
 .open_button {
-  display: flex;
-  flex-direction: row;
-  width: 240px;
-  height: 40px;
+  @include flex(row);
+  @include size(240px, 40px);
   background-color: $secondary-cultured-default;
   border-radius: $s-border-radius;
   position: relative;
@@ -17,7 +15,7 @@
   flex-direction: column;
   gap: 4px;
   width: 240px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
+  box-shadow: $m-box-shadow;
   background-color: white;
   border-radius: $l-border-radius;
   position: absolute;
@@ -28,12 +26,8 @@
 }
 
 .text {
-  font-size: $xs-font-size;
-  font-weight: $normal;
-  line-height: 19.5px;
-  font-family: 'Open Sans';
-  letter-spacing: $m-letter-space;
-  color: black;
+  @include font('Open Sans', $xs-font-size, $normal, black);
+  @include line-sizes($xl-line-height, $m-letter-space);
   transition: color 0.3s linear;
 }
 
@@ -46,22 +40,19 @@
 }
 
 .li {
-  padding: 0;
-  margin: 0;
+  @include indents;
   list-style: none;
   display: flex;
 }
 
 .ul {
-  padding: 0;
-  margin: 0;
+  @include indents;
 }
 
 .button {
-  height: 37px;
+  @include size(100%, 37px);
   background-color: white;
   box-sizing: border-box;
-  width: 100%;
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
@@ -79,9 +70,8 @@
 }
 
 .icon {
+  @include size(16px, 16px);
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 16px;
-  height: 16px;
 }

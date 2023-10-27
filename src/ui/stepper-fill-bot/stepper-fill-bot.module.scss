@@ -7,14 +7,9 @@
 }
 
 .stepper_step {
-  font-family: 'IBM Plex Mono';
-  font-weight: $bold;
-  font-size: $m-font-size;
-  line-height: 21px;
-  letter-spacing: $l-letter-space;
-
-  display: flex;
-  gap: 32px;
+  @include flex($gap: 32px);
+  @include font('IBM Plex Mono', $m-font-size, $bold);
+  @include line-sizes($m-line-height, $l-letter-space);
 
   margin-bottom: 16px;
 

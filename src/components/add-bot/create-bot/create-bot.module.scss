@@ -7,11 +7,9 @@
 }
 
 .create_message {
+  @include flex(row, center, center);
   color: $grey-3;
   font-weight: $bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: inherit;
   flex-direction: column;
   background-color: #f2f4f8;

@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 4px;
   width: 264px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
+  box-shadow: $m-box-shadow;
   background-color: white;
   border-radius: $l-border-radius;
   position: absolute;
@@ -48,30 +48,24 @@
 }
 
 .li {
-  padding: 0;
-  margin: 0;
+  @include indents;
   list-style: none;
   display: flex;
 }
 
 .ul {
-  padding: 0;
-  margin: 0;
+  @include indents;
 }
 
 .button {
-  height: 37px;
+  @include size(100%, 37px);
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
   background-color: white;
   box-sizing: border-box;
-  width: 100%;
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  font-size: $xs-font-size;
-  font-weight: $normal;
-  line-height: 19.5px;
-  font-family: 'Open Sans';
-  letter-spacing: $m-letter-space;
   cursor: pointer;
 }
 .button:first-of-type {

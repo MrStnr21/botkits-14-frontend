@@ -4,34 +4,24 @@
 .button {
   @include button-style-reset;
   @include flex(row, center, center);
-  font-size: $xs-font-size;
-  font-weight: $bold;
-  letter-spacing: $m-letter-space;
-  line-height: $xl-line-height;
-  font-family: 'Open Sans', sans-serif;
+  @include size(100%, 35px);
+  @include font('Open Sans', $xs-font-size, $bold, $xiketic-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   transition: all 0.1s linear;
-  height: 35px;
-  width: 100%;
   border-radius: $s-border-radius;
-}
-
-/* Стили цвета кнопки*/
-
-.button {
-  color: $xiketic-default;
   background-color: $secondary-cultured-focus;
-}
 
-.button:hover {
-  color: $primary-persian-blue-default;
-}
+  &:hover {
+    color: $primary-persian-blue-default;
+  }
 
-.button:active {
-  color: $primary-persian-blue-default;
-  background-color: $blue-disabled;
-}
+  &:active {
+    color: $primary-persian-blue-default;
+    background-color: $blue-disabled;
+  }
 
-.button:disabled {
-  color: $grey-1;
-  background-color: $secondary-cultured-focus;
+  &:disabled {
+    color: $grey-1;
+    background-color: $secondary-cultured-focus;
+  }
 }

@@ -17,11 +17,8 @@
 }
 
 @mixin set-font($color, $font-weight, $font-size, $line-height, $letter-spacing){
-  color: $color;
-  font-weight: $font-weight;
-  font-size: $font-size;
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
+  @include font('Open Sans', $font-size, $font-weight, $color);
+  @include line-sizes($line-height, $letter-spacing);
 }
 
 @mixin input-pseudo($ph-color, $hph-color, $dp-color, $d-color, $d-opacity){
@@ -44,20 +41,16 @@
 }
 
 @mixin icon-container($right){
+  @include flex(row, center, center);
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   top: 0;
   right: $right;
   bottom: 0;
 }
 
 @mixin eye-icon($src){
-  margin: 0;
-  padding: 0;
-  width: 24px;
-  height: 24px;
+  @include indents;
+  @include size(24px, 24px);
   border: none;
   background-color: transparent;
   background-image: url($src);
@@ -70,7 +63,6 @@
   @include input-pseudo($ph-color, $hph-color, $secondary-cultured-press, $secondary-cultured-focus, 1);
 
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
   outline: 0;
 }
 
@@ -84,7 +76,6 @@
   @include set-font($primary-oxford-blue-default, $bold, 14px, 21px, 0.3px);
   @include input-pseudo($grey-2, $grey-3, $secondary-cultured-focus, $secondary-cultured-focus, .5);
 
-  font-family: 'Open Sans', sans-serif;
   outline: 0;
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -97,11 +88,9 @@
 }
 
 .incorrect_text {
-  color: $error-default;
+  @include font('PT Sans', 10px, $normal, $error-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   position: absolute;
-  font-size: 10px;
-  line-height: 15px;
-  letter-spacing: $m-letter-space;
   margin: 2px 0 0 0;
   text-align: left;
 }
@@ -117,8 +106,6 @@
   outline: 0;
   text-overflow: ellipsis;
 
-  font-family: 'Open Sans', sans-serif;
-
   -webkit-appearance: none;
   -moz-appearance: textfield;
 
@@ -128,7 +115,7 @@
   @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3)
 }
 
- .inputBuilderDefault{
+.inputBuilderDefault{
   @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
 }
 
@@ -147,11 +134,8 @@
 
 .required {
   @include set-font($grey-2, $normal, 18px, 150%, 0.75px);
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: flex-end;
-  font-family: 'Open Sans', sans-serif;
+  @include size(24px, 24px);
+  @include flex(row, flex-end);
 }
 
 .passwordSecondary {

@@ -2,15 +2,11 @@
 @use '../../../stylesheets/mixins' as *;
 
 .select {
-  display: flex;
+  @include flex($align-items: center, $gap: 12px);
+  @include font('Open Sans', $xs-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
   min-width: 180px;
-  gap: 12px;
   flex: 1 1;
-  align-items: center;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: $bold;
-  line-height: 19.5px;
-  letter-spacing: $m-letter-space;
   border-radius: 50px;
   border: 0;
   background-color: $secondary-cultured-hover;
@@ -41,8 +37,6 @@
 }
 
 .text {
-  font-size: $xs-font-size;
-  line-height: 20px;
   margin: 0;
 }
 
@@ -61,8 +55,6 @@
 }
 
 .upload_text {
-  font-size: $xs-font-size;
-  line-height: 20px;
   margin: 0;
 }
 
@@ -75,17 +67,15 @@
 }
 
 .selects_items {
-  display: flex;
+  @include flex($gap: 8px);
   padding: 16px 8px 16px 12px;
-  gap: 8px;
   flex-wrap: wrap;
   max-height: 146px;
   box-sizing: border-box;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
-    width: 4px;
-    height: 8px;
+    @include size(4px, 8px);
   }
 
   &::-webkit-scrollbar-thumb {
@@ -103,17 +93,11 @@
 }
 
 .selects_button {
+  @include flex(row, center, center, 17px);
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
   background-color: $secondary-cultured-default;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: $bold;
-  font-size: $s-font-size;
-  line-height: 21px;
-  letter-spacing: $m-letter-space;
-  gap: 17px;
   border: 0;
   padding: 16px 12px;
   border-radius: $l-border-radius;
@@ -129,7 +113,7 @@
 
   &:disabled * {
     fill: $grey-1;
-    color: #d7deea;
+    color: $secondary-cultured-press;
   }
 }
 
@@ -139,19 +123,15 @@
 }
 
 .image {
-  max-width: 36px;
-  min-width: 36px;
-  max-height: 36px;
-  min-height: 36px;
-  border-radius: 50%;
+  @include size(36px, 36px);
+  border-radius: $border-radius-circle;
   position: relative;
 }
 
 .image_check {
-  width: 100%;
-  height: 100%;
+  @include size(100%, 100%);
   position: absolute;
-  border-radius: 50%;
+  border-radius: $border-radius-circle;
   background-color: #243cbb;
   opacity: 0.5;
   top: 0;
@@ -159,8 +139,7 @@
 }
 
 .icon_check {
-  width: 24px;
-  height: 24px;
+  @include size(24px, 24px);
   position: absolute;
   top: 20%;
   left: 20%;

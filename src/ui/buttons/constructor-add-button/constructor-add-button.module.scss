@@ -1,101 +1,61 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
-@mixin button-main(
-  $s-font-size,
-  $normal,
-  $m-letter-space,
-  $button-line-height-150,
-  $constructor-add-button-height,
-  $border-radius-10
-  ) {
-  @include button-style-reset;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  gap: 8px;
-  font-size: $xs-font-size;
-  font-weight: $normal;
-  letter-spacing: $m-letter-space;
-  line-height: $xl-line-height;
-  font-family: 'Open Sans', sans-serif;
-  transition: all 0.1s linear;
-  height: 44px;
-  width: 100%;
-  border-radius: $l-border-radius;
-}
-
-@mixin wrapper {
-  width: 100%;
-}
-
 .button {
-  @include button-main(
-    13px,
-    $normal,
-    0.3px,
-    150%,
-    44px,
-    $l-border-radius
-  );
-  height: 100%;
+  @include button-style-reset;
+  @include flex(row, flex-start, center, 8px);
+  @include size(100%, 100%);
+  @include font('Open Sans', $xl-line-height, $normal, $grey-4);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  padding: 0 12px;
+  transition: all 0.1s linear;
+  border-radius: $l-border-radius;
+  background-color: $secondary-cultured-default;
+
+  div {
+    @include flex(row, center, center);
+  }
+
+  svg {
+    transition: stroke 0.1s linear;
+    stroke: $grey-3;
+  }
+
+  &:hover {
+    color: $primary-persian-blue-default;
+
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:active {
+    color: $primary-persian-blue-default;
+    background-color: $blue-disabled;
+
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:disabled {
+    color: $secondary-cultured-press;
+    background-color: $secondary-cultured-default;
+
+    svg {
+      stroke: $grey-1;
+    }
+  }
 }
 
 .wrapper {
-  @include wrapper;
+  width: 100%;
 }
 
 .wrapperAddNewBlock {
-  width: 196px;
-  height: 64px;
-}
-
-.button div {
-  @include flex(row, center, center);
-}
-
-.button svg {
-  transition: stroke 0.1s linear;
+  @include size(196px, 64px);
 }
 
 .text {
-  padding: 0;
-  margin: 0;
-}
-
-/* Стили цвета кнопки*/
-
-.button {
-  color: $grey-4;
-  background-color: $secondary-cultured-default;
-}
-
-.button svg {
-  stroke: $grey-3;
-}
-
-.button:hover {
-  color: $primary-persian-blue-default;
-}
-
-.button:hover svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.button:active {
-  color: $primary-persian-blue-default;
-  background-color: $blue-disabled;
-}
-
-.button:active svg {
-  stroke: $primary-persian-blue-default;
-}
-
-.button:disabled {
-  color: $secondary-cultured-press;
-  background-color: $secondary-cultured-default;
-}
-
-.button:disabled svg {
-  stroke: $grey-1;
+  @include indents;
 }

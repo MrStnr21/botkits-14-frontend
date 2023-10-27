@@ -17,14 +17,19 @@
   }
 };
 
-@mixin size($width: auto, $height: auto){
+@mixin size($width, $height){
   width: $width;
   height: $height;
 };
 
-@mixin max-size($max-width: unset, $max-height:unset){
+@mixin max-size($max-width, $max-height){
   max-width: $max-width;
   max-height: $max-height;
+}
+
+@mixin mix-size($min-width, $min-height){
+  min-width: $min-width;
+  min-height: $min-height;
 }
 
 @mixin font($font-family, $font-size: inherit, $font-weight: inherit, $color: inherit){
