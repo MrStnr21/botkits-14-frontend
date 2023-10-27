@@ -47,14 +47,12 @@
   text-align: center;
   color: $white-color;
   font-size: $l-font-size;
-  line-height: $button-line-height-150;
 
   @media screen and (max-width: 600px) {
     margin-top: -15px;
     margin-bottom: 24px;
     font-size: $l-font-size;
     letter-spacing: $h5-letter-space;
-    line-height: $button-line-height-150;
   }
 }
 
