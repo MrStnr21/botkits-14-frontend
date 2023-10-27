@@ -2,7 +2,9 @@
 @use '../../../stylesheets/mixins' as *;
 
 .box {
-  @include flex(column, $gap: 4px);
+  display: none;
+  flex-direction: column;
+  gap: 4px;
   width: 175px;
   box-shadow: $l-box-shadow;
   background-color: white;

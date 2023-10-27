@@ -8,9 +8,7 @@
 }
 
 .header_wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  @include flex(row, space-between);
   margin-bottom: 24px;
   @media (max-width: $switching-width) {
     margin-right: 20px;
@@ -18,12 +16,8 @@
 }
 
 .title {
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $xxxl-font-size;
-  font-weight: $bold;
-  line-height: 41.6px;
-  letter-spacing: s-letter-space;
-  color: $primary-oxford-blue-default;
+  @include font('IBM Plex Mono', $xxxl-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($m-line-height, s-letter-space);
   margin: 0;
 }
 
@@ -42,8 +36,7 @@
   }
 
   &::-webkit-scrollbar {
-    width: 4px;
-    height: 8px;
+    @include size(4px, 8px);
   }
 
   &::-webkit-scrollbar-thumb {
@@ -64,8 +57,7 @@
   @media (max-width: $switching-width) {
     overflow-x: scroll;
     &::-webkit-scrollbar {
-      width: 0px;
-      height: 0px;
+      @include size(0, 0);
     }
   }
 }
@@ -77,8 +69,7 @@
   @media (max-width: $switching-width) {
     overflow-x: scroll;
     &::-webkit-scrollbar {
-      width: 0px;
-      height: 0px;
+      @include size(0, 0);
     }
   }
 }
@@ -90,28 +81,23 @@
 }
 
 .accordion_wrapper {
-  display: flex;
-  flex-direction: row;
+  @include flex(row);
 }
 
 .accordion_button {
+  @include font('Open Sans', $m-font-size, $bold, $grey-3);
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
   background-color: $off-white;
   border: none;
-  font-weight: $bold;
-  font-size: $m-font-size;
   line-height: 24px;
-  color: $grey-3;
   @media (max-width: $switching-width) {
     display: none;
   }
 }
 
 .accordion_ico_plus {
+  @include size(26px, 26px);
   cursor: pointer;
-  width: 26px;
-  height: 26px;
   background-image: url('../../../images/icon/24x24/common/chevron-big.svg');
   background-color: $off-white;
   background-position: center;
@@ -132,9 +118,8 @@
 }
 
 .modal_overlay {
+  @include size(100%, 100%);
   display: flex;
-  width: 100%;
-  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -144,12 +129,9 @@
 }
 
 .modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(row, center, center);
+  @include size(100%, 100%);
   position: fixed;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
   z-index: 100;

@@ -7,18 +7,13 @@
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(row, space-between, center);
   margin-bottom: 24px;
 }
 
 .header__text {
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-weight: $bold;
-  font-size: $xxxl-font-size;
-  line-height: 42px;
-  letter-spacing: s-letter-space;
+  @include font('IBM Plex Mono', $xxxl-font-size, $bold);
+  @include line-sizes($m-line-height, $s-letter-space);
   margin: 0;
 
   @media (max-width: $switching-width) {
@@ -29,24 +24,19 @@
 
 .header__button {
   @include button-style-reset;
+  @include font('Open Sans', $xs-font-size, $normal, $grey-4);
+  @include line-sizes($xl-line-height, $m-letter-space);
   display: block;
   margin-right: 20px;
 
-  color: #8392ab;
   text-align: right;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $xs-font-size;
-  font-weight: 400;
-  line-height: $xl-line-height; /* 19.5px */
-  letter-spacing: $m-letter-space;
 }
 
 .list {
+  @include indents;
   max-width: 100%;
   list-style: none;
   gap: 28px;
-  margin: 0;
-  padding: 0;
   transition: height 1s;
   display: grid;
   grid-template-columns: repeat(auto-fit, 296px);
@@ -65,17 +55,11 @@
 .item {
   min-height: 195px;
   position: relative;
-  // @media (max-width: $switching-width) {
-  //   gap: 20px;
-  //   grid-template-columns: repeat(auto-fit, 235px);
-  // }
 }
 
 .buttonAddbot {
-  width: 296px;
-  height: 172px;
+  @include size(296px, 172px);
   @media (max-width: $switching-width) {
-    width: 235px;
-    height: 177px;
+    @include size(296px, 172px);
   }
 }

@@ -2,21 +2,15 @@
 @use '../../../stylesheets/mixins' as *;
 
 .container {
-  @include flex(row, center, center);
-  flex-direction: column;
-  gap: 16px;
+  @include flex(column, center, center, 16px);
 }
 
 .header {
+  @include flex(row, space-between, center);
+  @include font('IBM Plex Mono', $l-font-size, $bold);
+  @include line-sizes($m-line-height, 0);
   margin: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  font-size: $l-font-size;
-  font-weight: $bold;
-  line-height: 130%;
-  font-family: 'IBM Plex Mono', Arial, sans-serif;
 }
 
 .arrow_button {
@@ -32,8 +26,7 @@
 }
 
 .arrow_button svg {
-  height: 26px;
-  width: 26px;
+  @include size(26px, 26px);
   stroke: $grey-2;
   stroke-width: 3px;
   transition: all 0.1s linear;
@@ -48,9 +41,9 @@
 }
 
 .buttons_container {
+  @include size(100%, 0);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
-  width: 100%;
   column-gap: 29px;
   row-gap: 12px;
   transform: scaleY(0);
@@ -58,7 +51,6 @@
   transition:
     transform 0.2s linear,
     height 0.2s linear;
-  height: 0;
 }
 
 .buttons_container_active {

@@ -2,13 +2,12 @@
 @use '../../../stylesheets/mixins' as *;
 
 %typography-header {
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $l-font-size;
-  font-weight: $bold;
-  line-height: 130%;
+  @include font('IBM Plex Mono', $l-font-size, $bold);
+  line-height: $m-line-height;
 }
 
 .wrapper {
+  @include line-sizes($xl-line-height, $m-letter-space);
   min-height: 283px;
   max-width: 100%;
   border-radius: 30px;
@@ -21,8 +20,6 @@
 
   font-family: 'Open Sans', sans-serif;
   color: $primary-oxford-blue-default;
-  line-height: $xl-line-height;
-  letter-spacing: $m-letter-space;
 
   @media (max-width: $switching-width) {
     margin-right: 20px;
@@ -61,13 +58,12 @@
   border-radius: 30px;
   background-color: #e4e9f1;
   box-sizing: border-box;
-  padding: 32px 32px 32px 32px;
+  padding: 32px;
   text-align: start;
   min-height: 283px;
 
   @media (max-width: $switching-width) {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 32px 20px;
   }
 }
 
@@ -92,8 +88,7 @@
 }
 
 .base__list {
-  margin: 0;
-  padding: 0;
+  @include indents;
   list-style: none;
 
   display: grid;
@@ -106,8 +101,7 @@
 }
 
 .base__link {
-  display: flex;
-  align-items: center;
+  @include flex($align-items: center);
   text-decoration: none;
   color: inherit;
   font-family: inherit;
@@ -120,10 +114,9 @@
 }
 
 .base__link::before {
+  @include size(24px, 20px);
   display: block;
   content: '';
   background: url('../../../images/icon/24x24/common/list-icon.svg') no-repeat;
   background-position: left;
-  width: 24px;
-  height: 20px;
 }

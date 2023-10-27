@@ -2,34 +2,24 @@
 @use '../../../stylesheets/mixins' as *;
 
 .accordion {
-  display: flex;
-  width: 250px;
-  height: 40px;
+  @include flex(row, space-between, flex-start);
+  @include size(250px, 40px);
   background-color: $secondary-cultured-default;
   box-sizing: border-box;
-  padding-top: 10px;
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-bottom: 10px;
+  padding: 10px 8px;
   border-radius: $s-border-radius;
-  align-items: flex-start;
-  justify-content: space-between;
   cursor: pointer;
 }
 
-@mixin font {
-  font-family: 'OpenSans', sans-serif;
-  font-weight: $normal;
-  font-size: $xs-font-size;
-  line-height: 19.5px;
-  letter-spacing: 0.75px;
+@mixin font-r {
+  @include font('OpenSans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, 0.75px);
   margin: 0;
   white-space: nowrap;
-  color: $primary-oxford-blue-default;
 }
 
 .text {
-  @include font;
+  @include font-r;
   // width: fit-content;
 }
 
@@ -45,6 +35,6 @@
 }
 
 .textinfo {
-  @include font;
+  @include font-r;
   padding-top: 12px;
 }

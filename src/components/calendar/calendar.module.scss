@@ -2,11 +2,8 @@
 @use '../../stylesheets/mixins' as *;
 
 .container {
+  @include flex(column, center, center);
   width: 296px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   border-radius: $l-border-radius;
   background-color: $off-white;
   padding: 20px 19px 18px 19px;
@@ -20,20 +17,13 @@
 }
 
 .containerTimeZone {
-  display: flex;
+  @include flex(row, space-between, center);
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 8px 0;
   border-top: 1px solid $secondary-cultured-hover;
   border-bottom: 1px solid $secondary-cultured-hover;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $xs-font-size;
-  font-weight: $normal;
-  line-height: $xl-line-height;
-  letter-spacing: $m-letter-space;
-  color: $primary-oxford-blue-default;
 }
 
 .timeZoneLabel {
@@ -41,31 +31,23 @@
 }
 
 .containerButton {
+  @include flex(row, flex-start, center);
   margin-top: 18px;
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
 }
 
 .button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(row, center, center);
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin: 0;
-  padding-left: 5px;
   background-color: transparent;
   border: none;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $xs-font-size;
-  font-weight: $normal;
-  line-height: $xl-line-height;
-  letter-spacing: $m-letter-space;
   transition: color 0.4s ease-in-out;
-}
 
-.button:hover {
-  color: $grey-3;
+  &:hover {
+    color: $grey-3;
+  }
 }
 
 .dataFiled {
@@ -73,12 +55,9 @@
   background-color: $secondary-cultured-default;
 
   [class*="MuiInputBase-input"] {
-    font-size: $xs-font-size;
-    font-weight: $normal;
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     font-style: 'normal';
-    line-height: $xl-line-height;
-    letter-spacing: $m-letter-space;
-    color: $primary-oxford-blue-default;
     padding: 10px 8px 10px 8px;
   }
 
@@ -98,17 +77,13 @@
   }
 
   [class*="MuiDayCalendar-weekDayLabel"] {
+    @include indents;
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     max-width: 26px;
     box-sizing: content-box;
     height: 100%;
-    font-size: $xs-font-size;
-    font-weight: $normal;
     font-style: normal;
-    line-height: $xl-line-height;
-    letter-spacing: $m-letter-space;
-    color: $primary-oxford-blue-default;
-    margin: 0;
-    padding: 0;
   }
 
   [class*="MuiDayCalendar-header"] {
@@ -136,10 +111,7 @@
   }
 
   [class*="MuiPickersCalendarHeader-root"] {
-    padding-left: 5px;
-    padding-right: 0px;
-    margin-top: 0px;
-    margin-bottom: 20px;
+    @include indents(0 0 0 5px, 0 0 20px);
     justify-content: space-between;
 
     [class*="MuiPickersCalendarHeader-switchViewIcon"] {
@@ -147,15 +119,11 @@
     }
 
     [class*="MuiPickersCalendarHeader-label"] {
-      font-size: $xs-font-size;
-      font-weight: $bold;
+      @include indents;
+      @include font('Open Sans', $xs-font-size, $bold, $primary-oxford-blue-default);
+      @include line-sizes($xl-line-height, $m-letter-space);
       font-style: normal;
-      line-height: $xl-line-height;
-      letter-spacing: $m-letter-space;
-      color: $primary-oxford-blue-default;
       text-transform: capitalize;
-      margin: 0;
-      padding: 0;
     }
 
     [class*="MuiPickersArrowSwitcher"] {
@@ -165,15 +133,11 @@
   }
 
   [class*="MuiPickersDay-root"] {
-    max-width: 26px;
-    max-height: 26px;
+    @include max-size(26px, 26px);
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     margin: 0px;
-    font-size: $xs-font-size;
-    font-weight: $normal;
     font-style: normal;
-    line-height: $xl-line-height;
-    letter-spacing: $m-letter-space;
-    color: $primary-oxford-blue-default;
 
     &:hover {
       border-radius: 4px;

@@ -2,29 +2,19 @@
 @use '../../stylesheets/mixins' as *;
 
 .successPage {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 98px;
-  align-items: center;
+  @include flex(column, flex-start, center, 98px);
+  @include size(100%, 100vh);
   background-color: $primary-persian-blue-default;
 }
 
 .contentContainer {
+  @include flex(column, flex-start, center, 98px);
   width: 100%;
   max-width: 1440px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 98px
 }
 
 .successSigninLink {
-  width: 32px;
-  height: 32px;
+  @include size(32px, 32px);
   margin-right: 30px;
   margin-top: 30px;
   align-self: flex-end;
@@ -37,34 +27,26 @@
 }
 
 .titleContainer {
+  @include flex(row, center, center, 30px);
   width: 100%;
   padding-left: 30px;
   padding-right: 30px;
   box-sizing: border-box;
   max-width: 1170px;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
 
   @media screen and (max-width: 600px) {
-    flex-direction: column;
-    gap: 130px;
+    @include flex(column, $gap: 130px);
   }
 
 }
 
 .title {
-  margin: 0;
-  padding: 0;
+  @include indents;
+  @include font('IBM Plex Mono', 64px, $bold, $off-white);
+  @include line-sizes($xs-line-height, -1px);
   width: 100%;
   max-width: 570px;
-  font-family: 'IBM Plex Mono', sans-serif;
   text-align: left;
-  color: $off-white;
-  font-size: 64px;
-  font-weight: $bold;
-  line-height: 110%;
   vertical-align: middle;
 
   @media screen and (max-width: 1080px) {
@@ -78,9 +60,8 @@
 }
 
 .titleImage {
-  width: 100%;
+  @include size(100%, 100%);
   max-width: 570px;
-  height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
   @media screen and (max-width: 600px) {
@@ -92,18 +73,14 @@
 
 
 .email {
+  @include max-size(158px, 60px);
+  @include font('IBM Plex Mono', $xxxl-font-size, $bold, $primary-medium-spring-green-default);
+  @include line-sizes($xl-line-height, $s-letter-space);
   vertical-align: baseline;
   width: 100%;
-  max-height: 60px;
-  max-width: 158px;
   padding: 14px 23px 14px 20px;
-  font-size: $xxxl-font-size;
   border-radius: $xl-border-radius;
-  color: $primary-medium-spring-green-default;
-  font-weight: $bold;
   background-color: $primary-persian-blue-press;
-  line-height: $xl-line-height;
-  letter-spacing: s-letter-space;
   vertical-align: middle;
 
   @media screen and (max-width: 800px) {

@@ -7,11 +7,8 @@
 }
 
 .create_message {
-  @include flex(row, center, center);
-  color: $grey-3;
-  font-weight: $bold;
+  @include flex(column, center, center);
   min-height: inherit;
-  flex-direction: column;
   background-color: #f2f4f8;
   border-radius: $xxl-border-radius;
   padding: 40px;
@@ -20,28 +17,22 @@
 }
 
 .create_message_title {
-  font-family: 'IBM Plex Mono';
-  font-size: $xxl-font-size;
-  line-height: 31.2px;
-  letter-spacing: 0px;
+  @include font('IBM Plex Mono', $xxl-font-size, $bold, $grey-3);
+  @include line-sizes($m-line-height, 0px);
   margin: 0;
 
   @media screen and (max-width: 520px) {
     font-size: $l-font-size;
-    line-height: 23.4px;
   }
 }
 
 .create_message_text {
-  font-family: 'Open Sans';
-  font-size: $m-font-size;
-  line-height: 24px;
-  letter-spacing: $m-letter-space;
+  @include font('Open Sans', $m-font-size, $bold, $grey-3);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin: 16px 0 0;
 
   @media screen and (max-width: 520px) {
     font-size: $s-font-size;
-    line-height: 21px;
   }
 }
 
@@ -49,7 +40,7 @@
   min-height: inherit;
   background-color: #ffffff;
   border-radius: $xxl-border-radius;
-  box-shadow: 0px 6px 16px 0px #15123314;
+  box-shadow: $m-box-shadow;
   padding: 40px 40px 36px;
   box-sizing: border-box;
   position: relative;
@@ -64,39 +55,27 @@
 }
 
 .create_main_bot_name_img {
-  max-width: 25px;
-  max-height: 25px;
+  @include max-size(25px, 25px);
 }
 
 .create_main_bot_name_title {
-  font-family: 'IBM Plex Mono';
-  font-size: $xxl-font-size;
-  font-weight: $bold;
-  line-height: 31.2px;
-  letter-spacing: 0px;
-  margin: 0;
-  margin-left: 15px;
+  @include font('IBM Plex Mono', $xxl-font-size, $bold);
+  @include line-sizes($m-line-height, 0px);
+  margin: 0 0 0 15px;
 }
 
 .create_main_bot_name_text {
-  font-family: 'Open Sans';
-  font-size: $xs-font-size;
-  font-weight: $normal;
-  line-height: 19.5px;
-  letter-spacing: $m-letter-space;
-  color: $primary-persian-blue-default;
+  @include font('Open Sans', $xs-font-size, $normal, $primary-persian-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include indents(6px 16px, 0 0 0 20px);
   background-color: #ecefff;
-  padding: 6px 16px;
   border-radius: 16px;
-  margin: 0;
-  margin-left: 20px;
 
   @media screen and (max-width: 670px) {
+    @include indents(20px 24px, 0);
     position: absolute;
     top: 0;
     left: 0;
-    margin: 0;
-    padding: 20px 24px;
     width: 100%;
     border-radius: 30px 30px 0 0;
     box-sizing: border-box;
@@ -109,8 +88,7 @@
 }
 
 .create_main_fill_bot {
-  display: flex;
-  gap: 28px;
+  @include flex($gap: 28px);
   margin-top: 40px;
 
   @media screen and (max-width: 960px) {
@@ -120,8 +98,7 @@
 }
 
 .create_main_button_container {
-  display: flex;
-  justify-content: flex-end;
+  @include flex($justify-content: flex-end);
   margin-top: 16px;
   position: absolute;
   right: 40px;
