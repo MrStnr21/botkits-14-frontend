@@ -29,7 +29,7 @@ const Button: FC<IButton> = ({
   disabled,
   children,
   active,
-}): JSX.Element => {
+}) => {
   const mainCn = cx('button', variant, size, color, { button_active: active });
 
   return (
