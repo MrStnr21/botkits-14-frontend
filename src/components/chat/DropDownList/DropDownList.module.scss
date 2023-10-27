@@ -23,12 +23,10 @@
   line-height: $s-line-height;
   letter-spacing: $lx-letter-space;  
   white-space: nowrap;
-  color: $primary-text-color;
 }
 
 .text {
   @include font;
-  // width: fit-content;
 }
 
 .container{
