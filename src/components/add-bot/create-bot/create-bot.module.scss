@@ -20,8 +20,7 @@
   text-align: center;
 }
 
-.create_message_title {  
-  line-height: $h3-line-height;
+.create_message_title {
   letter-spacing: 0px;  
 
   @media screen and (max-width: 520px) {
@@ -66,7 +65,6 @@
 }
 
 .create_main_bot_name_title {  
-  line-height: $h3-line-height;
   letter-spacing: 0px;  
   margin-left: 15px;
 }
