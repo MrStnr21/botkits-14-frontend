@@ -48,7 +48,6 @@
 }
 
 .signupTitle {
-  margin: 0;
   padding: 0;
   margin-top: 50px;
   margin-bottom: 15px;
@@ -56,14 +55,11 @@
   text-align: center;
   color: $white-color;
   font-size: $xl-font-size;
-  font-weight: $bold;
-  line-height: $button-line-height-130;
 
   @media screen and (max-width: 600px) {
     margin-top: 25px;
     font-size: $l-font-size;
     letter-spacing: $h5-letter-space;
-    line-height: $button-line-height-150;
   }
 }
 
@@ -134,7 +130,6 @@
   text-align: center;
   color: $white-color;
   font-size: $l-font-size;
-  line-height: $button-line-height-150;
 
   @media screen and (max-width: 600px) {
     margin-bottom: 25px;
