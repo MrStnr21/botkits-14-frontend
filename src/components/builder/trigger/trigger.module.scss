@@ -1,0 +1,31 @@
+@use '../../app/vars';
+
+.wrap {
+  background-color: vars.$default-grey-color;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: vars.$border-radius-10;
+  max-width: 296px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      cursor: vars.$cursor;
+    }
+  }
+
+  .title {
+    margin: 0 0 12px 0;
+    font-size: vars.$m-font-size;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 5px;
+  }
+
+}

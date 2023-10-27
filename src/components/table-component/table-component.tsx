@@ -7,12 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
-import Typography from '../../../ui/typography/typography';
+import Typography from '../../ui/typography/typography';
 
 type Columns = {
   key: string;
   label: ReactNode;
-  colHeadStyle?: SxProps;
+  colStyle?: SxProps;
   cellComponent?: (data: any) => ReactNode;
 };
 
@@ -22,8 +22,8 @@ type TableData = {
 
 type Props = {
   columns: Columns[];
-  tableData?: TableData[];
-  headComponent?: (data: any) => ReactNode;
+  tableData: TableData[];
+  headComponent: (data: any) => ReactNode;
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
@@ -34,9 +34,9 @@ const TableComponent: FC<Props> = ({ columns, tableData, ...props }) => {
     <TableContainer>
       <Table>
         <TableHead>
-          <TableRow sx={props.headStyle}>
-            {columns?.map(({ label, colHeadStyle }) => (
-              <TableCell key={uuidv4()} sx={colHeadStyle}>
+          <TableRow sx={{ boxSizing: 'border-box' }}>
+            {columns?.map(({ label, colStyle }) => (
+              <TableCell key={uuidv4()} sx={colStyle}>
                 {props.headComponent ? (
                   props.headComponent(label)
                 ) : (
@@ -67,3 +67,4 @@ const TableComponent: FC<Props> = ({ columns, tableData, ...props }) => {
 };
 
 export default TableComponent;
+
