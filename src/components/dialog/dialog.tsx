@@ -11,11 +11,13 @@ import ChevronIcon from '../icons/Chevron/ChevronIcon';
 import CloseIcon from '../icons/Close/CloseIcon';
 import avatar from '../../images/avatar/circled/default.svg';
 import Message from './message/message';
+import NewMessage from '../../ui/message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
 import DialogMenuIcon from '../icons/DialogMenuIcon/DialogMenuIcon';
 import InputDialogsues from '../chat/InputDialogsues/InputDialogsues';
 import Typography from '../../ui/typography/typography';
 import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
+import SendButton from '../../ui/buttons/send-button/send-button';
 
 const messages = [
   {
@@ -180,20 +182,19 @@ const Dialog: FC = () => {
       </div>
       <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
       <div className={stylesDialog.dialog__messages}>
+        {/* {messages.map((message) => {
+          return <Message message={message} />;
+        })} */}
         {messages.map((message) => {
-          return <Message key={message.id} message={message} />;
+          return <NewMessage message={message.message} />;
         })}
       </div>
       <div className={stylesDialog.dialog__messageInput}>
         <div className={stylesDialog.dialog__inputWrapper}>
-          <InputMessage
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setInputValue(e.target.value)
-            }
-          />
+          <InputMessage onChange={(e) => setInputValue(e.target.value)} />
         </div>
         <button type="button" className={stylesDialog.dialog__submitButton}>
-          Кнопка
+          <SendButton />
         </button>
       </div>
     </div>

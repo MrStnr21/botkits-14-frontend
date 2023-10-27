@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
+import Avatar from '../../../ui/avatar/avatar';
 import stylesMessage from './message.module.scss';
 
 type TMessage = {
@@ -24,7 +25,9 @@ const Message: FC<IMessage> = ({ message }): JSX.Element => {
           : `${stylesMessage.message} ${stylesMessage.userMessage}`
       }
     >
-      <div className={stylesMessage.message__avatar}>{message.avatar}</div>
+      <div className={stylesMessage.message__avatar}>
+        <Avatar isBot="no" state="online" />
+      </div>
       <div
         className={
           message.user !== 'Вы'

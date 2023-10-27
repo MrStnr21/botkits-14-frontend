@@ -55,6 +55,10 @@
       background: $default-grey-color;
       clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
       transform: rotate(180deg);
+
+      @media screen and (max-width: 620px) {
+        background: #FFF;
+      }
     }
 
     @media screen and (max-width: 620px) {

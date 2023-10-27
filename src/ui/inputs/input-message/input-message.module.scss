@@ -11,7 +11,7 @@
 
 .message_input {
   width: 100%;
-  padding: 14px 16px;
+  margin: 14px 16px;
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
@@ -22,6 +22,8 @@
   line-height: 20px;
   letter-spacing: $m-letter-space;
   color: $primary-text-color;
+  resize: none;
+  overflow: hidden;
 
   &::placeholder {
     color: $default-dark-grey-color;
@@ -35,8 +37,9 @@
 
 .message_buttons {
   display: flex;
+  align-items: start;
   gap: 8px;
-  padding-right: 16px;
+  padding: 14px 16px 0 0;
 }
 
 .message_button {
@@ -46,20 +49,6 @@
   padding: 0;
 }
 
-.icon_plus {
-  width: 28px;
-  transition: 0.2s linear;
-
-  * {
-    fill: $default-dark-grey-color;
-  }
-}
-
-.icon_plus_rotate {
-  transform: rotate(-45deg);
-  transition: 0.2s linear;
-}
-
-.icon_clip * {
-  stroke: $default-dark-grey-color;
+.message_button:last-of-type {
+  margin-top: -2px;
 }
