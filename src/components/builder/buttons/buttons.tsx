@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import cn from 'classnames/bind';
 import Button from '../../../ui/buttons/button/button';
 import stylesButtonS from './buttons.module.scss';
-// import { JsxElement } from 'typescript';
+import Typography from '../../../ui/typography/typography';
 
 export interface IButtonS {
   type: 'start' | 'stop' | 'test';
@@ -20,13 +20,15 @@ const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
           <Button
             onClick={onClick}
             variant="default"
-            size="medium"
+            size="small"
             color="grey"
             buttonHtmlType="button"
             active={false}
             disabled={false}
           >
-            <p className={cx('textStop')}>ОСТАНОВИТЬ</p>
+            <Typography tag="p" className={cx('textStop')}>
+              ОСТАНОВИТЬ
+            </Typography>
           </Button>
         );
       }
@@ -35,29 +37,35 @@ const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
           <Button
             onClick={onClick}
             variant="default"
-            size="medium"
+            size="small"
             color="green"
             buttonHtmlType="button"
             active={false}
             disabled={false}
           >
-            <p className={cx('textTest')}>ТЕСТИРОВАТЬ</p>
+            <Typography tag="p" className={cx('textTest')}>
+              ТЕСТИРОВАТЬ
+            </Typography>
           </Button>
         );
       }
       default: {
         return (
-          <Button
-            onClick={onClick}
-            variant="circle"
-            size="large"
-            color="green"
-            buttonHtmlType="button"
-            active={false}
-            disabled={false}
-          >
-            <p className={cx('textStart')}>Start</p>
-          </Button>
+          <div className={cx('wrapper')}>
+            <Button
+              onClick={onClick}
+              variant="default"
+              size="small"
+              color="green"
+              buttonHtmlType="button"
+              active={false}
+              disabled={false}
+            >
+              <Typography tag="p" className={cx('textStart')}>
+                Start
+              </Typography>
+            </Button>
+          </div>
         );
       }
     }
