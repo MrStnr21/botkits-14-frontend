@@ -1,0 +1,140 @@
+@import '../../../components/app/vars';
+
+.text {  
+  font-size: $m-font-size;
+  font-weight: $bold;
+  letter-spacing: $button-letter-space;
+  line-height: $button-line-height-134;
+  font-family: 'IBM Plex Mono', sans-serif;
+  text-transform: uppercase;
+  transition: all 0.1s linear;
+}
+
+.button div {
+  @extend %flex-element-center;
+}
+
+.button svg {
+  transition: stroke 0.1s linear;
+}
+
+/* Стили варианта кнопки*/
+.default {
+  border-radius: $border-radius-10;
+  width: 100%;
+}
+
+.circle {
+  border-radius: $border-radius-circle;
+  aspect-ratio: 1 / 1;
+}
+
+/* Стили размера кнопки*/
+.small {
+  height: $s-button-height;
+}
+
+.medium {
+  height: $m-button-height;
+}
+
+.medium svg {
+  stroke-width: $m-button-icon-stroke-width;
+}
+
+.large {
+  height: $l-button-height;
+}
+
+.large svg {
+  stroke-width: $l-button-icon-stroke-width;
+  height: $l-button-icon-size;
+  width: $l-button-icon-size;
+}
+
+/* Стили цвета кнопки*/
+.blue {
+  color: $white-color;
+  background-color: $button-default-blue-color;
+}
+
+.blue svg {
+  stroke: $white-color;
+}
+
+.blue:hover {
+  background-color: $button-hover-blue-color;
+}
+
+.blue:active {
+  background-color: $button-pressed-blue-color;
+}
+
+.blue:disabled {
+  background-color: $button-disabled-blue-color;
+}
+
+.green {
+  color: $primary-text-color;
+  background-color: $button-default-green-color;
+}
+
+.green svg {
+  stroke: $primary-text-color;
+}
+
+.green:hover {
+  background-color: $button-hover-green-color;
+}
+
+.green:active {
+  background-color: $button-pressed-green-color;
+}
+
+.green:disabled {
+  color: rgba(0, 0, 0, 0.4);
+  background-color: $button-disabled-green-color;
+}
+
+.green:disabled svg {
+  opacity: 0.5;
+}
+
+.grey {
+  color: $primary-text-color;
+  background-color: $button-default-grey-color;
+}
+
+.grey:hover {
+  color: $default-blue-color;
+  background-color: $button-hover-grey-color;
+}
+
+.grey:active {
+  color: $default-blue-color;
+  background-color: $button-pressed-grey-color;
+  box-shadow: $s-box-shadow;
+}
+
+.grey:disabled {
+  color: $default-dark-grey-color;
+  background-color: $button-disabled-grey-color;
+}
+
+.grey:disabled:active {
+  box-shadow: none;
+}
+
+/* Стиль для UI "Добавить кнопку" */
+.light-grey {
+  background-color: $constructor-icon-button-default-background-color;
+  color: #a6b3c9;
+  &:hover {
+    color: $constructor-icon-button-hover-color;
+  }
+}
+
+.button_active {
+  color: $constructor-icon-button-hover-color;
+  background-color: $constructor-icon-button-pressed-background-color;
+}

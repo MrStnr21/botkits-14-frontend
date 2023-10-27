@@ -7,7 +7,7 @@ import stylesMenuSimple from './menu-simple.module.scss';
 export interface IMenuSimple {
   buttons: string[];
   isScroll?: boolean;
-  size?: 'small' | 'medium' | 'default' | 'large';
+  size?: 'small' | 'medium' | 'chat' | 'default' | 'large';
   isActive?: boolean;
   top?: number;
   left?: number;
@@ -36,7 +36,7 @@ const MenuSimple: FC<IMenuSimple> = ({
     boxClassName += stylesMenuSimple.scroll;
   }
 
-  if (isActive) {
+  if (isActive === true) {
     boxClassName += ' ';
     boxClassName += stylesMenuSimple.active;
   }
