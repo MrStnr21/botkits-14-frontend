@@ -61,7 +61,8 @@ export interface IConstructorAddButton {
   onClick?: VoidFunction;
   disabled?: boolean;
   children: React.ReactNode;
-  icon?: typeof Icons;
+  icon?: string;
+  picture?: React.ReactNode;
 }
 
 const ConstructorAddButton: FC<IConstructorAddButton> = ({
@@ -70,6 +71,7 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
   disabled,
   children,
   icon = 'add',
+  picture,
 }) => {
   const getIcon = () => {
     switch (icon) {
@@ -136,7 +138,7 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
         disabled={disabled}
       >
         {' '}
-        <ReactSVG src={getIcon()} />
+        {picture || <ReactSVG src={getIcon()} />}
         <p className={stylesConstructorAddButton.text}>{children}</p>
       </button>
     </section>
