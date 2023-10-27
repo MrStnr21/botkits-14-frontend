@@ -1,8 +1,5 @@
 @import '../../../components/app/vars';
 
-
-
-
 [class*='MuiMenu-root'] {
   [class*='MuiMenu-paper'] {
     border-radius: $border-radius-10;
@@ -26,33 +23,6 @@
       }
     }
 
-    /*  &::-webkit-scrollbar {
-      display: block;
-      width: 3px;
-      padding-right: 20px;
-      position: absolute;
-      right: 20px;
-      border-radius: $border-radius-10;
-      box-sizing: border-box;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: $default-dark-grey-color;
-      border-radius: $border-radius-10;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: #00000000;
-    }
-
-    &::-webkit-scrollbar-track-piece {
-      background-color: #00000000;
-    }
-
-    &::-webkit-scrollbar-button {
-      display: none;
-    }
- */
     [class*='MuiList-root'] {
       [class*='MuiMenuItem-root'] {
         position: relative;
@@ -88,7 +58,6 @@
         background-color: $hover-grey-color;
       }
     }
-
   }
 }
 
@@ -121,22 +90,18 @@
   }
 }
 
-.optionContainer{
- display: flex;
- flex-direction: row;
- align-items: center;
- gap: 12px;
+.optionContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
-.optionText{
+.optionText {
   font-family: 'Open Sans', sans-serif;
-  font-weight: $normal;
-  font-size: $xs-font-size;
-  line-height: $xs-line-height;
-  color: $primary-text-color;
 }
 
-.chosen{
+.chosen {
   position: absolute;
   top: 8px;
   left: 6px;
