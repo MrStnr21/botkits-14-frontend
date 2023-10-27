@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-globals */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
+import { useNavigate } from 'react-router';
 import stylesDialog from './dialog.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
@@ -48,6 +49,7 @@ interface DateType extends Date {
 }
 
 const Dialog: FC = () => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
@@ -62,6 +64,10 @@ const Dialog: FC = () => {
   const handleMenuClick = () => {
     setModalOpen(!isModalOpen);
     setInputVisible(false);
+  };
+
+  const handleChevronClick = () => {
+    navigate(-1);
   };
 
   useEffect(() => {
@@ -103,12 +109,18 @@ const Dialog: FC = () => {
               className={stylesDialog.dialog__avatar}
             />
           ) : (
-            <ChevronIcon
-              width={24}
-              height={24}
-              color="#a6b3c9"
-              position="left"
-            />
+            <button
+              type="button"
+              className={stylesDialog.dialog__headerButton}
+              onClick={handleChevronClick}
+            >
+              <ChevronIcon
+                width={24}
+                height={24}
+                color="#a6b3c9"
+                position="left"
+              />
+            </button>
           )}
           <div className={stylesDialog.dialog__nameWrapper}>
             <Typography tag="p">Вячеслав Баумтрок</Typography>
@@ -167,7 +179,6 @@ const Dialog: FC = () => {
         </div>
       </div>
       <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
-      {/* задать отступ границе по бокам текста на мобильных устройствах */}
       <div className={stylesDialog.dialog__messages}>
         {messages.map((message) => {
           return <Message key={message.id} message={message} />;

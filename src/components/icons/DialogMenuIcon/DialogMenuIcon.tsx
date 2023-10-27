@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 interface IDialogIcon {
   color?: string;
-  size?: number;
+  size?: string;
 }
 
 const DialogMenuIcon: FC<IDialogIcon> = ({ color = '#A6B3C9', size }) => {
