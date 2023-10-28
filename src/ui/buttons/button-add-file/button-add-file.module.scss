@@ -12,9 +12,9 @@
 
 .header {
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  line-height: 150%; /* 19.5px */
-  letter-spacing: 0.3px;
+  font-size: $s-font-size;
+  line-height: $p-line-height; /* 19.5px */
+  letter-spacing: $l-letter-space;
   text-align: left;  
   margin-bottom: 12px;
 }

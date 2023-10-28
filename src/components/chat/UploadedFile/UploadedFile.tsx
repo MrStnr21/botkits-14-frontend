@@ -15,7 +15,7 @@ const UploadedFile: FC<IUploadedFile> = ({
   return (
     <div className={stylesFile.container}>
       <AttachedFileIcon />
-      <Typography tag="p" className={stylesFile.text}>
+      <Typography tag="p" className={stylesFile.text} font="OpenSans">
         {file_name}.{file_extension}
       </Typography>
     </div>

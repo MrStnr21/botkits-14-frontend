@@ -103,7 +103,7 @@
 }
 
 .userInfo__name {
-  font-size: 18px;  
+  font-size: $h4-font-size;  
 }
 
 .tariff_container {
@@ -113,13 +113,13 @@
 
   color: #8392ab;
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  line-height: 150%;
+  font-size: $h4-font-size;
+  line-height: $p-line-height;
   letter-spacing: 0.3px;
 }
 
 .tariff {
-  font-weight: 400;
+  font-weight: $normal;
 }
 
 .addition {

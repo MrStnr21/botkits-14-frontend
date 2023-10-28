@@ -1,3 +1,5 @@
+@import '../../components/app/vars';
+
 .container {
   display: flex;
   flex-direction: row;
@@ -13,8 +15,8 @@
 .text {
   width: 141px;
   height: 23px; 
-  font-size: 18px;
-  line-height: 23.4px;
+  font-size: $h4-font-size;
+  line-height: $h4-line-height;
   padding: 0px 52px 0px 16px;
 }
 

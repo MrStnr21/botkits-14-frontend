@@ -37,12 +37,12 @@
 }
 
 .text {  
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  font-size: $l-font-size;
+  line-height: $l-line-height;
+  font-weight: $normal;
 
   & + .text {
-    font-weight: 500;
+    font-weight: $semi-bold;
     padding-left: 7px;
     padding-right: 15px;
     border-right: 1px solid rgba(228, 233, 241, 1);

@@ -45,8 +45,8 @@ $switching-width-menu: ($min-content-width + 100px);
 
 .text {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 13px;
+  font-weight: $normal;
+  font-size: $s-font-size;
 }
 
 .item:nth-child(1) {
@@ -86,8 +86,8 @@ $switching-width-menu: ($min-content-width + 100px);
   }
 
   .text {
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: $bold;
+    font-size: $m-font-size;
   }
 
   .item {

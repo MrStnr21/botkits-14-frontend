@@ -51,8 +51,8 @@
   gap: 20px;
 }
 .title {
-  font-size: 24px;
-  line-height: 31.2px;
+  font-size: $h3-font-size;
+  line-height: $h3-line-height;
   background-color: white;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -68,9 +68,9 @@
 
 .tab1 {
   font-family: 'IBM Plex', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20.8px;
+  font-weight: 5$semi-bold00;
+  font-size: $l-font-size;
+  line-height: $m-line-height;
   color: rgba(215, 222, 234, 1);
   transition: all 0.4s linear;
   border-bottom: 2px solid rgba(215, 222, 234, 1);
@@ -87,9 +87,9 @@
 .tab2 {
   transition: all 0.4s linear;
   font-family: 'IBM Plex', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20.8px;
+  font-weight: $semi-bold;
+  font-size: $l-font-size;
+  line-height: $m-line-height;
   color: rgba(215, 222, 234, 1);
   border-bottom: 2px solid rgba(215, 222, 234, 1);
   width: 50%;

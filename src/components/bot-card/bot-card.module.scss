@@ -45,7 +45,7 @@
 }
 
 .name {
-  letter-spacing: 0.5px;
+  letter-spacing: $h5-letter-space;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

@@ -30,8 +30,8 @@
 .download__text {
   color: $default-dark-grey-color;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: $m-font-size;
+  font-weight: $bold;
 }
 
 .textError {

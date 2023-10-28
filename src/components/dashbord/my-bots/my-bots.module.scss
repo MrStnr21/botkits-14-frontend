@@ -13,12 +13,12 @@
 }
 
 .header__text {
-  font-size: 32px;
-  line-height: 42px;
+  font-size: $h2-font-size;
+  line-height: $h2-line-height;
 
   @media (max-width: $switching-width) {
-    font-size: 24px;
-    line-height: 31px;
+    font-size: $h3-font-size;
+    line-height: $h3-line-height;
   }
 }
 
@@ -30,10 +30,10 @@
   color: #8392ab;
   text-align: right;
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 150%; /* 19.5px */
-  letter-spacing: 0.3px;
+  font-size: $s-font-size;
+  font-weight: $normal;
+  line-height: $p-line-height; /* 19.5px */
+  letter-spacing: $l-letter-space;
 }
 
 .list {

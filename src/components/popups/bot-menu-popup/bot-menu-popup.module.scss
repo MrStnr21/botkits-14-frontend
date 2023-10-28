@@ -20,7 +20,7 @@
 }
 
 .title {
-  letter-spacing: 0px;
+  letter-spacing: $h3-letter-space;
 }
 
 .cancel {
@@ -29,7 +29,7 @@
   font-size: $m-font-size;
   font-weight: $bold;
   line-height: $xs-line-height;
-  letter-spacing: 1;
+  letter-spacing: $button-letter-space;
   text-transform: uppercase;
   color: #8392ab;
   padding: 13px 31px;
@@ -57,7 +57,7 @@
   color: #fff;
   font-size: $l-font-size;
   line-height: $m-line-height;
-  letter-spacing: 0px;
+  letter-spacing: $h3-letter-space;
   box-sizing: border-box;
   background-color: #2e293d;
   border-radius: $border-radius-10;
@@ -75,7 +75,7 @@
   font-family: 'Open Sans';
   font-size: $s-font-size;
   font-weight: $normal;
-  line-height: 20px;
+  line-height: $s-line-height;
   letter-spacing: $m-letter-space;
 }
 
