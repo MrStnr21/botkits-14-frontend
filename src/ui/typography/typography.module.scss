@@ -3,10 +3,9 @@
 @mixin typography {
   margin: 0;
   font-weight: $bold; //600
-  font-family: 'IBM Plex Mono', sans-serif;
+  --font-family: 'IBM Plex Mono', sans-serif;
   color: $primary-text-color; //#060c23
 }
-
 .h1 {
   @include typography;
   font-size: $h1-font-size; //48px
@@ -55,8 +54,4 @@
   font-weight: $normal; //400
   line-height: $p-line-height;
   letter-spacing: $m-letter-space;
-}
-
-.font {
-  font-family: 'OpenSans', sans-serif;
 }

@@ -1,20 +1,27 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');*/
+
 @font-face {
   font-family: 'Open Sans';
   font-weight: 400;
-  src: url('./OpenSans/OpenSans-Regular.ttf') format('truetype');
+  src:
+    url('./OpenSans/OpenSans-Regular.woff') format('woff'),
+    url('./OpenSans/OpenSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: 600;
-  src: url('./OpenSans/OpenSans-SemiBold.ttf') format('truetype');
+  src:
+    url('./OpenSans/OpenSans-SemiBold.woff') format('woff'),
+    url('./OpenSans/OpenSans-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: 700;
-  src: url('./OpenSans/OpenSans-Bold.ttf') format('truetype');
+  src:
+    url('./OpenSans/OpenSans-Bold.woff') format('woff'),
+    url('./OpenSans/OpenSans-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -78,7 +85,7 @@
     local('IBM Plex Mono Bold'),
     local('IBMPlexMono-Bold'),
     url('./IBMPlexMono/IBMPlexMono-Bold.woff') format('woff'),
-    url('./IBMPlexMono/IBMPlexMono-Bold.ttf') format('truetype'); 
+    url('./IBMPlexMono/IBMPlexMono-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
@@ -96,9 +103,9 @@
   font-family: 'IBM Plex Sans';
   font-weight: 500;
   src:
-  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
-  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'),
-  url('./IBMPlexSans/IBMPlexSans-Medium.ttf') format('truetype');
+    url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
+    url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'),
+    url('./IBMPlexSans/IBMPlexSans-Medium.ttf') format('truetype');
 }
 
 @font-face {
