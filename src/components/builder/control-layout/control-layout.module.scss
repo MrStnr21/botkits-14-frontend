@@ -1,7 +1,7 @@
 @import '../../app/vars';
 
-.container{
-  font-family: 'IBM Plex Mono';
+.container {
+  // font-family: 'IBM Plex Mono';
   display: flex;
   flex-direction: column;
 
@@ -17,7 +17,7 @@
   }
 }
 
-.header{
+.header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -31,17 +31,18 @@
   }
 }
 
-.type{
- font-size: $xs-font-size;
- line-height: 15.6px;
- color: $default-dark-grey-color;
- @media screen and (max-width: 520px) {
-  font-size: 6.84px;
-  line-height: 8.89px;
-}
+.type {
+  font-size: $xs-font-size;
+  line-height: 15.6px;
+  color: $default-dark-grey-color;
+
+  @media screen and (max-width: 520px) {
+    font-size: 6.84px;
+    line-height: 8.89px;
+  }
 }
 
-.name{
+.name {
   font-size: $l-font-size;
   line-height: 20px;
   font-weight: $semi-bold;
@@ -50,13 +51,14 @@
   border: 0;
   text-overflow: ellipsis;
   max-width: 250px;
+
   @media screen and (max-width: 520px) {
     font-size: 9.12px;
     line-height: 11.86px;
   }
 }
 
-.more{
+.more {
   position: absolute;
   top: 37px;
   right: 13px;
@@ -67,7 +69,7 @@
   width: 24px;
   height: 24px;
 
-  .img{
+  .img {
     width: 100%;
     height: 100%;
   }
@@ -84,12 +86,13 @@
   }
 }
 
-.hr{
+.hr {
   background-color: $hover-grey-color;
   height: 1px;
   width: 100%;
   margin: 0;
   border: 0;
+
   @media screen and (max-width: 520px) {
     height: .5px;
   }
