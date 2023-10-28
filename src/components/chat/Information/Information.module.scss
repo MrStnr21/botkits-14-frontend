@@ -92,21 +92,22 @@
   left: -31px;
 }
 
+.paragraph{
+  @include font;
+  font-weight: $bold;
+}
+
 .files{
   width: 291px;
   padding-left: 40px;
   display: grid;
   padding-top: 32px;
+  align-items: center;
   
 
   grid-template-columns: 226px 65px;
   grid-template-rows: 20px 112px;
   grid-row-gap: 20px;
-
-  p{
-    @include font;
-    font-weight: $bold;
-  }
 
   @mixin item{
     grid-column-start: 1;
@@ -115,10 +116,10 @@
     display: flex;
     gap: 8px;
   }
+
   .itemRow{
     @include item;
   }
-
 
   .itemColumn{
     @include item;

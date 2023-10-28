@@ -11,6 +11,26 @@ interface IInformation {
   name?: string;
 }
 
+// const dataFile = [
+//   {
+//     name: 'Инфо',
+//     extension: 'pdf',
+//   },
+//   {
+//     name: 'Список',
+//     extension: 'docx',
+//   },
+// ];
+
+// const dataImage = [
+//   'https://fikiwiki.com/uploads/posts/2022-02/1644855639_6-fikiwiki-com-p-kartinki-khd-kachestva-6.jpg',
+//   'https://w.forfun.com/fetch/b3/b33164ded5864ed5ba7728b3c0611181.jpeg',
+//   'https://catherineasquithgallery.com/uploads/posts/2021-02/1612872204_51-p-kartinki-na-krasnom-fone-dlya-telefona-68.jpg',
+// ];
+
+const dataFile = null;
+const dataImage = null;
+
 const Information: FC<IInformation> = ({
   image,
   name = 'Сергей Надеин',
@@ -62,29 +82,44 @@ const Information: FC<IInformation> = ({
               <DropDownList caption="История действий" />
             </div>
           ) : (
-            <div className={stylesInformation.files}>
-              <p> Загруженные файлы </p>
-              <div>
-                <button type="button" className={stylesInformation.button}>
-                  Все
-                </button>
-              </div>
-              <div className={stylesInformation.itemColumn}>
-                <UploadedFile />
-                <UploadedFile />
-                <UploadedFile />
-              </div>
-              <p> Изображения </p>
-              <div>
-                <button type="button" className={stylesInformation.button}>
-                  Все
-                </button>
-              </div>
-              <div className={stylesInformation.itemRow}>
-                <UploadedImage />
-                <UploadedImage />
-                <UploadedImage />
-              </div>
+            <div>
+              {dataFile && dataImage ? (
+                <div className={stylesInformation.files}>
+                  <p className={stylesInformation.paragraph}>
+                    Загруженные файлы
+                  </p>
+                  <div>
+                    <button type="button" className={stylesInformation.button}>
+                      Все
+                    </button>
+                  </div>
+                  <div className={stylesInformation.itemColumn}>
+                    {dataFile.map((value) => (
+                      <UploadedFile
+                        file_name={value.name}
+                        file_extension={value.extension}
+                      />
+                    ))}
+                  </div>
+                  <p className={stylesInformation.paragraph}> Изображения </p>
+                  <div>
+                    <button type="button" className={stylesInformation.button}>
+                      Все
+                    </button>
+                  </div>
+                  <div className={stylesInformation.itemRow}>
+                    {dataImage.map((value) => (
+                      <UploadedImage image={value} />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className={stylesInformation.information}>
+                  <p className={stylesInformation.text}>
+                    У вас пока нет загруженных файлов
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>
