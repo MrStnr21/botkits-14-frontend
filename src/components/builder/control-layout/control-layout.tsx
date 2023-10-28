@@ -37,7 +37,8 @@ const ControlLayout: FC<TControlLayoutProps> = ({
           <img className={styles.img} src={moreIcon} alt="больше" />
           <MenuBot
             size="medium"
-            editFunction={() => {}}
+            // eslint-disable-next-line
+            editFunction={() => { }}
             isActive={menu}
             top={0}
             left={30}
