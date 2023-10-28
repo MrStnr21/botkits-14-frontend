@@ -96,7 +96,7 @@ export const PaymentTable: FC<Props> = ({ tableData }) => {
           <TableRow>
             {cols.map((col) => (
               <StyledTableCell key={uuidv4()}>
-                <Typography tag="p" className={style.text}>
+                <Typography tag="p" className={style.text} font="OpenSans">
                   {col}
                 </Typography>
               </StyledTableCell>
@@ -107,22 +107,22 @@ export const PaymentTable: FC<Props> = ({ tableData }) => {
           {tableData.map((row) => (
             <StyledTableRow key={uuidv4()} hover>
               <StyledTableCell sx={{ width: '136px' }}>
-                <Typography tag="span" className={style.text}>
+                <Typography tag="span" className={style.text} font="OpenSans">
                   {convertTimeFormat(row.date)}
                 </Typography>
               </StyledTableCell>
               <StyledTableCell sx={{ width: '88px' }}>
-                <Typography tag="span" className={style.text}>
+                <Typography tag="span" className={style.text} font="OpenSans">
                   {`${row.operation === 'Списания' ? '-' : '+'}${row.amount}₽`}
                 </Typography>
               </StyledTableCell>
               <StyledTableCell sx={{ width: '116px' }}>
-                <Typography tag="span" className={style.text}>
+                <Typography tag="span" className={style.text} font="OpenSans">
                   {row.operation}
                 </Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography tag="span" className={style.text}>
+                <Typography tag="span" className={style.text} font="OpenSans">
                   {row.note || '-'}
                 </Typography>
               </StyledTableCell>
@@ -133,6 +133,7 @@ export const PaymentTable: FC<Props> = ({ tableData }) => {
                     style.text,
                     row.successful ? style.text_succsess : style.text_failure
                   )}
+                  font="OpenSans"
                 >
                   {row.successful ? 'Успешно' : 'Отклонено'}
                 </Typography>

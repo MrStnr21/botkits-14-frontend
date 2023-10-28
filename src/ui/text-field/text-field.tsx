@@ -30,10 +30,15 @@ const TextField: FC = (): JSX.Element => {
         className={stylesTextField.textarea__outline}
         // eslint-disable-next-line react/no-children-prop
         children={null}
+        font="OpenSans"
       />
 
       <div className={stylesTextField.textarea__footer}>
-        <Typography tag="p" className={stylesTextField.textarea__counter}>
+        <Typography
+          tag="p"
+          className={stylesTextField.textarea__counter}
+          font="OpenSans"
+        >
           {text.length}/{textareaTextLength}
         </Typography>
         <Bracket

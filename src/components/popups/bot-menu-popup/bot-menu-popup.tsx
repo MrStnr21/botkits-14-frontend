@@ -87,20 +87,32 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
         ) : type === 'notify' ? (
           <>
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
+              <Typography
+                tag="p"
+                className={stylesBotMenuPopup.text}
+                font="OpenSans"
+              >
                 Название канала
               </Typography>
-              <Typography tag="p" className={stylesBotMenuPopup.value}>
+              <Typography
+                tag="p"
+                className={stylesBotMenuPopup.value}
+                font="OpenSans"
+              >
                 ChanelName
               </Typography>
             </div>
             <hr className={stylesBotMenuPopup.hr} />
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
+              <Typography
+                tag="p"
+                className={stylesBotMenuPopup.text}
+                font="OpenSans"
+              >
                 Ключ доступа
               </Typography>
               <div className={stylesBotMenuPopup.value}>
-                <Typography tag="p">
+                <Typography tag="p" font="OpenSans">
                   1842016250:AAF8uWUV1wE9B8XxZvfbmRiZkmh1tWXu-Ns
                 </Typography>
                 <ButtonIconCopy onClick={onClickURL} />
@@ -110,11 +122,15 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
         ) : (
           <>
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
+              <Typography
+                tag="p"
+                className={stylesBotMenuPopup.text}
+                font="OpenSans"
+              >
                 Подписаться на уведомления
               </Typography>
               <div className={stylesBotMenuPopup.value}>
-                <Typography tag="p">
+                <Typography tag="p" font="OpenSans">
                   /notify 60a280e3f7b15d37975ccb69
                 </Typography>
                 <ButtonIconCopy onClick={onClickURL} />
@@ -122,11 +138,15 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
             </div>
             <hr className={stylesBotMenuPopup.hr} />
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
+              <Typography
+                tag="p"
+                className={stylesBotMenuPopup.text}
+                font="OpenSans"
+              >
                 Отписаться от уведомлений
               </Typography>
               <div className={stylesBotMenuPopup.value}>
-                <Typography tag="p">
+                <Typography tag="p" font="OpenSans">
                   /disable_notify 60a280e3f7b15d37975ccb69
                 </Typography>
                 <ButtonIconCopy onClick={onClickURL} />

@@ -58,6 +58,7 @@ const MenuVariable: FC<IMenuVariable> = ({
         <Typography
           tag="p"
           className={`${stylesMenuVariable.text} ${textColor}`}
+          font="OpenSans"
         >
           {variable}
         </Typography>

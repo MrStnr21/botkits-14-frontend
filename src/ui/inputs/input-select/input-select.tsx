@@ -115,7 +115,7 @@ const InputSelect: FC<IInputSelect> = ({
             {isIcon ? (
               <div className={styles.optionContainer}>
                 <img src={nameValue} alt="icon" />{' '}
-                <Typography tag="span" className={styles.optionText}>
+                <Typography tag="span" font="OpenSans">
                   {iconDescription}
                 </Typography>
               </div>

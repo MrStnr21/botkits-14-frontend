@@ -133,7 +133,11 @@ const Signin: FC = (): JSX.Element => {
           </form>
         </div>
         <div className={stylesSignin.signinSocialContainer}>
-          <Typography tag="h2" className={stylesSignin.signinSocialTitle}>
+          <Typography
+            tag="h2"
+            className={stylesSignin.signinSocialTitle}
+            font="OpenSans"
+          >
             Быстрый вход
           </Typography>
           <div className={stylesSignin.socialContainer}>

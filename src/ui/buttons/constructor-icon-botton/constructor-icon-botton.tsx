@@ -58,7 +58,7 @@ const ConstructorIconBotton: FC<IConstructorIconBotton> = ({
     >
       <ReactSVG src={icon} className={cnIcon} />
       {text && styleBtn === 'mailing' && (
-        <Typography tag="p" className={cx('text')}>
+        <Typography tag="p" className={cx('text')} font="OpenSans">
           {text}
         </Typography>
       )}
