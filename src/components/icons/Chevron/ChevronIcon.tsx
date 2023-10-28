@@ -5,6 +5,7 @@ export interface IChevronIcon {
   position?: string;
   width?: number;
   height?: number;
+  strokeWidth?: number;
 }
 
 const ChevronIcon: FC<IChevronIcon> = ({
@@ -12,6 +13,7 @@ const ChevronIcon: FC<IChevronIcon> = ({
   position,
   width = 16,
   height = 16,
+  strokeWidth = 2,
 }) => (
   <svg
     // transform={position || 'rotate(90deg)'}
@@ -32,7 +34,7 @@ const ChevronIcon: FC<IChevronIcon> = ({
     <path
       d="M12.6667 6.28027L8.00001 10.9469L3.33334 6.28027"
       stroke={color || '#060C23'}
-      strokeWidth="2"
+      strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
     />

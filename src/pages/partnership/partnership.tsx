@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import cn from 'classnames';
 import { ChangeEvent, FC, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
@@ -6,13 +8,18 @@ import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
 import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
-import TableComponent from '../../components/tableComponent/tableComponent';
+import TableComponent from '../../components/table-component/table-component';
+import Typography from '../../ui/typography/typography';
 import {
-  refCols,
-  refRows,
-  paymentCols,
   paymentRows,
-} from '../../utils/TableData'; // тестовые данные
+  refRows,
+  refCols,
+  paymentCols,
+  cellStyle,
+  rowStyleRef,
+  rowStylePayment,
+} from '../../utils/partnershipTable';
+import { ppHeadCell } from '../../components/table-cells/table-cells';
 
 const Partnership: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
@@ -76,10 +83,11 @@ const Partnership: FC = (): JSX.Element => {
         <div className={stylesPartnership.tables}>
           <div className={stylesPartnership.tables__referrals}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <h2 className={stylesPartnership.tables__title}>
-                Cтатистика рефераллов
-              </h2>
-              {isMobile && (
+              <Typography tag="h3">Cтатистика рефераллов</Typography>
+            </div>
+
+            {/* TODO Не очень понятно как с этим быть, пока закоментил */}
+            {/* {isMobile && (
                 <button
                   type="button"
                   onClick={toggleReferralsTable}
@@ -92,14 +100,17 @@ const Partnership: FC = (): JSX.Element => {
                     position={refChevronActive ? 'up' : 'down'}
                   />
                 </button>
-              )}
-            </div>
+              )} */}
             <TableComponent
-              isReferralsTableVisible={isReferralsTableVisible}
-              cols={refCols}
-              rows={refRows}
+              columns={refCols}
+              headComponent={ppHeadCell}
+              tableData={refRows}
+              rowStyle={rowStyleRef}
+              cellStyle={cellStyle}
             />
-            {isMobile && (
+
+            {/* TODO Не очень понятно как с этим быть, пока закоментил */}
+            {/* {isMobile && (
               <div className={stylesPartnership.partnership__buttonWrapper}>
                 <Button
                   variant="default"
@@ -110,11 +121,11 @@ const Partnership: FC = (): JSX.Element => {
                   Запросить выплату
                 </Button>
               </div>
-            )}
+            )} */}
           </div>
           <div className={stylesPartnership.tables__payments}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <h2 className={stylesPartnership.tables__title}>Выплаты</h2>
+              <Typography tag="h3">Выплаты</Typography>
               <button
                 type="button"
                 onClick={togglePaymentsTable}
@@ -137,7 +148,13 @@ const Partnership: FC = (): JSX.Element => {
               </button>
             </div>
             {isPaymentsTableVisible && (
-              <TableComponent cols={paymentCols} rows={paymentRows} />
+              <TableComponent
+                columns={paymentCols}
+                headComponent={ppHeadCell}
+                tableData={paymentRows}
+                rowStyle={rowStylePayment}
+                cellStyle={cellStyle}
+              />
             )}
           </div>
         </div>
