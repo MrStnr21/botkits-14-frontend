@@ -2,34 +2,34 @@ import { FC, useState } from 'react';
 import avatar from '../../../images/avatar/circled/bigAvatar.svg';
 import stylesInformation from './Information.module.scss';
 import DropDownList from '../DropDownList/DropDownList';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
 import UploadedFile from '../UploadedFile/UploadedFile';
 import UploadedImage from '../UploadedImage/UploadedImage';
+import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
 
 interface IInformation {
   image?: string;
   name?: string;
 }
 
-// const dataFile = [
-//   {
-//     name: 'Инфо',
-//     extension: 'pdf',
-//   },
-//   {
-//     name: 'Список',
-//     extension: 'docx',
-//   },
-// ];
+const dataFile = [
+  {
+    name: 'Инфо',
+    extension: 'pdf',
+  },
+  {
+    name: 'Список',
+    extension: 'docx',
+  },
+];
 
-// const dataImage = [
-//   'https://fikiwiki.com/uploads/posts/2022-02/1644855639_6-fikiwiki-com-p-kartinki-khd-kachestva-6.jpg',
-//   'https://w.forfun.com/fetch/b3/b33164ded5864ed5ba7728b3c0611181.jpeg',
-//   'https://catherineasquithgallery.com/uploads/posts/2021-02/1612872204_51-p-kartinki-na-krasnom-fone-dlya-telefona-68.jpg',
-// ];
+const dataImage = [
+  'https://fikiwiki.com/uploads/posts/2022-02/1644855639_6-fikiwiki-com-p-kartinki-khd-kachestva-6.jpg',
+  'https://w.forfun.com/fetch/b3/b33164ded5864ed5ba7728b3c0611181.jpeg',
+  'https://catherineasquithgallery.com/uploads/posts/2021-02/1612872204_51-p-kartinki-na-krasnom-fone-dlya-telefona-68.jpg',
+];
 
-const dataFile = null;
-const dataImage = null;
+// const dataFile = null;
+// const dataImage = null;
 
 const Information: FC<IInformation> = ({
   image,
@@ -40,15 +40,14 @@ const Information: FC<IInformation> = ({
 
   return (
     <div className={stylesInformation.container}>
-      <button
-        className={stylesInformation.chevron}
-        type="button"
+      <RightSidebarButton
         onClick={() => {
           setIsVisible(!isVisible);
         }}
-      >
-        <ChevronIcon color="#FFFFFF" position="right" />
-      </button>
+        isVisible={isVisible}
+        topPX="485px"
+        leftPX="-31px"
+      />
       {isVisible && (
         <div className={stylesInformation.information}>
           <img src={image || avatar} alt="Аватар" />
