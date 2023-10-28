@@ -16,10 +16,6 @@
   }
 }
 
-.title {
-  color: $primary-text-color;
-}
-
 .list {
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(0, 125px));

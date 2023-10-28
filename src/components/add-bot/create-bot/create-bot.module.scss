@@ -7,7 +7,6 @@
 
 .create_message {
   color: $default-dark-grey-color;
-  font-weight: $bold;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,9 +68,7 @@
   margin-left: 15px;
 }
 
-.create_main_bot_name_text {  
-  font-size: $s-font-size;
-  font-weight: $normal;
+.create_main_bot_name_text {
   line-height: $s-line-height;
   letter-spacing: $l-letter-space;
   color: $default-blue-color;

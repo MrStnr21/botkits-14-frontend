@@ -130,7 +130,7 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
               {botName}
             </Typography>
             <Typography
-              tag="p"
+              tag="span"
               className={stylesCreateBot.create_main_bot_name_text}
             >
               Бот будет создан на основе{' '}
