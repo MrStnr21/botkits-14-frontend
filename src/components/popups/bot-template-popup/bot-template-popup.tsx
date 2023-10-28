@@ -90,7 +90,11 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
           <Typography tag="h2" className={stylesBotTemplate.bot_template_title}>
             {title}
           </Typography>
-          <Typography tag="p" className={stylesBotTemplate.bot_template_text}>
+          <Typography
+            tag="p"
+            className={stylesBotTemplate.bot_template_text}
+            font="OpenSans"
+          >
             {description}
           </Typography>
           <ul className={stylesBotTemplate.bot_template_list}>
@@ -108,7 +112,7 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
                 </Typography>
                 <Typography
                   tag="span"
-                  className={stylesBotTemplate.bot_template_item_text}
+                  className={stylesBotTemplate.bot_template_item_text} font="OpenSans"
                 >
                   {item}
                 </Typography>
