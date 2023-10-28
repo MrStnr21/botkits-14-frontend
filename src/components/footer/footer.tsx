@@ -15,7 +15,7 @@ const Footer: FC = (): JSX.Element => {
 
   return (
     <footer className={stylesFooter.footer}>
-      <Typography tag="p" className={stylesFooter.text}>
+      <Typography tag="p" className={stylesFooter.text} font="OpenSans">
         &copy; {year} BotKits
       </Typography>
     </footer>

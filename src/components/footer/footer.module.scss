@@ -8,7 +8,6 @@
 
   display: flex;
   flex-direction: column;
-  // max-width: 100%;
   height: 35px;
   box-sizing: border-box;
   padding-top: 15px;
@@ -25,7 +24,6 @@
 }
 
 .text {
-  font-family: 'OpenSans', sans-serif;
   font-weight: $normal;
   line-height: $m-line-height;
   white-space: nowrap;
