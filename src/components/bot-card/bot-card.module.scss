@@ -6,7 +6,7 @@
   @include flex(column, flex-start);
   background-color: $off-white;
   border-radius: $xxl-border-radius;
-  box-shadow: 0 12px 24px rgba(21, 18, 51, 0.13);
+  box-shadow: $l-box-shadow;
   position: relative;
   @media (max-width: $switching-width) {
     @include size(235px, 177px);
@@ -30,20 +30,6 @@
     left: 195px;
   }
 }
-
-// .more_box {
-//   display: none;
-// }
-
-// .more_box__active {
-//   display: inline;
-//   background-color: white;
-//   border: 1px solid black;
-//   position: absolute;
-//   left: 185px;
-//   width: 150px;
-//   top: 65px;
-// }
 
 .name_box {
   @include flex($align-items: center);

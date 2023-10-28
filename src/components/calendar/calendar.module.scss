@@ -7,7 +7,7 @@
   border-radius: $l-border-radius;
   background-color: $off-white;
   padding: 20px 19px 18px 19px;
-  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+  box-shadow: $m-box-shadow;
 
   [class*="MuiFormControl-root-MuiTextField-root"] {
     margin-bottom: 20px;

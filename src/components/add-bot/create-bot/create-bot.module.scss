@@ -9,7 +9,7 @@
 .create_message {
   @include flex(column, center, center);
   min-height: inherit;
-  background-color: #f2f4f8;
+  background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;
   padding: 40px;
   box-sizing: border-box;
@@ -38,7 +38,7 @@
 
 .create_main {
   min-height: inherit;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: $xxl-border-radius;
   box-shadow: $m-box-shadow;
   padding: 40px 40px 36px;
@@ -68,7 +68,7 @@
   @include font('Open Sans', $xs-font-size, $normal, $primary-persian-blue-default);
   @include line-sizes($xl-line-height, $m-letter-space);
   @include indents(6px 16px, 0 0 0 20px);
-  background-color: #ecefff;
+  background-color: $blue-disabled;
   border-radius: 16px;
 
   @media screen and (max-width: 670px) {
