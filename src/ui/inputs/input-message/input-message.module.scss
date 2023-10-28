@@ -2,7 +2,7 @@
 @use '../../../stylesheets/mixins' as *;
 
 .message {
-  @include mix-size(272px, 48px);
+  @include min-size(272px, 48px);
   display: flex;
   max-width: 526px;
   background-color: $secondary-cultured-default;

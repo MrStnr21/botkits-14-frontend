@@ -27,7 +27,7 @@
   max-height: $max-height;
 }
 
-@mixin mix-size($min-width, $min-height){
+@mixin min-size($min-width, $min-height){
   min-width: $min-width;
   min-height: $min-height;
 }
