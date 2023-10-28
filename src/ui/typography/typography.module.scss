@@ -12,7 +12,7 @@
 .h2 {
   @include typography;
   font-size: $xxxl-font-size;
-  letter-spacing: s-letter-space;
+  letter-spacing: $s-letter-space;
 }
 
 .h3 {

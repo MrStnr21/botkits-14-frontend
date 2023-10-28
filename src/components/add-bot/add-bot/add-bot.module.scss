@@ -4,7 +4,7 @@
 .add_bot_title {
   @include indents(0, 0 0 32px 0);
   @include font('IBM Plex Mono', $xxxl-font-size, $bold);
-  @include line-sizes($m-line-height, s-letter-space);
+  @include line-sizes($m-line-height, $s-letter-space);
   text-align: left;
 
   @media screen and (max-width: 520px) {

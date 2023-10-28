@@ -17,7 +17,7 @@
 
 .title {
   @include font('IBM Plex Mono', $xxxl-font-size, $bold, $primary-oxford-blue-default);
-  @include line-sizes($m-line-height, s-letter-space);
+  @include line-sizes($m-line-height, $s-letter-space);
   margin: 0;
 }
 
