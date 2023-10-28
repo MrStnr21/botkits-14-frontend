@@ -10,6 +10,7 @@ type TMessage = {
   message: string;
   time: string;
   seen: string;
+  online: boolean;
 };
 
 interface IMessage {
@@ -26,7 +27,10 @@ const Message: FC<IMessage> = ({ message }): JSX.Element => {
       }
     >
       <div className={stylesMessage.message__avatar}>
-        <Avatar isBot="no" state="online" />
+        <Avatar
+          isBot={message.user === 'Вы' ? 'no' : 'yes'}
+          state={message.online ? 'online' : 'offline'}
+        />
       </div>
       <div
         className={

@@ -9,7 +9,6 @@ import SearchIcon from '../icons/Search/SearchIcon';
 import PlayIcon from '../icons/Play/PlayIcon';
 import ChevronIcon from '../icons/Chevron/ChevronIcon';
 import CloseIcon from '../icons/Close/CloseIcon';
-import avatar from '../../images/avatar/circled/default.svg';
 import Message from './message/message';
 import NewMessage from '../../ui/message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
@@ -18,6 +17,7 @@ import InputDialogsues from '../chat/InputDialogsues/InputDialogsues';
 import Typography from '../../ui/typography/typography';
 import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
 import SendButton from '../../ui/buttons/send-button/send-button';
+import Avatar from '../../ui/avatar/avatar';
 
 const messages = [
   {
@@ -26,6 +26,7 @@ const messages = [
     user: 'Вячеслав Баумтрок',
     message: 'Привет, как это сделать?',
     time: '16 мин назад',
+    online: false,
     seen: '14:05',
   },
   {
@@ -34,6 +35,7 @@ const messages = [
     user: 'Вы',
     message: `Привет, user, вообще делать не надо`,
     time: '14 мин назад',
+    online: true,
     seen: '14:12',
   },
   {
@@ -42,6 +44,7 @@ const messages = [
     user: 'Вячеслав Баумтрок',
     message: 'Ок, спасибо :)',
     time: '10 мин назад',
+    online: false,
     seen: '14:15',
   },
 ];
@@ -105,11 +108,7 @@ const Dialog: FC = () => {
       <div className={stylesDialog.dialog__header}>
         <div className={stylesDialog.dialog__headerContent}>
           {!isMobile ? (
-            <img
-              src={avatar}
-              alt="avatar"
-              className={stylesDialog.dialog__avatar}
-            />
+            <Avatar state="offline" isBot="yes" /> // доделать логику отрисовки аватара
           ) : (
             <button
               type="button"
@@ -182,12 +181,12 @@ const Dialog: FC = () => {
       </div>
       <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
       <div className={stylesDialog.dialog__messages}>
-        {/* {messages.map((message) => {
-          return <Message message={message} />;
-        })} */}
         {messages.map((message) => {
-          return <NewMessage message={message.message} />;
+          return <Message message={message} />;
         })}
+        {/* {messages.map((message) => {
+          return <NewMessage message={message.message} />;
+        })} */}
       </div>
       <div className={stylesDialog.dialog__messageInput}>
         <div className={stylesDialog.dialog__inputWrapper}>

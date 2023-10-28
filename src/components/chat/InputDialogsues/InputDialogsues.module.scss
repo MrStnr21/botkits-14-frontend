@@ -5,10 +5,14 @@
   max-width: 308px;
   background-color: $default-grey-color;
   border-radius: $border-radius-10;
-  min-height: 40px;
+  height: 40px;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
+
+  &:focus-within {
+    border: $default-blue-color solid;
+  }
 }
 
 .input {
@@ -29,6 +33,11 @@
   &::placeholder {
     color: $default-dark-grey-color;
     background: url('../../../images/icon/20x20/search.svg') no-repeat;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+    background: none;
   }
 }
 
