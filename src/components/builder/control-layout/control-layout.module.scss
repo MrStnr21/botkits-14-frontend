@@ -14,7 +14,7 @@
   }
 }
 
-.header{
+.header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -41,6 +41,7 @@
   border: 0;
   text-overflow: ellipsis;
   max-width: 250px;
+
   @media screen and (max-width: 520px) {
     font-size: 9.12px;
     line-height: $m-line-height;
@@ -74,6 +75,7 @@
   background-color: $secondary-cultured-hover;
   margin: 0;
   border: 0;
+
   @media screen and (max-width: 520px) {
     height: .5px;
   }
