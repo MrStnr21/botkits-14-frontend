@@ -53,7 +53,9 @@ const InputMessage: FC<IInputMessage> = ({
           type="button"
           onClick={onClickEmoji}
         >
-          <EmojiIcon width={20} height={20} />
+          <Tooltip text="Тут будут эмодзи">
+            <EmojiIcon width={20} height={20} />
+          </Tooltip>
         </button>
         {rotateAddIcon && (
           <div className={stylesInput.message_hidden}>
