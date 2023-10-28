@@ -70,9 +70,7 @@ const MenuUser: FC<IMenuUser> = ({
           <Typography tag="p" className={stylesMenuUser.tariff}>
             Тариф
           </Typography>
-          <Typography tag="p" className={stylesMenuUser.tariff_name}>
-            Демо
-          </Typography>
+          <Typography tag="p">Демо</Typography>
         </div>
       </div>
       <a href="#id" className={stylesMenuUser.button}>

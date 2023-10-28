@@ -1,12 +1,5 @@
 @import '../../app/vars';
 
-%typography-header {
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h4-font-size;
-  font-weight: $bold;
-  line-height: $button-line-height-130;
-}
-
 .wrapper {
   min-height: 283px;
   max-width: 100%;
@@ -44,7 +37,7 @@
   margin-top: 32px;
   margin-bottom: 24px;
   text-align: start;
-  @extend %typography-header;
+  font-size: $h4-font-size;  
 }
 
 .video__container {
@@ -73,7 +66,10 @@
 .base__header {
   margin-top: 0;
   margin-bottom: 24px;
-  @extend %typography-header;
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: $h4-font-size;
+  font-weight: $bold;
+  line-height: $button-line-height-130;
   text-decoration: none;
   color: inherit;
   cursor: $cursor;
