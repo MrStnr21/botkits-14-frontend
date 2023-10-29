@@ -1,6 +1,6 @@
 @import '../../../components/app/vars';
 
-@mixin input-main($width, $max-width, $padding, $bg-color, $border, $border-radius){
+@mixin input-main($width, $max-width, $padding, $bg-color, $border, $border-radius) {
   width: $width;
   max-width: $max-width;
   padding: $padding;
@@ -15,7 +15,7 @@
   }
 }
 
-@mixin set-font($color, $font-weight, $font-size, $line-height, $letter-spacing){
+@mixin set-font($color, $font-weight, $font-size, $line-height, $letter-spacing) {
   color: $color;
   font-weight: $font-weight;
   font-size: $font-size;
@@ -23,12 +23,12 @@
   letter-spacing: $letter-spacing;
 }
 
-@mixin input-pseudo($ph-color, $hph-color, $dp-color, $d-color, $d-opacity){
-  &::placeholder{
+@mixin input-pseudo($ph-color, $hph-color, $dp-color, $d-color, $d-opacity) {
+  &::placeholder {
     color: $ph-color
   }
 
-  &::placeholder:hover{
+  &::placeholder:hover {
     color: $hph-color
   }
 
@@ -42,7 +42,7 @@
   }
 }
 
-@mixin icon-container($right){
+@mixin icon-container($right) {
   position: absolute;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@
   bottom: 0;
 }
 
-@mixin eye-icon($src){
+@mixin eye-icon($src) {
   margin: 0;
   padding: 0;
   width: 24px;
@@ -63,7 +63,7 @@
   opacity: 1;
 }
 
-@mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color){
+@mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color) {
   @include input-main(100%, 240px, $padding, $bg-color, 0, 5px);
   @include set-font($primary-text-color, $font-weight, $s-font-size, $s-line-height, $m-letter-space);
   @include input-pseudo($ph-color, $hph-color, $icon-grey-color, $focus-grey-color, 1);
@@ -123,11 +123,11 @@
 
 }
 
-.inputBuilderNum{
+.inputBuilderNum {
   @include input-builder(6px 4px, $default-grey-color, $bold, $default-dark-grey-color, $default-dark-grey-color)
 }
 
- .inputBuilderDefault{
+.inputBuilderDefault {
   @include input-builder(10px 8px, $hover-grey-color, $normal, $placeholder-grey-color, $placeholder-grey-color);
 }
 
