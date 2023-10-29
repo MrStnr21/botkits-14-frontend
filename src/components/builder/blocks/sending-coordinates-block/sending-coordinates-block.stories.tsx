@@ -9,7 +9,7 @@ export default meta;
 
 type Story = StoryObj<typeof SendingCoordinatesBlock>;
 
-export const Block: Story = {
+export const BlockCoordinates: Story = {
   args: {
     nameSetter: () => {},
   },
