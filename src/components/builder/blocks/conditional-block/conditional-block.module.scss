@@ -1,7 +1,20 @@
+@mixin button-state($color){
+  color: $color;
+  border-bottom: 2px solid $color;
+
+  @media screen and (max-width: 520px) {
+    border-bottom: 1px solid $color;
+  }
+}
+
 .controls {
   display: flex;
   flex-direction: row;
   padding: 0 16px;
+
+  @media screen and (max-width: 520px) {
+    padding: 0;
+  }
 }
 
 .content{
@@ -9,12 +22,17 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media screen and (max-width: 520px) {
+    padding: 12px 9px 9px;
+  }
 }
 
 .button {
   font-family: 'Open Sans';
   font-size: 13px;
   line-height: 130%;
+  font-weight: 500;
   text-align: center;
   width: 100%;
   height: 50px;
@@ -22,6 +40,13 @@
   border: 0;
   padding: 0;
   cursor: pointer;
+
+  @media screen and (max-width: 520px) {
+    height: 32px;
+    font-size: 7.41px;
+    line-height: 150%;
+    letter-spacing: .3px;
+  }
 }
 
 .conditional {
@@ -30,6 +55,10 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  @media screen and (max-width: 520px) {
+    border-radius: 5.7px;
+  }
 }
 
 .selects-string{
@@ -39,11 +68,9 @@
 }
 
 .active {
-  color: #243CBB;
-  border-bottom: 2px solid #243CBB;
+  @include button-state(#243CBB);
 }
 
 .none-active{
-  color: #BFC9D9;
-  border-bottom: 2px solid #BFC9D9;
+  @include button-state(#BFC9D9);
 }
