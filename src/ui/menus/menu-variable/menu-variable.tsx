@@ -9,12 +9,14 @@ export interface IMenuVariable {
   buttons: string[];
   onClick?: Function;
   nameMenu?: string;
+  width?: string;
 }
 
 const MenuVariable: FC<IMenuVariable> = ({
   buttons,
   onClick,
   nameMenu = 'Переменная',
+  width,
 }): JSX.Element => {
   const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
@@ -47,7 +49,11 @@ const MenuVariable: FC<IMenuVariable> = ({
 
   return (
     <div>
-      <div className={stylesMenuVariable.open_button} onClick={openHandler}>
+      <div
+        style={width ? { width } : {}}
+        className={stylesMenuVariable.open_button}
+        onClick={openHandler}
+      >
         <div
           onClick={() => {
             if (isActive !== '') setIsActive('');
@@ -68,7 +74,10 @@ const MenuVariable: FC<IMenuVariable> = ({
           className={stylesMenuVariable.icon}
         />
       </div>
-      <div className={`${stylesMenuVariable.box} ${isActive}`}>
+      <div
+        style={width ? { width } : {}}
+        className={`${stylesMenuVariable.box} ${isActive}`}
+      >
         <ul className={stylesMenuVariable.ul}>
           {buttons.map((name) => {
             return (
