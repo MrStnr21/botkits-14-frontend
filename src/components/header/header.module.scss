@@ -22,14 +22,6 @@
   position: relative; //цепляем абсол.позиц.account setting
 }
 
-.container {
-  /* Временный костыль, надо разобраться с кнопкой. */
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  gap: 15px;
-}
-
 .text {
   @include font('IBM Plex Sans', $m-font-size, $normal);
   line-height: $xl-line-height;

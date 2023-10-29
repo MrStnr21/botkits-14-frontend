@@ -6,10 +6,7 @@ import styles from './header.module.scss';
 
 import Notifications from '../icons/Notifications/Notifications';
 import ArrowSmall from '../icons/ArrowSmall/ArrowSmall';
-import MenuMobile from '../icons/MenuMobile/MenuMobile';
-import Menu24px from '../icons/Menu24px/Menu24px';
 import Help from '../icons/Help/Help';
-import Logo from '../icons/Logo/Logo';
 
 import avatar from '../../images/avatar/circled/default.svg';
 
@@ -33,12 +30,6 @@ const Header: FC = (): JSX.Element => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.container}>
-        {matches ? <MenuMobile /> : <Menu24px />}
-        <span className={styles.logo}>
-          <Logo />
-        </span>
-      </div>
       <div className={styles.wrapper}>
         <p className={styles.text}>Тариф</p>
         <p className={styles.text}>Демо</p>
