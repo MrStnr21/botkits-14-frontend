@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import ControlLayout from '../control-layout/control-layout';
-import styles from './telegramPayment.module.scss';
-import LabeledInput from '../labeledInput/labeledInput';
-import Input from '../../../ui/inputs/input/input';
-import ConstructorAddButton from '../../../ui/buttons/constructor-add-button/constructor-add-button';
-import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
+import ControlLayout from '../../control-layout/control-layout';
+import styles from './telegram-payment-block.module.scss';
+import LabeledInput from '../../labeledInput/labeledInput';
+import Input from '../../../../ui/inputs/input/input';
+import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
+import MenuVariable from '../../../../ui/menus/menu-variable/menu-variable';
 
 const TelegramPayment = () => {
   const [name, setName] = useState('Оплата в Telegram');
