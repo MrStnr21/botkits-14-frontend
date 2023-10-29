@@ -55,7 +55,7 @@
 
   @media screen and (max-width: 800px) {
     font-size: $xxxl-font-size;
-    line-height: 130%;
+    line-height: $m-line-height;
   }
 }
 
@@ -87,6 +87,6 @@
     border-radius: $m-border-radius;
     padding: 5px 13px 5px 7px;
     font-size: $xl-font-size;
-    line-height: 130%;
+    line-height: $m-line-height;
   }
 }

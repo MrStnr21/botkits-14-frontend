@@ -32,7 +32,7 @@
   @include line-sizes($m-line-height, 0.4px);
   @media screen and (max-width: 520px) {
     font-size: 6.84px;
-    line-height: 8.89px;
+    line-height: $m-line-height;
   }
 }
 
@@ -43,7 +43,7 @@
   border: 0;
   @media screen and (max-width: 520px) {
     font-size: 9.12px;
-    line-height: 11.86px;
+    line-height: $m-line-height;
   }
 }
 
