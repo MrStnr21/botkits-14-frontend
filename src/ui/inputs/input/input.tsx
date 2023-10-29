@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { FC, ChangeEvent, useState, useEffect } from 'react';
 
 import stylesInput from './input.module.scss';
@@ -103,13 +104,10 @@ const Input: FC<IInput> = ({
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={` ${className} ${
-          error.error || isInvalid ? stylesInput.incorrect : ''
-        } ${
-          (error.error || isInvalid) && styled === 'secondary'
-            ? stylesInput.inputSecondaryIncorrect
-            : ''
-        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
+        className={` ${className} ${error.error || isInvalid ? stylesInput.incorrect : ''} ${(error.error || isInvalid) && styled === 'secondary'
+          ? stylesInput.inputSecondaryIncorrect
+          : ''
+          } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}
@@ -127,30 +125,34 @@ const Input: FC<IInput> = ({
         </Typography>
       )}
       <div
-        className={`${
-          styled === 'secondary'
-            ? stylesInput.iconContainerSecondary
-            : stylesInput.iconContainerMain
-        } ${disabled && stylesInput.disabled}`}
+        className={`${styled === 'secondary'
+          ? stylesInput.iconContainerSecondary
+          : stylesInput.iconContainerMain
+          } ${disabled && stylesInput.disabled}`}
       >
         {password && (
           <button
             type="button"
             aria-label="show/hide password"
             onClick={handleShowPassword}
-            className={`${
-              styled === 'secondary'
-                ? stylesInput.passwordSecondary
-                : stylesInput.passwordMain
-            } ${showPassword && stylesInput.passwordShow}`}
+            className={`${styled === 'secondary'
+              ? stylesInput.passwordSecondary
+              : stylesInput.passwordMain
+              } ${showPassword && stylesInput.passwordShow}`}
           />
         )}
         {required && (
+<<<<<<< HEAD
           <Typography
             tag="span"
             className={`${stylesInput.required} ${
               (error.error || isInvalid) && stylesInput.requiredIncorrect
             }`}
+=======
+          <span
+            className={`${stylesInput.required} ${(error.error || isInvalid) && stylesInput.requiredIncorrect
+              }`}
+>>>>>>> 1509a3a (частично реализован компонент header-block)
           >
             *
           </Typography>
