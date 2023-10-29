@@ -5,7 +5,7 @@
   @include button-style-reset;
   @include flex(row, center, center);
   @include size(100%, 35px);
-  @include font('Open Sans', $xs-font-size, $bold, $xiketic-default);
+  @include font('Open Sans', $xs-font-size, $bold, $secondary-xiketic-default);
   @include line-sizes($xl-line-height, $m-letter-space);
   transition: all 0.1s linear;
   border-radius: $s-border-radius;
