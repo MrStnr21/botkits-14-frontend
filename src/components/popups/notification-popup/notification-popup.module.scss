@@ -39,6 +39,7 @@
 .wrapper {
   @include flex(row, unset, baseline, 20px);
 }
+
 .title {
   @include font('IBM Plex Mono', $xxl-font-size, $bold, $primary-oxford-blue-default);
   line-height: $m-line-height;
@@ -51,36 +52,21 @@
   cursor: $cursor;
   width: 100%;
   padding-top: 18px;
-}
 
-.tab1 {
-  @include font('IBM Plex', $m-font-size, $semi-bold, $secondary-cultured-press);
-  line-height: $m-line-height;
-  transition: all 0.4s linear;
-  border-bottom: 2px solid $secondary-cultured-press;
-  width: 50%;
-  text-align: center;
-  padding-bottom: 13px;
-}
+  .tab {
+    @include font('IBM Plex', $m-font-size, $semi-bold, $secondary-cultured-press);
+    line-height: $m-line-height;
+    transition: all 0.4s linear;
+    border-bottom: 2px solid $secondary-cultured-press;
+    width: 50%;
+    text-align: center;
+    padding-bottom: 13px;
 
-.tab1_active {
-  border-bottom: 2px solid $primary-persian-blue-default;
-  color: $primary-persian-blue-default;
-}
-
-.tab2 {
-  @include font('IBM Plex', $m-font-size, $semi-bold, $secondary-cultured-press);
-  line-height: $m-line-height;
-  transition: all 0.4s linear;
-  border-bottom: 2px solid $secondary-cultured-press;
-  width: 50%;
-  text-align: center;
-  padding-bottom: 13px;
-}
-
-.tab2_active {
-  border-bottom: 2px solid $primary-persian-blue-default;
-  color: $primary-persian-blue-default;
+    &.active {
+      border-bottom: 2px solid $primary-persian-blue-default;
+      color: $primary-persian-blue-default;
+    }
+  }
 }
 
 .close_btn {
