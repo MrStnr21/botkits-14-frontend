@@ -1,4 +1,4 @@
-import styles from './deep-link.module.scss';
+import styles from './deep-link-block.module.scss';
 import InputSelect from '../../../../ui/inputs/input-select/input-select';
 import Input from '../../../../ui/inputs/input/input';
 import ControlLayout from '../../control-layout/control-layout';

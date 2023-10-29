@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import DeepLink from './deep-link';
+import DeepLink from './deep-link-block';
 
 const meta: Meta<typeof DeepLink> = {
   component: DeepLink,
