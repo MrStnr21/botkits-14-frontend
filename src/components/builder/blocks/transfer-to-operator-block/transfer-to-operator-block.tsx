@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import ControlLayout from '../control-layout/control-layout';
+import ControlLayout from '../../control-layout/control-layout';
 
 const TransferToOperatorBlock = (
   nameSetter: (val: string) => void

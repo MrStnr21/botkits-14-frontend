@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 
 import cn from 'classnames/bind';
-import Button from '../../../ui/buttons/button/button';
+import Button from '../../../../ui/buttons/button/button';
 import stylesButtonS from './buttons.module.scss';
-import Typography from '../../../ui/typography/typography';
+import Typography from '../../../../ui/typography/typography';
 
 export interface IButtonS {
   type: 'start' | 'stop' | 'test';
