@@ -27,10 +27,11 @@ $secondary-cultured-default: #F8F9FB;
 $secondary-cultured-press: #D7DEEA;
 $secondary-cultured-focus: #E4E9F1;
 
+$secondary-xiketic-default: #131118;
+$secondary-xiketic-press: #2E293D;
+
 $error-default: #FF5656;
 $success-default: #00E98F;
-
-$xiketic-default: #131118;
 
 /* Переменные размеров шрифта */
 //$xl-h1-font-size: 64px;  Используется в 1 компоненте
@@ -43,6 +44,7 @@ $m-font-size: 16px;
 $s-font-size: 14px;
 $xs-font-size: 13px;
 $xxs-font-size: 12px;
+$xxxs-font-size: 10px;
 
 /* Переменные высоты строки */
 $xl-line-height: 150%;
@@ -57,12 +59,12 @@ $semi-bold: 500;
 $normal: 400;
 
 /* Переменные расстояния между буквами */
+$xxl-letter-space: 1px;
 $l-letter-space: 0.5px;
 //$lx-letter-space: 0.75px; используется в 2-х компонентах
 $m-letter-space: 0.3px;
 $s-letter-space: -0.2px;
 // $s-letter-space: 0.2px;  используется в 1 компоненте
-//$button-letter-space: 1px;  используется в 2-х компонентах
 
 /* Переменные радиуса скругления */
 // $border-radius-185: 185px; используется в 1 компоненте

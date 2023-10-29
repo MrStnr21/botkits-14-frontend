@@ -2,22 +2,15 @@
 @use '../../stylesheets/mixins' as *;
 
 .footer {
-  // START GRID LAYOUT
   grid-column: 2 / 3;
   grid-row: 3;
-  // END GRID LAYOUT
 
-  display: flex;
-  flex-direction: column;
-  // max-width: 100%;
+  @include flex(column);
+  @include indents(15px 0 0 0, 32px 40px 15px 0);
   height: 35px;
   box-sizing: border-box;
-  padding-top: 15px;
-  margin-top: 32px;
-  margin-bottom: 15px;
-  border-top: 1px solid #d7deea;
+  border-top: 1px solid $secondary-cultured-press;
   background-color: $off-white;
-  margin-right: 40px;
 
   @media (max-width: $switching-width) {
     grid-column: 1 / 3;
@@ -26,11 +19,8 @@
 }
 
 .text {
-  font-family: 'OpenSans', sans-serif;
-  font-weight: $normal;
-  font-size: $s-font-size;
-  line-height: 21px;
-  // width: fit-content;
+  @include font('OpenSans', $s-font-size, $normal);
+  line-height: $xl-line-height;
   margin: 0;
   white-space: nowrap;
   @media (max-width: $switching-width) {

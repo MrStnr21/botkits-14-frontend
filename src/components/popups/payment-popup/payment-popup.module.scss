@@ -1,32 +1,30 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
+$accent: #433FB8;
+$payment-background: #EFFDFF;
+$btn-border: rgba(6, 12, 35, 0.30);
+
 .paymentPopupContainer {
+  @include flex(column, center, unset, 20px);
   padding: 40px 40px 37px 40px;
   width: 970px;
   box-sizing: border-box;
-  background-color: white;
-  box-shadow: 0 12px 24px 0 #15123321;
+  background-color: $off-white;
+  box-shadow: $l-box-shadow;
   border: none;
   border-radius: $xxl-border-radius;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
-  gap: 20px;
 }
 
 .wrapperTariffTitle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(row, space-between, center);
   width: 213px;
 }
 
 .iconRocketBot {
-  width: 193px;
-  height: 139px;
+  @include size(193px, 139px);
   position: absolute;
   top: -37px;
   left: 44px;
@@ -45,39 +43,30 @@
 }
 
 .linkWrapper {
-  width: 890px;
-  height: 257px;
-  background: #F8F9FB;
+  @include flex(column);
+  @include size(890px, 257px);
+  background: $secondary-cultured-default;
   border-radius: $l-border-radius;
-  display: flex;
-  flex-direction: column;
   z-index: 2;
 }
 
 .linkGroup {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+  @include flex(row, center, unset, 20px);
   padding-bottom: 33px;
 }
 
 .linkBtn {
-  width: 260px;
-  height: 70px;
-  background: white;
-  display: flex;
-  flex-direction: row;
-  outline: solid 1.5px #060C234D;
+  @include flex(row, space-between, center, 25px);
+  @include size(260px, 70px);
+  background: $off-white;
+  outline: solid 1.5px $btn-border;
   border-radius: 8px;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 .selected {
-  outline: 1.5px solid #433FB8;
-  background: var(--Off-white, #FFF);
+  outline: 1.5px solid $accent;
+  background: $off-white;
 }
 
 .nameTariff {
@@ -85,12 +74,11 @@
 }
 
 .wrapperPrice {
-  display: flex;
-  gap: 5px;
+  @include flex($gap: 5px);
 }
 
 .price {
-  color: #433FB8;
+  color: $accent;
 }
 
 .currency {
@@ -99,39 +87,31 @@
 }
 
 .paymentButtonsWrapper {
-  display: flex;
-  gap: 20px;
+  @include flex(row, space-between, unset, 20px);
   z-index: 2;
   left: 40px;
   top: 460px;
   padding: 80px 35px 0;
-  justify-content: space-between;
 }
 
 .wrapperTotalPrice {
-  display: flex;
+  @include flex(row, flex-start, center);
   width: 100%;
-  justify-content: flex-start;
-  align-items: center;
   text-align: center;
-  //padding-right: 150px;
 }
 
 .totalPrice {
-  color: white;
+  color: $off-white;
   display: inline;
 }
 
 .lightGrayBackgroundWrapper {
-  width: 970px;
-  height: 207px;
+  @include size(970px, 207px);
+  position: absolute;
   left: 0;
   top: 0;
-  position: absolute;
-  background: #D7DEEA;
+  background: $secondary-cultured-press;
   text-align: center;
-  justify-content: center;
-  align-items: center;
   z-index: 0;
   border-top-left-radius: $xxl-border-radius;
   border-top-right-radius: $xxl-border-radius;
@@ -146,24 +126,22 @@
 }
 
 .blackBackgroundWrapper {
-  width: 970px;
-  height: 144px;
+  @include size(970px, 144px);
+  position: absolute;
   left: 0;
   top: 420px;
-  position: absolute;
-  background: #131118;
+  background: $secondary-xiketic-default;
   border-radius: $l-border-radius;
   z-index: 0;
 }
 
 .greyBackgroundWrapper {
-  width: 890px;
-  height: 64px;
+  @include size(890px, 64px);
+  position: absolute;
   left: 40px;
   top: 460px;
-  position: absolute;
   opacity: 0.15;
-  background: #EFFDFF;
+  background: $payment-background;
   border-radius: $l-border-radius;
   z-index: -1;
 }
@@ -175,17 +153,16 @@
 }
 
 .requestInvoiceText {
-  color: #131118;
+  color: $secondary-xiketic-default;
   width: 150px;
   padding: 0 20px;
 }
 .requestInvoiceText:hover {
-  color: #243CBB;
+  color: $primary-persian-blue-default;
 }
 
 .paymentButtonsContainer {
-  display: flex;
-  gap: 20px;
+  @include flex($gap: 20px);
 }
 
 
