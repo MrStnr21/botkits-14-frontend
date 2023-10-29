@@ -4,13 +4,14 @@ import styles from './labeledInput.module.scss';
 interface ILabeledProps {
   children?: React.ReactNode;
   title: string;
+  extraClass?: string;
 }
 
-const LabeledInput: FC<ILabeledProps> = ({ children, title }) => {
+const LabeledInput: FC<ILabeledProps> = ({ children, title, extraClass }) => {
   return (
-    <div className={styles.label}>
+    <div className={`${styles.label} ${extraClass || ''}`}>
       {title}
-      <div className={styles.main}>{children}</div>
+      <div>{children}</div>
     </div>
   );
 };
