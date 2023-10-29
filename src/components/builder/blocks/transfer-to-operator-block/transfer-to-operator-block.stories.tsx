@@ -9,7 +9,7 @@ export default meta;
 
 type Story = StoryObj<typeof TransferToOperatorBlock>;
 
-export const TransferToOperatorBlockReady: Story = {
+export const BlockOperator: Story = {
   args: {
     nameSetter: () => {},
   },
