@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import styles from './sending-coordinates-block.module.scss';
+import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
 import Input from '../../../../ui/inputs/input/input';

@@ -1,4 +1,4 @@
-import TelegramPayment from './telegram-payment-block';
+import TelegramPayment from './telegram-payment';
 
 export default {
   title: 'COMPONENTS/Builder/blocks/TelegramPayment',

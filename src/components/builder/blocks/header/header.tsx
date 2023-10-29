@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './header-block.module.scss';
+import styles from './header.module.scss';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import Input from '../../../../ui/inputs/input/input';
 
