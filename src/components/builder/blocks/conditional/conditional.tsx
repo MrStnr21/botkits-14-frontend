@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import styles from './conditional-block.module.scss';
+import styles from './conditional.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import LabeledInput from '../../labeledInput/labeledInput';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TransferToOperatorBlock from './transfer-to-operator-block';
+import TransferToOperatorBlock from './transfer-to-operator';
 
 const meta: Meta<typeof TransferToOperatorBlock> = {
   component: TransferToOperatorBlock,

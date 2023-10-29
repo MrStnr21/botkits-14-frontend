@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 // import styles from './saving-to-crm-block.module.scss';
 import { useState } from 'react';
-import styles from './saving-to-crm-block.module.scss';
+import styles from './saving-to-crm.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import Checkbox from '../../../../ui/checkboxes/checkbox';
 

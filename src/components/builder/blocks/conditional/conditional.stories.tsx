@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ConditionalBlock from './conditional-block';
+import ConditionalBlock from './conditional';
 
 const meta: Meta<typeof ConditionalBlock> = {
   component: ConditionalBlock,
