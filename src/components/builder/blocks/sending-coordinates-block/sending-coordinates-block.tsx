@@ -19,16 +19,16 @@ const GetInput = (title: string) => {
 };
 
 const SendingCoordinatesBlock = (): ReactElement => {
-  const [blockName, setBlockName] = useState('Название отправки координат');
+  const [name, setName] = useState('Название отправки координат');
 
   const handleNameChange = (newName: string) => {
-    setBlockName(newName);
+    setName(newName);
   };
 
   return (
     <ControlLayout
       type="Отправка координат"
-      name={blockName}
+      name={name}
       nameSetter={handleNameChange}
     >
       <div className={styles.content}>
