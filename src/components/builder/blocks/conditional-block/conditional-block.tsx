@@ -116,24 +116,30 @@ const ToggleButton: FC<TToggleButtonProps> = ({ text, onClick, isActive }) => {
 const EasyMode = () => {
   return (
     <div className={styles.conditional}>
-      <LabeledInput title="Если">
-        <div className={styles['selects-string']}>
-          <InputSelect
-            values={selectValues}
-            defaultValue={['1']}
-            maxWidth={184}
-            handleFunction={() => {}}
-          />
-          <InputSelect
-            handleFunction={() => {}}
-            maxWidth={52}
-            values={values}
-            defaultValue={['1']}
+      <LabeledInput title="Если" extraClass={styles.extraClass}>
+        <div className={styles['labeled-content']}>
+          <div className={styles['selects-string']}>
+            <InputSelect
+              values={selectValues}
+              defaultValue={['1']}
+              maxWidth={184}
+              handleFunction={() => {}}
+            />
+            <InputSelect
+              handleFunction={() => {}}
+              maxWidth={52}
+              values={values}
+              defaultValue={['1']}
+            />
+          </div>
+          <Input
+            onChange={() => {}}
+            styled="bot-builder-default"
+            placeholder="Значение"
           />
         </div>
-        <Input onChange={() => {}} styled="bot-builder-default" />
       </LabeledInput>
-      <LabeledInput title="То перейти">
+      <LabeledInput title="То перейти" extraClass={styles.extraClass}>
         <InputSelect
           values={selectValues}
           defaultValue={['1']}
@@ -148,14 +154,14 @@ const EasyMode = () => {
 const HardMode = () => {
   return (
     <div className={styles.conditional}>
-      <LabeledInput title="Если">
+      <LabeledInput title="Если" extraClass={styles.extraClass}>
         <Input
           onChange={() => {}}
           styled="bot-builder-default"
-          value="Условие"
+          placeholder="Условие"
         />
       </LabeledInput>
-      <LabeledInput title="То перейти">
+      <LabeledInput title="То перейти" extraClass={styles.extraClass}>
         <InputSelect
           values={selectValues}
           defaultValue={['1']}
