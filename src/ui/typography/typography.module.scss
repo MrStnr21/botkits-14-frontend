@@ -1,57 +1,169 @@
 @import '../../components/app/vars';
 
-@mixin typography {
+@mixin IBM_Typography {
   margin: 0;
   font-weight: $bold; //600
-  --font-family: 'IBM Plex Mono', sans-serif;
+  font-family: 'IBM Plex Mono', sans-serif;
   color: $primary-text-color; //#060c23
 }
+
+@mixin OpenSans_Typography {
+  margin: 0;
+  font-weight: $bold; //600
+  font-family: 'Open Sans', sans-serif;
+  color: $primary-text-color; //#060c23
+}
+
 .h1 {
-  @include typography;
+  @include IBM_Typography;
   font-size: $h1-font-size; //48px
   line-height: $h1-line-height; //52.8px
   letter-spacing: $h2-letter-space;
 }
 
 .h2 {
-  @include typography;
+  @include IBM_Typography;
   font-size: $h2-font-size;
   line-height: $h2-line-height; //41.6px
   letter-spacing: $h2-letter-space; //-0.2px
 }
 
 .h3 {
-  @include typography;
+  @include IBM_Typography;
   font-size: $h3-font-size;
   line-height: $h3-line-height; //31.2px
   letter-spacing: $h3-letter-space;
 }
 
 .h4 {
-  @include typography;
+  @include IBM_Typography;
   font-size: $h4-font-size;
   line-height: $h4-line-height; //23.4px
   letter-spacing: $h3-letter-space; //0px
 }
 
 .h5 {
-  @include typography;
+  @include IBM_Typography;
   font-size: $m-font-size;
   line-height: $h-line-height; //130%
   letter-spacing: $h5-letter-space; //0.5px
 }
 
 .p {
-  @include typography;
+  @include IBM_Typography;
   font-size: $m-font-size; //14px
   line-height: $p-line-height; //150%
   letter-spacing: $m-letter-space; //0.3px
 }
 
 .span {
-  @include typography;
+  @include IBM_Typography;
   font-size: $s-font-size; //13px
   font-weight: $normal; //400
   line-height: $p-line-height;
   letter-spacing: $m-letter-space;
+}
+
+.primary {
+  &_h1 {
+    @include IBM_Typography;
+    font-size: $h1-font-size; //48px
+    line-height: $h1-line-height; //52.8px
+    letter-spacing: $h2-letter-space;
+  }
+
+  &_h2 {
+    @include IBM_Typography;
+    font-size: $h2-font-size;
+    line-height: $h2-line-height; //41.6px
+    letter-spacing: $h2-letter-space; //-0.2px
+  }
+
+  &_h3 {
+    @include IBM_Typography;
+    font-size: $h3-font-size;
+    line-height: $h3-line-height; //31.2px
+    letter-spacing: $h3-letter-space;
+  }
+
+  &_h4 {
+    @include IBM_Typography;
+    font-size: $h4-font-size;
+    line-height: $h4-line-height; //23.4px
+    letter-spacing: $h3-letter-space; //0px
+  }
+
+  &_h5 {
+    @include IBM_Typography;
+    font-size: $m-font-size;
+    line-height: $h-line-height; //130%
+    letter-spacing: $h5-letter-space; //0.5px
+  }
+
+  &_p {
+    @include IBM_Typography;
+    font-size: $m-font-size; //14px
+    line-height: $p-line-height; //150%
+    letter-spacing: $m-letter-space; //0.3px
+  }
+
+  &_span {
+    @include IBM_Typography;
+    font-size: $s-font-size; //13px
+    font-weight: $normal; //400
+    line-height: $p-line-height;
+    letter-spacing: $m-letter-space;
+  }
+}
+
+.secondary {
+  &_h1 {
+    @include OpenSans_Typography;
+    font-size: $h1-font-size; //48px
+    line-height: $h1-line-height; //52.8px
+    letter-spacing: $h2-letter-space;
+  }
+
+  &_h2 {
+    @include OpenSans_Typography;
+    font-size: $h2-font-size;
+    line-height: $h2-line-height; //41.6px
+    letter-spacing: $h2-letter-space; //-0.2px
+  }
+
+  &_h3 {
+    @include OpenSans_Typography;
+    font-size: $h3-font-size;
+    line-height: $h3-line-height; //31.2px
+    letter-spacing: $h3-letter-space;
+  }
+
+  &_h4 {
+    @include OpenSans_Typography;
+    font-size: $h4-font-size;
+    line-height: $h4-line-height; //23.4px
+    letter-spacing: $h3-letter-space; //0px
+  }
+
+  &_h5 {
+    @include OpenSans_Typography;
+    font-size: $m-font-size;
+    line-height: $h-line-height; //130%
+    letter-spacing: $h5-letter-space; //0.5px
+  }
+
+  &_p {
+    @include OpenSans_Typography;
+    font-size: $m-font-size; //14px
+    line-height: $p-line-height; //150%
+    letter-spacing: $m-letter-space; //0.3px
+  }
+
+  &_span {
+    @include OpenSans_Typography;
+    font-size: $s-font-size; //13px
+    font-weight: $normal; //400
+    line-height: $p-line-height;
+    letter-spacing: $m-letter-space;
+  }
 }
