@@ -21,7 +21,7 @@ type TButtonProps = {
   children: string;
   id: string;
   askOnClick?: VoidFunction;
-  deleteOnClick?: VoidFunction;
+  deleteOnClick?: (id: string) => void;
   askIcon: string;
   colorOnClick?: () => void;
 };
@@ -50,7 +50,7 @@ const Button: FC<TButtonProps> = ({
     <>
       <ConstructorHelperButton
         askOnClick={askOnClick}
-        deleteOnClick={deleteOnClick}
+        deleteOnClick={() => deleteOnClick}
         askIcon={askIcon}
         color
         colorOnClick={colorOnClick}
@@ -84,6 +84,8 @@ const PanelInline: FC<IPanelInline> = () => {
   };
 
   const deleteButton = (delId: string) => {
+    // eslint-disable-next-line no-console
+    console.log(horButtons);
     if (horButtons.includes(delId)) {
       const newHorButtons = horButtons.filter((id) => id !== delId);
       setHorButtons(newHorButtons);
@@ -106,10 +108,11 @@ const PanelInline: FC<IPanelInline> = () => {
               name="Кнопка"
               aria-label="colorType"
               id={id}
+              key={id}
               askOnClick={() => {
                 url = 'url...';
               }}
-              deleteOnClick={() => {}}
+              deleteOnClick={() => deleteButton(id)}
               askIcon={UrlIcon}
               colorOnClick={() => {}}
             >
