@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
-
 import DeleteIcon from '../../../images/icon/24x24/constructor/delete.svg';
 
 import stylesConstructorHelperButton from './constructor-helper-botton.module.scss';
@@ -11,6 +10,8 @@ export interface IConstructorHelperButton {
   askOnClick?: VoidFunction;
   deleteOnClick?: VoidFunction;
   askIcon: string;
+  color?: boolean;
+  colorOnClick?: () => void;
 }
 
 const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
@@ -19,9 +20,31 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
   askOnClick,
   deleteOnClick,
   askIcon,
-}): JSX.Element => {
+  color = false,
+  colorOnClick,
+}) => {
+  const colorTypes = ['white', 'red', 'green', 'blue'];
   return (
-    <div className={stylesConstructorHelperButton.container}>
+    <div
+      className={`${stylesConstructorHelperButton.container}${
+        color ? ` ${stylesConstructorHelperButton.container_color}` : ''
+      }`}
+    >
+      <div className={stylesConstructorHelperButton.wrapper_color}>
+        {color
+          ? colorTypes.map((colorType) => (
+              <button
+                key={colorType}
+                className={
+                  stylesConstructorHelperButton[`color_button_${colorType}`]
+                }
+                onClick={colorOnClick}
+                type="button"
+                aria-label="colorType"
+              />
+            ))
+          : null}
+      </div>
       <button
         className={stylesConstructorHelperButton.ask_button}
         onClick={askOnClick}
