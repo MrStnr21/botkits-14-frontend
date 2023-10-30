@@ -62,6 +62,10 @@
   }
 }
 
+.wrapper {
+  width: 0;
+}
+
 .wrapper_color {
   width: 80px;
   display: flex !important;
@@ -70,7 +74,6 @@
   border-right: solid 1px $constructor-helper-button-delete-line-color;
   padding-right: 6px;
 }
-
 
 @mixin color_button {
   width: 16px;

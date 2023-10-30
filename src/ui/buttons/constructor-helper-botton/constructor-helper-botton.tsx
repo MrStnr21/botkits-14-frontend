@@ -30,7 +30,11 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
         color ? ` ${stylesConstructorHelperButton.container_color}` : ''
       }`}
     >
-      <div className={stylesConstructorHelperButton.wrapper_color}>
+      <div
+        className={`${stylesConstructorHelperButton.wrapper}${
+          color ? ` ${stylesConstructorHelperButton.wrapper_color}` : ''
+        }`}
+      >
         {color
           ? colorTypes.map((colorType) => (
               <button
