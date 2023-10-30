@@ -3,6 +3,7 @@ import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default
 import ControlLayout from '../../control-layout/control-layout';
 import Input from '../../../../ui/inputs/input/input';
 import stylesApiBlock from './api.module.scss';
+import Typography from '../../../../ui/typography/typography';
 
 const func = () => console.log(1);
 
@@ -11,7 +12,7 @@ function ApiBlockNode() {
     <ControlLayout type="API" name="Название API" nameSetter={func}>
       <div className={stylesApiBlock.container}>
         <div className={stylesApiBlock.overlay}>
-          <h4 className={stylesApiBlock.h4}>URL стороннего сервиса</h4>
+          <Typography tag="span">URL стороннего сервиса</Typography>
           <div className={stylesApiBlock.input}>
             <Input
               placeholder="Введите URL"
@@ -24,12 +25,11 @@ function ApiBlockNode() {
           </div>
         </div>
         <div className={stylesApiBlock.overlay}>
-          <h4 className={stylesApiBlock.h4}>Тип запроса</h4>
-          <div className={stylesApiBlock.box1}>
+          <Typography tag="span">Тип запроса</Typography>
+          <div className={stylesApiBlock.box}>
             <div className={stylesApiBlock.button}>
               <ConstructorDefaultButton
                 buttonHtmlType="button"
-                // children="Get"
                 onClick={func}
                 disabled={false}
               >
@@ -48,7 +48,7 @@ function ApiBlockNode() {
           </div>
         </div>
         <div className={stylesApiBlock.overlay}>
-          <h4 className={stylesApiBlock.h4}>Заголовок</h4>
+          <Typography tag="span">Заголовок</Typography>
           <div className={stylesApiBlock.field}>
             <ConstructorAddButton
               buttonHtmlType="button"
@@ -70,7 +70,7 @@ function ApiBlockNode() {
           </div>
         </div>
         <div className={stylesApiBlock.overlay}>
-          <h4 className={stylesApiBlock.h4}>Параметр</h4>
+          <Typography tag="span">Параметр</Typography>
           <div className={stylesApiBlock.field}>
             <ConstructorAddButton
               buttonHtmlType="button"
@@ -92,7 +92,7 @@ function ApiBlockNode() {
           </div>
         </div>
         <div className={stylesApiBlock.overlay}>
-          <h4 className={stylesApiBlock.h4}>Сохранить результат</h4>
+          <Typography tag="span">Сохранить результат</Typography>
           <div className={stylesApiBlock.field}>
             <ConstructorAddButton
               buttonHtmlType="button"
