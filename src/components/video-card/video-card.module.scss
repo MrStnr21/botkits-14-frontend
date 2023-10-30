@@ -40,9 +40,7 @@
 
 .prewiew {
   @include size(100%, 100%);
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include position(absolute, 0, $left: 0);
 }
 
 .cover {
@@ -71,9 +69,7 @@
 .button__remove {
   @include size(15px, 15px);
   @include button-style-reset;
-  position: absolute;
-  top: 8px;
-  right: 8px;
+  @include position(absolute, 8px, 8px);
   mask-image: url('../../images/icon/24x24/common/close.svg');
   background-color: $grey-1;
   mask-position: center;
@@ -98,9 +94,7 @@
 .video__box {
   @include flex(row, center, center);
   @include size(100%, 100%);
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include position(absolute, 0, $left: 0);
   z-index: 10;
   background-color: rgba($primary-oxford-blue-default, 0.4);
 }
@@ -115,9 +109,7 @@
 
 .button__close {
   @include size(35px, 35px);
-  position: absolute;
-  top: 20px;
-  right: 30px;
+  @include position(absolute, 20px, 30px);
   mask-image: url('../../images/icon/24x24/common/close.svg');
   mask-repeat: no-repeat;
   background-color: $grey-1;

@@ -45,13 +45,11 @@
 .image_box {
   @include flex(row, center, center);
   @include size(173px, 173px);
+  @include position(absolute, -48px, $left: -26px);
   border-radius: $border-radius-circle;
   background-color: $secondary-cultured-focus;
   transition: background-color 0.1s linear;
-  position: absolute;
   z-index: 1;
-  top: -48px;
-  left: -26px;
 
   div {
     @include flex(row, center, center);

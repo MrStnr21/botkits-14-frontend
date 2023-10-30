@@ -35,9 +35,7 @@
 
 .icon {
   @include size(20px, 20px);
-  top: 9px;
-  right: 16px;
-  position: absolute;
+  @include position(absolute, 9px, 16px);
   filter: invert(21%) sepia(67%) saturate(5310%) hue-rotate(232deg)
     brightness(75%) contrast(93%);
 }

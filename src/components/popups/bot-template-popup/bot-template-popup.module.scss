@@ -19,9 +19,7 @@
 }
 
 .bot_template_close {
-  position: absolute;
-  top: 37px;
-  right: 37px;
+  @include position(absolute, 37px, 37px);
   cursor: $cursor;
   background: 0;
   border: 0;

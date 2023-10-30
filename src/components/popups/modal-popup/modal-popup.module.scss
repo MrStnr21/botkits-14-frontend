@@ -4,9 +4,7 @@
 .modal {
   @include flex(row, center, center, 0);
   @include size(100%, 100%);
-  position: fixed;
-  top: 0;
-  left: 0;
+  @include position(fixed, 0, $left: 0);
   z-index: 100;
 }
 
@@ -16,9 +14,7 @@
 }
 
 .close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  @include position(absolute, 20px, 20px);
   cursor: $cursor;
   background: 0;
   border: 0;

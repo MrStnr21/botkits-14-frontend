@@ -35,10 +35,8 @@
 .textError {
   @include font('Open Sans', 10px, $normal, $error-default);
   @include line-sizes($xl-line-height, $m-letter-space);
+  @include position(absolute, $bottom: -15px);
   display: none;
-
-  position: absolute;
-  bottom: -15px;
 }
 
 .download_error {

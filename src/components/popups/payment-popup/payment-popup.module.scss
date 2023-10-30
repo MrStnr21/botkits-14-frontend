@@ -25,9 +25,7 @@ $btn-border: rgba(6, 12, 35, 0.30);
 
 .iconRocketBot {
   @include size(193px, 139px);
-  position: absolute;
-  top: -37px;
-  left: 44px;
+  @include position(absolute, -37px, $left: 44px);
 }
 
 .iconCheck {
@@ -107,9 +105,7 @@ $btn-border: rgba(6, 12, 35, 0.30);
 
 .lightGrayBackgroundWrapper {
   @include size(970px, 207px);
-  position: absolute;
-  left: 0;
-  top: 0;
+  @include position(absolute, 0, $left: 0);
   background: $secondary-cultured-press;
   text-align: center;
   z-index: 0;
@@ -127,9 +123,7 @@ $btn-border: rgba(6, 12, 35, 0.30);
 
 .blackBackgroundWrapper {
   @include size(970px, 144px);
-  position: absolute;
-  left: 0;
-  top: 420px;
+  @include position(absolute, 420px, $left: 0);
   background: $secondary-xiketic-default;
   border-radius: $l-border-radius;
   z-index: 0;
@@ -137,9 +131,7 @@ $btn-border: rgba(6, 12, 35, 0.30);
 
 .greyBackgroundWrapper {
   @include size(890px, 64px);
-  position: absolute;
-  left: 40px;
-  top: 460px;
+  @include position(absolute, 460px, $left: 40px);
   opacity: 0.15;
   background: $payment-background;
   border-radius: $l-border-radius;

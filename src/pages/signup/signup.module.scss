@@ -15,12 +15,10 @@
 }
 
 .signupBackgroundImage {
+  @include position(absolute, $bottom: 0, $right: 0);
   background-image: url('../../images/roboCreate.png');
   background-size: contain;
   background-repeat: no-repeat;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   width: 100%;
   max-width: 270px;
   margin-right: -60px;

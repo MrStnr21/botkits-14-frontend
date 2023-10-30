@@ -50,9 +50,7 @@
 .more{
   @include indents;
   @include size(24px, 24px);
-  position: absolute;
-  top: 37px;
-  right: 13px;
+  @include position(absolute, 37px, 13px);
   background: none;
   border: 0;
 

@@ -4,18 +4,15 @@
 .popup {
   @include flex(row, right, unset, 0);
   @include size(100%, 100vh);
+  @include position(fixed, 0, 0);
   box-sizing: border-box;
-  position: fixed;
-  right: 0;
-  top: 0;
   z-index: 100;
   transition: right 0.5s linear;
 }
 
 .popup_hidden {
+  @include position(fixed, 0);
   right: -450px;
-  position: fixed;
-  top: 0;
   transition: right 0.5s linear;
   height: 100vh;
   z-index: 100;
@@ -70,9 +67,7 @@
 }
 
 .close_btn {
-  position: absolute;
-  top: 28px;
-  right: 35px;
+  @include position(absolute, 28px, 35px);
   background-color: $off-white;
   border: none;
 }

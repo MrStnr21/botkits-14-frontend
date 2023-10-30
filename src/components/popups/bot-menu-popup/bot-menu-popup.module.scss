@@ -49,9 +49,7 @@
   @include font('IBM Plex Mono', $m-font-size, $bold, $off-white);
   @include line-sizes($m-line-height, 0);
   @include indents(13px 20px, 0);
-  position: absolute;
-  top: -60px;
-  right: 30%;
+  @include position(absolute, -60px, 30%);
   box-sizing: border-box;
   background-color: $secondary-xiketic-press;
   border-radius: $l-border-radius;

@@ -187,9 +187,7 @@ $additional-grey-pressed: #c3d1d8;
   // бургер-кнопка
   @include size(24px, 24px);
   @include button-style-reset;
-  position: absolute;
-  right: -80px;
-  top: 2px;
+  @include position(absolute, 2px, -80px);
   z-index: 1;
   mask-image: url('../../images/icon/24x24/common/menu.svg');
   mask-repeat: no-repeat;
@@ -338,9 +336,7 @@ $additional-grey-pressed: #c3d1d8;
 .navigation__expandButton {
   @include button-style-reset;
   @include size(20px, 20px);
-  position: absolute;
-  right: 10px;
-  top: 13px;
+  @include position(absolute, 13px, 10px);
   mask-image: url('../../images//icon//20x20/chevron/up.svg'); //Открытый в начале
   mask-position: center;
   mask-repeat: no-repeat;

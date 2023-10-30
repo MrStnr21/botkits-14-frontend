@@ -34,11 +34,7 @@
 }
 
 .textarea__input:focus ~ .textarea__outline {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  @include position(absolute, 0, 0, 0, 0);
   border: 1px solid $primary-medium-spring-green-default;
   background-color: transparent;
   z-index: 0;
@@ -63,6 +59,7 @@
 }
 
 .textarea__emojiPicker {
+  @include position(absolute, 20px, -38px);
   position: absolute;
   z-index: 10;
   top: 20px;

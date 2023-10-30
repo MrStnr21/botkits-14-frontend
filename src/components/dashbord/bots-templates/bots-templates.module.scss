@@ -119,10 +119,8 @@
 
 .modal_overlay {
   @include size(100%, 100%);
+  @include position(fixed, 0, $left: 0);
   display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: 2;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.1);
@@ -131,9 +129,7 @@
 .modal {
   @include flex(row, center, center);
   @include size(100%, 100%);
-  position: fixed;
-  top: 0;
-  left: 0;
+  @include position(fixed, 0, $left: 0);
   z-index: 100;
 }
 

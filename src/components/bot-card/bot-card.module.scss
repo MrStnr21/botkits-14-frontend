@@ -20,9 +20,7 @@
 
 .more_button {
   @include size(24px, 24px);
-  position: absolute;
-  top: 32px;
-  left: 256px;
+  @include position(absolute, 32px, $left: 256px);
   cursor: pointer;
   background-image: url('../../images/icon/24x24/common/more.svg');
 

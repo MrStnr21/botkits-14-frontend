@@ -8,9 +8,7 @@
 }
 
 .text {
-  position: absolute;
-  top: -11px;
-  right: 4px;
+  @include position(absolute, -11px, 4px);
   font-size: $xxxs-font-size;
   line-height: $xl-line-height;
   color: $off-white;

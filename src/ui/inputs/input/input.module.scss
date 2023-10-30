@@ -42,10 +42,7 @@
 
 @mixin icon-container($right){
   @include flex(row, center, center);
-  position: absolute;
-  top: 0;
-  right: $right;
-  bottom: 0;
+  @include position(absolute, 0, $right, $bottom: 0);
 }
 
 @mixin eye-icon($src){

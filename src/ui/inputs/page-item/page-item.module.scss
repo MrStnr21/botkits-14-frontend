@@ -130,19 +130,15 @@
 
 .image_check {
   @include size(100%, 100%);
-  position: absolute;
+  @include position(absolute, 0, $left: 0);
   border-radius: $border-radius-circle;
   background-color: #243cbb;
   opacity: 0.5;
-  top: 0;
-  left: 0;
 }
 
 .icon_check {
   @include size(24px, 24px);
-  position: absolute;
-  top: 20%;
-  left: 20%;
+  @include position(absolute, 20%, $left: 20%);
   * {
     stroke: #fff;
   }

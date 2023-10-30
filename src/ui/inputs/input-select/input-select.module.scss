@@ -24,33 +24,6 @@
       }
     }
 
-    /*  &::-webkit-scrollbar {
-      display: block;
-      width: 3px;
-      padding-right: 20px;
-      position: absolute;
-      right: 20px;
-      border-radius: $l-border-radius;
-      box-sizing: border-box;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: $grey-3;
-      border-radius: $l-border-radius;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: #00000000;
-    }
-
-    &::-webkit-scrollbar-track-piece {
-      background-color: #00000000;
-    }
-
-    &::-webkit-scrollbar-button {
-      display: none;
-    }
- */
     [class*='MuiList-root'] {
       [class*='MuiMenuItem-root'] {
         @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
@@ -117,7 +90,5 @@
 }
 
 .chosen{
-  position: absolute;
-  top: 8px;
-  left: 6px;
+  @include position(absolute, 8px, $left: 6px);
 }

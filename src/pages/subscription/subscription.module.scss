@@ -18,6 +18,7 @@
 
   &__header {
     @include size(100%, 228px);
+    @include position(absolute, 0, $left: 0);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
@@ -25,15 +26,12 @@
       'info info'
       'button button';
     row-gap: 8px;
-    position: absolute;
     box-sizing: border-box;
     background-color: $off-white;
     border-radius: $xxl-border-radius;
     box-shadow: $l-box-shadow;
     overflow: hidden;
     padding: 32px;
-    top: 0;
-    left: 0;
     z-index: 1;
   }
 
@@ -59,10 +57,8 @@
   &__body {
     @include size(100%, 205px);
     @include flex($gap: 24px);
+    @include position(absolute, $right: 0, $bottom: 0);
     box-sizing: border-box;
-    position: absolute;
-    right: 0;
-    bottom: 0;
     border-radius: $xxl-border-radius;
     background-color: $secondary-cultured-hover;
     padding: 113px 32px 32px;
