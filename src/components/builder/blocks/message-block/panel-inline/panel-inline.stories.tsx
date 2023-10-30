@@ -1,12 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import PanelInline from './panel-inline';
 
-const meta: Meta<typeof PanelInline> = {
+export default {
+  title: 'COMPONENTS/Builder/blocks/message-block',
   component: PanelInline,
 };
 
-export default meta;
-
-type Story = StoryObj<typeof PanelInline>;
-
-export const Panel: Story = {};
+export const Default = () => <PanelInline title="yuyuu" />;
