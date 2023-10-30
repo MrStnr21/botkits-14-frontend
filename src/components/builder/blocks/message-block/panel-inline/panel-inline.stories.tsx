@@ -9,8 +9,4 @@ export default meta;
 
 type Story = StoryObj<typeof PanelInline>;
 
-export const Panel: Story = {
-  args: {
-    title: 'Название блока',
-  },
-};
+export const Panel: Story = {};
