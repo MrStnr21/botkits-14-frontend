@@ -11,11 +11,6 @@
   font-family: 'IBM Plex Mono', sans-serif;
 }
 
-@mixin OpenSans_Typography {
-  @include Typography;
-  font-family: 'Open Sans', sans-serif;
-}
-
 @mixin h1 {
   @include Typography;
   font-size: $h1-font-size; //48px
@@ -68,37 +63,30 @@
 
 .primary {
   &_h1 {
-    @include OpenSans_Typography;
     @include h1;
   }
 
   &_h2 {
-    @include OpenSans_Typography;
     @include h2;
   }
 
   &_h3 {
-    @include OpenSans_Typography;
     @include h3;
   }
 
   &_h4 {
-    @include OpenSans_Typography;
     @include h4;
   }
 
   &_h5 {
-    @include OpenSans_Typography;
     @include h5;
   }
 
   &_p {
-    @include OpenSans_Typography;
     @include p;
   }
 
   &_span {
-    @include OpenSans_Typography;
     @include span;
   }
 }

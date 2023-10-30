@@ -64,10 +64,10 @@ const ResultAddFile: FC<IResultProps> = ({
   return (
     <div className={classBlock}>
       <Icon className={styles.result__icon} />
-      <Typography tag="p" className={styles.result__name} font="OpenSans">
+      <Typography tag="p" className={styles.result__name}>
         {name}
       </Typography>
-      <Typography tag="p" className={styles.result__size} font="OpenSans">
+      <Typography tag="p" className={styles.result__size}>
         {sizeFormated(size)}
       </Typography>
       <button

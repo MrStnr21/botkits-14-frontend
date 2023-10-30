@@ -35,11 +35,7 @@ const PageItem: FC<IPageItem> = ({
       {type === 'upload' ? (
         <>
           <Plus className={stylesInput.upload_img} />
-          <Typography
-            tag="p"
-            className={stylesInput.upload_text}
-            font="OpenSans"
-          >
+          <Typography tag="p" className={stylesInput.upload_text}>
             Загрузить
           </Typography>
         </>
@@ -55,7 +51,7 @@ const PageItem: FC<IPageItem> = ({
             )}
           </div>
 
-          <Typography tag="p" className={stylesInput.text} font="OpenSans">
+          <Typography tag="p" className={stylesInput.text}>
             {text}
           </Typography>
         </>

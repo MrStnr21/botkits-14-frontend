@@ -47,19 +47,11 @@ const DownloadFile: FC<IDownloadFile> = ({
         htmlFor="file-input-button"
       >
         <Upload className={stylesAddfile.download__icon} />
-        <Typography
-          tag="span"
-          className={stylesAddfile.download__text}
-          font="OpenSans"
-        >
+        <Typography tag="span" className={stylesAddfile.download__text}>
           Загрузить файл
         </Typography>
       </label>
-      <Typography
-        tag="span"
-        className={stylesAddfile.textError}
-        font="OpenSans"
-      >
+      <Typography tag="span" className={stylesAddfile.textError}>
         Размер файла не должен превышать 20 Мб
       </Typography>
     </div>

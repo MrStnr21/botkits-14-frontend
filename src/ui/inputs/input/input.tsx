@@ -121,11 +121,7 @@ const Input: FC<IInput> = ({
         required={required}
       />
       {(error.error || isInvalid) && (
-        <Typography
-          tag="p"
-          className={stylesInput.incorrect_text}
-          font="OpenSans"
-        >
+        <Typography tag="p" className={stylesInput.incorrect_text}>
           {error.textError}
         </Typography>
       )}
@@ -154,7 +150,6 @@ const Input: FC<IInput> = ({
             className={`${stylesInput.required} ${
               (error.error || isInvalid) && stylesInput.requiredIncorrect
             }`}
-            font="OpenSans"
           >
             *
           </Typography>
