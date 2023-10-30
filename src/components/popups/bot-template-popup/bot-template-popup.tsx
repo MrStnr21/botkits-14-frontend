@@ -112,7 +112,8 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
                 </Typography>
                 <Typography
                   tag="span"
-                  className={stylesBotTemplate.bot_template_item_text} font="OpenSans"
+                  className={stylesBotTemplate.bot_template_item_text}
+                  font="OpenSans"
                 >
                   {item}
                 </Typography>
