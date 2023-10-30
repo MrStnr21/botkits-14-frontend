@@ -41,7 +41,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({
           <MenuBot
             size="medium"
             // eslint-disable-next-line
-            editFunction={() => { }}
+            editFunction={() => {}}
             isActive={menu}
             top={0}
             left={30}

@@ -61,3 +61,56 @@
     }
   }
 }
+
+.wrapper_color {
+  width: 80px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around !important;
+  border-right: solid 1px $constructor-helper-button-delete-line-color;
+  padding-right: 6px;
+}
+
+
+@mixin color_button {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border-width: 1px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color_button_white {
+  @include color_button;
+  background-color: #ffffff;
+  border-color: #f2f4f8;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.color_button_red {
+  @include color_button;
+  background-color: #d3524d;
+  border-color: #d3524d;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.color_button_green {
+  @include color_button;
+  background-color: #67b057;
+  border-color: #67b057;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.color_button_blue {
+  @include color_button;
+  background-color: #5883c6;
+  border-color: #5883c6;
+  &:hover {
+    border-color: #3172da;
+  }
+}
