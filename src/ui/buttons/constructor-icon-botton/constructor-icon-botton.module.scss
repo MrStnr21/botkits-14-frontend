@@ -5,9 +5,6 @@
   @include button-style-reset;
   @include flex(row, center, center);
   transition: all 0.1s linear;
-  // border-radius: $l-border-radius;
-  // height: 52px;
-  // width: 56px;
   flex-shrink: 0;
 
   svg {
@@ -84,7 +81,6 @@
 }
 
 .buttonMln_active {
-  // @TODO уточнить стили после нажатия кнопки, по макету вроде только hover
   background-color: $blue-disabled;
   .iconMln {
     background-color: $primary-persian-blue-default;

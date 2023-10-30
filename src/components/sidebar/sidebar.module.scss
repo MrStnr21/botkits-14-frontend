@@ -2,7 +2,6 @@
 @use '../../stylesheets/mixins' as *;
 
 @mixin add-button-circle() {
-  // синяя круглая кнопка
   @include size(46px, 46px);
   border-radius: $border-radius-circle;
   background-image: url('../../images/icon/24x24/screen navigation/plus1.svg');

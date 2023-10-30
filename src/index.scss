@@ -1,9 +1,3 @@
-/* bring in normalize.css styles */
-// @import-normalize;
-/* TODO: подключить когда будут готовы*/
-// @use './stylesheets/functions';
-// @use './stylesheets/mixins';
-// @use './stylesheets/variables';
 @import './stylesheets/variables';
 @import './stylesheets/mixins';
 @import url('./fonts/fonts.css');
@@ -16,5 +10,4 @@ body {
   margin: 0;
   width: 100%;
   background: #fff;
-  // background: grey;
 }

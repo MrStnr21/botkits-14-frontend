@@ -18,7 +18,6 @@
   transition: stroke 0.1s linear;
 }
 
-/* Стили варианта кнопки*/
 .default {
   border-radius: $l-border-radius;
   width: 100%;
@@ -29,7 +28,6 @@
   aspect-ratio: 1 / 1;
 }
 
-/* Стили размера кнопки*/
 .small {
   height: 46px;
 }
@@ -51,7 +49,6 @@
   stroke-width: 3px;
 }
 
-/* Стили цвета кнопки*/
 .blue {
   color: $off-white;
   background-color: $primary-persian-blue-default;
@@ -124,7 +121,6 @@
   box-shadow: none;
 }
 
-/* Стиль для UI "Добавить кнопку" */
 .light-grey {
   background-color: $secondary-cultured-hover;
   color: $grey-3;

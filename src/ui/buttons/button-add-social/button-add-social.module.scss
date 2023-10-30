@@ -72,8 +72,6 @@
   @include indents;
 }
 
-/* Стили цвета кнопки*/
-
 .button {
   color: $primary-oxford-blue-default;
   background-color: $secondary-cultured-default;
@@ -101,47 +99,19 @@
   box-shadow: none;
 }
 
-/* Стили иконок*/
-/* Alisa*/
 @include button-states('alisa');
-
-/* Facebook*/
 @include button-states('facebook');
-
-/* Google*/
 @include button-states('google');
-
-/* Insta*/
 @include button-states('insta');
-
-/* Mailru*/
 @include button-states('mailru');
-
-/* Odnoklassniki*/
 @include button-states('odnoklassniki');
-
-/* Telegram*/
 @include button-states('telegram');
-
-/* Twitter*/
 @include button-states('twitter');
-
-/* Viber*/
 @include button-states('viber');
-
-/* Vk*/
 @include button-states('vk');
-
-/* Web*/
 @include button-states('web');
-
-/* Whatsapp*/
 @include button-states('whatsapp');
-
-/* Yandex*/
 @include button-states('yandex');
-
-/* Youtube*/
 @include button-states('youtube');
 
 .buttonSmall {

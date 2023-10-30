@@ -56,7 +56,6 @@
 .container {
   @include size(100%, 88px);
   display: flex;
-  //gap: 34px; использую margin: auto;
   border-radius: 185px;
   transition: all 0.1s linear;
 
@@ -86,10 +85,7 @@
 .text {
   @include indents;
   text-align: left;
-  /* Обрезаем всё за пределами блока */
-  /* Позволим тексту уменьшаться по ширине */
   -webkit-line-clamp: 1;
-  /* Число отображаемых строк */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;

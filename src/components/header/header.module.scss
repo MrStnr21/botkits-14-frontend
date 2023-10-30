@@ -19,7 +19,7 @@
 .wrapper {
   @include flex(row, unset, center);
   color: $primary-oxford-blue-default;
-  position: relative; //цепляем абсол.позиц.account setting
+  position: relative;
 }
 
 .text {

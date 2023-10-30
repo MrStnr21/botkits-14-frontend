@@ -76,7 +76,7 @@
   cursor: $cursor;
 
   &:hover {
-    opacity: 0.6; // на макете нет, что это ссылка, но есть в notion
+    opacity: 0.6;
   }
 }
 
@@ -109,7 +109,7 @@
   font-weight: $normal;
 
   &:hover {
-    opacity: 0.6; // на макете нет эффекта при наведении
+    opacity: 0.6;
   }
 }
 

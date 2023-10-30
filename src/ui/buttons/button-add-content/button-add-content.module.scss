@@ -1,9 +1,9 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
-// @TODO перенести в нужную папку, доделать стили
+
+
 .wrapper {
   width: fit-content;
-  // height: 76px;
   background-color: $secondary-cultured-default;
   text-align: left;
 }

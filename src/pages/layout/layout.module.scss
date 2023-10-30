@@ -18,10 +18,8 @@
 }
 
 .page {
-  // START GRID LAYOUT
   grid-column: 2 / 3;
   grid-row: 2;
-  // END GRID LAYOUT
 
   max-width: $max-content-width;
   margin: 0 auto;
