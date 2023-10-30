@@ -4,7 +4,7 @@
 .button {
   @include button-style-reset;
   @include flex(row, center, center);
-  @include font('IBM Plex Mono', 13px);
+  @include font('IBM Plex Mono', $s-font-size, $bold);
   @include line-sizes(21px, 1px);
   text-transform: uppercase;
   transition: all 0.1s linear;

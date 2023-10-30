@@ -88,11 +88,7 @@
 }
 
 .incorrect_text {
-  @include font('PT Sans', 10px, $normal, $error-default);
-  @include line-sizes($xl-line-height, $m-letter-space);
-  position: absolute;
-  margin: 2px 0 0 0;
-  text-align: left;
+  @include incorrect-text(left);
 }
 
 .inputSecondary {
