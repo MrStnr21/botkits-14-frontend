@@ -92,7 +92,7 @@
     @include line-sizes($xl-line-height, $m-letter-space);
     background-color: transparent;
     border: none;
-    cursor: pointer;
+    cursor: $cursor;
   }
 
   &__list {

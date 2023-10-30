@@ -23,7 +23,7 @@
   border: none;
   border-top: 1px solid $secondary-cultured-hover;
   border-radius: $l-border-radius;
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 .button:hover {

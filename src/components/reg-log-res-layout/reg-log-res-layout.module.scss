@@ -39,7 +39,7 @@
 
 .label {
   @include font('IBM Plex Mono', 48px, $semi-bold);
-  @include line-sizes(110%, 3.5px);
+  @include line-sizes($xs-line-height, 3.5px);
   @include indents();
   margin-bottom: 30px;
   font-style: normal;
@@ -49,7 +49,7 @@
     'liga' off;
 
   @media screen and (max-width: 750px) {
-    @include line-sizes(110%, $s-letter-space);
+    @include line-sizes($xs-line-height, $s-letter-space);
     margin-bottom: 20px;
     font-size: 41.6px;
   }

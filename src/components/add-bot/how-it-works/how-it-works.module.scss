@@ -28,7 +28,7 @@
 .arrow_button svg {
   @include size(26px, 26px);
   stroke: $grey-2;
-  stroke-width: 3px;
+  stroke-width: $l-icon-stroke-width;
   transition: all 0.1s linear;
 }
 

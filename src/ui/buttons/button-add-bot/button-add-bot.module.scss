@@ -25,7 +25,7 @@
 }
 
 .icon svg {
-  stroke-width: 2px;
+  stroke-width: $m-icon-stroke-width;
   transition: stroke 0.1s linear;
 }
 

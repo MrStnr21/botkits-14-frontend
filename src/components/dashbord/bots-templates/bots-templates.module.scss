@@ -86,7 +86,7 @@
 
 .accordion_button {
   @include font('Open Sans', $m-font-size, $bold, $grey-3);
-  cursor: pointer;
+  cursor: $cursor;
   background-color: $off-white;
   border: none;
   line-height: $xl-line-height;
@@ -97,7 +97,7 @@
 
 .accordion_ico_plus {
   @include size(26px, 26px);
-  cursor: pointer;
+  cursor: $cursor;
   background-image: url('../../../images/icon/24x24/common/chevron-big.svg');
   background-color: $off-white;
   background-position: center;
@@ -122,7 +122,7 @@
   @include position(fixed, 0, $left: 0);
   display: flex;
   z-index: 2;
-  cursor: pointer;
+  cursor: $cursor;
   background-color: rgba(0, 0, 0, 0.1);
 }
 

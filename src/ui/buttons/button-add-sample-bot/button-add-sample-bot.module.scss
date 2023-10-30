@@ -70,7 +70,7 @@
   margin: auto;
 
   svg {
-    stroke-width: 2px;
+    stroke-width: $m-icon-stroke-width;
     transition: all 0.1s linear;
     align-self: center;
     stroke: $grey-1;

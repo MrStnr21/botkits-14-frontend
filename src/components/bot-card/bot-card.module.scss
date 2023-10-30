@@ -21,7 +21,7 @@
 .more_button {
   @include size(24px, 24px);
   @include position(absolute, 32px, $left: 256px);
-  cursor: pointer;
+  cursor: $cursor;
   background-image: url('../../images/icon/24x24/common/more.svg');
 
   @media (max-width: $switching-width) {

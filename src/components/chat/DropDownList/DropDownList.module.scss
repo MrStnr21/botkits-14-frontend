@@ -8,7 +8,7 @@
   box-sizing: border-box;
   padding: 10px 8px;
   border-radius: $s-border-radius;
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 @mixin font-r {

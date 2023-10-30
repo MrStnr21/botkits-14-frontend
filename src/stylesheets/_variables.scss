@@ -48,9 +48,9 @@ $xxxs-font-size: 10px;
 
 /* Переменные высоты строки */
 $xl-line-height: 150%;
-$l-line-height: 140%;
+$l-line-height: 140%; // не используется
 $m-line-height: 130%;
-$s-line-height: 120%;
+$s-line-height: 120%;  // не используется
 $xs-line-height: 110%;
 
 /* Переменные жирности шрифта */
@@ -60,8 +60,8 @@ $normal: 400;
 
 /* Переменные расстояния между буквами */
 $xxl-letter-space: 1px;
+//$xl-letter-space: 0.75px; используется в 2-х компонентах
 $l-letter-space: 0.5px;
-//$lx-letter-space: 0.75px; используется в 2-х компонентах
 $m-letter-space: 0.3px;
 $s-letter-space: -0.2px;
 // $s-letter-space: 0.2px;  используется в 1 компоненте

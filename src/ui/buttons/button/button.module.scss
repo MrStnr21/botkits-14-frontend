@@ -37,7 +37,7 @@
 }
 
 .medium svg {
-  stroke-width: 2px;
+  stroke-width: $m-icon-stroke-width;
 }
 
 .large {
@@ -46,7 +46,7 @@
 
 .large svg {
   @include size(30px, 30px);
-  stroke-width: 3px;
+  stroke-width: $l-icon-stroke-width;
 }
 
 .blue {

@@ -7,7 +7,7 @@
   background-color: $secondary-cultured-default;
   border-radius: $s-border-radius;
   position: relative;
-  cursor: pointer;
+  cursor: $cursor;
 }
 
 .box {
@@ -56,7 +56,7 @@
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  cursor: pointer;
+  cursor: $cursor;
 }
 .button:first-of-type {
   margin-top: 11px;
