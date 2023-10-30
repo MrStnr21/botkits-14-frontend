@@ -38,11 +38,7 @@ const ButtonAddSampleBot: FC<IButtonAddSampleBot> = ({
           src={PlusIcon}
         />
       </div>
-      <Typography
-        tag="p"
-        className={stylesButtonAddSampleBot.text}
-        font="OpenSans"
-      >
+      <Typography tag="p" className={stylesButtonAddSampleBot.text}>
         {children}
       </Typography>
     </button>

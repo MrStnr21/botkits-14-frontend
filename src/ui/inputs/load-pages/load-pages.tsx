@@ -27,11 +27,7 @@ const LoadPages: FC<ILoadPages> = ({
           onClick={onClick}
         >
           <Plus className={stylesInput.upload_img} />
-          <Typography
-            tag="p"
-            className={stylesInput.selects_text}
-            font="OpenSans"
-          >
+          <Typography tag="p" className={stylesInput.selects_text}>
             Загрузить страницу
           </Typography>
         </button>

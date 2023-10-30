@@ -1,6 +1,5 @@
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
-import cn from 'classnames';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
@@ -54,40 +53,25 @@ const Subscription: FC = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <Typography tag="h2">Подписка и платежи</Typography>
+      <Typography tag="h2" fontFamily="secondary">
+        Подписка и платежи
+      </Typography>
       <div className={style.container__body}>
-        <div className={cn(style.subscription, style.container__subscription)}>
-          <div className={style.subscription__header}>
-            <Typography tag="h3" className={style.subscription__rate}>
-              Тариф
-            </Typography>
-            <Typography tag="h4" className={style.subscription__status}>
-              Статус
-            </Typography>
-            <Typography tag="span" className={style.subscription__info}>
-              Инфо
-            </Typography>
-            <div className={style.subscription__button}>
-              <Button variant="default" color="green">
-                Активировать подписку
-              </Button>
-            </div>
-          </div>
-          <div className={style.subscription__body}>
-            <div className={style.subscription__balance}>
-              <Typography tag="span">Баланс</Typography>
-              <Typography tag="h3">{`${0}₽`}</Typography>
-            </div>
-            <Button variant="default" color="grey">
-              Активировать промокод
-            </Button>
-          </div>
+        <div className={style.subscription}>
           <div className={style.subscription}>
             <div className={style.subscription__header}>
-              <Typography tag="h3" className={style.subscription__rate}>
+              <Typography
+                tag="h3"
+                fontFamily="secondary"
+                className={style.subscription__rate}
+              >
                 Тариф
               </Typography>
-              <Typography tag="h4" className={style.subscription__status}>
+              <Typography
+                tag="h4"
+                fontFamily="secondary"
+                className={style.subscription__status}
+              >
                 Статус
               </Typography>
               <Typography tag="p" className={style.subscription__info}>
@@ -106,7 +90,10 @@ const Subscription: FC = (): JSX.Element => {
             <div className={style.subscription__body}>
               <div className={style.subscription__balance}>
                 <Typography tag="p">Баланс</Typography>
-                <Typography tag="h3">{`${0}₽`}</Typography>
+                <Typography
+                  tag="h3"
+                  fontFamily="secondary"
+                >{`${0}₽`}</Typography>
               </div>
               <Button
                 variant="default"
@@ -120,7 +107,9 @@ const Subscription: FC = (): JSX.Element => {
         </div>
         <div className={style.payment}>
           <div className={style.payment__header}>
-            <Typography tag="h4">История платежей</Typography>
+            <Typography tag="h4" fontFamily="secondary">
+              История платежей
+            </Typography>
             <div className={style.dropdown}>
               <button
                 type="button"

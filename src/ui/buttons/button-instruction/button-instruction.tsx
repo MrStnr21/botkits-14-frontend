@@ -34,11 +34,7 @@ const ButtonInstruction: FC<IButtonInstruction> = ({
         <ReactSVG src={icon} />
       </div>
       <div className={stylesButtonInstruction.text_container}>
-        <Typography
-          tag="p"
-          className={stylesButtonInstruction.text}
-          font="OpenSans"
-        >
+        <Typography tag="p" className={stylesButtonInstruction.text}>
           {children}
         </Typography>
       </div>
