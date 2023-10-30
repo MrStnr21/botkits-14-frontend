@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import cn from 'classnames/bind';
+import cn from 'classnames';
 import style from './typography.module.scss';
 
 type Props = {
@@ -9,8 +9,6 @@ type Props = {
   fontFamily?: 'primary' | 'secondary';
 };
 
-const cx = cn.bind(style);
-
 const Typography: FC<Props> = ({
   tag,
   children,
@@ -19,9 +17,11 @@ const Typography: FC<Props> = ({
 }) => {
   const Tag = tag;
 
-  const mainCn = cx(`${fontFamily}_${tag}`, className);
-
-  return <Tag className={mainCn}>{children}</Tag>;
+  return (
+    <Tag className={cn(style[`${fontFamily}_${tag}`], className)}>
+      {children}
+    </Tag>
+  );
 };
 
 export default Typography;
