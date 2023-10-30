@@ -26,6 +26,7 @@
 
 @mixin wrapper {
   width: 100%;  
+  height: 100%;
 }
 
 .button {
@@ -37,7 +38,6 @@
     $constructor-add-button-height,
     $border-radius-10
   );
-  height: 100%;
 }
 
 .wrapper {
