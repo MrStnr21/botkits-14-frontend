@@ -19,9 +19,10 @@
   line-height: $button-line-height-150;
   font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
-  height: $constructor-add-button-height;
+  height: 100%;
   width: 100%;
   border-radius: $border-radius-10;
+  box-sizing: border-box;
 }
 
 @mixin wrapper {
@@ -38,6 +39,7 @@
     $constructor-add-button-height,
     $border-radius-10
   );
+  height: 100%;
 }
 
 .wrapper {
