@@ -1,35 +1,16 @@
 import { FC, useState } from 'react';
-import avatar from '../../../images/avatar/circled/bigAvatar.svg';
+import Avatar from '../../../ui/avatar/avatar';
 import stylesInformation from './Information.module.scss';
 import DropDownList from '../DropDownList/DropDownList';
 import UploadedFile from '../UploadedFile/UploadedFile';
 import UploadedImage from '../UploadedImage/UploadedImage';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
+import { dataFile, dataImage } from '../../../utils/uploadedFiles';
 
 interface IInformation {
   image?: string;
   name?: string;
 }
-
-const dataFile = [
-  {
-    name: 'Инфо',
-    extension: 'pdf',
-  },
-  {
-    name: 'Список',
-    extension: 'docx',
-  },
-];
-
-const dataImage = [
-  'https://fikiwiki.com/uploads/posts/2022-02/1644855639_6-fikiwiki-com-p-kartinki-khd-kachestva-6.jpg',
-  'https://w.forfun.com/fetch/b3/b33164ded5864ed5ba7728b3c0611181.jpeg',
-  'https://catherineasquithgallery.com/uploads/posts/2021-02/1612872204_51-p-kartinki-na-krasnom-fone-dlya-telefona-68.jpg',
-];
-
-// const dataFile = null;
-// const dataImage = null;
 
 const Information: FC<IInformation> = ({
   image,
@@ -50,7 +31,15 @@ const Information: FC<IInformation> = ({
       />
       {isVisible && (
         <div className={stylesInformation.information}>
-          <img src={image || avatar} alt="Аватар" />
+          <Avatar
+            isBot="no"
+            state="offline"
+            big="yes"
+            pic={
+              image ||
+              'https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
+            }
+          />
           <p className={stylesInformation.title}>{name}</p>
           <p className={stylesInformation.text}>Пользователь</p>
           <nav className={stylesInformation.nav}>

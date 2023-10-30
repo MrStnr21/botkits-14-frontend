@@ -11,6 +11,7 @@ interface IAvatar {
   pic?: string;
   state: string;
   isBot: string;
+  big: string;
 }
 
 const defaultAvatars = [
@@ -24,10 +25,19 @@ const Avatar: FC<IAvatar> = ({
   pic = defaultAvatars[getRandomInt(4)],
   state = 'online' || 'offline',
   isBot = 'yes' || 'no',
+  big = 'yes' || 'no',
 }): JSX.Element => {
   return (
-    <div className={stylesAvatar.mainContainer}>
-      {state === 'online' && isBot === 'no' ? (
+    <div>
+      {big === 'yes' ? (
+        <div className={stylesAvatar.avatarBigContainer}>
+          <img
+            className={stylesAvatar.avatarBig}
+            alt="аватар пользователя"
+            src={pic}
+          />
+        </div>
+      ) : state === 'online' && isBot === 'no' ? (
         <div className={stylesAvatar.avatarContainer}>
           <div className={stylesAvatar.onlineIndicator} />
           <img
