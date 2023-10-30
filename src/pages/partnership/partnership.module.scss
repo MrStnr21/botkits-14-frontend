@@ -2,12 +2,9 @@
 @use '../../stylesheets/mixins' as *;
 
 .partnership {
+  @include flex(column, center, center);
   margin-top: 32px;
   margin-right: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   @media screen and (max-width: 680px) {
     margin: 0 auto;
@@ -16,10 +13,7 @@
   }
 
   &__wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    @include flex(row, space-between, flex-start);
     width: 100%;
     padding-bottom: 40px;
 
@@ -30,12 +24,8 @@
   }
 
   &__title {
-    font-family: 'IBM Plex Mono', sans-serif;
-    font-size: $xxxl-font-size;
-    line-height: 41.6px;
-    letter-spacing: $s-letter-space;
-    font-weight: $bold;
-    color: $primary-oxford-blue-default;
+    @include font('IBM Plex Mono', $xxxl-font-size, $bold, $primary-oxford-blue-default);
+    @include line-sizes($m-line-height, $s-letter-space);
     margin: 0 0 32px 0;
 
     @media screen and (max-width: 620px) {
@@ -46,10 +36,8 @@
   }
 
   &__inputContainer {
+    @include flex($align-items: center, $gap: 16px);
     width: 455px;
-    display: flex;
-    gap: 16px;
-    align-items: center;
 
     @media screen and (max-width: 860px) {
       min-width: 320px;
@@ -80,44 +68,33 @@
   width: 100%;
 
   &__payments {
+    @include flex(column, $align-items: center);
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   &__referrals {
+    @include flex(column, $align-items: center);
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: $off-white;
     border-radius: $xxl-border-radius;
     box-sizing: border-box;
-    box-shadow: 0px 6px 16px 0px #15123314;
+    box-shadow: $m-box-shadow;
   }
 
   &__titleContainer {
+    @include flex(row, space-between, center);
     padding: 40px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
   }
 
   &__title {
+    @include font('IBM Plex Mono', $xxl-font-size, $semi-bold);
+    @include line-sizes($m-line-height, $s-letter-space);
     margin: 0;
-    font-family: 'IBM Plex Mono', sans-serif;
-    font-size: $xxl-font-size;
-    font-weight: $semi-bold;
-    line-height: 31.2px;
 
     @media screen and (max-width: 860px) {
-      font-size: $l-font-size;
-      font-weight: $bold;
-      line-height: 23.4px;
+      @include font('IBM Plex Mono', $l-font-size, $bold);
     }
   }
 
