@@ -15,18 +15,12 @@
   }
 
   @media screen and (max-width: 860px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    @include flex(column, $align-items: center, $gap: 20px);
   }
 
   &__table {
     @media screen and (max-width: 860px) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+      @include flex(row, space-between, center);
       border-bottom: 1px $grey-1 solid;
     }
 
@@ -41,8 +35,7 @@
     border: none;
 
     @media screen and (max-width: 860px) {
-      display: flex;
-      flex-direction: column;
+      @include flex(column);
     }
   }
 

@@ -2,10 +2,9 @@
 @use '../../stylesheets/mixins' as *;
 
 @mixin add-button-circle() {
-  // Это синяя круглая кнопка
-  border-radius: 50%;
-  width: 46px;
-  height: 46px;
+  // синяя круглая кнопка
+  @include size(46px, 46px);
+  border-radius: $border-radius-circle;
   background-image: url('../../images/icon/24x24/screen navigation/plus1.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -23,12 +22,11 @@
 
 @mixin font-nav() {
   // общее оформление текста в навигации
-  font-family: 'Open Sans', sans-serif;
-  font-weight: $normal;
-  font-size: $m-font-size;
-  letter-spacing: 0.2px;
-  line-height: 24px;
+  @include font('Open Sans', $m-font-size, $normal);
+  @include line-sizes($xl-line-height, 0.2px);
 }
+
+$additional-grey-pressed: #c3d1d8;
 
 /* **     Общий блок открытое/закрытое состояние сайдбара и блок затемнения   ** */
 
@@ -145,7 +143,7 @@
   .header__logo {
     background-image: url('../../images/icon/side bar/logo.svg'); //логотип без надписи
     width: 38px;
-    cursor: pointer;
+    cursor: $cursor;
   }
 
   /*  стили вложенного списка при закрытии сайдбара  */
@@ -170,11 +168,10 @@
 }
 
 .header {
-  height: 64px;
+  @include size(100%, 64px);
   position: relative; // Родитель абсолютно-позиционированного(в декстопе) элемента бургер-меню
   display: flex;
 
-  width: 100%;
   box-sizing: border-box;
   padding-top: 16px;
 
@@ -188,12 +185,11 @@
 
 .header__toggle {
   // бургер-кнопка
+  @include size(24px, 24px);
+  @include button-style-reset;
   position: absolute;
   right: -80px;
   top: 2px;
-  width: 24px;
-  height: 24px;
-  @include button-style-reset;
   z-index: 1;
   mask-image: url('../../images/icon/24x24/common/menu.svg');
   mask-repeat: no-repeat;
@@ -210,34 +206,28 @@
 }
 
 .header__logo {
+  @include size(145px, 34px);
   box-sizing: border-box;
   margin: 0 8px;
-  width: 145px;
-  height: 34px;
   background-image: url('../../images/icon/side bar/full-logo.svg');
   background-repeat: no-repeat;
   background-size: contain;
   flex-shrink: 0;
 
   @media (max-width: $switching-width) {
-    width: 128px;
-    height: 30px;
+    @include size(128px, 30px);
   }
 }
 
 .navigation {
-  display: flex;
-  flex-direction: column;
+  @include flex(column);
 }
 
 .addbutton {
+  @include flex(row, center, center,);
   height: 46px;
   margin-top: 18px;
-
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   @include button-style-reset;
 
   &:hover {
@@ -246,11 +236,8 @@
 }
 
 .addtext {
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-weight: $bold;
+  @include font('IBM Plex Mono', $s-font-size, $bold, $off-white);
   letter-spacing: $m-letter-space;
-  font-size: $s-font-size;
-  color: $off-white;
   text-transform: uppercase;
   margin: 0;
   opacity: 0;
@@ -267,15 +254,12 @@
 }
 
 .navigation__link {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  @include flex(row, $align-items: center, $gap: 15px);
   @include button-style-reset;
+  @include min-size(46px, 46px);
   border-radius: 50px;
   margin-bottom: 8px;
-  min-width: 46px;
   width: 100%;
-  min-height: 46px;
   box-sizing: border-box;
   padding-left: 15px;
 
@@ -324,12 +308,9 @@
 @media (max-width: $switching-width) {
   // синяя кнопка внизу у моб.пользователей
   .addbutton_mobile {
-    display: flex;
-    gap: 12px;
-    align-items: center;
+    @include flex($align-items: center, $gap: 12px);
     border-top: 1px solid $secondary-cultured-hover;
     padding-top: 20px;
-    border-top: 1px solid $secondary-cultured-hover;
   }
   .addcircle_mobile {
     @include add-button-circle();
@@ -356,15 +337,14 @@
 
 .navigation__expandButton {
   @include button-style-reset;
+  @include size(20px, 20px);
   position: absolute;
   right: 10px;
   top: 13px;
-  width: 20px;
-  height: 20px;
   mask-image: url('../../images//icon//20x20/chevron/up.svg'); //Открытый в начале
   mask-position: center;
   mask-repeat: no-repeat;
-  background-color: #c3d1d8;
+  background-color: $additional-grey-pressed;
 }
 
 .navigation__list_nested {
