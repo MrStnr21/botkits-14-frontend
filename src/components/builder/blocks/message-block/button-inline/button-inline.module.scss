@@ -1,0 +1,32 @@
+.button-white {
+  color: white;
+  background-color: #ffffff;
+  border-color: #f2f4f8;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.button-red {
+  color: white;
+  background-color: #d3524d;
+  border-color: #d3524d;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.button-green {
+  color: white;
+  background-color: #67b057;
+  border-color: #67b057;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.button-blue {
+  color: white;
+  background-color: #5883c6;
+  border-color: #5883c6;
+  &:hover {
+    border-color: #3172da;
+  }
+}
