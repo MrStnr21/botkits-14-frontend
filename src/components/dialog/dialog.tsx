@@ -7,7 +7,7 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { io } from 'socket.io-client';
+import { useAppSelector, useAppDispatch } from '../../services/hooks/hooks';
 import stylesDialog from './dialog.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
@@ -23,7 +23,6 @@ import Typography from '../../ui/typography/typography';
 import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
 import SendButton from '../../ui/buttons/send-button/send-button';
 import Avatar from '../../ui/avatar/avatar';
-import store from '../../services/store';
 import messages from '../../utils/ messages';
 import Tooltip from './tooltip/tooltip';
 
@@ -32,14 +31,16 @@ interface DateType extends Date {
 }
 
 const Dialog: FC = () => {
-  const dispatch = useDispatch();
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
+  const chatData = useAppSelector((store) => store.websocket.data);
+  console.log(chatData);
   const isMobile = useMediaQuery('(max-width: 620px)');
 
   const handleSearchClick = () => {
