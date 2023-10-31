@@ -1,34 +1,27 @@
-@import '../app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .card {
-  width: 296px;
-  height: 172px;
-  background-color: $white-color;
-  border-radius: $border-radius-30;
-  box-shadow: 0 12px 24px rgba(21, 18, 51, 0.13);
+  @include size(296px, 172px);
+  @include flex(column, flex-start);
+  background-color: $off-white;
+  border-radius: $xxl-border-radius;
+  box-shadow: $l-box-shadow;
   position: relative;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
   @media (max-width: $switching-width) {
-    width: 235px;
-    height: 177px;
+    @include size(235px, 177px);
   }
 }
 
 .icon {
+  @include size(52px, 52px);
   margin: 24px 0 0 32px;
-  width: 52px;
-  height: 52px;
 }
 
 .more_button {
-  position: absolute;
-  top: 32px;
-  left: 256px;
-  cursor: pointer;
-  height: 24px;
-  width: 24px;
+  @include size(24px, 24px);
+  @include position(absolute, 32px, $left: 256px);
+  cursor: $cursor;
   background-image: url('../../images/icon/24x24/common/more.svg');
 
   @media (max-width: $switching-width) {
@@ -36,46 +29,21 @@
   }
 }
 
-// .more_box {
-//   display: none;
-// }
-
-// .more_box__active {
-//   display: inline;
-//   background-color: white;
-//   border: 1px solid black;
-//   position: absolute;
-//   left: 185px;
-//   width: 150px;
-//   top: 65px;
-// }
-
 .name_box {
+  @include flex($align-items: center);
   height: 56px;
   margin: 24px 0 0 32px;
-  display: flex;
-  align-items: center;
   max-width: 170px;
 }
 
 .name {
-  font: {
-    weight: $bold;
-    size: $l-font-size;
-    family: 'IBM Plex Mono', sans-serif;
-  }
-
+  @include font('IBM Plex Mono', $m-font-size, $bold);
+  @include line-sizes($m-line-height, $l-letter-space);
+  @include ellipsis;
   margin: 0;
-  line-height: $m-line-height;
-  letter-spacing: 0.5px;
-  // переполнение, имя бота
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .more_button {
+  @include size(24px, 24px);
   background-image: url('../../images/icon/24x24/common/more.svg');
-  width: 24px;
-  height: 24px;
 }

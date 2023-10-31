@@ -1,4 +1,11 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useState,
+  MouseEvent,
+  useCallback,
+} from 'react';
 
 import { useMediaQuery } from '@mui/material';
 
@@ -15,13 +22,11 @@ const NotificationPopup: FC<INotificationPopup> = ({
   isOpen,
   setIsNotificationOpened,
 }): JSX.Element => {
-  const [activeTab, setActiveTab] = useState('tab1');
-  const handleTab1 = () => {
-    setActiveTab('tab1');
-  };
-  const handleTab2 = () => {
-    setActiveTab('tab2');
-  };
+  const [activeTab, setActiveTab] = useState('news');
+  const handleTabClick = useCallback((e: MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement;
+    setActiveTab(target.id);
+  }, []);
   const matches = useMediaQuery('(max-width: 520px)');
   return (
     <div
@@ -53,22 +58,20 @@ const NotificationPopup: FC<INotificationPopup> = ({
         </div>
         <div className={stylesNotification.tabs}>
           <div
-            className={
-              activeTab === 'tab1'
-                ? `${stylesNotification.tab1} ${stylesNotification.tab1_active}`
-                : stylesNotification.tab1
-            }
-            onClick={handleTab1}
+            id="news"
+            className={`${stylesNotification.tab} ${
+              activeTab === 'news' ? stylesNotification.active : ''
+            }`}
+            onClick={(e) => handleTabClick(e)}
           >
             Новости сервиса
           </div>
           <div
-            className={
-              activeTab === 'tab2'
-                ? `${stylesNotification.tab2} ${stylesNotification.tab2_active}`
-                : stylesNotification.tab1
-            }
-            onClick={handleTab2}
+            id="log"
+            className={`${stylesNotification.tab} ${
+              activeTab === 'log' ? stylesNotification.active : ''
+            }`}
+            onClick={(e) => handleTabClick(e)}
           >
             Лог событий
           </div>

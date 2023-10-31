@@ -1,19 +1,14 @@
-@import '../app/_vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .header {
-  // max-width: 1268px;
-  height: 72px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-
-  border-bottom: 1px solid #d7deea;
-  margin-right: 40px;
-  // START GRID LAYOUT
   grid-column: 2 / 3;
   grid-row: 1;
-  // END GRID LAYOUT
+
+  @include flex(row, flex-end, center);
+  height: 72px;
+  border-bottom: 1px solid $secondary-cultured-press;
+  margin-right: 40px;
 
   @media (max-width: $switching-width) {
     border-bottom: none;
@@ -22,31 +17,20 @@
 }
 
 .wrapper {
-  display: flex;
-  align-items: center;
-  color: #060c23;
-  position: relative; //цепляем абсол.позиц.account setting
-}
-
-.container {
-  /* Временный костыль, надо разобраться с кнопкой. */
-  display: none;
-  flex-direction: row;
-  align-items: center;
-  gap: 15px;
+  @include flex(row, unset, center);
+  color: $primary-oxford-blue-default;
+  position: relative;
 }
 
 .text {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  @include font('IBM Plex Sans', $m-font-size, $normal);
+  line-height: $xl-line-height;
 
   & + .text {
-    font-weight: 500;
+    font-weight: $semi-bold;
     padding-left: 7px;
     padding-right: 15px;
-    border-right: 1px solid rgba(228, 233, 241, 1);
+    border-right: 1px solid $secondary-cultured-focus;
   }
 
   @media (max-width: $switching-width) {
@@ -62,10 +46,7 @@
 }
 
 .icons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 37px;
+  @include flex(row, unset, center, 37px);
   margin-left: 15px;
 
   @media (max-width: $switching-width) {
@@ -74,24 +55,18 @@
 }
 
 .userInfo {
-  display: flex;
-  align-items: center;
-  // position: relative; //цепляем абсол.позиц.account setting
+  @include flex(row, unset, center);
   cursor: $cursor;
 
   & > .text {
-    // многоточие, имя пользователя
+    @include ellipsis;
     max-width: 20vw;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 }
 
 .userInfo__avatar {
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
+  @include size(36px, 36px);
+  border-radius: $border-radius-circle;
   margin-left: 33px;
   margin-right: 10px;
   overflow: hidden;
@@ -103,8 +78,6 @@
 }
 
 .userInfo__image {
-  height: inherit;
-  width: inherit;
   object-fit: cover;
   object-position: center;
 }
@@ -117,7 +90,7 @@
   }
 }
 
-.botton_default {
+.button_default {
   rotate: 0;
 }
 

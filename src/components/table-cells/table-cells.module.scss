@@ -1,13 +1,14 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .text {
   font-family: 'Open Sans', sans-serif;
 
   &_succsess {
-    color: $success-color;
+    color: $success-default;
   }
 
   &_failure {
-    color: $error-red-color;
+    color: $error-default;
   }
 }

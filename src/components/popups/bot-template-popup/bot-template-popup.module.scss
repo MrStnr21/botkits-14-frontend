@@ -1,12 +1,13 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .bot_template {
   padding: 60px 40px;
   max-width: 620px;
   box-sizing: border-box;
-  background-color: #fff;
-  box-shadow: 0px 12px 24px 0px #15123321;
-  border-radius: $border-radius-30;
+  background-color: $off-white;
+  box-shadow: $l-box-shadow;
+  border-radius: $xxl-border-radius;
   position: relative;
   min-width: 320px;
 
@@ -18,81 +19,56 @@
 }
 
 .bot_template_close {
-  position: absolute;
-  top: 37px;
-  right: 37px;
-  cursor: pointer;
+  @include position(absolute, 37px, 37px);
+  cursor: $cursor;
   background: 0;
   border: 0;
   padding: 0;
   & * {
-    stroke: #060c23;
+    stroke: $primary-oxford-blue-default;
   }
 }
 
 .bot_template_image {
-  max-width: 88px;
-  max-height: 88px;
+  @include max-size(88px, 88px);
 }
 
 .bot_template_description {
+  @include flex(column, unset, unset, 20px);
   margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .bot_template_title {
-  font-family: 'IBM Plex Mono';
-  font-size: $h2-font-size;
-  font-weight: $bold;
-  line-height: $h2-line-height;
-  letter-spacing: $h2-letter-space;
+  @include font('IBM Plex Mono', $xxxl-font-size, $bold);
+  @include line-sizes($m-line-height, $s-letter-space);
   margin: 0;
 }
 
 .bot_template_text {
-  font-family: 'Open Sans';
-  font-size: $h4-font-size;
-  font-weight: $bold;
-  line-height: 27px;
-  letter-spacing: $m-letter-space;
+  @include font('Open Sans', $l-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin: 0;
 }
 
 .bot_template_list {
+  @include flex(column, unset, unset, 20px);
+  @include indents();
   list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .bot_template_item_index {
-  font-family: 'IBM Plex Mono';
-  font-size: $l-font-size;
-  font-weight: $bold;
-  line-height: $m-line-height;
-  letter-spacing: $h5-letter-space;
-  color: $default-blue-color;
+  @include font('IBM Plex Mono', $m-font-size, $bold, $primary-persian-blue-default);
+  @include line-sizes($m-line-height, $l-letter-space);
   margin-right: 28px;
 }
 
 .bot_template_item_text {
-  font-family: 'Open Sans';
-  font-size: $m-font-size;
-  font-weight: $bold;
-  line-height: $m-line-height;
-  letter-spacing: $l-letter-space;
-  color: $primary-text-color;
+  @include font('Open Sans', $s-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
 }
 
 .bot_template_buttons {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-  justify-content: flex-end;
+  @include flex(row, flex-end, center, 28px);
   margin-top: 60px;
   @media screen and (max-width: 420px) {
     display: block;
@@ -100,14 +76,10 @@
 }
 
 .bot_template_cancel {
-  @extend %button-style-reset;
-  font-family: 'IBM Plex Mono';
-  font-size: $h4-font-size;
-  font-weight: $bold;
-  line-height: $l-line-height;
-  letter-spacing: $button-letter-space;
+  @include button-style-reset;
+  @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($m-line-height, $xxl-letter-space);
   text-transform: uppercase;
-  color: $primary-text-color;
 
   @media screen and (max-width: 420px) {
     display: none;

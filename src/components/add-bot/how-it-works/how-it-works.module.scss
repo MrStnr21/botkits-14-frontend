@@ -1,45 +1,39 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
-  @extend %flex-element-center;
-  flex-direction: column;
-  gap: 16px;
+  @include flex(column, center, center, 16px);
 }
 
 .header {
+  @include flex(row, space-between, center);
+  @include font('IBM Plex Mono', $l-font-size, $bold);
+  @include line-sizes($m-line-height, 0);
   margin: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  font-size: $h4-font-size;
-  font-weight: $bold;
-  line-height: $button-line-height-130;
-  font-family: 'IBM Plex Mono', Arial, sans-serif;
 }
 
 .arrow_button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
+  @include button-style-reset;
+  @include flex(row, center, center);
   aspect-ratio: 1 / 1;
   cursor: $cursor;
   transition: all 0.2s linear;
 }
 
 .arrow_button div {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .arrow_button svg {
-  height: $how-it-works-arrow-icon-size;
-  width: $how-it-works-arrow-icon-size;
-  stroke: $how-it-works-arrow-icon-default-color;
-  stroke-width: $how-it-works-arrow-icon-stroke-width;
+  @include size(26px, 26px);
+  stroke: $grey-2;
+  stroke-width: $l-icon-stroke-width;
   transition: all 0.1s linear;
 }
 
 .arrow_button:hover svg {
-  stroke: $how-it-works-arrow-icon-hover-color;
+  stroke: $secondary-cultured-press;
 }
 
 .arrow_button_active {
@@ -47,9 +41,9 @@
 }
 
 .buttons_container {
+  @include size(100%, 0);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
-  width: 100%;
   column-gap: 29px;
   row-gap: 12px;
   transform: scaleY(0);
@@ -57,7 +51,6 @@
   transition:
     transform 0.2s linear,
     height 0.2s linear;
-  height: 0;
 }
 
 .buttons_container_active {
