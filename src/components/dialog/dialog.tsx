@@ -85,90 +85,96 @@ const Dialog: FC = () => {
 
   return (
     <div className={stylesDialog.dialog}>
-      <div className={stylesDialog.dialog__header}>
-        <div className={stylesDialog.dialog__headerContent}>
-          {!isMobile ? (
-            <Avatar state="offline" isBot="yes" /> // доделать логику отрисовки аватара
-          ) : (
-            <button
-              type="button"
-              className={stylesDialog.dialog__headerButton}
-              onClick={handleChevronClick}
-            >
-              <ChevronIcon
-                width={24}
-                height={24}
-                color="#a6b3c9"
-                position="left"
-              />
+      <div className={stylesDialog.dialog__wrapper}>
+        <div className={stylesDialog.dialog__header}>
+          <div className={stylesDialog.dialog__headerContent}>
+            {!isMobile ? (
+              <Avatar state="offline" isBot="yes" /> // доделать логику отрисовки аватара
+            ) : (
+              <button
+                type="button"
+                className={stylesDialog.dialog__headerButton}
+                onClick={handleChevronClick}
+              >
+                <ChevronIcon
+                  width={24}
+                  height={24}
+                  color="#a6b3c9"
+                  position="left"
+                />
+              </button>
+            )}
+            <div className={stylesDialog.dialog__nameWrapper}>
+              <Typography tag="p">Вячеслав Баумтрок</Typography>
+              {/* Заменить на имя юзера с бэка */}
+              {isMobile && (
+                <Typography tag="p" className={stylesDialog.dialog__status}>
+                  В работе {/* Заменить на статус юзера с бэка */}
+                </Typography>
+              )}
+            </div>
+          </div>
+          <div className={stylesDialog.dialog__iconsWrapper}>
+            {isInputVisible && (
+              <div className={stylesDialog.dialog__headerInputWrapper}>
+                <InputDialogues
+                  placeholder="Поиск..."
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setInputValue(e.target.value)
+                  }
+                />
+              </div>
+            )}
+            {!isMobile && (
+              <button
+                type="button"
+                className={stylesDialog.dialog__headerButton}
+                onClick={() => setInputVisible(!isInputVisible)}
+              >
+                {!isInputVisible ? (
+                  <Tooltip text="Поиск">
+                    <SearchIcon size="large" />
+                  </Tooltip>
+                ) : (
+                  <Tooltip text="Закрыть">
+                    <CloseIcon color="#a6b3c9" />
+                  </Tooltip>
+                )}
+              </button>
+            )}
+            <button type="button" className={stylesDialog.dialog__headerButton}>
+              <Tooltip text="Воспроизвести">
+                <PlayIcon width={24} height={24} />
+              </Tooltip>
             </button>
-          )}
-          <div className={stylesDialog.dialog__nameWrapper}>
-            <Typography tag="p">Вячеслав Баумтрок</Typography>
-            {/* Заменить на имя юзера с бэка */}
-            {isMobile && (
-              <Typography tag="p" className={stylesDialog.dialog__status}>
-                В работе {/* Заменить на статус юзера с бэка */}
-              </Typography>
+            {!isMobile ? (
+              <button
+                type="button"
+                className={stylesDialog.dialog__headerButton}
+              >
+                <Tooltip text="Удалить">
+                  <TrashIcon width={24} height={24} />
+                </Tooltip>
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={stylesDialog.dialog__headerButton}
+                onClick={handleMenuClick}
+              >
+                <DialogMenuIcon />
+              </button>
+            )}
+            {isModalOpen && (
+              <div className={stylesDialog.dialog__modal}>
+                <DialogMobilePopup handleClick={handleSearchClick} />
+              </div>
             )}
           </div>
         </div>
-        <div className={stylesDialog.dialog__iconsWrapper}>
-          {isInputVisible && (
-            <div className={stylesDialog.dialog__headerInputWrapper}>
-              <InputDialogues
-                placeholder="Поиск..."
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setInputValue(e.target.value)
-                }
-              />
-            </div>
-          )}
-          {!isMobile && (
-            <button
-              type="button"
-              className={stylesDialog.dialog__headerButton}
-              onClick={() => setInputVisible(!isInputVisible)}
-            >
-              {!isInputVisible ? (
-                <Tooltip text="Поиск">
-                  <SearchIcon size="large" />
-                </Tooltip>
-              ) : (
-                <Tooltip text="Закрыть">
-                  <CloseIcon color="#a6b3c9" />
-                </Tooltip>
-              )}
-            </button>
-          )}
-          <button type="button" className={stylesDialog.dialog__headerButton}>
-            <Tooltip text="Воспроизвести">
-              <PlayIcon width={24} height={24} />
-            </Tooltip>
-          </button>
-          {!isMobile ? (
-            <button type="button" className={stylesDialog.dialog__headerButton}>
-              <Tooltip text="Удалить">
-                <TrashIcon width={24} height={24} />
-              </Tooltip>
-            </button>
-          ) : (
-            <button
-              type="button"
-              className={stylesDialog.dialog__headerButton}
-              onClick={handleMenuClick}
-            >
-              <DialogMenuIcon />
-            </button>
-          )}
-          {isModalOpen && (
-            <div className={stylesDialog.dialog__modal}>
-              <DialogMobilePopup handleClick={handleSearchClick} />
-            </div>
-          )}
-        </div>
+        <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
       </div>
-      <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
+      {/* <div className={stylesDialog.dialog__borderText}>{formattedDate}</div> */}
       <div className={stylesDialog.dialog__messages}>
         {messages.map((message) => {
           return <Message message={message} />;
