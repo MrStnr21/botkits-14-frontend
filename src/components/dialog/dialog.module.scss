@@ -158,42 +158,43 @@
       margin: 0;
       padding: 0 20px;
       background: $default-grey-color;
+
+    }
+
+    &__messageInput {
+      @include flexLayout();
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      padding-top: 32px;
+
+      @media screen and (max-width: 620px) {
+        padding: 16px 20px 0;
+      }
+    }
+
+    &__headerInputWrapper {
+      margin: 0;
+      max-width: 183px;
+      width: 100%;
+    }
+
+
+    &__inputWrapper {
+      max-width: 526px;
+      width: 100%;
+      min-height: 48px;
+    }
+
+    &__submitButton {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      margin: 0;
+      padding: 0;
+      cursor: $cursor;
     }
   }
-
-  &__messageInput {
-    @include flexLayout();
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-    padding-top: 32px;
-
-    @media screen and (max-width: 620px) {
-      padding: 16px 20px 0;
-    }
-  }
-
-  &__headerInputWrapper {
-    margin: 0;
-    max-width: 183px;
-    width: 100%;
-  }
-
-
-  &__inputWrapper {
-    max-width: 526px;
-    width: 100%;
-    min-height: 48px;
-  }
-
-  &__submitButton {
-    width: 40px;
-    height: 40px;
-    border: none;
-    background: transparent;
-    margin: 0;
-    padding: 0;
-    cursor: $cursor;
-  }
-}
+};
