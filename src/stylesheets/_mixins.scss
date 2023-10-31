@@ -1,5 +1,8 @@
 @use './variables' as vars;
 
+/* Миксины для всего проекта */
+
+/* Flex-блок */
 @mixin flex($direction: row, $justify-content: false, $align-items: false, $gap: false){
   display: flex;
   flex-direction: $direction;
@@ -14,11 +17,13 @@
   }
 };
 
+/* Отступы */
 @mixin indents($padding: 0, $margin: 0){
   padding: $padding;
   margin: $margin;
 };
 
+/* Размеры элемента' */
 @mixin size($width, $height){
   width: $width;
   height: $height;
@@ -34,34 +39,7 @@
   min-height: $min-height;
 }
 
-@mixin font($font-family, $font-size: inherit, $font-weight: inherit, $color: inherit){
-  font-family: $font-family, sans-serif;
-  font-size: $font-size;
-  font-weight: $font-weight;
-  color: $color;
-};
-
-@mixin line-sizes($line-height: inherit, $letter-spacing: inherit){
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
-}
-
-@mixin button-style-reset {
-  border: none;
-  padding: 0;
-  background: transparent;
-
-  &:hover {
-    cursor: url('../images/icon/cursor/pointing-hand.svg'), pointer;
-  }
-}
-
-@mixin ellipsis{
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
+/* Позиционирование элемента */
 @mixin position($position, $top: false, $right: false, $bottom: false, $left: false) {
   position: $position;
   @if $top {
@@ -78,6 +56,40 @@
   }
 }
 
+/* Свойства шрифта и строки */
+@mixin font($font-family, $font-size: inherit, $font-weight: inherit, $color: inherit){
+  font-family: $font-family, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+};
+
+@mixin line-sizes($line-height: inherit, $letter-spacing: inherit){
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+/* Обрезание текста - эллипсис */
+@mixin ellipsis{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Сброс стиля кнопок и единый курсор */
+@mixin button-style-reset {
+  border: none;
+  padding: 0;
+  background: transparent;
+
+  &:hover {
+    cursor: vars.$cursor;
+  }
+}
+
+/* Миксины для повторяющихся элементов
+
+/* Сообщение для ошибки в формах авторизации */
 @mixin incorrect-text($text-align) {
   @include font('PT Sans', vars.$xxxs-font-size, vars.$normal, vars.$error-default);
   @include line-sizes(vars.$xl-line-height, vars.$m-letter-space);
