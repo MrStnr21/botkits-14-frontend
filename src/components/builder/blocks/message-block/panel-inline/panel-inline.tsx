@@ -50,7 +50,7 @@ const Button: FC<TButtonProps> = ({
     <>
       <ConstructorHelperButton
         askOnClick={askOnClick}
-        deleteOnClick={() => deleteOnClick}
+        deleteOnClick={deleteOnClick}
         askIcon={askIcon}
         color
         colorOnClick={colorOnClick}

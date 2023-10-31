@@ -8,7 +8,7 @@ export interface IConstructorHelperButton {
   askButtonHtmlType?: 'button' | 'submit' | 'reset';
   deleteButtonHtmlType?: 'button' | 'submit' | 'reset';
   askOnClick?: VoidFunction;
-  deleteOnClick?: VoidFunction;
+  deleteOnClick?: (id: string) => void;
   askIcon: string;
   color?: boolean;
   colorOnClick?: () => void;
