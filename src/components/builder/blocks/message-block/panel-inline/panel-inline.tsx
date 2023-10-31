@@ -3,69 +3,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 import LabeledInput from '../../../labeledInput/labeledInput';
 import ConstructorAddButton from '../../../../../ui/buttons/constructor-add-button/constructor-add-button';
-import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
 // import AskPhoneIcon from '../../../images/icon/24x24/constructor/ask-phone.svg';
 import UrlIcon from '../../../../../images/icon/24x24/constructor/url.svg';
 
 import styles from './panel-inline.module.scss';
+import InlineButton from '../button-inline/button-inline';
 
 interface IPanelInline {
   // eslint-disable-next-line react/no-unused-prop-types
   title: string;
 }
-
-type TButtonProps = {
-  onClick: (id: string) => void;
-  color: 'white' | 'red' | 'green' | 'blue';
-  name: string;
-  children: string;
-  id: string;
-  askOnClick?: VoidFunction;
-  deleteOnClick?: (id: string) => void;
-  askIcon: string;
-  colorOnClick?: () => void;
-};
-
-const Button: FC<TButtonProps> = ({
-  name,
-  onClick,
-  color,
-  children,
-  id,
-  askOnClick,
-  deleteOnClick,
-  askIcon,
-  colorOnClick,
-}) => {
-  const additionalClass =
-    color === 'white'
-      ? styles.buttonWhite
-      : color === 'red'
-      ? styles['button-red']
-      : color === 'green'
-      ? styles['button-green']
-      : styles['button-blue'];
-
-  return (
-    <>
-      <ConstructorHelperButton
-        askOnClick={askOnClick}
-        deleteOnClick={deleteOnClick}
-        askIcon={askIcon}
-        color
-        colorOnClick={colorOnClick}
-      />
-      <button
-        type="button"
-        className={`${styles.button} ${additionalClass}`}
-        onClick={() => onClick(id)}
-      >
-        {name}
-        {children}
-      </button>
-    </>
-  );
-};
 
 const PanelInline: FC<IPanelInline> = () => {
   const [horButtons, setHorButtons] = useState<string[]>([]);
@@ -102,22 +49,20 @@ const PanelInline: FC<IPanelInline> = () => {
       <div className={styles.wrapperButtons}>
         <LabeledInput title="Инлайн кнопка" extraClass={styles.extraClass}>
           {horButtons.map((id) => (
-            <Button
+            <InlineButton
               onClick={() => {}}
-              color="blue"
               name="Кнопка"
               aria-label="colorType"
               id={id}
               key={id}
-              askOnClick={() => {
-                url = 'url...';
-              }}
+              // askOnClick={() => {
+              //   url = 'url...';
+              // }}
               deleteOnClick={() => deleteButton(id)}
               askIcon={UrlIcon}
-              colorOnClick={() => {}}
             >
               {url}
-            </Button>
+            </InlineButton>
           ))}
           <div className={styles.wrapperButtonWidth}>
             <div className={styles.wrapperButtonHeight}>
@@ -126,7 +71,22 @@ const PanelInline: FC<IPanelInline> = () => {
               </ConstructorAddButton>
             </div>
           </div>
-
+          {verButtons.map((id) => (
+            <InlineButton
+              onClick={() => {}}
+              name="Кнопка"
+              aria-label="colorType"
+              id={id}
+              key={id}
+              // askOnClick={() => {
+              //   url = 'url...';
+              // }}
+              deleteOnClick={() => deleteButton(id)}
+              askIcon={UrlIcon}
+            >
+              {url}
+            </InlineButton>
+          ))}
           <div className={styles.wrapperButtonWidth}>
             <div className={styles.wrapperButtonHeight}>
               <ConstructorAddButton onClick={addVer} icon="vertical inline">
