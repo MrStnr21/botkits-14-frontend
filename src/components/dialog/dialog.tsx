@@ -1,5 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-restricted-globals */
+/* eslint-disable no-unused-vars */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router';
@@ -13,47 +16,30 @@ import Message from './message/message';
 import NewMessage from '../../ui/message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
 import DialogMenuIcon from '../icons/DialogMenuIcon/DialogMenuIcon';
-import InputDialogsues from '../chat/InputDialogsues/InputDialogsues';
+import InputDialogues from '../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../ui/typography/typography';
 import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
 import SendButton from '../../ui/buttons/send-button/send-button';
 import Avatar from '../../ui/avatar/avatar';
-
-const messages = [
-  {
-    id: 1,
-    avatar: '',
-    user: 'Вячеслав Баумтрок',
-    message: 'Привет, как это сделать?',
-    time: '16 мин назад',
-    online: false,
-    seen: '14:05',
-  },
-  {
-    id: 2,
-    avatar: '',
-    user: 'Вы',
-    message: `Привет, user, вообще делать не надо`,
-    time: '14 мин назад',
-    online: true,
-    seen: '14:12',
-  },
-  {
-    id: 3,
-    avatar: '',
-    user: 'Вячеслав Баумтрок',
-    message: 'Ок, спасибо :)',
-    time: '10 мин назад',
-    online: false,
-    seen: '14:15',
-  },
-];
+import store from '../../services/store';
+import messages from '../../utils/ messages';
+import Tooltip from './tooltip/tooltip';
 
 interface DateType extends Date {
   toDateString(): string;
 }
 
 const Dialog: FC = () => {
+  // useEffect(() => {
+  //   const { socket } = store.getState();
+
+  //   socket.on('event_name', (data: any) => {
+  //     console.log('Received data from the server:', data);
+  //   });
+  //   return () => {
+  //     socket.off('event_name');
+  //   };
+  // }, []);
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -125,9 +111,10 @@ const Dialog: FC = () => {
           )}
           <div className={stylesDialog.dialog__nameWrapper}>
             <Typography tag="p">Вячеслав Баумтрок</Typography>
+            {/* Заменить на имя юзера с бэка */}
             {isMobile && (
               <Typography tag="p" className={stylesDialog.dialog__status}>
-                В работе
+                В работе {/* Заменить на статус юзера с бэка */}
               </Typography>
             )}
           </div>
@@ -135,7 +122,7 @@ const Dialog: FC = () => {
         <div className={stylesDialog.dialog__iconsWrapper}>
           {isInputVisible && (
             <div className={stylesDialog.dialog__headerInputWrapper}>
-              <InputDialogsues
+              <InputDialogues
                 placeholder="Поиск..."
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setInputValue(e.target.value)
@@ -150,18 +137,26 @@ const Dialog: FC = () => {
               onClick={() => setInputVisible(!isInputVisible)}
             >
               {!isInputVisible ? (
-                <SearchIcon size="large" />
+                <Tooltip text="Поиск">
+                  <SearchIcon size="large" />
+                </Tooltip>
               ) : (
-                <CloseIcon color="#a6b3c9" />
+                <Tooltip text="Закрыть">
+                  <CloseIcon color="#a6b3c9" />
+                </Tooltip>
               )}
             </button>
           )}
           <button type="button" className={stylesDialog.dialog__headerButton}>
-            <PlayIcon width={24} height={24} />
+            <Tooltip text="Воспроизвести">
+              <PlayIcon width={24} height={24} />
+            </Tooltip>
           </button>
           {!isMobile ? (
             <button type="button" className={stylesDialog.dialog__headerButton}>
-              <TrashIcon width={24} height={24} />
+              <Tooltip text="Удалить">
+                <TrashIcon width={24} height={24} />
+              </Tooltip>
             </button>
           ) : (
             <button

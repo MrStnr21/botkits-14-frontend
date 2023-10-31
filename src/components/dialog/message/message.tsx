@@ -17,7 +17,7 @@ interface IMessage {
   message: TMessage;
 }
 
-const Message: FC<IMessage> = ({ message }): JSX.Element => {
+const Message: FC<IMessage> = ({ message }) => {
   return (
     <div
       className={

@@ -1,7 +1,7 @@
 import { FC, ChangeEvent, useState } from 'react';
-import stylesInput from './InputDialogsues.module.scss';
-import FilterIcon from '../../icons/Filter/FilterIcon';
-import SearchFilters from '../SearchFilters/SearchFilters';
+import stylesInput from './input-dialogues.module.scss';
+import FilterIcon from '../../../components/icons/Filter/FilterIcon';
+import SearchFilters from '../../../components/chat/SearchFilters/SearchFilters';
 
 interface IInputDialogsues {
   placeholder?: string;

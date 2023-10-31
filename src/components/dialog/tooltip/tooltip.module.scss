@@ -12,7 +12,7 @@
     border-radius: 5px;
     padding: 5px;
     position: absolute;
-    top: -150%;
+    bottom: 130%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -33,9 +33,9 @@
   &:hover::after {
     content: '';
     position: absolute;
-    bottom: 125%;
+    top: -30%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 5px solid transparent;

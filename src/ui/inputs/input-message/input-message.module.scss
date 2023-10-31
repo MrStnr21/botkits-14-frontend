@@ -7,11 +7,13 @@
   background-color: $default-grey-color;
   border-radius: $border-radius-10;
   min-height: 48px;
+  box-sizing: border-box;
 }
 
 .message_input {
   width: 100%;
-  margin: 14px 16px;
+  margin: 0;
+  padding: 14px 16px;
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
