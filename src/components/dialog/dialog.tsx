@@ -174,7 +174,6 @@ const Dialog: FC = () => {
         </div>
         <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
       </div>
-      {/* <div className={stylesDialog.dialog__borderText}>{formattedDate}</div> */}
       <div className={stylesDialog.dialog__messages}>
         {messages.map((message) => {
           return <Message message={message} />;

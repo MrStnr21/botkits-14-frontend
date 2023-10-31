@@ -84,7 +84,7 @@ const InputMessage: FC<IInputMessage> = ({
           type="button"
           onClick={handleRotate}
         >
-          <Tooltip text="Развернуть">
+          <Tooltip text={rotateAddIcon ? 'Cвернуть' : 'Развернуть'}>
             <AddIcon width={24} height={24} position={rotate} />
           </Tooltip>
         </button>

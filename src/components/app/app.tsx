@@ -17,7 +17,7 @@ import Chat from '../../pages/chat/chat';
 
 import routesUrl from '../../utils/routesData';
 
-// import ProtectedRoute from '../../routes/protected-route';
+import ProtectedRoute from '../../routes/protected-route';
 
 const App: FC = (): JSX.Element => {
   return (
@@ -26,25 +26,25 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.signup}
           element={
-            // ProtectedRoute notAuth>
-            <Signup />
-            // </ProtectedRoute>
+            <ProtectedRoute notAuth>
+              <Signup />
+            </ProtectedRoute>
           }
         />
         <Route
           path={routesUrl.signin}
           element={
-            // ProtectedRoute notAuth>
-            <Signin />
-            // /ProtectedRoute>
+            <ProtectedRoute notAuth>
+              <Signin />
+            </ProtectedRoute>
           }
         />
         <Route
           path={routesUrl.reset}
           element={
-            // ProtectedRoute notAuth>
-            <ResetPassword />
-            // /ProtectedRoute>
+            <ProtectedRoute notAuth>
+              <ResetPassword />
+            </ProtectedRoute>
           }
         />
         <Route
