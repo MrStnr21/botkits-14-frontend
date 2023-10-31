@@ -123,14 +123,5 @@
     @include item;
     flex-direction: column;
   }
-  
-  .button{
-  @extend %button-style-reset;
-  width: 24;
-  height: 20;
-  background-color: white;
-  font-weight: $bold;
-  color: $default-blue-color;
-}
 }
 

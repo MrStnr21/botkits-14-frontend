@@ -1,0 +1,15 @@
+@import '../../../components/app/vars';
+
+.button{
+    @extend %button-style-reset;
+    width: 24;
+    height: 20;
+    background-color: white;
+    font-weight: $bold;
+    font-size: $s-font-size;
+    color: $default-blue-color;
+  }
+
+.button:disabled {
+  color: $default-dark-grey-color;
+}

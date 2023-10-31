@@ -5,6 +5,7 @@ import DropDownList from '../DropDownList/DropDownList';
 import UploadedFile from '../UploadedFile/UploadedFile';
 import UploadedImage from '../UploadedImage/UploadedImage';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
+import ButtonNotBackground from '../../../ui/buttons/button-not-background/button-not-background';
 import { dataFile, dataImage } from '../../../utils/uploadedFiles';
 
 interface IInformation {
@@ -77,9 +78,7 @@ const Information: FC<IInformation> = ({
                     Загруженные файлы
                   </p>
                   <div>
-                    <button type="button" className={stylesInformation.button}>
-                      Все
-                    </button>
+                    <ButtonNotBackground>Все</ButtonNotBackground>
                   </div>
                   <div className={stylesInformation.itemColumn}>
                     {dataFile.map((value) => (
@@ -91,9 +90,7 @@ const Information: FC<IInformation> = ({
                   </div>
                   <p className={stylesInformation.paragraph}> Изображения </p>
                   <div>
-                    <button type="button" className={stylesInformation.button}>
-                      Все
-                    </button>
+                    <ButtonNotBackground>Все</ButtonNotBackground>
                   </div>
                   <div className={stylesInformation.itemRow}>
                     {dataImage.map((value) => (
