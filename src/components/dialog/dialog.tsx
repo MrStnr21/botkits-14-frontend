@@ -6,6 +6,8 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { io } from 'socket.io-client';
 import stylesDialog from './dialog.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
@@ -30,16 +32,8 @@ interface DateType extends Date {
 }
 
 const Dialog: FC = () => {
-  // useEffect(() => {
-  //   const { socket } = store.getState();
+  const dispatch = useDispatch();
 
-  //   socket.on('event_name', (data: any) => {
-  //     console.log('Received data from the server:', data);
-  //   });
-  //   return () => {
-  //     socket.off('event_name');
-  //   };
-  // }, []);
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());

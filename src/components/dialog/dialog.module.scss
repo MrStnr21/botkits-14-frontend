@@ -16,7 +16,6 @@
   flex-direction: column;
   border-left: 1px $icon-grey-color solid;
   border-right: 1px $icon-grey-color solid;
-  overflow-y: scroll;
 
   @media screen and (max-width: 620px) {
     margin: 0;
@@ -56,6 +55,7 @@
     max-height: 24px;
     color: $default-dark-grey-color;
     background: transparent;
+    z-index: 555;
 
     @media screen and (max-width: 620px) {
       background: $default-grey-color;
@@ -153,6 +153,10 @@
     align-items: flex-start;
     gap: 16px;
     overflow: scroll;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
 
     @media screen and (max-width: 620px) {
       margin: 0;
