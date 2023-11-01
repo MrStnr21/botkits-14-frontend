@@ -62,22 +62,8 @@ const Subscription: FC = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <div className={style.container__header}>
+      <div className={style.container__item}>
         <Typography tag="h2">Подписка и платежи</Typography>
-        {subscriptionStatus.status && (
-          <div className={style.container__button}>
-            <Button
-              variant="default"
-              size="small"
-              color="green"
-              onClick={() => handleActivateSubscription('subscription')}
-            >
-              Сменить тариф
-            </Button>
-          </div>
-        )}
-      </div>
-      <div className={style.container__body}>
         <div className={style.subscription}>
           <div className={style.subscription__header}>
             <Typography tag="h3" className={style.subscription__rate}>
@@ -122,6 +108,21 @@ const Subscription: FC = (): JSX.Element => {
             </Button>
           </div>
         </div>
+      </div>
+      <div className={style.container__item}>
+        <div className={style.container__button}>
+          {subscriptionStatus.status && (
+            <Button
+              variant="default"
+              size="small"
+              color="green"
+              onClick={() => handleActivateSubscription('subscription')}
+            >
+              Сменить тариф
+            </Button>
+          )}
+        </div>
+
         <div className={style.payment}>
           <div className={style.payment__header}>
             <Typography tag="h4">История платежей</Typography>
@@ -151,6 +152,7 @@ const Subscription: FC = (): JSX.Element => {
           />
         </div>
       </div>
+
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
           <div className={style.modal}>
