@@ -13,7 +13,9 @@ const ActivatePromoCodePopup: FC<IActivatePromoCodePopup> = ({
   const [inputValue, setInputValue] = useState('');
   return (
     <dialog className={stylesPromoCodePopup.promoCodePopupContainer}>
-      <Typography tag="h3">Активация промокода</Typography>
+      <Typography tag="h3" fontFamily="secondary">
+        Активация промокода
+      </Typography>
       <Input
         placeholder="Введите промокод"
         value={inputValue}

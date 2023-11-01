@@ -45,7 +45,6 @@
   margin-bottom: 43px;
   text-align: center;
   color: $white-color;
-  font-size: $l-font-size;
 
   @media screen and (max-width: 600px) {
     margin-top: -15px;
@@ -164,10 +163,9 @@
 }
 
 .incorrect_text {
+  font-family: 'PT Sans', sans-serif;
   color: $error-red-color;
   position: absolute;
-  font-size: 10px;
-  line-height: 15px;  
   margin-top: 2px;
   left: 0;
   right: 0;

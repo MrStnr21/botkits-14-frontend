@@ -30,7 +30,6 @@
 }
 
 .text {
-  font-weight: $normal;
   margin-left: 16px;
   color: #2e293d;
 
@@ -39,7 +38,6 @@
   }
 
   @media (max-width: ($switching-width)) {
-    font-family: 'Open Sans', sans-serif;
     color: #060c23;
   }
 }
@@ -110,16 +108,7 @@
   display: flex;
   gap: 5px;
   margin-top: 4px;
-
   color: #8392ab;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $h4-font-size;
-  line-height: $p-line-height;
-  letter-spacing: 0.3px;
-}
-
-.tariff {
-  font-weight: $normal;
 }
 
 .addition {

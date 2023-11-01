@@ -68,7 +68,11 @@ const MyBots: FC = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <Typography tag="h1" className={styles.header__text}>
+        <Typography
+          tag="h1"
+          fontFamily="secondary"
+          className={styles.header__text}
+        >
           Мои боты
         </Typography>
         {matches && (

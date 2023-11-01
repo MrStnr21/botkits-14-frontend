@@ -15,7 +15,7 @@ const RegLogResLayout: FC<IRegLogResLayout> = ({
     <section className={stylesRegLogResLayout.signupPage}>
       <div className={stylesRegLogResLayout.contentContainer}>
         <div className={stylesRegLogResLayout.logo} />
-        <Typography tag="h1" className={stylesRegLogResLayout.label}>
+        <Typography tag="h1" fontFamily="secondary" className={stylesRegLogResLayout.label}>
           {title}
         </Typography>
         {children}

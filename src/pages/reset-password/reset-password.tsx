@@ -59,7 +59,7 @@ const ResetPassword: FC = (): JSX.Element => {
     <RegLogResLayout title="Восстановление пароля">
       <div className={stylesResetPassword.resetFormContainer}>
         <div className={stylesResetPassword.resetInputsContainer}>
-          <Typography tag="h2" className={stylesResetPassword.resetTitle}>
+          <Typography tag="h2" fontFamily="secondary" className={stylesResetPassword.resetTitle}>
             Введи свой e-mail:
           </Typography>
           <form

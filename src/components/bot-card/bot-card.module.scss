@@ -10,6 +10,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+
   @media (max-width: $switching-width) {
     width: 235px;
     height: 177px;
@@ -45,7 +46,6 @@
 }
 
 .name {
-  letter-spacing: $h5-letter-space;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

@@ -50,7 +50,6 @@
     flex-direction: column;
     gap: 130px;
   }
-
 }
 
 .title {
@@ -59,8 +58,6 @@
   max-width: 570px;
   text-align: left;
   color: $white-color;
-  font-size: $xl-h1-font-size; 
-  line-height: $button-line-height-110;
   vertical-align: middle;
 
   @media screen and (max-width: 1080px) {
@@ -83,9 +80,7 @@
     align-self: flex-end;
     margin-right: -20px;
   }
-
 }
-
 
 .email {
   vertical-align: baseline;
@@ -93,11 +88,9 @@
   max-height: 60px;
   max-width: 158px;
   padding: 14px 23px 14px 20px;
-  font-size: $h2-font-size;
   border-radius: $border-radius-15;
   color: $default-green-color;
   background-color: $hover-blue-color;
-  letter-spacing: $h2-letter-space;
   vertical-align: middle;
 
   @media screen and (max-width: 800px) {

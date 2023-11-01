@@ -75,7 +75,9 @@ const Templates: FC = (): JSX.Element => {
   return (
     <div className={stylesTemplates.container}>
       <div className={stylesTemplates.header_wrapper}>
-        <Typography tag="h2">Шаблоны</Typography>
+        <Typography tag="h2" fontFamily="secondary">
+          Шаблоны
+        </Typography>
         <div className={stylesTemplates.accordion_wrapper}>
           <button
             className={stylesTemplates.accordion_button}

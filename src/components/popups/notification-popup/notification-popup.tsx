@@ -23,6 +23,7 @@ const NotificationPopup: FC<INotificationPopup> = ({
     setActiveTab('tab2');
   };
   const matches = useMediaQuery('(max-width: 520px)');
+
   return (
     <div
       className={
@@ -39,7 +40,11 @@ const NotificationPopup: FC<INotificationPopup> = ({
           <div className={stylesNotification.wrapper}>
             <Notifications number={2} color="#060c23" />
 
-            <Typography tag="p" className={stylesNotification.title}>
+            <Typography
+              tag="p"
+              fontFamily="secondary"
+              className={stylesNotification.title}
+            >
               Уведомления
             </Typography>
           </div>

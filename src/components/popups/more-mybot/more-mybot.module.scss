@@ -10,7 +10,6 @@ $switching-width-menu: ($min-content-width + 100px);
   min-height: 323px;
   box-sizing: border-box;
   padding: 8px 0;
-
   box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
   background-color: white;
   border-radius: 10px;
@@ -41,12 +40,6 @@ $switching-width-menu: ($min-content-width + 100px);
     background-color: #f2f4f8;
     color: #060c23;
   }
-}
-
-.text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: $normal;
-  font-size: $s-font-size;
 }
 
 .item:nth-child(1) {

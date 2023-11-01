@@ -24,8 +24,6 @@
 }
 
 .text {
-  font-weight: $normal;
-  line-height: $m-line-height;
   white-space: nowrap;
   @media (max-width: $switching-width) {
     margin: 0 auto;

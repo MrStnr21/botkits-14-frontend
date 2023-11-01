@@ -19,7 +19,11 @@ const KnowledgeBase: FC = (): JSX.Element => {
   return (
     <section className={stylesKnowledgeBase.wrapper}>
       <div className={stylesKnowledgeBase.video}>
-        <Typography tag="h2" className={stylesKnowledgeBase.video__header}>
+        <Typography
+          tag="h2"
+          fontFamily="secondary"
+          className={stylesKnowledgeBase.video__header}
+        >
           С чего начать?
         </Typography>
         <div className={stylesKnowledgeBase.video__container}>

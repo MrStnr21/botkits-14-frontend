@@ -16,16 +16,8 @@
   cursor: pointer;
 }
 
-@mixin font {
-  font-weight: $normal;
-  font-size: $s-font-size;
-  line-height: $s-line-height;
-  letter-spacing: $lx-letter-space;  
+@mixin font { 
   white-space: nowrap;
-}
-
-.text.text {
-  @include font;
 }
 
 .container{

@@ -34,7 +34,11 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
 
   return (
     <div className={stylesAddBot.add_bot}>
-      <Typography tag="h2" className={stylesAddBot.add_bot_title}>
+      <Typography
+        tag="h2"
+        fontFamily="secondary"
+        className={stylesAddBot.add_bot_title}
+      >
         Добавить бота
       </Typography>
       <ul className={stylesAddBot.add_bot_list} {...events} ref={ref}>

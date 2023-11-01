@@ -2,8 +2,8 @@
 
 .container {
   display: flex;
-  gap:8px;
-  width:fit-content;
+  gap: 8px;
+  width: fit-content;
   height: 47px;
   background-color: $white-color;
   box-sizing: border-box;
@@ -13,9 +13,5 @@
 }
 
 .text {
-  font-weight: $normal;
-  font-size: $xs-font-size;
-  line-height: $xs-line-height;
-  letter-spacing: $l-letter-space;
   white-space: nowrap;
 }

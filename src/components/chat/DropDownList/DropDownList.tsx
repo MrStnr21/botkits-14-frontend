@@ -30,9 +30,7 @@ const DropDownList: FC<IDropDownList> = ({
           setIsOpened(!isOpened);
         }}
       >
-        <Typography tag="p" className={stylesList.text}>
-          {caption}
-        </Typography>
+        <Typography tag="p">{caption}</Typography>
         <ChevronIcon position={`${isOpened ? 'up' : 'down'}`} />
       </div>
       {isOpened && (

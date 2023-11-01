@@ -27,7 +27,11 @@ const HowItWorks: FC = (): JSX.Element => {
 
   return (
     <div className={stylesHowItWorks.container}>
-      <Typography tag="p" className={stylesHowItWorks.header}>
+      <Typography
+        tag="p"
+        fontFamily="secondary"
+        className={stylesHowItWorks.header}
+      >
         Как это работает?
         <button
           onClick={() => setIsActive(!isActive)}

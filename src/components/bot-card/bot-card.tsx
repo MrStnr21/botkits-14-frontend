@@ -27,7 +27,11 @@ const BotCard: FC<IBotCard> = ({
         aria-label="Меню настроек бота"
       />
       <div className={stylesBotCard.name_box}>
-        <Typography tag="p" className={stylesBotCard.name}>
+        <Typography
+          tag="p"
+          fontFamily="secondary"
+          className={stylesBotCard.name}
+        >
           {bot_name}
         </Typography>
       </div>

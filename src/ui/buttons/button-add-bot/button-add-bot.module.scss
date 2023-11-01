@@ -5,11 +5,6 @@
   @extend %flex-element-center;
   flex-direction: column;
   gap: 14px;
-  font-size: $l-font-size;
-  font-weight: $bold;
-  letter-spacing: $h5-letter-space;
-  line-height: $button-line-height-130;
-  font-family: 'IBM Plex Mono', sans-serif;
   transition: all 0.1s linear;
   height: $button-add-bot-height;
   width: 100%;

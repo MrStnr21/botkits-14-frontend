@@ -33,7 +33,7 @@ const TextField: FC = (): JSX.Element => {
       />
 
       <div className={stylesTextField.textarea__footer}>
-        <Typography tag="p" className={stylesTextField.textarea__counter}>
+        <Typography tag="p" fontFamily="secondary" className={stylesTextField.textarea__counter}>
           {text.length}/{textareaTextLength}
         </Typography>
         <Bracket

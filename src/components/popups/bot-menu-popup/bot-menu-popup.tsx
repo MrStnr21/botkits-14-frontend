@@ -40,7 +40,7 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
   return (
     <ModalPopup onClick={onClose}>
       <div className={stylesBotMenuPopup.bot_menu}>
-        <Typography tag="h3" className={stylesBotMenuPopup.title}>
+        <Typography tag="h3" fontFamily="secondary">
           {title}
         </Typography>
         {type === 'default' ? (
@@ -87,18 +87,14 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
         ) : type === 'notify' ? (
           <>
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
-                Название канала
-              </Typography>
+              <Typography tag="p">Название канала</Typography>
               <Typography tag="p" className={stylesBotMenuPopup.value}>
                 ChanelName
               </Typography>
             </div>
             <hr className={stylesBotMenuPopup.hr} />
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
-                Ключ доступа
-              </Typography>
+              <Typography tag="p">Ключ доступа</Typography>
               <div className={stylesBotMenuPopup.value}>
                 <Typography tag="p">
                   1842016250:AAF8uWUV1wE9B8XxZvfbmRiZkmh1tWXu-Ns
@@ -110,9 +106,7 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
         ) : (
           <>
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
-                Подписаться на уведомления
-              </Typography>
+              <Typography tag="p">Подписаться на уведомления</Typography>
               <div className={stylesBotMenuPopup.value}>
                 <Typography tag="p">
                   /notify 60a280e3f7b15d37975ccb69
@@ -122,9 +116,7 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
             </div>
             <hr className={stylesBotMenuPopup.hr} />
             <div>
-              <Typography tag="p" className={stylesBotMenuPopup.text}>
-                Отписаться от уведомлений
-              </Typography>
+              <Typography tag="p">Отписаться от уведомлений</Typography>
               <div className={stylesBotMenuPopup.value}>
                 <Typography tag="p">
                   /disable_notify 60a280e3f7b15d37975ccb69

@@ -13,9 +13,6 @@
 }
 
 .header__text {
-  font-size: $h2-font-size;
-  line-height: $h2-line-height;
-
   @media (max-width: $switching-width) {
     font-size: $h3-font-size;
     line-height: $h3-line-height;
@@ -26,7 +23,6 @@
   @extend %button-style-reset;
   display: block;
   margin-right: 20px;
-
   color: #8392ab;
   text-align: right;
   font-family: 'Open Sans', sans-serif;

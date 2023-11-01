@@ -19,10 +19,6 @@
   }
 }
 
-.title {
-  letter-spacing: $h3-letter-space;
-}
-
 .cancel {
   @extend %button-style-reset;
   font-family: 'IBM Plex Mono';
@@ -54,10 +50,7 @@
   top: -60px;
   right: 30%;
   padding: 13px 20px;
-  color: #fff;
-  font-size: $l-font-size;
-  line-height: $m-line-height;
-  letter-spacing: $h3-letter-space;
+  color: #fff; //цвет переопределяет базовый
   box-sizing: border-box;
   background-color: #2e293d;
   border-radius: $border-radius-10;
@@ -71,16 +64,7 @@
   border: 0;
 }
 
-.text {
-  font-size: $s-font-size;
-  font-weight: $normal;
-  line-height: $s-line-height;
-  letter-spacing: $m-letter-space;
-}
-
 .value {
-  font-size: $l-font-size;
-  line-height: $l-line-height;
   margin-top: 8px;
   display: flex;
   align-items: center;

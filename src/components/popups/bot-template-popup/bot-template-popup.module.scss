@@ -42,11 +42,6 @@
   gap: 20px;
 }
 
-.bot_template_text {
-  font-size: $h4-font-size;
-  line-height: 27px;
-}
-
 .bot_template_list {
   list-style: none;
   padding: 0;
@@ -57,17 +52,8 @@
 }
 
 .bot_template_item_index {
-  font-size: $l-font-size;
-  line-height: $m-line-height;
-  letter-spacing: $h5-letter-space;
   color: $default-blue-color;
   margin-right: 28px;
-}
-
-.bot_template_item_text {
-  font-size: $m-font-size;
-  line-height: $m-line-height;
-  letter-spacing: $l-letter-space;
 }
 
 .bot_template_buttons {

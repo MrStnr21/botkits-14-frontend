@@ -20,8 +20,6 @@
 }
 
 .create_message_title {
-  letter-spacing: $h3-letter-space;  
-
   @media screen and (max-width: 520px) {
     font-size: $h4-font-size;
     line-height: $h4-line-height;
@@ -29,9 +27,6 @@
 }
 
 .create_message_text {
-  font-size: $l-font-size;
-  line-height: $l-line-height;
-  letter-spacing: $l-letter-space;
   margin: 16px 0 0;
 
   @media screen and (max-width: 520px) {
@@ -64,13 +59,10 @@
 }
 
 .create_main_bot_name_title {  
-  letter-spacing: $h3-letter-space;  
   margin-left: 15px;
 }
 
 .create_main_bot_name_text {
-  line-height: $s-line-height;
-  letter-spacing: $l-letter-space;
   color: $default-blue-color;
   background-color: #ecefff;
   padding: 6px 16px;
@@ -91,7 +83,7 @@
 }
 
 .create_main_bot_name_span {
-  font-weight: $bold;
+  font-weight: $bold; // переопределение на жирный тк базовая конфигурфция normal
 }
 
 .create_main_fill_bot {

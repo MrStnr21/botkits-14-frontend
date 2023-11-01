@@ -36,15 +36,15 @@ const Header: FC = (): JSX.Element => {
     <header className={styles.header}>
       <div className={styles.container}>
         {matches ? <MenuMobile /> : <Menu24px />}
-        <Typography tag="span" className={styles.logo}>
+        <Typography tag="span" fontFamily="secondary" className={styles.logo}>
           <Logo />
         </Typography>
       </div>
       <div className={styles.wrapper}>
-        <Typography tag="p" className={styles.text}>
+        <Typography tag="p" fontFamily="secondary" className={styles.text}>
           Тариф
         </Typography>
-        <Typography tag="p" className={styles.text}>
+        <Typography tag="p" fontFamily="secondary" className={styles.text}>
           Демо
         </Typography>
         <div className={styles.icons}>
@@ -52,10 +52,14 @@ const Header: FC = (): JSX.Element => {
           <Notifications number={2} onClick={toggleNotifPopup} />
         </div>
         <div className={styles.userInfo} onClick={toggleAccSet}>
-          <Typography tag="span" className={styles.userInfo__avatar}>
+          <Typography
+            tag="span"
+            fontFamily="secondary"
+            className={styles.userInfo__avatar}
+          >
             <img src={avatar} alt="Avatar" className={styles.userInfo__image} />
           </Typography>
-          <Typography tag="p" className={styles.text}>
+          <Typography tag="p" fontFamily="secondary" className={styles.text}>
             User Name
           </Typography>
           <Typography

@@ -125,6 +125,7 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
             {img[botName]}
             <Typography
               tag="h3"
+              fontFamily="secondary"
               className={stylesCreateBot.create_main_bot_name_title}
             >
               {botName}
@@ -213,7 +214,11 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
         </div>
       ) : (
         <div className={stylesCreateBot.create_message}>
-          <Typography tag="h3" className={stylesCreateBot.create_message_title}>
+          <Typography
+            tag="h3"
+            fontFamily="secondary"
+            className={stylesCreateBot.create_message_title}
+          >
             К какому мессенджеру подключим бота?
           </Typography>
           <Typography tag="p" className={stylesCreateBot.create_message_text}>

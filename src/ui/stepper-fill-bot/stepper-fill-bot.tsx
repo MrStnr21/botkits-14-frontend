@@ -16,10 +16,12 @@ const StepperFillBot: FC<IStepperFillBot> = ({
   return (
     <div className={stylesStepperFillBot.stepper}>
       <div className={stylesStepperFillBot.stepper_step}>
-        <Typography tag="p">
+        <Typography fontFamily="secondary" tag="p">
           {step} Шаг {`>`}
         </Typography>
-        <Typography tag="p">{text}</Typography>
+        <Typography fontFamily="secondary" tag="p">
+          {text}
+        </Typography>
       </div>
       <div className={stylesStepperFillBot.stepper_children}>{children}</div>
     </div>

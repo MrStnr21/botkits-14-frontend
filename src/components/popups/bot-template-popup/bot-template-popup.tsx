@@ -87,12 +87,14 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
       <div>
         {image[title]}
         <div className={stylesBotTemplate.bot_template_description}>
-          <Typography tag="h2" className={stylesBotTemplate.bot_template_title}>
+          <Typography
+            tag="h2"
+            fontFamily="secondary"
+            className={stylesBotTemplate.bot_template_title}
+          >
             {title}
           </Typography>
-          <Typography tag="p" className={stylesBotTemplate.bot_template_text}>
-            {description}
-          </Typography>
+          <Typography tag="p">{description}</Typography>
           <ul className={stylesBotTemplate.bot_template_list}>
             {data.map((item, index) => (
               <li
@@ -106,12 +108,7 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
                   {index + 1}
                   {'>'}
                 </Typography>
-                <Typography
-                  tag="span"
-                  className={stylesBotTemplate.bot_template_item_text}
-                >
-                  {item}
-                </Typography>
+                <Typography tag="span">{item}</Typography>
               </li>
             ))}
           </ul>

@@ -10,11 +10,7 @@
   row-gap: 40px;
   align-content: space-between;
   background-color: $hover-grey-color;
-
-  font-family: 'Open Sans', sans-serif;
   color: $primary-text-color;
-  line-height: $button-line-height-150;
-  letter-spacing: $m-letter-space;
 
   @media (max-width: $switching-width) {
     margin-right: 20px;
@@ -36,8 +32,7 @@
 .video__header {
   margin-top: 32px;
   margin-bottom: 24px;
-  text-align: start;
-  font-size: $h4-font-size;  
+  text-align: start; 
 }
 
 .video__container {

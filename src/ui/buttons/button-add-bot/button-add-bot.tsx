@@ -28,7 +28,11 @@ const ButtonAddBot: FC<IButtonAddBot> = ({
       disabled={disabled}
     >
       <ReactSVG className={stylesButtonAddBot.icon} src={PlusIcon} />
-      <Typography tag="p" className={stylesButtonAddBot.text}>
+      <Typography
+        tag="p"
+        fontFamily="secondary"
+        className={stylesButtonAddBot.text}
+      >
         {children}
       </Typography>
     </button>

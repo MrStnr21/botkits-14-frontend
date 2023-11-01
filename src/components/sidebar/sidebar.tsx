@@ -76,7 +76,7 @@ const Sidebar: FC = (): JSX.Element => {
                 : stylesSidebar.addbutton
             }
           >
-            <Typography tag="p" className={stylesSidebar.addtext}>
+            <Typography tag="p" fontFamily="secondary" className={stylesSidebar.addtext}>
               Добавить бота
             </Typography>
           </NavLink>
@@ -115,7 +115,7 @@ const Sidebar: FC = (): JSX.Element => {
           </ul>
           <div className={stylesSidebar.addbutton_mobile}>
             <NavLink to="/add-bot" className={stylesSidebar.addcircle_mobile} />
-            <Typography tag="p" className={stylesSidebar.addtext_mobile}>
+            <Typography tag="p" fontFamily="secondary" className={stylesSidebar.addtext_mobile}>
               Добавить бота
             </Typography>
           </div>
