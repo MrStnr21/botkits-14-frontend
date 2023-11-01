@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 
 import stylesButton from './button.module.scss';
 
-import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
+import PlusIcon from '../../../images/icon/24x24/add_bot/plus.svg';
 
 export interface IButton {
   variant: 'default' | 'circle';

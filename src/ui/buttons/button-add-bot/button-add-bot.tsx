@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
+import PlusIcon from '../../../images/icon/24x24/add_bot/plus.svg';
 
 import stylesButtonAddBot from './button-add-bot.module.scss';
 
