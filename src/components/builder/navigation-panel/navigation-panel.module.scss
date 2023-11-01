@@ -1,0 +1,38 @@
+.panel {
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 0 12px 0 16px;
+  background-color: #fff; // $off-white;
+  border-radius: 10px; //$l-border-radius;
+  // @inclide flex($align-items: center, $gap: 12px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.8;
+  backdrop-filter: blur(15px);
+
+  >:not(hr){
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+.percent {
+  width: 35px;
+  text-align: right;
+  // @include font('Open Sans', $xs-font-size, $bold, // $primary-oxford-blue-default)
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 600;
+  color: #060C23;
+  // @include line-sizes($xl-line-height, $m-letter-space)
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  font-feature-settings: 'clig' off, 'liga' off;
+
+
+  &:after {
+    content: '%';
+  display: inline-block;
+  }
+}
