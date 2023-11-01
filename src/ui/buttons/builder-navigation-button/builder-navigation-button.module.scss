@@ -2,11 +2,15 @@
 
 .button {
   @extend %button-style-reset;
+  display: block;
   background-color: $white-color;
   transition: background-color 0.1s linear;
   align-items: center;
-}
+  width: 24px;
+  height: 24px;
+  line-height: 0;
 
-.button:hover {
-  background-color: $hover-grey-color;
+  &:disabled {
+    opacity: 0.3;
+  }
 }
