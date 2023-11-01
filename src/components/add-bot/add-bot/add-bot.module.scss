@@ -1,13 +1,10 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .add_bot_title {
-  font-family: 'IBM Plex Mono';
-  font-size: $h2-font-size;
-  font-weight: $bold;
-  line-height: $h2-line-height;
-  letter-spacing: $h2-letter-space;
-  margin: 0 0 32px 0;
-  padding: 0;
+  @include indents(0, 0 0 32px 0);
+  @include font('IBM Plex Mono', $xxxl-font-size, $bold);
+  @include line-sizes($m-line-height, $s-letter-space);
   text-align: left;
 
   @media screen and (max-width: 520px) {
@@ -16,16 +13,12 @@
 }
 
 .add_bot_list {
-  display: flex;
-  padding: 0;
-  padding-bottom: 18px;
-  margin: 0;
-  gap: 19px;
+  @include indents(0 0 16px);
+  @include flex($gap: 19px);
   list-style: none;
   overflow-x: scroll;
   &::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+    @include size(0, 0);
   }
 
   @media screen and (max-width: 520px) {

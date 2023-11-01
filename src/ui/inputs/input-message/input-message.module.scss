@@ -1,53 +1,48 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .message {
+  @include min-size(272px, 48px);
   display: flex;
   max-width: 526px;
   min-width: 272px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-10;
   min-height: 48px;
   box-sizing: border-box;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
 }
 
 .message_input {
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
   margin: 0;
   padding: 14px 16px;
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
-  background-color: $default-grey-color;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $s-font-size;
-  font-weight: $normal;
-  line-height: 20px;
-  letter-spacing: $m-letter-space;
-  color: $primary-text-color;
   resize: none;
   overflow: hidden;
+  background-color: $secondary-cultured-default;
 
   &::placeholder {
-    color: $default-dark-grey-color;
+    color: $grey-3;
   }
 }
 
 .message_hidden {
-  display: flex;
-  gap: 8px;
+  @include flex($gap: 8px);
 }
 
 .message_buttons {
-  display: flex;
-  align-items: start;
-  gap: 8px;
+  @include flex($align-items: start, $gap: 8px);
   padding: 14px 16px 0 0;
 }
 
 .message_button {
   background: 0;
   border: 0;
-  cursor: pointer;
+  cursor: $cursor;
   padding: 0;
 }
 

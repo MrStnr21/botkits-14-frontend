@@ -1,45 +1,46 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 @mixin typography {
   font-family: 'IBM Plex Mono', sans-serif;
   margin: 0;
-  color: $primary-text-color;
-  font-weight: $bold;
-  line-height: $h-line-height;
+  color: $primary-oxford-blue-default;
+  font-weight: $m-line-height;
+  line-height: 130%;
 }
 
 .h2 {
   @include typography;
-  font-size: $h2-font-size;
-  letter-spacing: $h2-letter-space;
+  font-size: $xxxl-font-size;
+  letter-spacing: $s-letter-space;
 }
 
 .h3 {
   @include typography;
-  font-size: $h3-font-size;
+  font-size: $xxl-font-size;
 }
 
 .h4 {
   @include typography;
-  font-size: $h4-font-size;
+  font-size: $l-font-size;
 }
 
 .h5 {
   @include typography;
-  font-size: $m-font-size;
+  font-size: $s-font-size;
 }
 
 .p {
   @include typography;
-  font-size: $m-font-size;
-  line-height: $p-line-height;
+  font-size: $s-font-size;
+  line-height: $xl-line-height;
   letter-spacing: $m-letter-space;
 }
 
 .span {
   @include typography;
-  font-size: $s-font-size;
+  font-size: $xs-font-size;
   font-weight: $normal;
-  line-height: $p-line-height;
+  line-height: $xl-line-height;
   letter-spacing: $m-letter-space;
 }

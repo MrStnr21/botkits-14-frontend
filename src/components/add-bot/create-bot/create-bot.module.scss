@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .create {
   width: 100%;
@@ -6,51 +7,40 @@
 }
 
 .create_message {
-  color: $default-dark-grey-color;
-  font-weight: $bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(column, center, center);
   min-height: inherit;
-  flex-direction: column;
-  background-color: #f2f4f8;
-  border-radius: $border-radius-30;
+  background-color: $secondary-cultured-hover;
+  border-radius: $xxl-border-radius;
   padding: 40px;
   box-sizing: border-box;
   text-align: center;
 }
 
 .create_message_title {
-  font-family: 'IBM Plex Mono';
-  font-size: $h3-font-size;
-  line-height: $h3-line-height;
-  letter-spacing: 0px;
+  @include font('IBM Plex Mono', $xxl-font-size, $bold, $grey-3);
+  @include line-sizes($m-line-height, 0px);
   margin: 0;
 
   @media screen and (max-width: 520px) {
-    font-size: $h4-font-size;
-    line-height: $h4-line-height;
+    font-size: $l-font-size;
   }
 }
 
 .create_message_text {
-  font-family: 'Open Sans';
-  font-size: $l-font-size;
-  line-height: $l-line-height;
-  letter-spacing: $l-letter-space;
+  @include font('Open Sans', $m-font-size, $bold, $grey-3);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin: 16px 0 0;
 
   @media screen and (max-width: 520px) {
-    font-size: $m-font-size;
-    line-height: $m-line-height;
+    font-size: $s-font-size;
   }
 }
 
 .create_main {
   min-height: inherit;
-  background-color: #ffffff;
-  border-radius: $border-radius-30;
-  box-shadow: 0px 6px 16px 0px #15123314;
+  background-color: #FFFFFF;
+  border-radius: $xxl-border-radius;
+  box-shadow: $m-box-shadow;
   padding: 40px 40px 36px;
   box-sizing: border-box;
   position: relative;
@@ -65,39 +55,25 @@
 }
 
 .create_main_bot_name_img {
-  max-width: 25px;
-  max-height: 25px;
+  @include max-size(25px, 25px);
 }
 
 .create_main_bot_name_title {
-  font-family: 'IBM Plex Mono';
-  font-size: $h3-font-size;
-  font-weight: $bold;
-  line-height: $h3-line-height;
-  letter-spacing: 0px;
-  margin: 0;
-  margin-left: 15px;
+  @include font('IBM Plex Mono', $xxl-font-size, $bold);
+  @include line-sizes($m-line-height, 0px);
+  margin: 0 0 0 15px;
 }
 
 .create_main_bot_name_text {
-  font-family: 'Open Sans';
-  font-size: $s-font-size;
-  font-weight: $normal;
-  line-height: $s-line-height;
-  letter-spacing: $l-letter-space;
-  color: $default-blue-color;
-  background-color: #ecefff;
-  padding: 6px 16px;
+  @include font('Open Sans', $xs-font-size, $normal, $primary-persian-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include indents(6px 16px, 0 0 0 20px);
+  background-color: $blue-disabled;
   border-radius: 16px;
-  margin: 0;
-  margin-left: 20px;
 
   @media screen and (max-width: 670px) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 20px 24px;
+    @include indents(20px 24px, 0);
+    @include position(absolute, $top: 0, $left: 0);
     width: 100%;
     border-radius: 30px 30px 0 0;
     box-sizing: border-box;
@@ -110,8 +86,7 @@
 }
 
 .create_main_fill_bot {
-  display: flex;
-  gap: 28px;
+  @include flex($gap: 28px);
   margin-top: 40px;
 
   @media screen and (max-width: 960px) {
@@ -121,12 +96,9 @@
 }
 
 .create_main_button_container {
-  display: flex;
-  justify-content: flex-end;
+  @include flex($justify-content: flex-end);
+  @include position(absolute, $right: 40px, $bottom: 36px);
   margin-top: 16px;
-  position: absolute;
-  right: 40px;
-  bottom: 36px;
 
   @media screen and (max-width: 960px) {
     position: initial;

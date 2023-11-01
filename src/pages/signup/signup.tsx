@@ -129,7 +129,7 @@ const Signup: FC = (): JSX.Element => {
                 onClick={handlerAuthMailru}
               />
             </div>
-            <div className={stylesSignup.socialSecond}>
+            <div className={stylesSignup.socialMain}>
               <ButtonAddSocial
                 social="vk"
                 size="small"

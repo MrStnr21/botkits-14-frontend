@@ -1,4 +1,5 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .layout {
   margin: 0 auto;
@@ -9,7 +10,7 @@
   box-sizing: border-box;
   padding-left: 16px;
   position: relative;
-  background-color: $white-color;
+  background-color: $off-white;
 
   @media (max-width: $switching-width) {
     padding: 0;
@@ -17,10 +18,8 @@
 }
 
 .page {
-  // START GRID LAYOUT
   grid-column: 2 / 3;
   grid-row: 2;
-  // END GRID LAYOUT
 
   max-width: $max-content-width;
   margin: 0 auto;

@@ -1,36 +1,27 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
-  font-size: $s-font-size;
-  font-weight: $bold;
-  letter-spacing: $m-letter-space;
-  line-height: $button-line-height-150;
-  font-family: 'Open Sans', sans-serif;
+  @include button-style-reset;
+  @include flex(row, center, center);
+  @include size(100%, 35px);
+  @include font('Open Sans', $xs-font-size, $bold, $secondary-xiketic-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   transition: all 0.1s linear;
-  height: $constructor-default-button-height;
-  width: 100%;
-  border-radius: $border-radius-5;
-}
+  border-radius: $s-border-radius;
+  background-color: $secondary-cultured-focus;
 
-/* Стили цвета кнопки*/
+  &:hover {
+    color: $primary-persian-blue-default;
+  }
 
-.button {
-  color: $constructor-default-button-default-color;
-  background-color: $constructor-default-button-default-background-color;
-}
+  &:active {
+    color: $primary-persian-blue-default;
+    background-color: $blue-disabled;
+  }
 
-.button:hover {
-  color: $constructor-default-button-hover-color;
-}
-
-.button:active {
-  color: $constructor-default-button-pressed-color;
-  background-color: $constructor-default-button-pressed-background-color;
-}
-
-.button:disabled {
-  color: $constructor-default-button-disabled-color;
-  background-color: $constructor-default-button-default-background-color;
+  &:disabled {
+    color: $grey-1;
+    background-color: $secondary-cultured-focus;
+  }
 }

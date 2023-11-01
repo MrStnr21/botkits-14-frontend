@@ -1,45 +1,43 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
+  @include button-style-reset;
+  @include flex(row, center, center);
   transition: all 0.1s linear;
-  border-radius: $border-radius-10;
-  height: $button-icon-copy-height;
+  border-radius: $l-border-radius;
+  height: 40px;
   background-color: transparent;
   aspect-ratio: 1 / 1;
-}
 
-.button div {
-  @extend %flex-element-center;
-}
+  div{
+    @include flex(row, center, center);
+  }
 
-.button svg {
-  transition: stroke 0.1s linear;
-}
+  svg{
+    transition: stroke 0.1s linear;
+    stroke: $grey-3;
+  }
 
-/* Стили цвета кнопки*/
+  &:hover{
+    svg{
+      stroke: $primary-persian-blue-default;
+    }
+  }
 
-.button svg {
-  stroke: $button-icon-copy-default-color;
-}
+  &:active{
+    background-color: $blue-disabled;
 
-.button:hover svg {
-  stroke: $button-icon-copy-hover-color;
-}
+    svg{
+      stroke: $primary-persian-blue-default;
+    }
+  }
 
-.button:active {
-  background-color: $button-icon-copy-pressed-background-color;
-}
+  &:disabled{
+    background-color: transparent;
 
-.button:active svg {
-  stroke: $button-icon-copy-pressed-color;
-}
-
-.button:disabled {
-  background-color: transparent;
-}
-
-.button:disabled svg {
-  stroke: $button-icon-copy-disabled-color;
+    svg{
+      stroke: $secondary-cultured-press;
+    }
+  }
 }

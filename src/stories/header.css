@@ -14,7 +14,7 @@
 
 .storybook-header h1 {
   font-weight: 700;
-  font-size: 20px;
+  font-size: $xl-font-size;
   line-height: 1;
   margin: 6px 0 6px 10px;
   display: inline-block;
@@ -27,6 +27,6 @@
 
 .storybook-header .welcome {
   color: #333;
-  font-size: 14px;
+  font-size: $s-font-size;
   margin-right: 10px;
 }

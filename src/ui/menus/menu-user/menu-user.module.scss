@@ -1,13 +1,14 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .box {
   display: none;
   flex-direction: column;
   gap: 4px;
   width: 200px;
-  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.08);
+  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.08); // $l-box-shadow?
   background-color: white;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   position: absolute;
   z-index: 10;
   box-sizing: border-box;
@@ -15,7 +16,7 @@
 
   @media (max-width: ($switching-width)) {
     box-sizing: border-box;
-    border-top: 1px solid $icon-grey-color;
+    border-top: 1px solid $secondary-cultured-press;
     max-width: 360px;
     min-width: $min-content-width;
     width: 96vw;
@@ -30,38 +31,32 @@
 }
 
 .text {
-  font-size: $m-font-size;
-  font-weight: $normal;
-  line-height: $m-line-height;
-  font-family: 'IBM Plex Sans', sans-serif;
-  margin: 0;
-  margin-left: 16px;
-  color: #2e293d;
+  @include font('IBM Plex Sans', $s-font-size, $normal, #2e293d);
+  line-height: 21px;
+  margin: 0 0 0 16px;
 
   &hover {
-    color: #060c23;
+    color: $primary-oxford-blue-default;
   }
 
   @media (max-width: ($switching-width)) {
     font-family: 'Open Sans', sans-serif;
-    color: #060c23;
+    color: $primary-oxford-blue-default;
   }
 }
 
 .button {
+  @include flex(row, $align-items: center);
   min-height: 37px;
   box-sizing: border-box;
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   cursor: $cursor;
   text-decoration: none;
 
   &:hover {
-    background-color: $default-grey-color;
+    background-color: $secondary-cultured-default;
   }
 
   @media (max-width: ($switching-width)) {
@@ -81,7 +76,7 @@
 
 .button:nth-child(4) {
   // выйти
-  border-top: 1px solid $icon-grey-color;
+  border-top: 1px solid $secondary-cultured-press;
   padding-top: 18px;
   padding-bottom: 6px;
 
@@ -107,24 +102,16 @@
 }
 
 .userInfo__name {
+  @include font('IBM Plex Sans', $l-font-size, $bold, $primary-oxford-blue-default);
   margin: 0;
-  color: #060c23;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 130%;
+  line-height: $m-line-height;
 }
 
 .tariff_container {
-  display: flex;
-  gap: 5px;
+  @include flex($gap: 5px);
+  @include font('Open Sans', $xs-font-size, $color: #8392ab);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin-top: 4px;
-
-  color: #8392ab;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  line-height: 150%;
-  letter-spacing: 0.3px;
 }
 
 .tariff {
@@ -134,11 +121,11 @@
 
 .tariff_name {
   margin: 0;
-  font-weight: 600;
+  font-weight: $bold;
 }
 
 .addition {
-  border-top: 1px solid $icon-grey-color;
+  border-top: 1px solid $secondary-cultured-press;
   padding-top: 20px;
 
   .button:first-child {

@@ -1,114 +1,95 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
+  @include button-style-reset;
+  @include flex(row, center, center);
   transition: all 0.1s linear;
-  // border-radius: $border-radius-10;
-  // height: $constructor-icon-button-height;
-  // width: $constructor-icon-button-width;
   flex-shrink: 0;
-}
 
-.buttonBld {
-  border-radius: $border-radius-10;
-  height: $constructor-icon-button-height;
-  width: $constructor-icon-button-width;
-}
+  svg {
+    transition: all 0.1s linear;
+  }
 
-.buttonMln {
-  border-radius: $border-radius-30;
-  height: 124px;
-  width: 124px;
-}
+  &:active {
+    background-color: $blue-disabled;
 
-.icon {
-  @extend %flex-element-center;
-}
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
 
-.button svg {
-  transition: all 0.1s linear;
-}
+  &:disabled {
+    background-color: $secondary-cultured-hover;
 
-.iconMln {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-color: #ccd4e0;
-}
-
-/* Стили цвета кнопки*/
-
-.buttonBld {
-  background-color: $constructor-icon-button-default-background-color;
-}
-
-.buttonMln {
-  background-color: #f8f9fb;
-  @extend %flex-element-center;
-  flex-direction: column;
-}
-
-.iconBld svg {
-  stroke: $constructor-icon-button-default-color;
-}
-
-.iconMln svg {
-  stroke: white;
-}
-
-.buttonBld:hover .iconBld svg {
-  stroke: $constructor-icon-button-hover-color;
-}
-
-.buttonMln:hover {
-  background-color: white;
-  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
-  .iconMln {
-    background-color: $constructor-icon-button-hover-color;
+    svg {
+      stroke: $grey-1;
+    }
   }
 }
 
-// cтили в момент нажатия нужны?
-.button:active {
-  background-color: $constructor-icon-button-pressed-background-color;
-}
+.buttonBld {
+  @include size(56px, 52px);
+  border-radius: $l-border-radius;
+  background-color: $secondary-cultured-hover;
 
-.button:active svg {
-  stroke: $constructor-icon-button-pressed-color;
-}
-
-.button:disabled {
-  background-color: $constructor-icon-button-default-background-color;
-}
-
-.button:disabled svg {
-  stroke: $constructor-icon-button-disabled-color;
-}
-
-// стили нажатой кнопки
-.buttonBld_active {
-  background-color: $constructor-icon-button-pressed-background-color;
   svg {
-    stroke: $constructor-icon-button-pressed-color;
+    stroke: $grey-3;
+  }
+
+  &:hover {
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+}
+
+.buttonMln {
+  @include flex(column, center, center);
+  @include size(124px, 124px);
+  border-radius: $xxl-border-radius;
+  background-color: $secondary-cultured-default;
+}
+
+.icon {
+  @include flex(row, center, center);
+}
+
+.iconMln {
+  @include size(52px, 52px);
+  border-radius: 50%;
+  background-color: #ccd4e0;
+
+  svg {
+    stroke: white;
+  }
+
+  &:hover {
+    background-color: white;
+    box-shadow: $m-box-shadow;
+    .iconMln {
+      background-color: $primary-persian-blue-default;
+    }
+  }
+}
+
+.buttonBld_active {
+  background-color: $blue-disabled;
+  svg {
+    stroke: $primary-persian-blue-default;
   }
 }
 
 .buttonMln_active {
-  // @TODO уточнить стили после нажатия кнопки, по макету вроде только hover
-  background-color: $constructor-icon-button-pressed-background-color;
+  background-color: $blue-disabled;
   .iconMln {
-    background-color: $constructor-icon-button-pressed-color;
+    background-color: $primary-persian-blue-default;
   }
 }
 
 .text {
-  color: #060c23;
+  @include font('Open Sans', $s-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 150%; /* 21px */
-  letter-spacing: 0.3px;
   margin: 12px 0 0;
 }

@@ -1,0 +1,14 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.text {
+  font-family: 'Open Sans', sans-serif;
+
+  &_succsess {
+    color: $success-default;
+  }
+
+  &_failure {
+    color: $error-default;
+  }
+}
