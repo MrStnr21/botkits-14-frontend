@@ -24,7 +24,8 @@
 .subscription {
   @include size(100%, 352px);
   width: 404px;
-  position: relative;
+  position: sticky;
+  top: 0;
 
   &__header {
     @include size(100%, 228px);
