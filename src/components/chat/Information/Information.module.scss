@@ -3,7 +3,7 @@
 .container {
   height: 872px;
   box-sizing: border-box;
-  border-left: 1px solid #D7DEEA;
+  border-left: 1px solid #d7deea;
   align-items: center;
   position: relative;
 }
@@ -34,8 +34,7 @@
   padding-bottom: 32px;
 }
 
-
-.title{
+.title {
   @include font;
   font-family: 'IBM Plex Mono', sans-serif;
   font-weight: $bold;
@@ -45,38 +44,38 @@
   line-height: $m-line-height;
 }
 
-.nav{
+.nav {
   display: flex;
   list-style-type: none;
   padding: 0;
   margin: 0;
 
-  .button{
+  .button {
     @extend %button-style-reset;
     width: 125px;
     height: 40px;
     background-color: white;
     font-weight: $bold;
     padding: 15px;
-    border-bottom: 1px solid #D7DEEA;
+    border-bottom: 1px solid #d7deea;
     color: $default-dark-grey-color;
     transition: all 0.4s linear;
   }
-  
+
   .button:disabled {
     border-bottom: 3px solid $default-blue-color;
     color: $default-blue-color;
   }
 }
 
-.wrapper{
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding-top: 32px;
 }
 
-.chevron{
+.chevron {
   @extend %button-style-reset;
   display: flex;
   align-items: center;
@@ -86,42 +85,11 @@
   background-color: $default-blue-color;
   border-radius: 20px 0 0 20px;
   position: absolute;
-  top: 485px; 
+  top: 485px;
   left: -31px;
 }
 
-.paragraph{
+.paragraph {
   @include font;
   font-weight: $bold;
 }
-
-.files{
-  width: 291px;
-  padding-left: 40px;
-  display: grid;
-  padding-top: 32px;
-  align-items: center;
-  
-
-  grid-template-columns: 226px 65px;
-  grid-template-rows: 20px 112px;
-  grid-row-gap: 20px;
-
-  @mixin item{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    overflow: hidden;
-    display: flex;
-    gap: 8px;
-  }
-
-  .itemRow{
-    @include item;
-  }
-
-  .itemColumn{
-    @include item;
-    flex-direction: column;
-  }
-}
-

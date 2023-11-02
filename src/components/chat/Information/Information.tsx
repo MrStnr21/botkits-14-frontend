@@ -2,12 +2,9 @@ import { FC, useState } from 'react';
 import Avatar from '../../../ui/avatar/avatar';
 import stylesInformation from './Information.module.scss';
 import DropDownList from '../DropDownList/DropDownList';
-import UploadedFile from '../UploadedFile/UploadedFile';
-import UploadedImage from '../UploadedImage/UploadedImage';
 import MenuInformation from '../../../ui/menus/menu-information/menu-information';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
-import ButtonNotBackground from '../../../ui/buttons/button-not-background/button-not-background';
-import { dataFile, dataImage } from '../../../utils/uploadedFiles';
+import Files from '../Files/Files';
 
 interface IInformation {
   image?: string;
@@ -61,41 +58,7 @@ const Information: FC<IInformation> = ({
               <DropDownList caption="История действий" />
             </div>
           ) : (
-            <div>
-              {dataFile && dataImage ? (
-                <div className={stylesInformation.files}>
-                  <p className={stylesInformation.paragraph}>
-                    Загруженные файлы
-                  </p>
-                  <div>
-                    <ButtonNotBackground>Все</ButtonNotBackground>
-                  </div>
-                  <div className={stylesInformation.itemColumn}>
-                    {dataFile.map((value) => (
-                      <UploadedFile
-                        file_name={value.name}
-                        file_extension={value.extension}
-                      />
-                    ))}
-                  </div>
-                  <p className={stylesInformation.paragraph}> Изображения </p>
-                  <div>
-                    <ButtonNotBackground>Все</ButtonNotBackground>
-                  </div>
-                  <div className={stylesInformation.itemRow}>
-                    {dataImage.map((value) => (
-                      <UploadedImage image={value} />
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className={stylesInformation.information}>
-                  <p className={stylesInformation.text}>
-                    У вас пока нет загруженных файлов
-                  </p>
-                </div>
-              )}
-            </div>
+            <Files />
           )}
         </div>
       )}

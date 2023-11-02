@@ -1,0 +1,52 @@
+@import '../../app/_vars';
+
+.files {
+  width: 291px;
+  padding-left: 40px;
+  display: grid;
+  padding-top: 32px;
+  align-items: center;
+
+  grid-template-columns: 226px 65px;
+  grid-template-rows: 20px 112px;
+  grid-row-gap: 20px;
+
+  @mixin item {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    overflow: hidden;
+    display: flex;
+    gap: 8px;
+  }
+
+  .itemRow {
+    @include item;
+  }
+
+  .itemColumn {
+    @include item;
+    flex-direction: column;
+  }
+}
+
+.information {
+  max-width: 331px;
+  display: flex;
+  flex-direction: column;
+  background-color: $white-color;
+  box-sizing: border-box;
+  padding-top: 40px;
+  align-items: center;
+}
+
+.text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: $normal;
+  font-size: $s-font-size;
+  line-height: $s-line-height;
+  margin: 0;
+  white-space: nowrap;
+  color: $primary-text-color;
+  color: $default-dark-grey-color;
+  padding-bottom: 32px;
+}
