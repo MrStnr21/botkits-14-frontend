@@ -10,14 +10,62 @@
       @extend %button-style-reset;
       background-color: white;
       font-weight: $bold;
+      font-size: $s-font-size;
       padding: 15px;
       border-bottom: 1px solid #D7DEEA;
       color: $default-dark-grey-color;
       transition: all 0.4s linear;
     }
-    
-    .button:disabled {
-      border-bottom: 3px solid $default-blue-color;
+
+    .notifications {
+      @extend %button-style-reset;
+      background-color: white;
+      color: $default-dark-grey-color;
+      font-family: 'IBM Plex', sans-serif;
+      font-weight: $normal;
+      font-size: $l-font-size;
+      border-bottom: 2px solid #D7DEEA;
+      padding: 13px;
+      transition: all 0.4s linear;
+    }
+
+    .notifications:disabled {
+      border-bottom: 2px solid $default-blue-color;
       color: $default-blue-color;
     }
+    
+    .builder {
+      @extend %button-style-reset;
+      background-color: white;
+      color: $default-dark-grey-color;
+      font-weight: $normal;
+      font-size: $s-font-size;
+      border-bottom: 2px solid #D7DEEA;
+      padding: 13px;
+      transition: all 0.4s linear;
+    }
+
+    .builder:disabled {
+      border-bottom: 2px solid $default-blue-color;
+      color: $default-blue-color;
+    }
+    
+    .button:disabled {
+     // border-bottom: 3px solid $default-blue-color;
+      border-bottom: 0px;
+      color: $default-blue-color;
+      position: relative;
+    }
+
+    .button:disabled::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 3px;
+        border-radius: 2px 2px 0 0;
+        background-color: $default-blue-color;
+        bottom: 0px;
+        left: 50%;
+        transform: translate(-50%);
+      }
   }

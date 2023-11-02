@@ -24,6 +24,15 @@ export default {
         type: 'radio',
       },
     },
+    type: {
+      type: 'boolean',
+      description: 'Вид меню',
+      defaultValue: 'isInformation',
+      options: ['isInformation', 'isNotifications', 'isBuilder'],
+      control: {
+        type: 'radio',
+      },
+    },
   },
   parameters: {
     layout: 'centered',
@@ -42,6 +51,7 @@ export const menuInformation = {
     isActive: true,
     valueOne: 'Информация',
     valueTwo: 'Файлы',
+    type: 'isInformation',
   },
   render: Template,
 };

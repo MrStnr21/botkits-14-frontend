@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 
 import { useMediaQuery } from '@mui/material';
-
+import MenuInformation from '../../../ui/menus/menu-information/menu-information';
 import Notifications from '../../icons/Notifications/Notifications';
 import CloseIcon from '../../icons/Close/CloseIcon';
 
@@ -15,13 +15,7 @@ const NotificationPopup: FC<INotificationPopup> = ({
   isOpen,
   setIsNotificationOpened,
 }): JSX.Element => {
-  const [activeTab, setActiveTab] = useState('tab1');
-  const handleTab1 = () => {
-    setActiveTab('tab1');
-  };
-  const handleTab2 = () => {
-    setActiveTab('tab2');
-  };
+  const [isDisabled, setIsDisabled] = useState(true);
   const matches = useMediaQuery('(max-width: 520px)');
   return (
     <div
@@ -51,30 +45,19 @@ const NotificationPopup: FC<INotificationPopup> = ({
             </button>
           )}
         </div>
-        <div className={stylesNotification.tabs}>
-          <div
-            className={
-              activeTab === 'tab1'
-                ? `${stylesNotification.tab1} ${stylesNotification.tab1_active}`
-                : stylesNotification.tab1
-            }
-            onClick={handleTab1}
-          >
-            Новости сервиса
-          </div>
-          <div
-            className={
-              activeTab === 'tab2'
-                ? `${stylesNotification.tab2} ${stylesNotification.tab2_active}`
-                : stylesNotification.tab1
-            }
-            onClick={handleTab2}
-          >
-            Лог событий
-          </div>
-        </div>
+        <MenuInformation
+          width={182}
+          height={50}
+          isActive={isDisabled}
+          type="isNotifications"
+          valueOne="Новости сервиса"
+          valueTwo="Лог событий"
+          onClick={() => {
+            setIsDisabled(!isDisabled);
+          }}
+        />
         <div>
-          {activeTab === 'tab1' ? (
+          {isDisabled ? (
             <div className="FirstTab" />
           ) : (
             <div className="FirstTab" />

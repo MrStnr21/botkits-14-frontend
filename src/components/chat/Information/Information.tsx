@@ -48,6 +48,7 @@ const Information: FC<IInformation> = ({
             width={125}
             height={40}
             isActive={isDisabled}
+            type="isInformation"
             valueOne="Информация"
             valueTwo="Файлы"
             onClick={() => {

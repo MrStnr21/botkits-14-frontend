@@ -69,42 +69,6 @@
   padding-top: 18px;
 }
 
-.tab1 {
-  font-family: 'IBM Plex', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20.8px;
-  color: rgba(215, 222, 234, 1);
-  transition: all 0.4s linear;
-  border-bottom: 2px solid rgba(215, 222, 234, 1);
-  width: 50%;
-  text-align: center;
-  padding-bottom: 13px;
-}
-
-.tab1_active {
-  border-bottom: 2px solid rgba(36, 60, 187, 1);
-  color: rgba(36, 60, 187, 1);
-}
-
-.tab2 {
-  transition: all 0.4s linear;
-  font-family: 'IBM Plex', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20.8px;
-  color: rgba(215, 222, 234, 1);
-  border-bottom: 2px solid rgba(215, 222, 234, 1);
-  width: 50%;
-  text-align: center;
-  padding-bottom: 13px;
-}
-
-.tab2_active {
-  border-bottom: 2px solid rgba(36, 60, 187, 1);
-  color: rgba(36, 60, 187, 1);
-}
-
 .close_btn {
   position: absolute;
   top: 28px;
