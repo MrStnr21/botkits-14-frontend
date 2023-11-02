@@ -81,7 +81,11 @@ const Partnership: FC = (): JSX.Element => {
         <div className={stylesPartnership.tables}>
           <div className={stylesPartnership.tables__referrals}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <Typography tag="h3" fontFamily="secondary" className={stylesPartnership.tables__title}>
+              <Typography
+                tag="h3"
+                fontFamily="secondary"
+                className={stylesPartnership.tables__title}
+              >
                 Cтатистика рефераллов
               </Typography>
               {isMobile && (
@@ -119,7 +123,11 @@ const Partnership: FC = (): JSX.Element => {
           </div>
           <div className={stylesPartnership.tables__payments}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <Typography tag="h3" fontFamily="secondary" className={stylesPartnership.tables__title}>
+              <Typography
+                tag="h3"
+                fontFamily="secondary"
+                className={stylesPartnership.tables__title}
+              >
                 Выплаты
               </Typography>
               <button

@@ -108,7 +108,11 @@ const Signup: FC = (): JSX.Element => {
     <RegLogResLayout title="Регистрация">
       <div className={stylesSignup.signupFormContainer}>
         <div className={stylesSignup.signupSocialContainer}>
-          <Typography tag="h2" fontFamily="secondary" className={stylesSignup.signupTitle}>
+          <Typography
+            tag="h2"
+            fontFamily="secondary"
+            className={stylesSignup.signupTitle}
+          >
             Создай аккаунт с помощью
           </Typography>
           <div className={stylesSignup.socialContainer}>

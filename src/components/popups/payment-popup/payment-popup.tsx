@@ -55,14 +55,26 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
                   : ''
               }`}
             >
-              <Typography fontFamily="secondary" className={stylesPaymentPopup.nameTariff} tag="h4">
+              <Typography
+                fontFamily="secondary"
+                className={stylesPaymentPopup.nameTariff}
+                tag="h4"
+              >
                 {tariff.name}
               </Typography>
               <div className={stylesPaymentPopup.wrapperPrice}>
-                <Typography tag="h4" fontFamily="secondary" className={stylesPaymentPopup.price}>
+                <Typography
+                  tag="h4"
+                  fontFamily="secondary"
+                  className={stylesPaymentPopup.price}
+                >
                   {tariff.price}
                 </Typography>
-                <Typography fontFamily="secondary" className={stylesPaymentPopup.currency} tag="h4">
+                <Typography
+                  fontFamily="secondary"
+                  className={stylesPaymentPopup.currency}
+                  tag="h4"
+                >
                   pуб
                 </Typography>
               </div>
@@ -81,10 +93,18 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
       <div className={stylesPaymentPopup.paymentButtonsWrapper}>
         <div className={stylesPaymentPopup.greyBackgroundWrapper} />
         <div className={stylesPaymentPopup.wrapperTotalPrice}>
-          <Typography fontFamily="secondary" className={stylesPaymentPopup.totalPrice} tag="h4">
+          <Typography
+            fontFamily="secondary"
+            className={stylesPaymentPopup.totalPrice}
+            tag="h4"
+          >
             К оплате:&nbsp;
           </Typography>
-          <Typography fontFamily="secondary" className={stylesPaymentPopup.totalPrice} tag="h4">
+          <Typography
+            fontFamily="secondary"
+            className={stylesPaymentPopup.totalPrice}
+            tag="h4"
+          >
             {selectedTariff}&nbsp;
           </Typography>
           <Typography className={stylesPaymentPopup.totalPrice} tag="p">
@@ -100,7 +120,11 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
             buttonHtmlType="submit"
           >
             <div className={stylesPaymentPopup.logoUkassaIcon}>
-              <Typography fontFamily="secondary" className={stylesPaymentPopup.totalPrice} tag="h5">
+              <Typography
+                fontFamily="secondary"
+                className={stylesPaymentPopup.totalPrice}
+                tag="h5"
+              >
                 Оплатить через
               </Typography>
               <img alt="logoUkassaIcon" src={logoUkassaIcon} />
