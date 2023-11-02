@@ -1,4 +1,5 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .download {
   position: relative;
@@ -10,10 +11,9 @@
 }
 
 .download__label {
-  @extend %flex-element-center;
-  height: 65px;
-  width: 100%;
-  border-radius: 10px;
+  @include flex(row, center, center);
+  @include size(100%, 65px);
+  border-radius: $l-border-radius;
   box-sizing: border-box;
   border: 2px dashed #a6b3c9;
   margin-bottom: 2px;
@@ -22,38 +22,27 @@
 }
 
 .download__icon {
-  stroke: $default-dark-grey-color;
+  stroke: $grey-3;
   width: 24px;
   margin-right: 12px;
 }
 
 .download__text {
-  color: $default-dark-grey-color;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 150%; /* 21px */
-  letter-spacing: 0.3px;
+  @include font('Open Sans', $s-font-size, $bold, $grey-3);
+  @include line-sizes($xl-line-height, $m-letter-space);
 }
 
 .textError {
+  @include font('Open Sans', 10px, $normal, $error-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include position(absolute, $bottom: -15px);
   display: none;
-  color: #f55;
-
-  position: absolute;
-  bottom: -15px;
-
-  font-family: 'Open Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: 0.3px;
 }
 
 .download_error {
   .download__label {
-    border-radius: 10px;
-    border: 1px solid #ff5656;
+    border-radius: $l-border-radius;
+    border: 1px solid $error-default;
   }
 
   .textError {
@@ -61,10 +50,10 @@
   }
 
   .download__icon {
-    stroke: $disabled-grey-color;
+    stroke: $grey-1;
   }
 
   .download__text {
-    color: $disabled-grey-color;
+    color: $grey-1;
   }
 }

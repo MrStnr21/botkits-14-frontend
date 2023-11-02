@@ -1,60 +1,63 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
+  @include size(96px, 40px);
   transition: all 0.1s linear;
-  height: $constructor-helper-button-height;
-  width: $constructor-helper-button-width;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   box-shadow: $m-box-shadow;
-}
+  background-color: transparent;
 
-.container div {
-  height: $constructor-helper-button-height;
-  @extend %flex-element-center;
-}
+  div {
+    @include flex(row, center, center);
+    height: 40px;
+  }
 
-.container svg {
-  transition: stroke 0.1s linear;
+  svg {
+    transition: stroke 0.1s linear;
+  }
 }
 
 .ask_button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   padding-right: 12px;
-  border-right: solid 1px $constructor-helper-button-delete-line-color;
+  border-right: solid 1px $secondary-cultured-hover;
+
+  svg {
+    stroke: $primary-persian-blue-default;
+  }
+
+  &:hover {
+    svg {
+      stroke: #435cdb;
+    }
+  }
+
+  &:active {
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
 }
 
 .delete_button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   padding-left: 12px;
-}
 
-/* Стили цвета кнопки*/
+  svg {
+    stroke: $grey-3;
+  }
 
-.container {
-  background-color: transparent;
-}
+  &:hover {
+    svg {
+      stroke: $grey-1;
+    }
+  }
 
-.ask_button svg {
-  stroke: $constructor-helper-button-ask-icon-default-color;
-}
-
-.delete_button svg {
-  stroke: $constructor-helper-button-delete-icon-default-color;
-}
-
-.ask_button:hover svg {
-  stroke: $constructor-helper-button-ask-icon-hover-color;
-}
-
-.delete_button:hover svg {
-  stroke: $constructor-helper-button-delete-icon-hover-color;
-}
-
-.ask_button:active svg {
-  stroke: $constructor-helper-button-ask-icon-pressed-color;
-}
-
-.delete_button:active svg {
-  stroke: $constructor-helper-button-delete-icon-pressed-color;
+  &:active {
+    svg {
+      stroke: $grey-3;
+    }
+  }
 }

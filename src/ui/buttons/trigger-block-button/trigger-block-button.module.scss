@@ -1,10 +1,11 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
 .button {
-    margin: 0;
-    padding: 12px 12px 12px 17px;
-    width: 60px;
-    height: 48px;
-    box-sizing: border-box;
-    background-color: #FFFFFF;
-    border: none;
-    cursor: pointer;
+  @include indents(12px 12px 12px 17px, 0);
+  @include size(60px, 48px);
+  box-sizing: border-box;
+  background-color: $off-white;
+  border: none;
+  cursor: $cursor;
 }

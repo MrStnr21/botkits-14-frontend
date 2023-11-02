@@ -1,16 +1,16 @@
-@import '../../../components/app/vars';
-// @TODO перенести в нужную папку, доделать стили
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+
 .wrapper {
   width: fit-content;
-  // height: 76px;
-  background-color: #f8f9fb;
+  background-color: $secondary-cultured-default;
   text-align: left;
 }
 
 .butbox {
-  margin-top: 16px;
-  margin-bottom: 32px;
-  @extend %flex-element-center;
+  @include flex(row, center, center);
+  margin: 16px 0 32px;
   flex-wrap: wrap;
   gap: 20px;
 }
