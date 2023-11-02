@@ -80,7 +80,7 @@
   height: 16px;
   box-sizing: border-box;
   border-radius: 50%;
-  border-width: 1px;
+  border: 0;
   cursor: pointer;
   padding: 0;
 }
@@ -88,7 +88,7 @@
 .color_button_white {
   @include color_button;
   background-color: #ffffff;
-  border-color: #f2f4f8;
+  border: 1px solid #F2F4F8;
   &:hover {
     border-color: #3172da;
   }
