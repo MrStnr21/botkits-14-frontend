@@ -1,0 +1,23 @@
+@import '../../../components/app/vars';
+
+.nav{
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  
+    .button{
+      @extend %button-style-reset;
+      background-color: white;
+      font-weight: $bold;
+      padding: 15px;
+      border-bottom: 1px solid #D7DEEA;
+      color: $default-dark-grey-color;
+      transition: all 0.4s linear;
+    }
+    
+    .button:disabled {
+      border-bottom: 3px solid $default-blue-color;
+      color: $default-blue-color;
+    }
+  }

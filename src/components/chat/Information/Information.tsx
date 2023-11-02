@@ -4,6 +4,7 @@ import stylesInformation from './Information.module.scss';
 import DropDownList from '../DropDownList/DropDownList';
 import UploadedFile from '../UploadedFile/UploadedFile';
 import UploadedImage from '../UploadedImage/UploadedImage';
+import MenuInformation from '../../../ui/menus/menu-information/menu-information';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
 import ButtonNotBackground from '../../../ui/buttons/button-not-background/button-not-background';
 import { dataFile, dataImage } from '../../../utils/uploadedFiles';
@@ -43,28 +44,16 @@ const Information: FC<IInformation> = ({
           />
           <p className={stylesInformation.title}>{name}</p>
           <p className={stylesInformation.text}>Пользователь</p>
-          <nav className={stylesInformation.nav}>
-            <button
-              type="button"
-              className={stylesInformation.button}
-              disabled={isDisabled}
-              onClick={() => {
-                setIsDisabled(!isDisabled);
-              }}
-            >
-              Информация
-            </button>
-            <button
-              type="button"
-              className={stylesInformation.button}
-              disabled={!isDisabled}
-              onClick={() => {
-                setIsDisabled(!isDisabled);
-              }}
-            >
-              Файлы
-            </button>
-          </nav>
+          <MenuInformation
+            width={125}
+            height={40}
+            isActive={isDisabled}
+            valueOne="Информация"
+            valueTwo="Файлы"
+            onClick={() => {
+              setIsDisabled(!isDisabled);
+            }}
+          />
           {isDisabled ? (
             <div className={stylesInformation.wrapper}>
               <DropDownList caption="Информация о пользователе" />
