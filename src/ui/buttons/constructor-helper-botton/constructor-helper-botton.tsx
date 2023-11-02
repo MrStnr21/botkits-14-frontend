@@ -32,10 +32,15 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
   const ref = useRef<null | HTMLDivElement>(null);
 
   /* Скрытие элемента при клике, переработать */
-  function documentListener() {
-    if (hide) {
+  function documentListener(e: MouseEvent) {
+    console.log(e.target);
+    if (hide && ref.current !== e.target) {
       hide();
     }
+  }
+
+  function menuListener(e: MouseEvent) {
+    e.stopPropagation();
   }
 
   useEffect(() => {
@@ -52,6 +57,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
   return (
     isVisible && (
       <div
+        onClick={menuListener}
         ref={ref}
         className={`${stylesConstructorHelperButton.container}${
           color ? ` ${stylesConstructorHelperButton.container_color}` : ''
