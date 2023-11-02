@@ -33,7 +33,6 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
 
   /* Скрытие элемента при клике, переработать */
   function documentListener(e: MouseEvent) {
-    console.log(e.target);
     if (hide && ref.current !== e.target) {
       hide();
     }
