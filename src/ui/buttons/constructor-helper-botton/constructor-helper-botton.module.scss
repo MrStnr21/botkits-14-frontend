@@ -24,13 +24,13 @@
 
 .ask_button {
   @extend %button-style-reset;
-  padding-right: 12px;
+  padding: 0 12px;
   border-right: solid 1px $constructor-helper-button-delete-line-color;
 }
 
 .delete_button {
   @extend %button-style-reset;
-  padding-left: 12px;
+  padding: 0 12px;
 }
 
 /* Стили цвета кнопки*/
@@ -81,7 +81,7 @@
   height: 16px;
   box-sizing: border-box;
   border-radius: 50%;
-  border-width: 1px;
+  border: 0;
   cursor: pointer;
   padding: 0;
 }
@@ -89,7 +89,7 @@
 .color_button_white {
   @include color_button;
   background-color: #ffffff;
-  border-color: #f2f4f8;
+  border: 1px solid #F2F4F8;
   &:hover {
     border-color: #3172da;
   }
