@@ -52,7 +52,7 @@ const NavigationPanel: FC = () => {
         onClick={onMinus}
         disabled={scale === minScale}
       />
-      <Divider orientation="vertical" flexItem classes={styles.divider} />
+      <Divider orientation="vertical" flexItem />
       <NavigationButton icon={fit} alt="Центрировать" onClick={onFit} />
       <NavigationButton
         icon={fullScreen}
