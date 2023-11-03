@@ -1,10 +1,12 @@
 import { FC, useState } from 'react';
+import { Position } from 'reactflow';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
 import PanelInline from './panel-inline/panel-inline';
 import ButtonAddFile from '../../../../ui/buttons/button-add-file/button-add-file';
 import Input from '../../../../ui/inputs/input/input';
+import CustomHandle from '../../flow/custom-handle/custom-handle';
 
 type TMessageData = {
   type: 'message';
@@ -97,6 +99,7 @@ const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
         setName(a);
       }}
     >
+      <CustomHandle position={Position.Left} type="target" />
       <div className={styles.content}>
         {content}
         <ButtonAddFile />
