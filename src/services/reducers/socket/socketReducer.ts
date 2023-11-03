@@ -19,8 +19,7 @@ const initialState: TSocketState = {
   error: false,
   errorMessage: null,
 };
-
-const socketReducer = (
+export const socketReducer = (
   // eslint-disable-next-line @typescript-eslint/default-param-last
   state = initialState,
   action: TWSActions
@@ -55,5 +54,3 @@ const socketReducer = (
       return state;
   }
 };
-
-export default socketReducer;

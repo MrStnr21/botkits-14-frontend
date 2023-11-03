@@ -1,12 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-unused-vars */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../../services/hooks/hooks';
 import stylesDialog from './dialog.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
@@ -15,7 +10,7 @@ import PlayIcon from '../icons/Play/PlayIcon';
 import ChevronIcon from '../icons/Chevron/ChevronIcon';
 import CloseIcon from '../icons/Close/CloseIcon';
 import Message from './message/message';
-import NewMessage from '../../ui/message/message';
+// import NewMessage from '../../ui/message/message';
 import InputMessage from '../../ui/inputs/input-message/input-message';
 import DialogMenuIcon from '../icons/DialogMenuIcon/DialogMenuIcon';
 import InputDialogues from '../../ui/inputs/input-dialogues/input-dialogues';
@@ -31,9 +26,8 @@ interface DateType extends Date {
 }
 
 const Dialog: FC = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
+  const isMobile = useMediaQuery('(max-width: 620px)');
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
@@ -41,7 +35,6 @@ const Dialog: FC = () => {
 
   const chatData = useAppSelector((store) => store.websocket.data);
   console.log(chatData);
-  const isMobile = useMediaQuery('(max-width: 620px)');
 
   const handleSearchClick = () => {
     setInputVisible(!isInputVisible);

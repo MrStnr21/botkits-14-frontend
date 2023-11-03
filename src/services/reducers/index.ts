@@ -15,7 +15,7 @@ import { addBotReducer } from './bots/addBot';
 import { getTemplatesBotsReducer } from './bots/getTemplatesBots';
 
 import { getPlatformsReducer } from './platforms/getPlatforms';
-import socketReducer from './socket/socketReducer';
+import { socketReducer } from './socket/socketReducer';
 
 const rootReducer = combineReducers({
   signin: signinReducer,
