@@ -38,7 +38,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
     }
   }
 
-  function menuListener(e: MouseEvent) {
+  function menuListener(e: React.MouseEvent) {
     e.stopPropagation();
   }
 
@@ -96,7 +96,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
         </button>
         <button
           className={stylesConstructorHelperButton.delete_button}
-          onClick={deleteOnClick}
+          deleteonClick={deleteOnClick}
           // eslint-disable-next-line react/button-has-type
           type={deleteButtonHtmlType}
         >
