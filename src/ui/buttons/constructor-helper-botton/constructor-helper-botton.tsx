@@ -96,7 +96,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
         </button>
         <button
           className={stylesConstructorHelperButton.delete_button}
-          deleteonClick={deleteOnClick}
+          onClick={deleteOnClick}
           // eslint-disable-next-line react/button-has-type
           type={deleteButtonHtmlType}
         >
