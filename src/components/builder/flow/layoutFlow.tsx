@@ -11,7 +11,7 @@ import ReactFlow, {
   // OnConnect,
 } from 'reactflow';
 
-import ButtonS from '../blocks/buttons/buttons';
+import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
 
@@ -56,10 +56,10 @@ const LayoutFlow: FC = () => {
       >
         <div className={cx('upWrapper')}>
           <div className={cx('wrapper')}>
-            <ButtonS type="stop" />
+            <ButtonStart data={{ type: 'stop' }} />
           </div>
           <div className={cx('wrapper')}>
-            <ButtonS type="test" />
+            <ButtonStart data={{ type: 'test' }} />
           </div>
           <TriggerButton />
         </div>
