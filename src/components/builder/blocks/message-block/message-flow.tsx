@@ -5,7 +5,7 @@ import MessageBlock from './message-block';
 
 // import styles from './message-block.module.scss';
 
-const MessageWrapper: FC = () => {
+const MessageFlow: FC = () => {
   return (
     <ReactFlowProvider>
       <div>
@@ -36,4 +36,4 @@ const MessageWrapper: FC = () => {
   );
 };
 
-export default MessageWrapper;
+export default MessageFlow;
