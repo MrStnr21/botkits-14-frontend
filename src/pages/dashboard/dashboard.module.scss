@@ -1,13 +1,11 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
+  @include flex(column, space-between, $gap: 60px);
   max-width: 100%;
   box-sizing: border-box;
   padding-top: 40px;
-  justify-content: space-between;
   margin-right: 40px;
 
   @media (max-width: $switching-width) {

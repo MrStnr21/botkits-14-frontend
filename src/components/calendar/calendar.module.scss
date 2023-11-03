@@ -1,15 +1,13 @@
-@import '../app/_vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .container {
+  @include flex(column, center, center);
   width: 296px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: $border-radius-10;
-  background-color: $white-color;
+  border-radius: $l-border-radius;
+  background-color: $off-white;
   padding: 20px 19px 18px 19px;
-  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+  box-shadow: $m-box-shadow;
 
   [class*="MuiFormControl-root-MuiTextField-root"] {
     margin-bottom: 20px;
@@ -19,15 +17,13 @@
 }
 
 .containerTimeZone {
-  display: flex;
+  @include flex(row, space-between, center);
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  border-top: 1px solid $button-disabled-grey-color;
-  border-bottom: 1px solid $button-disabled-grey-color;
-  color: $primary-text-color;
+  padding: 8px 0;
+  border-top: 1px solid $secondary-cultured-hover;
+  border-bottom: 1px solid $secondary-cultured-hover;
 }
 
 .timeZoneLabel {
@@ -35,46 +31,39 @@
 }
 
 .containerButton {
+  @include flex(row, flex-start, center);
   margin-top: 18px;
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
 }
 
 .button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(row, center, center);
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
   margin: 0;
-  padding-left: 5px;
   background-color: transparent;
   border: none;
-  letter-spacing: $l-letter-space;
   transition: color 0.4s ease-in-out;
-}
 
-.button:hover {
-  color: $default-dark-grey-color;
+  &:hover {
+    color: $grey-3;
+  }
 }
 
 .dataFiled {
   max-height: 40px;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
 
   [class*="MuiInputBase-input"] {
-    font-size: $s-font-size;
-    font-weight: $normal;
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     font-style: 'normal';
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
-    color: $primary-text-color;
     padding: 10px 8px 10px 8px;
   }
 
   [class*="MuiOutlinedInput-notchedOutline"] {
     border: none;
-    border-radius: $border-radius-5;
+    border-radius: $s-border-radius;
     max-height: 40px;
   }
 }
@@ -88,17 +77,13 @@
   }
 
   [class*="MuiDayCalendar-weekDayLabel"] {
+    @include indents;
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     max-width: 26px;
     box-sizing: content-box;
     height: 100%;
-    font-size: $s-font-size;
-    font-weight: $normal;
     font-style: normal;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
-    color: $primary-text-color;
-    margin: 0;
-    padding: 0;
   }
 
   [class*="MuiDayCalendar-header"] {
@@ -117,19 +102,16 @@
   }
 
   [class*="MuiPickersDay-today"] {
-    border-radius: $border-radius-4;
+    border-radius: $xs-border-radius;
   }
 
 
   [class*="MuiPickersYear-yearButton"]:hover {
-    border-radius: $border-radius-4;
+    border-radius: $xs-border-radius;
   }
 
   [class*="MuiPickersCalendarHeader-root"] {
-    padding-left: 5px;
-    padding-right: 0px;
-    margin-top: 0px;
-    margin-bottom: 20px;
+    @include indents(0 0 0 5px, 0 0 20px);
     justify-content: space-between;
 
     [class*="MuiPickersCalendarHeader-switchViewIcon"] {
@@ -137,33 +119,25 @@
     }
 
     [class*="MuiPickersCalendarHeader-label"] {
-      font-size: $s-font-size;
-      font-weight: $bold;
+      @include indents;
+      @include font('Open Sans', $xs-font-size, $bold, $primary-oxford-blue-default);
+      @include line-sizes($xl-line-height, $m-letter-space);
       font-style: normal;
-      line-height: $button-line-height-150;
-      letter-spacing: $m-letter-space;
-      color: $primary-text-color;
       text-transform: capitalize;
-      margin: 0;
-      padding: 0;
     }
 
     [class*="MuiPickersArrowSwitcher"] {
       padding: 0px;
-      color: $default-dark-grey-color;
+      color: $grey-3;
     }
   }
 
   [class*="MuiPickersDay-root"] {
-    max-width: 26px;
-    max-height: 26px;
+    @include max-size(26px, 26px);
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     margin: 0px;
-    font-size: $s-font-size;
-    font-weight: $normal;
     font-style: normal;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
-    color: $primary-text-color;
 
     &:hover {
       border-radius: 4px;
@@ -171,12 +145,12 @@
   }
 
   [class*="Mui-selected"] {
-    border-radius: $border-radius-4;
-    color: $white-color;
+    border-radius: $xs-border-radius;
+    color: $off-white;
   }
 
   [class*="MuiPickersDay-dayOutsideMonth"] {
-    color: $default-dark-grey-color;
+    color: $grey-3;
   }
 
 }

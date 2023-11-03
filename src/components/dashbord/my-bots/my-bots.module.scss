@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .wrapper {
   max-width: 100%;
@@ -6,38 +7,31 @@
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(row, space-between, center);
   margin-bottom: 24px;
 }
 
 .header__text {
   @media (max-width: $switching-width) {
-    font-size: $h3-font-size;
-    line-height: $h3-line-height;
+    font-size: $xxl-font-size;
+    line-height: $m-line-height;
   }
 }
 
 .header__button {
-  @extend %button-style-reset;
+  @include button-style-reset;
+  @include font('Open Sans', $xs-font-size, $normal, $grey-4);
+  @include line-sizes($xl-line-height, $m-letter-space);
   display: block;
   margin-right: 20px;
-  color: #8392ab;
   text-align: right;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $s-font-size;
-  font-weight: $normal;
-  line-height: $p-line-height; /* 19.5px */
-  letter-spacing: $l-letter-space;
 }
 
 .list {
+  @include indents;
   max-width: 100%;
   list-style: none;
   gap: 28px;
-  margin: 0;
-  padding: 0;
   transition: height 1s;
   display: grid;
   grid-template-columns: repeat(auto-fit, 296px);
@@ -56,17 +50,11 @@
 .item {
   min-height: 195px;
   position: relative;
-  // @media (max-width: $switching-width) {
-  //   gap: 20px;
-  //   grid-template-columns: repeat(auto-fit, 235px);
-  // }
 }
 
 .buttonAddbot {
-  width: 296px;
-  height: 172px;
+  @include size(296px, 172px);
   @media (max-width: $switching-width) {
-    width: 235px;
-    height: 177px;
+    @include size(296px, 172px);
   }
 }

@@ -1,21 +1,16 @@
-@import '../app/_vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .footer {
-  // START GRID LAYOUT
   grid-column: 2 / 3;
   grid-row: 3;
-  // END GRID LAYOUT
 
-  display: flex;
-  flex-direction: column;
+  @include flex(column);
+  @include indents(15px 0 0 0, 32px 40px 15px 0);
   height: 35px;
   box-sizing: border-box;
-  padding-top: 15px;
-  margin-top: 32px;
-  margin-bottom: 15px;
-  border-top: 1px solid #d7deea;
-  background-color: $white-color;
-  margin-right: 40px;
+  border-top: 1px solid $secondary-cultured-press;
+  background-color: $off-white;
 
   @media (max-width: $switching-width) {
     grid-column: 1 / 3;

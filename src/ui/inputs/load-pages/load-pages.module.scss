@@ -1,31 +1,29 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .upload_img * {
-  fill: $disabled-grey-color;
+  fill: $grey-1;
 }
 
 .selects {
   width: 100%;
   max-width: 580px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-10;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
   padding-right: 4px;
   box-sizing: border-box;
 }
 
 .selects_items {
-  display: flex;
-  padding: 16px 8px 16px 12px;
-  gap: 8px;
+  @include indents(16px 8px 16px 12px);
+  @include flex($gap: 8px);
   flex-wrap: wrap;
   max-height: 146px;
   box-sizing: border-box;
   overflow-y: auto;
-  margin: 0;
   list-style: none;
   &::-webkit-scrollbar {
-    width: 4px;
-    height: 8px;
+    @include size(4px, 8px)
   }
 
   &::-webkit-scrollbar-thumb {
@@ -43,37 +41,30 @@
 }
 
 .selects_button {
+  @include flex(row, center, center, 17px);
   width: 100%;
-  background-color: $default-grey-color;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: $bold;
-  font-size: $m-font-size;
-  line-height: $m-line-height;
-  letter-spacing: $l-letter-space;
-  gap: 17px;
+  background-color: $secondary-cultured-default;
   border: 0;
   padding: 16px 12px;
-  border-radius: $border-radius-10;
-  cursor: pointer;
+  border-radius: $l-border-radius;
+  cursor: $cursor;
 
   transition: 0.2s linear;
 
   &:hover * {
     transition: 0.2s linear;
-    fill: $default-dark-grey-color;
+    fill: $grey-3;
     color: #6392ab;
   }
 
   &:disabled * {
-    fill: $disabled-grey-color;
-    color: #d7deea;
+    fill: $grey-1;
+    color: $secondary-cultured-press;
   }
 }
 
 .selects_text {
-  color: $placeholder-grey-color;
+  color: $grey-2;
 }
 
 .selects_item {

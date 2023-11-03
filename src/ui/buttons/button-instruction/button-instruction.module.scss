@@ -1,43 +1,68 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
-  width: 100%;
-  height: 76px;
+  @include button-style-reset;
+  @include flex(row, center, center);
+  @include size(100%, 76px);
   transition: box-shadow 0.1s linear;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   overflow: hidden;
   position: relative;
   z-index: 0;
   box-sizing: border-box;
-}
 
-.button:hover {
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
-  background-color: white;
-}
+  &:hover {
+    box-shadow: $m-box-shadow;
+    background-color: white;
 
-.button:disabled {
-  @extend .button;
-  pointer-events: none;
-}
+    .text_container {
+      border: 2px solid rgba(0, 0, 0, 0);
+    }
 
-.button:disabled svg {
-  fill: $button-add-bot-disabled-color;
+    .image_box {
+      background-color: $primary-medium-spring-green-disabled;
+
+      svg {
+        fill: $primary-medium-spring-green-default;
+      }
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+
+    svg {
+      fill: $grey-1;
+    }
+
+    .text {
+      color: $grey-1;
+    }
+  }
 }
 
 .image_box {
-  @extend %flex-element-center;
-  width: 173px;
-  height: 173px;
+  @include flex(row, center, center);
+  @include size(173px, 173px);
+  @include position(absolute, -48px, $left: -26px);
   border-radius: $border-radius-circle;
-  background-color: $button-default-grey-color;
+  background-color: $secondary-cultured-focus;
   transition: background-color 0.1s linear;
-  position: absolute;
   z-index: 1;
-  top: -48px;
-  left: -26px;
+
+  div {
+    @include flex(row, center, center);
+  }
+
+  svg {
+    fill: $grey-3;
+    transition: all 0.1s linear;
+
+    @media screen and (max-width: 670px) {
+      padding-right: 32px;
+    }
+  }
 
   @media screen and (max-width: 670px) {
     justify-content: end;
@@ -45,52 +70,26 @@
   }
 }
 
-.image_box div {
-  @extend %flex-element-center;
-}
-
-.image_box svg {
-  fill: $default-dark-grey-color;
-  transition: all 0.1s linear;
-
-  @media screen and (max-width: 670px) {
-    padding-right: 32px;
-  }
-}
-
-.button:hover .image_box {
-  background-color: $button-disabled-green-color;
-}
-
-.button:hover .image_box svg {
-  fill: $button-default-green-color;
-}
-
 .text_container {
-  @extend %flex-element-center;
-  width: 100%;
-  height: 76px;
-  border: 2px solid $button-default-grey-color;
+  @include flex(row, center, center);
+  @include size(100%, 76px);
+  border: 2px solid $secondary-cultured-focus;
   box-sizing: border-box;
   transition: border 0.1s linear;
-  border-radius: $border-radius-10;
-}
-
-.button:hover .text_container {
-  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: $l-border-radius;
 }
 
 .text {
+  @include indents(0 20px 0 201px);
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
   text-align: left;
-  padding-left: 201px;
-  padding-right: 20px;  
   @media screen and (max-width: 670px) {
     padding-left: 137px;
   }
 }
 
 .button:disabled .text {
-  //@extend .text;
-  color: $button-add-bot-disabled-color;
+  color: $grey-1;
 }

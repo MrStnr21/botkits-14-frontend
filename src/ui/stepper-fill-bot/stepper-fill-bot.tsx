@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import Typography from '../typography/typography';
+
 import stylesStepperFillBot from './stepper-fill-bot.module.scss';
+import Typography from '../typography/typography';
 
 interface IStepperFillBot {
   step: string;

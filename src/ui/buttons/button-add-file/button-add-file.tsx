@@ -16,7 +16,6 @@ import { BUTTON_NAME } from '../../../utils/constants';
 import ResultAddFile, { IResultProps } from './result-add-file/result-add-file';
 
 import VideoCard from '../../../components/video-card/video-card';
-import Typography from '../../typography/typography';
 
 interface IButton {
   type: BUTTON_NAME;
@@ -129,9 +128,7 @@ const ButtonAddFile: FC = (): JSX.Element => {
         </ul>
       )}
       <div className={stylesButtonAddFile.wrapper}>
-        <Typography tag="h3" className={stylesButtonAddFile.header}>
-          Дополните контентом
-        </Typography>
+        <h3 className={stylesButtonAddFile.header}>Дополните контентом</h3>
         <div className={stylesButtonAddFile.inputsBox}>
           <Button
             type={BUTTON_NAME.IMAGE}

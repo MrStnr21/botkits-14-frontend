@@ -1,7 +1,9 @@
 import { FC, useState } from 'react';
 
 import stylesBotCard from './bot-card.module.scss';
+
 import tg from '../../images/icon/40x40/telegram/default.svg';
+
 import MoreMybotPopup from '../popups/more-mybot/more-mybot';
 import Typography from '../../ui/typography/typography';
 

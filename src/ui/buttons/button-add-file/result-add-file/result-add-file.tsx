@@ -10,7 +10,6 @@ import { ReactComponent as audio } from '../../../../images/icon/add content/pla
 import { ReactComponent as image } from '../../../../images/icon/add content/image-blue.svg';
 
 import { sizeFormated } from '../../../../utils/utils';
-import Typography from '../../../typography/typography';
 
 export interface IResultProps {
   name: string;
@@ -64,12 +63,8 @@ const ResultAddFile: FC<IResultProps> = ({
   return (
     <div className={classBlock}>
       <Icon className={styles.result__icon} />
-      <Typography tag="p" className={styles.result__name}>
-        {name}
-      </Typography>
-      <Typography tag="p" className={styles.result__size}>
-        {sizeFormated(size)}
-      </Typography>
+      <p className={styles.result__name}>{name}</p>
+      <p className={styles.result__size}>{sizeFormated(size)}</p>
       <button
         type="button"
         aria-label="Удалить файл"

@@ -1,12 +1,10 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .partnership {
+  @include flex(column, center, center);
   margin-top: 32px;
   margin-right: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
   @media screen and (max-width: 680px) {
     margin: 0 auto;
@@ -15,10 +13,7 @@
   }
 
   &__wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    @include flex(row, space-between, flex-start);
     width: 100%;
     padding-bottom: 40px;
 
@@ -29,21 +24,19 @@
   }
 
   &__title {
-    color: $primary-text-color;
-    margin-bottom: 32px;
+    color: $primary-oxford-blue-default;
+    margin: 0 0 32px 0;
 
     @media screen and (max-width: 620px) {
-      font-size: $h3-font-size;
-      line-height: $h3-line-height;
+      font-size: $xxl-font-size;
+      line-height: 31.2px;
       margin-bottom: 20px;
     }
   }
 
   &__inputContainer {
+    @include flex($align-items: center, $gap: 16px);
     width: 455px;
-    display: flex;
-    gap: 16px;
-    align-items: center;
 
     @media screen and (max-width: 860px) {
       min-width: 320px;
@@ -69,44 +62,44 @@
 
 .tables {
   margin: 0;
-  border-radius: $border-radius-30;
-  background-color: $default-grey-color;
+  border-radius: $xxl-border-radius;
+  background-color: $secondary-cultured-default;
   width: 100%;
 
   &__payments {
+    @include flex(column, $align-items: center);
+    padding: 40px 0;
+    box-sizing: border-box;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 26px;
   }
 
   &__referrals {
+    @include flex(column, $align-items: center, $gap: 26px);
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $white-color;
-    border-radius: $border-radius-30;
+    padding: 40px 0;
+    background-color: $off-white;
+    border-radius: $xxl-border-radius;
     box-sizing: border-box;
-    box-shadow: 0px 6px 16px 0px #15123314;
+    box-shadow: $m-box-shadow;
   }
 
   &__titleContainer {
-    padding: 40px;
+    @include flex(row, space-between, center);
+    padding: 0 40px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
   }
 
-  &__title {    
-    line-height: $h3-line-height;
+  &__title {
+    @include font('IBM Plex Mono', $xxl-font-size, $semi-bold);
+    @include line-sizes($m-line-height, $s-letter-space);
+    margin: 0;
 
     @media screen and (max-width: 860px) {
-      font-size: $h4-font-size;
-      line-height: $h4-line-height;
+      font-size: $l-font-size;
     }
   }
 
@@ -114,6 +107,22 @@
     border: none;
     background: transparent;
     cursor: $cursor;
-    transition: all .3s ease-in;
+    transition: all 0.3s ease-in;
+  }
+}
+
+.text {
+  font-family: 'Open Sans', sans-serif;
+
+  &_succsess {
+    color: $success-default;
+  }
+
+  &_failure {
+    color: $error-default;
+  }
+
+  &_processing {
+    color: $primary-persian-blue-default;
   }
 }

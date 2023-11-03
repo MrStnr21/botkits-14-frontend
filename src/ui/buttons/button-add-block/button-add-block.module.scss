@@ -1,0 +1,55 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.name {
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  margin: 0;
+}
+
+.button {
+  @include button-style-reset;
+  @include size(196px, 64px);
+  @include flex($align-items: center);
+  background-color: white;
+  transition: background-color 0.1s linear;
+  border-radius: $l-border-radius;
+
+  & :hover {
+    background-color: $secondary-cultured-hover;
+
+    .icon {
+      opacity: 1;
+      filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg)
+        brightness(77%) contrast(87%);
+    }
+
+    .name {
+      color: $primary-persian-blue-default;
+    }
+  }
+
+  & :active {
+    background-color: $blue-disabled;
+  }
+
+  & :disabled {
+    background-color: white;
+
+    .icon {
+      opacity: 0.3;
+      filter: none;
+    }
+
+    .name {
+      color: $grey-2;
+    }
+  }
+}
+
+.icon {
+  margin: 0 16px 0;
+  opacity: 0.3;
+  filter: none;
+  transition: opacity 0.1s linear;
+}

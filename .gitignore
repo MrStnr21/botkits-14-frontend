@@ -25,5 +25,6 @@ yarn-error.log*
 # Storybook
 storybook-static
 
-АнтиCORS
-/~*
+# Environment
+.env*
+!.env.example

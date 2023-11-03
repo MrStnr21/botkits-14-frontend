@@ -1,23 +1,20 @@
-@import '../app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
-// Размер элемента
 %size-m {
-  width: 264px;
-  height: 132px;
-  border-radius: $border-radius-15;
+  @include size(264px, 132px);
+  border-radius: $xl-border-radius;
 }
 
 %size-s {
-  width: 172px;
-  height: 96px;
-  border-radius: $border-radius-10;
+  @include size(172px, 96px);
+  border-radius: $l-border-radius;
   margin-right: 20px;
 }
 
 %size-x {
-  width: 130px;
-  height: 72px;
-  border-radius: $border-radius-10;
+  @include size(130px, 72px);
+  border-radius: $l-border-radius;
 }
 
 .size-m {
@@ -31,9 +28,7 @@
 }
 
 .flexWrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 20px 16px;
+  @include flex($gap: 20px 16px);
 }
 
 .container {
@@ -43,29 +38,22 @@
 }
 
 .prewiew {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  @include size(100%, 100%);
+  @include position(absolute, 0, $left: 0);
 }
 
 .cover {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex(column, center, center);
   transition: background-color 0.5s ease;
   position: relative;
   z-index: 1;
 
   &.hover,
   &:hover {
-    background-color: rgba($primary-text-color, 0.4);
+    background-color: rgba($primary-oxford-blue-default, 0.4);
 
     .playButton {
-      width: 47px;
-      height: 47px;
+      @include size(47px, 47px);
       background-image: url('../../images/icon/add content/play-circle.svg');
       background-size: 45px 45px;
       filter: drop-shadow(0px 14px 56px rgba(21, 18, 51, 0.12));
@@ -74,69 +62,60 @@
 }
 
 .playButton {
-  @extend %button-style-reset;
+  @include button-style-reset;
 }
 
 .button__remove {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 15px;
-  height: 15px;
+  @include size(15px, 15px);
+  @include button-style-reset;
+  @include position(absolute, 8px, 8px);
   mask-image: url('../../images/icon/24x24/common/close.svg');
-  background-color: $disabled-grey-color;
+  background-color: $grey-1;
   mask-position: center;
   mask-size: 15px 15px;
-  @extend %button-style-reset;
   z-index: 2;
 
   &:hover {
     cursor: $cursor;
-    background-color: $white-color;
+    background-color: $off-white;
   }
 }
 
 .caption {
   margin-top: 12px;
+  margin-bottom: 0;
   text-align: start;
 }
 
 .video__box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  @include flex(row, center, center);
+  @include size(100%, 100%);
+  @include position(absolute, 0, $left: 0);
   z-index: 10;
-  @extend %flex-element-center;
-  background-color: rgba($primary-text-color, 0.4);
+  background-color: rgba($primary-oxford-blue-default, 0.4);
 }
 
 .video__iframe {
+  @include size(80%, 80%);
   position: relative;
   z-index: 10;
-  width: 80%;
-  height: 80%;
-  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  box-shadow: $l-box-shadow;
   border: none;
 }
 
 .button__close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  width: 35px;
-  height: 35px;
+  @include size(35px, 35px);
+  @include position(absolute, 20px, 30px);
   mask-image: url('../../images/icon/24x24/common/close.svg');
   mask-repeat: no-repeat;
-  background-color: $disabled-grey-color;
+  background-color: $grey-1;
   mask-position: center;
   mask-size: 35px 35px;
-  @extend %button-style-reset;
+  @include button-style-reset;
   z-index: 11;
 
   &:hover {
     cursor: $cursor;
-    background-color: $white-color;
+    background-color: $off-white;
   }
 }

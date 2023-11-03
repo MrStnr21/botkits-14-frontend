@@ -6,8 +6,6 @@ import styles from './header.module.scss';
 
 import Notifications from '../icons/Notifications/Notifications';
 import ArrowSmall from '../icons/ArrowSmall/ArrowSmall';
-import MenuMobile from '../icons/MenuMobile/MenuMobile';
-import Menu24px from '../icons/Menu24px/Menu24px';
 import Help from '../icons/Help/Help';
 import Logo from '../icons/Logo/Logo';
 
@@ -17,6 +15,8 @@ import MenuUser from '../../ui/menus/menu-user/menu-user';
 
 import NotificationPopup from '../popups/notification-popup/notification-popup';
 import Typography from '../../ui/typography/typography';
+import MenuMobile from '../icons/MenuMobile/MenuMobile';
+import Menu24px from '../icons/Menu24px/Menu24px';
 
 const Header: FC = (): JSX.Element => {
   const [isOpenAccontSettings, setIsAccSet] = useState(false);
@@ -36,9 +36,9 @@ const Header: FC = (): JSX.Element => {
     <header className={styles.header}>
       <div className={styles.container}>
         {matches ? <MenuMobile /> : <Menu24px />}
-        <Typography tag="span" fontFamily="secondary" className={styles.logo}>
+        <span className={styles.logo}>
           <Logo />
-        </Typography>
+        </span>
       </div>
       <div className={styles.wrapper}>
         <Typography tag="p" fontFamily="secondary" className={styles.text}>
@@ -52,18 +52,13 @@ const Header: FC = (): JSX.Element => {
           <Notifications number={2} onClick={toggleNotifPopup} />
         </div>
         <div className={styles.userInfo} onClick={toggleAccSet}>
-          <Typography
-            tag="span"
-            fontFamily="secondary"
-            className={styles.userInfo__avatar}
-          >
+          <span className={styles.userInfo__avatar}>
             <img src={avatar} alt="Avatar" className={styles.userInfo__image} />
-          </Typography>
+          </span>
           <Typography tag="p" fontFamily="secondary" className={styles.text}>
             User Name
           </Typography>
-          <Typography
-            tag="span"
+          <span
             className={`${styles.userInfo__button} ${
               !isOpenAccontSettings
                 ? styles.button_default
@@ -71,7 +66,7 @@ const Header: FC = (): JSX.Element => {
             }`}
           >
             <ArrowSmall />
-          </Typography>
+          </span>
         </div>
         <MenuUser
           isActive={isOpenAccontSettings}

@@ -1,28 +1,25 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
-  font-size: $m-font-size;
-  font-weight: $bold;
-  letter-spacing: $button-letter-space;
-  line-height: $button-line-height-134;
-  font-family: 'IBM Plex Mono', sans-serif;
+  @include button-style-reset;
+  @include flex(row, center, center);
+  @include font('IBM Plex Mono', $s-font-size, $bold);
+  @include line-sizes(21px, 1px);
   text-transform: uppercase;
   transition: all 0.1s linear;
 }
 
 .button div {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .button svg {
   transition: stroke 0.1s linear;
 }
 
-/* Стили варианта кнопки*/
 .default {
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   width: 100%;
 }
 
@@ -31,71 +28,68 @@
   aspect-ratio: 1 / 1;
 }
 
-/* Стили размера кнопки*/
 .small {
-  height: $s-button-height;
+  height: 46px;
 }
 
 .medium {
-  height: $m-button-height;
+  height: 52px;
 }
 
 .medium svg {
-  stroke-width: $m-button-icon-stroke-width;
+  stroke-width: $m-icon-stroke-width;
 }
 
 .large {
-  height: $l-button-height;
+  height: 65px;
 }
 
 .large svg {
-  stroke-width: $l-button-icon-stroke-width;
-  height: $l-button-icon-size;
-  width: $l-button-icon-size;
+  @include size(30px, 30px);
+  stroke-width: $l-icon-stroke-width;
 }
 
-/* Стили цвета кнопки*/
 .blue {
-  color: $white-color;
-  background-color: $button-default-blue-color;
+  color: $off-white;
+  background-color: $primary-persian-blue-default;
 }
 
 .blue svg {
-  stroke: $white-color;
+  stroke: $off-white;
 }
 
 .blue:hover {
-  background-color: $button-hover-blue-color;
+  background-color: #435cdb;
 }
 
 .blue:active {
-  background-color: $button-pressed-blue-color;
+  background-color: $primary-persian-blue-hover;
 }
 
 .blue:disabled {
-  background-color: $button-disabled-blue-color;
+  background-color: $blue-disabled;
 }
 
 .green {
-  color: $primary-text-color;
-  background-color: $button-default-green-color;
+  color: $primary-oxford-blue-default;
+  background-color: $primary-medium-spring-green-default;
 }
 
 .green svg {
-  stroke: $primary-text-color;
+  stroke: $primary-oxford-blue-default;
 }
 
 .green:hover {
-  background-color: $button-hover-green-color;
+  background-color: $primary-medium-spring-green-hover;
 }
 
 .green:active {
-  background-color: $button-pressed-green-color;
+  background-color: $primary-medium-spring-green-default;
 }
 
 .green:disabled {
   color: rgba(0, 0, 0, 0.4);
-  background-color: $button-disabled-green-color;
+  background-color: $primary-medium-spring-green-disabled;
 }
 
 .green:disabled svg {
@@ -103,40 +97,39 @@
 }
 
 .grey {
-  color: $primary-text-color;
-  background-color: $button-default-grey-color;
+  color: $primary-oxford-blue-default;
+  background-color: $secondary-cultured-focus;
 }
 
 .grey:hover {
-  color: $default-blue-color;
-  background-color: $button-hover-grey-color;
+  color: $primary-persian-blue-default;
+  background-color: $secondary-cultured-focus;
 }
 
 .grey:active {
-  color: $default-blue-color;
-  background-color: $button-pressed-grey-color;
-  box-shadow: $s-box-shadow;
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .grey:disabled {
-  color: $default-dark-grey-color;
-  background-color: $button-disabled-grey-color;
+  color: $grey-3;
+  background-color: $secondary-cultured-hover;
 }
 
 .grey:disabled:active {
   box-shadow: none;
 }
 
-/* Стиль для UI "Добавить кнопку" */
 .light-grey {
-  background-color: $constructor-icon-button-default-background-color;
-  color: #a6b3c9;
+  background-color: $secondary-cultured-hover;
+  color: $grey-3;
   &:hover {
-    color: $constructor-icon-button-hover-color;
+    color: $primary-persian-blue-default;
   }
 }
 
 .button_active {
-  color: $constructor-icon-button-hover-color;
-  background-color: $constructor-icon-button-pressed-background-color;
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
 }

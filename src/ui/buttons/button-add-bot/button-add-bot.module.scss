@@ -1,88 +1,85 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  @extend %flex-element-center;
-  flex-direction: column;
-  gap: 14px;
+  @include button-style-reset;
+  @include flex(column, center, center, 14px);
+  @include font('IBM Plex Mono', $m-font-size, $bold);
+  @include line-sizes($m-line-height, $l-letter-space);
+  @include size(100%, 172px);
   transition: all 0.1s linear;
-  height: $button-add-bot-height;
-  width: 100%;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
 }
 
 .icon {
-  @extend %flex-element-center;
-  width: $button-add-bot-icon-size;
-  height: $button-add-bot-icon-size;
+  @include flex(row, center, center);
+  @include size(46px, 46px);
   box-sizing: border-box;
-  border: $button-add-bot-border-width solid;
+  border: 3px solid;
   border-radius: $border-radius-circle;
   transition: all 0.1s linear;
 }
 
 .icon div {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .icon svg {
-  stroke-width: $button-add-bot-stroke-width;
+  stroke-width: $m-icon-stroke-width;
   transition: stroke 0.1s linear;
 }
 
 .text {
-  padding: 0 12px;
-}
-
-/* Стили цвета кнопки*/
-
-.button {
-  color: $button-add-bot-default-color;
-  background-color: $button-add-bot-default-background-color;
+  @include indents;
 }
 
 .icon {
-  border-color: $default-dark-grey-color;
+  border-color: $grey-3;
 }
 
-.button svg {
-  stroke: $button-add-bot-default-color;
-}
+.button {
+  color: $grey-3;
+  background-color: $secondary-cultured-hover;
 
-.button:hover {
-  color: $button-add-bot-hover-color;
-}
+  svg {
+    stroke: $grey-3;
+  }
 
-.button:hover .icon {
-  border-color: $button-add-bot-hover-color;
-}
+  &:hover {
+    color: $primary-persian-blue-default;
 
-.button:hover svg {
-  stroke: $button-add-bot-hover-color;
-}
+    .icon {
+      border-color: $primary-persian-blue-default;
+    }
 
-.button:active {
-  color: $button-add-bot-pressed-color;
-  background-color: $button-add-bot-pressed-background-color;
-}
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
 
-.button:active .icon {
-  border-color: $button-add-bot-pressed-color;
-}
+  &:active {
+    color: $primary-persian-blue-default;
+    background-color: $blue-disabled;
 
-.button:active svg {
-  stroke: $button-add-bot-pressed-color;
-}
+    .icon {
+      border-color: $primary-persian-blue-default;
+    }
 
-.button:disabled {
-  color: $button-add-bot-disabled-color;
-  background-color: $button-add-bot-default-background-color;
-}
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
 
-.button:disabled .icon {
-  border-color: $button-add-bot-disabled-color;
-}
+  &:disabled {
+    color: $grey-1;
+    background-color: $secondary-cultured-hover;
 
-.button:disabled svg {
-  stroke: $button-add-bot-disabled-color;
+    .icon {
+      border-color: $grey-1;
+    }
+
+    svg {
+      stroke: $grey-1;
+    }
+  }
 }

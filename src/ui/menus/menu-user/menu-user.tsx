@@ -15,8 +15,9 @@ import { useAppDispatch } from '../../../services/hooks/hooks';
 
 import BASE_URL from '../../../utils/config';
 import routesUrl from '../../../utils/routesData';
-import Typography from '../../typography/typography';
+
 import { getAccessToken } from '../../../auth/authService';
+import Typography from '../../typography/typography';
 
 export interface IMenuUser {
   isActive?: boolean;

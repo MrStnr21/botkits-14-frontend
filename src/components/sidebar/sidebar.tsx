@@ -5,8 +5,9 @@ import { useMediaQuery } from '@mui/material';
 import stylesSidebar from './sidebar.module.scss';
 
 import Cover from '../../ui/cover/cover';
-import Typography from '../../ui/typography/typography';
+
 import { links, ILink } from './sb-data';
+import Typography from '../../ui/typography/typography';
 
 // Элемент заголовка в навигации
 const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
@@ -20,9 +21,7 @@ const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
       }
     >
       {icon}
-      <Typography tag="p" className={stylesSidebar.navigation__text}>
-        {text}
-      </Typography>
+      <p className={stylesSidebar.navigation__text}>{text}</p>
     </NavLink>
   );
 };

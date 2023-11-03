@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import Typography from '../../ui/typography/typography';
+
 import stylesRegLogResLayout from './reg-log-res-layout.module.scss';
+import Typography from '../../ui/typography/typography';
 
 interface IRegLogResLayout {
   title: string;

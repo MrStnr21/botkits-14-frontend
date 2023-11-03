@@ -1,10 +1,11 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .message {
   display: flex;
   max-width: 308px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-10;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
   min-height: 40px;
   padding: 10px;
   box-sizing: border-box;
@@ -12,39 +13,32 @@
 }
 
 .input {
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
-  background-color: $default-grey-color;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $s-font-size;
-  font-weight: $normal;
-  line-height: $s-line-height;
-  letter-spacing: $m-letter-space;
-  color: $primary-text-color;
+  background-color: $secondary-cultured-default;
   text-indent: 25px;
 
   &::placeholder {
-    color: $default-dark-grey-color;
+    color: $grey-3;
     background: url('../../../images/icon/20x20/search.svg') no-repeat;
   }
 }
 
 .message_hidden {
-  display: flex;
-  gap: 8px;
+  @include flex($gap: 8px);
 }
-
 
 .button {
   background: 0;
   border: 0;
-  cursor: pointer;
+  cursor: $cursor;
   padding: 0;
 }
 
-
 .icon {
-  stroke: $default-dark-grey-color;
+  stroke: $grey-3;
 }

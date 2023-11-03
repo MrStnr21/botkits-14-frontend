@@ -1,0 +1,103 @@
+@use './variables' as vars;
+
+/* Миксины для всего проекта */
+
+/* Flex-блок */
+@mixin flex($direction: row, $justify-content: false, $align-items: false, $gap: false){
+  display: flex;
+  flex-direction: $direction;
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+  @if $align-items {
+    align-items: $align-items
+  }
+  @if $gap {
+    gap: $gap;
+  }
+};
+
+/* Отступы */
+@mixin indents($padding: 0, $margin: 0){
+  padding: $padding;
+  margin: $margin;
+};
+
+/* Размеры элемента' */
+@mixin size($width, $height){
+  width: $width;
+  height: $height;
+};
+
+@mixin max-size($max-width, $max-height){
+  max-width: $max-width;
+  max-height: $max-height;
+}
+
+@mixin min-size($min-width, $min-height){
+  min-width: $min-width;
+  min-height: $min-height;
+}
+
+/* Позиционирование элемента */
+@mixin position($position, $top: false, $right: false, $bottom: false, $left: false) {
+  position: $position;
+  @if $top {
+    top: $top;
+  }
+  @if $right {
+    right: $right;
+  }
+  @if $bottom {
+    bottom: $bottom;
+  }
+  @if $left {
+    left: $left;
+  }
+}
+
+/* Свойства шрифта и строки */
+@mixin font($font-family, $font-size: inherit, $font-weight: inherit, $color: inherit){
+  font-family: $font-family, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+};
+
+@mixin line-sizes($line-height: inherit, $letter-spacing: inherit){
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+/* Обрезание текста - эллипсис */
+@mixin ellipsis{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Сброс стиля кнопок и единый курсор */
+@mixin button-style-reset {
+  border: none;
+  padding: 0;
+  background: transparent;
+
+  &:hover {
+    cursor: vars.$cursor;
+  }
+}
+
+/* Миксины для повторяющихся элементов
+
+/* Сообщение для ошибки в формах авторизации */
+@mixin incorrect-text($text-align) {
+  @include font('PT Sans', vars.$xxxs-font-size, vars.$normal, vars.$error-default);
+  @include line-sizes(vars.$xl-line-height, vars.$m-letter-space);
+  position: absolute;
+  margin: 2px 0 0 0;
+  left: 0;
+  right: 0;
+  text-align: $text-align;
+}
+
+

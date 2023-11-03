@@ -1,112 +1,92 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  font-weight: $bold;
+  @include button-style-reset;
+  @include flex(column, center, stretch, 16px);
+  @include font('Open Sans', $s-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   transition: all 0.1s linear;
-  flex-direction: column;
-  gap: 16px;
   background-color: transparent;
+
+  &:hover {
+    color: $primary-persian-blue-default;
+
+    .container {
+      background-color: transparent;
+      box-shadow: $l-box-shadow;
+    }
+
+    .plus_icon svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:active {
+    color: $primary-persian-blue-press;
+
+    .container {
+      background-color: transparent;
+      box-shadow: $l-box-shadow;
+    }
+
+    .plus_icon svg {
+      stroke: $primary-persian-blue-press;
+    }
+  }
+
+  &:disabled {
+    color: $grey-1;
+
+    .container {
+      background-color: $secondary-cultured-hover;
+      box-shadow: none;
+    }
+
+    .plus_icon svg {
+      stroke: $grey-1;
+    }
+
+    .template_icon svg {
+      opacity: 0.5;
+    }
+  }
 }
 
 .container {
+  @include size(100%, 88px);
   display: flex;
-  //gap: 34px; использую margin: auto;
-  border-radius: $border-radius-185;
-  height: $button-add-sample-bot-height;
-  width: 100%;
+  border-radius: 185px;
   transition: all 0.1s linear;
-}
 
-.container div {
-  @extend %flex-element-center;
+  background-color: $secondary-cultured-hover;
+
+  div {
+    @include flex(row, center, center);
+  }
 }
 
 .plus_icon {
   margin: auto;
-}
 
-.plus_icon svg {
-  stroke-width: $button-add-sample-bot-stroke-width;
-  transition: all 0.1s linear;
-  align-self: center;
+  svg {
+    stroke-width: $m-icon-stroke-width;
+    transition: all 0.1s linear;
+    align-self: center;
+    stroke: $grey-1;
+  }
 }
 
 .template_icon svg {
-  height: $button-add-sample-bot-height;
-  width: $button-add-sample-bot-height;
+  @include size(88px, 88px);
   transition: all 0.1s linear;
 }
 
 .text {
+  @include indents;
   text-align: left;
-  padding: 0;  
-  /* Обрезаем всё за пределами блока */
-  /* Позволим тексту уменьшаться по ширине */
   -webkit-line-clamp: 1;
-  /* Число отображаемых строк */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-/* Стили цвета кнопки*/
-
-.button {
-  color: $primary-text-color;
-}
-
-.container {
-  background-color: $button-add-sample-bot-default-background-color;
-}
-
-.plus_icon svg {
-  stroke: $button-add-sample-bot-default-color;
-}
-
-.button:hover {
-  color: $button-add-sample-bot-hover-color;
-}
-
-.button:hover .container {
-  background-color: transparent;
-  box-shadow: $l-box-shadow;
-}
-
-.button:hover .plus_icon svg {
-  stroke: $button-add-sample-bot-hover-color;
-}
-
-.button:active {
-  color: $button-add-sample-bot-pressed-color;
-}
-
-.button:active .container {
-  background-color: transparent;
-  box-shadow: $l-box-shadow;
-}
-
-.button:active .plus_icon svg {
-  stroke: $button-add-sample-bot-pressed-color;
-}
-
-.button:disabled {
-  color: $button-add-sample-bot-disabled-color;
-}
-
-.button:disabled .container {
-  background-color: $button-add-sample-bot-default-background-color;
-  box-shadow: none;
-}
-
-.button:disabled .plus_icon svg {
-  stroke: $button-add-sample-bot-disabled-color;
-}
-
-.button:disabled .template_icon svg {
-  opacity: 0.5;
 }

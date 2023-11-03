@@ -7,7 +7,6 @@ import copyIcon from '../../../images/icon/24x24/drop down/copy bot.svg';
 import trashIcon from '../../../images/icon/24x24/drop down/trash.svg';
 import shareIcon from '../../../images/icon/24x24/drop down/share.svg';
 import editIcon from '../../../images/icon/24x24/drop down/edit.svg';
-import Typography from '../../typography/typography';
 
 export interface IMenuBot {
   size?: 'medium' | 'large';
@@ -87,9 +86,7 @@ const MenuBot: FC<IMenuBot> = ({
         onClick={copyHandler}
       >
         <img src={copyIcon} alt="Иконка" className={stylesMenuBot.icon} />
-        <Typography tag="p" className={stylesMenuBot.text}>
-          Копировать
-        </Typography>
+        <p className={stylesMenuBot.text}>Копировать</p>
       </button>
     </div>
   );
@@ -106,9 +103,7 @@ const MenuBot: FC<IMenuBot> = ({
           onClick={copyHandler}
         >
           <img src={copyIcon} alt="Иконка" className={stylesMenuBot.icon} />
-          <Typography tag="p" className={stylesMenuBot.text}>
-            Копировать
-          </Typography>
+          <p className={stylesMenuBot.text}>Копировать</p>
         </button>
         <button
           type="button"
@@ -120,9 +115,7 @@ const MenuBot: FC<IMenuBot> = ({
             alt="Иконка"
             className={`${stylesMenuBot.icon} ${stylesMenuBot.icon__grey}`}
           />
-          <Typography tag="p" className={stylesMenuBot.text}>
-            Удалить
-          </Typography>
+          <p className={stylesMenuBot.text}>Удалить</p>
         </button>
       </div>
     );
@@ -138,9 +131,7 @@ const MenuBot: FC<IMenuBot> = ({
           onClick={copyHandler}
         >
           <img src={copyIcon} alt="Иконка" className={stylesMenuBot.icon} />
-          <Typography tag="p" className={stylesMenuBot.text}>
-            Копировать
-          </Typography>
+          <p className={stylesMenuBot.text}>Копировать</p>
         </button>
         <button
           type="button"
@@ -148,9 +139,7 @@ const MenuBot: FC<IMenuBot> = ({
           onClick={shareHandler}
         >
           <img src={shareIcon} alt="Иконка" className={stylesMenuBot.icon} />
-          <Typography tag="p" className={stylesMenuBot.text}>
-            Общий доступ
-          </Typography>
+          <p className={stylesMenuBot.text}>Общий доступ</p>
         </button>
         <button
           type="button"
@@ -162,9 +151,7 @@ const MenuBot: FC<IMenuBot> = ({
             alt="Иконка"
             className={`${stylesMenuBot.icon} ${stylesMenuBot.icon__grey}`}
           />
-          <Typography tag="p" className={stylesMenuBot.text}>
-            Редактировать
-          </Typography>
+          <p className={stylesMenuBot.text}>Редактировать</p>
         </button>
         <button
           type="button"
@@ -176,9 +163,7 @@ const MenuBot: FC<IMenuBot> = ({
             alt="Иконка"
             className={`${stylesMenuBot.icon} ${stylesMenuBot.icon__grey}`}
           />
-          <Typography tag="p" className={stylesMenuBot.text}>
-            Удалить
-          </Typography>
+          <p className={stylesMenuBot.text}>Удалить</p>
         </button>
         {open && (
           <BotMenuPopup

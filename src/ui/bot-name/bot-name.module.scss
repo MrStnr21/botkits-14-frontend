@@ -1,25 +1,22 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .container {
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  align-items: center;
-  max-width: 281px;
-  max-height: 48px;
-  border-radius: 10px;
-  padding: 12px 14px 12px 12px;
+  @include max-size(281px, 48px);
+  @include flex(row, center, center);
+  @include indents(12px 14px 12px 12px);
+  border-radius: $l-border-radius;
   box-sizing: border-box;
 }
 
 .text {
-  width: 141px;
-  height: 23px; 
-  padding: 0px 52px 0px 16px;
+  @include size(141px, 23px);
+  @include font('IBMPlexMonno', 18px, 600);
+  line-height: 130%;
+  margin: 0px 52px 0px 16px;
 }
 
 .icon {
+  @include size(24px, 24px);
   margin: 0;
-  width: 24px;
-  height: 24px;
 }

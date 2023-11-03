@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
-import Typography from '../../typography/typography';
 
 import stylesButtonAddBot from './button-add-bot.module.scss';
+import Typography from '../../typography/typography';
 
 export interface IButtonAddBot {
   buttonHtmlType?: 'button' | 'submit' | 'reset';

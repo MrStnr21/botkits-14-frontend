@@ -3,9 +3,10 @@ import { FC, useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 
 import stylesTextField from './text-field.module.scss';
-import Typography from '../typography/typography';
+
 import { ReactComponent as Bracket } from '../../images/icon/24x24/constructor/bracket.svg';
 import { ReactComponent as EmojiIcon } from '../../images/icon/24x24/constructor/emoji.svg';
+import Typography from '../typography/typography';
 
 const TextField: FC = (): JSX.Element => {
   const textareaTextLength = 4096;
@@ -25,15 +26,14 @@ const TextField: FC = (): JSX.Element => {
         draggable={false}
         className={stylesTextField.textarea__input}
       />
-      <Typography
-        tag="span"
-        className={stylesTextField.textarea__outline}
-        // eslint-disable-next-line react/no-children-prop
-        children={null}
-      />
+      <span className={stylesTextField.textarea__outline} />
 
       <div className={stylesTextField.textarea__footer}>
-        <Typography tag="p" fontFamily="secondary" className={stylesTextField.textarea__counter}>
+        <Typography
+          tag="p"
+          fontFamily="secondary"
+          className={stylesTextField.textarea__counter}
+        >
           {text.length}/{textareaTextLength}
         </Typography>
         <Bracket

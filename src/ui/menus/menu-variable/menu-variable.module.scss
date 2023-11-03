@@ -1,15 +1,30 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 998;
+  pointer-events: none;
+}
+
+.overlayActive {
+  display: block;
+  pointer-events: all;
+}
 
 .open_button {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  width: 240px;
-  height: 40px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-5;
+  @include flex(row);
+  @include size(240px, 40px);
+  background-color: $secondary-cultured-default;
+  border-radius: $s-border-radius;
   position: relative;
-  cursor: pointer;
+  z-index: 999;
+  cursor: $cursor;
 }
 
 .box {
@@ -17,9 +32,9 @@
   flex-direction: column;
   gap: 4px;
   width: 240px;
-  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
+  box-shadow: $m-box-shadow;
   background-color: white;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   position: absolute;
 }
 
@@ -36,30 +51,31 @@
 }
 
 .grey {
-  color: $placeholder-grey-color;
+  color: $grey-2;
 }
 
 .li {
-  padding: 0;
-  margin: 0;
+  @include indents;
   list-style: none;
   display: flex;
+  z-index: 999;
 }
 
 .ul {
-  padding: 0;
-  margin: 0;
+  @include indents;
+  z-index: 999;
+  background-color: $off-white;
 }
 
 .button {
-  height: 37px;
-  background-color: white;
+  @include size(100%, 37px);
+  background-color: $off-white;
   box-sizing: border-box;
-  width: 100%;
   padding: 0 0 0 16px;
   text-align: left;
   border: none;
-  cursor: pointer;
+  z-index: 999;
+  cursor: $cursor;
 }
 .button:first-of-type {
   margin-top: 11px;
@@ -69,13 +85,10 @@
 }
 
 .button:hover {
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
 }
 
 .icon {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 16px;
-  height: 16px;
+  @include size(16px, 16px);
+  @include position(absolute, 12px, 12px);
 }

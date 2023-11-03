@@ -1,15 +1,12 @@
-@import '../../app/_vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
-  display: flex;
-  gap: 8px;
-  width: fit-content;
-  height: 47px;
-  background-color: $white-color;
+  @include flex($align-items: center, $gap: 8px);
+  @include size(fit-content, 47px);
+  @include indents;
+  background-color: $off-white;
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  align-items: center;
 }
 
 .text {

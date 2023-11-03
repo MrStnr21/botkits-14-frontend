@@ -1,28 +1,24 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .signupFormContainer {
+  @include flex(column, center, center);
   position: relative;
   width: 100%;
-  background-color: $active-blue-color;
-  border-radius: $border-radius-30;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  background-color: $primary-persian-blue-hover;
+  border-radius: $xxl-border-radius;
   overflow: hidden;
 
   @media screen and (max-width: 600px) {
-    border-radius: $border-radius-30 $border-radius-30 0 0;
+    border-radius: $xxl-border-radius $xxl-border-radius 0 0;
   }
 }
 
 .signupBackgroundImage {
+  @include position(absolute, $bottom: 0, $right: 0);
   background-image: url('../../images/roboCreate.png');
   background-size: contain;
   background-repeat: no-repeat;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   width: 100%;
   max-width: 270px;
   margin-right: -60px;
@@ -31,12 +27,10 @@
 
   @media screen and (max-width: 710px) {
     max-width: 250px;
-    margin-right: -60px;
   }
 
   @media screen and (max-width: 650px) {
     max-width: 220px;
-    margin-right: -60px;
   }
 
   @media screen and (max-width: 600px) {
@@ -48,22 +42,19 @@
 }
 
 .signupTitle {
-  padding: 0;
-  margin-top: 50px;
-  margin-bottom: 15px;  
+  @include indents(0, 50px 0 15px);
+  color: $off-white;
   text-align: center;
-  color: $white-color;
 
   @media screen and (max-width: 600px) {
+    @include line-sizes($xl-line-height, $l-letter-space);
     margin-top: 25px;
-    font-size: $l-font-size;
-    letter-spacing: $h5-letter-space;
+    font-size: $m-font-size;
   }
 }
 
 .socialContainer {
-  display: flex;
-  gap: 30px;
+  @include flex($gap: 30px);
   margin-bottom: 40px;
 
   @media screen and (max-width: 600px) {
@@ -73,24 +64,10 @@
 }
 
 .socialMain {
-  display: flex;
-  gap: 40px;
+  @include flex($gap: 40px);
   padding: 10px;
-  background-color: $persian-blue-focus;
-  border-radius: $border-radius-30;
-
-  @media screen and (max-width: 600px) {
-    gap: 10px;
-    padding: 8px;
-  }
-}
-
-.socialSecond {
-  display: flex;
-  gap: 40px;
-  padding: 10px;
-  background-color: $persian-blue-focus;
-  border-radius: $border-radius-30;
+  background-color: $primary-persian-blue-focus;
+  border-radius: $xxl-border-radius;
 
   @media screen and (max-width: 600px) {
     gap: 10px;
@@ -99,33 +76,27 @@
 }
 
 .signupInputsContainer {
+  @include flex(column, $align-items: center);
   width: 100%;
-  padding-left: 50px;
-  padding-right: 50px;
-  display: flex;
+  padding: 0 50px;
   box-sizing: border-box;
-  border-radius: $border-radius-30;
-  flex-direction: column;
-  align-items: center;
-  background-color: $default-blue-color;
+  border-radius: $xxl-border-radius;
+  background-color: $primary-persian-blue-default;
 
   @media screen and (max-width: 600px) {
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: $border-radius-30 $border-radius-30 0 0;
+    padding: 0 20px;
+    border-radius: $xxl-border-radius $xxl-border-radius 0 0;
   }
 }
 
 .signupTitleForm {
-  padding: 0;
-  margin-top: -15px;
-  margin-bottom: 45px;
-  width: 80px;
-  height: 30px;
-  border-radius: $border-radius-15;
-  background-color: $default-blue-color;
+  @include indents;
+  @include size(80px, 30px);
+  color: $off-white;
+  margin: -15px 0 45px;
+  border-radius: $xl-border-radius;
+  background-color: $primary-persian-blue-default;
   text-align: center;
-  color: $white-color;
 
   @media screen and (max-width: 600px) {
     margin-bottom: 25px;
@@ -133,12 +104,9 @@
 }
 
 .inputsForm {
+  @include flex(column, $align-items: center, $gap: 50px);
   margin-bottom: 50px;
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  align-items: center;
-  gap: 50px;
 
   @media screen and (max-width: 600px) {
     gap: 40px;
@@ -156,10 +124,8 @@
   z-index: 1;
 
   @media screen and (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
+    @include flex(column, $gap: 20px);
     margin-bottom: 30px;
-    gap: 20px;
   }
 }
 
@@ -179,28 +145,19 @@
 }
 
 .phoneCodeSelect {
-  background-color: $primary-text-color;
+  @include size(110px, 60px);
+  @include flex(row, center, center);
+  background-color: $primary-oxford-blue-default;
   border: none;
   border-radius: 4px;
-  width: 110px;
-  height: 60px;
-  align-items: center;
-  justify-content: center;
   flex-direction: row-reverse;
-  margin-top: auto;
-  margin-bottom: auto;
   z-index: 0;
 
   & input {
+    @include indents;
+    @include font('Open Sans', $s-font-size, $normal, $off-white);
+    @include line-sizes($xl-line-height, $m-letter-space);
     width: 33px;
-    padding: 0;
-    margin: 0;
-    color: $white-color;
-    font-family: 'Open Sans', sans-serif;
-    font-size: $m-font-size;
-    font-weight: $normal;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
     border: none;
   }
 
@@ -209,9 +166,8 @@
   }
 
   [class*="MuiInputBase-root-MuiOutlinedInput-root"] {
-    height: 60px;
+    @include size(100%, 60px);
     border: none;
-    width: 100%;
     flex-direction: row-reverse;
     padding-right: 34px;
     position: relative;
@@ -227,16 +183,14 @@
   }
 
   [class*="MuiButtonBase-root-MuiIconButton-root"] {
+    @include indents;
+    @include size(100%, 100%);
     background-image: url('../../images/icon/24x24/common/arrow-drop-down.svg');
     background-repeat: no-repeat;
     background-position: left 5px top 18px;
-    padding: 0;
-    margin: 0;
     z-index: 2;
     justify-content: flex-end;
     padding-right: 10px;
-    width: 100%;
-    height: 100%;
     position: absolute;
     left: 0;
     top: 0;
@@ -253,11 +207,9 @@
 }
 
 .signupReadyContainer {
+  @include flex(row, center, $gap: 10px);
+  color: $off-white;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  color: $white-color;
   margin-bottom: 40px;
   z-index: 1;
 
@@ -267,25 +219,18 @@
 }
 
 .signinLink {
-  color: $white-color;
+  color: $off-white;
   text-decoration-line: underline;
 }
 
 .incorrect_text {
-  font-family: 'PT Sans', sans-serif;
-  color: $error-red-color;
-  position: absolute;
-  margin-top: 2px;
-  left: 0;
-  right: 0;
-  text-align: center;
+  @include incorrect-text(center);
 }
 
 [class*="MuiModal-root-MuiPopover-root-MuiMenu-root"] {
   [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"] {
+    @include max-size(268px, 245px);
     width: 100%;
-    max-height: 245px;
-    max-width: 268px;
     border-radius: 12px;
     position: relative;
     border-top: 6px solid transparent;
@@ -296,7 +241,6 @@
     @media screen and (max-width: 600px) {
       width: 100%;
       max-width: calc(100% - 40px);
-
     }
 
     [class*='scrollbar-horizontal'] {
@@ -308,12 +252,12 @@
       margin-right: 4px;
 
       [class*='os-scrollbar-handle'] {
-        background-color: $default-blue-color;
+        background-color: $primary-persian-blue-default;
         max-height: 60px;
       }
 
       [class*='os-scrollbar-track'] {
-        background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.1);
+        background-color: rgba(red($primary-persian-blue-default), green($primary-persian-blue-default), blue($primary-persian-blue-default), 0.1);
       }
     }
 
@@ -321,7 +265,7 @@
 
   [class*="MuiList-root-MuiMenu-list"] {
     [class*="Mui-selected"] {
-      background-color: rgba(red($default-blue-color), green($default-blue-color), blue($default-blue-color), 0.08);
+      background-color: rgba(red($primary-persian-blue-default), green($primary-persian-blue-default), blue($primary-persian-blue-default), 0.08);
     }
   }
 
@@ -345,25 +289,16 @@
 
   [class*="MuiListItemText-root"] {
     [class*="MuiTypography-root"] {
+      @include font('Open Sans', $s-font-size, $normal, $primary-oxford-blue-default);
+      @include line-sizes($xl-line-height, $m-letter-space);
+      @include ellipsis;
       max-width: 140px;
-      font-family: 'Open Sans', sans-serif;
-      font-size: $m-font-size;
-      font-weight: $normal;
-      line-height: $button-line-height-150;
-      letter-spacing: $m-letter-space;
-      color: $primary-text-color;
-      text-overflow: ellipsis;
-      overflow: hidden;
     }
   }
 
   [class*="MuiTypography-root"] {
+    @include font('Open Sans', $s-font-size, $bold, $primary-persian-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     max-width: 140px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: $m-font-size;
-    font-weight: $bold;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
-    color: $default-blue-color;
   }
 }

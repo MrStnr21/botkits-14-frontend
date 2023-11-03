@@ -1,8 +1,9 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 [class*='MuiMenu-root'] {
   [class*='MuiMenu-paper'] {
-    border-radius: $border-radius-10;
+    border-radius: $l-border-radius;
     box-shadow: $m-box-shadow;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
@@ -13,7 +14,7 @@
       margin-right: 2px;
 
       [class*='os-scrollbar-handle'] {
-        background-color: $default-dark-grey-color;
+        background-color: $grey-3;
         max-height: 60px;
       }
 
@@ -25,47 +26,39 @@
 
     [class*='MuiList-root'] {
       [class*='MuiMenuItem-root'] {
+        @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+        @include line-sizes($xl-line-height, $m-letter-space);
         position: relative;
-        background-color: $white-color;
-        font-size: $s-font-size;
-        font-weight: $normal;
-        font-family: 'Open Sans', sans-serif;
+        background-color: $off-white;
         font-style: normal;
-        line-height: $button-line-height-150;
-        letter-spacing: $m-letter-space;
-        color: $primary-text-color;
         text-transform: capitalize;
         max-height: 37px;
-        padding-top: 9px;
-        padding-left: 16px;
-        padding-bottom: 8px;
+        padding: 9px 0 16px 8px;
       }
 
       [class*='Mui-selected'] {
-        background-color: $hover-grey-color;
+        background-color: $secondary-cultured-hover;
         position: relative;
 
         &:hover {
-          background-color: $hover-grey-color;
+          background-color: $secondary-cultured-hover;
         }
       }
 
       [class*='MuiMenuItem-root']:hover {
-        background-color: $hover-grey-color;
+        background-color: $secondary-cultured-hover;
       }
 
       :focus {
-        background-color: $hover-grey-color;
+        background-color: $secondary-cultured-hover;
       }
     }
   }
 }
 
 [class*='MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root'] {
-  background-color: $hover-grey-color;
-  padding-top: 10px;
-  padding-left: 8px;
-  padding-bottom: 10px;
+  background-color: $secondary-cultured-hover;
+  padding: 10px 0 10px 8px;
   max-height: 40px;
 
   [class*='MuiOutlinedInput-notchedOutline'] {
@@ -73,13 +66,9 @@
   }
 
   [class*='MuiOutlinedInput-input'] {
-    font-size: $s-font-size;
-    font-weight: $normal;
-    font-family: 'Open Sans', sans-serif;
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
     font-style: normal;
-    line-height: $button-line-height-150;
-    letter-spacing: $m-letter-space;
-    color: $primary-text-color;
     text-transform: capitalize;
     padding: 0;
   }
@@ -90,15 +79,10 @@
   }
 }
 
-.optionContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
+.optionContainer{
+  @include flex(row, flex-start, center, 12px);
 }
 
-.chosen {
-  position: absolute;
-  top: 8px;
-  left: 6px;
+.chosen{
+  @include position(absolute, 8px, $left: 6px);
 }

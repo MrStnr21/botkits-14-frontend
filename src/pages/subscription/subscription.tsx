@@ -1,15 +1,24 @@
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
+import cn from 'classnames';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
-import { rows, PaymentTable } from './payment-table/payment-table';
 import icon from '../../images/icon/20x20/chevron/down.svg';
+import TableComponent from '../../components/table-component/table-component';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
 import useModal from '../../services/hooks/use-modal';
 import PaymentPopup from '../../components/popups/payment-popup/payment-popup';
+import {
+  tableData,
+  columns,
+  cellStyle,
+  rowStyle,
+  subscriptionStatus,
+} from '../../utils/paymenTable';
+import { sapHeadCell } from '../../components/table-cells/table-cells';
 
 const Subscription: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
@@ -29,7 +38,7 @@ const Subscription: FC = (): JSX.Element => {
   const buttonList = ['Все', 'Списания', 'Поступления'];
   const [activeList, setActiveList] = useState(false);
   const [buttonName, setButtonName] = useState('Все');
-  const [rowList, setRowList] = useState(rows);
+  const [rowList, setRowList] = useState(tableData);
 
   const click = () => {
     setActiveList(!activeList);
@@ -38,9 +47,9 @@ const Subscription: FC = (): JSX.Element => {
   const filteredRows = (filterName: string): void => {
     setRowList(() => {
       if (filterName === 'Все') {
-        return rows;
+        return tableData;
       }
-      return rows.filter((row) => row.operation === filterName);
+      return tableData.filter((row) => row.operation === filterName);
     });
   };
 
@@ -53,11 +62,25 @@ const Subscription: FC = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <Typography tag="h2" fontFamily="secondary">
-        Подписка и платежи
-      </Typography>
+      <div className={style.container__header}>
+        <Typography tag="h2" fontFamily="secondary">
+          Подписка и платежи
+        </Typography>
+        {subscriptionStatus.status && (
+          <div className={style.container__button}>
+            <Button
+              variant="default"
+              size="small"
+              color="green"
+              onClick={() => handleActivateSubscription('subscription')}
+            >
+              Сменить тариф
+            </Button>
+          </div>
+        )}
+      </div>
       <div className={style.container__body}>
-        <div className={style.subscription}>
+        <div className={cn(style.subscription, style.container__subscription)}>
           <div className={style.subscription}>
             <div className={style.subscription__header}>
               <Typography
@@ -127,7 +150,13 @@ const Subscription: FC = (): JSX.Element => {
               />
             </div>
           </div>
-          <PaymentTable tableData={rowList} />
+          <TableComponent
+            cellStyle={cellStyle}
+            rowStyle={rowStyle}
+            columns={columns}
+            tableData={rowList}
+            headComponent={sapHeadCell}
+          />
         </div>
       </div>
       {isModalOpen && (

@@ -1,100 +1,61 @@
-@import '../../../components/app/vars';
-
-@mixin button-main(
-  $s-font-size,
-  $normal,
-  $m-letter-space,
-  $button-line-height-150,
-  $constructor-add-button-height,
-  $border-radius-10
-) {
-  @extend %button-style-reset;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  gap: 8px;
-  font-size: $s-font-size;
-  font-weight: $normal;
-  letter-spacing: $m-letter-space;
-  line-height: $button-line-height-150;
-  font-family: 'Open Sans', sans-serif;
-  transition: all 0.1s linear;
-  height: $constructor-add-button-height;
-  width: 100%;
-  border-radius: $border-radius-10;
-}
-
-@mixin wrapper {
-  width: 100%;  
-}
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @include button-main(
-    $s-font-size,
-    $normal,
-    $m-letter-space,
-    $button-line-height-150,
-    $constructor-add-button-height,
-    $border-radius-10
-  );
-  height: 100%;
+  @include button-style-reset;
+  @include flex(row, flex-start, center, 8px);
+  @include size(100%, 100%);
+  @include font('Open Sans', $xl-line-height, $normal, $grey-4);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  padding: 0 12px;
+  transition: all 0.1s linear;
+  border-radius: $l-border-radius;
+  background-color: $secondary-cultured-default;
+
+  div {
+    @include flex(row, center, center);
+  }
+
+  svg {
+    transition: stroke 0.1s linear;
+    stroke: $grey-3;
+  }
+
+  &:hover {
+    color: $primary-persian-blue-default;
+
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:active {
+    color: $primary-persian-blue-default;
+    background-color: $blue-disabled;
+
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:disabled {
+    color: $secondary-cultured-press;
+    background-color: $secondary-cultured-default;
+
+    svg {
+      stroke: $grey-1;
+    }
+  }
 }
 
 .wrapper {
-  @include wrapper;
+  width: 100%;
 }
 
 .wrapperAddNewBlock {
-  width: 196px;
-  height: 64px;
-}
-
-.button div {
-  @extend %flex-element-center;
-}
-
-.button svg {
-  transition: stroke 0.1s linear;
+  @include size(196px, 64px);
 }
 
 .text {
-  padding: 0;
-  color: inherit;
-}
-
-/* Стили цвета кнопки*/
-
-.button {
-  color: $constructor-add-button-default-color;
-  background-color: $constructor-add-button-default-background-color;
-}
-
-.button svg {
-  stroke: $constructor-add-button-default-icon-color;
-}
-
-.button:hover {
-  color: $constructor-add-button-hover-color;
-}
-
-.button:hover svg {
-  stroke: $constructor-add-button-hover-icon-color;
-}
-
-.button:active {
-  color: $constructor-add-button-pressed-color;
-  background-color: $constructor-add-button-pressed-background-color;
-}
-
-.button:active svg {
-  stroke: $constructor-add-button-pressed-icon-color;
-}
-
-.button:disabled {
-  color: $constructor-add-button-disabled-color;
-  background-color: $constructor-add-button-default-background-color;
-}
-
-.button:disabled svg {
-  stroke: $constructor-add-button-disabled-icon-color;
+  @include indents;
 }
