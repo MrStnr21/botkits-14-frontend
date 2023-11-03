@@ -7,7 +7,7 @@ import styles from './header.module.scss';
 import Notifications from '../icons/Notifications/Notifications';
 import ArrowSmall from '../icons/ArrowSmall/ArrowSmall';
 import Help from '../icons/Help/Help';
-import Logo from '../icons/Logo/Logo';
+// import Logo from '../icons/Logo/Logo';
 
 import avatar from '../../images/avatar/circled/default.svg';
 
@@ -15,8 +15,8 @@ import MenuUser from '../../ui/menus/menu-user/menu-user';
 
 import NotificationPopup from '../popups/notification-popup/notification-popup';
 import Typography from '../../ui/typography/typography';
-import MenuMobile from '../icons/MenuMobile/MenuMobile';
-import Menu24px from '../icons/Menu24px/Menu24px';
+// import MenuMobile from '../icons/MenuMobile/MenuMobile';
+// import Menu24px from '../icons/Menu24px/Menu24px';
 
 const Header: FC = (): JSX.Element => {
   const [isOpenAccontSettings, setIsAccSet] = useState(false);
@@ -34,12 +34,12 @@ const Header: FC = (): JSX.Element => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
         {matches ? <MenuMobile /> : <Menu24px />}
         <span className={styles.logo}>
           <Logo />
         </span>
-      </div>
+      </div> */}
       <div className={styles.wrapper}>
         <Typography tag="p" fontFamily="secondary" className={styles.text}>
           Тариф

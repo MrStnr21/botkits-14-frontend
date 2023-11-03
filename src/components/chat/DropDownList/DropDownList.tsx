@@ -35,14 +35,18 @@ const DropDownList: FC<IDropDownList> = ({
       </div>
       {isOpened && (
         <div className={stylesList.container}>
-          <p className={stylesList.textinfo}>
-            <span className={stylesList.title}>{info.one.title}</span>
+          <Typography tag="p" className={stylesList.textinfo}>
+            <Typography tag="span" className={stylesList.title}>
+              {info.one.title}
+            </Typography>
             {` ${info.one.paragraph}`}
-          </p>
-          <p className={stylesList.textinfo}>
-            <span className={stylesList.title}>{info.two.title}</span>
+          </Typography>
+          <Typography tag="p" className={stylesList.textinfo}>
+            <Typography tag="span" className={stylesList.title}>
+              {info.two.title}
+            </Typography>
             {` ${info.two.paragraph}`}
-          </p>
+          </Typography>
         </div>
       )}
     </div>

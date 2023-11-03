@@ -3,6 +3,7 @@ import { FC, useState, useEffect } from 'react';
 import stylesMenuVariable from './menu-variable.module.scss';
 
 import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
+import Typography from '../../typography/typography';
 
 export interface IMenuVariable {
   buttons: string[];

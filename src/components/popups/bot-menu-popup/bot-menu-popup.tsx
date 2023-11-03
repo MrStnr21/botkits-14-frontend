@@ -127,7 +127,9 @@ const BotMenuPopup: FC<IBotMenuPopup> = ({
           </>
         )}
         {open && (
-          <p className={stylesBotMenuPopup.open_modal}>Ссылка скопирована</p>
+          <Typography tag="p" className={stylesBotMenuPopup.open_modal}>
+            Ссылка скопирована
+          </Typography>
         )}
       </div>
     </ModalPopup>

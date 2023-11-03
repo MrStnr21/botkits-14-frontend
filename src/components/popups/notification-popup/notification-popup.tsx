@@ -45,7 +45,6 @@ const NotificationPopup: FC<INotificationPopup> = ({
         <div className={stylesNotification.header}>
           <div className={stylesNotification.wrapper}>
             <Notifications number={2} color="#060c23" />
-
             <Typography
               tag="p"
               fontFamily="secondary"
