@@ -1,3 +1,26 @@
+.flow {
+  background-color: '#B8CEFF';
+  height: 100vh;
+}
+
+.upWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  box-sizing: border-box;
+  padding: 12px;
+  width: 100%;
+  height: fit-content;
+  gap: 8px;
+  position: right;
+}
+
+.wrapper {  
+  max-width: 151px;
+  max-height: 48px;
+  overflow: hidden;
+}
+
 .container {
   max-width: 296px;
   height: min-content;

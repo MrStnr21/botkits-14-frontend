@@ -39,6 +39,7 @@
     "react-scripts": "5.0.1",
     "react-svg": "^16.1.24",
     "react-use-draggable-scroll": "^0.4.7",
+    "reactflow": "^11.9.4",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "redux-ts": "^4.3.0",

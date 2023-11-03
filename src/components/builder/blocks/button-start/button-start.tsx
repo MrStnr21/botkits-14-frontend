@@ -1,24 +1,26 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import cn from 'classnames/bind';
 import Button from '../../../../ui/buttons/button/button';
-import stylesButtonS from './buttons.module.scss';
+import styles from './button-start.module.scss';
 import Typography from '../../../../ui/typography/typography';
 
-export interface IButtonS {
-  type: 'start' | 'stop' | 'test';
-  onClick?: VoidFunction;
-}
+export type TButtonStartProps = {
+  data: {
+    type: 'start' | 'stop' | 'test';
+    onClick?: VoidFunction;
+  };
+};
 
-const cx = cn.bind(stylesButtonS);
+const cx = cn.bind(styles);
 
-const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
-  const getButton = (): React.ReactElement => {
-    switch (type) {
+const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
+  const getButton = () => {
+    switch (data.type) {
       case 'stop': {
         return (
           <Button
-            onClick={onClick}
+            onClick={data.onClick}
             variant="default"
             size="small"
             color="grey"
@@ -35,7 +37,7 @@ const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
       case 'test': {
         return (
           <Button
-            onClick={onClick}
+            onClick={data.onClick}
             variant="default"
             size="small"
             color="green"
@@ -53,7 +55,7 @@ const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
         return (
           <div className={cx('wrapper')}>
             <Button
-              onClick={onClick}
+              onClick={data.onClick}
               variant="default"
               size="small"
               color="green"
@@ -74,4 +76,4 @@ const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
   return getButton();
 };
 
-export default ButtonS;
+export default ButtonStart;

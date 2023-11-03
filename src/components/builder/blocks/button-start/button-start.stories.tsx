@@ -1,9 +1,9 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import ButtonS, { IButtonS } from './buttons';
+import ButtonStart, { TButtonStartProps } from './button-start';
 
 export default {
   title: 'components/builder/blocks/buttons',
-  component: ButtonS,
+  component: ButtonStart,
   argTypes: {
     type: {
       type: 'string',
@@ -23,9 +23,11 @@ export default {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} as Meta<IButtonS>;
+} as Meta<TButtonStartProps>;
 
-const Template: StoryFn<IButtonS> = (args) => <ButtonS {...args} />;
+const Template: StoryFn<TButtonStartProps> = (args) => (
+  <ButtonStart {...args} />
+);
 
 export const Start = {
   args: {
