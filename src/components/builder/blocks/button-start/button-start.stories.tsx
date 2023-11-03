@@ -1,8 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import ButtonStart from './button-start';
+import type { Meta, StoryFn } from '@storybook/react';
+import ButtonStart, { TButtonStartProps } from './button-start';
 
-const args = {
-  data: {
+export default {
+  title: 'components/builder/blocks/buttons',
+  component: ButtonStart,
+  argTypes: {
     type: {
       type: 'string',
       description: 'Вариант внешнего вида кнопки',
@@ -17,16 +19,19 @@ const args = {
       description: 'Callback функция, вызываемая при клике',
     },
   },
-};
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+} as Meta<TButtonStartProps>;
 
-const meta: Meta<typeof ButtonStart> = {
-  component: ButtonStart,
-};
+const Template: StoryFn<TButtonStartProps> = (args) => (
+  <ButtonStart {...args} />
+);
 
-export default meta;
-
-type Story = StoryObj<typeof ButtonStart>;
-
-export const Buttonstart: Story = {
-  args,
+export const Start = {
+  args: {
+    type: 'start',
+  },
+  render: Template,
 };
