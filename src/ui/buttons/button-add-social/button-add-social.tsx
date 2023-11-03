@@ -3,6 +3,7 @@ import { FC } from 'react';
 import cn from 'classnames';
 
 import stylesButtonAddSocial from './button-add-social.module.scss';
+import Typography from '../../typography/typography';
 
 export interface IButtonAddSocial {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
@@ -43,7 +44,9 @@ const ButtonAddSocial: FC<IButtonAddSocial> = ({
       {size === 'small' ? (
         ''
       ) : (
-        <p className={stylesButtonAddSocial.text}>{children}</p>
+        <Typography tag="p" className={stylesButtonAddSocial.text}>
+          {children}
+        </Typography>
       )}
     </button>
   );

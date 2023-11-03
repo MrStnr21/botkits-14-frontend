@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import stylesRegLogResLayout from './reg-log-res-layout.module.scss';
+import Typography from '../../ui/typography/typography';
 
 interface IRegLogResLayout {
   title: string;
@@ -15,7 +16,13 @@ const RegLogResLayout: FC<IRegLogResLayout> = ({
     <section className={stylesRegLogResLayout.signupPage}>
       <div className={stylesRegLogResLayout.contentContainer}>
         <div className={stylesRegLogResLayout.logo} />
-        <h1 className={stylesRegLogResLayout.label}>{title}</h1>
+        <Typography
+          tag="h1"
+          fontFamily="secondary"
+          className={stylesRegLogResLayout.label}
+        >
+          {title}
+        </Typography>
         {children}
       </div>
     </section>

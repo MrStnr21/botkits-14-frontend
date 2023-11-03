@@ -37,10 +37,7 @@
 }
 
 .name {
-  @include font('IBM Plex Mono', $m-font-size, $bold);
-  @include line-sizes($m-line-height, $l-letter-space);
   @include ellipsis;
-  margin: 0;
 }
 
 .more_button {

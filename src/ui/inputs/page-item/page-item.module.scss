@@ -37,7 +37,7 @@
 }
 
 .text {
-  margin: 0;
+  color: inherit;
 }
 
 .select_upload {
@@ -55,7 +55,7 @@
 }
 
 .upload_text {
-  margin: 0;
+  color: inherit;
 }
 
 .selects {
@@ -90,31 +90,6 @@
 
 .scroll {
   padding: 16px 4px 16px 12px;
-}
-
-.selects_button {
-  @include flex(row, center, center, 17px);
-  @include font('Open Sans', $s-font-size, $bold);
-  @include line-sizes($xl-line-height, $m-letter-space);
-  width: 100%;
-  background-color: $secondary-cultured-default;
-  border: 0;
-  padding: 16px 12px;
-  border-radius: $l-border-radius;
-  cursor: $cursor;
-
-  transition: 0.2s linear;
-
-  &:hover * {
-    transition: 0.2s linear;
-    fill: $grey-3;
-    color: #6392ab;
-  }
-
-  &:disabled * {
-    fill: $grey-1;
-    color: $secondary-cultured-press;
-  }
 }
 
 .selects_text {

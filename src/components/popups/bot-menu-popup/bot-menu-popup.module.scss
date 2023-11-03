@@ -18,12 +18,6 @@
   }
 }
 
-.title {
-  @include font('IBM Plex Mono', $xxl-font-size, $bold);
-  line-height: $m-line-height;
-  margin: 0;
-}
-
 .cancel {
   @include button-style-reset;
   @include font('IBM Plex Mono', $s-font-size, $bold);
@@ -46,10 +40,9 @@
 }
 
 .open_modal {
-  @include font('IBM Plex Mono', $m-font-size, $bold, $off-white);
-  @include line-sizes($m-line-height, 0);
   @include indents(13px 20px, 0);
   @include position(absolute, -60px, 30%);
+  color: $off-white;
   box-sizing: border-box;
   background-color: $secondary-xiketic-press;
   border-radius: $l-border-radius;
@@ -60,12 +53,6 @@
   background: $secondary-cultured-focus;
   margin: 0;
   border: 0;
-}
-
-.text {
-  @include font('Open Sans', $xs-font-size, $normal);
-  @include line-sizes($xl-line-height, $m-letter-space);
-  margin: 0;
 }
 
 .value {

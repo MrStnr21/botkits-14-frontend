@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 import { getAccessToken } from '../../../auth/authService';
 import { getPlatformsAction } from '../../../services/actions/platforms/getPlatforms';
 import { getPlatformsSel } from '../../../utils/selectorData';
+import Typography from '../../../ui/typography/typography';
 
 interface IAddBot {
   onClick: (name: string, pages: boolean, botURI: boolean) => void;
@@ -33,7 +34,13 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
 
   return (
     <div className={stylesAddBot.add_bot}>
-      <h2 className={stylesAddBot.add_bot_title}>Добавить бота</h2>
+      <Typography
+        tag="h2"
+        fontFamily="secondary"
+        className={stylesAddBot.add_bot_title}
+      >
+        Добавить бота
+      </Typography>
       <ul className={stylesAddBot.add_bot_list} {...events} ref={ref}>
         {platforms?.map((platform) => (
           <li key={platform.title} className={stylesAddBot.add_bot_item}>

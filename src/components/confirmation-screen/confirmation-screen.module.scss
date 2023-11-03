@@ -37,13 +37,12 @@
   @media screen and (max-width: 600px) {
     @include flex(column, $gap: 130px);
   }
-
 }
 
 .title {
   @include indents;
-  @include font('IBM Plex Mono', 64px, $bold, $off-white);
-  @include line-sizes($xs-line-height, -1px);
+  font-size: 64px;
+  color: $off-white;
   width: 100%;
   max-width: 570px;
   text-align: left;
@@ -68,14 +67,11 @@
     align-self: flex-end;
     margin-right: -20px;
   }
-
 }
-
 
 .email {
   @include max-size(158px, 60px);
-  @include font('IBM Plex Mono', $xxxl-font-size, $bold, $primary-medium-spring-green-default);
-  @include line-sizes($xl-line-height, $s-letter-space);
+  color: $primary-medium-spring-green-default;
   vertical-align: baseline;
   width: 100%;
   padding: 14px 23px 14px 20px;

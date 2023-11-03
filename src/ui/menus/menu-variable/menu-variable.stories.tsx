@@ -29,7 +29,7 @@ export default {
 
 const Template: StoryFn<IMenuVariable> = (args) => <MenuVariable {...args} />;
 
-export const menuVariable = {
+export const MenuVariableFilled = {
   args: { buttons },
   render: Template,
 };

@@ -43,8 +43,7 @@
 
 .signupTitle {
   @include indents(0, 50px 0 15px);
-  @include font('IBM Plex Mono', $xl-font-size, $bold, $off-white);
-  @include line-sizes($m-line-height, 0);
+  color: $off-white;
   text-align: center;
 
   @media screen and (max-width: 600px) {
@@ -93,8 +92,7 @@
 .signupTitleForm {
   @include indents;
   @include size(80px, 30px);
-  @include font('Open Sans', $m-font-size, $bold, $off-white);
-  @include line-sizes($xl-line-height, 0);
+  color: $off-white;
   margin: -15px 0 45px;
   border-radius: $xl-border-radius;
   background-color: $primary-persian-blue-default;
@@ -145,7 +143,6 @@
     max-width: none;
   }
 }
-
 
 .phoneCodeSelect {
   @include size(110px, 60px);
@@ -200,10 +197,7 @@
     right: 0;
     bottom: 0;
   }
-
-
 }
-
 
 .formsButton {
   z-index: 1;
@@ -214,8 +208,7 @@
 
 .signupReadyContainer {
   @include flex(row, center, $gap: 10px);
-  @include font('Open Sans', $s-font-size, $normal, $off-white);
-  @include line-sizes($xl-line-height, $m-letter-space);
+  color: $off-white;
   width: 100%;
   margin-bottom: 40px;
   z-index: 1;
@@ -233,7 +226,6 @@
 .incorrect_text {
   @include incorrect-text(center);
 }
-
 
 [class*="MuiModal-root-MuiPopover-root-MuiMenu-root"] {
   [class*="MuiPaper-root-MuiPopover-paper-MuiMenu-paper"] {
@@ -270,7 +262,6 @@
     }
 
   }
-
 
   [class*="MuiList-root-MuiMenu-list"] {
     [class*="Mui-selected"] {

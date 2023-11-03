@@ -19,9 +19,6 @@
 }
 
 .text {
-  @include font('OpenSans', $s-font-size, $normal);
-  line-height: $xl-line-height;
-  margin: 0;
   white-space: nowrap;
   @media (max-width: $switching-width) {
     margin: 0 auto;

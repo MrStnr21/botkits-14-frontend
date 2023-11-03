@@ -7,8 +7,6 @@
 
 .header {
   @include flex(row, space-between, center);
-  @include font('IBM Plex Mono', $l-font-size, $bold);
-  @include line-sizes($m-line-height, 0);
   margin: 0;
   width: 100%;
 }

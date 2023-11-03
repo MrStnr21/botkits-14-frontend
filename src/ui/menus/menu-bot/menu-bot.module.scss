@@ -18,8 +18,6 @@
 }
 
 .text {
-  @include font('Open Sans', $xs-font-size, $normal);
-  @include line-sizes($xl-line-height, $m-letter-space);
   margin-left: 16px;
 }
 

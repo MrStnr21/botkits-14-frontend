@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
+import classNames from 'classnames/bind';
 
 import PlusIcon from '../../../images/icon/24x24/constructor/plus.svg';
 import Horizontal from '../../../images/icon/24x24/constructor/horizontal.svg';
@@ -15,6 +16,7 @@ import Api from '../../../images/icon/24x24/add block/api.svg';
 import MapPin from '../../../images/icon/24x24/add block/map-pin.svg';
 
 import stylesConstructorAddButton from './constructor-add-button.module.scss';
+import Typography from '../../typography/typography';
 
 enum IconsFree {
   add = 'add',
@@ -63,6 +65,8 @@ export interface IConstructorAddButton {
   children: React.ReactNode;
   icon?: typeof Icons;
 }
+
+const cx = classNames.bind(stylesConstructorAddButton);
 
 const ConstructorAddButton: FC<IConstructorAddButton> = ({
   buttonHtmlType = 'button',
@@ -137,7 +141,9 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
       >
         {' '}
         <ReactSVG src={getIcon()} />
-        <p className={stylesConstructorAddButton.text}>{children}</p>
+        <Typography tag="p" className={cx('text')}>
+          {children}
+        </Typography>
       </button>
     </section>
   );

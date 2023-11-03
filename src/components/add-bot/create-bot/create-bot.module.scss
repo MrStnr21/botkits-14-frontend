@@ -17,18 +17,12 @@
 }
 
 .create_message_title {
-  @include font('IBM Plex Mono', $xxl-font-size, $bold, $grey-3);
-  @include line-sizes($m-line-height, 0px);
-  margin: 0;
-
   @media screen and (max-width: 520px) {
     font-size: $l-font-size;
   }
 }
 
 .create_message_text {
-  @include font('Open Sans', $m-font-size, $bold, $grey-3);
-  @include line-sizes($xl-line-height, $m-letter-space);
   margin: 16px 0 0;
 
   @media screen and (max-width: 520px) {
@@ -59,14 +53,11 @@
 }
 
 .create_main_bot_name_title {
-  @include font('IBM Plex Mono', $xxl-font-size, $bold);
-  @include line-sizes($m-line-height, 0px);
   margin: 0 0 0 15px;
 }
 
 .create_main_bot_name_text {
-  @include font('Open Sans', $xs-font-size, $normal, $primary-persian-blue-default);
-  @include line-sizes($xl-line-height, $m-letter-space);
+  color: $primary-persian-blue-default;
   @include indents(6px 16px, 0 0 0 20px);
   background-color: $blue-disabled;
   border-radius: 16px;

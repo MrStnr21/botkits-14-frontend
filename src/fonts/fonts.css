@@ -1,23 +1,28 @@
-/* варианты импорта шрифтов с гугла */
-/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=PT+Sans:wght@400&display=swap"); */
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
-/* @font-face {
+/*@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');*/
+
+@font-face {
   font-family: 'Open Sans';
   font-weight: 400;
-  src: url('./OpenSans/OpenSans-Regular.ttf') format('truetype');
+  src:
+    url('./OpenSans/OpenSans-Regular.woff') format('woff'),
+    url('./OpenSans/OpenSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: 600;
-  src: url('./OpenSans/OpenSans-SemiBold.ttf') format('truetype');
+  src:
+    url('./OpenSans/OpenSans-SemiBold.woff') format('woff'),
+    url('./OpenSans/OpenSans-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: 700;
-  src: url('./OpenSans/OpenSans-Bold.ttf') format('truetype');
-} */
+  src:
+    url('./OpenSans/OpenSans-Bold.woff') format('woff'),
+    url('./OpenSans/OpenSans-Bold.ttf') format('truetype');
+}
 
 @font-face {
   font-family: 'IBM Plex Mono';
@@ -68,9 +73,9 @@
   font-family: 'IBM Plex Sans';
   font-weight: 500;
   src:
-  /* url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
-  url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'), */
-  url('./IBMPlexSans/IBMPlexSans-Medium.ttf') format('truetype');
+    url('./IBMPlexSans/ibmplexsans-medium-webfont.woff2') format('woff2'),
+    url('./IBMPlexSans/ibmplexsans-medium-webfont.woff') format('woff'),
+    url('./IBMPlexSans/IBMPlexSans-Medium.ttf') format('truetype');
 }
 
 @font-face {
@@ -78,7 +83,7 @@
   font-weight: 600;
   src:
   url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff2') format('woff2'),
-         url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff') format('woff'),
+        url('./IBMPlexSans/ibmplexsans-semibold-webfont.woff') format('woff'),
   url('./IBMPlexSans/IBMPlexSans-SemiBold.ttf') format('truetype');
 }
 
@@ -87,7 +92,7 @@
   font-weight: 400;
   src:
   url('./PTSans/ptsans-regular-webfont.woff2') format('woff2'),
-         url('./PTSans/ptsans-regular-webfont.woff') format('woff'),
+        url('./PTSans/ptsans-regular-webfont.woff') format('woff'),
   url('./PTSans/PTSans-Regular.ttf') format('truetype');
 }
 
@@ -106,6 +111,6 @@
   font-weight: 100;
   src:
   url('./HelveticaNeue/helveticaneue-thin.woff2') format('woff2'),
-         url('./HelveticaNeue/helveticaneue-thin.woff') format('woff'),
+        url('./HelveticaNeue/helveticaneue-thin.woff') format('woff'),
   url('./HelveticaNeue/HelveticaNeue-Thin.ttf') format('truetype');
 }

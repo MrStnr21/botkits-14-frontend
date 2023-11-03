@@ -19,6 +19,7 @@
   }
 }
 
+// используется в кнопках и ссылках
 @mixin font-nav() {
   // общее оформление текста в навигации
   @include font('Open Sans', $m-font-size, $normal);
@@ -170,7 +171,6 @@ $additional-grey-pressed: #c3d1d8;
   @include size(100%, 64px);
   position: relative; // Родитель абсолютно-позиционированного(в декстопе) элемента бургер-меню
   display: flex;
-
   box-sizing: border-box;
   padding-top: 16px;
 
@@ -233,8 +233,7 @@ $additional-grey-pressed: #c3d1d8;
 }
 
 .addtext {
-  @include font('IBM Plex Mono', $s-font-size, $bold, $off-white);
-  letter-spacing: $m-letter-space;
+  color: $off-white;
   text-transform: uppercase;
   margin: 0;
   opacity: 0;
