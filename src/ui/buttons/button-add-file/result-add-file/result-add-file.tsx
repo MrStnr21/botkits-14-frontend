@@ -16,6 +16,7 @@ export interface IResultProps {
   type: string;
   error?: boolean;
   size: number;
+  deleteFile?: () => void;
 }
 
 const cx = cn.bind(styles);
@@ -25,10 +26,11 @@ const ResultAddFile: FC<IResultProps> = ({
   type,
   error,
   size,
+  deleteFile = () => {},
 }): JSX.Element => {
-  const deleteFile = () => {
-    // @todo отправляет запрос на сервер..м.б. id файла добавить в пропсы
-  };
+  // const deleteFile = () => {
+  //   // @todo отправляет запрос на сервер..м.б. id файла добавить в пропсы
+  // };
 
   // Styles
   let Icon: React.FunctionComponent<

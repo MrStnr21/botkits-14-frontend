@@ -95,6 +95,12 @@ const ButtonAddFile: FC = (): JSX.Element => {
     }
   };
 
+  const deleteFile = (value: IResultProps) => {
+    const newArr = fileList.filter((item) => item !== value);
+
+    setFileList(newArr);
+  };
+
   return (
     <>
       {fileList.length > 0 && (
@@ -121,6 +127,7 @@ const ButtonAddFile: FC = (): JSX.Element => {
                   size={file.size}
                   type={file.type}
                   error={isNoValid}
+                  deleteFile={() => deleteFile(file.name)}
                 />
               </li>
             )

@@ -1,6 +1,7 @@
 // import { FC, useCallback, useState } from 'react';
 // import { v4 as uuidv4 } from 'uuid';
 // import { ReactNode } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Node,
   NodeTypes,
@@ -14,6 +15,7 @@ import {
 // import InlineButton from '../blocks/message-block/button-inline/button-inline';
 // import PanelInline from '../blocks/message-block/panel-inline/panel-inline';
 // import styles from './layoutFlow.module.scss';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import 'reactflow/dist/style.css';
 import ButtonS from '../blocks/buttons/buttons';
 import MessageBlock from '../blocks/message-block/message-block';
