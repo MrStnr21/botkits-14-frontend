@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { Handle, Position, ReactFlowProvider } from 'reactflow';
 
-import ButtonS from './buttons';
+import ButtonStart from './button-start';
 
 // import styles from './message-block.module.scss';
 
-const ButtonSFlow: FC = () => {
+const ButtonStartFlow: FC = () => {
   return (
     <ReactFlowProvider>
       <div>
@@ -15,10 +15,10 @@ const ButtonSFlow: FC = () => {
           // id="b"
           isConnectable
         />
-        <ButtonS />
+        <ButtonStart data={{ type: 'start' }} />
       </div>
     </ReactFlowProvider>
   );
 };
 
-export default ButtonSFlow;
+export default ButtonStartFlow;

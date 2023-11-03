@@ -10,25 +10,25 @@ import {
   // OnConnect,
 } from 'reactflow';
 
-// import ButtonSFlow from '../blocks/buttons/buttons-flow';
+import ButtonStartFlow from '../blocks/button-start/button-start-flow';
 // import InlineButton from '../blocks/message-block/button-inline/button-inline';
 // import PanelInline from '../blocks/message-block/panel-inline/panel-inline';
 // import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
-import ButtonS from '../blocks/buttons/buttons';
+// import ButtonStart from '../blocks/button-start/button-start';
 import MessageBlock from '../blocks/message-block/message-block';
 
 export const nodeTypes: NodeTypes = {
   // inlineButton: InlineButton,
   message: MessageBlock,
   // panelInline: PanelInline,
-  button: ButtonS,
+  buttonStart: ButtonStartFlow,
 };
 
 export const initialNodes: Node[] = [
   {
     id: 'node-1',
-    type: 'button',
+    type: 'buttonStart',
     data: { type: 'start' },
     position: { x: 0, y: 0 },
   },

@@ -1,20 +1,20 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import cn from 'classnames/bind';
 import Button from '../../../../ui/buttons/button/button';
-import stylesButtonS from './buttons.module.scss';
+import styles from './button-start.module.scss';
 import Typography from '../../../../ui/typography/typography';
 
-type TButtonSProps = {
+export type TButtonStartProps = {
   data: {
     type: 'start' | 'stop' | 'test';
     onClick?: VoidFunction;
   };
 };
 
-const cx = cn.bind(stylesButtonS);
+const cx = cn.bind(styles);
 
-const ButtonS: FC<TButtonSProps> = ({ data }) => {
+const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
   const getButton = () => {
     switch (data.type) {
       case 'stop': {
@@ -76,4 +76,4 @@ const ButtonS: FC<TButtonSProps> = ({ data }) => {
   return getButton();
 };
 
-export default ButtonS;
+export default ButtonStart;
