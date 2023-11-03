@@ -5,20 +5,22 @@ import Button from '../../../../ui/buttons/button/button';
 import stylesButtonS from './buttons.module.scss';
 import Typography from '../../../../ui/typography/typography';
 
-export interface IButtonS {
-  type?: 'start' | 'stop' | 'test';
-  onClick?: VoidFunction;
-}
+type TButtonSProps = {
+  data: {
+    type: 'start' | 'stop' | 'test';
+    onClick?: VoidFunction;
+  };
+};
 
 const cx = cn.bind(stylesButtonS);
 
-const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
-  const getButton = (): React.ReactElement => {
-    switch (type) {
+const ButtonS: FC<TButtonSProps> = ({ data }) => {
+  const getButton = () => {
+    switch (data.type) {
       case 'stop': {
         return (
           <Button
-            onClick={onClick}
+            onClick={data.onClick}
             variant="default"
             size="small"
             color="grey"
@@ -35,7 +37,7 @@ const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
       case 'test': {
         return (
           <Button
-            onClick={onClick}
+            onClick={data.onClick}
             variant="default"
             size="small"
             color="green"
@@ -53,7 +55,7 @@ const ButtonS: FC<IButtonS> = ({ type = 'start', onClick }) => {
         return (
           <div className={cx('wrapper')}>
             <Button
-              onClick={onClick}
+              onClick={data.onClick}
               variant="default"
               size="small"
               color="green"
