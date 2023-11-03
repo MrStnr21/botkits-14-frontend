@@ -38,7 +38,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
     }
   }
 
-  function menuListener(e: MouseEvent) {
+  function menuListener(e: React.MouseEvent) {
     e.stopPropagation();
   }
 
