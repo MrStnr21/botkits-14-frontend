@@ -6,7 +6,7 @@ import stylesButtonS from './buttons.module.scss';
 import Typography from '../../../../ui/typography/typography';
 
 export interface IButtonS {
-  type: 'start' | 'stop' | 'test';
+  type?: 'start' | 'stop' | 'test';
   onClick?: VoidFunction;
 }
 

@@ -10,8 +10,8 @@ import {
   // OnConnect,
 } from 'reactflow';
 
-import ButtonS from '../blocks/buttons/buttons';
-import MessageWrapper from '../blocks/message-block/message-wrapper';
+import ButtonSFlow from '../blocks/buttons/buttons-flow';
+import MessageFlow from '../blocks/message-block/message-flow';
 // import InlineButton from '../blocks/message-block/button-inline/button-inline';
 // import PanelInline from '../blocks/message-block/panel-inline/panel-inline';
 
@@ -20,21 +20,21 @@ import 'reactflow/dist/style.css';
 
 export const nodeTypes: NodeTypes = {
   // inlineButton: InlineButton,
-  message: MessageWrapper,
+  messageFlow: MessageFlow,
   // panelInline: PanelInline,
-  button: ButtonS,
+  buttonSFlow: ButtonSFlow,
 };
 
 export const initialNodes: Node[] = [
   {
     id: 'node-1',
-    type: 'button',
+    type: 'buttonSFlow',
     data: { type: 'test' },
     position: { x: 0, y: 0 },
   },
   {
     id: 'node-2',
-    type: 'message',
+    type: 'messageFlow',
     data: { label: 'input' },
     position: { x: 130, y: 0 },
   },
