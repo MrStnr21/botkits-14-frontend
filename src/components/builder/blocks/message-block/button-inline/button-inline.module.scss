@@ -8,6 +8,15 @@
   overflow: hidden;
 }
 
+@mixin colored-button($bg-color, $border-color){
+  color: white;
+  background-color: $bg-color;
+  border-color: $border-color;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+
 .container {
   position: relative
 }
@@ -33,6 +42,12 @@
   gap: 2px;
   padding: 8px 12px;
   cursor: pointer;
+
+  @media screen and (max-width: 520px) {
+    width: 136px;
+    min-height: 27px;
+    padding: 6px 8px;
+  }
 }
 
 .button-flex-start {
@@ -47,6 +62,9 @@
   @include input;
   font-size: 13px;
   text-decoration: none;
+  @media screen and (max-width: 520px) {
+    font-size: 7.48px;
+  }
 }
 
 .button-str{
@@ -54,6 +72,10 @@
   font-size: 12px;
   color: #A6B3C9;
   text-decoration: none;
+
+  @media screen and (max-width: 520px) {
+    font-size: 6.48px;
+  }
 }
 
 .text-align-center{
@@ -65,34 +87,14 @@
 }
 
 .button-white {
-  color: white;
-  background-color: #ffffff;
-  border-color: #f2f4f8;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button(#ffffff, #f2f4f8);
 }
 .button-red {
-  color: white;
-  background-color: #d3524d;
-  border-color: #d3524d;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button(#d3524d, #d3524d);
 }
 .button-green {
-  color: white;
-  background-color: #67b057;
-  border-color: #67b057;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button(#67b057, #67b057);
 }
 .button-blue {
-  color: white;
-  background-color: #5883c6;
-  border-color: #5883c6;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button(#5883c6, #5883c6);
 }
