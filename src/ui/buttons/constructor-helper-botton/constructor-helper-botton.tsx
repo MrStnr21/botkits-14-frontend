@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useRef, useEffect } from 'react';
 import { ReactSVG } from 'react-svg';
 import DeleteIcon from '../../../images/icon/24x24/constructor/delete.svg';
 
@@ -12,6 +12,8 @@ export interface IConstructorHelperButton {
   askIcon: string;
   color?: boolean;
   colorOnClick?: (newColor: string) => void;
+  isVisible?: boolean;
+  hide?: () => void;
 }
 
 const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
@@ -22,55 +24,86 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
   askIcon,
   color = false,
   colorOnClick,
+  isVisible = true,
+  hide,
 }) => {
   const colorTypes = ['white', 'red', 'green', 'blue'];
+
+  const ref = useRef<null | HTMLDivElement>(null);
+
+  /* Скрытие элемента при клике, переработать */
+  function documentListener(e: MouseEvent) {
+    if (hide && ref.current !== e.target) {
+      hide();
+    }
+  }
+
+  function menuListener(e: MouseEvent) {
+    e.stopPropagation();
+  }
+
+  useEffect(() => {
+    if (isVisible) {
+      setTimeout(() => {
+        document.addEventListener('click', documentListener);
+      }, 0);
+    }
+    return () => {
+      document.removeEventListener('click', documentListener);
+    };
+  }, [isVisible]);
+
   return (
-    <div
-      className={`${stylesConstructorHelperButton.container}${
-        color ? ` ${stylesConstructorHelperButton.container_color}` : ''
-      }`}
-    >
+    isVisible && (
       <div
-        className={`${stylesConstructorHelperButton.wrapper}${
-          color ? ` ${stylesConstructorHelperButton.wrapper_color}` : ''
+        onClick={menuListener}
+        ref={ref}
+        className={`${stylesConstructorHelperButton.container}${
+          color ? ` ${stylesConstructorHelperButton.container_color}` : ''
         }`}
       >
-        {color
-          ? colorTypes.map((colorType) => (
-              <button
-                key={colorType}
-                className={
-                  stylesConstructorHelperButton[`color_button_${colorType}`]
-                }
-                onClick={() => {
-                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                  colorOnClick ? colorOnClick(colorType) : () => {};
-                }}
-                type="button"
-                aria-label="colorType"
-              />
-            ))
-          : null}
+        <div
+          className={`${stylesConstructorHelperButton.wrapper}${
+            color ? ` ${stylesConstructorHelperButton.wrapper_color}` : ''
+          }`}
+        >
+          {color
+            ? colorTypes.map((colorType) => (
+                <button
+                  key={colorType}
+                  className={
+                    stylesConstructorHelperButton[`color_button_${colorType}`]
+                  }
+                  onClick={() => {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                    colorOnClick ? colorOnClick(colorType) : () => {};
+                  }}
+                  type="button"
+                  aria-label="colorType"
+                />
+              ))
+            : null}
+        </div>
+        <button
+          className={stylesConstructorHelperButton.ask_button}
+          onClick={() => {
+            if (askOnClick) askOnClick(true);
+          }}
+          // eslint-disable-next-line react/button-has-type
+          type={askButtonHtmlType}
+        >
+          <ReactSVG src={askIcon} />
+        </button>
+        <button
+          className={stylesConstructorHelperButton.delete_button}
+          onClick={deleteOnClick}
+          // eslint-disable-next-line react/button-has-type
+          type={deleteButtonHtmlType}
+        >
+          <ReactSVG src={DeleteIcon} />
+        </button>
       </div>
-      <button
-        className={stylesConstructorHelperButton.ask_button}
-        onClick={() => {
-          if (askOnClick) askOnClick(true);
-        }}
-        // eslint-disable-next-line react/button-has-type
-        type={askButtonHtmlType}
-      >
-        <ReactSVG src={askIcon} />
-      </button>
-      <button
-        className={stylesConstructorHelperButton.delete_button}
-        onClick={deleteOnClick}
-        // eslint-disable-next-line react/button-has-type
-        type={deleteButtonHtmlType}
-      >
-        <ReactSVG src={DeleteIcon} />
-      </button>
-    </div>
+    )
   );
 };
 
