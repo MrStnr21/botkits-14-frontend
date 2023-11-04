@@ -1,12 +1,12 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 
 import EmojiPicker from 'emoji-picker-react';
 
 import styles from './text-field.module.scss';
 
-import bracketIcon from '../../images/icon/24x24/constructor/bracket.svg';
-import emojiIcon from '../../images/icon/24x24/constructor/emoji.svg';
-import MenuTextEditor from '../menus/menu-text-editor/menu-text-editor';
+import { ReactComponent as Bracket } from '../../images/icon/24x24/constructor/bracket.svg';
+import { ReactComponent as EmojiIcon } from '../../images/icon/24x24/constructor/emoji.svg';
+// import useOutsideClick from '../../utils/hooks/useOutsideClick';
 
 interface ITextField {
   maxTextLength?: number;
@@ -15,16 +15,18 @@ interface ITextField {
 }
 
 const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
-  const [emojis, toggleEmojis] = useState(false);
-  const [textMenu, toggleTextMenu] = useState(false);
+  const [showEmojis, setShowEmojis] = useState(false);
+  const [textMenu, setTextMenu] = useState(false);
 
+  //  временно, не должно вызывать меню
   const onBracketClick = () => {
-    toggleTextMenu(!textMenu);
+    setTextMenu(!textMenu);
   };
+  const refPicker = useRef<HTMLDivElement>(null);
 
-  const onEmojiClick = () => {
-    toggleEmojis(!emojis);
-  };
+  // useOutsideClick(refPicker, document, () => {
+  //   setShowEmojis(false);
+  // });
 
   return (
     <div className={styles.textarea}>
@@ -41,33 +43,25 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
       <span className={styles.textarea__outline} />
 
       <div className={styles.textarea__footer}>
-        <span className={styles.textarea__counter}>
+        <p className={styles.textarea__counter}>
           {text.length}/{maxTextLength}
-        </span>
-        <button
-          className={styles.textarea__font}
-          onClick={onBracketClick}
-          type="button"
-        >
-          <img className={styles.icon} src={bracketIcon} alt="Шрифт" />
-        </button>
-        <MenuTextEditor isActive={textMenu} top={-60} left={36} />
-        <button
-          className={styles.textarea__font}
-          onClick={onEmojiClick}
-          type="button"
-        >
-          <img className={styles.icon} src={emojiIcon} alt="Эмодзи" />
-        </button>
-        {emojis && (
-          <div className={styles.textarea__emojiPicker}>
+        </p>
+        <Bracket className={styles.extarea__icon} onClick={onBracketClick} />
+        <EmojiIcon
+          className={styles.textarea__icon}
+          onClick={() => setShowEmojis(!showEmojis)}
+        />
+        {showEmojis && (
+          <div className={styles.textarea__emojiPicker} ref={refPicker}>
+            (
             <EmojiPicker
-              width="100%"
+              width={300}
               onEmojiClick={(e) => {
                 setText(`${text}${e.emoji}`);
-                toggleEmojis(false);
+                setShowEmojis(false);
               }}
             />
+            )
           </div>
         )}
       </div>

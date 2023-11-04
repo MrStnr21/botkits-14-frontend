@@ -13,9 +13,7 @@
   z-index: 1;
 
   @media screen and (max-width: 520px) {
-    height: 57px;
-    border-radius: 5.7px;
-    padding: 9px 7px 6px;
+    max-width: 168px;
   }
 }
 
