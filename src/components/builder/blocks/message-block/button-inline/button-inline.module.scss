@@ -1,32 +1,102 @@
-.button-white {
+@mixin input {
+  width: 100%;
+  background: none;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin colored-button($bg-color, $border-color){
   color: white;
-  background-color: #ffffff;
-  border-color: #f2f4f8;
+  background-color: $bg-color;
+  border-color: $border-color;
   &:hover {
     border-color: #3172da;
   }
+}
+
+.container {
+  position: relative
+}
+
+.absolute-wrapper {
+  position: absolute;
+  top: -56px;
+  right: 0;
+}
+
+.button {
+  font-family: 'Open Sans';
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  width: 232px;
+  min-height: 40px;
+  border: 0;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 12px;
+  cursor: pointer;
+
+  @media screen and (max-width: 520px) {
+    width: 136px;
+    min-height: 27px;
+    padding: 6px 8px;
+  }
+}
+
+.button-flex-start {
+  align-items: flex-start;
+}
+
+.button-flex-center {
+  align-items: center;
+}
+
+.button-name{
+  @include input;
+  font-size: 13px;
+  line-height: 150%;
+  text-decoration: none;
+  @media screen and (max-width: 520px) {
+    font-size: 7.48px;
+  }
+}
+
+.button-str{
+  @include input;
+  font-size: 12px;
+  color: #A6B3C9;
+  text-decoration: none;
+  line-height: 150%;
+
+  @media screen and (max-width: 520px) {
+    font-size: 6.48px;
+  }
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.text-align-start{
+  text-align: start;
+}
+
+.button-white {
+  @include colored-button(#ffffff, #f2f4f8);
 }
 .button-red {
-  color: white;
-  background-color: #d3524d;
-  border-color: #d3524d;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button(#d3524d, #d3524d);
 }
 .button-green {
-  color: white;
-  background-color: #67b057;
-  border-color: #67b057;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button(#67b057, #67b057);
 }
 .button-blue {
-  color: white;
-  background-color: #5883c6;
-  border-color: #5883c6;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button(#5883c6, #5883c6);
 }
