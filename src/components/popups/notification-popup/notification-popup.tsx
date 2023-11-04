@@ -13,6 +13,7 @@ import Notifications from '../../icons/Notifications/Notifications';
 import CloseIcon from '../../icons/Close/CloseIcon';
 
 import stylesNotification from './notification-popup.module.scss';
+import Typography from '../../../ui/typography/typography';
 
 interface INotificationPopup {
   isOpen: boolean;
@@ -28,6 +29,7 @@ const NotificationPopup: FC<INotificationPopup> = ({
     setActiveTab(target.id);
   }, []);
   const matches = useMediaQuery('(max-width: 520px)');
+
   return (
     <div
       className={
@@ -43,8 +45,13 @@ const NotificationPopup: FC<INotificationPopup> = ({
         <div className={stylesNotification.header}>
           <div className={stylesNotification.wrapper}>
             <Notifications number={2} color="#060c23" />
-
-            <p className={stylesNotification.title}>Уведомления</p>
+            <Typography
+              tag="p"
+              fontFamily="secondary"
+              className={stylesNotification.title}
+            >
+              Уведомления
+            </Typography>
           </div>
           {!matches && (
             <button

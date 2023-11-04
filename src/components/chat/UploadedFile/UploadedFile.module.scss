@@ -10,8 +10,5 @@
 }
 
 .text {
-  @include font('OpenSans', $xxs-font-size, $normal, $primary-oxford-blue-default);
-  @include line-sizes($xl-line-height, $m-letter-space);
-  margin: 0;
   white-space: nowrap;
 }

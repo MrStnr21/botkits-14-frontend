@@ -31,8 +31,7 @@
 }
 
 .text {
-  @include font('IBM Plex Sans', $s-font-size, $normal, #2e293d);
-  line-height: 21px;
+  color: #2e293d;
   margin: 0 0 0 16px;
 
   &hover {
@@ -40,7 +39,6 @@
   }
 
   @media (max-width: ($switching-width)) {
-    font-family: 'Open Sans', sans-serif;
     color: $primary-oxford-blue-default;
   }
 }
@@ -102,26 +100,13 @@
 }
 
 .userInfo__name {
-  @include font('IBM Plex Sans', $l-font-size, $bold, $primary-oxford-blue-default);
-  margin: 0;
-  line-height: $m-line-height;
+  font-size: $l-font-size;
 }
 
 .tariff_container {
   @include flex($gap: 5px);
-  @include font('Open Sans', $xs-font-size, $color: #8392ab);
-  @include line-sizes($xl-line-height, $m-letter-space);
+  color: #8392ab;
   margin-top: 4px;
-}
-
-.tariff {
-  margin: 0;
-  font-weight: 400;
-}
-
-.tariff_name {
-  margin: 0;
-  font-weight: $bold;
 }
 
 .addition {

@@ -23,9 +23,6 @@
 }
 
 .text {
-  @include font('IBM Plex Sans', $m-font-size, $normal);
-  line-height: $xl-line-height;
-
   & + .text {
     font-weight: $semi-bold;
     padding-left: 7px;

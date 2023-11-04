@@ -63,7 +63,9 @@ const Subscription: FC = (): JSX.Element => {
   return (
     <div className={style.container}>
       <div className={style.container__header}>
-        <Typography tag="h2">Подписка и платежи</Typography>
+        <Typography tag="h2" fontFamily="secondary">
+          Подписка и платежи
+        </Typography>
         {subscriptionStatus.status && (
           <div className={style.container__button}>
             <Button
@@ -81,22 +83,21 @@ const Subscription: FC = (): JSX.Element => {
         <div className={cn(style.subscription, style.container__subscription)}>
           <div className={style.subscription}>
             <div className={style.subscription__header}>
-              <Typography tag="h3" className={style.subscription__rate}>
-                {subscriptionStatus.tariff}
+              <Typography
+                tag="h3"
+                fontFamily="secondary"
+                className={style.subscription__rate}
+              >
+                Тариф
               </Typography>
               <Typography
                 tag="h4"
-                className={cn(
-                  style.subscription__status,
-                  style.text,
-                  subscriptionStatus.status
-                    ? style.text_succsess
-                    : style.text_failure
-                )}
+                fontFamily="secondary"
+                className={style.subscription__status}
               >
-                {subscriptionStatus.status ? 'активен' : 'неактивен'}
+                Статус
               </Typography>
-              <Typography tag="span" className={style.subscription__info}>
+              <Typography tag="p" className={style.subscription__info}>
                 Инфо
               </Typography>
               <div className={style.subscription__button}>
@@ -112,7 +113,10 @@ const Subscription: FC = (): JSX.Element => {
             <div className={style.subscription__body}>
               <div className={style.subscription__balance}>
                 <Typography tag="p">Баланс</Typography>
-                <Typography tag="h3">{`${subscriptionStatus.balance}₽`}</Typography>
+                <Typography
+                  tag="h3"
+                  fontFamily="secondary"
+                >{`${0}₽`}</Typography>
               </div>
               <Button
                 variant="default"
@@ -126,7 +130,9 @@ const Subscription: FC = (): JSX.Element => {
         </div>
         <div className={style.payment}>
           <div className={style.payment__header}>
-            <Typography tag="h4">История платежей</Typography>
+            <Typography tag="h4" fontFamily="secondary">
+              История платежей
+            </Typography>
             <div className={style.dropdown}>
               <button
                 type="button"

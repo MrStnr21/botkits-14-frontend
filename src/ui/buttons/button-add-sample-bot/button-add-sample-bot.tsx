@@ -4,6 +4,7 @@ import { ReactSVG } from 'react-svg';
 import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
 
 import stylesButtonAddSampleBot from './button-add-sample-bot.module.scss';
+import Typography from '../../typography/typography';
 
 export interface IButtonAddSampleBot {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
@@ -38,7 +39,9 @@ const ButtonAddSampleBot: FC<IButtonAddSampleBot> = ({
           src={PlusIcon}
         />
       </div>
-      <p className={stylesButtonAddSampleBot.text}>{children}</p>
+      <Typography tag="p" className={stylesButtonAddSampleBot.text}>
+        {children}
+      </Typography>
     </button>
   );
 };

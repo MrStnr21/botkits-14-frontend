@@ -2,6 +2,7 @@ import { FC, ReactElement, useState, ChangeEvent } from 'react';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
+import Typography from '../../../ui/typography/typography';
 
 type TControlLayoutProps = {
   type: string; // Тип блока
@@ -26,7 +27,9 @@ const ControlLayout: FC<TControlLayoutProps> = ({
   return (
     <article className={styles.container}>
       <div className={styles.header}>
-        <span className={styles.type}>{type}</span>
+        <Typography tag="span" fontFamily="secondary" className={styles.type}>
+          {type}
+        </Typography>
         <input
           type="text"
           className={styles.name}

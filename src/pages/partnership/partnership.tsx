@@ -48,9 +48,13 @@ const Partnership: FC = (): JSX.Element => {
       <div className={stylesPartnership.partnership}>
         <div className={stylesPartnership.partnership__wrapper}>
           <div>
-            <h2 className={stylesPartnership.partnership__title}>
+            <Typography
+              tag="h2"
+              fontFamily="secondary"
+              className={stylesPartnership.partnership__title}
+            >
               Партнерская программа
-            </h2>
+            </Typography>
             <div className={stylesPartnership.partnership__inputContainer}>
               <div className={stylesPartnership.partnership__inputWrapper}>
                 <Input
@@ -83,7 +87,13 @@ const Partnership: FC = (): JSX.Element => {
         <div className={stylesPartnership.tables}>
           <div className={stylesPartnership.tables__referrals}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <Typography tag="h3">Cтатистика рефераллов</Typography>
+              <Typography
+                tag="h3"
+                fontFamily="secondary"
+                className={stylesPartnership.tables__title}
+              >
+                Cтатистика рефераллов
+              </Typography>
             </div>
 
             {/* TODO Не очень понятно как с этим быть, пока закоментил */}
@@ -125,7 +135,13 @@ const Partnership: FC = (): JSX.Element => {
           </div>
           <div className={stylesPartnership.tables__payments}>
             <div className={stylesPartnership.tables__titleContainer}>
-              <Typography tag="h3">Выплаты</Typography>
+              <Typography
+                tag="h3"
+                fontFamily="secondary"
+                className={stylesPartnership.tables__title}
+              >
+                Выплаты
+              </Typography>
               <button
                 type="button"
                 onClick={togglePaymentsTable}

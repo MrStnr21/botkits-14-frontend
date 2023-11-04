@@ -33,8 +33,7 @@
 .signinSocialTitle {
   @include indents(0, -15px 0 43px);
   @include size(100%, 30px);
-  @include font('Open Sans', $m-font-size, $bold, $off-white);
-  @include line-sizes($xl-line-height, $l-letter-space);
+  color: $off-white;
   max-width: 172px;
   border-radius: $xl-border-radius;
   background-color: $primary-persian-blue-default;
