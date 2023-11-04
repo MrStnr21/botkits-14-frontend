@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useRef } from 'react';
 
 import styles from './files-field.module.scss';
 
@@ -13,53 +13,34 @@ import { BUTTON_NAME } from '../../../../../utils/constants';
 
 interface IButton {
   type: BUTTON_NAME;
+  isActive?: boolean;
   icon: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
   accept: string; // но тут д.б.расширения
 }
 
-const Button: FC<IButton> = ({ type, icon, onChange, accept }): JSX.Element => {
-  const [iconsSelected, setIconsSelected] = useState<Array<BUTTON_NAME>>([]);
+const Button: FC<IButton> = ({ type, icon, accept, isActive }): JSX.Element => {
+  const ref = useRef<null | HTMLInputElement>(null);
 
-  let changeArr: [] | Array<BUTTON_NAME>;
-
-  const checkActiveIcon = useCallback(
-    (iconValue: BUTTON_NAME) => {
-      return iconsSelected.some((item) => item === iconValue);
-    },
-    [iconsSelected]
-  );
-
-  const openDownloadFile = (value: BUTTON_NAME) => {
-    if (checkActiveIcon(value)) {
-      // @todo  здесь должна быть другая логика - клик по крестику загруженного файла?
-      changeArr = iconsSelected.filter((item) => {
-        return item !== value;
-      });
-      setIconsSelected(changeArr);
-    } else {
-      setIconsSelected([...iconsSelected, value]);
-      // @TODO  добавить функцию - открыть соответсвующий DownloadFile ? загрузить файл или вариант кнопки
+  const onClick = () => {
+    if (ref.current) {
+      ref.current.click();
     }
-    // @TODO добавить функцию удаления добавленного контента
   };
-
   return (
     <div>
       <input
-        className={styles.download__input}
+        ref={ref}
         type="file"
-        onChange={onChange}
         id={type}
         name={type}
-        hidden
         accept={accept}
+        hidden
       />
-      <label className={styles.download__label} htmlFor={type}>
+      <label htmlFor={type}>
         <ConstructorIconBotton
           value={type}
-          active={checkActiveIcon(type)}
-          onClick={openDownloadFile}
+          onClick={onClick}
+          active={isActive}
           icon={icon}
         />
       </label>
@@ -75,27 +56,15 @@ const FielsField: FC = (): JSX.Element => {
         <Button
           type={BUTTON_NAME.IMAGE}
           icon={imageIcon}
-          onChange={() => {}}
-          accept="image/*" // любые графические файлы;
+          accept=".jpg, .png, .gif"
         />
-        <Button
-          type={BUTTON_NAME.VIDEO}
-          icon={videoIcon}
-          onChange={() => {}}
-          accept="video/*" // любые видеофайлы;
-        />
+        <Button type={BUTTON_NAME.VIDEO} icon={videoIcon} accept=".mp4, avi" />
         <Button
           type={BUTTON_NAME.FILE}
           icon={fileIcon}
-          onChange={() => {}}
-          accept="text/*, .docx, .doc " //
+          accept=".docx, .doc, .pdf "
         />
-        <Button
-          type={BUTTON_NAME.AUDIO}
-          icon={musicIcon}
-          onChange={() => {}}
-          accept="audio/*" //  любые аудио файлы;
-        />
+        <Button type={BUTTON_NAME.AUDIO} icon={musicIcon} accept="audio/*" />
       </div>
     </div>
   );

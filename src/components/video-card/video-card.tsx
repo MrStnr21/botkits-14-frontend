@@ -6,6 +6,7 @@ import Typography from '../../ui/typography/typography';
 interface IVideoElement {
   title: string;
   src: string; // ссылка на ютуб
+  previewType?: 'image' | 'video';
   prewiew: string; // заставка
   size?: 's' | 'm' | 'x'; // размер окна заставки и видео
   hiddenRemoveButton?: boolean; // скрыть кнопку удаления компонента с видео
@@ -19,6 +20,7 @@ const VideoCard: FC<IVideoElement> = ({
   size = 'm',
   hiddenRemoveButton,
   hover,
+  previewType = 'image',
 }): JSX.Element | null => {
   const [isVisible, setIsVisible] = useState(true);
   const [isPlay, setIsPlay] = useState(false);
@@ -48,7 +50,19 @@ const VideoCard: FC<IVideoElement> = ({
         <div
           className={`${stylesVideo.container} ${stylesVideo[`size-${size}`]}`}
         >
-          <img src={prewiew} alt="prewiew" className={stylesVideo.prewiew} />
+          {previewType === 'image' && (
+            <img src={prewiew} alt="prewiew" className={stylesVideo.prewiew} />
+          )}
+          {previewType === 'video' && (
+            <video src={src} className={stylesVideo.prewiew}>
+              <track
+                src="captions_en.vtt"
+                kind="captions"
+                srcLang="en"
+                label="english_captions"
+              />
+            </video>
+          )}
           <button
             type="button"
             onClick={remove}
