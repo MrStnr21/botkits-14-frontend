@@ -8,13 +8,12 @@ export interface IConstructorHelperButton {
   askButtonHtmlType?: 'button' | 'submit' | 'reset';
   deleteButtonHtmlType?: 'button' | 'submit' | 'reset';
   askOnClick?: (val: boolean) => void;
-  deleteOnClick: (id: string) => void;
+  deleteOnClick: () => void;
   askIcon: string;
   color?: boolean;
   colorOnClick?: (newColor: string) => void;
   isVisible?: boolean;
   hide?: () => void;
-  id: string;
 }
 
 const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
@@ -27,7 +26,6 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
   colorOnClick,
   isVisible = true,
   hide,
-  id,
 }) => {
   const colorTypes = ['white', 'red', 'green', 'blue'];
 
@@ -100,7 +98,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
           </button>
           <button
             className={stylesConstructorHelperButton.delete_button}
-            onClick={() => (deleteOnClick ? deleteOnClick(id) : () => {})}
+            onClick={() => deleteOnClick}
             // eslint-disable-next-line react/button-has-type
             type={deleteButtonHtmlType}
           >

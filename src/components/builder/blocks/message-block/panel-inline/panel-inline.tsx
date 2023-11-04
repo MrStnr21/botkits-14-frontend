@@ -3,100 +3,62 @@ import { v4 as uuidv4 } from 'uuid';
 
 import LabeledInput from '../../../labeledInput/labeledInput';
 import ConstructorAddButton from '../../../../../ui/buttons/constructor-add-button/constructor-add-button';
-// import AskPhoneIcon from '../../../images/icon/24x24/constructor/ask-phone.svg';
-import UrlIcon from '../../../../../images/icon/24x24/constructor/url.svg';
-
 import styles from './panel-inline.module.scss';
-import InlineButton from '../button-inline/button-inline';
 
 interface IPanelInline {
-  // eslint-disable-next-line react/no-unused-prop-types
   title: string;
+  horizontalAmount?: number;
+  verticalAmount?: number;
 }
 
-const PanelInline: FC<IPanelInline> = () => {
-  const [horButtons, setHorButtons] = useState<string[]>([]);
-  const [verButtons, setVerButtons] = useState<string[]>([]);
+const PanelInline: FC<IPanelInline> = ({
+  title,
+  horizontalAmount,
+  verticalAmount,
+}) => {
+  const [horButtons, setHorButtons] = useState<any[]>(
+    new Array(horizontalAmount || 0)
+  );
+  const [verButtons, setVerButtons] = useState<any[]>(
+    new Array(verticalAmount || 0)
+  );
 
   const addHor = () => {
-    const newHorButtons = [...horButtons];
-    newHorButtons.push(uuidv4());
-    setHorButtons(newHorButtons);
+    setHorButtons([...horButtons, uuidv4()]);
   };
 
   const addVer = () => {
-    const newVerButtons = [...verButtons];
-    newVerButtons.push(uuidv4());
-    setVerButtons(newVerButtons);
+    setVerButtons([...verButtons, uuidv4()]);
   };
-
-  const deleteButton = (delId: string) => {
-    // eslint-disable-next-line no-console
-    console.log(horButtons);
-    if (horButtons.includes(delId)) {
-      const newHorButtons = horButtons.filter((id) => id !== delId);
-      setHorButtons(newHorButtons);
-    } else {
-      const newVerButtons = verButtons.filter((id) => id !== delId);
-      setVerButtons(newVerButtons);
-    }
-  };
-
-  let url: string;
 
   return (
-    <article className={styles.container}>
-      <div className={styles.wrapperButtons}>
-        <LabeledInput title="Инлайн кнопка" extraClass={styles.extraClass}>
-          {horButtons.map((id) => (
-            <InlineButton
-              onClick={() => {}}
-              name="Кнопка"
-              aria-label="colorType"
-              id={id}
-              key={id}
-              // askOnClick={() => {
-              //   url = 'url...';
-              // }}
-              deleteOnClick={() => deleteButton(id)}
-              askIcon={UrlIcon}
-            >
-              {url}
-            </InlineButton>
-          ))}
-          <div className={styles.wrapperButtonWidth}>
-            <div className={styles.wrapperButtonHeight}>
-              <ConstructorAddButton onClick={addHor} icon="horizontal inline">
-                Горизонтальный инлайн
-              </ConstructorAddButton>
-            </div>
+    <div className={styles.wrapperButtons}>
+      <LabeledInput title={title} extraClass={styles.extraClass}>
+        <div className={styles.container}>
+          {horButtons.map((item) => {
+            return (
+              <article key={item} className={styles['button-imitation']} />
+            );
+          })}
+          <div className={styles.wrapperButton}>
+            <ConstructorAddButton onClick={addHor} icon="horizontal inline">
+              Горизонтальный инлайн
+            </ConstructorAddButton>
           </div>
-          {verButtons.map((id) => (
-            <InlineButton
-              onClick={() => {}}
-              name="Кнопка"
-              aria-label="colorType"
-              id={id}
-              key={id}
-              // askOnClick={() => {
-              //   url = 'url...';
-              // }}
-              deleteOnClick={() => deleteButton(id)}
-              askIcon={UrlIcon}
-            >
-              {url}
-            </InlineButton>
-          ))}
-          <div className={styles.wrapperButtonWidth}>
-            <div className={styles.wrapperButtonHeight}>
-              <ConstructorAddButton onClick={addVer} icon="vertical inline">
-                Вертикальный инлайн
-              </ConstructorAddButton>
-            </div>
+          <hr className={styles['split-line']} />
+          {verButtons.map((item) => {
+            return (
+              <article key={item} className={styles['button-imitation']} />
+            );
+          })}
+          <div className={styles.wrapperButton}>
+            <ConstructorAddButton onClick={addVer} icon="vertical inline">
+              Вертикальный инлайн
+            </ConstructorAddButton>
           </div>
-        </LabeledInput>
-      </div>
-    </article>
+        </div>
+      </LabeledInput>
+    </div>
   );
 };
 
