@@ -1,6 +1,7 @@
 @mixin input {
   width: 100%;
   background: none;
+  padding: 0;
   border: 0;
   outline: 0;
   text-overflow: ellipsis;
@@ -30,7 +31,6 @@
 .button {
   font-family: 'Open Sans';
   font-weight: 400;
-  line-height: 150%;
   letter-spacing: 0.3px;
   width: 232px;
   min-height: 40px;
@@ -61,6 +61,7 @@
 .button-name{
   @include input;
   font-size: 13px;
+  line-height: 150%;
   text-decoration: none;
   @media screen and (max-width: 520px) {
     font-size: 7.48px;
@@ -72,6 +73,7 @@
   font-size: 12px;
   color: #A6B3C9;
   text-decoration: none;
+  line-height: 150%;
 
   @media screen and (max-width: 520px) {
     font-size: 6.48px;
