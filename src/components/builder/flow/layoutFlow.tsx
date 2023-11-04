@@ -17,6 +17,7 @@ import { initialNodes, nodeTypes } from './initial-nodes';
 
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
+import NavigationPanel from '../navigation-panel/navigation-panel';
 
 const cx = cn.bind(styles);
 
@@ -45,6 +46,13 @@ const LayoutFlow: FC = () => {
   return (
     <div className={cx('flow')}>
       <ReactFlow
+        defaultViewport={{
+          zoom: 1,
+          x: 0,
+          y: 0,
+        }}
+        maxZoom={3}
+        minZoom={0.1}
         nodes={nodes}
         // edges={edges}
         onNodesChange={onNodesChange}
@@ -63,6 +71,7 @@ const LayoutFlow: FC = () => {
           </div>
           <TriggerButton />
         </div>
+        <NavigationPanel />
       </ReactFlow>
     </div>
   );

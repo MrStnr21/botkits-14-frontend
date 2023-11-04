@@ -1,4 +1,8 @@
 .panel {
+  position: fixed;
+  z-index: 999;
+  bottom: 16px;
+  left: 98px;
   box-sizing: border-box;
   width: fit-content;
   padding: 0 12px 0 16px;
@@ -14,6 +18,10 @@
   >:not(hr){
     margin-top: 8px;
     margin-bottom: 8px;
+  }
+
+  @media screen and (max-width: 520px) {
+    display: none;
   }
 }
 
