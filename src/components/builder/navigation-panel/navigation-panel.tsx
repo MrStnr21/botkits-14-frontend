@@ -47,7 +47,7 @@ const NavigationPanel: FC = () => {
           maskColor="none"
           maskStrokeColor="#A6B3C9"
           style={{
-            left: '0',
+            left: '12.5px',
             bottom: '40px',
           }}
         />
