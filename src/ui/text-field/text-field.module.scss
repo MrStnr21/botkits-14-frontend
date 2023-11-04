@@ -5,11 +5,16 @@
   @include size(264px, 102px);
   @include flex(column, space-between);
   position: relative;
+  max-width: 296px;
   background-color: $secondary-cultured-default;
   border-radius: 12px;
   box-sizing: border-box;
   padding: 12px 12px 8px;
   z-index: 1;
+
+  @media screen and (max-width: 520px) {
+    max-width: 168px;
+  }
 }
 
 .textarea__input {
