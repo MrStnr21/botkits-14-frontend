@@ -1,15 +1,16 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .button{
-    @extend %button-style-reset;
+    @include button-style-reset;
     width: 24;
     height: 20;
     background-color: white;
     font-weight: $bold;
     font-size: $s-font-size;
-    color: $default-blue-color;
+    color: $primary-persian-blue-default;
   }
 
 .button:disabled {
-  color: $default-dark-grey-color;
+  color: $grey-1;
 }

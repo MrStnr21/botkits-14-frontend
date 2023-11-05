@@ -35,8 +35,8 @@ const MenuInformation: FC<IMenuInformation> = ({
     <nav className={stylesMenuInformation.nav}>
       <button
         type="button"
-        className={boxClassName}
         style={{ width: `${width}px`, height: `${height}px` }}
+        className={boxClassName}
         disabled={isActive}
         onClick={onClick}
       >
@@ -44,8 +44,8 @@ const MenuInformation: FC<IMenuInformation> = ({
       </button>
       <button
         type="button"
-        className={boxClassName}
         style={{ width: `${width}px`, height: `${height}px` }}
+        className={boxClassName}
         disabled={!isActive}
         onClick={onClick}
       >

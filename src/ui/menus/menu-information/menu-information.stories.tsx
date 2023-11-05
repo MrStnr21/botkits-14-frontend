@@ -44,7 +44,7 @@ const Template: StoryFn<IMenuInformation> = (args) => (
   <MenuInformation {...args} />
 );
 
-export const menuInformation = {
+export const NavMenuInformation = {
   args: {
     width: 125,
     height: 40,

@@ -1,4 +1,5 @@
-@import '../../app/_vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
   height: 872px;
@@ -12,60 +13,27 @@
   max-width: 331px;
   display: flex;
   flex-direction: column;
-  background-color: $white-color;
+  background-color: $off-white;
   box-sizing: border-box;
   padding-top: 40px;
   align-items: center;
 }
 
-@mixin font {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: $normal;
-  font-size: $s-font-size;
-  line-height: $s-line-height;
-  margin: 0;
-  white-space: nowrap;
-  color: $primary-text-color;
-}
 
 .text {
-  @include font;
-  color: $default-dark-grey-color;
-  padding-bottom: 32px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: $normal;
+  padding-bottom: 20px;
+  color: $grey-3;
 }
 
 .title {
-  @include font;
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-weight: $bold;
-  padding-top: 16px;
+  color: $primary-oxford-blue-default;
+  padding-top: $m-font-size;
   padding-bottom: 4px;
-  font-size: $l-font-size;
+  font-size: $m-font-size;
   line-height: $m-line-height;
-}
-
-.nav {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-
-  .button {
-    @extend %button-style-reset;
-    width: 125px;
-    height: 40px;
-    background-color: white;
-    font-weight: $bold;
-    padding: 15px;
-    border-bottom: 1px solid #d7deea;
-    color: $default-dark-grey-color;
-    transition: all 0.4s linear;
-  }
-
-  .button:disabled {
-    border-bottom: 3px solid $default-blue-color;
-    color: $default-blue-color;
-  }
+  white-space: nowrap;
 }
 
 .wrapper {
@@ -75,21 +43,9 @@
   padding-top: 32px;
 }
 
-.chevron {
-  @extend %button-style-reset;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 31px;
-  height: 40px;
-  background-color: $default-blue-color;
-  border-radius: 20px 0 0 20px;
-  position: absolute;
-  top: 485px;
-  left: -31px;
-}
+@media (max-width: ($min-content-width + 200px)) {
 
-.paragraph {
-  @include font;
-  font-weight: $bold;
+  .information {
+    max-width: 360px;
+  }
 }

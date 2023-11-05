@@ -1,4 +1,5 @@
-@import '../../app/_vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .files {
   width: 291px;
@@ -33,20 +34,27 @@
   max-width: 331px;
   display: flex;
   flex-direction: column;
-  background-color: $white-color;
+  background-color: $off-white;
   box-sizing: border-box;
   padding-top: 40px;
   align-items: center;
 }
 
-.text {
+@mixin font {
   font-family: 'Open Sans', sans-serif;
   font-weight: $normal;
-  font-size: $s-font-size;
-  line-height: $s-line-height;
+  font-size: $xs-font-size;
   margin: 0;
   white-space: nowrap;
-  color: $primary-text-color;
-  color: $default-dark-grey-color;
+}
+
+.text {
+  @include font;
+  color: $grey-3;
   padding-bottom: 32px;
+}
+
+.paragraph {
+  @include font;
+  font-weight: $bold;
 }
