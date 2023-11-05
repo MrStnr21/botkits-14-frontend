@@ -1,120 +1,63 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
+  @include size(96px, 40px);
   transition: all 0.1s linear;
-  height: $constructor-helper-button-height;
-  width: $constructor-helper-button-width;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   box-shadow: $m-box-shadow;
-}
+  background-color: transparent;
 
-.container_color {
-  width: $constructor-helper-button-width + 80px;
-}
+  div {
+    @include flex(row, center, center);
+    height: 40px;
+  }
 
-.container div {
-  height: $constructor-helper-button-height;
-  @extend %flex-element-center;
-}
-
-.container svg {
-  transition: stroke 0.1s linear;
+  svg {
+    transition: stroke 0.1s linear;
+  }
 }
 
 .ask_button {
-  @extend %button-style-reset;
-  padding: 0 12px;
-  border-right: solid 1px $constructor-helper-button-delete-line-color;
+  @include button-style-reset;
+  padding-right: 12px;
+  border-right: solid 1px $secondary-cultured-hover;
+
+  svg {
+    stroke: $primary-persian-blue-default;
+  }
+
+  &:hover {
+    svg {
+      stroke: #435cdb;
+    }
+  }
+
+  &:active {
+    svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
 }
 
 .delete_button {
-  @extend %button-style-reset;
-  padding: 0 12px;
-}
+  @include button-style-reset;
+  padding-left: 12px;
 
-/* Стили цвета кнопки*/
-
-.container {
-  background-color: transparent;
-}
-
-.ask_button svg {
-  stroke: $constructor-helper-button-ask-icon-default-color;
-}
-
-.delete_button svg {
-  stroke: $constructor-helper-button-delete-icon-default-color;
-}
-
-.ask_button:hover svg {
-  stroke: $constructor-helper-button-ask-icon-hover-color;
-}
-
-.delete_button:hover svg {
-  stroke: $constructor-helper-button-delete-icon-hover-color;
-}
-
-.ask_button:active svg {
-  stroke: $constructor-helper-button-ask-icon-pressed-color;
-}
-
-.delete_button:active svg {
-  stroke: $constructor-helper-button-delete-icon-pressed-color;
-}
-
-.wrapper {
-  width: 0;
-}
-
-.wrapper_color {
-  width: 80px;
-  display: flex !important;
-  flex-direction: row;
-  justify-content: space-around !important;
-  border-right: solid 1px $constructor-helper-button-delete-line-color;
-  padding-right: 6px;
-}
-
-@mixin color_button {
-  width: 16px;
-  height: 16px;
-  box-sizing: border-box;
-  border-radius: 50%;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
-}
-
-.color_button_white {
-  @include color_button;
-  background-color: #ffffff;
-  border: 1px solid #F2F4F8;
-  &:hover {
-    border-color: #3172da;
+  svg {
+    stroke: $grey-3;
   }
-}
-.color_button_red {
-  @include color_button;
-  background-color: #d3524d;
-  border-color: #d3524d;
+
   &:hover {
-    border-color: #3172da;
+    svg {
+      stroke: $grey-1;
+    }
   }
-}
-.color_button_green {
-  @include color_button;
-  background-color: #67b057;
-  border-color: #67b057;
-  &:hover {
-    border-color: #3172da;
-  }
-}
-.color_button_blue {
-  @include color_button;
-  background-color: #5883c6;
-  border-color: #5883c6;
-  &:hover {
-    border-color: #3172da;
+
+  &:active {
+    svg {
+      stroke: $grey-3;
+    }
   }
 }
