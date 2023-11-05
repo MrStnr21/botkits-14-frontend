@@ -4,7 +4,7 @@
 @mixin add-button-circle() {
   @include size(46px, 46px);
   border-radius: $border-radius-circle;
-  background-image: url('../../images/icon/24x24/screen navigation/plus1.svg');
+  background-image: url('../../images/icon/24x24/screen navigation/plus.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-color: $primary-persian-blue-default;
