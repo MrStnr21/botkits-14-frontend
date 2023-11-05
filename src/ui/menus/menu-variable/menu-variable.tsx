@@ -3,18 +3,19 @@ import { FC, useState, useEffect } from 'react';
 import stylesMenuVariable from './menu-variable.module.scss';
 
 import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
-import Typography from '../../typography/typography';
 
 export interface IMenuVariable {
   buttons: string[];
   onClick?: Function;
   nameMenu?: string;
+  width?: string;
 }
 
 const MenuVariable: FC<IMenuVariable> = ({
   buttons,
   onClick,
   nameMenu = 'Переменная',
+  width,
 }): JSX.Element => {
   const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
@@ -47,7 +48,11 @@ const MenuVariable: FC<IMenuVariable> = ({
 
   return (
     <div>
-      <div className={stylesMenuVariable.open_button} onClick={openHandler}>
+      <div
+        style={width ? { width } : {}}
+        className={stylesMenuVariable.open_button}
+        onClick={openHandler}
+      >
         <div
           onClick={() => {
             if (isActive !== '') setIsActive('');
@@ -56,19 +61,17 @@ const MenuVariable: FC<IMenuVariable> = ({
             isActive !== '' ? stylesMenuVariable.overlayActive : ''
           }`}
         />
-        <Typography
-          tag="p"
-          className={`${stylesMenuVariable.text} ${textColor}`}
-        >
-          {variable}
-        </Typography>
+        <p className={`${stylesMenuVariable.text} ${textColor}`}>{variable}</p>
         <img
           src={arrowIcon}
           alt="стрелка"
           className={stylesMenuVariable.icon}
         />
       </div>
-      <div className={`${stylesMenuVariable.box} ${isActive}`}>
+      <div
+        style={width ? { width } : {}}
+        className={`${stylesMenuVariable.box} ${isActive}`}
+      >
         <ul className={stylesMenuVariable.ul}>
           {buttons.map((name) => {
             return (
