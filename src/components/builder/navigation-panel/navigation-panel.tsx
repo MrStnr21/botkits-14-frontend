@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
-import { useReactFlow, useStore, MiniMap } from 'reactflow';
+import { useReactFlow, useStore } from 'reactflow';
 import Divider from '@mui/material/Divider';
+import MiniMap from './mini-map';
 import fit from '../../../images/icon/24x24/screen navigation/fit.svg';
 import fullScreen from '../../../images/icon/24x24/screen navigation/full screen.svg';
 import minus from '../../../images/icon/24x24/screen navigation/minus.svg';
@@ -39,19 +40,7 @@ const NavigationPanel: FC = () => {
 
   return (
     <div className={styles.panel}>
-      {map && (
-        <MiniMap
-          nodeColor="#22FFAA"
-          pannable
-          zoomable
-          maskColor="none"
-          maskStrokeColor="#A6B3C9"
-          style={{
-            left: '12.5px',
-            bottom: '40px',
-          }}
-        />
-      )}
+      {map && <MiniMap className={styles.map} maskColor="none" />}
       <Typography tag="span" className={styles.percent}>
         {Math.round(zoomLevel * 100)}
       </Typography>
