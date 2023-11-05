@@ -1,15 +1,12 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
-.container {
-  // font-family: 'IBM Plex Mono';
-  display: flex;
-  flex-direction: column;
-
-  border-radius: $border-radius-10;
+.container{
+  @include flex(column);
+  border-radius: $l-border-radius;
 
   max-width: 296px;
   height: min-content;
-
   box-shadow: $m-box-shadow;
 
   @media screen and (max-width: 520px) {
@@ -17,13 +14,11 @@
   }
 }
 
-.header {
+.header{
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 0 16px;
-
   padding: 13px 16px 16px;
 
   @media screen and (max-width: 520px) {
@@ -31,47 +26,34 @@
   }
 }
 
-.type {
-  font-size: $xs-font-size;
-  line-height: 15.6px;
-  color: $default-dark-grey-color;
-
+.type{
+  color: $grey-3;
   @media screen and (max-width: 520px) {
     font-size: 6.84px;
-    line-height: 8.89px;
+    line-height: $m-line-height;
   }
 }
 
-.name {
-  font-size: $l-font-size;
-  line-height: 20px;
-  font-weight: $semi-bold;
-  color: $primary-text-color;
+.name{
+  @include font('IBM Plex Mono', $m-font-size, $semi-bold, $primary-oxford-blue-default);
+  @include line-sizes($m-line-height, 0px);
   outline: 0;
   border: 0;
-  text-overflow: ellipsis;
-  max-width: 250px;
-
   @media screen and (max-width: 520px) {
     font-size: 9.12px;
-    line-height: 11.86px;
+    line-height: $m-line-height;
   }
 }
 
-.more {
-  position: absolute;
-  top: 37px;
-  right: 13px;
+.more{
+  @include indents;
+  @include size(24px, 24px);
+  @include position(absolute, 37px, 13px);
   background: none;
-  margin: 0;
   border: 0;
-  padding: 0;
-  width: 24px;
-  height: 24px;
 
-  .img {
-    width: 100%;
-    height: 100%;
+  .img{
+    @include size(100%, 100%);
   }
 
   &:hover {
@@ -79,20 +61,17 @@
   }
 
   @media screen and (max-width: 520px) {
+    @include size(14px, 14px);
     top: 20px;
     right: 5px;
-    height: 14px;
-    width: 14px;
   }
 }
 
-.hr {
-  background-color: $hover-grey-color;
-  height: 1px;
-  width: 100%;
+.hr{
+  @include size(100%, 1px);
+  background-color: $secondary-cultured-hover;
   margin: 0;
   border: 0;
-
   @media screen and (max-width: 520px) {
     height: .5px;
   }
