@@ -90,30 +90,14 @@
   background-color: #ffffff;
   border: 1px solid #F2F4F8;
   &:hover {
-    border-color: #3172da;
+    svg {
+      stroke: $grey-1;
+    }
   }
-}
-.color_button_red {
-  @include color_button;
-  background-color: #d3524d;
-  border-color: #d3524d;
-  &:hover {
-    border-color: #3172da;
-  }
-}
-.color_button_green {
-  @include color_button;
-  background-color: #67b057;
-  border-color: #67b057;
-  &:hover {
-    border-color: #3172da;
-  }
-}
-.color_button_blue {
-  @include color_button;
-  background-color: #5883c6;
-  border-color: #5883c6;
-  &:hover {
-    border-color: #3172da;
+
+  &:active {
+    svg {
+      stroke: $grey-3;
+    }
   }
 }
