@@ -1,4 +1,4 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/mixins' as *;
 
 @mixin button-main(
   $s-font-size,
@@ -8,7 +8,7 @@
   $constructor-add-button-height,
   $border-radius-10
 ) {
-  @extend %button-style-reset;
+  @include button-style-reset;
   display: flex;
   align-items: center;
   padding: 0 12px;
@@ -26,18 +26,18 @@
 }
 
 @mixin wrapper {
-  width: 100%;  
+  width: 100%;
   height: 100%;
 }
 
 .button {
   @include button-main(
-    $s-font-size,
-    $normal,
-    $m-letter-space,
-    $button-line-height-150,
-    $constructor-add-button-height,
-    $border-radius-10
+    13px,
+    400,
+    0.3px,
+    150%,
+    44px,
+    10px
   );
   height: 100%;
 }
@@ -52,7 +52,7 @@
 }
 
 .button div {
-  @extend %flex-element-center;
+  @include flex(row, center, center);
 }
 
 .button svg {
@@ -67,36 +67,36 @@
 /* Стили цвета кнопки*/
 
 .button {
-  color: $constructor-add-button-default-color;
-  background-color: $constructor-add-button-default-background-color;
+  color: #8392ab;
+  background-color: #f8f9fb;
 }
 
 .button svg {
-  stroke: $constructor-add-button-default-icon-color;
+  stroke: #a6b3c9;
 }
 
 .button:hover {
-  color: $constructor-add-button-hover-color;
+  color: #243cbb;
 }
 
 .button:hover svg {
-  stroke: $constructor-add-button-hover-icon-color;
+  stroke: #243cbb;
 }
 
 .button:active {
-  color: $constructor-add-button-pressed-color;
-  background-color: $constructor-add-button-pressed-background-color;
+  color: #243cbb;
+  background-color: #ecefff;
 }
 
 .button:active svg {
-  stroke: $constructor-add-button-pressed-icon-color;
+  stroke: #243cbb;
 }
 
 .button:disabled {
-  color: $constructor-add-button-disabled-color;
-  background-color: $constructor-add-button-default-background-color;
+  color: #d7deea;
+  background-color: #f8f9fb;
 }
 
 .button:disabled svg {
-  stroke: $constructor-add-button-disabled-icon-color;
+  stroke: #ccd4e0;
 }
