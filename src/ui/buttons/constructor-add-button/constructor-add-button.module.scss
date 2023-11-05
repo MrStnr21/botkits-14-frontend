@@ -59,6 +59,3 @@
 .text {
   @include indents;
 }
-.button:disabled svg {
-  stroke: $constructor-add-button-disabled-icon-color;
-}
