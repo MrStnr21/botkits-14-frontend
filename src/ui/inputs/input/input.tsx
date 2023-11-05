@@ -1,7 +1,7 @@
-/* eslint-disable prettier/prettier */
 import { FC, ChangeEvent, useState, useEffect } from 'react';
 
 import stylesInput from './input.module.scss';
+import Typography from '../../typography/typography';
 
 interface IInput {
   isInvalid?: boolean;
@@ -103,10 +103,13 @@ const Input: FC<IInput> = ({
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={` ${className} ${error.error || isInvalid ? stylesInput.incorrect : ''} ${(error.error || isInvalid) && styled === 'secondary'
-          ? stylesInput.inputSecondaryIncorrect
-          : ''
-          } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
+        className={` ${className} ${
+          error.error || isInvalid ? stylesInput.incorrect : ''
+        } ${
+          (error.error || isInvalid) && styled === 'secondary'
+            ? stylesInput.inputSecondaryIncorrect
+            : ''
+        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}
@@ -119,32 +122,38 @@ const Input: FC<IInput> = ({
         required={required}
       />
       {(error.error || isInvalid) && (
-        <p className={stylesInput.incorrect_text}>{error.textError}</p>
+        <Typography tag="p" className={stylesInput.incorrect_text}>
+          {error.textError}
+        </Typography>
       )}
       <div
-        className={`${styled === 'secondary'
-          ? stylesInput.iconContainerSecondary
-          : stylesInput.iconContainerMain
-          } ${disabled && stylesInput.disabled}`}
+        className={`${
+          styled === 'secondary'
+            ? stylesInput.iconContainerSecondary
+            : stylesInput.iconContainerMain
+        } ${disabled && stylesInput.disabled}`}
       >
         {password && (
           <button
             type="button"
             aria-label="show/hide password"
             onClick={handleShowPassword}
-            className={`${styled === 'secondary'
-              ? stylesInput.passwordSecondary
-              : stylesInput.passwordMain
-              } ${showPassword && stylesInput.passwordShow}`}
+            className={`${
+              styled === 'secondary'
+                ? stylesInput.passwordSecondary
+                : stylesInput.passwordMain
+            } ${showPassword && stylesInput.passwordShow}`}
           />
         )}
         {required && (
-          <span
-            className={`${stylesInput.required} ${(error.error || isInvalid) && stylesInput.requiredIncorrect
-              }`}
+          <Typography
+            tag="span"
+            className={`${stylesInput.required} ${
+              (error.error || isInvalid) && stylesInput.requiredIncorrect
+            }`}
           >
             *
-          </span>
+          </Typography>
         )}
       </div>
     </div>
