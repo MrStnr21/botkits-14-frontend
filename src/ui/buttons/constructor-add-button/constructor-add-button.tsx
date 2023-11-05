@@ -14,7 +14,6 @@ import CreditCard from '../../../images/icon/24x24/add block/credit-card.svg';
 import Sliders from '../../../images/icon/24x24/add block/sliders.svg';
 import Api from '../../../images/icon/24x24/add block/api.svg';
 import MapPin from '../../../images/icon/24x24/add block/map-pin.svg';
-import Photo from '../../../images/icon/24x24/add content/image.svg';
 
 import stylesConstructorAddButton from './constructor-add-button.module.scss';
 import Typography from '../../typography/typography';
@@ -35,7 +34,6 @@ enum IconsHard {
   sliders = 'managing variables',
   api = 'api',
   mapPin = 'coordinates',
-  photo = 'photo',
 }
 
 export const Icons = {
@@ -65,9 +63,7 @@ export interface IConstructorAddButton {
   onClick?: VoidFunction;
   disabled?: boolean;
   children: React.ReactNode;
-  icon?: string;
-  picture?: React.ReactNode;
-  width?: string;
+  icon?: typeof Icons;
 }
 
 const cx = classNames.bind(stylesConstructorAddButton);
@@ -78,8 +74,6 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
   disabled,
   children,
   icon = 'add',
-  picture,
-  width,
 }) => {
   const getIcon = () => {
     switch (icon) {
@@ -120,9 +114,6 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
       case Icons.mapPin: {
         return MapPin;
       }
-      case Icons.photo: {
-        return Photo;
-      }
       default: {
         return PlusIcon;
       }
@@ -135,7 +126,6 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
 
   return (
     <section
-      style={width ? { width } : {}}
       className={
         buttonType === 'free'
           ? stylesConstructorAddButton.wrapper
