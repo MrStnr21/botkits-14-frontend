@@ -1,15 +1,13 @@
-@import '../../../app/vars';
-
 .container {
   // font-family: 'IBM Plex Mono';
   display: flex;
   flex-direction: column;
 
-  border-radius: $border-radius-10;
+  border-radius: 10px;
 
   max-width: 296px;
 
-  box-shadow: $m-box-shadow;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
 
   @media screen and (max-width: 520px) {
     max-width: 168px;
@@ -17,8 +15,8 @@
 }
 
 .header {
-  font-size: $s-font-size;
-  font-weight: $bold;
+  font-size: 13px;
+  font-weight: 600;
   margin: 0px;
   padding: 12px 0px 0px 16px;
 

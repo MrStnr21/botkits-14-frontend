@@ -1,9 +1,9 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/mixins' as *;
 
 .button {
-  @extend %button-style-reset;
+  @include button-style-reset;
   display: block;
-  background-color: $white-color;
+  background-color: #ffffff;
   transition: background-color 0.1s linear;
   align-items: center;
   width: 24px;
