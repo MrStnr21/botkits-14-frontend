@@ -28,6 +28,9 @@
 
 .type{
   color: $grey-3;
+  font-size: 12px;
+  line-height: 130%;
+  letter-spacing: 0.4px;
   @media screen and (max-width: 520px) {
     font-size: 6.84px;
     line-height: $m-line-height;
