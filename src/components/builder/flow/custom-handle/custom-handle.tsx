@@ -2,7 +2,11 @@ import { FC } from 'react';
 import { HandleProps, Handle } from 'reactflow';
 import styles from './custom-handle.module.scss';
 
-const CustomHandle: FC<HandleProps> = ({
+type TCustomHandle = HandleProps & {
+  hidden?: boolean;
+};
+
+const CustomHandle: FC<TCustomHandle> = ({
   type,
   position,
   isConnectable,
@@ -11,10 +15,11 @@ const CustomHandle: FC<HandleProps> = ({
   onConnect,
   isValidConnection,
   id,
+  hidden = true,
 }) => {
   return (
     <Handle
-      className={styles.handle}
+      className={hidden ? styles.hidden : styles.handle}
       type={type}
       position={position}
       isConnectable={isConnectable}
