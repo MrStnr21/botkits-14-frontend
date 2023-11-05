@@ -28,8 +28,7 @@
 }
 
 .download__text {
-  @include font('Open Sans', $s-font-size, $bold, $grey-3);
-  @include line-sizes($xl-line-height, $m-letter-space);
+  color: $grey-3;
 }
 
 .textError {

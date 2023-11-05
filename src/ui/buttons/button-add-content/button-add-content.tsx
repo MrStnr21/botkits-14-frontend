@@ -14,6 +14,7 @@ import btnIcon from '../../../images/icon/24x24/add content/button.svg';
 // import Button from '../button/button';
 
 import { BUTTON_NAME } from '../../../utils/constants';
+import Typography from '../../typography/typography';
 
 const ButtonAddContent: FC = (): JSX.Element => {
   const [iconSelected, setIconSelected] = useState<BUTTON_NAME>();
@@ -35,7 +36,9 @@ const ButtonAddContent: FC = (): JSX.Element => {
       className={stylesButtonAddContent.wrapper}
     >
       {/* @TODO  add style for h2 */}
-      <h2 className={stylesButtonAddContent.header}>Добавить</h2>
+      <Typography tag="h2" className={stylesButtonAddContent.header}>
+        Добавить
+      </Typography>
       <div className={stylesButtonAddContent.butbox}>
         <ConstructorIconBotton
           text={BUTTON_NAME.IMAGE}

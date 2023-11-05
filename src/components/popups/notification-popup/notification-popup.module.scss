@@ -38,8 +38,6 @@
 }
 
 .title {
-  @include font('IBM Plex Mono', $xxl-font-size, $bold, $primary-oxford-blue-default);
-  line-height: $m-line-height;
   background-color: $off-white;
   margin: 10px 0 20px 0;
 }

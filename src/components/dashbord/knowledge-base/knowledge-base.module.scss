@@ -17,8 +17,6 @@
   row-gap: 40px;
   align-content: space-between;
   background-color: $secondary-cultured-hover;
-
-  font-family: 'Open Sans', sans-serif;
   color: $primary-oxford-blue-default;
 
   @media (max-width: $switching-width) {
@@ -42,7 +40,6 @@
   margin-top: 32px;
   margin-bottom: 24px;
   text-align: start;
-  @extend %typography-header;
 }
 
 .video__container {
@@ -81,10 +78,7 @@
 }
 
 .base__text {
-  margin-top: 0;
   margin-bottom: 24px;
-  font-size: $s-font-size;
-  font-weight: $bold;
 }
 
 .base__list {

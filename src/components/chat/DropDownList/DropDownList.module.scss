@@ -12,9 +12,6 @@
 }
 
 @mixin font-r {
-  @include font('OpenSans', $xs-font-size, $normal, $primary-oxford-blue-default);
-  @include line-sizes($xl-line-height, 0.75px);
-  margin: 0;
   white-space: nowrap;
 }
 

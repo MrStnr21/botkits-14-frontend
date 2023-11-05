@@ -42,9 +42,7 @@
   display: flex;
 }
 
-.text {
-  @include font('Open Sans', $xs-font-size, $normal, black);
-  @include line-sizes($xl-line-height, $m-letter-space);
+.text.text {
   transition: color 0.3s linear;
 }
 

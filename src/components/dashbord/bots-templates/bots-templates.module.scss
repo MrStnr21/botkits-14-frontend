@@ -15,12 +15,6 @@
   }
 }
 
-.title {
-  @include font('IBM Plex Mono', $xxxl-font-size, $bold, $primary-oxford-blue-default);
-  @include line-sizes($m-line-height, $s-letter-space);
-  margin: 0;
-}
-
 .list {
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(0, 125px));

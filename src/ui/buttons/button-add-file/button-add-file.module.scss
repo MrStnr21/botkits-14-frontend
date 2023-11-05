@@ -11,10 +11,7 @@
 }
 
 .header {
-  @include font('Open Sans', $xs-font-size, $bold, $primary-oxford-blue-default);
-  @include line-sizes($xl-line-height, $m-letter-space);
   text-align: left;
-  margin-top: 0;
   margin-bottom: 12px;
 }
 

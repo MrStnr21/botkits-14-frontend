@@ -25,23 +25,23 @@
   }
 
 
-   .button:active{
+  .button:active{
     .#{$class}{
       background-image: url('../../../images/icon/40x40/' + #{$class} + '/hover.svg');
     }
-   }
+  }
 
-   .button:hover{
+  .button:hover{
     .#{$class}{
       background-image: url('../../../images/icon/40x40/' + #{$class} + '/hover.svg');
     }
-   }
+  }
 
-   .button:disabled{
+  .button:disabled{
     .#{$class}{
       background-image: url('../../../images/icon/40x40/' + #{$class} + '/inactive.svg');
     }
-   }
+  }
 }
 
 .button {

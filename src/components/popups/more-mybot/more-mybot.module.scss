@@ -9,7 +9,6 @@ $switching-width-menu: ($min-content-width + 100px);
   min-height: 323px;
   box-sizing: border-box;
   padding: 8px 0;
-
   box-shadow: $l-box-shadow;
   background-color: $off-white;
   border-radius: $l-border-radius;
@@ -35,12 +34,6 @@ $switching-width-menu: ($min-content-width + 100px);
     background-color: $secondary-cultured-hover;
     color: $primary-oxford-blue-default;
   }
-}
-
-.text {
-  @include font('Open Sans', $xs-font-size, $normal, $color: inherit);
-  @include line-sizes($xl-line-height, inherit);
-  margin: 0;
 }
 
 .item:nth-child(1) {
