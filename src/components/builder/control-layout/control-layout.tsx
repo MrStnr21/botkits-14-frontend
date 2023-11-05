@@ -27,7 +27,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({
   return (
     <article className={styles.container}>
       <div className={styles.header}>
-        <Typography tag="span" className={styles.type}>
+        <Typography tag="span" fontFamily="secondary" className={styles.type}>
           {type}
         </Typography>
         <input
@@ -40,7 +40,6 @@ const ControlLayout: FC<TControlLayoutProps> = ({
           <img className={styles.img} src={moreIcon} alt="больше" />
           <MenuBot
             size="medium"
-            // eslint-disable-next-line
             editFunction={() => {}}
             isActive={menu}
             top={0}
