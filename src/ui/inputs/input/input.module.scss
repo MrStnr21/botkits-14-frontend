@@ -1,7 +1,7 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
-@mixin input-main($width, $max-width, $padding, $bg-color, $border, $border-radius) {
+@mixin input-main($width, $max-width, $padding, $bg-color, $border, $border-radius){
   width: $width;
   max-width: $max-width;
   padding: $padding;
@@ -16,26 +16,17 @@
   }
 }
 
-<<<<<<< HEAD
 @mixin set-font($color, $font-weight, $font-size, $line-height, $letter-spacing){
   @include font('Open Sans', $font-size, $font-weight, $color);
   @include line-sizes($line-height, $letter-spacing);
-=======
-@mixin set-font($color, $font-weight, $font-size, $line-height, $letter-spacing) {
-  color: $color;
-  font-weight: $font-weight;
-  font-size: $font-size;
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
->>>>>>> 1509a3a (частично реализован компонент header-block)
 }
 
-@mixin input-pseudo($ph-color, $hph-color, $dp-color, $d-color, $d-opacity) {
-  &::placeholder {
+@mixin input-pseudo($ph-color, $hph-color, $dp-color, $d-color, $d-opacity){
+  &::placeholder{
     color: $ph-color
   }
 
-  &::placeholder:hover {
+  &::placeholder:hover{
     color: $hph-color
   }
 
@@ -49,7 +40,6 @@
   }
 }
 
-<<<<<<< HEAD
 @mixin icon-container($right){
   @include flex(row, center, center);
   @include position(absolute, 0, $right, $bottom: 0);
@@ -58,30 +48,23 @@
 @mixin eye-icon($src){
   @include indents;
   @include size(24px, 24px);
-=======
-@mixin icon-container($right) {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: $right;
-  bottom: 0;
 }
 
-@mixin eye-icon($src) {
-  margin: 0;
-  padding: 0;
-  width: 24px;
-  height: 24px;
->>>>>>> 1509a3a (частично реализован компонент header-block)
+@mixin icon-container($right){
+  @include flex(row, center, center);
+  @include position(absolute, 0, $right, $bottom: 0);
+}
+
+@mixin eye-icon($src){
+  @include indents;
+  @include size(24px, 24px);
   border: none;
   background-color: transparent;
   background-image: url($src);
   opacity: 1;
 }
 
-@mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color) {
+@mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color){
   @include input-main(100%, 240px, $padding, $bg-color, 0, 5px);
   @include set-font($primary-oxford-blue-default, $font-weight, 13px, 19.5px, 0.3px);
   @include input-pseudo($ph-color, $hph-color, $secondary-cultured-press, $secondary-cultured-focus, 1);
@@ -131,21 +114,12 @@
 
 }
 
-<<<<<<< HEAD
 .inputBuilderNum{
   @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3)
 }
 
 .inputBuilderDefault{
   @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
-=======
-.inputBuilderNum {
-  @include input-builder(6px 4px, $default-grey-color, $bold, $default-dark-grey-color, $default-dark-grey-color)
-}
-
-.inputBuilderDefault {
-  @include input-builder(10px 8px, $hover-grey-color, $normal, $placeholder-grey-color, $placeholder-grey-color);
->>>>>>> 1509a3a (частично реализован компонент header-block)
 }
 
 .iconContainerSecondary {
@@ -197,10 +171,5 @@
 }
 
 .colorBlue {
-<<<<<<< HEAD
   color: $primary-persian-blue-default
 }
-=======
-  color: $default-blue-color
-}
->>>>>>> 1509a3a (частично реализован компонент header-block)
