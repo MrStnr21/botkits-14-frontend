@@ -2,35 +2,33 @@
 @use '../../stylesheets/mixins' as *;
 
 .dialog {
-  @include flex(row, center, center, null);
+  @include flex(column, center, center, unset);
+  @include size(656px, unset);
+  @include position(relative);
+  border-left: 1px $secondary-cultured-press solid;
+  border-right: 1px $secondary-cultured-press solid;
+  box-sizing: border-box;
   margin: 32px 0 0;
   padding: 0 32px;
-  position: relative;
-  width: 656px;
-  height: calc(100% - 32px);
-  flex-direction: column;
-  // border-left: 1px $icon-grey-color solid;
-  // border-right: 1px $icon-grey-color solid;
 
   & * {
     box-sizing: border-box;
   }
 
   @media screen and (max-width: 620px) {
-    margin: 0;
-    padding: 0;
+    @include indents();
   }
 
   &__wrapper {
-    width: 100%;
-    @include flex(column, null, center, null);
+    @include size(100%, unset);
+    @include flex(column, unset, center, unset);
   }
 
   &__header {
-    @include flex(row, space-between, center, null);
-    width: 100%;
+    @include flex(row, space-between, center, unset);
+    @include position(relative);
+    @include size(100%, unset);
     padding: 0 0 16px;
-    position: relative;
 
     @media screen and (max-width: 620px) {
       padding: 0 20px 20px;
@@ -38,7 +36,7 @@
   }
 
   &__headerContent {
-    @include flex(row, null, center, 16px);
+    @include flex(row, unset, center, 16px);
 
     @media screen and (max-width: 620px) {
       @include flex(row, space-between, center, 16px);
@@ -46,18 +44,18 @@
   }
 
   &__borderText {
-    position: relative;
-    @include flex(row, center, center, null);
+    @include position(relative);
+    @include flex(row, center, center, unset);
+    @include size(100%, unset);
+    @include max-size(unset, 24px);
+    color: $grey-3;
     text-align: center;
     overflow: hidden;
-    width: 100%;
-    max-height: 24px;
-    color: $grey-4;
     background: transparent;
     z-index: 555;
 
     @media screen and (max-width: 620px) {
-      background: $grey-4;
+      background: $secondary-cultured-default;
       padding: 32px;
     }
   }
@@ -65,16 +63,15 @@
   &__borderText::before,
   &__borderText::after {
     content: '';
+    @include position(absolute, 50%);
+    @include size(50%, unset);
     display: block;
-    position: absolute;
-    top: 50%;
     border: .8px $secondary-cultured-press solid;
-    width: 50%;
     transform: translateY(50%);
     z-index: 1;
 
     @media screen and (max-width: 620px) {
-      width: 30%;
+      @include size(30%, unset);
     }
   }
 
@@ -95,12 +92,10 @@
   }
 
   &__nameWrapper {
-    @include flex(row, null, center, 16px);
+    @include flex(row, unset, center, 16px);
 
     @media screen and (max-width: 620px) {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      @include position(absolute, 50%, unset, unset, 50%);
       transform: translate(-50%, -50%);
       flex-direction: column;
       gap: 4px;
@@ -109,23 +104,18 @@
   }
 
   &__iconsWrapper {
-    position: relative;
+    @include position(relative);
     @include flex(row, space-between, center, 6px);
-    justify-content: space-between;
-    gap: 6px;
     z-index: 1;
   }
 
   &__modal {
-    position: absolute;
-    top: 100%;
-    right: 0;
+    @include position(absolute, 100%, 0);
     z-index: 555;
   }
 
   &__avatar {
-    width: 40px;
-    height: 40px;
+    @include size(40px, 40px);
   }
 
   &__status {
@@ -136,17 +126,14 @@
   }
 
   &__headerButton {
-    border: none;
-    background: transparent;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
+    @include button-style-reset();
+    @include indents();
   }
 
   &__messages {
-    margin: 32px 0;
-    width: 100%;
+    @include size(100%, unset);
     @include flex(column, space-between, flex-start, 16px);
+    margin: 32px 0 20px;
     overflow: scroll;
 
     &::-webkit-scrollbar {
@@ -156,13 +143,13 @@
     @media screen and (max-width: 620px) {
       margin: 0;
       padding: 0 20px;
-      background: $grey-1;
+      background: $secondary-cultured-default;
     }
   }
 
   &__messageInput {
     @include flex(row, space-between, center, 20px);
-    width: 100%;
+    @include size(100%, unset);
 
     @media screen and (max-width: 620px) {
       padding: 16px 20px 0;
@@ -170,26 +157,22 @@
   }
 
   &__headerInputWrapper {
-    margin: 0;
-    max-width: 183px;
-    width: 100%;
+    @include indents();
+    @include size(100%, unset);
+    @include max-size(183px, unset);
     box-sizing: border-box;
     border-radius: $l-border-radius;
   }
 
   &__inputWrapper {
-    max-width: 526px;
-    width: 100%;
-    min-height: 48px;
+    // @include max-size(526px, unset);
+    @include size(100%, unset);
+    @include min-size(unset, 48px);
   }
 
   &__submitButton {
-    width: 40px;
-    height: 40px;
-    border: none;
-    background: transparent;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
+    @include size(40px, 40px);
+    @include button-style-reset();
+    @include indents();
   }
 }

@@ -17,19 +17,20 @@
 }
 
 .message {
+  @include flex(row, unset, center, 16px);
   max-width: 362px;
   width: 100%;
-  @include flex(row, unset, center, 16px);
+  box-sizing: border-box;
 
   & * {
     box-sizing: border-box;
   }
 
   &__userMessage {
+    @include flex(row-reverse, unset, center, 16px);
     width: 100%;
     max-width: 362px;
     align-self: flex-end;
-    @include flex(row-reverse, unset, center, 16px);
   }
 
   &__container {
@@ -79,12 +80,13 @@
   }
 
   &__content {
-    @include flex(column, unset, flex-start, 8px);
+    @include flex(column, unset, flex-start, 16px);
     width: 100%;
   }
 
   &__textWrapper {
     @include flex(row, space-between, center, 8px);
+    flex-wrap: wrap;
     width: 100%;
   }
 

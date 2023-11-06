@@ -2,28 +2,26 @@
 @use '../../../stylesheets/mixins' as *;
 
 .tooltip {
-  position: relative;
+  @include position(relative);
   display: inline-block;
 
+  & * {
+    box-sizing: border-box;
+  }
+
   &__text {
-    visibility: hidden;
-    background-color: #2E293D;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    bottom: 130%;
-    left: 50%;
+    @include position(absolute, unset, unset, 130%, 50%);
+    @include indents(5px, 0);
     transform: translateX(-50%);
+    background-color: $secondary-xiketic-press;
+    color: $off-white;
+    border-radius: $s-border-radius;
+    letter-spacing: $m-letter-space;
+    visibility: hidden;
+    text-align: center;
     z-index: 1;
     opacity: 0;
     white-space: nowrap;
-    font-family: Open-Sans, sans-serif;
-    font-size: $xxs-font-size;
-    font-weight: $normal;
-    line-height: $xs-line-height;
-    letter-spacing: .3px;
   }
 
   &:hover &__text {
@@ -33,14 +31,11 @@
 
   &:hover::after {
     content: '';
-    position: absolute;
-    top: -30%;
-    left: 50%;
+    @include position(absolute, -30%, unset, unset, 50%);
+    @include size(0, 0);
     transform: translateX(-50%);
-    width: 0;
-    height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #2E293D;
+    border-top: 5px solid $secondary-xiketic-press;
   }
 }
