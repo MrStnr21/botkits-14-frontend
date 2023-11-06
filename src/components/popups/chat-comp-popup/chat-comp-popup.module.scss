@@ -1,11 +1,11 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
 
 .container {
   width: 728px;
   box-sizing: border-box;
   background-color: white;
   box-shadow: 0 12px 24px 0 #15123321;
-  border-radius: $border-radius-30;
+  border-radius: $xxl-border-radius;
   position: relative;
 }
 
@@ -24,8 +24,8 @@
 .dropSector {
   position: absolute;
   top: 0;
-  border-top-left-radius: $border-radius-30;
-  border-bottom-left-radius: $border-radius-30;
+  border-top-left-radius: $xxl-border-radius;
+  border-bottom-left-radius: $xxl-border-radius;
   width: 364px;
   height: 427px;
   display: flex;
@@ -46,8 +46,8 @@
 }
 
 .dropSectorDragging {
-  border-top-left-radius: $border-radius-30;
-  border-bottom-left-radius: $border-radius-30;
+  border-top-left-radius: $xxl-border-radius;
+  border-bottom-left-radius: $xxl-border-radius;
   position: relative;
   width: 100%;
   height: 100%;
@@ -131,8 +131,8 @@
   align-items: center;
   top: 0;
   left: 364px;
-  border-top-right-radius: $border-radius-30;
-  border-bottom-right-radius: $border-radius-30;
+  border-top-right-radius: $xxl-border-radius;
+  border-bottom-right-radius: $xxl-border-radius;
   background-color: #F8F9FB;
   width: 364px;
   height: 427px;
