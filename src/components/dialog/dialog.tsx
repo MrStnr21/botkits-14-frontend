@@ -34,7 +34,6 @@ const Dialog: FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const chatData = useAppSelector((store) => store.websocket.data);
-  console.log(chatData);
 
   const handleSearchClick = () => {
     setInputVisible(!isInputVisible);

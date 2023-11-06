@@ -2,33 +2,32 @@
 @use '../../../stylesheets/mixins' as *;
 
 .message {
-  display: flex;
-  max-width: 308px;
+  @include flex();
+  @include position(relative);
+  @include indents(10px, 0);
+  @include max-size(308px, unset);
+  @include min-size(unset, 40px);
   background-color: $secondary-cultured-default;
   border-radius: $l-border-radius;
-  min-height: 40px;
-  padding: 10px;
   box-sizing: border-box;
-  position: relative;
 
   &:focus-within {
-    border: $primary-persian-blue-default solid;
+    border: 1.5px $primary-persian-blue-default solid;
   }
 }
 
 .input {
-  width: 100%;
+  @include indents();
+  @include size(100%, unset);
+  @include font('Open-Sans', $s-font-size, $normal, $primary-oxford-blue-default);
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
   background-color: $secondary-cultured-default;
-  font-family: 'Open Sans', sans-serif;
-  font-size: $s-font-size;
-  font-weight: $normal;
   line-height: 20px;
   letter-spacing: $m-letter-space;
-  color: $primary-oxford-blue-default;
   text-indent: 25px;
+  box-sizing: border-box;
 
   &::placeholder {
     color: $grey-4;

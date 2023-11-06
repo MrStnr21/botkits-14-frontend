@@ -29,6 +29,7 @@
     @include position(relative);
     @include size(100%, unset);
     padding: 0 0 16px;
+    z-index: 3;
 
     @media screen and (max-width: 620px) {
       padding: 0 20px 20px;
@@ -52,7 +53,7 @@
     text-align: center;
     overflow: hidden;
     background: transparent;
-    z-index: 555;
+    z-index: 2;
 
     @media screen and (max-width: 620px) {
       background: $secondary-cultured-default;
@@ -68,7 +69,7 @@
     display: block;
     border: .8px $secondary-cultured-press solid;
     transform: translateY(50%);
-    z-index: 1;
+    z-index: 2;
 
     @media screen and (max-width: 620px) {
       @include size(30%, unset);
@@ -111,7 +112,7 @@
 
   &__modal {
     @include position(absolute, 100%, 0);
-    z-index: 555;
+    z-index: 4;
   }
 
   &__avatar {
