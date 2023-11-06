@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
@@ -43,14 +44,12 @@ const Sidebar: FC = (): JSX.Element => {
   return (
     <section
       aria-label="НАВИГАЦИЯ"
-      className={`${stylesSidebar.wrapper} ${
-        isOpenSB ? stylesSidebar.wrapper_open : stylesSidebar.wrapper_close
-      }`}
+      className={`${stylesSidebar.wrapper} ${isOpenSB ? stylesSidebar.wrapper_open : stylesSidebar.wrapper_close
+        }`}
     >
       <div
-        className={`${stylesSidebar.sidebar} ${
-          isOpenSB ? stylesSidebar.sidebar_open : stylesSidebar.sidebar_close
-        }`}
+        className={`${stylesSidebar.sidebar} ${isOpenSB ? stylesSidebar.sidebar_open : stylesSidebar.sidebar_close
+          }`}
       >
         <div className={stylesSidebar.header}>
           <button
@@ -88,11 +87,10 @@ const Sidebar: FC = (): JSX.Element => {
               item.child ? (
                 <li
                   key={item.text + +index}
-                  className={`${stylesSidebar.nestedList} ${
-                    isOpenNL
-                      ? stylesSidebar.nestedList_open
-                      : stylesSidebar.nestedList_close
-                  }`}
+                  className={`${stylesSidebar.nestedList} ${isOpenNL
+                    ? stylesSidebar.nestedList_open
+                    : stylesSidebar.nestedList_close
+                    }`}
                 >
                   <Subheader {...item} />
                   <button

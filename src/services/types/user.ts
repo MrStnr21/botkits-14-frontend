@@ -41,7 +41,8 @@ export interface IUserResetPasswordState {
   email: string;
 }
 
-export interface IUserResponse extends TUser {}
+// eslint-disable-next-line prettier/prettier
+export interface IUserResponse extends TUser { }
 
 export interface IUserAuthError {
   message: string;

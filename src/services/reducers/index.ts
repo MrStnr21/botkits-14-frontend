@@ -16,6 +16,8 @@ import { getTemplatesBotsReducer } from './bots/getTemplatesBots';
 
 import { getPlatformsReducer } from './platforms/getPlatforms';
 
+import { getBuilderDataReducer } from './builder/getBuilder';
+
 const rootReducer = combineReducers({
   signin: signinReducer,
   signup: signupReducer,
@@ -26,6 +28,7 @@ const rootReducer = combineReducers({
   addBot: addBotReducer,
   getTemplatesBots: getTemplatesBotsReducer,
   getPlatforms: getPlatformsReducer,
+  getBuilderData: getBuilderDataReducer,
 });
 
 export default rootReducer;
