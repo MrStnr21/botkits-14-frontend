@@ -7,7 +7,7 @@ import Typography from '../../../../ui/typography/typography';
 
 export type TButtonStartProps = {
   data: {
-    type: 'start' | 'stop' | 'test';
+    type: string;
     onClick?: VoidFunction;
   };
 };
