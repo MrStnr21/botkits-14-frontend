@@ -1,21 +1,20 @@
-@import '../../components/app/vars';
-
-@mixin flexLayout {
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-}
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .dialog {
-  @include flexLayout();
+  @include flex(row, center, center, null);
   margin: 32px 0 0;
   padding: 0 32px;
   position: relative;
   width: 656px;
   height: calc(100% - 32px);
   flex-direction: column;
-  border-left: 1px $icon-grey-color solid;
-  border-right: 1px $icon-grey-color solid;
+  // border-left: 1px $icon-grey-color solid;
+  // border-right: 1px $icon-grey-color solid;
+
+  & * {
+    box-sizing: border-box;
+  }
 
   @media screen and (max-width: 620px) {
     margin: 0;
@@ -24,14 +23,11 @@
 
   &__wrapper {
     width: 100%;
-    @include flexLayout();
-    flex-direction: column
+    @include flex(column, null, center, null);
   }
 
   &__header {
-    @include flexLayout();
-    flex-direction: row;
-    justify-content: space-between;
+    @include flex(row, space-between, center, null);
     width: 100%;
     padding: 0 0 16px;
     position: relative;
@@ -42,29 +38,26 @@
   }
 
   &__headerContent {
-    @include flexLayout();
-    flex-direction: row;
-    gap: 16px;
+    @include flex(row, null, center, 16px);
 
     @media screen and (max-width: 620px) {
-      justify-content: space-between;
+      @include flex(row, space-between, center, 16px);
     }
   }
 
   &__borderText {
     position: relative;
-    @include flexLayout();
-    justify-content: center;
+    @include flex(row, center, center, null);
     text-align: center;
     overflow: hidden;
     width: 100%;
     max-height: 24px;
-    color: $default-dark-grey-color;
+    color: $grey-4;
     background: transparent;
     z-index: 555;
 
     @media screen and (max-width: 620px) {
-      background: $default-grey-color;
+      background: $grey-4;
       padding: 32px;
     }
   }
@@ -75,7 +68,7 @@
     display: block;
     position: absolute;
     top: 50%;
-    border: .8px $icon-grey-color solid;
+    border: .8px $secondary-cultured-press solid;
     width: 50%;
     transform: translateY(50%);
     z-index: 1;
@@ -102,8 +95,7 @@
   }
 
   &__nameWrapper {
-    @include flexLayout();
-    gap: 16px;
+    @include flex(row, null, center, 16px);
 
     @media screen and (max-width: 620px) {
       position: absolute;
@@ -118,7 +110,7 @@
 
   &__iconsWrapper {
     position: relative;
-    @include flexLayout();
+    @include flex(row, space-between, center, 6px);
     justify-content: space-between;
     gap: 6px;
     z-index: 1;
@@ -138,9 +130,9 @@
 
   &__status {
     font-size: $xxs-font-size;
-    line-height: $xxs-line-height;
+    line-height: $xs-line-height;
     font-weight: $normal;
-    color: $default-blue-color;
+    color: $primary-persian-blue-default;
   }
 
   &__headerButton {
@@ -148,16 +140,13 @@
     background: transparent;
     margin: 0;
     padding: 0;
-    cursor: $cursor;
+    cursor: pointer;
   }
 
   &__messages {
     margin: 32px 0;
     width: 100%;
-    @include flexLayout();
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    @include flex(column, space-between, flex-start, 16px);
     overflow: scroll;
 
     &::-webkit-scrollbar {
@@ -167,15 +156,12 @@
     @media screen and (max-width: 620px) {
       margin: 0;
       padding: 0 20px;
-      background: $default-grey-color;
+      background: $grey-1;
     }
   }
 
   &__messageInput {
-    @include flexLayout();
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
+    @include flex(row, space-between, center, 20px);
     width: 100%;
 
     @media screen and (max-width: 620px) {
@@ -187,8 +173,9 @@
     margin: 0;
     max-width: 183px;
     width: 100%;
+    box-sizing: border-box;
+    border-radius: $l-border-radius;
   }
-
 
   &__inputWrapper {
     max-width: 526px;
@@ -203,6 +190,6 @@
     background: transparent;
     margin: 0;
     padding: 0;
-    cursor: $cursor;
+    cursor: pointer;
   }
 }

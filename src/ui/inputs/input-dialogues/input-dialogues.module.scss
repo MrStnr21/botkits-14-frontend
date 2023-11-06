@@ -1,14 +1,19 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .message {
   display: flex;
   max-width: 308px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-10;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
   min-height: 40px;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
+
+  &:focus-within {
+    border: $primary-persian-blue-default solid;
+  }
 }
 
 .input {
@@ -16,18 +21,23 @@
   border-radius: 10px 0 0 10px;
   outline: 0;
   border: 0;
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
   font-family: 'Open Sans', sans-serif;
   font-size: $s-font-size;
   font-weight: $normal;
   line-height: 20px;
   letter-spacing: $m-letter-space;
-  color: $primary-text-color;
+  color: $primary-oxford-blue-default;
   text-indent: 25px;
 
   &::placeholder {
-    color: $default-dark-grey-color;
+    color: $grey-4;
     background: url('../../../images/icon/20x20/search.svg') no-repeat;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+    background: none;
   }
 }
 
@@ -44,7 +54,6 @@
   padding: 0;
 }
 
-
 .icon {
-  stroke: $default-dark-grey-color;
+  stroke: $grey-1;
 }

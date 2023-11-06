@@ -2,6 +2,7 @@
 import { FC } from 'react';
 import Avatar from '../../../ui/avatar/avatar';
 import stylesMessage from './message.module.scss';
+import Typography from '../../../ui/typography/typography';
 
 type TMessage = {
   id: number;
@@ -23,7 +24,7 @@ const Message: FC<IMessage> = ({ message }) => {
       className={
         message.user !== 'Вы'
           ? stylesMessage.message
-          : `${stylesMessage.message} ${stylesMessage.userMessage}`
+          : `${stylesMessage.message} ${stylesMessage.message__userMessage}`
       }
     >
       <div className={stylesMessage.message__avatar}>
@@ -47,32 +48,36 @@ const Message: FC<IMessage> = ({ message }) => {
           }
         >
           <div className={stylesMessage.message__content}>
-            <p
+            <Typography
               className={
                 message.user !== 'Вы'
                   ? stylesMessage.message__user
                   : `${stylesMessage.message__user} ${stylesMessage.textColorWhite}`
               }
+              tag="p"
             >
               {message.user}
-            </p>
+            </Typography>
             <div className={stylesMessage.message__textWrapper}>
-              <p
+              <Typography
                 className={
                   message.user !== 'Вы'
                     ? stylesMessage.message__text
                     : `${stylesMessage.message__text} ${stylesMessage.textColorWhite}`
                 }
+                tag="p"
               >
                 {message.message}
-              </p>
-              <p className={stylesMessage.message__time}>{message.time}</p>
+              </Typography>
+              <Typography tag="p" className={stylesMessage.message__time}>
+                {message.time}
+              </Typography>
             </div>
           </div>
         </div>
-        <p className={stylesMessage.message__seen}>
+        <Typography tag="p" className={stylesMessage.message__seen}>
           Просмотрено в {message.seen}
-        </p>
+        </Typography>
       </div>
     </div>
   );

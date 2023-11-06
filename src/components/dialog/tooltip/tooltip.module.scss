@@ -1,4 +1,5 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .tooltip {
   position: relative;
@@ -21,7 +22,7 @@
     font-family: Open-Sans, sans-serif;
     font-size: $xxs-font-size;
     font-weight: $normal;
-    line-height: $xxs-line-height;
+    line-height: $xs-line-height;
     letter-spacing: .3px;
   }
 
