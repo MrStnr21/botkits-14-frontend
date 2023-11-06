@@ -135,3 +135,122 @@
     border-color: #3172da;
   }
 }
+
+.wrapper {
+  width: 0;
+}
+
+.wrapper_color {
+  width: 80px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around !important;
+  border-right: solid 1px $secondary-cultured-hover;
+  padding-right: 6px;
+}
+
+@mixin color_button {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color_button_white {
+  @include color_button;
+  background-color: #ffffff;
+  border: 1px solid #F2F4F8;
+  &:hover {
+    cursor: url('../../../images/icon/cursor/pointing-hand.svg'), pointer;
+  }
+  padding: 0 12px;
+}
+
+/* Стили цвета кнопки*/
+
+.container {
+  background-color: transparent;
+}
+
+.ask_button svg {
+  stroke: $primary-persian-blue-default;
+}
+
+.delete_button svg {
+  stroke: #a6b3c9;
+}
+
+.ask_button:hover svg {
+  stroke: $primary-persian-blue-press;
+}
+
+.delete_button:hover svg {
+  stroke: #ccd4e0;
+}
+
+.ask_button:active svg {
+  stroke: $primary-persian-blue-default;
+}
+
+.delete_button:active svg {
+  stroke: #a6b3c9;
+}
+
+.wrapper {
+  width: 0;
+}
+
+.wrapper_color {
+  width: 80px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around !important;
+  border-right: solid 1px $secondary-cultured-hover;
+  padding-right: 6px;
+}
+
+@mixin color_button {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color_button_white {
+  @include color_button;
+  background-color: #ffffff;
+  border: 1px solid #F2F4F8;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.color_button_red {
+  @include color_button;
+  background-color: #d3524d;
+  border-color: #d3524d;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.color_button_green {
+  @include color_button;
+  background-color: #67b057;
+  border-color: #67b057;
+  &:hover {
+    border-color: #3172da;
+  }
+}
+.color_button_blue {
+  @include color_button;
+  background-color: #5883c6;
+  border-color: #5883c6;
+  &:hover {
+    border-color: #3172da;
+  }
+}
