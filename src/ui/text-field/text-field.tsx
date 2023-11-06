@@ -6,6 +6,7 @@ import stylesTextField from './text-field.module.scss';
 
 import { ReactComponent as Bracket } from '../../images/icon/24x24/constructor/bracket.svg';
 import { ReactComponent as EmojiIcon } from '../../images/icon/24x24/constructor/emoji.svg';
+import Typography from '../typography/typography';
 
 const TextField: FC = (): JSX.Element => {
   const textareaTextLength = 4096;
@@ -28,9 +29,13 @@ const TextField: FC = (): JSX.Element => {
       <span className={stylesTextField.textarea__outline} />
 
       <div className={stylesTextField.textarea__footer}>
-        <p className={stylesTextField.textarea__counter}>
+        <Typography
+          tag="p"
+          fontFamily="secondary"
+          className={stylesTextField.textarea__counter}
+        >
           {text.length}/{textareaTextLength}
-        </p>
+        </Typography>
         <Bracket
           className={stylesTextField.textarea__icon}
           onClick={() => console.log('Что-то не происходит')}

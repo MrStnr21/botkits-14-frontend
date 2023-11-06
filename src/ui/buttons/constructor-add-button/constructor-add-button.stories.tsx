@@ -1,6 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import ConstructorAddButton, {
   IConstructorAddButton,
+  Icons,
 } from './constructor-add-button';
 
 export default {
@@ -25,6 +26,15 @@ export default {
         type: 'radio',
       },
     },
+    icon: {
+      type: 'string',
+      description: 'Вариант иконки',
+      defaultValue: 'add',
+      options: Object.values(Icons),
+      control: {
+        type: 'radio',
+      },
+    },
     onClick: {
       action: 'clicked',
       description: 'Callback функция, вызываемая при клике',
@@ -33,6 +43,10 @@ export default {
       type: 'string',
       description: 'Текст кнопки',
       name: 'label',
+    },
+    width: {
+      type: 'string',
+      description: 'Устанавливает ширину кнопки',
     },
   },
   parameters: {

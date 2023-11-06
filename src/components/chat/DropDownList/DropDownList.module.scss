@@ -1,0 +1,36 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.accordion {
+  @include flex(row, space-between, flex-start);
+  @include size(250px, 40px);
+  background-color: $secondary-cultured-default;
+  box-sizing: border-box;
+  padding: 10px 8px;
+  border-radius: $s-border-radius;
+  cursor: $cursor;
+}
+
+@mixin font-r {
+  white-space: nowrap;
+}
+
+.text {
+  @include font-r;
+}
+
+.container{
+  background-color: $off-white;
+  width: 250px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.title{
+  font-weight: $bold;
+}
+
+.textinfo {
+  @include font-r;
+  padding-top: 12px;
+}

@@ -1,66 +1,49 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 $switching-width-menu: ($min-content-width + 100px);
 
 .container {
-  position: absolute;
-  top: 60px;
-  left: 50%;
+  @include position(absolute, 60px, $left: 50%);
   width: 244px;
   min-height: 323px;
   box-sizing: border-box;
   padding: 8px 0;
-
-  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
-  background-color: white;
-  border-radius: 10px;
+  box-shadow: $l-box-shadow;
+  background-color: $off-white;
+  border-radius: $l-border-radius;
   z-index: 4;
 }
 
 .list {
-  padding: 0;
-  margin: 0;
+  @include indents(0, 0);
   list-style: none;
   display: grid;
 }
 
 .item {
+  @include flex(row, unset, center, 15px);
+  @include indents(0 16px, 6px 0 0 0);
   height: 37px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 15px;
   cursor: $cursor;
-  color: #2e293d;
+  color: $secondary-xiketic-press;
   position: relative;
   box-sizing: border-box;
-  padding: 0 16px;
-  margin-top: 6px;
 
   &:hover {
-    background-color: #f2f4f8;
-    color: #060c23;
+    background-color: $secondary-cultured-hover;
+    color: $primary-oxford-blue-default;
   }
 }
 
-.text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 150%;
-  margin: 0;
-}
-
 .item:nth-child(1) {
-  // height: 43px;
   padding-bottom: 6px;
-  border-bottom: 1px solid #d7deea;
+  border-bottom: 1px solid $secondary-cultured-press;
 }
 
 .item:nth-child(7) {
-  // height: 43px;
   padding-top: 6px;
-  border-top: 1px solid #d7deea;
+  border-top: 1px solid $secondary-cultured-press;
 }
 
 .item:nth-child(8) {
@@ -68,7 +51,7 @@ $switching-width-menu: ($min-content-width + 100px);
   display: none;
   height: 43px;
   padding-top: 6px;
-  border-top: 1px solid #d7deea;
+  border-top: 1px solid $secondary-cultured-press;
 
   @media (max-width: $switching-width-menu) {
     display: flex;
@@ -77,7 +60,7 @@ $switching-width-menu: ($min-content-width + 100px);
 
 @media (max-width: $switching-width-menu) {
   .container {
-    // width: 95vw;
+    @include position(fixed, auto, 0, 0, 0);
     width: auto;
     min-height: 416px;
     position: fixed;
@@ -88,8 +71,8 @@ $switching-width-menu: ($min-content-width + 100px);
   }
 
   .text {
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: $bold;
+    font-size: $s-font-size;
   }
 
   .item {

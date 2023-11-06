@@ -1,29 +1,18 @@
-@import '../../app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .container {
   text-align: start;
-  background-color: $white-color;
+  background-color: $off-white;
   max-width: 100%;
 }
 
 .header_wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  @include flex(row, space-between);
   margin-bottom: 24px;
   @media (max-width: $switching-width) {
     margin-right: 20px;
   }
-}
-
-.title {
-  font-family: 'IBM Plex Mono', sans-serif;
-  font-size: $h2-font-size;
-  font-weight: $bold;
-  line-height: $h2-line-height;
-  letter-spacing: $h2-letter-space;
-  color: $primary-text-color;
-  margin: 0;
 }
 
 .list {
@@ -39,6 +28,19 @@
     grid-template-columns: repeat(auto-fit, minmax(134px, 188px));
     grid-auto-flow: column;
   }
+
+  &::-webkit-scrollbar {
+    @include size(4px, 8px);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d7deea;
+    border-radius: 17px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 0;
+  }
 }
 
 .expanded {
@@ -49,8 +51,7 @@
   @media (max-width: $switching-width) {
     overflow-x: scroll;
     &::-webkit-scrollbar {
-      width: 0px;
-      height: 0px;
+      @include size(0, 0);
     }
   }
 }
@@ -62,8 +63,7 @@
   @media (max-width: $switching-width) {
     overflow-x: scroll;
     &::-webkit-scrollbar {
-      width: 0px;
-      height: 0px;
+      @include size(0, 0);
     }
   }
 }
@@ -75,30 +75,25 @@
 }
 
 .accordion_wrapper {
-  display: flex;
-  flex-direction: row;
+  @include flex(row);
 }
 
 .accordion_button {
-  cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-  background-color: $white-color;
+  @include font('Open Sans', $m-font-size, $bold, $grey-3);
+  cursor: $cursor;
+  background-color: $off-white;
   border: none;
-  font-weight: $bold;
-  font-size: $l-font-size;
-  line-height: $l-line-height;
-  color: $default-dark-grey-color;
+  line-height: $xl-line-height;
   @media (max-width: $switching-width) {
     display: none;
   }
 }
 
 .accordion_ico_plus {
-  cursor: pointer;
-  width: 26px;
-  height: 26px;
+  @include size(26px, 26px);
+  cursor: $cursor;
   background-image: url('../../../images/icon/24x24/common/chevron-big.svg');
-  background-color: $white-color;
+  background-color: $off-white;
   background-position: center;
   border: none;
   align-self: center;
@@ -117,26 +112,18 @@
 }
 
 .modal_overlay {
+  @include size(100%, 100%);
+  @include position(fixed, 0, $left: 0);
   display: flex;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: 2;
-  cursor: pointer;
+  cursor: $cursor;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
 .modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  @include flex(row, center, center);
+  @include size(100%, 100%);
+  @include position(fixed, 0, $left: 0);
   z-index: 100;
 }
 

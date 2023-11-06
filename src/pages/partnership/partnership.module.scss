@@ -1,0 +1,109 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.partnership {
+  @include flex(column, center, center);
+  margin-top: 32px;
+  margin-right: 40px;
+
+  @media screen and (max-width: 680px) {
+    margin: 0 auto;
+    max-width: 90vw;
+    width: 100%;
+  }
+
+  &__wrapper {
+    @include flex(row, space-between, flex-start);
+    width: 100%;
+    padding-bottom: 40px;
+
+    @media screen and (max-width: 620px) {
+      padding-bottom: 26px;
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    color: $primary-oxford-blue-default;
+    margin: 0 0 32px 0;
+
+    @media screen and (max-width: 620px) {
+      font-size: $xxl-font-size;
+      line-height: 31.2px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__inputContainer {
+    @include flex($align-items: center, $gap: 16px);
+    width: 455px;
+
+    @media screen and (max-width: 860px) {
+      min-width: 320px;
+      width: 100%;
+    }
+  }
+
+  &__inputWrapper {
+    max-width: 399px;
+    width: 100%;
+  }
+
+  &__buttonWrapper {
+    width: 20%;
+    padding: 0 0 40px;
+
+    @media screen and (max-width: 860px) {
+      width: 80%;
+      padding: 20px 0 40px;
+    }
+  }
+}
+
+.tables {
+  margin: 0;
+  border-radius: $xxl-border-radius;
+  background-color: $secondary-cultured-default;
+  width: 100%;
+
+  &__payments {
+    @include flex(column, $align-items: center);
+    padding: 40px 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  &__referrals {
+    @include flex(column, $align-items: center, $gap: 26px);
+    width: 100%;
+    padding: 40px 0;
+    background-color: $off-white;
+    border-radius: $xxl-border-radius;
+    box-sizing: border-box;
+    box-shadow: $m-box-shadow;
+  }
+
+  &__titleContainer {
+    @include flex(row, space-between, center);
+    padding: 0 40px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  &__title {
+    @media screen and (max-width: 860px) {
+      font-size: $l-font-size;
+    }
+  }
+
+  &__chevron {
+    border: none;
+    background: transparent;
+    cursor: $cursor;
+    transition: all 0.3s ease-in;
+  }
+}
+

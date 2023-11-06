@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import stylesMenuVariable from './menu-variable.module.scss';
 
@@ -6,11 +6,18 @@ import arrowIcon from '../../../images/icon/24x24/common/chevron-big.svg';
 
 export interface IMenuVariable {
   buttons: string[];
-  onClick?: any;
+  onClick?: Function;
+  nameMenu?: string;
+  width?: string;
 }
 
-const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
-  const [variable, setVariable] = useState<string>('Переменная');
+const MenuVariable: FC<IMenuVariable> = ({
+  buttons,
+  onClick,
+  nameMenu = 'Переменная',
+  width,
+}): JSX.Element => {
+  const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
   const [textColor, setTextColor] = useState<string>('');
 
@@ -23,9 +30,37 @@ const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
     setIsActive(isActive === '' ? stylesMenuVariable.active : '');
   };
 
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsActive('');
+      }
+    };
+
+    if (isActive !== '') {
+      document.addEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, [isActive]);
+
   return (
     <div>
-      <div className={stylesMenuVariable.open_button} onClick={openHandler}>
+      <div
+        style={width ? { width } : {}}
+        className={stylesMenuVariable.open_button}
+        onClick={openHandler}
+      >
+        <div
+          onClick={() => {
+            if (isActive !== '') setIsActive('');
+          }}
+          className={`${stylesMenuVariable.overlay} ${
+            isActive !== '' ? stylesMenuVariable.overlayActive : ''
+          }`}
+        />
         <p className={`${stylesMenuVariable.text} ${textColor}`}>{variable}</p>
         <img
           src={arrowIcon}
@@ -33,7 +68,10 @@ const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
           className={stylesMenuVariable.icon}
         />
       </div>
-      <div className={`${stylesMenuVariable.box} ${isActive}`}>
+      <div
+        style={width ? { width } : {}}
+        className={`${stylesMenuVariable.box} ${isActive}`}
+      >
         <ul className={stylesMenuVariable.ul}>
           {buttons.map((name) => {
             return (
@@ -43,7 +81,8 @@ const MenuVariable: FC<IMenuVariable> = ({ buttons, onClick }): JSX.Element => {
                   className={`${stylesMenuVariable.button} ${stylesMenuVariable.text}`}
                   onClick={() => {
                     changeVariableHandler(name);
-                    onClick(name);
+                    onClick!(name);
+                    setIsActive('');
                   }}
                 >
                   {name}

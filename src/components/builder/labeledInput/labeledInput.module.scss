@@ -1,0 +1,19 @@
+.label {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 264px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #F8F9FB;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Open sans', sans-serif;
+
+  @media screen and (max-width: 520px) { //заменить на нужное
+    font-size: 7.41px;
+    padding: 9px 7px;
+  }
+}

@@ -1,5 +1,5 @@
-/* bring in normalize.css styles */
-// @import-normalize;
+@import './stylesheets/variables';
+@import './stylesheets/mixins';
 @import url('./fonts/fonts.css');
 
 body {
@@ -10,5 +10,4 @@ body {
   margin: 0;
   width: 100%;
   background: #fff;
-  // background: grey;
 }

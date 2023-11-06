@@ -1,0 +1,14 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container {
+  @include flex($align-items: center, $gap: 8px);
+  @include size(fit-content, 47px);
+  @include indents;
+  background-color: $off-white;
+  box-sizing: border-box;
+}
+
+.text {
+  white-space: nowrap;
+}

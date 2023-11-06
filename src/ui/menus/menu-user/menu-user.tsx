@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router';
 
 import stylesMenuUser from './menu-user.module.scss';
 
@@ -16,13 +17,14 @@ import BASE_URL from '../../../utils/config';
 import routesUrl from '../../../utils/routesData';
 
 import { getAccessToken } from '../../../auth/authService';
+import Typography from '../../typography/typography';
 
 export interface IMenuUser {
   isActive?: boolean;
   top?: number;
   left?: number;
   right?: number;
-  onClick?: (e: any) => void; // Пока что слушаем только "Уведомления"
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void; // Пока что слушаем только "Уведомления"
 }
 
 const MenuUser: FC<IMenuUser> = ({
@@ -35,7 +37,7 @@ const MenuUser: FC<IMenuUser> = ({
   const dispatch = useAppDispatch();
 
   const token = getAccessToken();
-
+  const navigate = useNavigate();
   let boxClassName = stylesMenuUser.box;
 
   if (isActive) {
@@ -45,8 +47,10 @@ const MenuUser: FC<IMenuUser> = ({
     boxClassName = stylesMenuUser.box;
   }
 
-  const onlogout = (accessToken: string): void => {
-    dispatch(logoutAction(accessToken));
+  const onLogout = (accessToken: string): void => {
+    dispatch(
+      logoutAction(accessToken, () => navigate('signup', { replace: true }))
+    );
   };
 
   return (
@@ -60,30 +64,40 @@ const MenuUser: FC<IMenuUser> = ({
       id="id"
     >
       <div className={stylesMenuUser.userInfo}>
-        <p className={stylesMenuUser.userInfo__name}>Иванов Александр</p>
+        <Typography tag="p" className={stylesMenuUser.userInfo__name}>
+          Иванов Александр
+        </Typography>
         <div className={stylesMenuUser.tariff_container}>
-          <p className={stylesMenuUser.tariff}>Тариф</p>
-          <p className={stylesMenuUser.tariff_name}>Демо</p>
+          <Typography tag="p" className={stylesMenuUser.text}>
+            Тариф
+          </Typography>
+          <Typography tag="p">Демо</Typography>
         </div>
       </div>
       <a href="#id" className={stylesMenuUser.button}>
         <img src={settingsIcon} alt="Иконка" />
-        <p className={stylesMenuUser.text}>Настройки аккаунта</p>
+        <Typography tag="p" className={stylesMenuUser.text}>
+          Настройки аккаунта
+        </Typography>
       </a>
       <a
         href={`${BASE_URL}/${routesUrl.subscription}`}
         className={stylesMenuUser.button}
       >
         <img src={paymentsIcon} alt="Иконка" />
-        <p className={stylesMenuUser.text}>Подписка и платежи</p>
+        <Typography tag="p" className={stylesMenuUser.text}>
+          Подписка и платежи
+        </Typography>
       </a>
       <a
         href="#id"
         className={stylesMenuUser.button}
-        onClick={() => onlogout(token!)}
+        onClick={() => onLogout(token!)}
       >
         <img src={exitIcon} alt="Иконка" />
-        <p className={stylesMenuUser.text}>Выйти</p>
+        <Typography tag="p" className={stylesMenuUser.text}>
+          Выйти
+        </Typography>
       </a>
       <div className={stylesMenuUser.addition}>
         <div
@@ -92,13 +106,18 @@ const MenuUser: FC<IMenuUser> = ({
           id="notification"
         >
           <Notifications number={2} />
-          <p className={stylesMenuUser.text} id="notification">
+          <Typography
+            tag="p"
+            className={stylesMenuUser.text} /* id="notification" */
+          >
             Уведомления
-          </p>
+          </Typography>
         </div>
         <a href="#id" className={stylesMenuUser.button}>
           <Help />
-          <p className={stylesMenuUser.text}>Справка</p>
+          <Typography tag="p" className={stylesMenuUser.text}>
+            Справка
+          </Typography>
         </a>
       </div>
     </div>

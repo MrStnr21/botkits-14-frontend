@@ -2,8 +2,6 @@ import { FC } from 'react';
 
 import { useMediaQuery } from '@mui/material';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import stylesKnowledgeBase from './knowledge-base.module.scss';
 
 import prew1 from '../../../images/prewiew/prew1.png';
@@ -13,6 +11,7 @@ import prew3 from '../../../images/prewiew/prew3.png';
 import VideoCard from '../../video-card/video-card';
 
 import links from './kb-data';
+import Typography from '../../../ui/typography/typography';
 
 const KnowledgeBase: FC = (): JSX.Element => {
   const matches = useMediaQuery('(max-width: 560px)');
@@ -20,7 +19,13 @@ const KnowledgeBase: FC = (): JSX.Element => {
   return (
     <section className={stylesKnowledgeBase.wrapper}>
       <div className={stylesKnowledgeBase.video}>
-        <h2 className={stylesKnowledgeBase.video__header}>С чего начать?</h2>
+        <Typography
+          tag="h2"
+          fontFamily="secondary"
+          className={stylesKnowledgeBase.video__header}
+        >
+          С чего начать?
+        </Typography>
         <div className={stylesKnowledgeBase.video__container}>
           <VideoCard
             src="https://www.youtube.com/embed/FKOn5DfpJDA"
@@ -58,13 +63,16 @@ const KnowledgeBase: FC = (): JSX.Element => {
         >
           База знаний
         </a>
-        <p className={stylesKnowledgeBase.base__text}>
+        <Typography tag="p" className={stylesKnowledgeBase.base__text}>
           Узнай, как создать чат бота. Примеры и описание опций сервиса!
-        </p>
+        </Typography>
         <nav>
           <ul className={stylesKnowledgeBase.base__list}>
-            {links.map((item) => (
-              <li className={stylesKnowledgeBase.base__item} key={uuidv4()}>
+            {links.map((item, index) => (
+              <li
+                className={stylesKnowledgeBase.base__item}
+                key={item.text + +index}
+              >
                 <a
                   href={item.link}
                   target="_blank"

@@ -27,6 +27,15 @@ export default {
         type: 'radio',
       },
     },
+    color: {
+      type: 'boolean',
+      description: 'Выбор цвета',
+      defaultValue: false,
+      options: [true, false],
+      control: {
+        type: 'radio',
+      },
+    },
     askOnClick: {
       action: 'clicked',
       description: 'Callback функция, вызываемая при клике кнопки запроса',

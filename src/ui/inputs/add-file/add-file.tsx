@@ -5,6 +5,7 @@ import stylesAddfile from './add-file.module.scss';
 import { ReactComponent as Upload } from '../../../images/icon/24x24/common/upload.svg';
 
 import { SIZE_INPUT } from '../../../utils/constants';
+import Typography from '../../typography/typography';
 
 interface IDownloadFile {
   size: SIZE_INPUT;
@@ -17,9 +18,11 @@ const DownloadFile: FC<IDownloadFile> = ({
 }): JSX.Element => {
   const [isNoValid, setIsNoValid] = useState(state);
 
-  const handleChange = (e: any) => {
-    if (e.target.files.length > 0) {
-      if (e.target.files[0].size > 20 * 1024 * 1024) {
+  const handleChange = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+
+    if (target.files!.length > 0) {
+      if (target.files![0].size > 20 * 1024 * 1024) {
         setIsNoValid(true);
       }
     }
@@ -45,11 +48,13 @@ const DownloadFile: FC<IDownloadFile> = ({
         htmlFor="file-input-button"
       >
         <Upload className={stylesAddfile.download__icon} />
-        <span className={stylesAddfile.download__text}>Загрузить файл</span>
+        <Typography tag="span" className={stylesAddfile.download__text}>
+          Загрузить файл
+        </Typography>
       </label>
-      <span className={stylesAddfile.textError}>
+      <Typography tag="span" className={stylesAddfile.textError}>
         Размер файла не должен превышать 20 Мб
-      </span>
+      </Typography>
     </div>
   );
 };

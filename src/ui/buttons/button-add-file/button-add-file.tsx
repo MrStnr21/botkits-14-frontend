@@ -1,8 +1,6 @@
 // верхий компонент
 import React, { FC, useState, useCallback } from 'react';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import stylesButtonAddFile from './button-add-file.module.scss';
 
 import ConstructorIconBotton from '../constructor-icon-botton/constructor-icon-botton';
@@ -18,6 +16,7 @@ import { BUTTON_NAME } from '../../../utils/constants';
 import ResultAddFile, { IResultProps } from './result-add-file/result-add-file';
 
 import VideoCard from '../../../components/video-card/video-card';
+import Typography from '../../typography/typography';
 
 interface IButton {
   type: BUTTON_NAME;
@@ -104,9 +103,9 @@ const ButtonAddFile: FC = (): JSX.Element => {
           className={stylesButtonAddFile.output}
           aria-label="Выбранные файлы для загрузки"
         >
-          {fileList.map((file) =>
+          {fileList.map((file, index) =>
             file.type.includes('video') ? (
-              <li key={uuidv4()}>
+              <li key={file.name + +index}>
                 <VideoCard
                   src="https://www.youtube.com/embed/FKOn5DfpJDA"
                   title="Подключение чат бота и основные параметры | Bot Kits"
@@ -117,7 +116,7 @@ const ButtonAddFile: FC = (): JSX.Element => {
                 />
               </li>
             ) : (
-              <li key={uuidv4()}>
+              <li key={file.name + +index}>
                 <ResultAddFile
                   name={file.name}
                   size={file.size}
@@ -130,7 +129,9 @@ const ButtonAddFile: FC = (): JSX.Element => {
         </ul>
       )}
       <div className={stylesButtonAddFile.wrapper}>
-        <h3 className={stylesButtonAddFile.header}>Дополните контентом</h3>
+        <Typography tag="h3" className={stylesButtonAddFile.header}>
+          Дополните контентом
+        </Typography>
         <div className={stylesButtonAddFile.inputsBox}>
           <Button
             type={BUTTON_NAME.IMAGE}

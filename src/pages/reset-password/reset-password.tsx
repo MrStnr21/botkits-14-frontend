@@ -1,4 +1,4 @@
-import { FC, useCallback, FormEvent } from 'react';
+import { FC, FormEvent, useEffect, useState } from 'react';
 
 import stylesResetPassword from './reset-password.module.scss';
 
@@ -10,17 +10,19 @@ import RegLogResLayout from '../../components/reg-log-res-layout/reg-log-res-lay
 import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
 
-// import { signinAction } from '../../services/actions/auth/signin';
-import { useAppSelector } from '../../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import useForm from '../../services/hooks/use-form';
 
-import { signinSel } from '../../utils/selectorData';
+import { resetPasswordSel } from '../../utils/selectorData';
+import { resetPasswordAction } from '../../services/actions/auth/reset-password';
+import Typography from '../../ui/typography/typography';
 
 const ResetPassword: FC = (): JSX.Element => {
-  const userData = useAppSelector(signinSel);
+  const userData = useAppSelector(resetPasswordSel);
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   const { values, handleChange } = useForm({
-    email: '',
+    email: { value: '', valueValid: false },
   });
 
   const titleImageStyle = {
@@ -31,21 +33,24 @@ const ResetPassword: FC = (): JSX.Element => {
     backgroundImage: `url(${backgroundImage})`,
   };
 
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  const handleReset = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      /*       dispatch(
-        resetAction({
-          email: formValue.email,
-        })
-      ); */
-    },
-    [values]
-  );
+  useEffect(() => {
+    if (values.email.valueValid) {
+      setButtonDisabled(false);
+    } else setButtonDisabled(true);
+  }, [values]);
 
-  return userData.signinSuccess ? (
+  const handleReset = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(
+      resetPasswordAction({
+        email: values.email.value,
+      })
+    );
+  };
+
+  return userData.resetPasswordSuccess ? (
     <ConfirmationScreen
       text="Ссылка для сброса пароля отправлена тебе на"
       style={titleImageStyle}
@@ -54,7 +59,13 @@ const ResetPassword: FC = (): JSX.Element => {
     <RegLogResLayout title="Восстановление пароля">
       <div className={stylesResetPassword.resetFormContainer}>
         <div className={stylesResetPassword.resetInputsContainer}>
-          <h2 className={stylesResetPassword.resetTitle}>Введи свой e-mail:</h2>
+          <Typography
+            tag="h2"
+            fontFamily="secondary"
+            className={stylesResetPassword.resetTitle}
+          >
+            Введи свой e-mail:
+          </Typography>
           <form
             className={stylesResetPassword.inputsForm}
             onSubmit={handleReset}
@@ -64,14 +75,31 @@ const ResetPassword: FC = (): JSX.Element => {
                 placeholder="E-mail"
                 name="email"
                 styled="secondary"
-                required
                 onChange={handleChange}
+                value={values.email.value}
+                pattern="^\S+@\S+\.\S+$"
+                maxLength={30}
+                errorMessage="Введите корректный email"
+                required
               />
             </div>
             <div className={stylesResetPassword.formsButton}>
-              <Button variant="default" color="green" buttonHtmlType="submit">
+              <Button
+                variant="default"
+                color="green"
+                buttonHtmlType="submit"
+                disabled={buttonDisabled}
+              >
                 сбросить пароль
               </Button>
+              {userData.resetPasswordError && (
+                <Typography
+                  tag="p"
+                  className={stylesResetPassword.incorrect_text}
+                >
+                  {userData.resetPasswordErrorText}
+                </Typography>
+              )}
             </div>
           </form>
         </div>

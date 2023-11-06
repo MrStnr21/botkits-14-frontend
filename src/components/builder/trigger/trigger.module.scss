@@ -1,0 +1,32 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.wrap {
+  background-color: $secondary-cultured-default;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: $l-border-radius;
+  max-width: 296px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      cursor: $cursor;
+    }
+  }
+
+  .title {
+    margin: 0 0 12px 0;
+    font-size: $s-font-size;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 5px;
+  }
+
+}

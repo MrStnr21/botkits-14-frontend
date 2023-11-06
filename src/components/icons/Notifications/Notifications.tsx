@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styles from './Notifications.module.css';
+import styles from './Notifications.module.scss';
 
 interface INotifications {
   number?: number;

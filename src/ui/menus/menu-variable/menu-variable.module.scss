@@ -1,14 +1,29 @@
-@import '../../../components/app/vars';
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 998;
+  pointer-events: none;
+}
+
+.overlayActive {
+  display: block;
+  pointer-events: all;
+}
 
 .open_button {
   display: flex;
   flex-direction: row;
   width: 240px;
   height: 40px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-5;
+  background-color: #f8f9fb;
+  border-radius: 5px;
   position: relative;
   cursor: pointer;
+  z-index: 999;
 }
 
 .box {
@@ -18,7 +33,7 @@
   width: 240px;
   box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
-  border-radius: $border-radius-10;
+  border-radius: 10px;
   position: absolute;
 }
 
@@ -27,11 +42,11 @@
 }
 
 .text {
-  font-size: $s-font-size;
-  font-weight: $normal;
-  line-height: $s-line-height;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%;
   font-family: 'Open Sans';
-  letter-spacing: $m-letter-space;
+  letter-spacing: 0.3px;
   color: black;
   transition: color 0.3s linear;
 }
@@ -41,7 +56,7 @@
 }
 
 .grey {
-  color: $placeholder-grey-color;
+  color: #bfc9d9;
 }
 
 .li {
@@ -49,11 +64,14 @@
   margin: 0;
   list-style: none;
   display: flex;
+  z-index: 999;
 }
 
 .ul {
   padding: 0;
   margin: 0;
+  z-index: 999;
+  background-color: white;
 }
 
 .button {
@@ -65,6 +83,7 @@
   text-align: left;
   border: none;
   cursor: pointer;
+  z-index: 999;
 }
 .button:first-of-type {
   margin-top: 11px;
@@ -74,7 +93,7 @@
 }
 
 .button:hover {
-  background-color: $default-grey-color;
+  background-color: #f8f9fb;
 }
 
 .icon {

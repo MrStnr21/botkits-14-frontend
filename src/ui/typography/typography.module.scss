@@ -1,37 +1,130 @@
-@import '../../components/app/vars';
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
-@mixin typography {
-  font-family: 'IBM Plex Mono', sans-serif;
+@mixin Typography {
   margin: 0;
-  color: $primary-text-color;
-  font-weight: $bold;
-  line-height: $h-line-height;
+  font-weight: $bold; //600
+  color: $primary-oxford-blue-default; //#060c23
 }
 
-.h2 {
-  @include typography;
-  font-size: $h2-font-size;
-  letter-spacing: $h2-letter-space;
+@mixin IBM_Typography {
+  @include Typography;
+  font-family: 'IBM Plex Mono', sans-serif;
 }
 
-.h3 {
-  @include typography;
-  font-size: $h3-font-size;
+@mixin h1 {
+  @include Typography;
+  font-size: $h1-font-size;
+  line-height: $xs-line-height;
+  letter-spacing: $s-letter-space;
 }
 
-.h4 {
-  @include typography;
-  font-size: $h4-font-size;
+@mixin h2 {
+  @include Typography;
+  font-size: $xxxl-font-size;
+  line-height: $m-line-height;
+  letter-spacing: $s-letter-space;
 }
 
-.h5 {
-  @include typography;
-  font-size: $m-font-size;
+@mixin h3 {
+  @include Typography;
+  font-size: $xxl-font-size;
+  line-height: $m-line-height;
+  letter-spacing: 0px;
 }
 
-.p {
-  @include typography;
-  font-size: $m-font-size;
-  font-weight: $normal;
+@mixin h4 {
+  @include Typography;
+  font-size: $l-font-size;
+  line-height: $m-line-height;
+  letter-spacing: 0px;
+}
+
+@mixin h5 {
+  @include Typography;
+  font-size: $s-font-size;
+  line-height: $m-line-height; //130%
+  letter-spacing: $l-letter-space; //0.5px
+}
+
+@mixin p {
+  @include Typography;
+  font-size: $s-font-size; //14px
+  line-height: $xl-line-height; //150%
+  letter-spacing: $m-letter-space; //0.3px
+}
+
+@mixin span {
+  @include Typography;
+  font-size: $xs-font-size; //13px
+  font-weight: $normal; //400
+  line-height: $xl-line-height;
   letter-spacing: $m-letter-space;
+}
+
+.primary {
+  &_h1 {
+    @include h1;
+  }
+
+  &_h2 {
+    @include h2;
+  }
+
+  &_h3 {
+    @include h3;
+  }
+
+  &_h4 {
+    @include h4;
+  }
+
+  &_h5 {
+    @include h5;
+  }
+
+  &_p {
+    @include p;
+  }
+
+  &_span {
+    @include span;
+  }
+}
+
+.secondary {
+  &_h1 {
+    @include IBM_Typography;
+    @include h1;
+  }
+
+  &_h2 {
+    @include IBM_Typography;
+    @include h2;
+  }
+
+  &_h3 {
+    @include IBM_Typography;
+    @include h3;
+  }
+
+  &_h4 {
+    @include IBM_Typography;
+    @include h4;
+  }
+
+  &_h5 {
+    @include IBM_Typography;
+    @include h5;
+  }
+
+  &_p {
+    @include IBM_Typography;
+    @include p;
+  }
+
+  &_span {
+    @include IBM_Typography;
+    @include span;
+  }
 }

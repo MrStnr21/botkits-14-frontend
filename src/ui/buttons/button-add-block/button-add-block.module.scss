@@ -1,26 +1,50 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.name {
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  margin: 0;
+}
 
 .button {
-  @extend %button-style-reset;
-  width: 196px;
-  height: 64px;
-  display: flex;
+  @include button-style-reset;
+  @include size(196px, 64px);
+  @include flex($align-items: center);
   background-color: white;
   transition: background-color 0.1s linear;
-  border-radius: $border-radius-10;
-  align-items: center;
-}
+  border-radius: $l-border-radius;
 
-.button:hover {
-  background-color: $hover-grey-color;
-}
+  & :hover {
+    background-color: $secondary-cultured-hover;
 
-.button:active {
-  background-color: $disabled-blue-color;
-}
+    .icon {
+      opacity: 1;
+      filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg)
+        brightness(77%) contrast(87%);
+    }
 
-.button:disabled {
-  background-color: white;
+    .name {
+      color: $primary-persian-blue-default;
+    }
+  }
+
+  & :active {
+    background-color: $blue-disabled;
+  }
+
+  & :disabled {
+    background-color: white;
+
+    .icon {
+      opacity: 0.3;
+      filter: none;
+    }
+
+    .name {
+      color: $grey-2;
+    }
+  }
 }
 
 .icon {
@@ -28,32 +52,4 @@
   opacity: 0.3;
   filter: none;
   transition: opacity 0.1s linear;
-}
-
-.button:hover .icon {
-  opacity: 1;
-  filter: invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg)
-    brightness(77%) contrast(87%);
-}
-
-.button:disabled .icon {
-  opacity: 0.3;
-  filter: none;
-}
-
-.name {
-  font-size: $m-font-size;
-  font-weight: $bold;
-  letter-spacing: $m-letter-space;
-  line-height: $m-line-height;
-  font-family: 'Open Sans';
-  margin: 0;
-}
-
-.button:hover .name {
-  color: $default-blue-color;
-}
-
-.button:disabled .name {
-  color: $placeholder-grey-color;
 }

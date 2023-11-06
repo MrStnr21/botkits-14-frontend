@@ -26,6 +26,7 @@ import Input from '../../../ui/inputs/input/input';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
 import { signinSel, signupSel } from '../../../utils/selectorData';
+import Typography from '../../../ui/typography/typography';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -33,7 +34,7 @@ interface ImageMap {
 
 interface ICreateBot {
   botName: string;
-  stepFirst: 'default' | 'upload';
+  pages: boolean;
   botURI?: boolean;
 }
 
@@ -42,7 +43,7 @@ const img: ImageMap = {
   Telegram: <Telegram className={stylesCreateBot.create_main_bot_name_img} />,
   Viber: <Viber className={stylesCreateBot.create_main_bot_name_img} />,
   VK: <VK className={stylesCreateBot.create_main_bot_name_img} />,
-  Odnokassniki: (
+  Odnoklassniki: (
     <Odnoklassniki className={stylesCreateBot.create_main_bot_name_img} />
   ),
   Алиса: <Alisa className={stylesCreateBot.create_main_bot_name_img} />,
@@ -51,19 +52,15 @@ const img: ImageMap = {
   'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
 };
 
-const CreateBot: FC<ICreateBot> = ({
-  botName,
-  stepFirst,
-  botURI,
-}): JSX.Element => {
-  const [arrPages, setArrPages] = useState<any[]>([]); // временный тип any
+const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
+  const [arrPages, setArrPages] = useState<string[]>([]);
 
   const profile = useAppSelector(signupSel || signinSel);
 
   const { values, handleChange, setValues } = useForm({
-    botName: '',
-    accessKey: '',
-    uri: '',
+    botName: { value: '', valueValid: false },
+    accessKey: { value: '', valueValid: false },
+    uri: { value: '', valueValid: false },
   });
 
   const history = useNavigate();
@@ -73,18 +70,18 @@ const CreateBot: FC<ICreateBot> = ({
   const token = getAccessToken();
 
   const disabledDefault =
-    values.accessKey.length > 1 && values.botName.length > 1;
+    values.accessKey.value.length > 1 && values.botName.value.length > 1;
 
-  const disabledPages = arrPages.length && values.botName.length > 1;
+  const disabledPages = arrPages.length && values.botName.value.length > 1;
 
   const disabledBotURI =
-    values.accessKey.length > 1 &&
-    values.botName.length > 1 &&
-    values.uri.length > 1;
+    values.accessKey.value.length > 1 &&
+    values.botName.value.length > 1 &&
+    values.uri.value.length > 1;
 
   const disabled = botURI
     ? !disabledBotURI
-    : stepFirst === 'default'
+    : !pages
     ? !disabledDefault
     : !disabledPages;
 
@@ -92,15 +89,17 @@ const CreateBot: FC<ICreateBot> = ({
     e.preventDefault();
 
     const dataBot = {
-      icon: 'https://cdn.icon-icons.com/icons2/1233/PNG/512/1492718766-vk_83600.png',
-      botName: values?.botName,
+      type: 'custom',
+      title: values?.botName.value,
       profile,
-      messenger: {
-        name: botName,
-        page: 'страница',
-        accessKey: values?.accessKey,
-        url: values?.uri,
-      },
+      messengers: [
+        {
+          name: botName,
+          page: 'страница',
+          accessKey: values?.accessKey.value,
+          url: values?.uri.value,
+        },
+      ],
       botSettings: {},
     };
 
@@ -112,7 +111,11 @@ const CreateBot: FC<ICreateBot> = ({
       console.log(err);
     }
 
-    setValues({ botName: '', accessKey: '', uri: '' });
+    setValues({
+      botName: { value: '', valueValid: false },
+      accessKey: { value: '', valueValid: false },
+      uri: { value: '', valueValid: false },
+    });
   };
   return (
     <div className={stylesCreateBot.create}>
@@ -120,26 +123,36 @@ const CreateBot: FC<ICreateBot> = ({
         <div className={stylesCreateBot.create_main}>
           <div className={stylesCreateBot.create_main_bot_name}>
             {img[botName]}
-            <h3 className={stylesCreateBot.create_main_bot_name_title}>
+            <Typography
+              tag="h3"
+              fontFamily="secondary"
+              className={stylesCreateBot.create_main_bot_name_title}
+            >
               {botName}
-            </h3>
-            <p className={stylesCreateBot.create_main_bot_name_text}>
+            </Typography>
+            <Typography
+              tag="span"
+              className={stylesCreateBot.create_main_bot_name_text}
+            >
               Бот будет создан на основе{' '}
-              <span className={stylesCreateBot.create_main_bot_name_span}>
+              <Typography
+                tag="span"
+                className={stylesCreateBot.create_main_bot_name_span}
+              >
                 BotName
-              </span>
-            </p>
+              </Typography>
+            </Typography>
           </div>
           <form
             onSubmit={handleSubmit}
             className={stylesCreateBot.create_main_form}
           >
             <div className={stylesCreateBot.create_main_fill_bot}>
-              {stepFirst === 'default' ? (
+              {!pages ? (
                 <StepperFillBot step="1" text="Ключ доступа">
                   <Input
                     name="accessKey"
-                    value={values?.accessKey}
+                    value={values?.accessKey.value}
                     placeholder="Введите ключ доступа"
                     onChange={handleChange}
                   />
@@ -158,7 +171,7 @@ const CreateBot: FC<ICreateBot> = ({
                   <StepperFillBot step="2" text="URI бота">
                     <Input
                       name="uri"
-                      value={values?.uri}
+                      value={values?.uri.value}
                       placeholder="Введите URI"
                       onChange={handleChange}
                     />
@@ -166,7 +179,7 @@ const CreateBot: FC<ICreateBot> = ({
                   <StepperFillBot step="3" text="Название бота">
                     <Input
                       name="botName"
-                      value={values?.botName}
+                      value={values?.botName.value}
                       placeholder="Введите название бота"
                       onChange={handleChange}
                     />
@@ -176,7 +189,7 @@ const CreateBot: FC<ICreateBot> = ({
                 <StepperFillBot step="2" text="Название бота">
                   <Input
                     name="botName"
-                    value={values?.botName}
+                    value={values?.botName.value}
                     placeholder="Введите название бота"
                     onChange={handleChange}
                   />
@@ -201,12 +214,16 @@ const CreateBot: FC<ICreateBot> = ({
         </div>
       ) : (
         <div className={stylesCreateBot.create_message}>
-          <h3 className={stylesCreateBot.create_message_title}>
+          <Typography
+            tag="h3"
+            fontFamily="secondary"
+            className={stylesCreateBot.create_message_title}
+          >
             К какому мессенджеру подключим бота?
-          </h3>
-          <p className={stylesCreateBot.create_message_text}>
+          </Typography>
+          <Typography tag="p" className={stylesCreateBot.create_message_text}>
             Выберите из предложенного списка
-          </p>
+          </Typography>
         </div>
       )}
     </div>

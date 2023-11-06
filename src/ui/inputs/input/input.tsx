@@ -1,6 +1,7 @@
 import { FC, ChangeEvent, useState, useEffect } from 'react';
 
 import stylesInput from './input.module.scss';
+import Typography from '../../typography/typography';
 
 interface IInput {
   isInvalid?: boolean;
@@ -14,10 +15,18 @@ interface IInput {
   maxLength?: number;
   type?: string;
   required?: boolean;
-  styled?: 'main' | 'secondary';
+  styled?: 'main' | 'secondary' | 'bot-builder-default' | 'bot-builder-num';
   pattern?: string;
   password?: boolean;
+  textColor?: 'default' | 'blue';
 }
+
+const classNames = {
+  main: stylesInput.inputMain,
+  secondary: stylesInput.inputSecondary,
+  'bot-builder-default': stylesInput.inputBuilderDefault,
+  'bot-builder-num': stylesInput.inputBuilderNum,
+};
 
 const Input: FC<IInput> = ({
   placeholder = 'Введите ключ доступа',
@@ -31,9 +40,10 @@ const Input: FC<IInput> = ({
   maxLength,
   type = 'text',
   required,
-  styled,
+  styled = 'main',
   pattern,
   password,
+  textColor = 'default',
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -56,6 +66,8 @@ const Input: FC<IInput> = ({
       setTypeValues('password');
     }
   };
+
+  const className = classNames[styled];
 
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
     const validityState = input.currentTarget.validity;
@@ -91,13 +103,13 @@ const Input: FC<IInput> = ({
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={`${stylesInput.input} ${
-          styled === 'secondary' ? stylesInput.inputSecondary : ''
-        } ${(error.error || isInvalid) && stylesInput.incorrect} ${
+        className={` ${className} ${
+          error.error || isInvalid ? stylesInput.incorrect : ''
+        } ${
           (error.error || isInvalid) && styled === 'secondary'
             ? stylesInput.inputSecondaryIncorrect
             : ''
-        }`}
+        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}
@@ -110,27 +122,38 @@ const Input: FC<IInput> = ({
         required={required}
       />
       {(error.error || isInvalid) && (
-        <p className={stylesInput.incorrect_text}>{error.textError}</p>
+        <Typography tag="p" className={stylesInput.incorrect_text}>
+          {error.textError}
+        </Typography>
       )}
-      <div className={stylesInput.iconContainer}>
+      <div
+        className={`${
+          styled === 'secondary'
+            ? stylesInput.iconContainerSecondary
+            : stylesInput.iconContainerMain
+        } ${disabled && stylesInput.disabled}`}
+      >
         {password && (
           <button
             type="button"
             aria-label="show/hide password"
             onClick={handleShowPassword}
-            className={`${stylesInput.password} ${
-              showPassword && stylesInput.passwordShow
-            }`}
+            className={`${
+              styled === 'secondary'
+                ? stylesInput.passwordSecondary
+                : stylesInput.passwordMain
+            } ${showPassword && stylesInput.passwordShow}`}
           />
         )}
         {required && (
-          <span
+          <Typography
+            tag="span"
             className={`${stylesInput.required} ${
               (error.error || isInvalid) && stylesInput.requiredIncorrect
             }`}
           >
             *
-          </span>
+          </Typography>
         )}
       </div>
     </div>

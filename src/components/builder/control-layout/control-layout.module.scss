@@ -1,0 +1,81 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container{
+  @include flex(column);
+  border-radius: $l-border-radius;
+
+  max-width: 296px;
+  height: min-content;
+  box-shadow: $m-box-shadow;
+
+  @media screen and (max-width: 520px) {
+    max-width: 168px;
+  }
+}
+
+.header{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 13px 16px 16px;
+
+  @media screen and (max-width: 520px) {
+    padding: 7px 9px 9px;
+  }
+}
+
+.type{
+  color: $grey-3;
+  font-size: 12px;
+  line-height: 130%;
+  letter-spacing: 0.4px;
+  @media screen and (max-width: 520px) {
+    font-size: 6.84px;
+    line-height: $m-line-height;
+  }
+}
+
+.name{
+  @include font('IBM Plex Mono', $m-font-size, $semi-bold, $primary-oxford-blue-default);
+  @include line-sizes($m-line-height, 0px);
+  outline: 0;
+  border: 0;
+  @media screen and (max-width: 520px) {
+    font-size: 9.12px;
+    line-height: $m-line-height;
+  }
+}
+
+.more{
+  @include indents;
+  @include size(24px, 24px);
+  @include position(absolute, 37px, 13px);
+  background: none;
+  border: 0;
+
+  .img{
+    @include size(100%, 100%);
+  }
+
+  &:hover {
+    cursor: $cursor;
+  }
+
+  @media screen and (max-width: 520px) {
+    @include size(14px, 14px);
+    top: 20px;
+    right: 5px;
+  }
+}
+
+.hr{
+  @include size(100%, 1px);
+  background-color: $secondary-cultured-hover;
+  margin: 0;
+  border: 0;
+  @media screen and (max-width: 520px) {
+    height: .5px;
+  }
+}

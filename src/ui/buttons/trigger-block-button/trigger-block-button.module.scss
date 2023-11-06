@@ -1,0 +1,11 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.button {
+  @include indents(12px 12px 12px 17px, 0);
+  @include size(60px, 48px);
+  box-sizing: border-box;
+  background-color: $off-white;
+  border: none;
+  cursor: $cursor;
+}
