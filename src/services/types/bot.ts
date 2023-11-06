@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // Типизация данных бота
 export type TBot = {
   icon: string;
@@ -26,8 +27,8 @@ export type TTemplateBot = {
   commands: Array<string>;
 };
 
-export interface IAddBotResponse extends TBot {}
+export interface IAddBotResponse extends TBot { }
 
-export interface IGetBotsResponse extends Array<TBot> {}
+export interface IGetBotsResponse extends Array<TBot> { }
 
-export interface IGetTemplatesBotsResponse extends Array<TTemplateBot> {}
+export interface IGetTemplatesBotsResponse extends Array<TTemplateBot> { }

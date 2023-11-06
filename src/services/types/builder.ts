@@ -13,9 +13,10 @@ export type TBuilderData = {
 };
 
 // eslint-disable-next-line prettier/prettier
-export interface IBuilderDataResponse extends TBuilderData { }
+export interface IBuildersDataResponse extends Array<TBuilderData> { }
+export interface IAddBuilderDataResponse extends TBuilderData { }
 
-export type TGetBuilderDataState = {
+export type TGetBuildersDataState = {
   dataBuilder: TBuilderData | null;
   isLoading: boolean;
   hasError: boolean;

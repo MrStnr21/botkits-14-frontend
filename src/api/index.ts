@@ -1,7 +1,7 @@
 import { signinApi, signupApi } from './auth';
 import { getBotsApi, addBotApi } from './bots';
 import getUserInfoApi from './user';
-import getBuilderDataApi from './builder';
+import { getBuildersDataApi, addBuilderDataApi } from './builder';
 
 export {
   signinApi,
@@ -9,5 +9,6 @@ export {
   getBotsApi,
   addBotApi,
   getUserInfoApi,
-  getBuilderDataApi,
+  getBuildersDataApi,
+  addBuilderDataApi,
 };
