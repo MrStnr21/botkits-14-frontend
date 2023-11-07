@@ -11,5 +11,6 @@
 
 .text {
   white-space: nowrap;
-  font-size: size;
+  font-size: $xxs-font-size;
+  font-weight: $normal;
 }
