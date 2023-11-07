@@ -1,14 +1,15 @@
-@import '../../../components/app/vars';
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 @mixin button-main(
   $s-font-size,
   $normal,
   $m-letter-space,
-  $button-line-height-150,
-  $constructor-add-button-height,
-  $border-radius-10
+  $xl-line-height,
+ // $constructor-add-button-height: 44px,
+  $l-border-radius
 ) {
-  @extend %button-style-reset;
+  @include button-style-reset;
   display: flex;
   align-items: center;
   padding: 0 12px;
@@ -16,12 +17,12 @@
   font-size: $s-font-size;
   font-weight: $normal;
   letter-spacing: $m-letter-space;
-  line-height: $button-line-height-150;
+  line-height: $xl-line-height;
   font-family: 'Open Sans', sans-serif;
   transition: all 0.1s linear;
   height: 100%;
   width: 100%;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   box-sizing: border-box;
 }
 
@@ -35,9 +36,9 @@
     $s-font-size,
     $normal,
     $m-letter-space,
-    $button-line-height-150,
-    $constructor-add-button-height,
-    $border-radius-10
+    $xl-line-height,
+  //  $constructor-add-button-height,
+    $l-border-radius
   );
   height: 100%;
 }
@@ -52,7 +53,7 @@
 }
 
 .button div {
-  @extend %flex-element-center;
+  // @extend %flex-element-center;
 }
 
 .button svg {
@@ -67,36 +68,36 @@
 /* Стили цвета кнопки*/
 
 .button {
-  color: $constructor-add-button-default-color;
-  background-color: $constructor-add-button-default-background-color;
+//  color: $constructor-add-button-default-color;
+//  background-color: $constructor-add-button-default-background-color;
 }
 
 .button svg {
-  stroke: $constructor-add-button-default-icon-color;
+//  stroke: $constructor-add-button-default-icon-color;
 }
 
 .button:hover {
-  color: $constructor-add-button-hover-color;
+//  color: $constructor-add-button-hover-color;
 }
 
 .button:hover svg {
-  stroke: $constructor-add-button-hover-icon-color;
+//  stroke: $constructor-add-button-hover-icon-color;
 }
 
 .button:active {
-  color: $constructor-add-button-pressed-color;
-  background-color: $constructor-add-button-pressed-background-color;
+//  color: $constructor-add-button-pressed-color;
+//  background-color: $constructor-add-button-pressed-background-color;
 }
 
 .button:active svg {
-  stroke: $constructor-add-button-pressed-icon-color;
+//  stroke: $constructor-add-button-pressed-icon-color;
 }
 
 .button:disabled {
-  color: $constructor-add-button-disabled-color;
-  background-color: $constructor-add-button-default-background-color;
+//  color: $constructor-add-button-disabled-color;
+//  background-color: $constructor-add-button-default-background-color;
 }
 
 .button:disabled svg {
-  stroke: $constructor-add-button-disabled-icon-color;
+//  stroke: $constructor-add-button-disabled-icon-color;
 }
