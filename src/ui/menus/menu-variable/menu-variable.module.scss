@@ -1,3 +1,7 @@
+
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
 .overlay {
   display: none;
   position: fixed;
