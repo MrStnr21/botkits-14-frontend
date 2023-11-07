@@ -6,12 +6,14 @@ import EmojiIcon from '../../../components/icons/Emoji/EmojiIcon';
 import InvisibleMessageIcon from '../../../components/icons/InvisibleMessage/InvisibleMessageIcon';
 import QuickAnswerIcon from '../../../components/icons/QuickAnswer/QuickAnswerIcon';
 import AddIcon from '../../../components/icons/Add/AddIcon';
+import useModal from '../../../services/hooks/use-modal';
+import ModalPopup from '../../../components/popups/modal-popup/modal-popup';
+import ChatCompPopup from '../../../components/popups/chat-comp-popup/chat-comp-popup';
 
 interface IInputMessage {
   placeholder?: string;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onClickClip?: () => void;
   onClickEmoji?: () => void;
   onClickSlash?: () => void;
   onClickZap?: () => void;
@@ -21,12 +23,15 @@ const InputMessage: FC<IInputMessage> = ({
   value,
   placeholder = 'Введите сообщение...',
   onChange,
-  onClickClip,
   onClickEmoji,
   onClickSlash,
   onClickZap,
 }): JSX.Element => {
   const [rotateAddIcon, setRotateAddIcon] = useState(false);
+  const { isModalOpen, closeModal, openModal } = useModal();
+  const onClickClip = () => {
+    openModal();
+  };
   const handleRotate = () => setRotateAddIcon(!rotateAddIcon);
   const rotate = rotateAddIcon ? 'unfolded' : 'folded';
   return (
@@ -78,6 +83,11 @@ const InputMessage: FC<IInputMessage> = ({
           <AddIcon width={24} height={24} position={rotate} />
         </button>
       </div>
+      {isModalOpen && (
+        <ModalPopup onClick={closeModal}>
+          <ChatCompPopup />
+        </ModalPopup>
+      )}
     </div>
   );
 };
