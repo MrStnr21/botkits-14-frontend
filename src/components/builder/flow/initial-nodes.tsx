@@ -10,7 +10,7 @@ import {
   // OnConnect,
 } from 'reactflow';
 
-import ButtonStartFlow from '../blocks/button-start/button-start-flow';
+import ButtonStart from '../blocks/button-start/button-start';
 // import InlineButton from '../blocks/message-block/button-inline/button-inline';
 // import PanelInline from '../blocks/message-block/panel-inline/panel-inline';
 // import styles from './layoutFlow.module.scss';
@@ -22,7 +22,7 @@ export const nodeTypes: NodeTypes = {
   // inlineButton: InlineButton,
   message: MessageBlock,
   // panelInline: PanelInline,
-  buttonStart: ButtonStartFlow,
+  buttonStart: ButtonStart,
 };
 
 export const initialNodes: Node[] = [
