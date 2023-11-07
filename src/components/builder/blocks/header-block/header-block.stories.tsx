@@ -1,7 +1,7 @@
-import HeaderBlock from './header';
+import HeaderBlock from './header-block';
 
 export default {
-  title: 'COMPONENTS/Builder/blocks/HeaderBlock',
+  title: 'COMPONENTS/Builder/blocks/headerBlock',
   component: HeaderBlock,
 };
 
