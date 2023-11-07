@@ -25,7 +25,7 @@
   @include size(100%, 352px);
   width: 404px;
   position: sticky;
-  top: 0;
+  top: 32px;
 
   &__header {
     @include size(100%, 228px);

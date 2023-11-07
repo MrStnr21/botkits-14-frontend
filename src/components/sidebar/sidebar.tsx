@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
@@ -128,7 +129,8 @@ const Sidebar: FC = (): JSX.Element => {
           </div>
         </div>
       </div>
-      {!matches && (
+      {/* TODO Если все будет работать хорошо, убрать код */}
+      {/* {!matches && (
         <Cover
           top="-16px"
           bottom="-16px"
@@ -136,7 +138,7 @@ const Sidebar: FC = (): JSX.Element => {
           right="0"
           onClick={() => setStateSB(false)}
         />
-      )}
+      )} */}
     </section>
   );
 };
