@@ -36,10 +36,19 @@ export const initialNodes: Node[] = [
   },
   {
     id: 'node-2',
+    type: 'message',
+    data: {
+      name: 'message',
+      data: [{ type: 'message' }, { type: 'answers' }, { type: 'buttons' }],
+    },
+    position: { x: 130, y: 0 },
+  },
+  {
+    id: 'node-3',
     type: 'apiBlockNode',
     data: {
       name: 'API',
     },
-    position: { x: 130, y: 0 },
+    position: { x: 500, y: 0 },
   },
 ];
