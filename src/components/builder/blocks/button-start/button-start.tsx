@@ -79,7 +79,12 @@ const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
 
   return (
     <ReactFlowProvider>
-      <CustomHandle position={Position.Bottom} hidden={hidden} type="target" />
+      <CustomHandle
+        position={Position.Bottom}
+        hidden={hidden}
+        type="source"
+        id="1"
+      />
       <div
         onMouseEnter={() => setHidden(false)}
         onMouseLeave={() => setHidden(true)}

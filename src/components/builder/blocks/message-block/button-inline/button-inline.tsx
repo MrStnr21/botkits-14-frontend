@@ -81,7 +81,7 @@ const InlineButton: FC<TButtonProps> = ({ data }) => {
         onMouseEnter={() => setHidden(false)}
         onMouseLeave={() => setHidden(true)}
       >
-        <CustomHandle position={Position.Right} hidden={hidden} type="target" />
+        <CustomHandle position={Position.Right} hidden={hidden} type="source" />
         <div className={styles.container}>
           <div className={styles['absolute-wrapper']}>
             <ConstructorHelperButton

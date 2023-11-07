@@ -27,28 +27,36 @@ const ControlLayout: FC<TControlLayoutProps> = ({
     nameSetter(e.target.value);
   };
   return (
-    <ReactFlowProvider>
-      <div
-        className={`${!hidden && styles.outline}`}
-        onMouseEnter={() => setHidden(false)}
-        onMouseLeave={() => setHidden(true)}
-      >
-        <article className={styles.container}>
-          <CustomHandle position={Position.Top} hidden={hidden} type="target" />
+    <article className={styles.container}>
+      <ReactFlowProvider>
+        <div
+          className={`${!hidden && styles.outline}`}
+          onMouseEnter={() => setHidden(false)}
+          onMouseLeave={() => setHidden(true)}
+        >
+          <CustomHandle
+            position={Position.Top}
+            hidden={hidden}
+            type="target"
+            id="t"
+          />
           <CustomHandle
             position={Position.Right}
             hidden={hidden}
-            type="target"
+            type="source"
+            id="r"
           />
           <CustomHandle
             position={Position.Bottom}
             hidden={hidden}
-            type="target"
+            type="source"
+            id="b"
           />
           <CustomHandle
             position={Position.Left}
             hidden={hidden}
             type="target"
+            id="l"
           />
           <div className={styles.header}>
             <span className={styles.type}>{type}</span>
@@ -75,9 +83,9 @@ const ControlLayout: FC<TControlLayoutProps> = ({
               {children}
             </>
           )}
-        </article>
-      </div>
-    </ReactFlowProvider>
+        </div>
+      </ReactFlowProvider>
+    </article>
   );
 };
 

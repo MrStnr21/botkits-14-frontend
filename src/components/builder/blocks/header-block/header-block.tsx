@@ -35,14 +35,30 @@ const HeaderBlocks = () => {
         onMouseEnter={() => setHidden(false)}
         onMouseLeave={() => setHidden(true)}
       >
-        <CustomHandle position={Position.Top} hidden={hidden} type="target" />
-        <CustomHandle position={Position.Right} hidden={hidden} type="target" />
+        <CustomHandle
+          position={Position.Top}
+          hidden={hidden}
+          type="target"
+          id="t"
+        />
+        <CustomHandle
+          position={Position.Right}
+          hidden={hidden}
+          type="source"
+          id="r"
+        />
         <CustomHandle
           position={Position.Bottom}
           hidden={hidden}
-          type="target"
+          type="source"
+          id="b"
         />
-        <CustomHandle position={Position.Left} hidden={hidden} type="target" />
+        <CustomHandle
+          position={Position.Left}
+          hidden={hidden}
+          type="target"
+          id="l"
+        />
         <div className={styles.container}>
           <h3 className={styles.header}>Заголовок</h3>
           <div className={styles.content}>
