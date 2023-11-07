@@ -48,6 +48,16 @@
 @mixin eye-icon($src){
   @include indents;
   @include size(24px, 24px);
+}
+
+@mixin icon-container($right){
+  @include flex(row, center, center);
+  @include position(absolute, 0, $right, $bottom: 0);
+}
+
+@mixin eye-icon($src){
+  @include indents;
+  @include size(24px, 24px);
   border: none;
   background-color: transparent;
   background-image: url($src);
