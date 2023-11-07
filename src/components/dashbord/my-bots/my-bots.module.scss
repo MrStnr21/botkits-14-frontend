@@ -12,10 +12,6 @@
 }
 
 .header__text {
-  @include font('IBM Plex Mono', $xxxl-font-size, $bold);
-  @include line-sizes($m-line-height, $s-letter-space);
-  margin: 0;
-
   @media (max-width: $switching-width) {
     font-size: $xxl-font-size;
     line-height: $m-line-height;
@@ -28,7 +24,6 @@
   @include line-sizes($xl-line-height, $m-letter-space);
   display: block;
   margin-right: 20px;
-
   text-align: right;
 }
 

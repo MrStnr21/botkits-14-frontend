@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: #f8f9fb;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.header {
+  color: #060c23;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.inputsBox {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}

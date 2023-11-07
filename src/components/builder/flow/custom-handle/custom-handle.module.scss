@@ -1,0 +1,18 @@
+.handle {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 50%;
+  background-color: #22ffaa;
+  border: 1px solid #fff;
+
+  &:hover {
+    width: 14px;
+    height: 14px;
+    background-image: url('../../../../images/icon/14x14/add-link.svg');
+  }
+}
+
+.hidden {
+  display: none;
+}

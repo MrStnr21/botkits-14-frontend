@@ -44,6 +44,10 @@ export default {
       description: 'Текст кнопки',
       name: 'label',
     },
+    width: {
+      type: 'string',
+      description: 'Устанавливает ширину кнопки',
+    },
   },
   parameters: {
     layout: 'centered',

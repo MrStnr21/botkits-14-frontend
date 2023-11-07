@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import PlusIcon from '../../../images/icon/24x24/screen navigation/plus.svg';
+import PlusIcon from '../../../images/icon/24x24/add_bot/plus.svg';
 
 import stylesButtonAddBot from './button-add-bot.module.scss';
+import Typography from '../../typography/typography';
 
 export interface IButtonAddBot {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
@@ -27,7 +28,13 @@ const ButtonAddBot: FC<IButtonAddBot> = ({
       disabled={disabled}
     >
       <ReactSVG className={stylesButtonAddBot.icon} src={PlusIcon} />
-      <p className={stylesButtonAddBot.text}>{children}</p>
+      <Typography
+        tag="p"
+        fontFamily="secondary"
+        className={stylesButtonAddBot.text}
+      >
+        {children}
+      </Typography>
     </button>
   );
 };

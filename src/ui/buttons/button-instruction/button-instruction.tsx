@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import stylesButtonInstruction from './button-instruction.module.scss';
+import Typography from '../../typography/typography';
 
 export interface IButtonInstruction {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
@@ -34,7 +35,9 @@ const ButtonInstruction: FC<IButtonInstruction> = ({
         <ReactSVG src={icon} />
       </div>
       <div className={stylesButtonInstruction.text_container}>
-        <p className={stylesButtonInstruction.text}>{children}</p>
+        <Typography tag="p" className={stylesButtonInstruction.text}>
+          {children}
+        </Typography>
       </div>
     </button>
   );

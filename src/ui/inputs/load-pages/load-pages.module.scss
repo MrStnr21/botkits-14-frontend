@@ -42,8 +42,6 @@
 
 .selects_button {
   @include flex(row, center, center, 17px);
-  @include font('Open Sans', $s-font-size, $bold);
-  @include line-sizes($xl-line-height, $m-letter-space);
   width: 100%;
   background-color: $secondary-cultured-default;
   border: 0;
@@ -66,7 +64,6 @@
 }
 
 .selects_text {
-  margin: 0;
   color: $grey-2;
 }
 

@@ -24,8 +24,7 @@
   }
 
   &__title {
-    @include font('IBM Plex Mono', $xxxl-font-size, $bold, $primary-oxford-blue-default);
-    @include line-sizes($m-line-height, $s-letter-space);
+    color: $primary-oxford-blue-default;
     margin: 0 0 32px 0;
 
     @media screen and (max-width: 620px) {
@@ -95,12 +94,8 @@
   }
 
   &__title {
-    @include font('IBM Plex Mono', $xxl-font-size, $semi-bold);
-    @include line-sizes($m-line-height, $s-letter-space);
-    margin: 0;
-
     @media screen and (max-width: 860px) {
-      @include font('IBM Plex Mono', $l-font-size, $bold);
+      font-size: $l-font-size;
     }
   }
 
@@ -112,18 +107,3 @@
   }
 }
 
-.text {
-  font-family: 'Open Sans', sans-serif;
-
-  &_succsess {
-    color: $success-default;
-  }
-
-  &_failure {
-    color: $error-default;
-  }
-
-  &_processing {
-    color: $primary-persian-blue-default;
-  }
-}

@@ -38,11 +38,9 @@
 }
 
 .label {
-  @include font('IBM Plex Mono', 48px, $semi-bold);
-  @include line-sizes($xs-line-height, 3.5px);
-  @include indents();
+  padding: 0;
   margin-bottom: 30px;
-  font-style: normal;
+  font-weight: $semi-bold;
   text-align: center;
   font-feature-settings:
     'clig' off,

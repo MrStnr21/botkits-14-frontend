@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import useScrollbar from '../../../services/hooks/use-scrollbar';
 import 'overlayscrollbars/overlayscrollbars.css';
 import styles from './input-select.module.scss';
+import Typography from '../../typography/typography';
 
 interface IInputSelect {
   defaultValue: string[];
@@ -114,7 +115,7 @@ const InputSelect: FC<IInputSelect> = ({
             {isIcon ? (
               <div className={styles.optionContainer}>
                 <img src={nameValue} alt="icon" />{' '}
-                <span className={styles.optionText}>{iconDescription}</span>
+                <Typography tag="span">{iconDescription}</Typography>
               </div>
             ) : (
               nameValue
