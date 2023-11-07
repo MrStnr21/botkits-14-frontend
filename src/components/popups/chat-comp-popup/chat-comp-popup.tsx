@@ -29,7 +29,7 @@ const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
     <div className={stylesChatCompPopup.itemWrapper}>
       <img
         className={stylesChatCompPopup.iconDocument}
-        alt=""
+        alt="iconDocument"
         src={item.icon}
       />
       <div className={stylesChatCompPopup.itemInfoWrapper}>
@@ -162,13 +162,16 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
                 src={logout}
               />
               <div className={stylesChatCompPopup.dropSectorText}>
-                <Typography tag="p">
+                <Typography tag="h4">
                   Перетяните файл <br /> или
                 </Typography>
                 {isDragging && (
-                  <div className={stylesChatCompPopup.dropSectorTextOverlay}>
+                  <Typography
+                    tag="h4"
+                    className={stylesChatCompPopup.dropSectorTextOverlay}
+                  >
                     Перетащите файл сюда
-                  </div>
+                  </Typography>
                 )}
                 {isHovered && (
                   <div className={stylesChatCompPopup.dropSectorTextOverlay}>
@@ -183,7 +186,7 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
                 )}
               </div>
             </div>
-            <div className={stylesChatCompPopup.downloadText}>
+            <Typography tag="h4" className={stylesChatCompPopup.downloadText}>
               Загрузите
               <input
                 id="fileInput"
@@ -193,7 +196,7 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
                 accept=".pdf,.doc,.docx"
                 onChange={handleFileChange}
               />
-            </div>
+            </Typography>
           </div>
         </div>
         <div className={stylesChatCompPopup.itemSector}>
