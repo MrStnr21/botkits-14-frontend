@@ -11,7 +11,8 @@ import {
 } from 'reactflow';
 
 import ButtonStart from '../blocks/button-start/button-start';
-// import InlineButton from '../blocks/message-block/button-inline/button-inline';
+import InlineButton from '../blocks/message-block/button-inline/button-inline';
+import ApiBlockNode from '../blocks/api/api';
 // import PanelInline from '../blocks/message-block/panel-inline/panel-inline';
 // import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
@@ -19,10 +20,11 @@ import 'reactflow/dist/style.css';
 import MessageBlock from '../blocks/message-block/message-block';
 
 export const nodeTypes: NodeTypes = {
-  // inlineButton: InlineButton,
+  inlineButton: InlineButton,
   message: MessageBlock,
   // panelInline: PanelInline,
   buttonStart: ButtonStart,
+  apiBlockNode: ApiBlockNode,
 };
 
 export const initialNodes: Node[] = [
@@ -34,10 +36,9 @@ export const initialNodes: Node[] = [
   },
   {
     id: 'node-2',
-    type: 'message',
+    type: 'apiBlockNode',
     data: {
-      name: 'message',
-      data: [{ type: 'message' }, { type: 'answers' }, { type: 'buttons' }],
+      name: 'API',
     },
     position: { x: 130, y: 0 },
   },
