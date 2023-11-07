@@ -29,7 +29,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({
   return (
     <ReactFlowProvider>
       <div
-        className={styles.outline}
+        className={`${!hidden && styles.outline}`}
         onMouseEnter={() => setHidden(false)}
         onMouseLeave={() => setHidden(true)}
       >
