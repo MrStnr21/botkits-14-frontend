@@ -1,4 +1,13 @@
-import type { Meta, StoryFn } from '@storybook/react';
+import ButtonStart from './button-start';
+
+export default {
+  title: 'COMPONENTS/Builder/blocks/button-start',
+  component: ButtonStart,
+};
+
+export const Default = () => <ButtonStart data={{ type: 'start' }} />;
+
+/* import type { Meta, StoryFn } from '@storybook/react';
 import ButtonStart, { TButtonStartProps } from './button-start';
 
 export default {
@@ -35,7 +44,10 @@ export const Start = {
   },
   render: Template,
 };
-/*
+
+
+
+
 const args = {
   data: {
     type: 'start' || 'stop' || 'test',
@@ -52,9 +64,13 @@ type Story = StoryObj<typeof ButtonStart>;
 
 export const Block: Story = {
   args,
-}; */
+};
 
-/* export default {
+
+
+
+
+export default {
   title: 'components/builder/blocks/button-start',
   component: ButtonStart,
   argTypes: {

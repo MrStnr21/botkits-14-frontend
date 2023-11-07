@@ -1,5 +1,3 @@
-@import '../../../components/app/vars';
-
 .overlay {
   display: none;
   position: fixed;
@@ -17,12 +15,10 @@
 }
 
 .open_button {
-  display: flex;
-  flex-direction: row;
-  width: 240px;
-  height: 40px;
-  background-color: $default-grey-color;
-  border-radius: $border-radius-5;
+  @include flex(row);
+  @include size(240px, 40px);
+  background-color: $secondary-cultured-default;
+  border-radius: $s-border-radius;
   position: relative;
   cursor: pointer;
   z-index: 999;
@@ -35,7 +31,7 @@
   width: 240px;
   box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
-  border-radius: $border-radius-10;
+  border-radius: $l-border-radius;
   position: absolute;
 }
 
@@ -43,13 +39,7 @@
   display: flex;
 }
 
-.text {
-  font-size: $s-font-size;
-  font-weight: $normal;
-  line-height: $s-line-height;
-  font-family: 'Open Sans';
-  letter-spacing: $m-letter-space;
-  color: black;
+.text.text {
   transition: color 0.3s linear;
 }
 
@@ -58,7 +48,7 @@
 }
 
 .grey {
-  color: $placeholder-grey-color;
+  color: $grey-2;
 }
 
 .li {
@@ -95,7 +85,7 @@
 }
 
 .button:hover {
-  background-color: $default-grey-color;
+  background-color: $secondary-cultured-default;
 }
 
 .icon {
