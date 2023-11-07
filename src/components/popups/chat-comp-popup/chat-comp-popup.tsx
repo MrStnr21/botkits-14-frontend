@@ -1,88 +1,17 @@
-import React, { FC, ChangeEvent, useRef, useState, useCallback } from 'react';
+import React, { FC, ChangeEvent, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import stylesChatCompPopup from './chat-comp-popup.module.scss';
 import logout from '../../../images/icon/24x24/drop down/logOutBlue.svg';
 import close from '../../../images/icon/24x24/common/close.svg';
 import docCircle from '../../../images/icon/47x47/doc-circle.svg';
 import Typography from '../../../ui/typography/typography';
-
-interface Item {
-  icon: string;
-  info: string;
-  title: string;
-  checkIcon: string;
-}
-
-interface FileItemProps {
-  item: Item;
-  index: number;
-  handleRemoveItem: (index: number) => void;
-}
-
-const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
-  const handleRemove = useCallback(
-    () => handleRemoveItem(index),
-    [index, handleRemoveItem]
-  );
-
-  return (
-    <div className={stylesChatCompPopup.itemWrapper}>
-      <img
-        className={stylesChatCompPopup.iconDocument}
-        alt="iconDocument"
-        src={item.icon}
-      />
-      <div className={stylesChatCompPopup.itemInfoWrapper}>
-        <div className={stylesChatCompPopup.itemTitle}>{item.title}</div>
-        <div className={stylesChatCompPopup.itemInfo}>{item.info}</div>
-      </div>
-      <button
-        className={stylesChatCompPopup.button}
-        type="button"
-        onClick={handleRemove}
-      >
-        <img
-          className={stylesChatCompPopup.iconCommonCheck}
-          alt=""
-          src={item.checkIcon}
-        />
-      </button>
-    </div>
-  );
-};
+import FileItem from '../../../ui/file-item/file-item';
+import useDrag from '../../../utils/useDrag';
 
 const initialItems: any[] | (() => any[]) = [];
 
 interface IChatCompPopup {
   onClick?: () => void;
-}
-
-export function useDrag<Element extends HTMLElement>(
-  onDrop: React.DragEventHandler<Element>
-) {
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-
-  const handleDragEnter = () => setIsDragging(true);
-  const handleDragLeave = () => setIsDragging(false);
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
-  const handleDragOver = (e: React.DragEvent<Element>) => e.preventDefault();
-  const handleDrop = (e: React.DragEvent<Element>) => {
-    onDrop(e);
-    setIsDragging(false);
-  };
-
-  return {
-    isDragging,
-    isHovered,
-    handleDrop,
-    handleDragOver,
-    handleDragEnter,
-    handleDragLeave,
-    handleMouseEnter,
-    handleMouseLeave,
-  };
 }
 
 const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {

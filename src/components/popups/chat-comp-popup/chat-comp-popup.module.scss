@@ -156,47 +156,5 @@
   background-color: #E8EBEF;
 }
 
-.itemWrapper {
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 300px;
-  margin: 4px 0;
-}
 
-.iconDocument {
-  position: relative;
-  width: 47px;
-  height: 47px;
-  overflow: hidden;
-}
-
-.itemInfoWrapper {
-  width: 200px;
-  overflow: hidden;
-}
-
-.itemTitle {
-  letter-spacing: 0.3px;
-  line-height: 150%;
-}
-
-.iconCommonCheck {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  position: relative;
-  right: -22px;
-}
-
-.button {
-  border: none;
-  background-color: transparent;
-}
-
-.itemInfo {
-
-}
 
