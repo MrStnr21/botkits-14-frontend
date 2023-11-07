@@ -1,23 +1,21 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
 .flow {
-  background-color: '#B8CEFF';
+  background-color: $flow-background-color;
   height: 100vh;
 }
 
 .upWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
+  @include flex(row, end, false, 8px);
+  @include size(100%, fit-content);
   box-sizing: border-box;
   padding: 12px;
-  width: 100%;
-  height: fit-content;
-  gap: 8px;
   position: right;
 }
 
 .wrapper {  
-  max-width: 151px;
-  max-height: 48px;
+  @include max-size(151px, 48px);
   overflow: hidden;
 }
 
@@ -31,10 +29,8 @@
 }
 
 .content {
+  @include flex(column, false, false, 8px);
   padding: 12px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 
   @media screen and (max-width: 520px) {
     padding: 12px 9px 9px;
@@ -58,12 +54,10 @@
 }
 
 .wrapperButtons {
+  @include flex(column, false, center, 8px);
   width: 264px;
-  background-color: #f8f9fb;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
 
   @media screen and (max-width: 520px) {
     border-radius: 5.7px;
@@ -71,49 +65,30 @@
 }
 
 .wrapperButtonWidth {
-  width: 232px;
-  height: 100%;
+  @include size(232px, 100%);
   padding: 12px 0;
 
   &:first-of-type {
-    border-bottom: 1px solid #E4E9F1;
+    border-bottom: 1px solid $secondary-cultured-focus;
   }
 }
 
 .wrapperButtonHeight {
-  width: 100%;
-  height: 44px;
+  @include size(100%, 44px);
 }
 
 .button-white {
-  color: white;
-  background-color: #ffffff;
-  border-color: #f2f4f8;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button($off-white, $off-white, $secondary-cultured-hover, $primary-persian-blue-hover);
 }
+
 .button-red {
-  color: white;
-  background-color: #d3524d;
-  border-color: #d3524d;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button($off-white, $example-button-color-red, $example-button-color-red, $primary-persian-blue-hover);
 }
+
 .button-green {
-  color: white;
-  background-color: #67b057;
-  border-color: #67b057;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button($off-white, $example-button-color-green, $example-button-color-green, $primary-persian-blue-hover);
 }
+
 .button-blue {
-  color: white;
-  background-color: #5883c6;
-  border-color: #5883c6;
-  &:hover {
-    border-color: #3172da;
-  }
+  @include colored-button($off-white, $example-button-color-blue, $example-button-color-blue, $primary-persian-blue-hover);
 }

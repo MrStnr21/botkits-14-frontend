@@ -1,3 +1,6 @@
+@use '../../../../stylesheets//variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
 @mixin button-state($color){
   color: $color;
   border-bottom: 2px solid $color;
@@ -8,8 +11,7 @@
 }
 
 .controls {
-  display: flex;
-  flex-direction: row;
+  @include flex(row);
   padding: 0 16px;
 
   @media screen and (max-width: 520px) {
@@ -18,10 +20,8 @@
 }
 
 .content{
+  @include flex(column, false, false, 8px);
   padding: 12px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 
   @media screen and (max-width: 520px) {
     padding: 12px 9px 9px;
@@ -45,44 +45,34 @@
 }
 
 .labeled-content{
+  @include flex(column, false, false, 4px);
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
 }
 
 .button {
-  font-family: 'Open Sans';
-  font-size: 13px;
-  line-height: 130%;
-  font-weight: 600;
+  @include font('Open Sans', $xs-font-size, $bold);
+  @include size(100%, 50px);
+  @include button-style-reset();
+  @include line-sizes($m-line-height, $m-letter-space);
   text-align: center;
-  width: 100%;
-  height: 50px;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
   transition: border .5s,
               color .5s;
 
   &:hover {
-    color: #243CBB; //заменить на нужный
+    color: $primary-persian-blue-default;
   }
 
   @media screen and (max-width: 520px) {
+    @include line-sizes($xl-line-height, $m-letter-space);
     height: 32px;
     font-size: 7.41px;
-    line-height: 150%;
-    letter-spacing: .3px;
   }
 }
 
 .conditional {
-  background-color: #F8F9FB;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
+  @include flex(column);
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
 
   @media screen and (max-width: 520px) {
     border-radius: 5.7px;
@@ -90,9 +80,7 @@
 }
 
 .selects-string{
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
+  @include flex(row, false, false, 4px);
 
   @media screen and (max-width: 520px) {
     :nth-child(1){
@@ -106,9 +94,9 @@
 }
 
 .active {
-  @include button-state(#243CBB);
+  @include button-state($primary-persian-blue-default);
 }
 
 .none-active{
-  @include button-state(#BFC9D9);
+  @include button-state($grey-2);
 }

@@ -1,7 +1,8 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
 @mixin text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex(row, center, center);
   font-style: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -9,8 +10,7 @@
 
 @mixin textStopTest {
   @include text;
-  width: 151px;
-  height: 48px;
+  @include size(151px, 48px);
 }
 
 .textStop {
@@ -28,8 +28,7 @@
 }
 
 .wrapper {
-  border-radius: 32px;
+  @include size(80px, 29px);
+  border-radius: $super-border-radius;
   overflow: hidden;
-  width: 80px;
-  height: 29px;
 }

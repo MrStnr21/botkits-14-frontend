@@ -1,14 +1,13 @@
+@use '../../../../stylesheets//variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
 .blocks {
+  @include flex(column, false, false, 8px);
   width: 100%;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   box-sizing: border-box;
 }
 
 .sumInputs {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  @include flex(row, false, center, 4px);
 }

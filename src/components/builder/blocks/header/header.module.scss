@@ -1,13 +1,11 @@
+@use '../../../../stylesheets//variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
 .container {
-  // font-family: 'IBM Plex Mono';
-  display: flex;
-  flex-direction: column;
-
-  border-radius: 10px;
-
+  @include flex(column);
+  border-radius: $l-border-radius;
   max-width: 296px;
-
-  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+  box-shadow: $m-box-shadow;
 
   @media screen and (max-width: 520px) {
     max-width: 168px;
@@ -15,10 +13,8 @@
 }
 
 .header {
-  font-size: 13px;
-  font-weight: 600;
-  margin: 0px;
-  padding: 12px 0px 0px 16px;
+  @include indents(12px 0px 0px 16px, 0);
+  @include font('Open Sans', $xs-font-size, $bold);
 
   @media screen and (max-width: 520px) {
     padding: 9px 0px 0px 7px;
@@ -26,11 +22,9 @@
 }
 
 .content {
+  @include flex(column, false, false, 12px);
   width: calc(100% - 2*16px);
   margin: 12px auto 20px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 
   @media screen and (max-width: 520px) {
     width: calc(100% - 2*7px);
@@ -39,29 +33,24 @@
 }
 
 .grid {
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
+  @include flex(column, false, false, 8px);
 }
 
 .grid:first-child {
-  border-bottom: 1px solid #E4E9F1;
+  border-bottom: 1px solid $secondary-cultured-focus;
   padding-bottom: 12px;
 }
 
 .griditem {
-  height: 44px;
-  width: 100%;
+  @include size(100%, 44px);
   margin: auto;
   display: flex;
 }
 
 .inputs {
-  display: flex;
-  gap: 4px;
+  @include flex(row, false, false, 4px);
+  @include indents(0, auto);
   width: 100%;
-  margin: auto;
-  padding: 0px;
 }
 
 .input {

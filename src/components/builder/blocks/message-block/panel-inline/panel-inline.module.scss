@@ -1,14 +1,13 @@
+@use '../../../../../stylesheets//variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  @include flex(column, false, false, 12px);
 }
 
 .content {
+  @include flex(column, false, false, 8px);
   padding: 12px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 
   @media screen and (max-width: 520px) {
     padding: 12px 9px 9px;
@@ -24,12 +23,10 @@
 }
 
 .wrapperButtons {
+  @include flex(column, false, center, 8px);
   width: 264px;
-  background-color: #f8f9fb;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
 
   @media screen and (max-width: 520px) {
     border-radius: 5.7px;
@@ -38,12 +35,10 @@
 }
 
 .wrapperButton {
-  width: 232px;
-  height: 44px;
+  @include size(232px, 44px);
 
   @media screen and (max-width: 520px) {
-    width: 138px;
-    height: 25px;
+    @include size(138px, 25px);
   }
 }
 
@@ -56,10 +51,8 @@
 }
 
 .split-line{
-  margin: 0;
-  padding: 0;
+  @include indents(0, 0);
+  @include size(100%, 1px);
   border: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #D9D9D9;
+  background-color: $secondary-cultured-focus;
 }
