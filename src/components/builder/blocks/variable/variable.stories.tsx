@@ -9,4 +9,10 @@ export default meta;
 
 type Story = StoryObj<typeof VariableBlockNode>;
 
-export const ApiBlock: Story = {};
+export const ApiBlock: Story = {
+  args: {
+    data: {
+      name: 'test name',
+    },
+  },
+};
