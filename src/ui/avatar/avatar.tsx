@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import { FC, useMemo } from 'react';
 import stylesAvatar from './avatar.module.scss';
 import defaultAvatar1 from '../../images/avatar/default/default_avatar_1.png';
@@ -20,66 +21,67 @@ const defaultAvatars = [
   defaultAvatar3,
   defaultAvatar4,
 ];
-
 const Avatar: FC<IAvatar> = ({
-  pic = defaultAvatars[getRandomInt(4)],
+  // pic,
   state = 'online' || 'offline',
   isBot = 'yes' || 'no',
   big = 'yes' || 'no',
 }): JSX.Element => {
-  return useMemo(
-    () => (
-      <div>
-        {big === 'yes' ? (
-          <div className={stylesAvatar.avatarBigContainer}>
-            <img
-              className={stylesAvatar.avatarBig}
-              alt="аватар пользователя"
-              src={pic}
-            />
-          </div>
-        ) : state === 'online' && isBot === 'no' ? (
-          <div className={stylesAvatar.avatarContainer}>
-            <div className={stylesAvatar.onlineIndicator} />
-            <img
-              className={stylesAvatar.avatar}
-              alt="аватар пользователя"
-              src={pic}
-            />
-          </div>
-        ) : state === 'online' && isBot === 'yes' ? (
-          <div className={stylesAvatar.avatarContainerBot}>
-            <div className={stylesAvatar.botIndicator}>
-              <BotIcon />
-            </div>
-            <div className={stylesAvatar.onlineIndicator} />
-            <img
-              className={stylesAvatar.avatarBot}
-              alt="аватар бота"
-              src={pic}
-            />
-          </div>
-        ) : state === 'offline' && isBot === 'yes' ? (
-          <div className={stylesAvatar.avatarContainerBot}>
-            <div className={stylesAvatar.botIndicator}>
-              <BotIcon />
-            </div>
-            <img
-              className={stylesAvatar.avatarBot}
-              alt="аватар бота"
-              src={pic}
-            />
-          </div>
-        ) : (
+  const randomAvatar = useMemo(() => {
+    const randomIndex = getRandomInt(defaultAvatars.length);
+    return defaultAvatars[randomIndex];
+  }, [defaultAvatars]);
+
+  return (
+    <div>
+      {big === 'yes' ? (
+        <div className={stylesAvatar.avatarBigContainer}>
+          <img
+            className={stylesAvatar.avatarBig}
+            alt="аватар пользователя"
+            src={randomAvatar}
+          />
+        </div>
+      ) : state === 'online' && isBot === 'no' ? (
+        <div className={stylesAvatar.avatarContainer}>
+          <div className={stylesAvatar.onlineIndicator} />
           <img
             className={stylesAvatar.avatar}
             alt="аватар пользователя"
-            src={pic}
+            src={randomAvatar}
           />
-        )}
-      </div>
-    ),
-    [state, isBot, big]
+        </div>
+      ) : state === 'online' && isBot === 'yes' ? (
+        <div className={stylesAvatar.avatarContainerBot}>
+          <div className={stylesAvatar.botIndicator}>
+            <BotIcon />
+          </div>
+          <div className={stylesAvatar.onlineIndicator} />
+          <img
+            className={stylesAvatar.avatarBot}
+            alt="аватар бота"
+            src={randomAvatar}
+          />
+        </div>
+      ) : state === 'offline' && isBot === 'yes' ? (
+        <div className={stylesAvatar.avatarContainerBot}>
+          <div className={stylesAvatar.botIndicator}>
+            <BotIcon />
+          </div>
+          <img
+            className={stylesAvatar.avatarBot}
+            alt="аватар бота"
+            src={randomAvatar}
+          />
+        </div>
+      ) : (
+        <img
+          className={stylesAvatar.avatar}
+          alt="аватар пользователя"
+          src={randomAvatar}
+        />
+      )}
+    </div>
   );
 };
 
