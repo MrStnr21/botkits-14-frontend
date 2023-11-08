@@ -1,11 +1,13 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import style from './file-item.module.scss';
 
-interface Item {
-  icon: string;
+export interface Item {
+  iconDock: string;
   info: string;
   title: string;
+  closeIcon: string;
   checkIcon: string;
+  isUploaded: boolean;
 }
 
 interface FileItemProps {
@@ -15,6 +17,13 @@ interface FileItemProps {
 }
 
 const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
+  const [isUploaded, setIsUploaded] = useState(false);
+
+  useEffect(() => {
+    if (item.iconDock === 'successIconPath') {
+      setIsUploaded(true);
+    }
+  }, [item.iconDock]);
   const handleRemove = useCallback(
     () => handleRemoveItem(index),
     [index, handleRemoveItem]
@@ -22,7 +31,11 @@ const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
 
   return (
     <div className={style.itemWrapper}>
-      <img className={style.iconDocument} alt="iconDocument" src={item.icon} />
+      <img
+        className={style.iconDocument}
+        alt="iconDocument"
+        src={item.iconDock}
+      />
       <div className={style.itemInfoWrapper}>
         <div className={style.itemTitle}>
           {item.title}
@@ -30,7 +43,11 @@ const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
         </div>
       </div>
       <button className={style.button} type="button" onClick={handleRemove}>
-        <img className={style.iconCommonCheck} alt="" src={item.checkIcon} />
+        {isUploaded ? (
+          <img className={style.iconCommonCheck} alt="" src={item.checkIcon} />
+        ) : (
+          <img className={style.iconCommonCheck} alt="" src={item.closeIcon} />
+        )}
       </button>
     </div>
   );
