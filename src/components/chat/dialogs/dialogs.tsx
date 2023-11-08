@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './dialogs.module.scss';
 import Dialog from '../dialog/dialog';
-import InputDialogsues from '../InputDialogsues/InputDialogues';
+import InputDialogsues from '../InputDialogsues/InputDialogsues';
 import Typography from '../../../ui/typography/typography';
 import { testData } from '../../../utils/mockData';
 

@@ -11,7 +11,7 @@ interface IAvatar {
   pic?: string;
   state: string;
   isBot: string;
-  big: string;
+  big?: string;
 }
 
 const defaultAvatars = [
