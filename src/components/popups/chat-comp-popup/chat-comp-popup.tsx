@@ -1,38 +1,60 @@
-import React, { FC, ChangeEvent, useRef, useState } from 'react';
+import React, { FC, ChangeEvent, useRef, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import stylesChatCompPopup from './chat-comp-popup.module.scss';
 import logout from '../../../images/icon/24x24/drop down/logOutBlue.svg';
 import close from '../../../images/icon/24x24/common/close.svg';
+import check from '../../../images/icon/24x24/common/checkBlue.svg';
 import docCircle from '../../../images/icon/47x47/doc-circle.svg';
 import Typography from '../../../ui/typography/typography';
-import FileItem from '../../../ui/file-item/file-item';
+import FileItem, { Item } from '../../../ui/file-item/file-item';
 import useDrag from '../../../utils/useDrag';
 
-const initialItems: any[] | (() => any[]) = [];
+const initialItems: Item[] = [];
 
 interface IChatCompPopup {
   onClick?: () => void;
 }
 
 const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState<Item[]>(initialItems);
   const [file, setFile] = useState<File | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+
+  const saveFilesToLocalStorage = (fileList: Item[]) => {
+    localStorage.setItem('uploadedFiles', JSON.stringify(fileList));
+  };
+  useEffect(() => {
+    const storedFiles = localStorage.getItem('uploadedFiles');
+    if (storedFiles) {
+      setItems(JSON.parse(storedFiles));
+    }
+  }, []);
+
+  useEffect(() => {
+    saveFilesToLocalStorage(items);
+  }, [items]);
   const handleDropEvent = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     if (e.dataTransfer.files.length > 0) {
       setFile(e.dataTransfer.files[0]);
 
-      const newItem = {
+      const newItem: Item = {
         title: e.dataTransfer.files[0].name,
         info: `${(e.dataTransfer.files[0].size / 1024).toFixed(1)} KB`,
-        icon: docCircle,
-        checkIcon: close,
+        iconDock: docCircle,
+        closeIcon: close,
+        checkIcon: check,
+        isUploaded: false,
       };
 
       setItems((prevItems) => [...prevItems, newItem]);
       console.log('Файл был успешно добавлен:', e.dataTransfer.files[0].name);
+      setTimeout(() => {
+        newItem.closeIcon = check; // Устанавливаем иконку галочки после задержки
+        newItem.isUploaded = true; // Устанавливаем флаг загрузки в true
+        setItems((prevItems) => [...prevItems]); // Обновляем состояние элемента
+      }, 1000);
     }
   };
   const {
@@ -54,10 +76,17 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
       const newItem = {
         title: selectedFile.name,
         info: `${(selectedFile.size / 1024).toFixed(1)} KB`,
-        icon: docCircle,
-        checkIcon: close,
+        iconDock: docCircle,
+        closeIcon: close,
+        checkIcon: check,
+        isUploaded: true,
       };
       setItems((prevItems) => [...prevItems, newItem]);
+      setTimeout(() => {
+        newItem.closeIcon = check;
+        newItem.isUploaded = true;
+        setItems((prevItems) => [...prevItems]);
+      }, 1000);
     }
   };
 
@@ -66,6 +95,7 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
+
   return (
     <div className={stylesChatCompPopup.container}>
       <div className={stylesChatCompPopup.popUp}>
