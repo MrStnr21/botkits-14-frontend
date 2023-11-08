@@ -2,17 +2,14 @@
 @use '../../../stylesheets/mixins' as *;
 
 .wrap {
+  @include flex(column);
   background-color: $secondary-cultured-default;
   padding: 16px 20px;
-  display: flex;
-  flex-direction: column;
   border-radius: $l-border-radius;
   max-width: 296px;
 
   .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(row, space-between, center);
 
     svg {
       cursor: $cursor;
@@ -25,8 +22,7 @@
   }
 
   .buttons {
-    display: flex;
-    gap: 5px;
+    @include flex(row, false, false, 5px);
   }
 
 }

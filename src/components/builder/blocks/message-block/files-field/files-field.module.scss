@@ -1,29 +1,23 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
 .wrapper {
-  display: flex;
-  flex-direction: column;
+  @include flex(column);
   box-sizing: border-box;
   padding: 12px;
-  background-color: #f8f9fb;
+  background-color: $secondary-cultured-default;
   width: fit-content;
-  border-radius: 10px;
+  border-radius: $l-border-radius;
 }
 
 .header {
-  color: #060c23;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 150%;
-  letter-spacing: 0.3px;
+  @include font('Open Sans', $xs-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   text-align: left;
-  margin-top: 0;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
 }
 
 .inputsBox {
+  @include flex(row, center, center, 6px);
   flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
 }

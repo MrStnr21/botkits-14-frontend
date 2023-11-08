@@ -1,21 +1,11 @@
-@mixin input {
-  width: 100%;
-  background: none;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
 
-@mixin colored-button($bg-color, $border-color){
-  color: white;
-  background-color: $bg-color;
-  border-color: $border-color;
-  &:hover {
-    border-color: #3172da;
-  }
+@mixin input {
+  @include input-style-reset();
+  @include ellipsis();
+  width: 100%;
+  outline: 0;
 }
 
 .container {
@@ -27,25 +17,19 @@
 }
 
 .absolute-wrapper {
-  position: absolute;
-  top: -56px;
-  right: 0;
+  @include position(absolute, -56px, 0, false, false);
 }
 
 .button {
-  font-family: 'Open Sans';
-  font-weight: 400;
-  letter-spacing: 0.3px;
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include flex(column, center, false, 2px);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  border-radius: $s-border-radius;
   width: 232px;
   min-height: 40px;
   border: 0;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
   padding: 8px 12px;
-  cursor: pointer;
+  cursor: $cursor;
 
   @media screen and (max-width: 520px) {
     width: 136px;
@@ -64,8 +48,8 @@
 
 .button-name{
   @include input;
-  font-size: 13px;
-  line-height: 150%;
+  font-size: $xs-font-size;
+  line-height: $xl-line-height;
   text-decoration: none;
   @media screen and (max-width: 520px) {
     font-size: 7.48px;
@@ -74,10 +58,10 @@
 
 .button-str{
   @include input;
-  font-size: 12px;
-  color: #A6B3C9;
+  font-size: $xxs-font-size;
+  color: $grey-3;
   text-decoration: none;
-  line-height: 150%;
+  line-height: $xl-line-height;
 
   @media screen and (max-width: 520px) {
     font-size: 6.48px;
@@ -93,14 +77,14 @@
 }
 
 .button-white {
-  @include colored-button(#ffffff, #f2f4f8);
+  @include colored-button($off-white, $off-white, $secondary-cultured-hover, $primary-persian-blue-hover);
 }
 .button-red {
-  @include colored-button(#d3524d, #d3524d);
+  @include colored-button($off-white, $example-button-color-red, $example-button-color-red, $primary-persian-blue-hover);
 }
 .button-green {
-  @include colored-button(#67b057, #67b057);
+  @include colored-button($off-white, $example-button-color-green, $example-button-color-green, $primary-persian-blue-hover);
 }
 .button-blue {
-  @include colored-button(#5883c6, #5883c6);
+  @include colored-button($off-white, $example-button-color-blue, $example-button-color-blue, $primary-persian-blue-hover);
 }
