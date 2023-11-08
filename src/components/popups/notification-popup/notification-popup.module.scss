@@ -42,28 +42,6 @@
   margin: 10px 0 20px 0;
 }
 
-.tabs {
-  @include flex(row);
-  cursor: $cursor;
-  width: 100%;
-  padding-top: 18px;
-
-  .tab {
-    @include font('IBM Plex', $m-font-size, $semi-bold, $secondary-cultured-press);
-    line-height: $m-line-height;
-    transition: all 0.4s linear;
-    border-bottom: 2px solid $secondary-cultured-press;
-    width: 50%;
-    text-align: center;
-    padding-bottom: 13px;
-
-    &.active {
-      border-bottom: 2px solid $primary-persian-blue-default;
-      color: $primary-persian-blue-default;
-    }
-  }
-}
-
 .close_btn {
   @include position(absolute, 28px, 35px);
   background-color: $off-white;
@@ -76,9 +54,5 @@
     box-shadow: none;
     padding: 9px 15px 0 15px;
     margin-top: 70px;
-  }
-
-  .tabs {
-    padding-top: 7px;
   }
 }

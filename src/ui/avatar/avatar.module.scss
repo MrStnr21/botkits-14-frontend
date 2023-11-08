@@ -7,10 +7,6 @@ $white: #FFFFFF;
   height: 40px;
 }
 
-.mainContainer {
-  @include containerWidth;
-}
-
 .avatar {
   @include containerWidth;
   border-radius: 50%;
@@ -57,4 +53,18 @@ $white: #FFFFFF;
   position: relative;
   width: 44px;
   height: 44px;
+}
+
+.avatarBigContainer {
+  // position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.avatarBig {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-repeat: no-repeat;
 }

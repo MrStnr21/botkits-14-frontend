@@ -2,7 +2,7 @@ import { FC } from 'react';
 import stylesImage from './UploadedImage.module.scss';
 
 interface IUploadedFiles {
-  image: string;
+  image?: string;
 }
 
 const UploadedImage: FC<IUploadedFiles> = ({
