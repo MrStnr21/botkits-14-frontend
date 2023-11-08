@@ -34,15 +34,15 @@ const DropDownList: FC<IDropDownList> = ({
         <ChevronIcon position={`${isOpened ? 'up' : 'down'}`} />
       </div>
       {isOpened && (
-        <div className={stylesList.container}>
-          <Typography tag="p" className={stylesList.textinfo}>
-            <Typography tag="span" className={stylesList.title}>
+        <div className={stylesList.accordion__container}>
+          <Typography tag="p" className={stylesList.accordion__textinfo}>
+            <Typography tag="span" className={stylesList.accordion__title}>
               {info.one.title}
             </Typography>
             {` ${info.one.paragraph}`}
           </Typography>
-          <Typography tag="p" className={stylesList.textinfo}>
-            <Typography tag="span" className={stylesList.title}>
+          <Typography tag="p" className={stylesList.accordion__textInfo}>
+            <Typography tag="span" className={stylesList.accordion__title}>
               {info.two.title}
             </Typography>
             {` ${info.two.paragraph}`}
