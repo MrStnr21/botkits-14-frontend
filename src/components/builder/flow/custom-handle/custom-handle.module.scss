@@ -1,4 +1,4 @@
-.handle {
+.handle.handle {
   display: block;
   width: 10px;
   height: 10px;
@@ -13,6 +13,7 @@
   }
 }
 
-.hidden {
-  display: none;
+.hidden.hidden {
+  background-color: hsl(157, 100%, 57%,0);
+  border: none;
 }
