@@ -4,12 +4,26 @@ import RightSidebarButton from './right-sidebar-button';
 
 const meta: Meta<typeof RightSidebarButton> = {
   component: RightSidebarButton,
-  argTypes: { handleClick: { action: 'clicked' } },
+  argTypes: {
+    onClick: {
+      action: 'clicked',
+      description: 'Callback функция, вызываемая при клике',
+    },
+    isVisible: {
+      type: 'boolean',
+      description: 'Вариант активности блока',
+      defaultValue: false,
+      options: [false, true],
+      control: {
+        type: 'radio',
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof RightSidebarButton>;
 
 export const SidebarButton: Story = {
-  render: () => <RightSidebarButton />,
+  render: (args) => <RightSidebarButton {...args} />,
 };

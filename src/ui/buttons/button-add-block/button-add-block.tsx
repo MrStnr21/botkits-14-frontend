@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import stylesButtonAddBlock from './button-add-block.module.scss';
+import styles from './button-add-block.module.scss';
 
 import messageIcon from '../../../images/icon/24x24/add block/message-square.svg';
 
@@ -19,13 +19,13 @@ const ButtonAddBlock: FC<IButtonAddBlock> = ({
 }): JSX.Element => {
   return (
     <button
-      className={stylesButtonAddBlock.button}
+      className={styles.button}
       onClick={onClick}
       type="button"
       disabled={disabled}
     >
-      <img src={icon} className={stylesButtonAddBlock.icon} alt="иконка" />
-      <p className={stylesButtonAddBlock.name}>{name}</p>
+      <img src={icon} className={styles.icon} alt="" />
+      <p className={styles.name}>{name}</p>
     </button>
   );
 };
