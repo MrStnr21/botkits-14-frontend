@@ -1,21 +1,21 @@
 /* eslint-disable no-param-reassign */
 // import styles from './saving-to-crm-block.module.scss';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './saving-to-crm.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import Checkbox from '../../../../ui/checkboxes/checkbox';
+import { TBlockProps, TCRMBlock } from '../../../../services/types/builder';
 
-const SavingToCrmBlock = () => {
-  const [blockName, setBlockName] = useState('Сохранение в CRM');
+const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
+  const [blockName, setBlockName] = useState(data.name);
   const [crmcheckboxes, setCrmCheckboxes] = useState([
-    { label: 'CRM 1', checked: true },
-    { label: 'CRM 2', checked: false },
-    { label: 'CRM 3', checked: false },
+    { label: 'Новая запись', checked: data.save === 'new' },
+    { label: 'Дополнить запись', checked: data.save === 'suppl' },
   ]);
 
   const [saveas, setSaveAs] = useState([
-    { label: 'Новая запись', checked: true },
-    { label: 'Дополнить запись', checked: false },
+    { label: 'Новая запись', checked: data.save === 'new' },
+    { label: 'Дополнить запись', checked: data.save === 'suppl' },
   ]);
 
   const handleChangeSaveAs = (index: number, checked: boolean) => {

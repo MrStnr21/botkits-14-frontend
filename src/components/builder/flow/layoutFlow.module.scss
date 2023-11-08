@@ -14,7 +14,7 @@
   position: right;
 }
 
-.wrapper {  
+.wrapper {
   @include max-size(151px, 48px);
   overflow: hidden;
 }

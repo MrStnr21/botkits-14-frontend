@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 40px;
+  height: calc(100vh - 155px);
+
+  @media screen and (max-width: 620px) {
+    margin: 0;
+    z-index: 666;
+  }
+}

@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import InputDialogsues from './InputDialogsues';
+import InputDialogsues from './input-dialogues';
 
 const meta = {
   title: 'COMPONENTS/Chat/InputDialogsues',

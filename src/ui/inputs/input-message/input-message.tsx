@@ -6,6 +6,7 @@ import EmojiIcon from '../../../components/icons/Emoji/EmojiIcon';
 import InvisibleMessageIcon from '../../../components/icons/InvisibleMessage/InvisibleMessageIcon';
 import QuickAnswerIcon from '../../../components/icons/QuickAnswer/QuickAnswerIcon';
 import AddIcon from '../../../components/icons/Add/AddIcon';
+import Tooltip from '../../../components/chat-dialogue/tooltip/tooltip';
 
 interface IInputMessage {
   placeholder?: string;
@@ -43,14 +44,18 @@ const InputMessage: FC<IInputMessage> = ({
           type="button"
           onClick={onClickClip}
         >
-          <PaperClipIcon width={20} height={20} />
+          <Tooltip text="Прикрепить">
+            <PaperClipIcon width={20} height={20} />
+          </Tooltip>
         </button>
         <button
           className={stylesInput.message_button}
           type="button"
           onClick={onClickEmoji}
         >
-          <EmojiIcon width={20} height={20} />
+          <Tooltip text="Тут будут эмодзи">
+            <EmojiIcon width={20} height={20} />
+          </Tooltip>
         </button>
         {rotateAddIcon && (
           <div className={stylesInput.message_hidden}>
@@ -59,14 +64,18 @@ const InputMessage: FC<IInputMessage> = ({
               type="button"
               onClick={onClickSlash}
             >
-              <InvisibleMessageIcon width={20} height={20} />
+              <Tooltip text="Невидимое сообщение">
+                <InvisibleMessageIcon width={20} height={20} />
+              </Tooltip>
             </button>
             <button
               className={stylesInput.message_button}
               type="button"
               onClick={onClickZap}
             >
-              <QuickAnswerIcon width={20} height={20} />
+              <Tooltip text="Быстрый ответ">
+                <QuickAnswerIcon width={20} height={20} />
+              </Tooltip>
             </button>
           </div>
         )}
@@ -75,7 +84,9 @@ const InputMessage: FC<IInputMessage> = ({
           type="button"
           onClick={handleRotate}
         >
-          <AddIcon width={24} height={24} position={rotate} />
+          <Tooltip text={rotateAddIcon ? 'Cвернуть' : 'Развернуть'}>
+            <AddIcon width={24} height={24} position={rotate} />
+          </Tooltip>
         </button>
       </div>
     </div>

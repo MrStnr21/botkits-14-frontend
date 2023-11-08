@@ -1,8 +1,12 @@
-import { ReactElement, useState } from 'react';
+import { FC, useState } from 'react';
 import ControlLayout from '../../control-layout/control-layout';
+import {
+  TBlockProps,
+  TOperatorBlock,
+} from '../../../../services/types/builder';
 
-const TransferToOperatorBlock = (): ReactElement => {
-  const [name, setName] = useState('Перевод на оператора');
+const TransferToOperatorBlock: FC<TBlockProps<TOperatorBlock>> = ({ data }) => {
+  const [name, setName] = useState(data.name);
 
   const handleNameChange = (newName: string) => {
     setName(newName);

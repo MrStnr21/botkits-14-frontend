@@ -1,3 +1,8 @@
+import { FC } from 'react';
+import {
+  TBlockProps,
+  TVariablesControlBlock,
+} from '../../../../services/types/builder';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import InputSelect from '../../../../ui/inputs/input-select/input-select';
 import Input from '../../../../ui/inputs/input/input';
@@ -7,11 +12,13 @@ import styleVariableBlock from './variable.module.scss';
 
 const func = () => console.log(1);
 
-function VariableBlockNode() {
+const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
+  data,
+}) => {
   return (
     <ControlLayout
       type="Управление переменными"
-      name="Название переменной"
+      name={data.name}
       nameSetter={func}
     >
       <div className={styleVariableBlock.container}>
@@ -58,6 +65,6 @@ function VariableBlockNode() {
       </div>
     </ControlLayout>
   );
-}
+};
 
 export default VariableBlockNode;

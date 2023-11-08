@@ -12,6 +12,10 @@
   position: relative
 }
 
+.outline {
+  outline: 1px solid #85FFD0;
+}
+
 .absolute-wrapper {
   @include position(absolute, -56px, 0, false, false);
 }

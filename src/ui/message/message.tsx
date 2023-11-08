@@ -5,7 +5,7 @@ import getTimeAgo from '../../utils/getTimeAgo';
 interface IMessage {
   name?: string;
   message: string;
-  type: string;
+  type?: string;
 }
 
 const Message: FC<IMessage> = ({

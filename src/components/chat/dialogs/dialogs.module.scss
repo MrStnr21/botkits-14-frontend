@@ -1,0 +1,17 @@
+@use '../../../stylesheets/variables' as *;
+
+.header {
+  padding-bottom: 26px;
+}
+
+.mainContainer {
+  width: 308px;
+}
+
+.line {
+  border-top: 0.8px solid $secondary-cultured-press;
+}
+
+.messagesContainer {
+  padding-top: 32px;
+}

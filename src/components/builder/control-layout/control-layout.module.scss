@@ -13,7 +13,11 @@
   }
 }
 
-.header {
+.outline {
+  outline: 1px solid #85FFD0;
+}
+
+.header{
   @include flex(column, false, false, 8px);
   position: relative;
   padding: 13px 16px 16px;
