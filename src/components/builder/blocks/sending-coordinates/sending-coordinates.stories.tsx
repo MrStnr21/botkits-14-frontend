@@ -11,6 +11,9 @@ type Story = StoryObj<typeof SendingCoordinatesBlock>;
 
 export const BlockCoordinates: Story = {
   args: {
-    nameSetter: () => {},
+    data: {
+      name: 'test name',
+      coordinates: [],
+    },
   },
 };

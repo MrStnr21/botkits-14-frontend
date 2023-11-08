@@ -11,6 +11,8 @@ type Story = StoryObj<typeof TransferToOperatorBlock>;
 
 export const BlockOperator: Story = {
   args: {
-    nameSetter: () => {},
+    data: {
+      name: 'test name',
+    },
   },
 };

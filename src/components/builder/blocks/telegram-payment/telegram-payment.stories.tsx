@@ -5,4 +5,4 @@ export default {
   component: TelegramPayment,
 };
 
-export const Default = () => <TelegramPayment />;
+export const Default = () => <TelegramPayment data={{ name: 'test name' }} />;
