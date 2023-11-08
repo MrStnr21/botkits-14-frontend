@@ -19,10 +19,12 @@
 }
 
 .open_button {
-  @include flex(row);
-  @include size(240px, 40px);
-  background-color: $secondary-cultured-default;
-  border-radius: $s-border-radius;
+  display: flex;
+  flex-direction: row;
+  width: 240px;
+  height: 40px;
+  background-color: #f8f9fb;
+  border-radius: 5px;
   position: relative;
   cursor: pointer;
   z-index: 999;
@@ -35,7 +37,7 @@
   width: 240px;
   box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
   background-color: white;
-  border-radius: $l-border-radius;
+  border-radius: 10px;
   position: absolute;
 }
 
@@ -43,7 +45,13 @@
   display: flex;
 }
 
-.text.text {
+.text {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%;
+  font-family: 'Open Sans';
+  letter-spacing: 0.3px;
+  color: black;
   transition: color 0.3s linear;
 }
 
@@ -52,7 +60,7 @@
 }
 
 .grey {
-  color: $grey-2;
+  color: #bfc9d9;
 }
 
 .li {
@@ -89,7 +97,7 @@
 }
 
 .button:hover {
-  background-color: $secondary-cultured-default;
+  background-color: #f8f9fb;
 }
 
 .icon {
