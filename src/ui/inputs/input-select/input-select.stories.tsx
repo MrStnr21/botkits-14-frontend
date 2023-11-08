@@ -23,6 +23,9 @@ const meta: Meta<typeof InputSelect> = {
     multiple: {
       type: 'boolean',
     },
+    isAdaptive: {
+      type: 'boolean',
+    },
   },
 };
 

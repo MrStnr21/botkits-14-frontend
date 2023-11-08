@@ -67,7 +67,9 @@ const UploadedVideo: FC<TUploadedVideoProps> = ({ file }) => {
 };
 
 const UploadedPicture: FC<TUploadedPictureProps> = ({ src }) => {
-  return <VideoCard title="title" prewiew={src} src={src} />;
+  return (
+    <VideoCard contentType="image" title="title" prewiew={src} src={src} />
+  );
 };
 
 const UploadedAudio: FC<TUploadedAudioProps> = ({ src, name }) => {

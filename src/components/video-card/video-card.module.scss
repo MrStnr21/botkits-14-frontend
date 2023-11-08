@@ -40,6 +40,7 @@
 .prewiew {
   @include size(100%, 100%);
   @include position(absolute, 0, $left: 0);
+  object-fit: cover;
 }
 
 .cover {
@@ -59,6 +60,13 @@
       filter: drop-shadow(0px 14px 56px rgba(21, 18, 51, 0.12));
     }
   }
+}
+
+.cover_image{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
 
 .playButton {

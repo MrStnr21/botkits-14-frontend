@@ -19,7 +19,7 @@ const TelegramPayment = () => {
         <LabeledInput title="Навзание товара">
           <Input placeholder={placeholder} onChange={() => {}} />
         </LabeledInput>
-        <ConstructorAddButton width="100%" icon="photo">
+        <ConstructorAddButton maxWidth="100%" icon="photo">
           Добавить фото
         </ConstructorAddButton>
         <LabeledInput title="Описание">

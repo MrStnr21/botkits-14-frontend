@@ -79,6 +79,26 @@
   }
 }
 
+.adaptive {
+  @media screen and (max-width: 520px) {
+    max-height: 25px;
+
+    .chosen {
+      @include position(absolute, 6px, $left: 5px);
+      @include size(14px, 14px)
+    }
+
+    .chosen_text {
+      @include font('Open Sans', 7.41px, $normal);
+      @include line-sizes($xl-line-height, $m-letter-space);
+    }
+
+    [class*='MuiSelect-icon'] {
+      max-width: 9px;
+    }
+  }
+}
+
 .optionContainer{
   @include flex(row, flex-start, center, 12px);
 }

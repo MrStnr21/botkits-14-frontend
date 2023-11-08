@@ -61,6 +61,9 @@ export default {
         },
       },
     },
+    isUpdating: {
+      type: 'boolean',
+    },
   },
 } as Meta<IBotName>;
 
