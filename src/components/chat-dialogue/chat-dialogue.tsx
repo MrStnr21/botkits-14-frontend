@@ -3,7 +3,7 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { useAppSelector, useAppDispatch } from '../../services/hooks/hooks';
-import stylesDialog from './dialog.module.scss';
+import stylesDialog from './chat-dialogue.module.scss';
 import TrashIcon from '../icons/Trash/TrashIcon';
 import SearchIcon from '../icons/Search/SearchIcon';
 import PlayIcon from '../icons/Play/PlayIcon';
@@ -25,7 +25,7 @@ interface DateType extends Date {
   toDateString(): string;
 }
 
-const Dialog: FC = () => {
+const ChatDialogue: FC = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 620px)');
   const [inputValue, setInputValue] = useState('');
@@ -187,4 +187,4 @@ const Dialog: FC = () => {
   );
 };
 
-export default Dialog;
+export default ChatDialogue;

@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import Dialog from '../../components/dialog/dialog';
+import ChatDialogue from '../../components/chat-dialogue/chat-dialogue';
 import stylesChatDesktop from './chat.module.scss';
 
 const ChatDesktop: FC = (): JSX.Element => {
   return (
     <div className={stylesChatDesktop.layout}>
-      <Dialog />
+      <ChatDialogue />
     </div>
   );
 };

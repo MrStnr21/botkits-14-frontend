@@ -6,7 +6,7 @@ import EmojiIcon from '../../../components/icons/Emoji/EmojiIcon';
 import InvisibleMessageIcon from '../../../components/icons/InvisibleMessage/InvisibleMessageIcon';
 import QuickAnswerIcon from '../../../components/icons/QuickAnswer/QuickAnswerIcon';
 import AddIcon from '../../../components/icons/Add/AddIcon';
-import Tooltip from '../../../components/dialog/tooltip/tooltip';
+import Tooltip from '../../../components/chat-dialogue/tooltip/tooltip';
 
 interface IInputMessage {
   placeholder?: string;
