@@ -11,14 +11,26 @@ import fileIcon from '../../../../../images/icon/24x24/add content/file.svg';
 
 import { BUTTON_NAME } from '../../../../../utils/constants';
 
-interface IButton {
+type TButtonProps = {
   type: BUTTON_NAME;
   isActive?: boolean;
   icon: string;
   accept: string; // но тут д.б.расширения
-}
+};
 
-const Button: FC<IButton> = ({ type, icon, accept, isActive }): JSX.Element => {
+type TFielsFieldProps = {
+  image?: File;
+  video?: File;
+  audio?: File;
+  doc?: File;
+};
+
+const Button: FC<TButtonProps> = ({
+  type,
+  icon,
+  accept,
+  isActive,
+}): JSX.Element => {
   const ref = useRef<null | HTMLInputElement>(null);
 
   const onClick = () => {
@@ -48,7 +60,7 @@ const Button: FC<IButton> = ({ type, icon, accept, isActive }): JSX.Element => {
   );
 };
 
-const FielsField: FC = (): JSX.Element => {
+const FielsField: FC<TFielsFieldProps> = ({ image, video, audio, doc }) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.header}>Дополните контентом</h3>
@@ -57,14 +69,26 @@ const FielsField: FC = (): JSX.Element => {
           type={BUTTON_NAME.IMAGE}
           icon={imageIcon}
           accept=".jpg, .png, .gif"
+          isActive={!!image}
         />
-        <Button type={BUTTON_NAME.VIDEO} icon={videoIcon} accept=".mp4, avi" />
+        <Button
+          type={BUTTON_NAME.VIDEO}
+          icon={videoIcon}
+          accept=".mp4, avi"
+          isActive={!!video}
+        />
         <Button
           type={BUTTON_NAME.FILE}
           icon={fileIcon}
           accept=".docx, .doc, .pdf "
+          isActive={!!doc}
         />
-        <Button type={BUTTON_NAME.AUDIO} icon={musicIcon} accept="audio/*" />
+        <Button
+          type={BUTTON_NAME.AUDIO}
+          icon={musicIcon}
+          accept="audio/*"
+          isActive={!!audio}
+        />
       </div>
     </div>
   );
