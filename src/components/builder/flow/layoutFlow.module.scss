@@ -6,7 +6,7 @@
 .upWrapper {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   box-sizing: border-box;
   padding: 12px;
   width: 100%;
@@ -15,7 +15,7 @@
   position: right;
 }
 
-.wrapper {  
+.wrapper {
   max-width: 151px;
   max-height: 48px;
   overflow: hidden;
