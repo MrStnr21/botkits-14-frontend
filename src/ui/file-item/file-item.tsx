@@ -37,10 +37,8 @@ const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
         src={item.iconDock}
       />
       <div className={style.itemInfoWrapper}>
-        <div className={style.itemTitle}>
-          {item.title}
-          {item.info}
-        </div>
+        <div className={style.itemTitle}>{item.title}</div>
+        <div className={style.itemInfo}>{item.info}</div>
       </div>
       <button className={style.button} type="button" onClick={handleRemove}>
         {isUploaded ? (
