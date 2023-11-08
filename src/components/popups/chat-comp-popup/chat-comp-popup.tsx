@@ -36,12 +36,16 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
   const handleDropEvent = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
 
+    const uploadedFile = e.dataTransfer.files[0];
+    const fileSize = (uploadedFile.size / 1024).toFixed(1); // Размер файла в KB
+    const realSize = (uploadedFile.size / (1024 * 1024)).toFixed(1); // Реальный размер файла в MB
+
     if (e.dataTransfer.files.length > 0) {
       setFile(e.dataTransfer.files[0]);
 
       const newItem: Item = {
-        title: e.dataTransfer.files[0].name,
-        info: `${(e.dataTransfer.files[0].size / 1024).toFixed(1)} KB`,
+        title: uploadedFile.name,
+        info: `${fileSize} KB / ${realSize} MB`,
         iconDock: docCircle,
         closeIcon: close,
         checkIcon: check,
@@ -73,9 +77,11 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
     const { target } = e;
     if (target.files && target.files.length > 0) {
       const selectedFile = target.files[0];
+      const fileSize = (selectedFile.size / 1024).toFixed(1); // Размер файла в KB
+      const realSize = (selectedFile.size / (1024 * 1024)).toFixed(1); // Реальный размер файла в MB
       const newItem = {
         title: selectedFile.name,
-        info: `${(selectedFile.size / 1024).toFixed(1)} KB`,
+        info: `${fileSize} KB / ${realSize} MB`,
         iconDock: docCircle,
         closeIcon: close,
         checkIcon: check,
