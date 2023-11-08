@@ -1,4 +1,5 @@
-import { FC } from 'react';
+/* eslint-disable react/no-unused-prop-types */
+import { FC, useMemo } from 'react';
 import stylesAvatar from './avatar.module.scss';
 import defaultAvatar1 from '../../images/avatar/default/default_avatar_1.png';
 import defaultAvatar2 from '../../images/avatar/default/default_avatar_2.png';
@@ -20,13 +21,17 @@ const defaultAvatars = [
   defaultAvatar3,
   defaultAvatar4,
 ];
-
 const Avatar: FC<IAvatar> = ({
-  pic = defaultAvatars[getRandomInt(4)],
+  // pic,
   state = 'online' || 'offline',
   isBot = 'yes' || 'no',
   big = 'yes' || 'no',
 }): JSX.Element => {
+  const randomAvatar = useMemo(() => {
+    const randomIndex = getRandomInt(defaultAvatars.length);
+    return defaultAvatars[randomIndex];
+  }, [defaultAvatars]);
+
   return (
     <div>
       {big === 'yes' ? (
@@ -34,7 +39,7 @@ const Avatar: FC<IAvatar> = ({
           <img
             className={stylesAvatar.avatarBig}
             alt="аватар пользователя"
-            src={pic}
+            src={randomAvatar}
           />
         </div>
       ) : state === 'online' && isBot === 'no' ? (
@@ -43,7 +48,7 @@ const Avatar: FC<IAvatar> = ({
           <img
             className={stylesAvatar.avatar}
             alt="аватар пользователя"
-            src={pic}
+            src={randomAvatar}
           />
         </div>
       ) : state === 'online' && isBot === 'yes' ? (
@@ -52,20 +57,28 @@ const Avatar: FC<IAvatar> = ({
             <BotIcon />
           </div>
           <div className={stylesAvatar.onlineIndicator} />
-          <img className={stylesAvatar.avatarBot} alt="аватар бота" src={pic} />
+          <img
+            className={stylesAvatar.avatarBot}
+            alt="аватар бота"
+            src={randomAvatar}
+          />
         </div>
       ) : state === 'offline' && isBot === 'yes' ? (
         <div className={stylesAvatar.avatarContainerBot}>
           <div className={stylesAvatar.botIndicator}>
             <BotIcon />
           </div>
-          <img className={stylesAvatar.avatarBot} alt="аватар бота" src={pic} />
+          <img
+            className={stylesAvatar.avatarBot}
+            alt="аватар бота"
+            src={randomAvatar}
+          />
         </div>
       ) : (
         <img
           className={stylesAvatar.avatar}
           alt="аватар пользователя"
-          src={pic}
+          src={randomAvatar}
         />
       )}
     </div>
