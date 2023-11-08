@@ -82,7 +82,7 @@ const Dialog: FC = () => {
         <div className={stylesDialog.dialog__header}>
           <div className={stylesDialog.dialog__headerContent}>
             {!isMobile ? (
-              <Avatar state="offline" isBot="yes" big="yes" /> // доделать логику отрисовки аватара
+              <Avatar state="offline" isBot="yes" big="no" /> // доделать логику отрисовки аватара
             ) : (
               <button
                 type="button"
