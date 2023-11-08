@@ -31,6 +31,7 @@ const Message: FC<IMessage> = ({ message }) => {
         <Avatar
           isBot={message.user === 'Вы' ? 'no' : 'yes'}
           state={message.online ? 'online' : 'offline'}
+          big="yes"
         />
       </div>
       <div

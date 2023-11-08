@@ -45,7 +45,7 @@ const Dialog: FC<IDialogue> = ({
   return (
     <div className={styles.mainContainer} onClick={(e) => pickChat(e)}>
       <div className={styles.avatar}>
-        <Avatar isBot="no" state={status} />
+        <Avatar isBot="no" state={status} big="no" />
       </div>
       <Typography tag="span" className={styles.name} fontFamily="secondary">
         {name}
