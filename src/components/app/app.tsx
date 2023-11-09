@@ -14,12 +14,30 @@ import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
+import {
+  AUTH_URL_M,
+  AUTH_URL_Y,
+  AUTH_URL_V,
+  AUTH_URL_G,
+  BASE_URL,
+  CLIENT_ID_M,
+  CLIENT_ID_Y,
+} from '../../utils/config';
 
 import routesUrl from '../../utils/routesData';
 
 import ProtectedRoute from '../../routes/protected-route';
 
 const App: FC = (): JSX.Element => {
+  console.log(
+    AUTH_URL_M,
+    AUTH_URL_Y,
+    AUTH_URL_V,
+    AUTH_URL_G,
+    BASE_URL,
+    CLIENT_ID_M,
+    CLIENT_ID_Y
+  );
   return (
     <BrowserRouter>
       <Routes>

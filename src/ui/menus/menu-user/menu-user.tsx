@@ -13,7 +13,7 @@ import Help from '../../../components/icons/Help/Help';
 import { logoutAction } from '../../../services/actions/logout/logout';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 
-import BASE_URL from '../../../utils/config';
+import { BASE_URL } from '../../../utils/config';
 import routesUrl from '../../../utils/routesData';
 
 import { getAccessToken } from '../../../auth/authService';
