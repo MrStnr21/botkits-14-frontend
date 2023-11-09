@@ -27,7 +27,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
             styled="bot-builder-default"
           />
         </LabeledInput>
-        <ConstructorAddButton width="100%" icon="photo">
+        <ConstructorAddButton maxWidth="100%" icon="photo">
           Добавить фото
         </ConstructorAddButton>
         <LabeledInput title="Описание">

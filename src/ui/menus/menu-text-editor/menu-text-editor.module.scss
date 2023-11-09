@@ -32,8 +32,10 @@
   background-color: $secondary-cultured-default;
 }
 
-.icon {
-  @include size(24px, 24px);
+.trash{
+  path {
+    stroke: $grey-3;
+  }
 }
 
 .icon__grey {

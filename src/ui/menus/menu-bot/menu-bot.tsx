@@ -87,7 +87,7 @@ const MenuBot: FC<IMenuBot> = ({
         onClick={copyHandler}
       >
         <img src={copyIcon} alt="Иконка" className={stylesMenuBot.icon} />
-        <Typography tag="p" className={stylesMenuBot.text}>
+        <Typography tag="span" className={stylesMenuBot.text}>
           Копировать
         </Typography>
       </button>
@@ -106,7 +106,7 @@ const MenuBot: FC<IMenuBot> = ({
           onClick={copyHandler}
         >
           <img src={copyIcon} alt="Иконка" className={stylesMenuBot.icon} />
-          <Typography tag="p" className={stylesMenuBot.text}>
+          <Typography tag="span" className={stylesMenuBot.text}>
             Копировать
           </Typography>
         </button>
@@ -120,7 +120,7 @@ const MenuBot: FC<IMenuBot> = ({
             alt="Иконка"
             className={`${stylesMenuBot.icon} ${stylesMenuBot.icon__grey}`}
           />
-          <Typography tag="p" className={stylesMenuBot.text}>
+          <Typography tag="span" className={stylesMenuBot.text}>
             Удалить
           </Typography>
         </button>
@@ -138,7 +138,7 @@ const MenuBot: FC<IMenuBot> = ({
           onClick={copyHandler}
         >
           <img src={copyIcon} alt="Иконка" className={stylesMenuBot.icon} />
-          <Typography tag="p" className={stylesMenuBot.text}>
+          <Typography tag="span" className={stylesMenuBot.text}>
             Копировать
           </Typography>
         </button>
@@ -148,7 +148,7 @@ const MenuBot: FC<IMenuBot> = ({
           onClick={shareHandler}
         >
           <img src={shareIcon} alt="Иконка" className={stylesMenuBot.icon} />
-          <Typography tag="p" className={stylesMenuBot.text}>
+          <Typography tag="span" className={stylesMenuBot.text}>
             Общий доступ
           </Typography>
         </button>
@@ -162,7 +162,7 @@ const MenuBot: FC<IMenuBot> = ({
             alt="Иконка"
             className={`${stylesMenuBot.icon} ${stylesMenuBot.icon__grey}`}
           />
-          <Typography tag="p" className={stylesMenuBot.text}>
+          <Typography tag="span" className={stylesMenuBot.text}>
             Редактировать
           </Typography>
         </button>
@@ -176,7 +176,7 @@ const MenuBot: FC<IMenuBot> = ({
             alt="Иконка"
             className={`${stylesMenuBot.icon} ${stylesMenuBot.icon__grey}`}
           />
-          <Typography tag="p" className={stylesMenuBot.text}>
+          <Typography tag="span" className={stylesMenuBot.text}>
             Удалить
           </Typography>
         </button>

@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import stylesMenuTextEditor from './menu-text-editor.module.scss';
 
-import trashIcon from '../../../images/icon/24x24/constructor/delete.svg';
-import italicIcon from '../../../images/icon/24x24/markdown/italic.svg';
-import boldIcon from '../../../images/icon/24x24/markdown/bold.svg';
-import codeIcon from '../../../images/icon/24x24/markdown/code.svg';
+import { ReactComponent as TrashIcon } from '../../../images/icon/24x24/constructor/delete.svg';
+import { ReactComponent as ItalicIcon } from '../../../images/icon/24x24/markdown/italic.svg';
+import { ReactComponent as BoldIcon } from '../../../images/icon/24x24/markdown/bold.svg';
+import { ReactComponent as CodeIcon } from '../../../images/icon/24x24/markdown/code.svg';
 
 export interface IMenuTextEditor {
   isActive?: boolean;
@@ -53,28 +53,28 @@ const MenuTextEditor: FC<IMenuTextEditor> = ({
         className={stylesMenuTextEditor.button}
         onClick={boldHandler}
       >
-        <img src={boldIcon} alt="Жирный шрифт" />
+        <BoldIcon />
       </button>
       <button
         type="button"
         className={stylesMenuTextEditor.button}
         onClick={italicHandler}
       >
-        <img src={italicIcon} alt="Курсивный шрифт" />
+        <ItalicIcon />
       </button>
       <button
         type="button"
         className={stylesMenuTextEditor.button}
         onClick={codeHandler}
       >
-        <img src={codeIcon} alt="Участок кода" />
+        <CodeIcon />
       </button>
       <button
         type="button"
         className={stylesMenuTextEditor.button}
         onClick={deleteHandler}
       >
-        <img src={trashIcon} alt="Удалить" />
+        <TrashIcon className={stylesMenuTextEditor.trash} />
       </button>
     </div>
   );

@@ -66,11 +66,16 @@
 
 @mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color){
   @include input-main(100%, 240px, $padding, $bg-color, 0, 5px);
-  @include set-font($primary-oxford-blue-default, $font-weight, 13px, 19.5px, 0.3px);
+  @include set-font($primary-oxford-blue-default, $font-weight, $xs-font-size, $xl-line-height, $m-letter-space);
   @include input-pseudo($ph-color, $hph-color, $secondary-cultured-press, $secondary-cultured-focus, 1);
 
+  box-sizing: border-box;
   margin: 0;
   outline: 0;
+
+  @media screen and (max-width: 520px) {
+    font-size: 7.41px;
+  }
 }
 
 .wrapper {
@@ -115,11 +120,19 @@
 }
 
 .inputBuilderNum{
-  @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3)
+  @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3);
+
+  @media screen and (max-width: 520px) {
+    padding: 5px 3px
+  }
 }
 
 .inputBuilderDefault{
   @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
+
+  @media screen and (max-width: 520px) {
+    padding: 7px 5.82px
+  }
 }
 
 .iconContainerSecondary {

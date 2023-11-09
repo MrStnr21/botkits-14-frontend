@@ -42,6 +42,10 @@
       stroke: $primary-persian-blue-default;
     }
   }
+
+  @media screen and (max-width: 520px) {
+    @include size(30px, 28px);
+  }
 }
 
 .buttonMln {
@@ -53,6 +57,18 @@
 
 .icon {
   @include flex(row, center, center);
+
+  div {
+    @include flex(row, center, center);
+  }
+
+  svg {
+    @include size(24px, 24px);
+
+    @media screen and (max-width: 520px) {
+      @include size(13px, 13px);
+    }
+  }
 }
 
 .iconMln {
