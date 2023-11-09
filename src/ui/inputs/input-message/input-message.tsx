@@ -26,7 +26,7 @@ const InputMessage: FC<IInputMessage> = ({
   onClickEmoji,
   onClickSlash,
   onClickZap,
-}): JSX.Element => {
+}) => {
   const [rotateAddIcon, setRotateAddIcon] = useState(false);
   const handleRotate = () => setRotateAddIcon(!rotateAddIcon);
   const rotate = rotateAddIcon ? 'unfolded' : 'folded';

@@ -165,7 +165,6 @@
   }
 
   &__inputWrapper {
-    // @include max-size(526px, unset);
     @include size(100%, unset);
     @include min-size(unset, 48px);
   }

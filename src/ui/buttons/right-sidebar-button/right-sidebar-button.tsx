@@ -14,9 +14,7 @@ const RightSidebarButton: FC<IRightSidebarButton> = ({
   isVisible,
   topPX = '0',
   rightPX = '0',
-}): JSX.Element => {
-  // const [rotateChevron, setRotateChevron] = React.useState(false);
-  // const handleRotate = () => setRotateChevron(!rotateChevron);
+}) => {
   const rotate = isVisible ? 'right' : 'left';
   const styles = {
     top: topPX,

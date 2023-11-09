@@ -4,7 +4,7 @@ import stylesChatDesktop from './chat.module.scss';
 import Dialogs from '../../components/chat/dialogs/dialogs';
 import Information from '../../components/chat/Information/Information';
 
-const ChatDesktop: FC = (): JSX.Element => {
+const ChatDesktop: FC = () => {
   const [isInfoVisible, setInfoVisible] = useState(false);
 
   const handleClick = () => {

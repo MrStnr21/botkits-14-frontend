@@ -2,7 +2,7 @@
 @use '../../../stylesheets/mixins' as *;
 
 .message {
-  @include flex();
+  @include flex(row, center, center);
   @include position(relative);
   @include indents(10px, 0);
   @include max-size(308px, unset);
@@ -20,7 +20,7 @@
   @include indents();
   @include size(100%, unset);
   @include font('Open-Sans', $s-font-size, $normal, $primary-oxford-blue-default);
-  border-radius: 10px 0 0 10px;
+  border-radius: $l-border-radius 0 0 $l-border-radius;
   outline: 0;
   border: 0;
   background-color: $secondary-cultured-default;
@@ -47,10 +47,8 @@
 
 
 .button {
-  background: 0;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
+  @include button-style-reset();
+  @include flex(row, center, center);
 }
 
 .icon {

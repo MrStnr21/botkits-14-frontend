@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import styles from './dialogs.module.scss';
 import Dialog from '../dialog/dialog';
-import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues';
+import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../../ui/typography/typography';
 import { testData } from '../../../utils/mockData';
 
-const Dialogs: FC = (): JSX.Element => {
+const Dialogs: FC = () => {
   const count: number[] = [];
 
   testData.forEach((el) => {
@@ -34,7 +34,9 @@ const Dialogs: FC = (): JSX.Element => {
       >
         Диалоги
       </Typography>
-      <InputDialogsues />
+      <div className={styles.dialogs__inputWrapper}>
+        <InputDialogues iconVisible />
+      </div>
       <div className={styles.dialogs__messagesContainer}>
         {uniqueData.map((el: any) => {
           if (uniqueData.indexOf(el) !== uniqueData.length - 1) {

@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import Avatar from '../../../ui/avatar/avatar';
 import stylesInformation from './Information.module.scss';
 import DropDownList from '../DropDownList/DropDownList';
 import MenuInformation from '../../../ui/menus/menu-information/menu-information';
-import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
 import Files from '../Files/Files';
 import Typography from '../../../ui/typography/typography';
 

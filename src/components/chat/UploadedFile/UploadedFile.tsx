@@ -11,7 +11,7 @@ interface IUploadedFile {
 const UploadedFile: FC<IUploadedFile> = ({
   file_name = 'Инфо',
   file_extension = 'pdf',
-}): JSX.Element => {
+}) => {
   return (
     <div className={stylesFile.container}>
       <AttachedFileIcon />

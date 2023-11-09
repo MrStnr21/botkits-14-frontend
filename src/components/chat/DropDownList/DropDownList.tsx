@@ -9,7 +9,7 @@ interface IDropDownList {
 
 const DropDownList: FC<IDropDownList> = ({
   caption = 'Информация о пользователе',
-}): JSX.Element => {
+}) => {
   const [isOpened, setIsOpened] = useState(false);
   const info = {
     one: {

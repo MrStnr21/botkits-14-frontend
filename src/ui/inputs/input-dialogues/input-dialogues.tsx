@@ -15,7 +15,7 @@ const InputDialogsues: FC<IInputDialogsues> = ({
   placeholder = 'Поиск...',
   onChange,
   iconVisible = false,
-}): JSX.Element => {
+}) => {
   const [isOpenFilters, setIsOpenFilters] = useState(false);
 
   const toggleIsOpenFilters = () => {

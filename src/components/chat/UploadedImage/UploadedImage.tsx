@@ -7,7 +7,7 @@ interface IUploadedFiles {
 
 const UploadedImage: FC<IUploadedFiles> = ({
   image = 'https://w-dog.ru/wallpapers/10/0/487435280633581/derevya-prirody-pejzazh-ozero-cvety-puti-nebo-oblaka-zakat-gory.jpg',
-}): JSX.Element => {
+}) => {
   return (
     <div className={stylesImage.container}>
       <img src={image} alt="загруженное изображение" />

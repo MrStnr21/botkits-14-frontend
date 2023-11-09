@@ -6,7 +6,7 @@ import { dataFile, dataImage } from '../../../utils/uploadedFiles';
 import stylesFiles from './Files.module.scss';
 import Typography from '../../../ui/typography/typography';
 
-const Files: FC = (): JSX.Element => {
+const Files: FC = () => {
   return (
     <div>
       {dataFile && dataImage ? (
