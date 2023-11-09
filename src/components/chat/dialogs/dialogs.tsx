@@ -1,24 +1,36 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import styles from './dialogs.module.scss';
 import Dialog from '../dialog/dialog';
 import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../../ui/typography/typography';
-import { testData } from '../../../utils/mockData';
+import { testData } from '../../../utils/mockChatData';
 
-const Dialogs: FC = () => {
+interface ID {
+  setSelectedMessages: any;
+  setSelectedUser: any;
+}
+
+const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
   const count: number[] = [];
 
+  const handleDialogClick = (el: any) => {
+    setSelectedMessages(el.user.messages);
+    setSelectedUser({ name: el.user.name, status: el.user.status });
+  };
   testData.forEach((el) => {
-    const index = Number(el.user.id);
-    if (el.status === 'unread') {
-      if (count[index]) {
-        count[index] += 1;
-      } else {
-        count[index] = 1;
+    el.user.messages.forEach((message) => {
+      const index = Number(el.user.id);
+      const { status } = message;
+      if (status === 'unread') {
+        if (count[index]) {
+          count[index] += 1;
+        } else {
+          count[index] = 1;
+        }
       }
-    }
-  });
-
+    });
+  }); // дописать логику пометки непрочитанных сообщений только от пользователя
   const uniqueData = testData.reduce((a: any[], b) => {
     if (a.indexOf(b) < 0 && !a.find((el) => el.user.id === b.user.id))
       a.push(b);
@@ -39,30 +51,19 @@ const Dialogs: FC = () => {
       </div>
       <div className={styles.dialogs__messagesContainer}>
         {uniqueData.map((el: any) => {
-          if (uniqueData.indexOf(el) !== uniqueData.length - 1) {
-            return (
-              <>
-                <Dialog
-                  name={el.user.name}
-                  text={el.textMessage}
-                  timeAgo={el.lastMessageAt}
-                  messageNum={count[Number(el.user.id)]}
-                  key={el.user.id}
-                  status={el.user.status}
-                />
-                <div className={styles.dialogs__line} />
-              </>
-            );
-          }
+          const lastMessage = el.user.messages[el.user.messages.length - 1]; // это временно
           return (
-            <Dialog
-              name={el.user.name}
-              text={el.textMessage}
-              timeAgo={el.lastMessageAt}
-              messageNum={count[Number(el.user.id)]}
-              key={el.user.id}
-              status={el.user.status}
-            />
+            <div onClick={() => handleDialogClick(el)} key={Number(el.user.id)}>
+              <Dialog
+                name={el.user.name}
+                text={lastMessage.message}
+                time={el.user.messages.time}
+                messageNum={count[Number(el.user.id)]}
+                key={el.user.id}
+                status={el.user.status}
+              />
+              <div className={styles.dialogs__line} />
+            </div>
           );
         })}
       </div>

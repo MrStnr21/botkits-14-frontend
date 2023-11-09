@@ -8,13 +8,10 @@ import Typography from '../../../ui/typography/typography';
 
 interface IInformation {
   image?: string;
-  name?: string;
+  selectedUser?: any;
 }
 
-const Information: FC<IInformation> = ({
-  image,
-  name = 'Вячеслав Баумтрок',
-}) => {
+const Information: FC<IInformation> = ({ image, selectedUser }) => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   return (
@@ -34,7 +31,7 @@ const Information: FC<IInformation> = ({
           fontFamily="secondary"
           className={stylesInformation.information__title}
         >
-          {name}
+          {selectedUser.name}
         </Typography>
         <Typography tag="p" className={stylesInformation.information__text}>
           Пользователь

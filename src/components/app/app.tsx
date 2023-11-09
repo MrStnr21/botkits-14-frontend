@@ -13,7 +13,7 @@ import Signup from '../../pages/signup/signup';
 import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
-import Chat from '../../pages/chat/chat';
+import Chat from '../../pages/chat-page/chat-page';
 
 import routesUrl from '../../utils/routesData';
 

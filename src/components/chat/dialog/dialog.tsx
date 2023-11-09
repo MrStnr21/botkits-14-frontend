@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import styles from './dialog.module.scss';
 import Avatar from '../../../ui/avatar/avatar';
-import getTimeAgo from '../../../utils/getTimeAgo';
 import Typography from '../../../ui/typography/typography';
 
 interface IDialogue {
   name: string;
   text: string;
-  timeAgo: Date;
+  time: string;
   messageNum: number;
   status: string;
 }
@@ -15,7 +15,7 @@ interface IDialogue {
 const Dialog: FC<IDialogue> = ({
   name,
   text,
-  timeAgo,
+  time,
   messageNum,
   status,
 }): JSX.Element => {
@@ -54,7 +54,7 @@ const Dialog: FC<IDialogue> = ({
         {text}
       </Typography>
       <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
-        {getTimeAgo(timeAgo, 'twitter')}
+        {time}
       </Typography>
       {messageNum > 0 ? (
         <div className={styles.messageNumCircle}>

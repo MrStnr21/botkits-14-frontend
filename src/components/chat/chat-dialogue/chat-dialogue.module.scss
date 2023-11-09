@@ -2,7 +2,7 @@
 @use '../../../stylesheets/mixins' as *;
 
 .dialog {
-  @include flex(column, center, center, unset);
+  @include flex(column, space-between, center, unset);
   @include position(relative);
   box-sizing: border-box;
   margin: 32px 0 0;
@@ -132,9 +132,10 @@
 
   &__messages {
     @include size(100%, unset);
-    @include flex(column, space-between, flex-start, 16px);
+    @include flex(column, unset, flex-start, 16px);
     margin: 32px 0 20px;
     overflow: scroll;
+    flex: 1;
 
     &::-webkit-scrollbar {
       width: 0;
