@@ -26,12 +26,16 @@ const Dialogs: FC = (): JSX.Element => {
   }, []);
 
   return (
-    <div className={styles.mainContainer}>
-      <Typography tag="h2" className={styles.header} fontFamily="secondary">
+    <div className={styles.dialogs}>
+      <Typography
+        tag="h2"
+        className={styles.dialogs__header}
+        fontFamily="secondary"
+      >
         Диалоги
       </Typography>
       <InputDialogsues />
-      <div className={styles.messagesContainer}>
+      <div className={styles.dialogs__messagesContainer}>
         {uniqueData.map((el: any) => {
           if (uniqueData.indexOf(el) !== uniqueData.length - 1) {
             return (
@@ -44,7 +48,7 @@ const Dialogs: FC = (): JSX.Element => {
                   key={el.user.id}
                   status={el.user.status}
                 />
-                <div className={styles.line} />
+                <div className={styles.dialogs__line} />
               </>
             );
           }

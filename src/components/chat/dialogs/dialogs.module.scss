@@ -1,17 +1,21 @@
 @use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
-.header {
-  padding-bottom: 26px;
-}
+.dialogs {
+  @include size(308px, unset);
+  padding-right: 15px;
+  margin-top: 32px;
+  border-right: 1px $secondary-cultured-press solid;
 
-.mainContainer {
-  width: 308px;
-}
+  &__header {
+    padding-bottom: 26px;
+  }
 
-.line {
-  border-top: 0.8px solid $secondary-cultured-press;
-}
+  &__line {
+    border-top: 0.8px solid $secondary-cultured-press;
+  }
 
-.messagesContainer {
-  padding-top: 32px;
+  &__messagesContainer {
+    padding-top: 32px;
+  }
 }

@@ -1,15 +1,14 @@
-@use '../../stylesheets/variables' as *;
-@use '../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .dialog {
   @include flex(column, center, center, unset);
-  @include size(656px, unset);
   @include position(relative);
-  // border-left: 1px $secondary-cultured-press solid;
-  // border-right: 1px $secondary-cultured-press solid;
   box-sizing: border-box;
   margin: 32px 0 0;
   padding: 0 32px;
+  flex: 1;
+  border-right: 1px solid #d7deea;
 
   & * {
     box-sizing: border-box;

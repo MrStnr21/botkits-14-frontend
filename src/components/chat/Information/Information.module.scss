@@ -1,51 +1,42 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
-.container {
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-left: 1px solid #d7deea;
-  align-items: center;
-  position: relative;
-}
-
 .information {
-  max-width: 331px;
-  display: flex;
-  flex-direction: column;
-  background-color: $off-white;
+  @include position(relative);
+  @include indents(0 0 0 40px, 0);
+  margin: 32px 0 0 0;
   box-sizing: border-box;
-  padding-top: 40px;
-  align-items: center;
-}
 
+  @media (max-width: ($min-content-width + 200px)) {
+    @include max-size(360px, unset);
+  }
 
-.text {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: $normal;
-  padding-bottom: 20px;
-  color: $grey-3;
-}
+  &__container {
+    @include max-size(331px, unset);
+    @include flex(column, unset, center, unset);
+    background-color: $off-white;
+    box-sizing: border-box;
+    padding-top: 40px;
+  }
 
-.title {
-  color: $primary-oxford-blue-default;
-  padding-top: $m-font-size;
-  padding-bottom: 4px;
-  font-size: $m-font-size;
-  line-height: $m-line-height;
-  white-space: nowrap;
-}
+  &__text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: $normal;
+    padding-bottom: 20px;
+    color: $grey-3;
+  }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 32px;
-}
+  &__title {
+    color: $primary-oxford-blue-default;
+    padding-top: $m-font-size;
+    padding-bottom: 4px;
+    font-size: $m-font-size;
+    line-height: $m-line-height;
+    white-space: nowrap;
+  }
 
-@media (max-width: ($min-content-width + 200px)) {
-
-  .information {
-    max-width: 360px;
+  &__wrapper {
+    @include flex(column, unset, unset, 8px);
+    padding-top: 32px;
   }
 }

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
-import Avatar from '../../../ui/avatar/avatar';
+import Avatar from '../../../../ui/avatar/avatar';
 import stylesMessage from './message.module.scss';
-import Typography from '../../../ui/typography/typography';
+import Typography from '../../../../ui/typography/typography';
 
 type TMessage = {
   id: number;

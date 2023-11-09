@@ -10,10 +10,6 @@
   border-radius: $s-border-radius;
   cursor: $cursor;
 
-  & * {
-    box-sizing: border-box;
-  }
-
   @media (max-width: ($min-content-width + 200px)) {
       @include size(318px, 40px);
   }
@@ -23,8 +19,9 @@
   }
 
   &__container{
+    box-sizing: border-box;
     @include size(250px, unset);
-    @include indents(8px, 0);
+    @include indents(8px 10px, 0);
     background-color: $off-white;
   }
 
@@ -35,6 +32,10 @@
   &__textInfo {
     white-space: nowrap;
     padding-top: 12px;
+  }
+
+  &__paragraph {
+    color: $grey-3;
   }
 }
 

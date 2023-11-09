@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import Avatar from '../../../ui/avatar/avatar';
 import stylesInformation from './Information.module.scss';
@@ -14,63 +15,52 @@ interface IInformation {
 
 const Information: FC<IInformation> = ({
   image,
-  name = 'Сергей Надеин',
-}): JSX.Element => {
+  name = 'Вячеслав Баумтрок',
+}) => {
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div className={stylesInformation.container}>
-      <RightSidebarButton
-        onClick={() => {
-          setIsVisible(!isVisible);
-        }}
-        isVisible={isVisible}
-        topPX="485px"
-        leftPX="-31px"
-      />
-      {isVisible && (
-        <div className={stylesInformation.information}>
-          <Avatar
-            isBot="no"
-            state="offline"
-            big="yes"
-            pic={
-              image ||
-              'https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
-            }
-          />
-          <Typography
-            tag="h4"
-            fontFamily="secondary"
-            className={stylesInformation.title}
-          >
-            {name}
-          </Typography>
-          <Typography tag="p" className={stylesInformation.text}>
-            Пользователь
-          </Typography>
-          <MenuInformation
-            width={125}
-            height={45}
-            isActive={isDisabled}
-            type="isInformation"
-            valueOne="Информация"
-            valueTwo="Файлы"
-            onClick={() => {
-              setIsDisabled(!isDisabled);
-            }}
-          />
-          {isDisabled ? (
-            <div className={stylesInformation.wrapper}>
-              <DropDownList caption="Информация о пользователе" />
-              <DropDownList caption="История действий" />
-            </div>
-          ) : (
-            <Files />
-          )}
-        </div>
-      )}
+    <div className={stylesInformation.information}>
+      <div className={stylesInformation.information__container}>
+        <Avatar
+          isBot="no"
+          state="offline"
+          big="yes"
+          pic={
+            image ||
+            'https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
+          }
+        />
+        <Typography
+          tag="h4"
+          fontFamily="secondary"
+          className={stylesInformation.information__title}
+        >
+          {name}
+        </Typography>
+        <Typography tag="p" className={stylesInformation.information__text}>
+          Пользователь
+        </Typography>
+        <MenuInformation
+          width={125}
+          height={45}
+          isActive={isDisabled}
+          type="isInformation"
+          valueOne="Информация"
+          valueTwo="Файлы"
+          onClick={() => {
+            setIsDisabled(!isDisabled);
+          }}
+        />
+        {isDisabled ? (
+          <div className={stylesInformation.information__wrapper}>
+            <DropDownList caption="Информация о пользователе" />
+            <DropDownList caption="История действий" />
+          </div>
+        ) : (
+          <Files />
+        )}
+      </div>
     </div>
   );
 };

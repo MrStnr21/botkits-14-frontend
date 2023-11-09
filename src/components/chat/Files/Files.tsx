@@ -11,13 +11,13 @@ const Files: FC = (): JSX.Element => {
     <div>
       {dataFile && dataImage ? (
         <div className={stylesFiles.files}>
-          <Typography tag="p" className={stylesFiles.paragraph}>
+          <Typography tag="p" className={stylesFiles.files__paragraph}>
             Загруженные файлы
           </Typography>
           <div>
             <ButtonNotBackground>Все</ButtonNotBackground>
           </div>
-          <div className={stylesFiles.itemColumn}>
+          <div className={stylesFiles.files__itemColumn}>
             {dataFile?.map((value: any) => (
               <UploadedFile
                 file_name={value.name}
@@ -25,19 +25,19 @@ const Files: FC = (): JSX.Element => {
               />
             ))}
           </div>
-          <Typography tag="p" className={stylesFiles.paragraph}>
+          <Typography tag="p" className={stylesFiles.files__paragraph}>
             Изображения
           </Typography>
           <div>
             <ButtonNotBackground>Все</ButtonNotBackground>
           </div>
-          <div className={stylesFiles.itemRow}>
+          <div className={stylesFiles.files__itemRow}>
             {dataImage?.map((value: any) => <UploadedImage image={value} />)}
           </div>
         </div>
       ) : (
-        <div className={stylesFiles.information}>
-          <Typography tag="p" className={stylesFiles.text}>
+        <div className={stylesFiles.files__information}>
+          <Typography tag="p" className={stylesFiles.files__text}>
             У вас пока нет загруженных файлов
           </Typography>
         </div>

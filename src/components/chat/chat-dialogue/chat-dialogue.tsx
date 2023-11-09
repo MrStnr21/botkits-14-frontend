@@ -2,30 +2,36 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router';
-import { useAppSelector, useAppDispatch } from '../../services/hooks/hooks';
+import { useAppSelector, useAppDispatch } from '../../../services/hooks/hooks';
 import stylesDialog from './chat-dialogue.module.scss';
-import TrashIcon from '../icons/Trash/TrashIcon';
-import SearchIcon from '../icons/Search/SearchIcon';
-import PlayIcon from '../icons/Play/PlayIcon';
-import ChevronIcon from '../icons/Chevron/ChevronIcon';
-import CloseIcon from '../icons/Close/CloseIcon';
+import TrashIcon from '../../icons/Trash/TrashIcon';
+import SearchIcon from '../../icons/Search/SearchIcon';
+import PlayIcon from '../../icons/Play/PlayIcon';
+import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import CloseIcon from '../../icons/Close/CloseIcon';
 import Message from './message/message';
 // import NewMessage from '../../ui/message/message';
-import InputMessage from '../../ui/inputs/input-message/input-message';
-import DialogMenuIcon from '../icons/DialogMenuIcon/DialogMenuIcon';
-import InputDialogues from '../../ui/inputs/input-dialogues/input-dialogues';
-import Typography from '../../ui/typography/typography';
+import InputMessage from '../../../ui/inputs/input-message/input-message';
+import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
+import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
+import Typography from '../../../ui/typography/typography';
 import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
-import SendButton from '../../ui/buttons/send-button/send-button';
-import Avatar from '../../ui/avatar/avatar';
-import messages from '../../utils/ messages';
+import SendButton from '../../../ui/buttons/send-button/send-button';
+import Avatar from '../../../ui/avatar/avatar';
+import messages from '../../../utils/ messages';
 import Tooltip from './tooltip/tooltip';
+import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
 
 interface DateType extends Date {
   toDateString(): string;
 }
 
-const ChatDialogue: FC = () => {
+interface IChatDialogue {
+  onSidebarClick: () => void;
+  isInfoVisible: boolean;
+}
+
+const ChatDialogue: FC<IChatDialogue> = ({ onSidebarClick, isInfoVisible }) => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 620px)');
   const [inputValue, setInputValue] = useState('');
@@ -78,6 +84,12 @@ const ChatDialogue: FC = () => {
 
   return (
     <div className={stylesDialog.dialog}>
+      <RightSidebarButton
+        onClick={onSidebarClick}
+        isVisible={isInfoVisible}
+        topPX="50%"
+        rightPX="0"
+      />
       <div className={stylesDialog.dialog__wrapper}>
         <div className={stylesDialog.dialog__header}>
           <div className={stylesDialog.dialog__headerContent}>
