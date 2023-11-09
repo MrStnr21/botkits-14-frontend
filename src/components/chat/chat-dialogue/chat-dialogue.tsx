@@ -27,14 +27,14 @@ interface DateType extends Date {
 interface IChatDialogue {
   onSidebarClick: () => void;
   isInfoVisible: boolean;
-  selected?: any;
+  selectedMessages?: any;
   selectedUser?: any;
 }
 
 const ChatDialogue: FC<IChatDialogue> = ({
   onSidebarClick,
   isInfoVisible,
-  selected,
+  selectedMessages,
   selectedUser,
 }) => {
   const navigate = useNavigate();
@@ -88,15 +88,17 @@ const ChatDialogue: FC<IChatDialogue> = ({
   const formattedDate = formatDate(currentDate);
 
   return (
-    <div className={stylesDialog.dialog}>
-      <RightSidebarButton
-        onClick={onSidebarClick}
-        isVisible={isInfoVisible}
-        topPX="50%"
-        rightPX="0"
-      />
-      {selected && (
+    <div
+      className={selectedMessages ? stylesDialog.dialog : stylesDialog.noBorder}
+    >
+      {selectedMessages && (
         <>
+          <RightSidebarButton
+            onClick={onSidebarClick}
+            isVisible={isInfoVisible}
+            topPX="50%"
+            rightPX="0"
+          />
           <div className={stylesDialog.dialog__wrapper}>
             <div className={stylesDialog.dialog__header}>
               <div className={stylesDialog.dialog__headerContent}>
@@ -191,7 +193,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
             </div>
           </div>
           <div className={stylesDialog.dialog__messages}>
-            {selected.map((message: any) => {
+            {selectedMessages.map((message: any) => {
               return <Message message={message} />;
             })}
           </div>

@@ -176,3 +176,8 @@
     @include indents();
   }
 }
+
+.noBorder {
+  @extend .dialog;
+  border: none;
+}

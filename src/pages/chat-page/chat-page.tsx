@@ -26,7 +26,7 @@ const ChatDesktop: FC = () => {
       <ChatDialogue
         onSidebarClick={handleClick}
         isInfoVisible={isInfoVisible}
-        selected={selectedMessages}
+        selectedMessages={selectedMessages}
         selectedUser={selectedUser}
       />
       {isInfoVisible && <Information selectedUser={selectedUser} />}
