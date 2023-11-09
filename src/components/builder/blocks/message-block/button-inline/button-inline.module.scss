@@ -8,6 +8,18 @@
   outline: 0;
 }
 
+@mixin button($font-size, $line-height, $m-font-size, $color: unset) {
+  @include input;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+  text-decoration: none;
+
+  @media screen and (max-width: 520px) {
+    font-size: $m-font-size;
+  }
+}
+
 .container {
   position: relative
 }
@@ -47,25 +59,11 @@
 }
 
 .button-name{
-  @include input;
-  font-size: $xs-font-size;
-  line-height: $xl-line-height;
-  text-decoration: none;
-  @media screen and (max-width: 520px) {
-    font-size: 7.48px;
-  }
+  @include button($xs-font-size, $xl-line-height, 7.48px)
 }
 
 .button-str{
-  @include input;
-  font-size: $xxs-font-size;
-  color: $grey-3;
-  text-decoration: none;
-  line-height: $xl-line-height;
-
-  @media screen and (max-width: 520px) {
-    font-size: 6.48px;
-  }
+  @include button($xxs-font-size, $xl-line-height, 6.48px, $grey-3)
 }
 
 .text-align-center{
