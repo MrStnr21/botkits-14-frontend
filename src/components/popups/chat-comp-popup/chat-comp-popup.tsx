@@ -17,22 +17,18 @@ interface IChatCompPopup {
 
 const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
   const [items, setItems] = useState<Item[]>(initialItems);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const saveFilesToLocalStorage = (fileList: Item[]) => {
-    localStorage.setItem('uploadedFiles', JSON.stringify(fileList));
-  };
   useEffect(() => {
-    const storedFiles = localStorage.getItem('uploadedFiles');
+    // сохраняем добавленные в попап файлы в localStorage
+    const storedFiles = localStorage.getItem('chatCompPopupState');
+    setIsMounted(true);
     if (storedFiles) {
-      setItems(JSON.parse(storedFiles));
+      setItems(JSON.parse(storedFiles).items);
     }
   }, []);
-
-  useEffect(() => {
-    saveFilesToLocalStorage(items);
-  }, [items]);
   const handleDropEvent = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
 
@@ -101,6 +97,14 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
     updatedItems.splice(index, 1);
     setItems(updatedItems);
   };
+  useEffect(() => {
+    // Сохраняем состояние попапа в Local Storage
+    if (!isMounted) return;
+    const popupState = {
+      items,
+    };
+    localStorage.setItem('chatCompPopupState', JSON.stringify(popupState));
+  }, [items]);
 
   return (
     <div className={stylesChatCompPopup.container}>
