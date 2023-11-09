@@ -1,7 +1,7 @@
 @use '../../../../stylesheets/variables' as *;
 @use '../../../../stylesheets/mixins' as *;
 
-.handle {
+.handle.handle {
   @include size(10px, 10px);
   display: block;
   border: $border-radius-circle;
