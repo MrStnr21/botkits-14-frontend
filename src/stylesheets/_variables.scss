@@ -33,6 +33,12 @@ $secondary-xiketic-press: #2E293D;
 $error-default: #FF5656;
 $success-default: #00E98F;
 
+$example-button-color-red: #D3524D;
+$example-button-color-green: #67D057;
+$example-button-color-blue: #5883C6;
+
+$flow-background-color: #B8CEFF;
+
 /* Переменные размеров шрифта */
 //$xl-h1-font-size: 64px;  Используется в 1 компоненте
 $h1-font-size: 48px;
@@ -69,6 +75,7 @@ $s-letter-space: -0.2px;
 /* Переменные радиуса скругления */
 // $border-radius-185: 185px; используется в 1 компоненте
 // $border-radius-50: 50px; используется в 2-х компонентах
+$super-border-radius: 32px;
 $xxl-border-radius: 30px;
 $xl-border-radius: 15px;
 $l-border-radius: 10px;
@@ -80,6 +87,7 @@ $border-radius-circle: 50%;
 /* Переменные тени элемента */
 $l-box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
 $m-box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+$s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); // в 2 компонентах
 
 /* Шаблонныe селекторы
 для скрытия блока с текстом объяснения, что это за ссылка */

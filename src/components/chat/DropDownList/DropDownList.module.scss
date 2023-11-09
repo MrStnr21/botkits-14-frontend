@@ -34,3 +34,11 @@
   @include font-r;
   padding-top: 12px;
 }
+
+
+@media (max-width: ($min-content-width + 200px)) {
+
+  .accordion{
+    @include size(318px, 40px);
+  }
+}

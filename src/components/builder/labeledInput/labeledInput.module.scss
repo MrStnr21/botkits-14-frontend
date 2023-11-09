@@ -1,16 +1,15 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
 .label {
+  @include flex(column, false, false, 12px);
+  @include font('Open sans', $xs-font-size, $bold);
   box-sizing: border-box;
   width: 100%;
   max-width: 264px;
   padding: 12px;
-  border-radius: 10px;
-  background-color: #F8F9FB;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: 'Open sans', sans-serif;
+  border-radius: $l-border-radius;
+  background-color: $secondary-cultured-default;
 
   @media screen and (max-width: 520px) { //заменить на нужное
     font-size: 7.41px;

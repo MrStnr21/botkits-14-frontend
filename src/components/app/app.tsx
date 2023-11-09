@@ -50,7 +50,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.homePage}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <Layout />
             </ProtectedRoute>
           }
@@ -58,7 +58,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.homePage}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Dashboard />
               </ProtectedRoute>
             }
@@ -66,7 +66,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.addBot}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <AddBotPage />
               </ProtectedRoute>
             }
@@ -74,7 +74,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.botBuilder}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <BotBuilder />
               </ProtectedRoute>
             }
@@ -82,7 +82,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.chat}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Chat />
               </ProtectedRoute>
             }
@@ -90,7 +90,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.mailing}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Mailing />
               </ProtectedRoute>
             }
@@ -103,7 +103,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.partnership}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Partnership />
               </ProtectedRoute>
             }
@@ -111,7 +111,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.share}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Share />
               </ProtectedRoute>
             }
@@ -119,7 +119,7 @@ const App: FC = (): JSX.Element => {
           <Route
             path={routesUrl.subscription}
             element={
-              <ProtectedRoute>
+              <ProtectedRoute notAuth>
                 <Subscription />
               </ProtectedRoute>
             }

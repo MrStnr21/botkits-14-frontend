@@ -1,14 +1,7 @@
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useState,
-  MouseEvent,
-  useCallback,
-} from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 
 import { useMediaQuery } from '@mui/material';
-
+import MenuInformation from '../../../ui/menus/menu-information/menu-information';
 import Notifications from '../../icons/Notifications/Notifications';
 import CloseIcon from '../../icons/Close/CloseIcon';
 
@@ -23,11 +16,7 @@ const NotificationPopup: FC<INotificationPopup> = ({
   isOpen,
   setIsNotificationOpened,
 }): JSX.Element => {
-  const [activeTab, setActiveTab] = useState('news');
-  const handleTabClick = useCallback((e: MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
-    setActiveTab(target.id);
-  }, []);
+  const [isDisabled, setIsDisabled] = useState(true);
   const matches = useMediaQuery('(max-width: 520px)');
 
   return (
@@ -63,28 +52,19 @@ const NotificationPopup: FC<INotificationPopup> = ({
             </button>
           )}
         </div>
-        <div className={stylesNotification.tabs}>
-          <div
-            id="news"
-            className={`${stylesNotification.tab} ${
-              activeTab === 'news' ? stylesNotification.active : ''
-            }`}
-            onClick={(e) => handleTabClick(e)}
-          >
-            Новости сервиса
-          </div>
-          <div
-            id="log"
-            className={`${stylesNotification.tab} ${
-              activeTab === 'log' ? stylesNotification.active : ''
-            }`}
-            onClick={(e) => handleTabClick(e)}
-          >
-            Лог событий
-          </div>
-        </div>
+        <MenuInformation
+          width={182}
+          height={50}
+          isActive={isDisabled}
+          type="isNotifications"
+          valueOne="Новости сервиса"
+          valueTwo="Лог событий"
+          onClick={() => {
+            setIsDisabled(!isDisabled);
+          }}
+        />
         <div>
-          {activeTab === 'tab1' ? (
+          {isDisabled ? (
             <div className="FirstTab" />
           ) : (
             <div className="FirstTab" />
