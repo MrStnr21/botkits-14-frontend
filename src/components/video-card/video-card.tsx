@@ -7,6 +7,7 @@ interface IVideoElement {
   title: string;
   src: string; // ссылка на ютуб
   previewType?: 'image' | 'video';
+  contentType?: 'image' | 'video';
   prewiew: string; // заставка
   size?: 's' | 'm' | 'x'; // размер окна заставки и видео
   hiddenRemoveButton?: boolean; // скрыть кнопку удаления компонента с видео
@@ -21,6 +22,7 @@ const VideoCard: FC<IVideoElement> = ({
   hiddenRemoveButton,
   hover,
   previewType = 'image',
+  contentType = 'video',
 }): JSX.Element | null => {
   const [isVisible, setIsVisible] = useState(true);
   const [isPlay, setIsPlay] = useState(false);
@@ -71,18 +73,23 @@ const VideoCard: FC<IVideoElement> = ({
             hidden={hiddenRemoveButton}
           />
 
-          <div
-            className={`${stylesVideo.cover} ${hover && stylesVideo.hover} ${
-              stylesVideo[`size-${size}`]
-            }`}
-          >
-            <button
-              type="button"
-              onClick={play}
-              className={stylesVideo.playButton}
-              aria-label="Начать воспроизведение видео."
-            />
-          </div>
+          {contentType === 'video' && (
+            <div
+              className={`${stylesVideo.cover} ${hover && stylesVideo.hover} ${
+                stylesVideo[`size-${size}`]
+              }`}
+            >
+              <button
+                type="button"
+                onClick={play}
+                className={stylesVideo.playButton}
+                aria-label="Начать воспроизведение видео."
+              />
+            </div>
+          )}
+          {contentType === 'image' && (
+            <div className={stylesVideo.cover_image} />
+          )}
         </div>
         {hiddenRemoveButton && (
           <Typography tag="p" className={stylesVideo.caption}>
@@ -99,11 +106,12 @@ const VideoCard: FC<IVideoElement> = ({
             className={stylesVideo.button__close}
             aria-label="Закрыть видео"
           />
-          <iframe
-            className={stylesVideo.video__iframe}
-            src={src}
-            title={title}
-            allow="
+          {contentType === 'video' && (
+            <iframe
+              className={stylesVideo.video__iframe}
+              src={src}
+              title={title}
+              allow="
           accelerometer;
           autoplay;
           clipboard-write;
@@ -111,7 +119,8 @@ const VideoCard: FC<IVideoElement> = ({
           gyroscope;
           picture-in-picture;
           web-share"
-          />
+            />
+          )}
         </div>
       )}
     </>
