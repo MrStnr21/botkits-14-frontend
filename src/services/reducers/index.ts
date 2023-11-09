@@ -17,6 +17,8 @@ import { getTemplatesBotsReducer } from './bots/getTemplatesBots';
 import { getPlatformsReducer } from './platforms/getPlatforms';
 import { socketReducer } from './socket/socketReducer';
 
+import { FlowActionsReducer } from './flow/nodes';
+
 const rootReducer = combineReducers({
   signin: signinReducer,
   signup: signupReducer,
@@ -28,6 +30,7 @@ const rootReducer = combineReducers({
   getTemplatesBots: getTemplatesBotsReducer,
   getPlatforms: getPlatformsReducer,
   websocket: socketReducer,
+  flowActionsReducer: FlowActionsReducer,
 });
 
 export default rootReducer;

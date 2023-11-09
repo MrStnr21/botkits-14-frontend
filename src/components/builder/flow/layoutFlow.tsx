@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 // import { v4 as uuidv4 } from 'uuid';
 import cn from 'classnames/bind';
 
@@ -18,6 +18,7 @@ import { initialNodes, nodeTypes } from './initial-nodes';
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
 import NavigationPanel from '../navigation-panel/navigation-panel';
+import { useAppSelector } from '../../../services/hooks/hooks';
 
 const cx = cn.bind(styles);
 
@@ -26,6 +27,8 @@ const cx = cn.bind(styles);
 }; */
 
 const LayoutFlow: FC = () => {
+  const currentNodes = useAppSelector((s) => s.flowActionsReducer);
+
   const [nodes, setNodes] = useState(initialNodes);
   // const [edges, setEdges] = useState([]);
 
@@ -42,6 +45,10 @@ const LayoutFlow: FC = () => {
     (connection) => setEdges((eds) => addEdge(connection, eds)),
     [setEdges]
   ); */
+
+  useEffect(() => {
+    setNodes(currentNodes.blocks);
+  }, [currentNodes]);
 
   return (
     <div className={cx('flow')}>
