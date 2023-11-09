@@ -1,0 +1,28 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+
+.container {
+  padding-top: 32px;
+  margin-right: 40px;
+  margin-bottom: 80px;
+}
+
+.header {
+  @include flex(row, space-between, flex-start);
+    width: 100%;
+    padding-bottom: 40px;
+
+  @media screen and (max-width: 620px) {
+    padding-bottom: 26px;
+    justify-content: center;
+  }
+}
+
+.wrapper { // только для ширины кнопки
+  width: 188px;
+}
+
+.statistics  {
+  @include flex(column, $gap: 40px);
+}

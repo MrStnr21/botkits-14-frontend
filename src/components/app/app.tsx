@@ -17,6 +17,7 @@ import Chat from '../../pages/chat/chat';
 import routesUrl from '../../utils/routesData';
 
 import ProtectedRoute from '../../routes/protected-route';
+import Statistics from '../../pages/statistics/statistics';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
@@ -123,6 +124,14 @@ const App: FC = (): JSX.Element => {
           element={
             <ProtectedRoute>
               <Subscription />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.statistics}
+          element={
+            <ProtectedRoute>
+              <Statistics />
             </ProtectedRoute>
           }
         />
