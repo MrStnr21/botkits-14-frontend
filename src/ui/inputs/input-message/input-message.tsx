@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { FC, ChangeEvent, useState, useEffect } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import stylesInput from './input-message.module.scss';
 import PaperClipIcon from '../../../components/icons/PaperClip/PaperClipIcon';
@@ -31,6 +31,18 @@ const InputMessage: FC<IInputMessage> = ({
   const { isModalOpen, closeModal, openModal } = useModal();
   const onClickClip = () => {
     openModal();
+    localStorage.setItem('isModalOpen', 'true');
+  };
+  useEffect(() => {
+    const storedIsModalOpen = localStorage.getItem('isModalOpen');
+
+    if (storedIsModalOpen === 'true') {
+      openModal();
+    }
+  }, [openModal]);
+  const closeModalAndRemoveItem = () => {
+    closeModal();
+    localStorage.removeItem('isModalOpen');
   };
   const handleRotate = () => setRotateAddIcon(!rotateAddIcon);
   const rotate = rotateAddIcon ? 'unfolded' : 'folded';
@@ -84,7 +96,7 @@ const InputMessage: FC<IInputMessage> = ({
         </button>
       </div>
       {isModalOpen && (
-        <ModalPopup onClick={closeModal}>
+        <ModalPopup onClick={closeModalAndRemoveItem}>
           <ChatCompPopup />
         </ModalPopup>
       )}
