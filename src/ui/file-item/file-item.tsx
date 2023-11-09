@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
+import { Tooltip } from '@mui/material';
 import style from './file-item.module.scss';
 
 export interface Item {
@@ -40,13 +41,23 @@ const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
         <div className={style.itemTitle}>{item.title}</div>
         <div className={style.itemInfo}>{item.info}</div>
       </div>
-      <button className={style.button} type="button" onClick={handleRemove}>
-        {isUploaded ? (
-          <img className={style.iconCommonCheck} alt="" src={item.checkIcon} />
-        ) : (
-          <img className={style.iconCommonCheck} alt="" src={item.closeIcon} />
-        )}
-      </button>
+      <Tooltip title="Удалить файл">
+        <button className={style.button} type="button" onClick={handleRemove}>
+          {isUploaded ? (
+            <img
+              className={style.iconCommonCheck}
+              alt=""
+              src={item.checkIcon}
+            />
+          ) : (
+            <img
+              className={style.iconCommonCheck}
+              alt=""
+              src={item.closeIcon}
+            />
+          )}
+        </button>
+      </Tooltip>
     </div>
   );
 };
