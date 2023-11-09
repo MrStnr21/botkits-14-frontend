@@ -14,6 +14,7 @@ export const OfflineBot: Story = {
     <Avatar
       isBot="yes"
       state="offline"
+      big="no"
       pic="https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
     />
   ),
@@ -24,6 +25,7 @@ export const OnlineBot: Story = {
     <Avatar
       isBot="yes"
       state="online"
+      big="no"
       pic="https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
     />
   ),
@@ -34,6 +36,18 @@ export const OfflineUser: Story = {
     <Avatar
       isBot="no"
       state="offline"
+      big="no"
+      pic="https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+    />
+  ),
+};
+
+export const OfflineBigUser: Story = {
+  render: () => (
+    <Avatar
+      isBot="no"
+      state="offline"
+      big="yes"
       pic="https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
     />
   ),
@@ -44,6 +58,7 @@ export const OnlineUser: Story = {
     <Avatar
       isBot="no"
       state="online"
+      big="no"
       pic="https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
     />
   ),

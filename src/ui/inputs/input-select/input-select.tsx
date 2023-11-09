@@ -20,6 +20,7 @@ interface IInputSelect {
   maxWidth: number;
   resetSelect?: boolean;
   handleFunction: (payload: string) => void;
+  isAdaptive?: boolean;
 }
 
 const InputSelect: FC<IInputSelect> = ({
@@ -29,6 +30,7 @@ const InputSelect: FC<IInputSelect> = ({
   multiple = false,
   resetSelect = false,
   maxWidth,
+  isAdaptive,
 }): JSX.Element => {
   const [inputValues, setInputValues] = useState<string[]>([]);
   const [visible, setVisible] = useState<boolean>(false);
@@ -68,6 +70,7 @@ const InputSelect: FC<IInputSelect> = ({
       fullWidth
     >
       <Select
+        className={isAdaptive ? styles.adaptive : ''}
         displayEmpty
         inputProps={{ 'aria-label': 'Without label' }}
         multiple={multiple}
@@ -96,9 +99,15 @@ const InputSelect: FC<IInputSelect> = ({
             return null;
           }
           return item.isIcon ? (
-            <img className={styles.chosen} src={item.nameValue} alt="icon" />
+            <img
+              className={`${styles.chosen} ${
+                isAdaptive ? styles.image_adaptive : ''
+              }`}
+              src={item.nameValue}
+              alt="icon"
+            />
           ) : (
-            item.nameValue
+            <span className={styles.chosen_text}>{item.nameValue}</span>
           );
         }}
         MenuProps={{

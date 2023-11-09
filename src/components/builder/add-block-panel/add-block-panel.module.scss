@@ -1,0 +1,12 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.panel {
+  box-sizing: border-box;
+  max-width: 612px;
+  padding: 12px;
+  border-radius: $l-border-radius;
+  box-shadow: $s-box-shadow;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+}

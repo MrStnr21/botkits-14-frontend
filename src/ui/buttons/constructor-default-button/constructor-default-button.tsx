@@ -7,6 +7,7 @@ export interface IConstructorDefaultButton {
   onClick?: VoidFunction;
   disabled?: boolean;
   children: React.ReactNode;
+  isActive?: boolean;
 }
 
 const ConstructorDefaultButton: FC<IConstructorDefaultButton> = ({
@@ -14,10 +15,13 @@ const ConstructorDefaultButton: FC<IConstructorDefaultButton> = ({
   onClick,
   disabled,
   children,
+  isActive,
 }): JSX.Element => {
   return (
     <button
-      className={stylesConstructorDefaultButton.button}
+      className={
+        stylesConstructorDefaultButton[isActive ? 'button_active' : 'button']
+      }
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}

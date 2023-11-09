@@ -1,8 +1,9 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
 .content{
+  @include flex(column, false, false, 8px);
   padding: 12px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 
   @media screen and (max-width: 520px) {
     padding: 12px 9px 9px;
@@ -26,10 +27,9 @@
 }
 
 .wrapperInput {
-  background-color: #F8F9FB;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
+  @include flex(column);
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
 
   @media screen and (max-width: 520px) {
     border-radius: 5.7px;

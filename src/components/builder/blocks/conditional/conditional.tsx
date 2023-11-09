@@ -16,6 +16,11 @@ import moreOrEqualImage from '../../../../images/icon/24x24/variables/more or eq
 import moreImage from '../../../../images/icon/24x24/variables/more.svg';
 import notInLineWithoutCaseImage from '../../../../images/icon/24x24/variables/not in line without case.svg';
 import notInLineImage from '../../../../images/icon/24x24/variables/not in line.svg';
+import {
+  TBlockProps,
+  TConditionalBlock,
+  TVariable,
+} from '../../../../services/types/builder';
 
 const values = [
   {
@@ -98,6 +103,16 @@ type TToggleButtonProps = {
   text: string;
 };
 
+type THardBlockProps = {
+  condition?: string;
+  blockName?: string;
+};
+
+type TEasyBlockProps = THardBlockProps & {
+  variable?: TVariable;
+  sign?: string;
+};
+
 type TMode = 'easy' | 'hard';
 
 const ToggleButton: FC<TToggleButtonProps> = ({ text, onClick, isActive }) => {
@@ -113,7 +128,12 @@ const ToggleButton: FC<TToggleButtonProps> = ({ text, onClick, isActive }) => {
   );
 };
 
-const EasyMode = () => {
+const EasyMode: FC<TEasyBlockProps> = ({
+  variable,
+  sign,
+  condition,
+  blockName,
+}) => {
   return (
     <div className={styles.conditional}>
       <LabeledInput title="Если" extraClass={styles.extraClass}>
@@ -121,7 +141,9 @@ const EasyMode = () => {
           <div className={styles['selects-string']}>
             <InputSelect
               values={selectValues}
-              defaultValue={['1']}
+              defaultValue={[
+                (variable && variable.name) || selectValues[0].value,
+              ]}
               maxWidth={184}
               handleFunction={() => {}}
             />
@@ -129,20 +151,21 @@ const EasyMode = () => {
               handleFunction={() => {}}
               maxWidth={52}
               values={values}
-              defaultValue={['1']}
+              defaultValue={[sign || values[0].value]}
             />
           </div>
           <Input
             onChange={() => {}}
             styled="bot-builder-default"
             placeholder="Значение"
+            value={condition}
           />
         </div>
       </LabeledInput>
       <LabeledInput title="То перейти" extraClass={styles.extraClass}>
         <InputSelect
           values={selectValues}
-          defaultValue={['1']}
+          defaultValue={[blockName || selectValues[0].value]}
           maxWidth={240}
           handleFunction={() => {}}
         />
@@ -151,7 +174,7 @@ const EasyMode = () => {
   );
 };
 
-const HardMode = () => {
+const HardMode: FC<THardBlockProps> = ({ condition, blockName }) => {
   return (
     <div className={styles.conditional}>
       <LabeledInput title="Если" extraClass={styles.extraClass}>
@@ -159,12 +182,13 @@ const HardMode = () => {
           onChange={() => {}}
           styled="bot-builder-default"
           placeholder="Условие"
+          value={condition}
         />
       </LabeledInput>
       <LabeledInput title="То перейти" extraClass={styles.extraClass}>
         <InputSelect
           values={selectValues}
-          defaultValue={['1']}
+          defaultValue={[blockName || selectValues[0].value]}
           maxWidth={240}
           handleFunction={() => {}}
         />
@@ -173,17 +197,18 @@ const HardMode = () => {
   );
 };
 
-const ConditionalBlock: FC<any> = (data) => {
+const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [mode, setMode] = useState<TMode>('easy');
-  const [contentHard, setContentHard] = useState<any>([{}]);
-  const [contentEasy, setContentEasy] = useState<any>([{}]);
+  const [content, setContent] = useState<TConditionalBlock['variables']>(
+    data.variables
+  );
 
-  const onClick = () => {
-    if (mode === 'easy') {
-      setContentEasy([...contentEasy, {}]);
-    } else if (mode === 'hard') {
-      setContentHard([...contentHard, {}]);
-    }
+  const addHard = () => {
+    setContent([...content, { type: 'hard' }]);
+  };
+
+  const addEasy = () => {
+    setContent([...content, { type: 'easy' }]);
   };
 
   return (
@@ -205,9 +230,13 @@ const ConditionalBlock: FC<any> = (data) => {
         />
       </div>
       <div className={styles.content}>
-        {mode === 'easy' && contentEasy.map(() => <EasyMode />)}
-        {mode === 'hard' && contentHard.map(() => <HardMode />)}
-        <ConstructorAddButton onClick={onClick}>
+        {content.map((item) => {
+          if (item.type === 'easy') {
+            return <EasyMode {...item} />;
+          }
+          return <HardMode {...item} />;
+        })}
+        <ConstructorAddButton onClick={mode === 'easy' ? addEasy : addHard}>
           Добавить условие
         </ConstructorAddButton>
       </div>

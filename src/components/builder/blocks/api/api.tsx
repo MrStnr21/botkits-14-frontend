@@ -1,21 +1,24 @@
+import { FC } from 'react';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
 import ControlLayout from '../../control-layout/control-layout';
 import Input from '../../../../ui/inputs/input/input';
 import stylesApiBlock from './api.module.scss';
 import Typography from '../../../../ui/typography/typography';
+import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 
 const func = () => console.log(1);
 
-function ApiBlockNode() {
+const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   return (
-    <ControlLayout type="API" name="Название API" nameSetter={func}>
+    <ControlLayout type="API" name={data.name} nameSetter={func}>
       <div className={stylesApiBlock.container}>
         <div className={stylesApiBlock.overlay}>
           <Typography tag="span">URL стороннего сервиса</Typography>
           <div className={stylesApiBlock.input}>
             <Input
               placeholder="Введите URL"
+              value={data.url}
               onChange={func}
               styled="bot-builder-default"
               disabled={false}
@@ -106,6 +109,6 @@ function ApiBlockNode() {
       </div>
     </ControlLayout>
   );
-}
+};
 
 export default ApiBlockNode;

@@ -5,4 +5,4 @@ export default {
   component: SavingToCrmBlock,
 };
 
-export const Default = () => <SavingToCrmBlock />;
+export const Default = () => <SavingToCrmBlock data={{ name: 'test name' }} />;

@@ -4,8 +4,8 @@ import AttachedFileIcon from '../../icons/AttachedFile/AttachedFileIcon';
 import Typography from '../../../ui/typography/typography';
 
 interface IUploadedFile {
-  file_name: string;
-  file_extension: string;
+  file_name?: string;
+  file_extension?: string;
 }
 
 const UploadedFile: FC<IUploadedFile> = ({
