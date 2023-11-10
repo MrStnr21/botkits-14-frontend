@@ -20,6 +20,7 @@ import routesUrl from '../../utils/routesData';
 import ProtectedRoute from '../../routes/protected-route';
 import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
+import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 
 const App: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 620px)');
@@ -91,7 +92,26 @@ const App: FC = (): JSX.Element => {
               </ProtectedRoute>
             }
           />
-          {isMobile && <Route path="chat/:id" element={<MobileDialog />} />}
+          {isMobile && (
+            <Route
+              path="chat/:id"
+              element={
+                <ProtectedRoute notAuth>
+                  <MobileDialog />
+                </ProtectedRoute>
+              }
+            />
+          )}
+          {isMobile && (
+            <Route
+              path="chat/:id/info"
+              element={
+                <ProtectedRoute notAuth>
+                  <MobileDialogInformation />
+                </ProtectedRoute>
+              }
+            />
+          )}
           <Route
             path={routesUrl.mailing}
             element={

@@ -178,6 +178,10 @@
     @include button-style-reset();
     @include indents();
   }
+
+  &__link {
+    text-decoration: none;
+  }
 }
 
 .noBorder {

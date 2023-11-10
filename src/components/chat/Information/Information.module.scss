@@ -8,7 +8,8 @@
   box-sizing: border-box;
 
   @media (max-width: ($min-content-width + 200px)) {
-    @include max-size(360px, unset);
+    @include max-size(380px, unset); // временное решение
+    margin: 0;
   }
 
   &__container {
@@ -38,5 +39,18 @@
   &__wrapper {
     @include flex(column, unset, unset, 8px);
     padding-top: 32px;
+  }
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include size(100%, unset);
+    @include indents(0 20px, 0);
+    @include flex(row, space-between, center);
+  }
+
+  &__chevron {
+    @include button-style-reset;
   }
 }

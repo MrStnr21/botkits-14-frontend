@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { testData } from '../../../../utils/mockChatData';
 import Message from '../message/message';
 import stylesDialog from '../chat-dialogue.module.scss';
@@ -87,7 +88,12 @@ const MobileDialog: FC = () => {
               />
             </button>
             <div className={stylesDialog.dialog__nameWrapper}>
-              <Typography tag="p">{user?.user.name}</Typography>
+              <Link
+                to={`/chat/${id}/info`}
+                className={stylesDialog.dialog__link}
+              >
+                <Typography tag="p">{user?.user.name}</Typography>
+              </Link>
               <Typography tag="p" className={stylesDialog.dialog__status}>
                 {user!.user.status}
               </Typography>

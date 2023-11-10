@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-// import { useMediaQuery } from '@mui/material';
-// import { useNavigate } from 'react-router';
 import { useAppSelector, useAppDispatch } from '../../../services/hooks/hooks';
 import stylesDialog from './chat-dialogue.module.scss';
 import TrashIcon from '../../icons/Trash/TrashIcon';
@@ -12,15 +10,12 @@ import Message from './message/message';
 import InputMessage from '../../../ui/inputs/input-message/input-message';
 import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../../ui/typography/typography';
-import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
+// import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
 import SendButton from '../../../ui/buttons/send-button/send-button';
 import Avatar from '../../../ui/avatar/avatar';
 import Tooltip from './tooltip/tooltip';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
-
-interface DateType extends Date {
-  toDateString(): string;
-}
+import { formatDate, DateType } from '../../../utils/formatDate';
 
 interface IChatDialogue {
   onSidebarClick: () => void;
@@ -35,27 +30,16 @@ const ChatDialogue: FC<IChatDialogue> = ({
   selectedMessages,
   selectedUser,
 }) => {
-  // const navigate = useNavigate();
-  // const isMobile = useMediaQuery('(max-width: 620px)');
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
+  // const [isModalOpen, setModalOpen] = useState(false);
 
   const chatData = useAppSelector((store) => store.websocket.data); // заменить на это моковые данные
 
   const handleSearchClick = () => {
     setInputVisible(!isInputVisible);
   };
-
-  // const handleMenuClick = () => {
-  //   setModalOpen(!isModalOpen);
-  //   setInputVisible(false);
-  // };
-
-  // const handleChevronClick = () => {
-  //   navigate(-1);
-  // };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,22 +51,6 @@ const ChatDialogue: FC<IChatDialogue> = ({
       clearInterval(interval);
     };
   }, []);
-
-  function formatDate(date: DateType): string {
-    // вынести в утилиты
-    const now = new Date();
-    const yesterday = new Date(now);
-    yesterday.setDate(now.getDate() - 1);
-
-    if (date.toDateString() === now.toDateString()) {
-      return 'Сегодня';
-    }
-    if (date.toDateString() === yesterday.toDateString()) {
-      return 'Вчера';
-    }
-    const options: any = { day: 'numeric', month: 'long' };
-    return date.toLocaleDateString('ru-RU', options);
-  }
 
   const formattedDate = formatDate(currentDate);
 
@@ -101,29 +69,9 @@ const ChatDialogue: FC<IChatDialogue> = ({
           <div className={stylesDialog.dialog__wrapper}>
             <div className={stylesDialog.dialog__header}>
               <div className={stylesDialog.dialog__headerContent}>
-                {/* {!isMobile ? ( */}
                 <Avatar state="offline" isBot="yes" big="no" />
-                {/* ) : (
-                  <button
-                    type="button"
-                    className={stylesDialog.dialog__headerButton}
-                    onClick={handleChevronClick}
-                  >
-                    <ChevronIcon
-                      width={24}
-                      height={24}
-                      color="#a6b3c9"
-                      position="left"
-                    />
-                  </button>
-                )} */}
                 <div className={stylesDialog.dialog__nameWrapper}>
                   <Typography tag="p">{selectedUser.name}</Typography>
-                  {/* {isMobile && (
-                    <Typography tag="p" className={stylesDialog.dialog__status}>
-                      {selectedUser.status}
-                    </Typography>
-                  )} */}
                 </div>
               </div>
               <div className={stylesDialog.dialog__iconsWrapper}>
@@ -137,7 +85,6 @@ const ChatDialogue: FC<IChatDialogue> = ({
                     />
                   </div>
                 )}
-                {/* {!isMobile && ( */}
                 <button
                   type="button"
                   className={stylesDialog.dialog__headerButton}
@@ -153,7 +100,6 @@ const ChatDialogue: FC<IChatDialogue> = ({
                     </Tooltip>
                   )}
                 </button>
-                {/* )} */}
                 <button
                   type="button"
                   className={stylesDialog.dialog__headerButton}
@@ -162,7 +108,6 @@ const ChatDialogue: FC<IChatDialogue> = ({
                     <PlayIcon width={24} height={24} />
                   </Tooltip>
                 </button>
-                {/* {!isMobile ? ( */}
                 <button
                   type="button"
                   className={stylesDialog.dialog__headerButton}
@@ -171,20 +116,11 @@ const ChatDialogue: FC<IChatDialogue> = ({
                     <TrashIcon width={24} height={24} />
                   </Tooltip>
                 </button>
-                {/* ) : (
-                  <button
-                    type="button"
-                    className={stylesDialog.dialog__headerButton}
-                    onClick={handleMenuClick}
-                  >
-                    <DialogMenuIcon />
-                  </button>
-                )} */}
-                {isModalOpen && (
+                {/* {isModalOpen && (
                   <div className={stylesDialog.dialog__modal}>
                     <DialogMobilePopup handleClick={handleSearchClick} />
                   </div>
-                )}
+                )} */}
               </div>
             </div>
             <div className={stylesDialog.dialog__borderText}>
