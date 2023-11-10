@@ -1,14 +1,4 @@
-@use '../../../../stylesheets/variables' as *;
 @use '../../../../stylesheets/mixins' as *;
-
-@mixin button-state($color){
-  color: $color;
-  border-bottom: 2px solid $color;
-
-  @media screen and (max-width: 520px) {
-    border-bottom: 1px solid $color;
-  }
-}
 
 .controls {
   @include flex(row);
@@ -26,77 +16,4 @@
   @media screen and (max-width: 520px) {
     padding: 12px 9px 9px;
   }
-}
-
-.extraClass:first-of-type{
-  padding: 12px 12px 8px !important;
-
-  @media screen and (max-width: 520px) {
-    padding: 9px 9px 6px !important
-  }
-}
-
-.extraClass:last-of-type{
-  padding: 8px 12px 12px !important;
-
-  @media screen and (max-width: 520px) {
-    padding: 6px 9px 9px !important
-  }
-}
-
-.labeled-content{
-  @include flex(column, false, false, 4px);
-  box-sizing: border-box;
-}
-
-.button {
-  @include font('Open Sans', $xs-font-size, $bold);
-  @include size(100%, 50px);
-  @include button-style-reset();
-  @include line-sizes($m-line-height, $m-letter-space);
-  text-align: center;
-  transition: border .5s,
-              color .5s;
-
-  &:hover {
-    color: $primary-persian-blue-default;
-  }
-
-  @media screen and (max-width: 520px) {
-    @include line-sizes($xl-line-height, $m-letter-space);
-    height: 32px;
-    font-size: 7.41px;
-  }
-}
-
-.conditional {
-  @include flex(column);
-  background-color: $secondary-cultured-default;
-  border-radius: $l-border-radius;
-
-  @media screen and (max-width: 520px) {
-    border-radius: 5.7px;
-  }
-}
-
-.selects-string{
-  @include flex(row, false, false, 4px);
-
-  @media screen and (max-width: 520px) {
-    :nth-child(1){
-      max-width: 96px
-    }
-
-    :nth-child(2){
-      max-width: 37px
-    }
-  }
-}
-
-.active {
-  @include button-state($primary-persian-blue-default);
-}
-
-.none-active{
-  @include button-state($grey-2);
 }
