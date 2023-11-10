@@ -9,11 +9,14 @@ function useClick(func: () => void, id?: string) {
 
   React.useEffect(() => {
     window.addEventListener('click', (e) => {
-      const target = e.target as Element;
-      const parent = target.parentNode as Element;
-      if (parent!.id !== id) {
-        closeOnClick(e);
+      if (id !== undefined) {
+        const target = e.target as Element;
+        const parent = target.parentNode as Element;
+        if (parent!.id !== id) {
+          closeOnClick(e);
+        }
       }
+      closeOnClick(e);
     });
 
     return () => {
