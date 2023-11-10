@@ -1,8 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Position, ReactFlowProvider } from 'reactflow';
-
 import styles from './button-inline.module.scss';
-// eslint-disable-next-line import/no-cycle
 import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
 import askPhoneIcon from '../../../../../images/icon/24x24/constructor/ask-phone.svg';
 import urlIcon from '../../../../../images/icon/24x24/constructor/url.svg';
@@ -19,7 +17,7 @@ type TButtonProps = {
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
-const InlineButton: FC<TButtonProps> = ({ data }) => {
+const ButtonInline: FC<TButtonProps> = ({ data }) => {
   const [name, setName] = useState(data.name);
   const [hidden, setHidden] = useState(true);
 
@@ -127,4 +125,4 @@ const InlineButton: FC<TButtonProps> = ({ data }) => {
   );
 };
 
-export default InlineButton;
+export default ButtonInline;

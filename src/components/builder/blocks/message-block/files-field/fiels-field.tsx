@@ -1,8 +1,6 @@
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 
 import styles from './files-field.module.scss';
-
-import ConstructorIconBotton from '../../../../../ui/buttons/constructor-icon-botton/constructor-icon-botton';
 
 import videoIcon from '../../../../../images/icon/24x24/add content/video.svg';
 import musicIcon from '../../../../../images/icon/24x24/add content/music.svg';
@@ -10,54 +8,13 @@ import imageIcon from '../../../../../images/icon/24x24/add content/image.svg';
 import fileIcon from '../../../../../images/icon/24x24/add content/file.svg';
 
 import { BUTTON_NAME } from '../../../../../utils/constants';
-
-type TButtonProps = {
-  type: BUTTON_NAME;
-  isActive?: boolean;
-  icon: string;
-  accept: string; // но тут д.б.расширения
-};
+import Button from './button/button';
 
 type TFielsFieldProps = {
   image?: File;
   video?: File;
   audio?: File;
   doc?: File;
-};
-
-const Button: FC<TButtonProps> = ({
-  type,
-  icon,
-  accept,
-  isActive,
-}): JSX.Element => {
-  const ref = useRef<null | HTMLInputElement>(null);
-
-  const onClick = () => {
-    if (ref.current) {
-      ref.current.click();
-    }
-  };
-  return (
-    <div>
-      <input
-        ref={ref}
-        type="file"
-        id={type}
-        name={type}
-        accept={accept}
-        hidden
-      />
-      <label htmlFor={type}>
-        <ConstructorIconBotton
-          value={type}
-          onClick={onClick}
-          active={isActive}
-          icon={icon}
-        />
-      </label>
-    </div>
-  );
 };
 
 const FielsField: FC<TFielsFieldProps> = ({ image, video, audio, doc }) => {

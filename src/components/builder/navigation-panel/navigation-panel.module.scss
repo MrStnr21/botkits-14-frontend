@@ -2,24 +2,12 @@
 @use '../../../stylesheets/mixins' as *;
 
 .panel {
+  @include flex(column, $align-items: center);
   @include position(fixed, false, false, 16px, 98px);
-  @include flex(row, false, center, 12px);
   z-index: 999;
-  box-sizing: border-box;
-  width: fit-content;
-  padding: 0 12px 0 16px;
   background-color: $off-white;
   border-radius: $l-border-radius;
-  opacity: 0.8;
   backdrop-filter: blur(15px);
-
-  >:not(hr){
-    margin: 8px 0;
-  }
-
-  @media screen and (max-width: 520px) {
-    display: none;
-  }
 }
 
 .percent {
@@ -36,6 +24,21 @@
   }
 }
 
+.controls {
+  @include flex(row, false, center, 12px);
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 0 12px 0 16px;
+
+  >:not(hr){
+    margin: 8px 0;
+  }
+
+  @media screen and (max-width: 520px) {
+    display: none;
+  }
+}
+
 .map {
-  @include position(absolute, false, false, 40px, 12.5px);
+  position: static;
 }
