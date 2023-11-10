@@ -25,7 +25,7 @@ const InputDialogsues: FC<IInputDialogsues> = ({
   };
 
   useEscapeKey(() => setIsOpenFilters(false));
-  useClick(() => setIsOpenFilters(false));
+  useClick(() => setIsOpenFilters(false), 'inputDialoguesButton');
 
   return (
     <div className={stylesInput.message}>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function useClick(func: () => void) {
+function useClick(func: () => void, id?: string) {
   const closeOnClick = (e: any) => {
     if (e) {
       func();
@@ -11,7 +11,7 @@ function useClick(func: () => void) {
     window.addEventListener('click', (e) => {
       const target = e.target as Element;
       const parent = target.parentNode as Element;
-      if (parent!.id !== 'inputDialoguesButton') {
+      if (parent!.id !== id) {
         closeOnClick(e);
       }
     });
