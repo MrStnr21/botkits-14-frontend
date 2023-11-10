@@ -28,16 +28,17 @@ import routesUrl from '../../utils/routesData';
 
 import ProtectedRoute from '../../routes/protected-route';
 
+console.log(
+  AUTH_URL_M,
+  AUTH_URL_Y,
+  AUTH_URL_V,
+  AUTH_URL_G,
+  BASE_URL,
+  CLIENT_ID_M,
+  CLIENT_ID_Y
+);
+
 const App: FC = (): JSX.Element => {
-  console.log(
-    AUTH_URL_M,
-    AUTH_URL_Y,
-    AUTH_URL_V,
-    AUTH_URL_G,
-    BASE_URL,
-    CLIENT_ID_M,
-    CLIENT_ID_Y
-  );
   return (
     <BrowserRouter>
       <Routes>
