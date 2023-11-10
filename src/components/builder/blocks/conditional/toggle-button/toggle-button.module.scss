@@ -1,0 +1,39 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
+@mixin button-state($color){
+  color: $color;
+  border-bottom: 2px solid $color;
+
+  @media screen and (max-width: 520px) {
+    border-bottom: 1px solid $color;
+  }
+}
+
+.button {
+  @include font('Open Sans', $xs-font-size, $bold);
+  @include size(100%, 50px);
+  @include button-style-reset();
+  @include line-sizes($m-line-height, $m-letter-space);
+  text-align: center;
+  transition: border .5s,
+              color .5s;
+
+  &:hover {
+    color: $primary-persian-blue-default;
+  }
+
+  @media screen and (max-width: 520px) {
+    @include line-sizes($xl-line-height, $m-letter-space);
+    height: 32px;
+    font-size: 7.41px;
+  }
+}
+
+.active {
+  @include button-state($primary-persian-blue-default);
+}
+
+.none-active{
+  @include button-state($grey-2);
+}
