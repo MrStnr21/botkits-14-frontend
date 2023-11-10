@@ -48,4 +48,12 @@ export const initialNodes: Node[] = [
     },
     position: { x: 900, y: 0 },
   },
+  {
+    id: 'node-5',
+    type: 'inlineButton',
+    data: {
+      type: 'button',
+    },
+    position: { x: 1300, y: 0 },
+  },
 ];

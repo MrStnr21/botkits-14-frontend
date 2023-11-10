@@ -29,6 +29,14 @@ const LayoutFlow: FC = () => {
     setEdges((eds) => addEdge(connection, eds));
   }, []);
 
+  const edgeOptions = {
+    animated: true,
+    style: {
+      stroke: 'white',
+    },
+    type: 'smoothstep',
+  };
+
   return (
     <div className={cx('flow')}>
       <ReactFlow
@@ -46,6 +54,7 @@ const LayoutFlow: FC = () => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
+        defaultEdgeOptions={edgeOptions}
       >
         <Background />
         <div className={cx('upWrapper')}>
