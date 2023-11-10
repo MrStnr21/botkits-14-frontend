@@ -40,6 +40,7 @@ const InputDialogsues: FC<IInputDialogsues> = ({
         className={stylesInput.button}
         type="button"
         onClick={toggleIsOpenFilters}
+        id="inputDialoguesButton"
       >
         {iconVisible && <FilterIcon />}
       </button>
