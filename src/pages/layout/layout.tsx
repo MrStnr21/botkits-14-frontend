@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router';
+import { Outlet, useLocation, useMatch } from 'react-router';
 
 import stylesLayout from './layout.module.scss';
 
@@ -12,6 +12,7 @@ import routesUrl from '../../utils/routesData';
 const Layout: FC = (): JSX.Element => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
+  const matchChat = useMatch('/chat/:id');
 
   useEffect(() => {
     setIsVisible(!location.pathname.endsWith(routesUrl.botBuilder));
@@ -23,7 +24,7 @@ const Layout: FC = (): JSX.Element => {
       <main className={stylesLayout.page}>
         <Outlet />
       </main>
-      {isVisible && <Footer />}
+      {isVisible && !matchChat && <Footer />}
     </div>
   );
 };

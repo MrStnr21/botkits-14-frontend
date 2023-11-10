@@ -2,11 +2,16 @@
 @use '../../../stylesheets/mixins' as *;
 
 .dialogs {
-  @include size(323px, unset);
+  @include size(363px, unset);
   padding-right: 15px;
-  margin-top: 32px;
+  margin: 32px 0 0;
   border-right: 1px $secondary-cultured-press solid;
   box-sizing: border-box;
+
+  @media screen and (max-width: 620px) {
+    @include size(100%, unset);
+    padding: 0 15px;
+  }
 
   &__header {
     padding-bottom: 26px;
@@ -18,6 +23,10 @@
 
   &__messagesContainer {
     padding-top: 32px;
+
+    @media screen and (max-width: 620px) {
+      padding: 0;
+    }
   }
 
   &__inputWrapper {
@@ -25,5 +34,9 @@
     @include size(100%, unset);
     @include max-size(unset, 40px);
     box-sizing: border-box;
+  }
+
+  &__link {
+    text-decoration: none;
   }
 }

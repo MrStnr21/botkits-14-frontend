@@ -4,6 +4,7 @@
 .dialog {
   @include flex(column, space-between, center, unset);
   @include position(relative);
+  @include size(unset, 100%);
   box-sizing: border-box;
   margin: 32px 0 0;
   padding: 0 32px;
@@ -32,6 +33,7 @@
 
     @media screen and (max-width: 620px) {
       padding: 0 20px 20px;
+      @include min-size(unset, 60px);
     }
   }
 
@@ -154,6 +156,7 @@
 
     @media screen and (max-width: 620px) {
       padding: 16px 20px 0;
+      margin-bottom: 32px;
     }
   }
 

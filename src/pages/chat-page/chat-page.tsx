@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
-import ChatDialogue from '../../components/chat/chat-dialogue/chat-dialogue';
+import ChatDialogue from '../../components/chat/chat-dialogue/desktop-dialogue';
 import stylesChatDesktop from './chat-page.module.scss';
 import Dialogs from '../../components/chat/dialogs/dialogs';
 import Information from '../../components/chat/Information/Information';

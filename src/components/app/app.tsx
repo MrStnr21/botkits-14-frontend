@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import { useMediaQuery } from '@mui/material';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import Subscription from '../../pages/subscription/subscription';
 import AddBotPage from '../../pages/add-bot-page/add-bot-page';
@@ -18,8 +18,12 @@ import Chat from '../../pages/chat-page/chat-page';
 import routesUrl from '../../utils/routesData';
 
 import ProtectedRoute from '../../routes/protected-route';
+import ChatMobile from '../../pages/chat-page/chat-mobile';
+import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 
 const App: FC = (): JSX.Element => {
+  const isMobile = useMediaQuery('(max-width: 620px)');
+
   return (
     <BrowserRouter>
       <Routes>
@@ -83,10 +87,11 @@ const App: FC = (): JSX.Element => {
             path={routesUrl.chat}
             element={
               <ProtectedRoute notAuth>
-                <Chat />
+                {isMobile ? <ChatMobile /> : <Chat />}
               </ProtectedRoute>
             }
           />
+          {isMobile && <Route path="chat/:id" element={<MobileDialog />} />}
           <Route
             path={routesUrl.mailing}
             element={

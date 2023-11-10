@@ -1,17 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { useMediaQuery } from '@mui/material';
-import { useNavigate } from 'react-router';
+// import { useMediaQuery } from '@mui/material';
+// import { useNavigate } from 'react-router';
 import { useAppSelector, useAppDispatch } from '../../../services/hooks/hooks';
 import stylesDialog from './chat-dialogue.module.scss';
 import TrashIcon from '../../icons/Trash/TrashIcon';
 import SearchIcon from '../../icons/Search/SearchIcon';
 import PlayIcon from '../../icons/Play/PlayIcon';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
 import CloseIcon from '../../icons/Close/CloseIcon';
 import Message from './message/message';
 import InputMessage from '../../../ui/inputs/input-message/input-message';
-import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
 import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../../ui/typography/typography';
 import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
@@ -37,8 +35,8 @@ const ChatDialogue: FC<IChatDialogue> = ({
   selectedMessages,
   selectedUser,
 }) => {
-  const navigate = useNavigate();
-  const isMobile = useMediaQuery('(max-width: 620px)');
+  // const navigate = useNavigate();
+  // const isMobile = useMediaQuery('(max-width: 620px)');
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
@@ -50,14 +48,14 @@ const ChatDialogue: FC<IChatDialogue> = ({
     setInputVisible(!isInputVisible);
   };
 
-  const handleMenuClick = () => {
-    setModalOpen(!isModalOpen);
-    setInputVisible(false);
-  };
+  // const handleMenuClick = () => {
+  //   setModalOpen(!isModalOpen);
+  //   setInputVisible(false);
+  // };
 
-  const handleChevronClick = () => {
-    navigate(-1);
-  };
+  // const handleChevronClick = () => {
+  //   navigate(-1);
+  // };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -71,6 +69,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
   }, []);
 
   function formatDate(date: DateType): string {
+    // вынести в утилиты
     const now = new Date();
     const yesterday = new Date(now);
     yesterday.setDate(now.getDate() - 1);
@@ -102,9 +101,9 @@ const ChatDialogue: FC<IChatDialogue> = ({
           <div className={stylesDialog.dialog__wrapper}>
             <div className={stylesDialog.dialog__header}>
               <div className={stylesDialog.dialog__headerContent}>
-                {!isMobile ? (
-                  <Avatar state="offline" isBot="yes" big="no" /> // доделать логику отрисовки аватара
-                ) : (
+                {/* {!isMobile ? ( */}
+                <Avatar state="offline" isBot="yes" big="no" />
+                {/* ) : (
                   <button
                     type="button"
                     className={stylesDialog.dialog__headerButton}
@@ -117,14 +116,14 @@ const ChatDialogue: FC<IChatDialogue> = ({
                       position="left"
                     />
                   </button>
-                )}
+                )} */}
                 <div className={stylesDialog.dialog__nameWrapper}>
                   <Typography tag="p">{selectedUser.name}</Typography>
-                  {isMobile && (
+                  {/* {isMobile && (
                     <Typography tag="p" className={stylesDialog.dialog__status}>
                       {selectedUser.status}
                     </Typography>
-                  )}
+                  )} */}
                 </div>
               </div>
               <div className={stylesDialog.dialog__iconsWrapper}>
@@ -138,23 +137,23 @@ const ChatDialogue: FC<IChatDialogue> = ({
                     />
                   </div>
                 )}
-                {!isMobile && (
-                  <button
-                    type="button"
-                    className={stylesDialog.dialog__headerButton}
-                    onClick={() => setInputVisible(!isInputVisible)}
-                  >
-                    {!isInputVisible ? (
-                      <Tooltip text="Поиск">
-                        <SearchIcon size="large" />
-                      </Tooltip>
-                    ) : (
-                      <Tooltip text="Закрыть">
-                        <CloseIcon color="#a6b3c9" />
-                      </Tooltip>
-                    )}
-                  </button>
-                )}
+                {/* {!isMobile && ( */}
+                <button
+                  type="button"
+                  className={stylesDialog.dialog__headerButton}
+                  onClick={() => setInputVisible(!isInputVisible)}
+                >
+                  {!isInputVisible ? (
+                    <Tooltip text="Поиск">
+                      <SearchIcon size="large" />
+                    </Tooltip>
+                  ) : (
+                    <Tooltip text="Закрыть">
+                      <CloseIcon color="#a6b3c9" />
+                    </Tooltip>
+                  )}
+                </button>
+                {/* )} */}
                 <button
                   type="button"
                   className={stylesDialog.dialog__headerButton}
@@ -163,16 +162,16 @@ const ChatDialogue: FC<IChatDialogue> = ({
                     <PlayIcon width={24} height={24} />
                   </Tooltip>
                 </button>
-                {!isMobile ? (
-                  <button
-                    type="button"
-                    className={stylesDialog.dialog__headerButton}
-                  >
-                    <Tooltip text="Удалить">
-                      <TrashIcon width={24} height={24} />
-                    </Tooltip>
-                  </button>
-                ) : (
+                {/* {!isMobile ? ( */}
+                <button
+                  type="button"
+                  className={stylesDialog.dialog__headerButton}
+                >
+                  <Tooltip text="Удалить">
+                    <TrashIcon width={24} height={24} />
+                  </Tooltip>
+                </button>
+                {/* ) : (
                   <button
                     type="button"
                     className={stylesDialog.dialog__headerButton}
@@ -180,7 +179,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
                   >
                     <DialogMenuIcon />
                   </button>
-                )}
+                )} */}
                 {isModalOpen && (
                   <div className={stylesDialog.dialog__modal}>
                     <DialogMobilePopup handleClick={handleSearchClick} />
