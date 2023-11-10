@@ -4,7 +4,6 @@ import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
 import PanelInline from './panel-inline/panel-inline';
-import ButtonAddFile from '../../../../ui/buttons/button-add-file/button-add-file';
 import Input from '../../../../ui/inputs/input/input';
 import CustomHandle from '../../flow/custom-handle/custom-handle';
 import {
@@ -13,45 +12,9 @@ import {
   TMessageBlock,
 } from '../../../../services/types/builder';
 import File from './file/file';
-
-const getTime = (time: number) => {
-  const s = Math.floor(time % 60);
-  const m = Math.floor((time / 60) % 60);
-  const h = Math.floor((time / (60 * 60)) % 24);
-  const d = Math.floor(time / (60 * 60 * 24));
-
-  return {
-    s,
-    m,
-    h,
-    d,
-  };
-};
-
-type THiddenBlockProps = {
-  children: React.ReactNode | React.ReactNode[];
-  name: string;
-};
-
-const HiddenBlock: FC<THiddenBlockProps> = ({ name, children }) => {
-  const [visible, setVisible] = useState(false);
-  return (
-    <div className={styles['hidden-content']}>
-      <form className={styles['hiddent-form']}>
-        <label htmlFor={name}>{name}</label>
-        <input
-          name={name}
-          type="checkbox"
-          checked={visible}
-          onChange={() => {
-            setVisible(!visible);
-          }}
-        />
-      </form>
-      {visible && children}
-    </div>
-  );
-};
+import HiddenBlock from './hidden-block/hidden-block';
+import { getTimeDHMS } from '../../utils';
+import FielsField from './files-field/fiels-field';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const [name, setName] = useState(data.name);
@@ -76,7 +39,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     }
   });
 
-  const { s, m, h, d } = getTime(data.showTime || 0);
+  const { s, m, h, d } = getTimeDHMS(data.showTime || 0);
   return (
     <ControlLayout
       name={name}
@@ -88,7 +51,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       <CustomHandle position={Position.Left} type="target" />
       <div className={styles.content}>
         {content}
-        <ButtonAddFile />
+        <FielsField />
       </div>
       <hr className={styles['split-line']} />
       <div className={styles['hidden-blocks']}>

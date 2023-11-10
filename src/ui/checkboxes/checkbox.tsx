@@ -1,25 +1,31 @@
+import React from 'react';
 import styles from './checkbox.module.scss';
 
 export interface CheckboxProps {
   label: string;
   checked: boolean;
-  onChange: (checked: boolean) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  value: string;
 }
 
-// eslint-disable-next-line react/prop-types
-const Checkbox: React.FC<CheckboxProps> = ({ label, checked, onChange }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.checked);
-  };
-
+const Checkbox: React.FC<CheckboxProps> = ({
+  name,
+  label,
+  checked,
+  onChange,
+  value,
+}) => {
   return (
     <div className={styles.checkbox}>
       <label>
         <input
+          name={name}
           className={styles.checkmark}
           type="radio"
           checked={checked}
-          onChange={handleChange}
+          onChange={onChange}
+          value={value}
         />
         <span className={styles.cust} />
         {label}
