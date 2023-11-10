@@ -16,13 +16,13 @@ import ApiBlockNode from '../blocks/api/api';
 // import PanelInline from '../blocks/message-block/panel-inline/panel-inline';
 // import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
-// import ButtonStart from '../blocks/button-start/button-start';
+import SendingCoordinatesBlock from '../blocks/sending-coordinates/sending-coordinates';
 import MessageBlock from '../blocks/message-block/message-block';
 
 export const nodeTypes: NodeTypes = {
   inlineButton: InlineButton,
   message: MessageBlock,
-  // panelInline: PanelInline,
+  sendingCoordinatesBlock: SendingCoordinatesBlock,
   buttonStart: ButtonStart,
   apiBlockNode: ApiBlockNode,
 };
@@ -50,5 +50,14 @@ export const initialNodes: Node[] = [
       name: 'API',
     },
     position: { x: 500, y: 0 },
+  },
+  {
+    id: 'node-4',
+    type: 'sendingCoordinatesBlock',
+    data: {
+      name: 'Отправка координат',
+      coordinates: [],
+    },
+    position: { x: 900, y: 0 },
   },
 ];

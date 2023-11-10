@@ -10,7 +10,7 @@ import {
 
 type TGetInput = {
   title: string;
-  value: number | string;
+  value: number | '';
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -36,15 +36,13 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
 }) => {
   const [name, setName] = useState(data.name);
 
-  const handleNameChange = (newName: string) => {
-    setName(newName);
-  };
-
   return (
     <ControlLayout
       type="Отправка координат"
       name={name}
-      nameSetter={handleNameChange}
+      nameSetter={(newName: string) => {
+        setName(newName);
+      }}
     >
       <div className={styles.content}>
         <GetInput
