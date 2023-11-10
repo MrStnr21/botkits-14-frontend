@@ -1,111 +1,135 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
 import ControlLayout from '../../control-layout/control-layout';
 import Input from '../../../../ui/inputs/input/input';
-import stylesApiBlock from './api.module.scss';
-import Typography from '../../../../ui/typography/typography';
+import styles from './api.module.scss';
 import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
-
-const func = () => console.log(1);
+import LabeledInput from '../../labeledInput/labeledInput';
+import ValField from './val-field/val-filed';
+import RequestSettings from './req-setting/req-setting';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
+  const [headers, setHeaders] = useState<TApiBlock['headers']>(
+    data.headers || []
+  );
+  const [params, setParams] = useState<TApiBlock['params']>(data.params || []);
+
+  const [reqType, setReqType] = useState<'GET' | 'POST' | ''>('');
+
+  const addHeader = (type: 'variable' | 'const') => {
+    return () => setHeaders([...headers!, { type }]);
+  };
+
+  const addParam = (type: 'variable' | 'const') => {
+    return () => setParams([...params!, { type }]);
+  };
+
+  const setHeaderConstructor = (index: number, param: 'name' | 'variable') => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      setHeaders([
+        ...headers!.slice(0, index),
+        { ...headers![index], [param]: e.target.value },
+        ...headers!.slice(index + 1),
+      ]);
+    };
+  };
+
+  const setParamConstructor = (index: number, param: 'name' | 'variable') => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      setParams([
+        ...params!.slice(0, index),
+        { ...params![index], [param]: e.target.value },
+        ...params!.slice(index + 1),
+      ]);
+    };
+  };
+
+  const getHeaderFields = (type: 'variable' | 'const') => {
+    return headers!.map((item, index) => {
+      return (
+        item.type === type && (
+          <ValField
+            name={item.name || ''}
+            value={item.variable || ''}
+            onChangeVal={setHeaderConstructor(index, 'variable')}
+            onChangeName={setHeaderConstructor(index, 'name')}
+          />
+        )
+      );
+    });
+  };
+
+  const getParamFields = (type: 'variable' | 'const') => {
+    return params!.map((item, index) => {
+      return (
+        item.type === type && (
+          <ValField
+            name={item.name || ''}
+            value={item.variable || ''}
+            onChangeVal={setParamConstructor(index, 'variable')}
+            onChangeName={setParamConstructor(index, 'name')}
+          />
+        )
+      );
+    });
+  };
+
   return (
-    <ControlLayout type="API" name={data.name} nameSetter={func}>
-      <div className={stylesApiBlock.container}>
-        <div className={stylesApiBlock.overlay}>
-          <Typography tag="span">URL стороннего сервиса</Typography>
-          <div className={stylesApiBlock.input}>
-            <Input
-              placeholder="Введите URL"
-              value={data.url}
-              onChange={func}
-              styled="bot-builder-default"
-              disabled={false}
-              errorMessage="Неправильный URL"
-              name="control"
-            />
-          </div>
-        </div>
-        <div className={stylesApiBlock.overlay}>
-          <Typography tag="span">Тип запроса</Typography>
-          <div className={stylesApiBlock.box}>
-            <div className={stylesApiBlock.button}>
-              <ConstructorDefaultButton
-                buttonHtmlType="button"
-                onClick={func}
-                disabled={false}
-              >
-                Get
-              </ConstructorDefaultButton>
-            </div>
-            <div className={stylesApiBlock.button}>
-              <ConstructorDefaultButton
-                buttonHtmlType="button"
-                onClick={func}
-                disabled={false}
-              >
-                Post
-              </ConstructorDefaultButton>
-            </div>
-          </div>
-        </div>
-        <div className={stylesApiBlock.overlay}>
-          <Typography tag="span">Заголовок</Typography>
-          <div className={stylesApiBlock.field}>
-            <ConstructorAddButton
+    <ControlLayout type="API" name={data.name} nameSetter={() => {}}>
+      <div className={styles.container}>
+        <LabeledInput title="URL стороннего сервиса">
+          <Input
+            placeholder="Введите URL"
+            value={data.url}
+            onChange={() => {}}
+            styled="bot-builder-default"
+            disabled={false}
+            errorMessage="Неправильный URL"
+            name="control"
+          />
+        </LabeledInput>
+        <LabeledInput title="Тип запроса">
+          <div className={styles.box}>
+            <ConstructorDefaultButton
               buttonHtmlType="button"
+              onClick={() => setReqType('GET')}
               disabled={false}
-              onClick={func}
+              isActive={reqType === 'GET'}
             >
-              Переменная
-            </ConstructorAddButton>
-          </div>
-          <div className={stylesApiBlock.line} />
-          <div className={stylesApiBlock.field}>
-            <ConstructorAddButton
+              Get
+            </ConstructorDefaultButton>
+            <ConstructorDefaultButton
               buttonHtmlType="button"
+              onClick={() => setReqType('POST')}
               disabled={false}
-              onClick={func}
+              isActive={reqType === 'POST'}
             >
-              Постоянная
-            </ConstructorAddButton>
+              Post
+            </ConstructorDefaultButton>
           </div>
-        </div>
-        <div className={stylesApiBlock.overlay}>
-          <Typography tag="span">Параметр</Typography>
-          <div className={stylesApiBlock.field}>
-            <ConstructorAddButton
-              buttonHtmlType="button"
-              disabled={false}
-              onClick={func}
-            >
-              Переменная
-            </ConstructorAddButton>
-          </div>
-          <div className={stylesApiBlock.line} />
-          <div className={stylesApiBlock.field}>
-            <ConstructorAddButton
-              buttonHtmlType="button"
-              disabled={false}
-              onClick={func}
-            >
-              Постоянная
-            </ConstructorAddButton>
-          </div>
-        </div>
-        <div className={stylesApiBlock.overlay}>
-          <Typography tag="span">Сохранить результат</Typography>
-          <div className={stylesApiBlock.field}>
-            <ConstructorAddButton
-              buttonHtmlType="button"
-              disabled={false}
-              onClick={func}
-            >
-              Переменная
-            </ConstructorAddButton>
-          </div>
-        </div>
+        </LabeledInput>
+        <RequestSettings
+          variableFields={getHeaderFields('variable')}
+          constFields={getHeaderFields('const')}
+          addFieldVariable={addHeader('variable')}
+          addFieldConst={addHeader('const')}
+        />
+        <RequestSettings
+          variableFields={getParamFields('variable')}
+          constFields={getParamFields('const')}
+          addFieldVariable={addParam('variable')}
+          addFieldConst={addParam('const')}
+        />
+        <LabeledInput title="Сохранить результат">
+          <ConstructorAddButton
+            buttonHtmlType="button"
+            disabled={false}
+            onClick={() => {}}
+          >
+            Переменная
+          </ConstructorAddButton>
+        </LabeledInput>
       </div>
     </ControlLayout>
   );

@@ -1,0 +1,25 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
+.line {
+  @include size(100%, 1px);
+  @include indents(0, 0);
+  border: 0;
+  background-color: $secondary-cultured-focus;
+}
+
+.field_blocks {
+  @include flex(column, $gap: 12px);
+
+  @media screen and (max-width: 520px) {
+    gap: 8px;
+  }
+}
+
+.fields {
+  @include flex(column, $gap: 8px);
+
+  @media screen and (max-width: 520px) {
+    gap: 4px;
+  }
+}
