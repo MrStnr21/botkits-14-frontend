@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Position, ReactFlowProvider } from 'reactflow';
+import { Position } from 'reactflow';
 
 import cn from 'classnames/bind';
 import Button from '../../../../ui/buttons/button/button';
@@ -78,7 +78,7 @@ const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
   };
 
   return (
-    <ReactFlowProvider>
+    <>
       <CustomHandle
         position={Position.Bottom}
         hidden={hidden}
@@ -91,7 +91,7 @@ const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
       >
         {getButton()}
       </div>
-    </ReactFlowProvider>
+    </>
   );
 };
 

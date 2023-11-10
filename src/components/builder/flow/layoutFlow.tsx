@@ -13,7 +13,7 @@ import ReactFlow, {
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
-import initialEdges from './initial-edges';
+import { initialEdges, edgeOptions } from './initial-edges';
 
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
@@ -28,14 +28,6 @@ const LayoutFlow: FC = () => {
   const onConnect = useCallback((connection: Edge | Connection) => {
     setEdges((eds) => addEdge(connection, eds));
   }, []);
-
-  const edgeOptions = {
-    animated: true,
-    style: {
-      stroke: 'white',
-    },
-    type: 'smoothstep',
-  };
 
   return (
     <div className={cx('flow')}>
