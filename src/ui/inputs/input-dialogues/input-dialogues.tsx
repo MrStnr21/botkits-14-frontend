@@ -2,6 +2,8 @@ import { FC, ChangeEvent, useState } from 'react';
 import stylesInput from './input-dialogues.module.scss';
 import FilterIcon from '../../../components/icons/Filter/FilterIcon';
 import SearchFilters from '../../../components/chat/SearchFilters/SearchFilters';
+import useEscapeKey from '../../../services/hooks/use-esc-key';
+import useClick from '../../../services/hooks/use-click';
 
 interface IInputDialogsues {
   placeholder?: string;
@@ -21,6 +23,9 @@ const InputDialogsues: FC<IInputDialogsues> = ({
   const toggleIsOpenFilters = () => {
     setIsOpenFilters(!isOpenFilters);
   };
+
+  useEscapeKey(() => setIsOpenFilters(false));
+  useClick(() => setIsOpenFilters(false));
 
   return (
     <div className={stylesInput.message}>
