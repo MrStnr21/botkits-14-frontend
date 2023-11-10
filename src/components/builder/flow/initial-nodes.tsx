@@ -1,20 +1,8 @@
-// import { FC, useCallback, useState } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
-// import { ReactNode } from 'react';
-import {
-  Node,
-  NodeTypes,
-  // applyNodeChanges,
-  // OnNodesChange,
-  // OnEdgesChange,
-  // OnConnect,
-} from 'reactflow';
+import { Node, NodeTypes } from 'reactflow';
 
 import ButtonStart from '../blocks/button-start/button-start';
 import InlineButton from '../blocks/message-block/button-inline/button-inline';
 import ApiBlockNode from '../blocks/api/api';
-// import PanelInline from '../blocks/message-block/panel-inline/panel-inline';
-// import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
 import SendingCoordinatesBlock from '../blocks/sending-coordinates/sending-coordinates';
 import MessageBlock from '../blocks/message-block/message-block';
