@@ -123,7 +123,7 @@
   @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3);
 
   @media screen and (max-width: 520px) {
-    padding: 5px 3px
+    padding: 5px 3px;
   }
 }
 
@@ -131,7 +131,7 @@
   @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
 
   @media screen and (max-width: 520px) {
-    padding: 7px 5.82px
+    padding: 6.5px 5.82px;
   }
 }
 

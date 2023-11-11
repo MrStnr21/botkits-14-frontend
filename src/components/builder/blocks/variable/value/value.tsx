@@ -25,12 +25,15 @@ const Value: FC<TValueProps> = ({ variable, value }) => {
       <div className={styles.box}>
         <Equal />
       </div>
-      <InputSelect
-        defaultValue={[value || selectValues[0].value]}
-        values={selectValues}
-        maxWidth={98}
-        handleFunction={() => {}}
-      />
+      <div className={styles.v}>
+        <InputSelect
+          defaultValue={[value || selectValues[0].value]}
+          values={selectValues}
+          maxWidth={98}
+          handleFunction={() => {}}
+          isAdaptive
+        />
+      </div>
     </div>
   );
 };
