@@ -3,33 +3,38 @@ import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
 import Input from '../../../../ui/inputs/input/input';
-import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import MenuVariable from '../../../../ui/menus/menu-variable/menu-variable';
 import {
   TBlockProps,
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
+import Button from './button/button';
+import { BUTTON_NAME } from '../../../../utils/constants';
+import { Icons } from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
+import { crmList } from '../../utils/data';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   const [name, setName] = useState(data.name);
   const placeholder = 'Введите название';
 
   const buttonsForSum = ['RUB', 'EUR', 'USD']; // перенести в конфиг
-  const buttonsForAfterPay = ['заглушка'];
+  const buttonsForAfterPay = crmList;
 
   return (
     <ControlLayout type={name} name={name} nameSetter={setName}>
       <div className={styles.blocks}>
-        <LabeledInput title="Навзание товара">
+        <LabeledInput title="Название товара">
           <Input
             placeholder={placeholder}
             onChange={() => {}}
             styled="bot-builder-default"
           />
         </LabeledInput>
-        <ConstructorAddButton maxWidth="100%" icon="photo">
-          Добавить фото
-        </ConstructorAddButton>
+        <Button
+          type={BUTTON_NAME.IMAGE}
+          icon={Icons.photo}
+          accept=".jpg, .png, .gif"
+        />
         <LabeledInput title="Описание">
           <Input
             placeholder={placeholder}
@@ -42,7 +47,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           <div className={styles.sumInputs}>
             <Input
               placeholder="Введите сумму"
-              value={String(data.payment)}
+              // value={String(data.payment)}
               onChange={() => {}}
               styled="bot-builder-default"
             />
@@ -64,7 +69,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         <LabeledInput title="После успешной оплаты вернуть">
           <MenuVariable
             buttons={buttonsForAfterPay}
-            nameMenu={data.onSuccess || buttonsForAfterPay[0]}
+            nameMenu={data.onSuccess || placeholder}
           />
         </LabeledInput>
       </div>

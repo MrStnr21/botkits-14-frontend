@@ -19,7 +19,7 @@ const MenuVariable: FC<IMenuVariable> = ({
 }): JSX.Element => {
   const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
-  const [textColor, setTextColor] = useState<string>('');
+  const [textColor, setTextColor] = useState<string>(stylesMenuVariable.grey);
 
   const changeVariableHandler = (text: string) => {
     setVariable(text);
@@ -81,8 +81,9 @@ const MenuVariable: FC<IMenuVariable> = ({
                   className={`${stylesMenuVariable.button} ${stylesMenuVariable.text}`}
                   onClick={() => {
                     changeVariableHandler(name);
-                    onClick!(name);
+                    // onClick!(name);
                     setIsActive('');
+                    setTextColor(stylesMenuVariable.active);
                   }}
                 >
                   {name}

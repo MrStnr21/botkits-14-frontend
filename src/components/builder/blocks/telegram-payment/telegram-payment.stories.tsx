@@ -8,6 +8,6 @@ export default {
 
 export const Default = () => (
   <ReactFlowProvider>
-    <TelegramPayment data={{ name: 'test name' }} />
+    <TelegramPayment data={{ name: 'Оплата в Telegram' }} />
   </ReactFlowProvider>
 );
