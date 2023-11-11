@@ -36,6 +36,7 @@ $additional-grey-pressed: #c3d1d8;
   @include hide-scroll;
   // START GRID LAYOUT
   grid-row: 1 / -1;
+  grid-column: 1/2;
   z-index: 3;
   // END GRID LAYOUT
   position: relative;
@@ -48,12 +49,13 @@ $additional-grey-pressed: #c3d1d8;
 }
 
 .wrapper_open {
-  grid-column: 1/-1;
-  margin-right: 0;
+  @media (max-width: $switching-width) {
+    grid-column: 1/-1;
+    margin-right: 0;
+  }
 }
 
 .wrapper_close {
-  grid-column: 1/2;
 
   @media (max-width: $switching-width) {
     grid-row: 1; //в середине экрана будет основной контент страницы
@@ -81,7 +83,7 @@ $additional-grey-pressed: #c3d1d8;
 
 .sidebar_open {
   background-color: $secondary-cultured-default;
-  width: 224px;
+  width: 240px;
 
   .navigation__text,
   .addtext {
@@ -90,6 +92,7 @@ $additional-grey-pressed: #c3d1d8;
   }
 
   .addbutton {
+    transition: all 0.3s;
     overflow: visible;
     background-color: $primary-persian-blue-default;
     width: 182px;
@@ -131,6 +134,7 @@ $additional-grey-pressed: #c3d1d8;
 
 .sidebar_close {
   height: 100%;
+  width: 70px;
 
   .navigation__text, // все подписи у кнопок исчезнут
   .addtext {

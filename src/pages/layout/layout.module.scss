@@ -5,7 +5,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(0, 120px) minmax($min-content-width, auto);
+  grid-template-columns: minmax(0, min-content) minmax(calc($min-content-width - 300px), auto);
   box-sizing: border-box;
   position: relative;
   background-color: $off-white;

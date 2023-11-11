@@ -1,10 +1,7 @@
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useMediaQuery } from '@mui/material';
 
 import stylesSidebar from './sidebar.module.scss';
-
-import Cover from '../../ui/cover/cover';
 
 import { links, ILink } from './sb-data';
 import Typography from '../../ui/typography/typography';
@@ -41,8 +38,6 @@ const Sidebar: FC<TSidebarProps> = ({ type }) => {
   function expandList() {
     setStateNL(!isOpenNL);
   }
-
-  const matches = useMediaQuery('(max-width: 620px)');
 
   return (
     <section
@@ -93,9 +88,7 @@ const Sidebar: FC<TSidebarProps> = ({ type }) => {
                 <li
                   key={item.text + +index}
                   className={`${stylesSidebar.nestedList} ${
-                    isOpenNL
-                      ? stylesSidebar.nestedList_open
-                      : stylesSidebar.nestedList_close
+                    !isOpenNL && stylesSidebar.nestedList_close
                   }`}
                 >
                   <Subheader {...item} />
@@ -132,15 +125,6 @@ const Sidebar: FC<TSidebarProps> = ({ type }) => {
           </div>
         </div>
       </div>
-      {!matches && (
-        <Cover
-          top="-16px"
-          bottom="-16px"
-          left="224px"
-          right="0"
-          onClick={() => setStateSB(false)}
-        />
-      )}
     </section>
   );
 };
