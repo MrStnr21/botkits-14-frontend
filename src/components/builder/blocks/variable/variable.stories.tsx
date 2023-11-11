@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { ReactFlowProvider } from 'reactflow';
 import VariableBlockNode from './variable';
 
 const meta: Meta<typeof VariableBlockNode> = {
@@ -10,9 +11,9 @@ export default meta;
 type Story = StoryObj<typeof VariableBlockNode>;
 
 export const ApiBlock: Story = {
-  args: {
-    data: {
-      name: 'test name',
-    },
-  },
+  render: () => (
+    <ReactFlowProvider>
+      <VariableBlockNode data={{ name: 'test name' }} />
+    </ReactFlowProvider>
+  ),
 };
