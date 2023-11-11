@@ -5,16 +5,27 @@ import Button from '../../ui/buttons/button/button';
 import styles from './statistics.module.scss';
 import { mockPlatforms, mockInstallment } from '../../utils/mockStatistics';
 import {
-  installmentChartDatasetOptions,
+  installmentDatasetOptions,
   installmentChartOptions,
-  messengersChartDatasetOptions,
+  messengersDatasetOptions,
   messengersChartOptions,
   totalBotsChartOptions,
-  totalBotsChartDatasetOptions,
+  totalBotsDatasetOptions,
 } from './chartsConfig';
 import StatsChart from './chart/chart';
+import { Data, Labels } from './chart/types';
 
 Chart.register(...registerables);
+
+// Препроцессинг данных для графиков
+const messengersLabels: Labels = mockPlatforms.map((data) => data.platform);
+const messengersData: Data = mockPlatforms.map((data) => data.count);
+
+const installmentLabels: Labels = mockInstallment.map((data) => data.month);
+const installmentData: Data = mockInstallment.map((data) => data.count);
+
+const totalBotsLabels: Labels = mockInstallment.map((data) => data.month);
+const totalBotsData: Data = mockInstallment.map((data) => data.count);
 
 const Statistics: FC = () => {
   return (
@@ -38,36 +49,36 @@ const Statistics: FC = () => {
         <StatsChart
           type="Боты"
           title="Статистика по мессенджерам"
-          componentType="bar"
+          chartType="bar"
           chartOptions={messengersChartOptions}
-          datasetBarOptions={messengersChartDatasetOptions}
-          chartLabels={mockPlatforms.map((data) => data.platform)}
-          chartData={mockPlatforms.map((data) => data.count)}
-          onSelect={() => {
+          datasetBarOptions={messengersDatasetOptions}
+          chartLabels={messengersLabels}
+          chartData={messengersData}
+          onPeriodSelect={() => {
             console.log('onSelect action');
           }}
         />
         <StatsChart
           type="Шаблоны"
           title="Установка шаблонов в пользовательских кабинетах"
-          componentType="line"
+          chartType="line"
           chartOptions={installmentChartOptions}
-          datasetLineOptions={installmentChartDatasetOptions}
-          chartLabels={mockInstallment.map((data) => data.month)}
-          chartData={mockInstallment.map((data) => data.count)}
-          onSelect={() => {
+          datasetLineOptions={installmentDatasetOptions}
+          chartLabels={installmentLabels}
+          chartData={installmentData}
+          onPeriodSelect={() => {
             console.log('onSelect action');
           }}
         />
         <StatsChart
           type="Боты"
           title="Общее количество подключенных ботов"
-          componentType="line"
+          chartType="line"
           chartOptions={totalBotsChartOptions}
-          datasetLineOptions={totalBotsChartDatasetOptions}
-          chartLabels={mockInstallment.map((data) => data.month)}
-          chartData={mockInstallment.map((data) => data.count)}
-          onSelect={() => {
+          datasetLineOptions={totalBotsDatasetOptions}
+          chartLabels={totalBotsLabels}
+          chartData={totalBotsData}
+          onPeriodSelect={() => {
             console.log('onSelect action');
           }}
         />

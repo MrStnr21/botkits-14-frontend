@@ -24,3 +24,13 @@
   margin-bottom: 34px!important;
   color: $grey-1;
 }
+
+.selectors {
+  @include flex($gap: 8px);
+}
+
+.placeholder {
+  @include size(40px, 41px);
+  background-color: $blue-disabled;
+  border-radius: $m-border-radius;
+}

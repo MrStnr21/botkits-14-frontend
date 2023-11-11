@@ -1,15 +1,10 @@
 import { Divider } from '@mui/material';
-import {
-  ChartOptions,
-  BarControllerDatasetOptions,
-  LineControllerDatasetOptions,
-  FillerControllerDatasetOptions,
-} from 'chart.js';
 import { FC } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import InputSelect from '../../../ui/inputs/input-select/input-select';
 import Typography from '../../../ui/typography/typography';
 import styles from './chart.module.scss';
+import { ChartProps } from './types';
 
 const Periods = [
   { nameValue: 'Максимум', value: 'max' },
@@ -22,43 +17,17 @@ const Periods = [
   { nameValue: 'Прошлый месяц', value: 'lastMonth' },
 ];
 
-type CommonProps = {
-  type: string;
-  title: string;
-  chartOptions: ChartOptions<'line' | 'bar'>;
-  chartLabels: string[];
-  chartData: number[];
-  onSelect: () => void;
-};
-
-type ConditionalProps =
-  | {
-      componentType: 'line';
-      chartOptions: ChartOptions<'line'>;
-      datasetLineOptions?: Partial<
-        LineControllerDatasetOptions & FillerControllerDatasetOptions
-      >;
-      datasetBarOptions?: never;
-    }
-  | {
-      componentType: 'bar';
-      chartOptions: ChartOptions<'bar'>;
-      datasetBarOptions?: Partial<BarControllerDatasetOptions>;
-      datasetLineOptions?: never;
-    };
-
-type Props = CommonProps & ConditionalProps;
-
-const StatsChart: FC<Props> = ({
-  type,
-  title,
-  componentType,
-  chartOptions,
-  datasetBarOptions,
-  datasetLineOptions,
-  chartLabels,
-  chartData,
-  onSelect,
+const StatsChart: FC<ChartProps> = ({
+  type, // подпись над заголовком
+  title, // заголовок
+  chartType, // вид графика - bar или line
+  chartOptions, // настройки: вид лейблов, осей, плоскости
+  datasetBarOptions, // настройки: отображение самих данных - цвет и т.д.
+  datasetLineOptions, // либо для типа bar, либо для типа line
+  chartLabels, // данные: массив значений по оси X
+  chartData, // данные: массив значений по оси Y
+  onPeriodSelect, // при выборе периода
+  // onCalendarSelect, // при выборе календаря
 }) => {
   return (
     <section className={styles.chart}>
@@ -71,24 +40,26 @@ const StatsChart: FC<Props> = ({
             {title}
           </Typography>
         </div>
-        <div>
+        <div className={styles.selectors}>
           <InputSelect
             values={Periods}
             defaultValue={['last14']}
             maxWidth={165}
-            handleFunction={onSelect}
+            handleFunction={onPeriodSelect}
           />
+          {/* Тут будет select с календарём */}
+          <div className={styles.placeholder} />
         </div>
       </div>
       <Divider className={styles.divider} />
-      {componentType === 'bar' ? (
+      {chartType === 'bar' ? (
         <Bar
           options={chartOptions}
           data={{
-            labels: chartLabels,
+            labels: chartLabels, // массив значений по оси X
             datasets: [
               {
-                data: chartData,
+                data: chartData, // массив значений по оси Y
                 ...datasetBarOptions,
               },
             ],
