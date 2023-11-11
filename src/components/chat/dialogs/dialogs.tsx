@@ -57,7 +57,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
       </div>
       <div className={styles.dialogs__messagesContainer}>
         {uniqueData.map((el: any) => {
-          const lastMessage = el.user.messages[el.user.messages.length - 1]; // не бейте, это временно)
+          const lastMessage = el.user.messages[el.user.messages.length - 1];
           return (
             <div key={Number(el.user.id)}>
               {isMobile ? (

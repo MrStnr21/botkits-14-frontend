@@ -10,7 +10,6 @@ import Message from './message/message';
 import InputMessage from '../../../ui/inputs/input-message/input-message';
 import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../../ui/typography/typography';
-// import DialogMobilePopup from './dialog-mobile-popup/dialog-mobile-popup';
 import SendButton from '../../../ui/buttons/send-button/send-button';
 import Avatar from '../../../ui/avatar/avatar';
 import Tooltip from './tooltip/tooltip';
@@ -33,13 +32,8 @@ const ChatDialogue: FC<IChatDialogue> = ({
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
-  // const [isModalOpen, setModalOpen] = useState(false);
 
   const chatData = useAppSelector((store) => store.websocket.data); // заменить на это моковые данные
-
-  const handleSearchClick = () => {
-    setInputVisible(!isInputVisible);
-  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -116,11 +110,6 @@ const ChatDialogue: FC<IChatDialogue> = ({
                     <TrashIcon width={24} height={24} />
                   </Tooltip>
                 </button>
-                {/* {isModalOpen && (
-                  <div className={stylesDialog.dialog__modal}>
-                    <DialogMobilePopup handleClick={handleSearchClick} />
-                  </div>
-                )} */}
               </div>
             </div>
             <div className={stylesDialog.dialog__borderText}>

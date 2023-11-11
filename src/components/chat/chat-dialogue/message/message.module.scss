@@ -8,18 +8,22 @@
   letter-spacing: $m-letter-space;
 }
 
+@mixin oneHundredPercentWidth() {
+  @include size(100%, unset);
+}
+
 @mixin messageBlock() {
   @include position(relative);
   @include flex(column, space-between, flex-start, unset);
   @include indents(16px, 0);
-  @include size(100%, unset);
+  @include oneHundredPercentWidth();
   @include min-size(230px, unset);
 }
 
 .message {
   @include flex(row, unset, center, 16px);
-  max-width: 362px;
-  width: 100%;
+  @include oneHundredPercentWidth();
+  @include max-size(362px, unset);
   box-sizing: border-box;
 
   & * {
@@ -28,7 +32,8 @@
 
   &__userMessage {
     @include flex(row-reverse, unset, center, 16px);
-    width: 100%;
+    @include oneHundredPercentWidth();
+    @include max-size(362px, unset);
     max-width: 362px;
     align-self: flex-end;
   }
@@ -55,12 +60,12 @@
       transform: rotate(180deg);
 
       @media screen and (max-width: 620px) {
-        background: #FFF;
+        background: $off-white;
       }
     }
 
     @media screen and (max-width: 620px) {
-      background: #FFF;
+      background: $off-white;
     }
   }
 
@@ -81,13 +86,13 @@
 
   &__content {
     @include flex(column, unset, flex-start, 16px);
-    width: 100%;
+    @include oneHundredPercentWidth();
   }
 
   &__textWrapper {
     @include flex(row, space-between, center, 8px);
     flex-wrap: wrap;
-    width: 100%;
+    @include oneHundredPercentWidth();
   }
 
   &__user {

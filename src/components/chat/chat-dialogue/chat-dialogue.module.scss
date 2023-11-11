@@ -58,7 +58,7 @@
 
     @media screen and (max-width: 620px) {
       background: $secondary-cultured-default;
-      padding: 32px;
+      @include indents(32px, 0);
     }
   }
 
@@ -144,8 +144,7 @@
     }
 
     @media screen and (max-width: 620px) {
-      margin: 0;
-      padding: 0 20px;
+      @include indents(0 20px, 0);
       background: $secondary-cultured-default;
     }
   }

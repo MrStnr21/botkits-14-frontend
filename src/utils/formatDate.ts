@@ -3,7 +3,6 @@ export interface DateType extends Date {
 }
 
 export function formatDate(date: DateType): string {
-  // вынести в утилиты
   const now = new Date();
   const yesterday = new Date(now);
   yesterday.setDate(now.getDate() - 1);

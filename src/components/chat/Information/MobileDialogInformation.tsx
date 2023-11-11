@@ -20,6 +20,11 @@ const MobileDialogInformation: FC = () => {
     navigate(-1);
   };
 
+  const handleMenuClick = () => {
+    // setModalOpen(!isModalOpen);
+    // setInputVisible(false);
+  };
+
   return (
     <div className={stylesInformation.information}>
       <div className={stylesInformation.information__header}>
@@ -33,7 +38,7 @@ const MobileDialogInformation: FC = () => {
         <button
           type="button"
           className={stylesInformation.information__chevron}
-          // onClick={handleMenuClick}
+          onClick={handleMenuClick}
         >
           <DialogMenuIcon />
         </button>

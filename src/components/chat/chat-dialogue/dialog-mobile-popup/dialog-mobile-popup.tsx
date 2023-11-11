@@ -3,7 +3,7 @@ import styles from './dialog-mobile-popup.module.scss';
 import Typography from '../../../../ui/typography/typography';
 
 export interface IProps {
-  handleClick: any;
+  handleClick: () => void;
 }
 
 const DialogMobilePopup: FC<IProps> = ({ handleClick }) => {

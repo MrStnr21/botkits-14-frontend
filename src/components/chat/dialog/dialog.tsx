@@ -4,7 +4,7 @@ import styles from './dialog.module.scss';
 import Avatar from '../../../ui/avatar/avatar';
 import Typography from '../../../ui/typography/typography';
 
-interface IDialogue {
+interface IDialog {
   name: string;
   text: string;
   time: string;
@@ -12,13 +12,7 @@ interface IDialogue {
   status: string;
 }
 
-const Dialog: FC<IDialogue> = ({
-  name,
-  text,
-  time,
-  messageNum,
-  status,
-}): JSX.Element => {
+const Dialog: FC<IDialog> = ({ name, text, time, messageNum, status }) => {
   function pickChat(e: { target: any } | undefined) {
     const allLines = document.querySelectorAll(
       '.line'
@@ -43,31 +37,46 @@ const Dialog: FC<IDialogue> = ({
   }
 
   return (
-    <div className={styles.mainContainer} onClick={(e) => pickChat(e)}>
-      <div className={styles.avatar}>
+    <div className={styles.dialog} onClick={(e) => pickChat(e)}>
+      <div className={styles.dialog__avatar}>
         <Avatar isBot="no" state={status} big="no" />
       </div>
-      <Typography tag="span" className={styles.name} fontFamily="secondary">
+      <Typography
+        tag="span"
+        className={styles.dialog__name}
+        fontFamily="secondary"
+      >
         {name}
       </Typography>
-      <Typography tag="span" className={styles.text} fontFamily="primary">
+      <Typography
+        tag="span"
+        className={styles.dialog__text}
+        fontFamily="primary"
+      >
         {text}
       </Typography>
-      <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
+      <Typography
+        tag="span"
+        className={styles.dialog__timeAgo}
+        fontFamily="primary"
+      >
         {time}
       </Typography>
       {messageNum > 0 ? (
-        <div className={styles.messageNumCircle}>
+        <div className={styles.dialog__messageNumCircle}>
           <Typography
             tag="span"
-            className={styles.messageNum}
+            className={styles.dialog__messageNum}
             fontFamily="primary"
           >
             {messageNum}
           </Typography>
         </div>
       ) : null}
-      <div className={`line ${styles.line}`} style={{ display: 'none' }} />
+      <div
+        className={`line ${styles.dialog__line}`}
+        style={{ display: 'none' }}
+      />
     </div>
   );
 };

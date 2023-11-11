@@ -8,7 +8,7 @@
   box-sizing: border-box;
 
   @media (max-width: ($min-content-width + 200px)) {
-    @include max-size(380px, unset); // временное решение
+    @include max-size(380px, unset);
     margin: 0;
   }
 

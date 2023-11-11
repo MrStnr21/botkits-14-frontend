@@ -10,11 +10,10 @@
 }
 
 @mixin item {
+  @include flex(unset, unset, unset, 8px);
   grid-column-start: 1;
   grid-column-end: 3;
   overflow: hidden;
-  display: flex;
-  gap: 8px;
 }
 
 .files {
