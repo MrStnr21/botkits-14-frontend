@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import styles from './deep-link.module.scss';
 import InputSelect from '../../../../ui/inputs/input-select/input-select';
 import Input from '../../../../ui/inputs/input/input';
@@ -9,7 +9,7 @@ import {
   TDeepLinkBlock,
 } from '../../../../services/types/builder';
 
-const selectValues = [
+const selectValuesType = [
   { value: 'random', nameValue: 'Случайное' },
   { value: 'static', nameValue: 'Статичное' },
   { value: 'variable', nameValue: 'Переменная' },
@@ -18,20 +18,32 @@ const selectValues = [
 ];
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
+  const [name, setName] = useState(data.name);
+  const [signsAmount, setSignsAmount] = useState(data.signsAmount);
+  const [param, setParam] = useState(data.param || 'Название параметра');
+
   return (
-    <ControlLayout type="Deep Link" name={data.name} nameSetter={() => {}}>
+    <ControlLayout
+      type="Deep Link"
+      name={name}
+      nameSetter={(newName: string) => {
+        setName(newName);
+      }}
+    >
       <div className={styles.content}>
         <LabeledInput title="Параметр">
-          <InputSelect
-            values={selectValues}
-            maxWidth={240}
-            defaultValue={[data.param || selectValues[0].value]}
-            handleFunction={() => {}}
+          <Input
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setParam(e.target.value);
+            }}
+            styled="bot-builder-default"
+            placeholder="Название параметра"
+            value={param}
           />
         </LabeledInput>
         <LabeledInput title="Тип значения">
           <InputSelect
-            values={selectValues}
+            values={selectValuesType}
             maxWidth={240}
             defaultValue={[data.type]}
             handleFunction={() => {}}
@@ -39,9 +51,11 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
         </LabeledInput>
         <LabeledInput title="Количество знаков в ссылке">
           <Input
-            onChange={() => {}}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setSignsAmount(Number(e.target.value));
+            }}
             styled="bot-builder-default"
-            value={data.signsAmount.toString()}
+            value={signsAmount.toString()}
           />
         </LabeledInput>
         <LabeledInput title="Добавить значение в переменную">
