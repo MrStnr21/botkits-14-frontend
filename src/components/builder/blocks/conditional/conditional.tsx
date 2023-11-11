@@ -15,6 +15,8 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
     data.variables
   );
 
+  console.log(data);
+
   const addHard = () => {
     setContent([...content, { type: 'hard' }]);
   };

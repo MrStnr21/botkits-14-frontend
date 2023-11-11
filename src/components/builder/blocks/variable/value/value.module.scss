@@ -1,0 +1,21 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
+.overlay {
+  @include size(264px, 64px);
+  @include font('Open Sans', inherit, inherit, $secondary-cultured-default);
+  @include indents(12px, 0 0 8px);
+  @include flex(row);
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
+  box-sizing: border-box;
+}
+  
+
+.box {
+  @include size(36px, 40px);
+  @include indents(8px 6px, 0 3px 4px);
+  border-radius: $s-border-radius;
+  background-color: $secondary-cultured-hover;
+  box-sizing: border-box;
+}
