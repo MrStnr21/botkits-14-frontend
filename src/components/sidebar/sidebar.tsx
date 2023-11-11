@@ -49,7 +49,7 @@ const Sidebar: FC<TSidebarProps> = ({ type }) => {
       aria-label="НАВИГАЦИЯ"
       className={`${stylesSidebar.wrapper} ${
         isOpenSB ? stylesSidebar.wrapper_open : stylesSidebar.wrapper_close
-      } ${stylesSidebar[type]}`}
+      } ${stylesSidebar[type] || 0}`}
     >
       <div
         className={`${stylesSidebar.sidebar} ${
