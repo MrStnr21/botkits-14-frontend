@@ -1,5 +1,5 @@
 import { FC, ReactElement, useState, ChangeEvent } from 'react';
-import { Position, ReactFlowProvider } from 'reactflow';
+import { Position } from 'reactflow';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
@@ -28,63 +28,61 @@ const ControlLayout: FC<TControlLayoutProps> = ({
   };
   return (
     <article className={styles.container}>
-      <ReactFlowProvider>
-        <div
-          className={`${!hidden && styles.outline}`}
-          onMouseEnter={() => setHidden(false)}
-          onMouseLeave={() => setHidden(true)}
-        >
-          <CustomHandle
-            position={Position.Top}
-            hidden={hidden}
-            type="target"
-            id="t"
+      <div
+        className={`${!hidden && styles.outline}`}
+        onMouseEnter={() => setHidden(false)}
+        onMouseLeave={() => setHidden(true)}
+      >
+        <CustomHandle
+          position={Position.Top}
+          hidden={hidden}
+          type="target"
+          id="t"
+        />
+        <CustomHandle
+          position={Position.Right}
+          hidden={hidden}
+          type="source"
+          id="r"
+        />
+        <CustomHandle
+          position={Position.Bottom}
+          hidden={hidden}
+          type="source"
+          id="b"
+        />
+        <CustomHandle
+          position={Position.Left}
+          hidden={hidden}
+          type="target"
+          id="l"
+        />
+        <div className={styles.header}>
+          <span className={styles.type}>{type}</span>
+          <input
+            type="text"
+            className={styles.name}
+            value={name}
+            onChange={onNameChange}
           />
-          <CustomHandle
-            position={Position.Right}
-            hidden={hidden}
-            type="source"
-            id="r"
-          />
-          <CustomHandle
-            position={Position.Bottom}
-            hidden={hidden}
-            type="source"
-            id="b"
-          />
-          <CustomHandle
-            position={Position.Left}
-            hidden={hidden}
-            type="target"
-            id="l"
-          />
-          <div className={styles.header}>
-            <span className={styles.type}>{type}</span>
-            <input
-              type="text"
-              className={styles.name}
-              value={name}
-              onChange={onNameChange}
+          <button className={styles.more} onClick={onClick} type="button">
+            <img className={styles.img} src={moreIcon} alt="больше" />
+            <MenuBot
+              size="medium"
+              editFunction={() => {}}
+              isActive={menu}
+              top={0}
+              left={30}
             />
-            <button className={styles.more} onClick={onClick} type="button">
-              <img className={styles.img} src={moreIcon} alt="больше" />
-              <MenuBot
-                size="medium"
-                editFunction={() => {}}
-                isActive={menu}
-                top={0}
-                left={30}
-              />
-            </button>
-          </div>
-          {children && (
-            <>
-              <hr className={styles.hr} />
-              {children}
-            </>
-          )}
+          </button>
         </div>
-      </ReactFlowProvider>
+        {children && (
+          <>
+            <hr className={styles.hr} />
+            {children}
+          </>
+        )}
+      </div>
     </article>
   );
 };

@@ -41,29 +41,31 @@ const NavigationPanel: FC = () => {
   return (
     <div className={styles.panel}>
       {map && <MiniMap className={styles.map} maskColor="none" />}
-      <Typography tag="span" className={styles.percent}>
-        {Math.round(zoomLevel * 100)}
-      </Typography>
-      <NavigationButton
-        icon={plus}
-        alt="Увеличить"
-        onClick={onPlus}
-        disabled={zoomLevel === maxScale}
-      />
-      <NavigationButton
-        icon={minus}
-        alt="Уменьшить"
-        onClick={onMinus}
-        disabled={zoomLevel === minScale}
-      />
-      <Divider orientation="vertical" flexItem />
-      <NavigationButton icon={fit} alt="Центрировать" onClick={onFit} />
-      <NavigationButton
-        icon={fullScreen}
-        alt="На весь экран"
-        onClick={onFullscreen}
-      />
-      <NavigationButton icon={page} alt="Обзор страницы" onClick={onPage} />
+      <div className={styles.controls}>
+        <Typography tag="span" className={styles.percent}>
+          {Math.round(zoomLevel * 100)}
+        </Typography>
+        <NavigationButton
+          icon={plus}
+          alt="Увеличить"
+          onClick={onPlus}
+          disabled={zoomLevel === maxScale}
+        />
+        <NavigationButton
+          icon={minus}
+          alt="Уменьшить"
+          onClick={onMinus}
+          disabled={zoomLevel === minScale}
+        />
+        <Divider orientation="vertical" flexItem />
+        <NavigationButton icon={fit} alt="Центрировать" onClick={onFit} />
+        <NavigationButton
+          icon={fullScreen}
+          alt="На весь экран"
+          onClick={onFullscreen}
+        />
+        <NavigationButton icon={page} alt="Обзор страницы" onClick={onPage} />
+      </div>
     </div>
   );
 };

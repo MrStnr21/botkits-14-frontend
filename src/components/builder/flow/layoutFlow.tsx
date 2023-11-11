@@ -1,24 +1,19 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback } from 'react';
 import cn from 'classnames/bind';
 
 import ReactFlow, {
-  OnNodesChange,
-  applyNodeChanges,
-  OnEdgesChange,
-  applyEdgeChanges,
-  OnConnect,
   addEdge,
   Background,
-  // useNodesState,
-  // useEdgesState,
-  // Connection,
-  // Edge,
+  useNodesState,
+  useEdgesState,
+  Connection,
+  Edge,
 } from 'reactflow';
 
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
-import initialEdges from './initial-edges';
+import { initialEdges, edgeOptions } from './initial-edges';
 
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
@@ -27,30 +22,12 @@ import NavigationPanel from '../navigation-panel/navigation-panel';
 const cx = cn.bind(styles);
 
 const LayoutFlow: FC = () => {
-  const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState(initialEdges);
-
-  const onNodesChange: OnNodesChange = useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    [setNodes]
-  );
-  const onEdgesChange: OnEdgesChange = useCallback(
-    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    [setEdges]
-  );
-
-  const onConnect: OnConnect = useCallback(
-    (connection) => setEdges((eds) => addEdge(connection, eds)),
-    [setEdges]
-  );
-
-  /* // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const onConnect = useCallback(
-    (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
-    []
-  ); */
+  const onConnect = useCallback((connection: Edge | Connection) => {
+    setEdges((eds) => addEdge(connection, eds));
+  }, []);
 
   return (
     <div className={cx('flow')}>
@@ -69,6 +46,7 @@ const LayoutFlow: FC = () => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
+        defaultEdgeOptions={edgeOptions}
       >
         <Background />
         <div className={cx('upWrapper')}>

@@ -1,3 +1,4 @@
+import { ReactFlowProvider } from 'reactflow';
 import TelegramPayment from './telegram-payment';
 
 export default {
@@ -5,4 +6,8 @@ export default {
   component: TelegramPayment,
 };
 
-export const Default = () => <TelegramPayment data={{ name: 'test name' }} />;
+export const Default = () => (
+  <ReactFlowProvider>
+    <TelegramPayment data={{ name: 'test name' }} />
+  </ReactFlowProvider>
+);
