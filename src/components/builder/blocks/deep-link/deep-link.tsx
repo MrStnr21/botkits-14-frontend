@@ -8,14 +8,7 @@ import {
   TBlockProps,
   TDeepLinkBlock,
 } from '../../../../services/types/builder';
-
-const selectValuesType = [
-  { value: 'random', nameValue: 'Случайное' },
-  { value: 'static', nameValue: 'Статичное' },
-  { value: 'variable', nameValue: 'Переменная' },
-  { value: 'JS', nameValue: 'JavaScript' },
-  { value: 'CRM', nameValue: 'CRM' },
-];
+import { selectValuesType } from '../../utils/data';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
   const [name, setName] = useState(data.name);
@@ -47,6 +40,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
             maxWidth={240}
             defaultValue={[data.type]}
             handleFunction={() => {}}
+            isAdaptive
           />
         </LabeledInput>
         <LabeledInput title="Количество знаков в ссылке">
