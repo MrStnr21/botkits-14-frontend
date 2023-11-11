@@ -81,7 +81,7 @@ const MenuVariable: FC<IMenuVariable> = ({
                   className={`${stylesMenuVariable.button} ${stylesMenuVariable.text}`}
                   onClick={() => {
                     changeVariableHandler(name);
-                    // onClick!(name);
+                    onClick!(name);
                     setIsActive('');
                     setTextColor(stylesMenuVariable.active);
                   }}
