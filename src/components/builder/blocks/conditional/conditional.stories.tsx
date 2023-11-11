@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { ReactFlowProvider } from 'reactflow';
 import ConditionalBlock from './conditional';
 
 const data = {
@@ -19,7 +20,9 @@ export default meta;
 type Story = StoryObj<typeof ConditionalBlock>;
 
 export const Block: Story = {
-  args: {
-    data,
-  },
+  render: () => (
+    <ReactFlowProvider>
+      <ConditionalBlock data={data} />
+    </ReactFlowProvider>
+  ),
 };
