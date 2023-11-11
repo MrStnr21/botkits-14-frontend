@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import ResetPassword from '../../pages/reset-password/reset-password';
 import Subscription from '../../pages/subscription/subscription';
@@ -20,114 +20,117 @@ import routesUrl from '../../utils/routesData';
 import ProtectedRoute from '../../routes/protected-route';
 
 const App: FC = (): JSX.Element => {
+  const path = useLocation().pathname;
+  console.log(path);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={routesUrl.signup}
-          element={
-            <ProtectedRoute notAuth>
-              <Signup />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.signin}
-          element={
-            <ProtectedRoute notAuth>
-              <Signin />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.reset}
-          element={
-            <ProtectedRoute notAuth>
-              <ResetPassword />
-            </ProtectedRoute>
-          }
-        />
+    <Routes>
+      <Route
+        path={routesUrl.signup}
+        element={
+          <ProtectedRoute notAuth>
+            <Signup />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={routesUrl.signin}
+        element={
+          <ProtectedRoute notAuth>
+            <Signin />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={routesUrl.reset}
+        element={
+          <ProtectedRoute notAuth>
+            <ResetPassword />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={routesUrl.homePage}
+        element={
+          <ProtectedRoute notAuth>
+            <Layout
+              type={path === `/${routesUrl.botBuilder}` ? 'compact' : 'default'}
+              width={path === `/${routesUrl.botBuilder}` ? 'unset' : 'limited'}
+            />
+          </ProtectedRoute>
+        }
+      >
         <Route
           path={routesUrl.homePage}
           element={
             <ProtectedRoute notAuth>
-              <Layout />
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.addBot}
+          element={
+            <ProtectedRoute notAuth>
+              <AddBotPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.botBuilder}
+          element={
+            <ProtectedRoute notAuth>
+              <BotBuilder />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.chat}
+          element={
+            <ProtectedRoute notAuth>
+              <Chat />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.mailing}
+          element={
+            <ProtectedRoute notAuth>
+              <Mailing />
             </ProtectedRoute>
           }
         >
-          <Route
-            path={routesUrl.homePage}
-            element={
-              <ProtectedRoute notAuth>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.addBot}
-            element={
-              <ProtectedRoute notAuth>
-                <AddBotPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.botBuilder}
-            element={
-              <ProtectedRoute notAuth>
-                <BotBuilder />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.chat}
-            element={
-              <ProtectedRoute notAuth>
-                <Chat />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.mailing}
-            element={
-              <ProtectedRoute notAuth>
-                <Mailing />
-              </ProtectedRoute>
-            }
-          >
-            {/* <Route path="" element={<First... />} />
+          {/* <Route path="" element={<First... />} />
               <Route path="start" element={<My... />} />
               <Route path="add" element={<Create... />} />
               <Route path="conditions" element={<Conditions.. />} /> */}
-          </Route>
-          <Route
-            path={routesUrl.partnership}
-            element={
-              <ProtectedRoute notAuth>
-                <Partnership />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.share}
-            element={
-              <ProtectedRoute notAuth>
-                <Share />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.subscription}
-            element={
-              <ProtectedRoute notAuth>
-                <Subscription />
-              </ProtectedRoute>
-            }
-          />
-          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
+        <Route
+          path={routesUrl.partnership}
+          element={
+            <ProtectedRoute notAuth>
+              <Partnership />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.share}
+          element={
+            <ProtectedRoute notAuth>
+              <Share />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.subscription}
+          element={
+            <ProtectedRoute notAuth>
+              <Subscription />
+            </ProtectedRoute>
+          }
+        />
+        <Route path={routesUrl.notFound} element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 };
 

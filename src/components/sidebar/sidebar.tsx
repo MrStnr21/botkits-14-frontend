@@ -9,6 +9,10 @@ import Cover from '../../ui/cover/cover';
 import { links, ILink } from './sb-data';
 import Typography from '../../ui/typography/typography';
 
+type TSidebarProps = {
+  type: 'default' | 'compact';
+};
+
 // Элемент заголовка в навигации
 const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
   return (
@@ -26,7 +30,7 @@ const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
   );
 };
 
-const Sidebar: FC = (): JSX.Element => {
+const Sidebar: FC<TSidebarProps> = ({ type }) => {
   const [isOpenSB, setStateSB] = useState(false);
   const [isOpenNL, setStateNL] = useState(true); // выпадающий список nestedList
 
@@ -45,7 +49,7 @@ const Sidebar: FC = (): JSX.Element => {
       aria-label="НАВИГАЦИЯ"
       className={`${stylesSidebar.wrapper} ${
         isOpenSB ? stylesSidebar.wrapper_open : stylesSidebar.wrapper_close
-      }`}
+      } ${stylesSidebar[type]}`}
     >
       <div
         className={`${stylesSidebar.sidebar} ${

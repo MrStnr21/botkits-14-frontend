@@ -1,29 +1,28 @@
-import { FC, useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router';
+import { FC } from 'react';
+import { Outlet } from 'react-router';
 
+import { useMediaQuery } from '@mui/material';
 import stylesLayout from './layout.module.scss';
 
 import Sidebar from '../../components/sidebar/sidebar';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 
-import routesUrl from '../../utils/routesData';
+type TLayoutProps = {
+  type?: 'default' | 'compact';
+  width?: 'limited' | 'unset';
+};
 
-const Layout: FC = (): JSX.Element => {
-  const location = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    setIsVisible(!location.pathname.endsWith(routesUrl.botBuilder));
-  }, [location]);
+const Layout: FC<TLayoutProps> = ({ type = 'default', width = 'limited' }) => {
+  const matches = useMediaQuery('(max-width: 620px)');
   return (
-    <div className={stylesLayout.layout}>
-      <Sidebar />
-      {isVisible && <Header />}
-      <main className={stylesLayout.page}>
+    <div className={`${stylesLayout.layout} ${stylesLayout[type]}`}>
+      <Sidebar type={type} />
+      {(type === 'default' || matches) && <Header />}
+      <main className={`${stylesLayout.page} ${stylesLayout[width]}`}>
         <Outlet />
       </main>
-      {isVisible && <Footer />}
+      {type === 'default' && <Footer />}
     </div>
   );
 };

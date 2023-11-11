@@ -7,7 +7,6 @@ import LayoutFlow from '../../components/builder/flow/layoutFlow';
 const BotBuilder: FC = (): JSX.Element => {
   return (
     <div className={stylesBotBuilder.title}>
-      BotBuilder
       <LayoutFlow />
       <TriggerBlock />
     </div>

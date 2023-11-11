@@ -1,6 +1,8 @@
 @use '../../stylesheets/variables' as *;
 @use '../../stylesheets/mixins' as *;
 
+
+
 @mixin add-button-circle() {
   @include size(46px, 46px);
   border-radius: $border-radius-circle;
@@ -31,6 +33,7 @@ $additional-grey-pressed: #c3d1d8;
 /* **     Общий блок открытое/закрытое состояние сайдбара и блок затемнения   ** */
 
 .wrapper {
+  @include hide-scroll;
   // START GRID LAYOUT
   grid-row: 1 / -1;
   z-index: 3;
@@ -346,4 +349,36 @@ $additional-grey-pressed: #c3d1d8;
   margin: 0;
   padding: 0;
   padding-left: 40px;
+}
+
+.compact {
+  position: absolute;
+  overflow: hidden;
+  top: 16px;
+  left: 16px;
+  max-width: 70px;
+  margin: 0;
+
+  .sidebar {
+    max-height: calc(100vh - 16px*2 - 62px);
+    overflow-y: scroll;
+
+    @media (max-width: $switching-width) {
+      max-height: unset;
+    }
+  }
+
+  .header__toggle{
+    display: none;
+    @media (max-width: $switching-width) {
+      display: block;
+    }
+  }
+
+  @media (max-width: $switching-width) {
+    max-width: unset;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 }
