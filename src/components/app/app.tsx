@@ -62,80 +62,46 @@ const App: FC = (): JSX.Element => {
           path={routesUrl.homePage}
           element={
             <ProtectedRoute>
-              <Layout />
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.addBot}
+          element={
+            <ProtectedRoute>
+              <AddBotPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.botBuilder}
+          element={
+            <ProtectedRoute>
+              <BotBuilder />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.chat}
+          element={
+            <ProtectedRoute>
+              <Chat />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.mailing}
+          element={
+            <ProtectedRoute>
+              <Mailing />
             </ProtectedRoute>
           }
         >
-          <Route
-            path={routesUrl.homePage}
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.addBot}
-            element={
-              <ProtectedRoute>
-                <AddBotPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.botBuilder}
-            element={
-              <ProtectedRoute>
-                <BotBuilder />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.chat}
-            element={
-              <ProtectedRoute>
-                <Chat />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.mailing}
-            element={
-              <ProtectedRoute>
-                <Mailing />
-              </ProtectedRoute>
-            }
-          >
-            {/* <Route path="" element={<First... />} />
+          {/* <Route path="" element={<First... />} />
               <Route path="start" element={<My... />} />
               <Route path="add" element={<Create... />} />
               <Route path="conditions" element={<Conditions.. />} /> */}
-          </Route>
-          <Route
-            path={routesUrl.partnership}
-            element={
-              <ProtectedRoute>
-                <Partnership />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.share}
-            element={
-              <ProtectedRoute>
-                <Share />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.subscription}
-            element={
-              <ProtectedRoute>
-                <Subscription />
-              </ProtectedRoute>
-            }
-          />
-          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
         <Route
           path={routesUrl.partnership}
@@ -163,6 +129,31 @@ const App: FC = (): JSX.Element => {
         />
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Route>
+      <Route
+        path={routesUrl.partnership}
+        element={
+          <ProtectedRoute>
+            <Partnership />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={routesUrl.share}
+        element={
+          <ProtectedRoute>
+            <Share />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path={routesUrl.subscription}
+        element={
+          <ProtectedRoute>
+            <Subscription />
+          </ProtectedRoute>
+        }
+      />
+      <Route path={routesUrl.notFound} element={<NotFound />} />
     </Routes>
   );
 };
