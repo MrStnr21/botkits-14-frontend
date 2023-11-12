@@ -61,6 +61,7 @@ export type TCoordinateBlock = {
 
 export type TTelegramPayBlock = {
   name: string;
+  goodsName?: string;
   image?: File; // Изображение, если есть. Для отображения будет использоваться компонент File
   description?: string;
   payment?: number;

@@ -85,3 +85,12 @@ export const AUTH_URL = {
   vk: `http://localhost:3001/vkontakte`,
   google: `http://localhost:3001/google`,
 };
+
+export const CURRENCY_AVAILABLE = ['RUB', 'EUR', 'USD'];
+
+export const MESSAGES_SUCCESSFUL_PAYMENT = [
+  'Оплата прошла успешно',
+  'Ok!',
+  'Оплачено',
+  'успешно',
+];
