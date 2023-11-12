@@ -2,61 +2,90 @@ import React, { FC, ChangeEvent, useRef, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import stylesChatCompPopup from './chat-comp-popup.module.scss';
 import logout from '../../../images/icon/24x24/drop down/logOutBlue.svg';
-import close from '../../../images/icon/24x24/common/close.svg';
-import check from '../../../images/icon/24x24/common/checkBlue.svg';
-import docCircle from '../../../images/icon/47x47/doc-circle.svg';
+
 import Typography from '../../../ui/typography/typography';
 import FileItem, { Item } from '../../../ui/file-item/file-item';
 import useDrag from '../../../utils/useDrag';
-
-const initialItems: Item[] = [];
 
 interface IChatCompPopup {
   onClick?: () => void;
 }
 
 const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
-  const [items, setItems] = useState<Item[]>(initialItems);
+  const [items, setItems] = useState<Item[]>([]);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // сохраняем добавленные в попап файлы в localStorage
     const storedFiles = localStorage.getItem('chatCompPopupState');
     setIsMounted(true);
     if (storedFiles) {
       setItems(JSON.parse(storedFiles).items);
     }
   }, []);
-  const handleDropEvent = (e: React.DragEvent<HTMLDivElement>) => {
+
+  const uploadFile = async (
+    fileToUpload: File,
+    fileIndex: number,
+    isLarge: boolean
+  ) => {
+    try {
+      for (
+        let progress = 0;
+        progress <= fileToUpload.size; // пробегаемся по размеру файла
+        progress += isLarge ? 250000 : 100000 // шаг загрузки для файлов свыше 1 мб и до 1 мб.
+      ) {
+        // eslint-disable-next-line no-await-in-loop
+        await new Promise((resolve) => {
+          setTimeout(resolve, 0);
+        });
+
+        setItems((prev) => {
+          // eslint-disable-next-line no-param-reassign
+          prev[fileIndex].uploadedProgress = isLarge
+            ? `${(progress / (1024 * 1024)).toFixed(1)} MB`
+            : `${(progress / 1024).toFixed(1)} KB`;
+          return [...prev];
+        });
+      }
+    } catch (error) {
+      console.error('Ошибка загрузки файла:', error);
+    } finally {
+      setItems((prev) => {
+        // eslint-disable-next-line no-param-reassign
+        prev[fileIndex].isUploaded = true;
+        return [...prev];
+      });
+    }
+  };
+  const handleDropEvent = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    const uploadedFile = e.dataTransfer.files[0];
-    const fileSize = (uploadedFile.size / 1024).toFixed(1); // Размер файла в KB
-    const realSize = (uploadedFile.size / (1024 * 1024)).toFixed(1); // Реальный размер файла в MB
+    const uploadedFile: File = e.dataTransfer.files[0];
 
     if (e.dataTransfer.files.length > 0) {
       setFile(e.dataTransfer.files[0]);
 
-      const newItem: Item = {
-        title: uploadedFile.name,
-        info: `${fileSize} KB / ${realSize} MB`,
-        iconDock: docCircle,
-        closeIcon: close,
-        checkIcon: check,
-        isUploaded: false,
-      };
+      const isLargeFile = uploadedFile.size / (1024 * 1024) >= 1;
+      const fileSize = isLargeFile
+        ? (uploadedFile.size / (1024 * 1024)).toFixed(1)
+        : (uploadedFile.size / 1024).toFixed(1);
 
-      setItems((prevItems) => [...prevItems, newItem]);
-      console.log('Файл был успешно добавлен:', e.dataTransfer.files[0].name);
-      setTimeout(() => {
-        newItem.closeIcon = check; // Устанавливаем иконку галочки после задержки
-        newItem.isUploaded = true; // Устанавливаем флаг загрузки в true
-        setItems((prevItems) => [...prevItems]); // Обновляем состояние элемента
-      }, 1000);
+      const uploadFileInfo: Item = {
+        name: uploadedFile.name,
+        size: `${fileSize} ${isLargeFile ? 'MB' : 'KB'}`, // в зависимости от размера файла показываем в МБ (от 1 мб) или в КБ (до 1 мб)
+        isUploaded: false,
+        uploadedProgress: 0,
+      };
+      const uploadFileIndex = items.length;
+
+      setItems((prevItems) => [...prevItems, uploadFileInfo]);
+
+      await uploadFile(uploadedFile, uploadFileIndex, isLargeFile);
     }
   };
+
   const {
     isHovered,
     handleDrop,
@@ -69,26 +98,26 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
   } = useDrag(handleDropEvent);
 
   const handleFileInputClick = () => fileInput.current?.click();
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
     if (target.files && target.files.length > 0) {
       const selectedFile = target.files[0];
-      const fileSize = (selectedFile.size / 1024).toFixed(1); // Размер файла в KB
-      const realSize = (selectedFile.size / (1024 * 1024)).toFixed(1); // Реальный размер файла в MB
-      const newItem = {
-        title: selectedFile.name,
-        info: `${fileSize} KB / ${realSize} MB`,
-        iconDock: docCircle,
-        closeIcon: close,
-        checkIcon: check,
-        isUploaded: true,
+      const isLargeFile = selectedFile.size / (1024 * 1024) >= 1;
+      const fileSize = isLargeFile
+        ? (selectedFile.size / (1024 * 1024)).toFixed(1)
+        : (selectedFile.size / 1024).toFixed(1);
+
+      const uploadFileInfo: Item = {
+        name: selectedFile.name,
+        size: `${fileSize} ${isLargeFile ? 'MB' : 'KB'}`,
+        isUploaded: false,
+        uploadedProgress: 0,
       };
-      setItems((prevItems) => [...prevItems, newItem]);
-      setTimeout(() => {
-        newItem.closeIcon = check;
-        newItem.isUploaded = true;
-        setItems((prevItems) => [...prevItems]);
-      }, 1000);
+      const uploadFileIndex = items.length;
+
+      setItems((prevItems) => [...prevItems, uploadFileInfo]);
+
+      await uploadFile(selectedFile, uploadFileIndex, isLargeFile);
     }
   };
 
@@ -98,7 +127,6 @@ const ChatCompPopup: FC<IChatCompPopup> = (): JSX.Element => {
     setItems(updatedItems);
   };
   useEffect(() => {
-    // Сохраняем состояние попапа в Local Storage
     if (!isMounted) return;
     const popupState = {
       items,

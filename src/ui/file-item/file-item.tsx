@@ -1,14 +1,15 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback } from 'react';
 import { Tooltip } from '@mui/material';
 import style from './file-item.module.scss';
+import docCircle from '../../images/icon/47x47/doc-circle.svg';
+import close from '../../images/icon/24x24/common/close.svg';
+import check from '../../images/icon/24x24/common/checkBlue.svg';
 
 export interface Item {
-  iconDock: string;
-  info: string;
-  title: string;
-  closeIcon: string;
-  checkIcon: string;
+  size: `${string} MB` | `${string} KB`;
+  name: string;
   isUploaded: boolean;
+  uploadedProgress: `${string} MB` | `${string} KB` | number;
 }
 
 interface FileItemProps {
@@ -18,13 +19,6 @@ interface FileItemProps {
 }
 
 const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
-  const [isUploaded, setIsUploaded] = useState(false);
-
-  useEffect(() => {
-    if (item.iconDock === 'successIconPath') {
-      setIsUploaded(true);
-    }
-  }, [item.iconDock]);
   const handleRemove = useCallback(
     () => handleRemoveItem(index),
     [index, handleRemoveItem]
@@ -32,30 +26,28 @@ const FileItem: FC<FileItemProps> = ({ item, index, handleRemoveItem }) => {
 
   return (
     <div className={style.itemWrapper}>
-      <img
-        className={style.iconDocument}
-        alt="iconDocument"
-        src={item.iconDock}
-      />
+      <img className={style.iconDocument} alt="iconDocument" src={docCircle} />
       <div className={style.itemInfoWrapper}>
-        <div className={style.itemTitle}>{item.title}</div>
-        <div className={style.itemInfo}>{item.info}</div>
+        <div className={style.itemTitle}>{item.name}</div>
+        <div className={style.itemInfo}>
+          {item.isUploaded ? (
+            <span>
+              {item.size} / {item.size}
+            </span>
+          ) : (
+            <span>
+              {item.uploadedProgress} / {item.size}
+            </span>
+          )}
+        </div>
       </div>
       <Tooltip title="Удалить файл">
         <button className={style.button} type="button" onClick={handleRemove}>
-          {isUploaded ? (
-            <img
-              className={style.iconCommonCheck}
-              alt=""
-              src={item.checkIcon}
-            />
-          ) : (
-            <img
-              className={style.iconCommonCheck}
-              alt=""
-              src={item.closeIcon}
-            />
-          )}
+          <img
+            className={style.iconCommonCheck}
+            alt=""
+            src={item.isUploaded ? check : close}
+          />
         </button>
       </Tooltip>
     </div>
