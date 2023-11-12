@@ -8,7 +8,7 @@ import Partnership from '../../pages/partnership/partnership';
 import BotBuilder from '../../pages/bot-builder/bot-builder';
 import Dashboard from '../../pages/dashboard/dashboard';
 import Mailing from '../../pages/mailing/mailing';
-import Layout from '../../pages/layout/layout';
+import Layout from '../layout/layout';
 import Signup from '../../pages/signup/signup';
 import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
@@ -21,7 +21,6 @@ import ProtectedRoute from '../../routes/protected-route';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
-  console.log(path);
   return (
     <Routes>
       <Route

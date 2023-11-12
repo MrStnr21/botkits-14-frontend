@@ -4,9 +4,9 @@ import { Outlet } from 'react-router';
 import { useMediaQuery } from '@mui/material';
 import stylesLayout from './layout.module.scss';
 
-import Sidebar from '../../components/sidebar/sidebar';
-import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import Sidebar from '../sidebar/sidebar';
+import Footer from '../footer/footer';
+import Header from '../header/header';
 
 type TLayoutProps = {
   type?: 'default' | 'compact';

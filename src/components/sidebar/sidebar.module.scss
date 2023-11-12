@@ -163,6 +163,8 @@ $additional-grey-pressed: #c3d1d8;
   }
 
   @media (max-width: $switching-width) {
+    width: unset;
+
     .navigation {
       display: none; //скрываем весь сайдбар кроме логотипа и бургер-кнопки
     }

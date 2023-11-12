@@ -3,28 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 import stylesSidebar from './sidebar.module.scss';
 
-import { links, ILink } from './sb-data';
+import { links } from './sb-data';
 import Typography from '../../ui/typography/typography';
+import Subheader from './subheader/subheader';
 
 type TSidebarProps = {
   type: 'default' | 'compact';
-};
-
-// Элемент заголовка в навигации
-const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
-  return (
-    <NavLink
-      to={navLink}
-      className={(navData) =>
-        navData.isActive
-          ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}`
-          : stylesSidebar.navigation__link
-      }
-    >
-      {icon}
-      <p className={stylesSidebar.navigation__text}>{text}</p>
-    </NavLink>
-  );
 };
 
 const Sidebar: FC<TSidebarProps> = ({ type }) => {
