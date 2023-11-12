@@ -4,7 +4,7 @@ import {
   LineControllerDatasetOptions,
   FillerControllerDatasetOptions,
 } from 'chart.js';
-import formatLabel from './utils';
+import formatLabel from '../../utils/formatLabel';
 
 /* Цвета, используемые в графиках */
 // Можно попробовать экспорт из _variables.scss

@@ -1,21 +1,10 @@
 import { Divider } from '@mui/material';
 import { FC } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
-import InputSelect from '../../../ui/inputs/input-select/input-select';
-import Typography from '../../../ui/typography/typography';
+import InputSelect from '../../ui/inputs/input-select/input-select';
+import Typography from '../../ui/typography/typography';
 import styles from './chart.module.scss';
 import { ChartProps } from './types';
-
-const Periods = [
-  { nameValue: 'Максимум', value: 'max' },
-  { nameValue: 'Сегодня', value: 'today' },
-  { nameValue: 'Вчера', value: 'yesterday' },
-  { nameValue: 'Последние 7 дней', value: 'last7' },
-  { nameValue: 'Последние 14 дней', value: 'last14' },
-  { nameValue: 'Последние 30 дней', value: 'last30' },
-  { nameValue: 'Этот месяц', value: 'thisMonth' },
-  { nameValue: 'Прошлый месяц', value: 'lastMonth' },
-];
 
 const StatsChart: FC<ChartProps> = ({
   type, // подпись над заголовком
@@ -26,6 +15,7 @@ const StatsChart: FC<ChartProps> = ({
   datasetLineOptions, // либо для типа bar, либо для типа line
   chartLabels, // данные: массив значений по оси X
   chartData, // данные: массив значений по оси Y
+  periods, // данные: за какие периоды можно отобразить статистику
   onPeriodSelect, // при выборе периода
   // onCalendarSelect, // при выборе календаря
 }) => {
@@ -42,7 +32,7 @@ const StatsChart: FC<ChartProps> = ({
         </div>
         <div className={styles.selectors}>
           <InputSelect
-            values={Periods}
+            values={periods}
             defaultValue={['last14']}
             maxWidth={165}
             handleFunction={onPeriodSelect}

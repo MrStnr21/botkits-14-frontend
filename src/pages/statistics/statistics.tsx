@@ -3,7 +3,11 @@ import { Chart, registerables } from 'chart.js';
 import Typography from '../../ui/typography/typography';
 import Button from '../../ui/buttons/button/button';
 import styles from './statistics.module.scss';
-import { mockPlatforms, mockInstallment } from '../../utils/mockStatistics';
+import {
+  mockPlatforms,
+  mockInstallment,
+  mockPeriods,
+} from '../../utils/mockStatistics';
 import {
   installmentDatasetOptions,
   installmentChartOptions,
@@ -12,8 +16,8 @@ import {
   totalBotsChartOptions,
   totalBotsDatasetOptions,
 } from './chartsConfig';
-import StatsChart from './chart/chart';
-import { Data, Labels } from './chart/types';
+import StatsChart from '../../components/chart/chart';
+import { Data, Labels } from '../../components/chart/types';
 
 Chart.register(...registerables);
 
@@ -54,6 +58,7 @@ const Statistics: FC = () => {
           datasetBarOptions={messengersDatasetOptions}
           chartLabels={messengersLabels}
           chartData={messengersData}
+          periods={mockPeriods}
           onPeriodSelect={() => {
             console.log('onSelect action');
           }}
@@ -66,6 +71,7 @@ const Statistics: FC = () => {
           datasetLineOptions={installmentDatasetOptions}
           chartLabels={installmentLabels}
           chartData={installmentData}
+          periods={mockPeriods}
           onPeriodSelect={() => {
             console.log('onSelect action');
           }}
@@ -78,6 +84,7 @@ const Statistics: FC = () => {
           datasetLineOptions={totalBotsDatasetOptions}
           chartLabels={totalBotsLabels}
           chartData={totalBotsData}
+          periods={mockPeriods}
           onPeriodSelect={() => {
             console.log('onSelect action');
           }}

@@ -1,5 +1,5 @@
-@use '../../../stylesheets/variables' as *;
-@use '../../../stylesheets/mixins' as *;
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .chart {
   box-sizing: border-box;
@@ -10,7 +10,7 @@
 }
 
 .title {
-  @include flex(row, space-between, flex-start);
+  @include flex(row, space-between);
   margin-bottom: 24px;
 }
 

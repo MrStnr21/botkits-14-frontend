@@ -11,6 +11,11 @@ type CommonProps = {
   chartOptions: ChartOptions<'line' | 'bar'>;
   chartLabels: string[];
   chartData: number[];
+  // типизация из InputSelect.tsx
+  periods: {
+    nameValue: string;
+    value: string;
+  }[];
   onPeriodSelect: () => void;
   // onCalendarSelect: () => void;
 };

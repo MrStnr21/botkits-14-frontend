@@ -45,3 +45,14 @@ export const mockInstallment = [
   { id: 11, month: 'Нояб', count: 500000 },
   { id: 12, month: 'Дек', count: 400000 },
 ];
+
+export const mockPeriods = [
+  { nameValue: 'Максимум', value: 'max' },
+  { nameValue: 'Сегодня', value: 'today' },
+  { nameValue: 'Вчера', value: 'yesterday' },
+  { nameValue: 'Последние 7 дней', value: 'last7' },
+  { nameValue: 'Последние 14 дней', value: 'last14' },
+  { nameValue: 'Последние 30 дней', value: 'last30' },
+  { nameValue: 'Этот месяц', value: 'thisMonth' },
+  { nameValue: 'Прошлый месяц', value: 'lastMonth' },
+];
