@@ -3,13 +3,15 @@ import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
 import ControlLayout from '../../control-layout/control-layout';
 import Input from '../../../../ui/inputs/input/input';
-import styles from './api.module.scss';
+import styles from './api-block.module.scss';
 import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
+  const [name, setName] = useState(data.name);
+
   const [headers, setHeaders] = useState<TApiBlock['headers']>(
     data.headers || []
   );
@@ -76,7 +78,13 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   };
 
   return (
-    <ControlLayout type="API" name={data.name} nameSetter={() => {}}>
+    <ControlLayout
+      type="API"
+      name={name}
+      nameSetter={(newName: string) => {
+        setName(newName);
+      }}
+    >
       <div className={styles.container}>
         <LabeledInput title="URL стороннего сервиса">
           <Input

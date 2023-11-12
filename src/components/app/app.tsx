@@ -50,7 +50,7 @@ const App: FC = (): JSX.Element => {
       <Route
         path={routesUrl.homePage}
         element={
-          <ProtectedRoute notAuth>
+          <ProtectedRoute>
             <Layout
               type={path === `/${routesUrl.botBuilder}` ? 'compact' : 'default'}
               width={path === `/${routesUrl.botBuilder}` ? 'unset' : 'limited'}
@@ -61,52 +61,86 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.homePage}
           element={
-            <ProtectedRoute notAuth>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.addBot}
-          element={
-            <ProtectedRoute notAuth>
-              <AddBotPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.botBuilder}
-          element={
-            <ProtectedRoute notAuth>
-              <BotBuilder />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.chat}
-          element={
-            <ProtectedRoute notAuth>
-              <Chat />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.mailing}
-          element={
-            <ProtectedRoute notAuth>
-              <Mailing />
+            <ProtectedRoute>
+              <Layout />
             </ProtectedRoute>
           }
         >
-          {/* <Route path="" element={<First... />} />
+          <Route
+            path={routesUrl.homePage}
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.addBot}
+            element={
+              <ProtectedRoute>
+                <AddBotPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.botBuilder}
+            element={
+              <ProtectedRoute>
+                <BotBuilder />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.chat}
+            element={
+              <ProtectedRoute>
+                <Chat />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.mailing}
+            element={
+              <ProtectedRoute>
+                <Mailing />
+              </ProtectedRoute>
+            }
+          >
+            {/* <Route path="" element={<First... />} />
               <Route path="start" element={<My... />} />
               <Route path="add" element={<Create... />} />
               <Route path="conditions" element={<Conditions.. />} /> */}
+          </Route>
+          <Route
+            path={routesUrl.partnership}
+            element={
+              <ProtectedRoute>
+                <Partnership />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.share}
+            element={
+              <ProtectedRoute>
+                <Share />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.subscription}
+            element={
+              <ProtectedRoute>
+                <Subscription />
+              </ProtectedRoute>
+            }
+          />
+          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
         <Route
           path={routesUrl.partnership}
           element={
-            <ProtectedRoute notAuth>
+            <ProtectedRoute>
               <Partnership />
             </ProtectedRoute>
           }
@@ -114,7 +148,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.share}
           element={
-            <ProtectedRoute notAuth>
+            <ProtectedRoute>
               <Share />
             </ProtectedRoute>
           }
@@ -122,7 +156,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.subscription}
           element={
-            <ProtectedRoute notAuth>
+            <ProtectedRoute>
               <Subscription />
             </ProtectedRoute>
           }
