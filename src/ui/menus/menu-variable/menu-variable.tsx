@@ -13,13 +13,13 @@ export interface IMenuVariable {
 
 const MenuVariable: FC<IMenuVariable> = ({
   buttons,
-  onClick = () => {},
+  onClick,
   nameMenu = 'Переменная',
   width,
 }): JSX.Element => {
   const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
-  const [textColor, setTextColor] = useState<string>(stylesMenuVariable.grey);
+  const [textColor, setTextColor] = useState<string>('');
 
   const changeVariableHandler = (text: string) => {
     setVariable(text);
@@ -81,9 +81,8 @@ const MenuVariable: FC<IMenuVariable> = ({
                   className={`${stylesMenuVariable.button} ${stylesMenuVariable.text}`}
                   onClick={() => {
                     changeVariableHandler(name);
-                    onClick(name);
+                    onClick!(name);
                     setIsActive('');
-                    openHandler();
                   }}
                 >
                   {name}

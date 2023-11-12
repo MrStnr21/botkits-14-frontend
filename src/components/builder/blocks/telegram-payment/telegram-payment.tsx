@@ -4,14 +4,13 @@ import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
 import Input from '../../../../ui/inputs/input/input';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
-import MenuVariable from '../../../../ui/menus/menu-variable/menu-variable';
 import InputSelect from '../../../../ui/inputs/input-select/input-select';
 import {
   TBlockProps,
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
 import { BUTTON_NAME } from '../../../../utils/constants';
-import { currencyAvailable, messagesSuccessfulPayment } from '../../utils/data';
+import { currencyAvailable, messagesSuccessful } from '../../utils/data';
 // import VideoCard from '../../../video-card/video-card';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
@@ -22,7 +21,6 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
     data.payment ? String(data.payment) : ''
   );
   const placeholder = 'Введите название';
-  const [onSuccess, setOnSuccess] = useState(data.onSuccess || placeholder);
 
   const ref = useRef<null | HTMLInputElement>(null);
 
@@ -109,10 +107,12 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           />
         </LabeledInput>
         <LabeledInput title="После успешной оплаты вернуть">
-          <MenuVariable
-            buttons={messagesSuccessfulPayment}
-            nameMenu={onSuccess}
-            onClick={(c: string) => setOnSuccess(c)}
+          <InputSelect
+            values={messagesSuccessful}
+            maxWidth={400}
+            defaultValue={[data.onSuccess || 'По умолчанию']}
+            handleFunction={() => {}}
+            isAdaptive
           />
         </LabeledInput>
       </div>

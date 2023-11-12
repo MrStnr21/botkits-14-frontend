@@ -11,7 +11,7 @@
 
 .overlayActive {
   display: block;
-  pointer-events: all;  
+  pointer-events: all;
 }
 
 .open_button {
@@ -19,15 +19,11 @@
   flex-direction: row;
   width: 240px;
   height: 40px;
-  background-color: #F2F4F8;
+  background-color: #f8f9fb;
   border-radius: 5px;
   position: relative;
   cursor: pointer;
   z-index: 999;
-  @media screen and (max-width: 520px) {
-    max-width: 140px;
-    height: 24px;
-  }
 }
 
 .box {
@@ -39,9 +35,6 @@
   background-color: white;
   border-radius: 10px;
   position: absolute;
-  @media screen and (max-width: 520px) {
-    width: 135px;
-  }
 }
 
 .active {
@@ -56,9 +49,6 @@
   letter-spacing: 0.3px;
   color: black;
   transition: color 0.3s linear;
-  @media screen and (max-width: 520px) {
-    font-size: 7.41px;
-  }
 }
 
 .open_button .text {
@@ -94,9 +84,6 @@
   border: none;
   cursor: pointer;
   z-index: 999;
-  @media screen and (max-width: 520px) {
-    height: 15px;
-  }
 }
 .button:first-of-type {
   margin-top: 11px;
@@ -115,7 +102,4 @@
   right: 12px;
   width: 16px;
   height: 16px;
-  @media screen and (max-width: 520px) {
-    top: 5px;
-  }
 }
