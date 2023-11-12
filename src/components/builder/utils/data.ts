@@ -96,4 +96,17 @@ export const signSelectValues = [
   },
 ];
 
+export const currencyAvailable = [
+  { value: 'Рубль', nameValue: 'RUB' },
+  { value: 'Евро', nameValue: 'EUR' },
+  { value: 'Доллары США', nameValue: 'USD' },
+];
+
+export const messagesSuccessfulPayment = [
+  'Оплата прошла успешно',
+  'Ok!',
+  'Оплачено',
+  'успешно',
+];
+
 export default {};
