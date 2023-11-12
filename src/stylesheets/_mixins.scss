@@ -115,4 +115,12 @@
   text-align: $text-align;
 }
 
+@mixin hide-scroll {
+  & ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
