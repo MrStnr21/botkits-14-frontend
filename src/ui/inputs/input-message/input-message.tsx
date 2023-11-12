@@ -11,7 +11,6 @@ import ModalPopup from '../../../components/popups/modal-popup/modal-popup';
 import ChatCompPopup from '../../../components/popups/chat-comp-popup/chat-comp-popup';
 import Tooltip from '../../../components/chat-dialogue/tooltip/tooltip';
 
-
 interface IInputMessage {
   placeholder?: string;
   value?: string;
