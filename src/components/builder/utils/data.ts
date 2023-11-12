@@ -19,6 +19,14 @@ export const selectValues = [
   { value: '3', nameValue: '3' },
 ];
 
+export const selectValuesType = [
+  { value: 'random', nameValue: 'Случайное' },
+  { value: 'static', nameValue: 'Статичное' },
+  { value: 'variable', nameValue: 'Переменная' },
+  { value: 'JS', nameValue: 'JavaScript' },
+  { value: 'CRM', nameValue: 'CRM' },
+];
+
 export const signSelectValues = [
   {
     nameValue: equalImage,

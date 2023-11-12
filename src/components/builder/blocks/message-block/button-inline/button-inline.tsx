@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Position, ReactFlowProvider } from 'reactflow';
+import { Position } from 'reactflow';
 import styles from './button-inline.module.scss';
 import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
 import askPhoneIcon from '../../../../../images/icon/24x24/constructor/ask-phone.svg';
@@ -73,55 +73,53 @@ const ButtonInline: FC<TButtonProps> = ({ data }) => {
       : styles['text-align-start'];
 
   return (
-    <ReactFlowProvider>
-      <div
-        className={`${!hidden && styles.outline}`}
-        onMouseEnter={() => setHidden(false)}
-        onMouseLeave={() => setHidden(true)}
-      >
-        <CustomHandle position={Position.Right} hidden={hidden} type="source" />
-        <div className={styles.container}>
-          <div className={styles['absolute-wrapper']}>
-            <ConstructorHelperButton
-              isVisible={menu}
-              askOnClick={() => toggleString(!stringVisible)}
-              deleteOnClick={deleteOnClick}
-              askIcon={getIcon()}
-              color
-              colorOnClick={(col) => setBtnColor(col)}
-              hide={() => toggleMenu(false)}
-            />
-          </div>
-          <button
-            type="button"
-            className={`${styles.button} ${getColor()} ${flexClass}`}
-            onClick={() => toggleMenu(!menu)}
-          >
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={`${
-                styles['button-name']
-              } ${textAlignClass} ${getColor()}`}
-            />
-            {stringVisible && data.type === 'button' && (
-              <input
-                className={`${styles['button-str']} ${textAlignClass}`}
-                value={additionalString}
-                onChange={(e) => setAdditionalString(e.target.value)}
-              />
-            )}
-            {stringVisible && data.type === 'answer' && (
-              <span
-                className={`${styles['button-str']} ${styles['text-align-start']}`}
-              >
-                Запросить телефон
-              </span>
-            )}
-          </button>
+    <div
+      className={`${!hidden && styles.outline}`}
+      onMouseEnter={() => setHidden(false)}
+      onMouseLeave={() => setHidden(true)}
+    >
+      <CustomHandle position={Position.Right} hidden={hidden} type="source" />
+      <div className={styles.container}>
+        <div className={styles['absolute-wrapper']}>
+          <ConstructorHelperButton
+            isVisible={menu}
+            askOnClick={() => toggleString(!stringVisible)}
+            deleteOnClick={deleteOnClick}
+            askIcon={getIcon()}
+            color
+            colorOnClick={(col) => setBtnColor(col)}
+            hide={() => toggleMenu(false)}
+          />
         </div>
+        <button
+          type="button"
+          className={`${styles.button} ${getColor()} ${flexClass}`}
+          onClick={() => toggleMenu(!menu)}
+        >
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={`${
+              styles['button-name']
+            } ${textAlignClass} ${getColor()}`}
+          />
+          {stringVisible && data.type === 'button' && (
+            <input
+              className={`${styles['button-str']} ${textAlignClass}`}
+              value={additionalString}
+              onChange={(e) => setAdditionalString(e.target.value)}
+            />
+          )}
+          {stringVisible && data.type === 'answer' && (
+            <span
+              className={`${styles['button-str']} ${styles['text-align-start']}`}
+            >
+              Запросить телефон
+            </span>
+          )}
+        </button>
       </div>
-    </ReactFlowProvider>
+    </div>
   );
 };
 

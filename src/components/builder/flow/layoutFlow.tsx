@@ -13,7 +13,7 @@ import ReactFlow, {
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
-import initialEdges from './initial-edges';
+import { initialEdges, edgeOptions } from './initial-edges';
 
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
@@ -46,6 +46,7 @@ const LayoutFlow: FC = () => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
+        defaultEdgeOptions={edgeOptions}
       >
         <Background />
         <div className={cx('upWrapper')}>

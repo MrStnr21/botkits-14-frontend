@@ -2,7 +2,7 @@ import { Node, NodeTypes } from 'reactflow';
 
 import ButtonStart from '../blocks/button-start/button-start';
 import InlineButton from '../blocks/message-block/button-inline/button-inline';
-import ApiBlockNode from '../blocks/api/api';
+import ApiBlockNode from '../blocks/api/api-block';
 import 'reactflow/dist/style.css';
 import SendingCoordinatesBlock from '../blocks/sending-coordinates/sending-coordinates';
 import MessageBlock from '../blocks/message-block/message-block';
@@ -47,5 +47,13 @@ export const initialNodes: Node[] = [
       coordinates: [],
     },
     position: { x: 900, y: 0 },
+  },
+  {
+    id: 'node-5',
+    type: 'inlineButton',
+    data: {
+      type: 'button',
+    },
+    position: { x: 1300, y: 0 },
   },
 ];

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { ReactFlowProvider } from 'reactflow';
 import DeepLink from './deep-link';
 
 const data = {
@@ -16,7 +17,9 @@ export default meta;
 type Story = StoryObj<typeof DeepLink>;
 
 export const Block: Story = {
-  args: {
-    data,
-  },
+  render: () => (
+    <ReactFlowProvider>
+      <DeepLink data={data} />
+    </ReactFlowProvider>
+  ),
 };
