@@ -13,7 +13,6 @@ import Help from '../../../components/icons/Help/Help';
 import { logoutAction } from '../../../services/actions/logout/logout';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 
-import { BASE_URL } from '../../../utils/config';
 import routesUrl from '../../../utils/routesData';
 
 import { getAccessToken } from '../../../auth/authService';
@@ -80,10 +79,7 @@ const MenuUser: FC<IMenuUser> = ({
           Настройки аккаунта
         </Typography>
       </a>
-      <a
-        href={`${BASE_URL}/${routesUrl.subscription}`}
-        className={stylesMenuUser.button}
-      >
+      <a href={routesUrl.subscription} className={stylesMenuUser.button}>
         <img src={paymentsIcon} alt="Иконка" />
         <Typography tag="p" className={stylesMenuUser.text}>
           Подписка и платежи
