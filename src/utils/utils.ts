@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import { saveSocial } from '../auth/authService';
-import { AUTH_URL } from './constants';
+import { AUTH_URL_M, AUTH_URL_Y, AUTH_URL_V, AUTH_URL_G } from './config';
 
 // Принимает размер файла в байтах и возвращает округленный до десятых результат в B, KB, MB
 export const sizeFormated = (byte: number) => {
@@ -18,21 +18,21 @@ export const sizeFormated = (byte: number) => {
 export const handlerAuthYandex = () => {
   saveSocial('yandex/exchange');
   // Перенаправляем пользователя на страницу авторизации Яндекса
-  window.location.href = AUTH_URL.yandex;
+  window.location.href = AUTH_URL_Y!;
 };
 
 export const handlerAuthMailru = () => {
   saveSocial('mailru/exchange');
   // Перенаправляем пользователя на страницу авторизации MailRu
-  window.location.href = AUTH_URL.mailru;
+  window.location.href = AUTH_URL_M!;
 };
 
 export const handlerAuthVkontakte = () => {
   // Перенаправляем пользователя на страницу авторизации Яндекса
-  window.location.href = AUTH_URL.vk;
+  window.location.href = AUTH_URL_V!;
 };
 
 export const handlerAuthGoogle = () => {
   // Перенаправляем пользователя на страницу авторизации Яндекса
-  window.location.href = AUTH_URL.google;
+  window.location.href = AUTH_URL_G!;
 };

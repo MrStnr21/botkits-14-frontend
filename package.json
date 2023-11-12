@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@esbuild/win32-x64": "^0.19.5",
     "@mui/material": "^5.14.8",
     "@mui/styled-engine-sc": "^5.14.8",
     "@mui/system": "^5.14.8",
@@ -24,7 +25,6 @@
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
-    "dotenv": "^16.3.1",
     "emoji-picker-react": "^4.5.1",
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
