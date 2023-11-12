@@ -60,8 +60,6 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           />
           <label htmlFor={BUTTON_NAME.IMAGE}>
             <ConstructorAddButton
-              // value={type}
-              // active={isActive}
               maxWidth="100%"
               icon="photo"
               onClick={onClickAddPhoto}
