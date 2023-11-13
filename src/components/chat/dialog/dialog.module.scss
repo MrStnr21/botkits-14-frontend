@@ -3,12 +3,16 @@
 
 .dialog {
   @include size(100%, 48px);
-  @include indents(16px 0, unset);
+  @include indents(16px 0, 0);
   @include position(relative);
   display: grid;
   grid-template-columns: 41px auto auto;
   grid-template-rows: auto auto;
   cursor: pointer;
+
+  @media screen and (max-width: 1186px) {
+    @include max-size(360px, unset);
+  }
 
   &__line {
     @include size(4px, 81px);

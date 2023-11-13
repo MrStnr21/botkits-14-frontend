@@ -3,16 +3,17 @@ import { FC } from 'react';
 import styles from './dialog.module.scss';
 import Avatar from '../../../ui/avatar/avatar';
 import Typography from '../../../ui/typography/typography';
+import getTimeAgo from '../../../utils/getTimeAgo';
 
 interface IDialog {
   name: string;
   text: string;
-  time: string;
+  timeAgo?: Date;
   messageNum: number;
   status: string;
 }
 
-const Dialog: FC<IDialog> = ({ name, text, time, messageNum, status }) => {
+const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
   function pickChat(e: { target: any } | undefined) {
     const allLines = document.querySelectorAll(
       '.line'
@@ -55,9 +56,9 @@ const Dialog: FC<IDialog> = ({ name, text, time, messageNum, status }) => {
       >
         {text}
       </Typography>
-      <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
+      {/* <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
         {getTimeAgo(timeAgo, 'custom')}
-      </Typography>
+      </Typography> */}
       {messageNum > 0 ? (
         <div className={styles.dialog__messageNumCircle}>
           <Typography

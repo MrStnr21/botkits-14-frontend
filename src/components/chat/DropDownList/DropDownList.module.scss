@@ -30,6 +30,7 @@
   }
 
   &__textInfo {
+    @include flex(row, unset, unset, 8px);
     white-space: nowrap;
     padding-top: 12px;
   }

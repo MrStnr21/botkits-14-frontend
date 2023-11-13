@@ -55,7 +55,7 @@ const App: FC = (): JSX.Element => {
       <Route
         path={routesUrl.homePage}
         element={
-          <ProtectedRoute>
+          <ProtectedRoute notAuth>
             <Layout
               type={path === `/${routesUrl.botBuilder}` ? 'compact' : 'default'}
               width={path === `/${routesUrl.botBuilder}` ? 'unset' : 'limited'}
@@ -66,7 +66,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.homePage}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <Dashboard />
             </ProtectedRoute>
           }
@@ -74,7 +74,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.addBot}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <AddBotPage />
             </ProtectedRoute>
           }
@@ -82,7 +82,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.botBuilder}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <BotBuilder />
             </ProtectedRoute>
           }
@@ -90,35 +90,35 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.chat}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               {isMobile ? <ChatMobile /> : <Chat />}
             </ProtectedRoute>
           }
         />
-          {isMobile && (
-            <Route
-              path="chat/:id"
-              element={
-                <ProtectedRoute notAuth>
-                  <MobileDialog />
-                </ProtectedRoute>
-              }
-            />
-          )}
-          {isMobile && (
-            <Route
-              path="chat/:id/info"
-              element={
-                <ProtectedRoute notAuth>
-                  <MobileDialogInformation />
-                </ProtectedRoute>
-              }
-            />
-          )}
+        {isMobile && (
+          <Route
+            path="chat/:id"
+            element={
+              <ProtectedRoute notAuth>
+                <MobileDialog />
+              </ProtectedRoute>
+            }
+          />
+        )}
+        {isMobile && (
+          <Route
+            path="chat/:id/info"
+            element={
+              <ProtectedRoute notAuth>
+                <MobileDialogInformation />
+              </ProtectedRoute>
+            }
+          />
+        )}
         <Route
           path={routesUrl.mailing}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <Mailing />
             </ProtectedRoute>
           }
@@ -131,7 +131,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.partnership}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <Partnership />
             </ProtectedRoute>
           }
@@ -139,7 +139,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.share}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <Share />
             </ProtectedRoute>
           }
@@ -147,37 +147,13 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.subscription}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <Subscription />
             </ProtectedRoute>
           }
         />
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Route>
-      <Route
-        path={routesUrl.partnership}
-        element={
-          <ProtectedRoute>
-            <Partnership />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path={routesUrl.share}
-        element={
-          <ProtectedRoute>
-            <Share />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path={routesUrl.subscription}
-        element={
-          <ProtectedRoute>
-            <Subscription />
-          </ProtectedRoute>
-        }
-      />
       <Route path={routesUrl.notFound} element={<NotFound />} />
     </Routes>
   );

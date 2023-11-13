@@ -35,12 +35,12 @@ const DropDownList: FC<IDropDownList> = ({
       </div>
       {isOpened && (
         <div className={stylesList.accordion__container}>
-          <Typography tag="p" className={stylesList.accordion__textinfo}>
+          <Typography tag="p" className={stylesList.accordion__textInfo}>
             <Typography tag="span" className={stylesList.accordion__title}>
               {info.one.title}
             </Typography>
             <Typography tag="span" className={stylesList.accordion__paragraph}>
-              `{info.one.paragraph}`
+              {info.one.paragraph}
             </Typography>
           </Typography>
           <Typography tag="p" className={stylesList.accordion__textInfo}>
@@ -48,7 +48,7 @@ const DropDownList: FC<IDropDownList> = ({
               {info.two.title}
             </Typography>
             <Typography tag="span" className={stylesList.accordion__paragraph}>
-              `{info.two.paragraph}`
+              {info.two.paragraph}
             </Typography>
           </Typography>
         </div>

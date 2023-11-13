@@ -68,7 +68,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
                   <Dialog
                     name={el.user.name}
                     text={el.user.messages[el.user.messages.length - 1].message}
-                    time={el.user.messages.time}
+                    // timeAgo={el.user.lastMessageAt}
                     messageNum={count[Number(el.user.id)]}
                     key={el.user.id}
                     status={el.user.status}
@@ -80,7 +80,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
                   <Dialog
                     name={el.user.name}
                     text={el.user.messages[el.user.messages.length - 1].message}
-                    time={el.user.messages.time}
+                    timeAgo={el.user.messages.time}
                     messageNum={count[Number(el.user.id)]}
                     key={el.user.id}
                     status={el.user.status}

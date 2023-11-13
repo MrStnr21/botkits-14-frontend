@@ -42,9 +42,7 @@
   }
 
   &__header {
-    position: absolute;
-    top: 0;
-    left: 0;
+    @include position(absolute, 0, unset, unset, 0);
     @include size(100%, unset);
     @include indents(0 20px, 0);
     @include flex(row, space-between, center);
