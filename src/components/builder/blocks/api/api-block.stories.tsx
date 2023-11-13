@@ -3,7 +3,10 @@ import { ReactFlowProvider } from 'reactflow';
 import ApiBlockNode from './api-block';
 
 const data = {
-  name: 'Api block',
+  name: 'api',
+  url: '',
+  headers: [],
+  params: [],
 };
 
 const meta: Meta<typeof ApiBlockNode> = {
