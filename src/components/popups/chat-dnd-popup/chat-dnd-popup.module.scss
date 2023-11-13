@@ -1,0 +1,173 @@
+@use '../../../stylesheets/variables' as *;
+//@use '../../../stylesheets/mixins' as *;
+
+.container {
+  width: 728px;
+  height: 423px;
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0 12px 24px 0 #15123321;
+  border-radius: $xxl-border-radius;
+  position: relative;
+}
+
+.itemSectorWrapper {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 147px;
+  height: 84px;
+}
+
+.itemSectorText {
+  width: 207px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.nextLine {
+  color: $grey-4;
+}
+
+.btnChooseFile {
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadIconText {
+  padding-top: 3px;
+  margin-right: 6px;
+  color: $off-white;
+  font-size: $xs-font-size;
+  font-weight: $normal;
+  text-transform: none;
+}
+
+.caption {
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: $m-letter-space;
+  line-height: $m-line-height;
+  font-size: $xxs-font-size;
+  color: $grey-3;
+}
+
+.errorCaption {
+  margin-top: 4px;
+  text-transform: none;
+  letter-spacing: $m-letter-space;
+  line-height: $m-line-height;
+  font-size: $xxs-font-size;
+  color: $error-default;
+}
+
+.reject {
+  font-size: $s-font-size;
+  letter-spacing: $xxl-letter-space;
+  height: 50%;
+  align-self: center;
+  color: $grey-4;
+}
+
+.button {
+  padding: 0 0 0 334px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 40px 0;
+  display: flex;
+  gap: 12px;
+}
+
+.buttonReject {
+  background-color: transparent;
+  font-size: $s-font-size;
+  letter-spacing: $xxl-letter-space;
+  align-self: center;
+  color: $grey-4;
+}
+.buttonReject:hover {
+  background-color: transparent;
+  color: $primary-persian-blue-default;
+  border: 1px dashed $grey-4;
+}
+
+.send {
+  width: 184px;
+  color: white;
+}
+
+.itemSector {
+  position: relative;
+  margin-top: 40px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed $primary-persian-blue-default;
+  border-radius: $m-border-radius;
+  background-color: $blue-disabled;
+  width: 648px;
+  height: 186px;
+  box-sizing: border-box;
+}
+
+.itemSectorHovered {
+  position: relative;
+  margin-top: 40px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed $primary-persian-blue-default;
+  width: 648px;
+  height: 186px;
+  box-sizing: border-box;
+  border-radius: $m-border-radius;
+}
+
+.itemSectorHovered:hover {
+  position: relative;
+  margin-top: 40px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed $primary-persian-blue-default;
+  background-color: $blue-disabled;
+  width: 648px;
+  height: 186px;
+  box-sizing: border-box;
+  border-radius: $m-border-radius;
+}
+
+.itemSectorError {
+  position: relative;
+  margin-top: 40px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed $error-default;
+  width: 648px;
+  height: 186px;
+  box-sizing: border-box;
+  border-radius: $m-border-radius;
+}
+
+

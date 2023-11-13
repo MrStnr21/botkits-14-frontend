@@ -169,7 +169,7 @@ const ChatDndPopup = () => {
         </div>
       </div>
       {isFileSizeExceeded ? (
-        <Typography tag="p" className={stylesChatDndPopup.errorCaption}>
+        <Typography tag="span" className={stylesChatDndPopup.errorCaption}>
           Размер файла не должен превышать 20 Мб
         </Typography>
       ) : (
