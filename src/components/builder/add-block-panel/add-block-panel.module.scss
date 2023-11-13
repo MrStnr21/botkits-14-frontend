@@ -1,44 +1,15 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
-.content {
-  @include position(fixed, $right: 40px, $bottom: 24px);
-  @include flex(row, $align-items: flex-end, $gap: 10px);
-  max-width: calc(100% - 60px);
-  z-index: 999;
-  @media screen and (max-width: 520px) {
-    flex-direction: column;
-    max-width: 100%;
-  }
-}
-
 .panel {
+  display: grid;
   box-sizing: border-box;
   max-width: 612px;
   min-width: 320px;
-  width: calc(100% - 65px - 10px);
   padding: 12px;
   border-radius: $l-border-radius;
   box-shadow: $s-box-shadow;
   background-color: $off-white;
-  display: none;
   z-index: 999;
   grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
-}
-
-.overlay{
-  display: none;
-  @media screen and (max-width: 520px) {
-    @include size(100vw, 100vh);
-    @include position(fixed, 0, 0);
-    display: block;
-    position: fixed;
-    background: $primary-oxford-blue-default;
-    opacity: .25;
-    z-index: 998;
-  }
-}
-
-.opened {
-  display: grid
 }
