@@ -15,7 +15,7 @@
   }
 
   @media screen and (max-width: 860px) {
-    @include indents(0);
+    @include indents();
     @include size(100%, 100%);
     border: none;
   }
@@ -37,7 +37,7 @@
     z-index: 3;
 
     @media screen and (max-width: 860px) {
-      @include indents(16px 16px 16px 0, 0);
+      @include indents(32px 16px 16px, 0);
       @include min-size(unset, 60px);
     }
   }
@@ -153,6 +153,8 @@
     }
 
     @media screen and (max-width: 620px) {
+      @include size(unset, calc(100% - 32px));
+      @include indents(0 16px 0, 0);
       background: $secondary-cultured-default;
     }
   }
@@ -166,7 +168,7 @@
     }
 
     @media screen and (max-width: 860px) {
-      padding: 16px 16px 0 0;
+      padding: 16px;
       margin-bottom: 32px;
     }
   }
