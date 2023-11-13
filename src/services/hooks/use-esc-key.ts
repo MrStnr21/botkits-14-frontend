@@ -1,7 +1,7 @@
 import React from 'react';
 
 function useEscapeKey(func: () => void) {
-  const closeOnEsc = (e: { key: any }) => {
+  const closeOnEsc = (e: { key: string }) => {
     if (e.key === 'Escape') {
       func();
     }
