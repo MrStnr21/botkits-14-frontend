@@ -5,4 +5,4 @@ export default {
   component: TriggerBlock,
 };
 
-export const Default = () => <TriggerBlock />;
+export const Default = () => <TriggerBlock isOpened close={() => {}} />;

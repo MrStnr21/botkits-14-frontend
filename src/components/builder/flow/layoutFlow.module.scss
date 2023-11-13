@@ -2,7 +2,14 @@
 @use '../../../stylesheets/mixins' as *;
 
 .flow {
+  @include hide-scroll;
+  display: grid;
+  grid-template-columns: auto minmax(0, min-content);
   height: 100vh;
+
+  @media screen and (max-width: $switching-width) {
+    height: calc(100vh - 72px);  // 72 - высота header
+  }
 }
 
 .upWrapper {
@@ -13,9 +20,20 @@
   position: right;
 }
 
+.addBlock{
+  @include position(absolute, $right: 24px, $bottom: 24px);
+  @include flex(row,$align-items: flex-end ,$gap: 10px);
+  max-width: calc(100% - 150px);
+  z-index: 999;
+  @media screen and (max-width: 520px) {
+    max-width: calc(100% - 24px*2);
+  }
+}
+
 .wrapper {
   @include max-size(151px, 48px);
   overflow: hidden;
+  z-index: 100;
 }
 
 .container {
