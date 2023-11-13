@@ -148,7 +148,7 @@ const MobileDialog: FC = () => {
       </div>
       <div className={stylesDialog.dialog__messages}>
         {user!.user.messages.map((message: any) => {
-          return <Message message={message} />;
+          return <Message message={message} key={message.id} />;
         })}
       </div>
       <div className={stylesDialog.dialog__messageInput}>

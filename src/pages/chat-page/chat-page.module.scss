@@ -6,8 +6,11 @@
   height: calc(100vh - 155px);
   margin-right: 40px;
 
-  @media screen and (max-width: 860px) {
-    margin: 0;
+  @media screen and (min-width: 621px) and (max-width: 860px) {
     z-index: 666;
+  }
+
+  @media screen and (max-width: 620px) {
+    margin: 0;
   }
 }

@@ -2,15 +2,19 @@
 @use '../../../stylesheets/mixins' as *;
 
 .dialogs {
-  @include size(360px, unset);
   @include indents(0 15px 0 0, 32px 0 0);
   border-right: 1px $secondary-cultured-press solid;
   box-sizing: border-box;
 
+  @media screen and (max-width: 1186px) {
+    @include max-size(280px, unset);
+  }
+
   @media screen and (max-width: 860px) {
     @include min-size(360px, unset);
     @include size(100%, unset);
-     @include indents(0 15px 0, 32px 0 0);
+    @include indents(0 15px 0, 32px 0 0);
+    border: none;
   }
 
   &__header {
@@ -22,7 +26,7 @@
   }
 
   &__messagesContainer {
-    padding-top: 32px;
+    padding-top: 16px;
 
     @media screen and (max-width: 620px) {
       padding: 0;

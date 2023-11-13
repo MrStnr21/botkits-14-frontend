@@ -42,34 +42,45 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
       <div className={styles.dialog__avatar}>
         <Avatar isBot="no" state={status} big="no" />
       </div>
-      <Typography
-        tag="span"
-        className={styles.dialog__name}
-        fontFamily="secondary"
-      >
-        {name}
-      </Typography>
-      <Typography
-        tag="span"
-        className={styles.dialog__text}
-        fontFamily="primary"
-      >
-        {text}
-      </Typography>
-      {/* <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
-        {getTimeAgo(timeAgo, 'custom')}
-      </Typography> */}
-      {messageNum > 0 ? (
-        <div className={styles.dialog__messageNumCircle}>
+      <div className={styles.dialog__content}>
+        <div className={styles.dialog__nameContainer}>
           <Typography
             tag="span"
-            className={styles.dialog__messageNum}
+            className={styles.dialog__name}
+            fontFamily="secondary"
+          >
+            {name}
+          </Typography>
+          <Typography
+            tag="span"
+            className={styles.timeAgo}
             fontFamily="primary"
           >
-            {messageNum}
+            Сегодня
+            {/* {getTimeAgo(timeAgo, 'custom')} */}
           </Typography>
         </div>
-      ) : null}
+        <div className={styles.dialog__textContainer}>
+          <Typography
+            tag="span"
+            className={styles.dialog__text}
+            fontFamily="primary"
+          >
+            {text}
+          </Typography>
+          {messageNum > 0 ? (
+            <div className={styles.dialog__messageNumCircle}>
+              <Typography
+                tag="span"
+                className={styles.dialog__messageNum}
+                fontFamily="primary"
+              >
+                {messageNum}
+              </Typography>
+            </div>
+          ) : null}
+        </div>
+      </div>
       <div
         className={`line ${styles.dialog__line}`}
         style={{ display: 'none' }}
