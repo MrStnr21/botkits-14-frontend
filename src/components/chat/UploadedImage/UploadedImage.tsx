@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import stylesImage from './UploadedImage.module.scss';
+import { URL_IMAGE } from '../../../utils/config';
 
 interface IUploadedFiles {
-  image: string;
+  image?: string;
 }
 
 const UploadedImage: FC<IUploadedFiles> = ({
-  image = 'https://w-dog.ru/wallpapers/10/0/487435280633581/derevya-prirody-pejzazh-ozero-cvety-puti-nebo-oblaka-zakat-gory.jpg',
+  image = URL_IMAGE,
 }): JSX.Element => {
   return (
     <div className={stylesImage.container}>

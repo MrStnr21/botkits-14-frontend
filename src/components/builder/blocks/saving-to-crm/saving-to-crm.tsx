@@ -1,55 +1,27 @@
-/* eslint-disable no-param-reassign */
-// import styles from './saving-to-crm-block.module.scss';
-import { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './saving-to-crm.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import Checkbox from '../../../../ui/checkboxes/checkbox';
+import { TBlockProps, TCRMBlock } from '../../../../services/types/builder';
+import LabeledInput from '../../labeledInput/labeledInput';
+import { crmList, saveOptions } from '../../utils/data';
 
-const SavingToCrmBlock = () => {
-  const [blockName, setBlockName] = useState('Сохранение в CRM');
-  const [crmcheckboxes, setCrmCheckboxes] = useState([
-    { label: 'CRM 1', checked: true },
-    { label: 'CRM 2', checked: false },
-    { label: 'CRM 3', checked: false },
-  ]);
+const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
+  const [blockName, setBlockName] = useState(data.name);
+  const [crm, setCrm] = useState<string>(data.chosenCrm || '');
 
-  const [saveas, setSaveAs] = useState([
-    { label: 'Новая запись', checked: true },
-    { label: 'Дополнить запись', checked: false },
-  ]);
-
-  const handleChangeSaveAs = (index: number, checked: boolean) => {
-    setSaveAs((prevState) => {
-      const updatedCheckboxes = [...prevState];
-      updatedCheckboxes[index].checked = checked;
-      if (checked) {
-        updatedCheckboxes.forEach((checkbox, i) => {
-          if (i !== index) {
-            checkbox.checked = false;
-          }
-        });
-      }
-      return updatedCheckboxes;
-    });
-  };
-
-  const handleChangeCrm = (index: number, checked: boolean) => {
-    setCrmCheckboxes((prevState) => {
-      const updatedCheckboxes = [...prevState];
-      updatedCheckboxes[index].checked = checked;
-      if (checked) {
-        updatedCheckboxes.forEach((checkbox, i) => {
-          if (i !== index) {
-            checkbox.checked = false;
-          }
-        });
-      }
-      return updatedCheckboxes;
-    });
-  };
+  const [saveAs, setSaveAs] = useState<string>(data.save || '');
 
   const handleNameChange = (newName: string) => {
     setBlockName(newName);
+  };
+
+  const onCrmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCrm(e.target.value);
+  };
+
+  const onSaveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSaveAs(e.target.value);
   };
 
   return (
@@ -59,35 +31,39 @@ const SavingToCrmBlock = () => {
         name={blockName}
         nameSetter={handleNameChange}
       >
-        <div className={styles.chekboxblocks}>
-          <div className={styles.block}>
-            <h3 className={styles.subtitle}>Выбор CRM</h3>
-            <div className={styles.checkboxes}>
-              {crmcheckboxes.map((checkbox, index: any) => (
-                <Checkbox
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  label={checkbox.label}
-                  checked={checkbox.checked}
-                  onChange={(checked) => handleChangeCrm(index, checked)}
-                />
-              ))}
+        <div className={styles.content}>
+          <LabeledInput title="Выбор CRM">
+            <div className={styles.block}>
+              {crmList.map((item) => {
+                return (
+                  <Checkbox
+                    key={item}
+                    name="crm"
+                    label={item}
+                    value={item}
+                    onChange={onCrmChange}
+                    checked={item === crm}
+                  />
+                );
+              })}
             </div>
-          </div>
-          <div className={styles.block}>
-            <h3 className={styles.subtitle}>Сохранить как</h3>
-            <div className={styles.checkboxes}>
-              {saveas.map((checkbox, index: any) => (
-                <Checkbox
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  label={checkbox.label}
-                  checked={checkbox.checked}
-                  onChange={(checked) => handleChangeSaveAs(index, checked)}
-                />
-              ))}
+          </LabeledInput>
+          <LabeledInput title="Сохранить как">
+            <div className={styles.block}>
+              {saveOptions.map((item) => {
+                return (
+                  <Checkbox
+                    key={item}
+                    name="saveAs"
+                    label={item}
+                    value={item}
+                    onChange={onSaveChange}
+                    checked={item === saveAs}
+                  />
+                );
+              })}
             </div>
-          </div>
+          </LabeledInput>
         </div>
       </ControlLayout>
     </div>

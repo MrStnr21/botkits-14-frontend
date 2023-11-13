@@ -2,16 +2,33 @@ import React, { FC } from 'react';
 import stylesRightSidebarButton from './right-sidebar-button.module.scss';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
 
-const RightSidebarButton: FC = (): JSX.Element => {
-  const [rotateChevron, setRotateChevron] = React.useState(false);
-  const handleRotate = () => setRotateChevron(!rotateChevron);
-  const rotate = rotateChevron ? 'left' : 'right';
+interface IRightSidebarButton {
+  onClick?: VoidFunction;
+  isVisible: boolean;
+  topPX?: string;
+  leftPX?: string;
+}
+
+const RightSidebarButton: FC<IRightSidebarButton> = ({
+  onClick,
+  isVisible,
+  topPX = '0',
+  leftPX = '0',
+}): JSX.Element => {
+  // const [rotateChevron, setRotateChevron] = React.useState(false);
+  // const handleRotate = () => setRotateChevron(!rotateChevron);
+  const rotate = isVisible ? 'left' : 'right';
+  const styles = {
+    top: topPX,
+    left: leftPX,
+  };
 
   return (
     <button
       type="button"
       className={stylesRightSidebarButton.button}
-      onClick={handleRotate}
+      style={styles}
+      onClick={onClick}
     >
       <ChevronIcon
         position={rotate}

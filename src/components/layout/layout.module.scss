@@ -1,0 +1,42 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.layout {
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, min-content) minmax(calc($min-content-width - 300px), auto);
+  box-sizing: border-box;
+  position: relative;
+  background-color: $off-white;
+
+  @media (max-width: $switching-width) {
+    padding: 0;
+  }
+}
+
+.default {
+  display: grid;
+  min-height: 100vh;
+  padding-left: 16px;
+}
+
+.compact {
+  display: block;
+  max-height: 100vh;
+}
+
+.page {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: $switching-width) {
+    grid-column: 1 / -1;
+  }
+}
+
+.limited {
+  max-width: $max-content-width;
+}

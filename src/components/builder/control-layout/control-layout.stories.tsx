@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { ReactFlowProvider } from 'reactflow';
 import ControlLayout from './control-layout';
 
 const meta: Meta<typeof ControlLayout> = {
@@ -47,7 +48,20 @@ type Story = StoryObj<typeof ControlLayout>;
 }; */
 
 export const LayoutFilled: Story = {
-  args: {
+  render: () => {
+    return (
+      <ReactFlowProvider>
+        <ControlLayout name="name" type="type" nameSetter={() => {}}>
+          <div style={styleContainer}>
+            <div style={stylesInner} />
+            <div style={stylesInner} />
+            <div style={stylesInner} />
+          </div>
+        </ControlLayout>
+      </ReactFlowProvider>
+    );
+  },
+  /* args: {
     name: 'Название блока',
     type: 'Тип блока',
     nameSetter: () => {},
@@ -58,5 +72,5 @@ export const LayoutFilled: Story = {
         <div style={stylesInner} />
       </div>
     ),
-  },
+  }, */
 };

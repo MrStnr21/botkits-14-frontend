@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+_socket-client.js
 # production
 /build
 

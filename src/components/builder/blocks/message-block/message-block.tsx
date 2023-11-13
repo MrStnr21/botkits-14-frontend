@@ -4,86 +4,33 @@ import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
 import PanelInline from './panel-inline/panel-inline';
-import ButtonAddFile from '../../../../ui/buttons/button-add-file/button-add-file';
 import Input from '../../../../ui/inputs/input/input';
 import CustomHandle from '../../flow/custom-handle/custom-handle';
+import {
+  MessageDataTypes,
+  TBlockProps,
+  TMessageBlock,
+} from '../../../../services/types/builder';
+import File from './file/file';
+import HiddenBlock from './hidden-block/hidden-block';
+import { getTimeDHMS } from '../../utils';
+import FielsField from './files-field/fiels-field';
 
-type TMessageData = {
-  type: 'message';
-  value?: string;
-};
-
-type TButtonsData = {
-  type: 'buttons';
-  horizontalAmount?: number;
-  verticalAmount?: number;
-};
-
-type TAnswersData = {
-  type: 'answers';
-  horizontalAmount?: number;
-  verticalAmount?: number;
-};
-
-type TFileData = {
-  type: 'file';
-  file: File;
-};
-
-type THiddenBlockProps = {
-  children: React.ReactNode | React.ReactNode[];
-  name: string;
-};
-
-type TMessageBlockProps = {
-  data: {
-    name: string;
-    data: (TMessageData | TButtonsData | TAnswersData | TFileData)[];
-    saveAnswer?: string;
-    showTime?: {
-      d: number;
-      h: number;
-      m: number;
-      s: number;
-    };
-  };
-};
-
-const HiddenBlock: FC<THiddenBlockProps> = ({ name, children }) => {
-  const [visible, setVisible] = useState(false);
-  return (
-    <div className={styles['hidden-content']}>
-      <form className={styles['hiddent-form']}>
-        <label htmlFor={name}>{name}</label>
-        <input
-          name={name}
-          type="checkbox"
-          checked={visible}
-          onChange={() => {
-            setVisible(!visible);
-          }}
-        />
-      </form>
-      {visible && children}
-    </div>
-  );
-};
-
-const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
+const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const [name, setName] = useState(data.name);
 
   const content = data.data.map((component) => {
     switch (component.type) {
-      case 'answers': {
+      case MessageDataTypes.answers: {
         return <PanelInline title="Ответ" />;
       }
-      case 'buttons': {
+      case MessageDataTypes.buttons: {
         return <PanelInline title="Инлайн кнопка" />;
       }
-      case 'file': {
-        return null; // продумать отдельный компонент под файл
+      case MessageDataTypes.file: {
+        return <File data={component.file} />;
       }
-      case 'message': {
+      case MessageDataTypes.message: {
         return <TextField />;
       }
       default: {
@@ -91,6 +38,8 @@ const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
       }
     }
   });
+
+  const { s, m, h, d } = getTimeDHMS(data.showTime || 0);
   return (
     <ControlLayout
       name={name}
@@ -102,7 +51,7 @@ const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
       <CustomHandle position={Position.Left} type="target" />
       <div className={styles.content}>
         {content}
-        <ButtonAddFile />
+        <FielsField />
       </div>
       <hr className={styles['split-line']} />
       <div className={styles['hidden-blocks']}>
@@ -122,6 +71,7 @@ const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
                 placeholder="0"
                 onChange={() => {}}
                 styled="bot-builder-num"
+                value={d.toString() || ''}
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -131,6 +81,7 @@ const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
                 placeholder="0"
                 onChange={() => {}}
                 styled="bot-builder-num"
+                value={h.toString() || ''}
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -140,6 +91,7 @@ const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
                 placeholder="0"
                 onChange={() => {}}
                 styled="bot-builder-num"
+                value={m.toString() || ''}
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -149,6 +101,7 @@ const MessageBlock: FC<TMessageBlockProps> = ({ data }) => {
                 placeholder="0"
                 onChange={() => {}}
                 styled="bot-builder-num"
+                value={s.toString() || ''}
               />
             </div>
           </form>

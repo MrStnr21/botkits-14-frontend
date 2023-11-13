@@ -1,39 +1,51 @@
-import { ReactElement, useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
 import Input from '../../../../ui/inputs/input/input';
+import {
+  TBlockProps,
+  TCoordinateBlock,
+} from '../../../../services/types/builder';
 
-const GetInput = (title: string) => {
-  return (
-    <div className={styles.wrapperInput}>
-      <LabeledInput title={title} extraClass={styles.extraClass}>
-        <Input
-          onChange={() => {}}
-          styled="bot-builder-default"
-          placeholder="Введите параметр"
-        />
-      </LabeledInput>
-    </div>
-  );
-};
-
-const SendingCoordinatesBlock = (): ReactElement => {
-  const [name, setName] = useState('Название отправки координат');
-
-  const handleNameChange = (newName: string) => {
-    setName(newName);
-  };
+const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
+  data,
+}) => {
+  const [name, setName] = useState(data.name);
 
   return (
     <ControlLayout
       type="Отправка координат"
       name={name}
-      nameSetter={handleNameChange}
+      nameSetter={(newName: string) => {
+        setName(newName);
+      }}
     >
       <div className={styles.content}>
-        {GetInput('Долгота')}
-        {GetInput('Широта')}
+        <div className={styles.wrapperInput}>
+          <LabeledInput title="Долгота" extraClass={styles.extraClass}>
+            <Input
+              minLength={0}
+              type="number"
+              onChange={() => {}}
+              styled="bot-builder-default"
+              placeholder="Введите параметр"
+              value={String(data.coordinates[0] || '')}
+            />
+          </LabeledInput>
+        </div>
+        <div className={styles.wrapperInput}>
+          <LabeledInput title="Широта" extraClass={styles.extraClass}>
+            <Input
+              minLength={0}
+              type="number"
+              onChange={() => {}}
+              styled="bot-builder-default"
+              placeholder="Введите параметр"
+              value={String(data.coordinates[1] || '')}
+            />
+          </LabeledInput>
+        </div>
       </div>
     </ControlLayout>
   );

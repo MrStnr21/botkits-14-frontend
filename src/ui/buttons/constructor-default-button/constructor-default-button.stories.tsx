@@ -29,6 +29,9 @@ export default {
       action: 'clicked',
       description: 'Callback функция, вызываемая при клике',
     },
+    isActive: {
+      type: 'boolean',
+    },
     children: {
       type: 'string',
       description: 'Текст кнопки',

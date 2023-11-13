@@ -1,35 +1,20 @@
-.container {
-    padding: 12px 16px 16px 16px;
-}
-  
-.overlay {
-  width: 264px;
-  height: 64px;;
-  border-radius: 10px;
-  background-color: #F8F9FB;
-  margin-bottom: 8px;
-  font-family: 'Open Sans', sans-serif;
-  padding: 12px 12px 12px 12px;
-  box-sizing: border-box;
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
 
-  display: flex;
-  flex-direction: row;
+.container {
+    padding: 12px 16px 16px;
+
+    @media screen and (max-width: 520px) {
+      padding: 7px 9px 10px 9px;
+    }
 }
 
 .field {
-  width: 264px;
-  height: 44px;
-  background-color: #F2F4F8;
-  border-radius: 5px;
-}
+  @include size(264px, 44px);
+  background-color: $secondary-cultured-hover;
+  border-radius: $s-border-radius;
 
-.box {
-  width: 36px;
-  height: 40px;
-  border-radius: 5px;
-  background-color: #F2F4F8;
-  padding: 8px 6px;
-  box-sizing: border-box;
-  margin-right: 3px;
-  margin-left: 4px;
+  @media screen and (max-width: 520px) {
+    @include size(150px, 25px);
+  }
 }

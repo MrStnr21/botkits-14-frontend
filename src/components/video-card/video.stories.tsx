@@ -1,21 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/react';
 import VideoCard from './video-card';
 import createbot from '../../images/prewiew/createbot.png';
 import prew1 from '../../images/prewiew/prew1.png';
 import prew2 from '../../images/prewiew/prew2.png';
 import prew3 from '../../images/prewiew/prew3.png';
+import { URL_YOUTUBE_CONNECT_CHATBOT } from '../../utils/config';
 
 const meta = {
   title: 'COMPONENTS/VideoCard',
   component: VideoCard,
-} satisfies Meta<typeof VideoCard>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const VideoCardM: Story = {
   args: {
-    src: 'https://www.youtube.com/embed/FKOn5DfpJDA',
+    src: URL_YOUTUBE_CONNECT_CHATBOT!,
     title: 'Подключение чат бота и основные параметры | Bot Kits',
     prewiew: createbot,
     size: 's',
@@ -26,7 +27,7 @@ export const VideoCardM: Story = {
 
 export const VideoCardS: Story = {
   args: {
-    src: 'https://www.youtube.com/embed/FKOn5DfpJDA',
+    src: URL_YOUTUBE_CONNECT_CHATBOT!,
     title: 'Подключение чат бота и основные параметры | Bot Kits',
     prewiew: createbot,
     size: 's',
@@ -37,7 +38,7 @@ export const VideoCardS: Story = {
 
 export const Prew1: Story = {
   args: {
-    src: 'https://www.youtube.com/embed/FKOn5DfpJDA',
+    src: URL_YOUTUBE_CONNECT_CHATBOT!,
     title: 'Подключение чат бота и основные параметры | Bot Kits',
     prewiew: prew1,
     size: 's',
@@ -48,7 +49,7 @@ export const Prew1: Story = {
 
 export const Prew2: Story = {
   args: {
-    src: 'https://www.youtube.com/embed/FKOn5DfpJDA',
+    src: URL_YOUTUBE_CONNECT_CHATBOT!,
     title: 'Подключение чат бота и основные параметры | Bot Kits',
     prewiew: prew2,
     size: 's',
@@ -59,7 +60,7 @@ export const Prew2: Story = {
 
 export const Prew3: Story = {
   args: {
-    src: 'https://www.youtube.com/embed/FKOn5DfpJDA',
+    src: URL_YOUTUBE_CONNECT_CHATBOT!,
     title: 'Подключение чат бота и основные параметры | Bot Kits',
     prewiew: prew3,
     size: 's',

@@ -13,6 +13,13 @@ import VideoCard from '../../video-card/video-card';
 import links from './kb-data';
 import Typography from '../../../ui/typography/typography';
 
+import {
+  URL_YOUTUBE_CONNECT_CHATBOT,
+  URL_YOUTUBE_MAILING,
+  URL_YOUTUBE_BLOCK_SCHEMES,
+  URL_HELP,
+} from '../../../utils/config';
+
 const KnowledgeBase: FC = (): JSX.Element => {
   const matches = useMediaQuery('(max-width: 560px)');
 
@@ -28,7 +35,7 @@ const KnowledgeBase: FC = (): JSX.Element => {
         </Typography>
         <div className={stylesKnowledgeBase.video__container}>
           <VideoCard
-            src="https://www.youtube.com/embed/FKOn5DfpJDA"
+            src={URL_YOUTUBE_CONNECT_CHATBOT!}
             title="Подключение и основные параметры"
             prewiew={prew1}
             size={matches ? 'x' : 's'}
@@ -36,7 +43,7 @@ const KnowledgeBase: FC = (): JSX.Element => {
             hover
           />
           <VideoCard
-            src="https://www.youtube.com/embed/FKOn5DfpJDA"
+            src={URL_YOUTUBE_MAILING!}
             title="Настраиваем простую рассылку"
             prewiew={prew2}
             size={matches ? 'x' : 's'}
@@ -44,7 +51,7 @@ const KnowledgeBase: FC = (): JSX.Element => {
             hover
           />
           <VideoCard
-            src="https://www.youtube.com/embed/FKOn5DfpJDA"
+            src={URL_YOUTUBE_BLOCK_SCHEMES!}
             title="Начало работы с блок&#8209;схемами"
             prewiew={prew3}
             size={matches ? 'x' : 's'}
@@ -56,7 +63,7 @@ const KnowledgeBase: FC = (): JSX.Element => {
 
       <div className={stylesKnowledgeBase.base}>
         <a
-          href="https://botkits.ru/help/ "
+          href={URL_HELP}
           className={stylesKnowledgeBase.base__header}
           target="_blank"
           rel="noopener noreferrer"

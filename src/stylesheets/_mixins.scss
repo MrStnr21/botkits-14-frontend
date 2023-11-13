@@ -18,7 +18,7 @@
 };
 
 /* Отступы */
-@mixin indents($padding: 0, $margin: 0){
+@mixin indents($padding: 0, $margin: 0) {
   padding: $padding;
   margin: $margin;
 };
@@ -29,12 +29,12 @@
   height: $height;
 };
 
-@mixin max-size($max-width, $max-height){
+@mixin max-size($max-width, $max-height) {
   max-width: $max-width;
   max-height: $max-height;
 }
 
-@mixin min-size($min-width, $min-height){
+@mixin min-size($min-width, $min-height) {
   min-width: $min-width;
   min-height: $min-height;
 }
@@ -64,7 +64,7 @@
   color: $color;
 };
 
-@mixin line-sizes($line-height: inherit, $letter-spacing: inherit){
+@mixin line-sizes($line-height: inherit, $letter-spacing: inherit) {
   line-height: $line-height;
   letter-spacing: $letter-spacing;
 }
@@ -87,7 +87,22 @@
   }
 }
 
-/* Миксины для повторяющихся элементов
+/* Сброс стиля инпута */
+@mixin input-style-reset {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* Миксины для повторяющихся элементов */
+@mixin colored-button($color, $bg-color, $border-color, $border-color-hover) {
+  color: $color;
+  background-color: $bg-color;
+  border-color: $border-color;
+  &:hover {
+    border-color: $border-color-hover;
+  }
+}
 
 /* Сообщение для ошибки в формах авторизации */
 @mixin incorrect-text($text-align) {
@@ -98,6 +113,14 @@
   left: 0;
   right: 0;
   text-align: $text-align;
+}
+
+@mixin hide-scroll {
+  & ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 

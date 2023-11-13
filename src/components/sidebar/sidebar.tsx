@@ -1,33 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useMediaQuery } from '@mui/material';
 
 import stylesSidebar from './sidebar.module.scss';
 
-import Cover from '../../ui/cover/cover';
-
-import { links, ILink } from './sb-data';
+import { links } from './sb-data';
 import Typography from '../../ui/typography/typography';
+import Subheader from './subheader/subheader';
 
-// Элемент заголовка в навигации
-const Subheader: FC<ILink> = ({ navLink, icon, text }): JSX.Element => {
-  return (
-    <NavLink
-      to={navLink}
-      className={(navData) =>
-        navData.isActive
-          ? `${stylesSidebar.navigation__link} ${stylesSidebar.navigation__link_active}`
-          : stylesSidebar.navigation__link
-      }
-    >
-      {icon}
-      <p className={stylesSidebar.navigation__text}>{text}</p>
-    </NavLink>
-  );
+type TSidebarProps = {
+  type: 'default' | 'compact';
 };
 
-const Sidebar: FC = (): JSX.Element => {
+const Sidebar: FC<TSidebarProps> = ({ type }) => {
   const [isOpenSB, setStateSB] = useState(false);
   const [isOpenNL, setStateNL] = useState(true); // выпадающий список nestedList
 
@@ -39,14 +24,12 @@ const Sidebar: FC = (): JSX.Element => {
     setStateNL(!isOpenNL);
   }
 
-  const matches = useMediaQuery('(max-width: 620px)');
-
   return (
     <section
       aria-label="НАВИГАЦИЯ"
       className={`${stylesSidebar.wrapper} ${
         isOpenSB ? stylesSidebar.wrapper_open : stylesSidebar.wrapper_close
-      }`}
+      } ${stylesSidebar[type] || 0}`}
     >
       <div
         className={`${stylesSidebar.sidebar} ${
@@ -90,9 +73,7 @@ const Sidebar: FC = (): JSX.Element => {
                 <li
                   key={item.text + +index}
                   className={`${stylesSidebar.nestedList} ${
-                    isOpenNL
-                      ? stylesSidebar.nestedList_open
-                      : stylesSidebar.nestedList_close
+                    !isOpenNL && stylesSidebar.nestedList_close
                   }`}
                 >
                   <Subheader {...item} />
@@ -129,16 +110,6 @@ const Sidebar: FC = (): JSX.Element => {
           </div>
         </div>
       </div>
-      {/* TODO Если все будет работать хорошо, убрать код */}
-      {/* {!matches && (
-        <Cover
-          top="-16px"
-          bottom="-16px"
-          left="224px"
-          right="0"
-          onClick={() => setStateSB(false)}
-        />
-      )} */}
     </section>
   );
 };
