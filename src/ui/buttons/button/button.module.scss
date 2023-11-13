@@ -129,6 +129,14 @@
   }
 }
 
+.transparent {
+  background-color: transparent;
+  color: $grey-3;
+  &:hover {
+    color: $primary-persian-blue-default;
+  }
+}
+
 .button_active {
   color: $primary-persian-blue-default;
   background-color: $blue-disabled;
