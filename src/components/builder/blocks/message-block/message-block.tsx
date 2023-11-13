@@ -1,5 +1,6 @@
-import { FC, useState } from 'react';
-import { Position } from 'reactflow';
+/* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
+import { FC } from 'react';
+import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -13,41 +14,128 @@ import {
 } from '../../../../services/types/builder';
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
-import { getTimeDHMS } from '../../utils';
 import FielsField from './files-field/fiels-field';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
-  const [name, setName] = useState(data.name);
+  const id = useNodeId();
+  const { getNodes, setNodes } = useReactFlow();
+  const { seconds, minutes, hours, days } = data.showTime;
 
-  const content = data.data.map((component) => {
+  const setName = (name: string) => {
+    const nodes = getNodes();
+    setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return { ...item, data: { ...item.data, name } };
+        }
+        return item;
+      })
+    );
+  };
+
+  const setVariable = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nodes = getNodes();
+    setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              saveAnswer: { ...item.data.saveAnswer, value: e.target.value },
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const toggleVariableBlock = () => {
+    const nodes = getNodes();
+    setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              saveAnswer: {
+                ...item.data.saveAnswer,
+                show: !item.data.saveAnswer.show,
+              },
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const setTime =
+    (type: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const nodes = getNodes();
+      setNodes(
+        nodes.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              data: {
+                ...item.data,
+                showTime: {
+                  ...item.data.showTime,
+                  [type]: e.target.value,
+                },
+              },
+            };
+          }
+          return item;
+        })
+      );
+    };
+
+  const toggleTimeBlock = () => {
+    const nodes = getNodes();
+    setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              showTime: {
+                ...item.data.showTime,
+                show: !item.data.showTime.show,
+              },
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const content = data.data.map((component, index) => {
     switch (component.type) {
       case MessageDataTypes.answers: {
-        return <PanelInline title="Ответ" />;
+        return <PanelInline key={index} title="Ответ" />;
       }
       case MessageDataTypes.buttons: {
-        return <PanelInline title="Инлайн кнопка" />;
+        return <PanelInline key={index} title="Инлайн кнопка" />;
       }
       case MessageDataTypes.file: {
-        return <File data={component.file} />;
+        return <File key={index} data={component.file} />;
       }
       case MessageDataTypes.message: {
-        return <TextField />;
+        return <TextField key={index} />;
       }
       default: {
         return null;
       }
     }
   });
-
-  const { s, m, h, d } = getTimeDHMS(data.showTime || 0);
   return (
-    <ControlLayout
-      name={name}
-      type="Блок сообщений"
-      nameSetter={(a) => {
-        setName(a);
-      }}
-    >
+    <ControlLayout name={data.name} type="Блок сообщений" nameSetter={setName}>
       <CustomHandle position={Position.Left} type="target" />
       <div className={styles.content}>
         {content}
@@ -55,23 +143,34 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       </div>
       <hr className={styles['split-line']} />
       <div className={styles['hidden-blocks']}>
-        <HiddenBlock name="Сохранить ответ">
+        <HiddenBlock
+          name="Сохранить ответ"
+          toggle={toggleVariableBlock}
+          visible={data.saveAnswer.show}
+        >
           <Input
+            minLength={0}
             placeholder="Введите переменную"
-            onChange={() => {}}
+            onChange={setVariable}
             styled="bot-builder-default"
+            value={data.saveAnswer.value}
           />
         </HiddenBlock>
-        <HiddenBlock name="Время вывода ">
+        <HiddenBlock
+          name="Время вывода"
+          toggle={toggleTimeBlock}
+          visible={data.showTime.show}
+        >
           <form className={styles['inputs-num']}>
             <div className={styles['labeled-input']}>
               <label htmlFor="d">Дней</label>
               <Input
                 name="d"
                 placeholder="0"
-                onChange={() => {}}
+                onChange={setTime(days)}
                 styled="bot-builder-num"
-                value={d.toString() || ''}
+                value={days}
+                type="number"
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -79,9 +178,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               <Input
                 name="h"
                 placeholder="0"
-                onChange={() => {}}
+                onChange={setTime(hours)}
                 styled="bot-builder-num"
-                value={h.toString() || ''}
+                value={hours}
+                type="number"
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -89,9 +189,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               <Input
                 name="m"
                 placeholder="0"
-                onChange={() => {}}
+                onChange={setTime(minutes)}
                 styled="bot-builder-num"
-                value={m.toString() || ''}
+                value={minutes}
+                type="number"
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -99,9 +200,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               <Input
                 name="s"
                 placeholder="0"
-                onChange={() => {}}
+                onChange={setTime(seconds)}
                 styled="bot-builder-num"
-                value={s.toString() || ''}
+                value={seconds}
+                type="number"
               />
             </div>
           </form>

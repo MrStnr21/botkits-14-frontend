@@ -134,8 +134,17 @@ export type TButtonBlock = {
 export type TMessageBlock = {
   name: string;
   data: (TMessageData | TButtonsData | TAnswersData | TFileData)[];
-  saveAnswer: string;
-  showTime?: number; // Время вывода в секундах, нужно перевести в дни/часы/минуты/секунды
+  saveAnswer: {
+    show: boolean;
+    value: string;
+  };
+  showTime: {
+    show: boolean;
+    days: string;
+    hours: string;
+    minutes: string;
+    seconds: string;
+  }; // Время вывода в секундах, нужно перевести в дни/часы/минуты/секунды
 };
 
 export type TMessageData = {
