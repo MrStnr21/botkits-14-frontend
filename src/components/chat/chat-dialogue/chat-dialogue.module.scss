@@ -10,13 +10,14 @@
   flex: 1;
   border-right: 1px solid #d7deea;
 
-  @media screen and (min-width: 861px) and (max-width: 1024px) {
-    @include indents(0 16px, 32px 0 0);
+  @media screen and (max-width: 1024px) {
+    @include indents(0 32px, 32px 0 0);
   }
 
-  @media screen and (max-width: 620px) {
-    @include indents();
+  @media screen and (max-width: 860px) {
+    @include indents(0);
     @include size(100%, 100%);
+    border: none;
   }
 
   & * {
@@ -32,11 +33,11 @@
     @include flex(row, space-between, center, unset);
     @include position(relative);
     @include size(100%, unset);
-    padding: 0 0 16px;
+    padding: 16px 0;
     z-index: 3;
 
-    @media screen and (max-width: 620px) {
-      @include indents(0 16px 20px 0, 0);
+    @media screen and (max-width: 860px) {
+      @include indents(16px 16px 16px 0, 0);
       @include min-size(unset, 60px);
     }
   }
@@ -147,8 +148,11 @@
       width: 0;
     }
 
+    @media screen and (max-width: 860px) {
+      @include indents(32px 16px 0 0, 0);
+    }
+
     @media screen and (max-width: 620px) {
-      @include indents(0 16px 0 0, 0);
       background: $secondary-cultured-default;
     }
   }
@@ -157,7 +161,11 @@
     @include flex(row, space-between, center, 20px);
     @include size(100%, unset);
 
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 1024px) {
+      gap: 8px;
+    }
+
+    @media screen and (max-width: 860px) {
       padding: 16px 16px 0 0;
       margin-bottom: 32px;
     }

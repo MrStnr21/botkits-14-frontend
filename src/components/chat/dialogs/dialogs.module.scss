@@ -11,8 +11,7 @@
   }
 
   @media screen and (max-width: 860px) {
-    @include min-size(360px, unset);
-    @include size(100%, unset);
+    @include min-size(100%, unset);
     @include indents(0 15px 0, 32px 0 0);
     border: none;
   }

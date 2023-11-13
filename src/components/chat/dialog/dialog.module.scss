@@ -9,7 +9,7 @@
   cursor: pointer;
 
   @media screen and (max-width: 1186px) {
-    @include max-size(260px, unset);
+    @include max-size(100%, unset);
   }
 
   &__content {
@@ -23,6 +23,7 @@
     @include flex(row, space-between, center);
     @include size(100%, unset);
     padding-left: 16px;
+    box-sizing: border-box;
 
     @media screen and (min-width: 861px) and (max-width: 1186px) {
       @include max-size(200px, unset);

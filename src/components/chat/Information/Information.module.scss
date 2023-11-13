@@ -3,7 +3,7 @@
 
 .information {
   @include position(relative);
-  @include size(100%, unset);
+  @include size(330px, unset);
   @include indents(0 0 0 32px, 0);
   margin: 32px 0 0 0;
   box-sizing: border-box;
@@ -13,8 +13,8 @@
   }
 
   @media screen and (max-width: 860px) {
-    @include max-size(100%, unset);
-    @include indents(32px 32px 0 0 , 0 auto);
+    @include size(100%, unset);
+    @include indents(32px 32px 0 0 , 32px auto 0);
     @include flex(row, center, unset, unset);
   }
 
@@ -24,6 +24,11 @@
     background-color: $off-white;
     box-sizing: border-box;
     padding-top: 40px;
+
+    @media screen and (max-width: 860px) {
+      @include size(100%, unset);
+      @include max-size(100%, unset);
+    }
   }
 
   &__text {
@@ -55,7 +60,7 @@
     box-sizing: border-box;
 
     @media screen and (max-width: 860px) {
-      @include size(calc(100% - 20px), unset);
+      @include size(calc(100% - 32px), unset);
       @include indents();
     }
   }
