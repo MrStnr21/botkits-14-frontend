@@ -8,6 +8,12 @@ export default {
 
 export const Default = () => (
   <ReactFlowProvider>
-    <SavingToCrmBlock data={{ name: 'test name' }} />{' '}
+    <SavingToCrmBlock
+      data={{
+        name: 'CRMBlock',
+        crmList: ['1', '2', '3'],
+        chosenCrm: '',
+      }}
+    />{' '}
   </ReactFlowProvider>
 );
