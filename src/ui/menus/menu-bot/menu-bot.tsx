@@ -13,6 +13,7 @@ export interface IMenuBot {
   size?: 'medium' | 'large';
   isActive?: boolean;
   editFunction: Function;
+  removeFunction?: () => void;
   top?: number;
   left?: number;
 }
@@ -23,6 +24,7 @@ const MenuBot: FC<IMenuBot> = ({
   editFunction,
   top = 0,
   left = 0,
+  removeFunction,
 }): JSX.Element => {
   const [open, setOpen] = useState(false);
   const [settings, setSettings] = useState({
@@ -113,7 +115,7 @@ const MenuBot: FC<IMenuBot> = ({
         <button
           type="button"
           className={stylesMenuBot.button}
-          onClick={deleteHandler}
+          onClick={removeFunction}
         >
           <img
             src={trashIcon}
