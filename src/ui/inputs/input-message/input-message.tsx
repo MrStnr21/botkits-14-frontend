@@ -10,6 +10,7 @@ import useModal from '../../../services/hooks/use-modal';
 import ModalPopup from '../../../components/popups/modal-popup/modal-popup';
 import ChatCompPopup from '../../../components/popups/chat-comp-popup/chat-comp-popup';
 import Tooltip from '../../../components/chat-dialogue/tooltip/tooltip';
+import ChatDndPopup from '../../../components/popups/chat-dnd-popup/chat-dnd-popup';
 
 interface IInputMessage {
   placeholder?: string;
@@ -17,7 +18,6 @@ interface IInputMessage {
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onClickEmoji?: () => void;
   onClickSlash?: () => void;
-  onClickZap?: () => void;
 }
 
 const InputMessage: FC<IInputMessage> = ({
@@ -26,14 +26,24 @@ const InputMessage: FC<IInputMessage> = ({
   onChange,
   onClickEmoji,
   onClickSlash,
-  onClickZap,
+  // onClickZap,
 }): JSX.Element => {
   const [rotateAddIcon, setRotateAddIcon] = useState(false);
   const { isModalOpen, closeModal, openModal } = useModal();
+  const [isDndPopupOpen, setDndPopupOpen] = useState(false);
+
+  const openDndPopup = () => {
+    setDndPopupOpen(true);
+  };
+  const onClickZap = () => {
+    openDndPopup();
+    localStorage.setItem('isModalOpen', 'true');
+  };
   const onClickClip = () => {
     openModal();
     localStorage.setItem('isModalOpen', 'true');
   };
+
   useEffect(() => {
     const storedIsModalOpen = localStorage.getItem('isModalOpen');
 
@@ -109,6 +119,11 @@ const InputMessage: FC<IInputMessage> = ({
       {isModalOpen && (
         <ModalPopup onClick={closeModalAndRemoveItem}>
           <ChatCompPopup />
+        </ModalPopup>
+      )}
+      {isDndPopupOpen && (
+        <ModalPopup onClick={() => setDndPopupOpen(false)}>
+          <ChatDndPopup />
         </ModalPopup>
       )}
     </div>
