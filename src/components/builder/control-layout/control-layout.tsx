@@ -1,5 +1,5 @@
 import { FC, ReactElement, useState, ChangeEvent } from 'react';
-import { Position } from 'reactflow';
+import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
@@ -20,12 +20,24 @@ const ControlLayout: FC<TControlLayoutProps> = ({
 }) => {
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
+  const id = useNodeId();
+  const { getNodes, setNodes } = useReactFlow();
+
   const onClick = () => {
     toggleMenu(!menu);
   };
+
   const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     nameSetter(e.target.value);
   };
+
+  const removeNode = () => {
+    const nodes = getNodes().filter((node) => {
+      return node.id !== id;
+    });
+    setNodes(nodes);
+  };
+
   return (
     <article className={styles.container}>
       <div
@@ -73,6 +85,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({
               isActive={menu}
               top={0}
               left={30}
+              removeFunction={removeNode}
             />
           </button>
         </div>

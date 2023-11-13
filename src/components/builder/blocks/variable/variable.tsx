@@ -15,8 +15,6 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
     data.variables
   );
 
-  console.log(content);
-
   const addValue = () => {
     setContent([...content, { value: '' }]);
   };
