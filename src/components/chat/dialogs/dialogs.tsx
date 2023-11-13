@@ -14,7 +14,7 @@ interface ID {
 }
 
 const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
-  const isMobile = useMediaQuery('(max-width: 620px)');
+  const isMobile = useMediaQuery('(max-width: 860px)');
 
   const count: number[] = [];
 

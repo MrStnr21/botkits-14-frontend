@@ -7,9 +7,10 @@
   margin: 32px 0 0 0;
   box-sizing: border-box;
 
-  @media (max-width: ($min-content-width + 200px)) {
-    @include max-size(380px, unset);
-    margin: 0;
+  @media screen and (max-width: 860px) {
+    @include max-size(100%, unset);
+    @include indents(32px 32px 0 0 , 32px auto 0);
+    @include flex(row, center, unset, unset);
   }
 
   &__container {
@@ -46,6 +47,11 @@
     @include size(100%, unset);
     @include indents(0 20px, 0);
     @include flex(row, space-between, center);
+    box-sizing: border-box;
+
+    @media screen and (max-width: 860px) {
+      @include size(calc(100% - 20px), unset);
+    }
   }
 
   &__chevron {

@@ -24,7 +24,7 @@ import MobileDialogInformation from '../chat/Information/MobileDialogInformation
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
-  const isMobile = useMediaQuery('(max-width: 620px)');
+  const isMobile = useMediaQuery('(max-width: 860px)');
 
   return (
     <Routes>

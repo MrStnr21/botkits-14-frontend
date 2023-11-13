@@ -7,7 +7,7 @@
   border-right: 1px $secondary-cultured-press solid;
   box-sizing: border-box;
 
-  @media screen and (max-width: 620px) {
+  @media screen and (max-width: 860px) {
     @include min-size(360px, unset);
     @include size(100%, unset);
      @include indents(0 15px 0, 32px 0 0);
