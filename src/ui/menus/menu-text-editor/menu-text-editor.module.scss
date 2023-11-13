@@ -5,8 +5,8 @@
   @include size(192px, 40px);
   display: none;
   flex-direction: row;
-  box-shadow: $m-box-shadow;
-  background-color: white;
+  box-shadow: $l-box-shadow;
+  background-color: $off-white;
   border-radius: $s-border-radius;
   position: absolute;
 }
@@ -17,8 +17,6 @@
 
 .button {
   @include size(48px, 100%);
-  height: 100%;
-  width: 48px;
   background-color: $off-white;
   border-radius: $s-border-radius;
   border: none;
