@@ -14,6 +14,7 @@ type Columns = {
   label: ReactNode;
   colStyle?: SxProps;
   cellComponent?: (data: any) => ReactNode;
+  headComponent?: (data: any) => ReactNode;
 };
 
 type TableData = {
@@ -23,7 +24,6 @@ type TableData = {
 type Props = {
   columns: Columns[];
   tableData: TableData[];
-  headComponent: (data: any) => ReactNode;
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
@@ -35,10 +35,10 @@ const TableComponent: FC<Props> = ({ columns, tableData, ...props }) => {
       <Table>
         <TableHead>
           <TableRow>
-            {columns?.map(({ label, colStyle }) => (
+            {columns?.map(({ label, colStyle, headComponent }) => (
               <TableCell key={uuidv4()} sx={colStyle}>
-                {props.headComponent ? (
-                  props.headComponent(label)
+                {headComponent ? (
+                  headComponent(label)
                 ) : (
                   <Typography tag="p">{label}</Typography>
                 )}

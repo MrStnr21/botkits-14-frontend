@@ -18,7 +18,6 @@ import {
   rowStyle,
   subscriptionStatus,
 } from '../../utils/paymenTable';
-import { sapHeadCell } from '../../components/table-cells/table-cells';
 
 const Subscription: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
@@ -155,7 +154,6 @@ const Subscription: FC = (): JSX.Element => {
             rowStyle={rowStyle}
             columns={columns}
             tableData={rowList}
-            headComponent={sapHeadCell}
           />
         </div>
       </div>

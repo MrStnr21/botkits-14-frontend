@@ -4,6 +4,7 @@ import {
   refStatusCell,
   moneyCell,
   paymentStatusCell,
+  ppHeadCell,
 } from '../components/table-cells/table-cells';
 
 export const colStyle = {
@@ -112,42 +113,49 @@ export const refCols = [
     label: 'Перешли по ссылке',
     colStyle: { ...colStyle, width: '25%' },
     cellComponent: baseCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'regs',
     label: 'Регистраций',
     colStyle: { ...colStyle, width: '25%' },
     cellComponent: baseCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'status',
     label: 'Оплата',
     colStyle: { ...colStyle, width: '10%' },
     cellComponent: refStatusCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'sum',
     label: 'Сумма',
     colStyle: { ...colStyle, width: '10%' },
     cellComponent: moneyCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'fee',
     label: 'Комиссия',
     colStyle: { ...colStyle, width: '10%' },
     cellComponent: moneyCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'paid',
     label: 'Выплачено',
     colStyle: { ...colStyle, width: '10%' },
     cellComponent: moneyCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'withdrawal',
     label: 'Вывод',
     colStyle: { ...colStyle, width: '10%' },
     cellComponent: moneyCell,
+    headComponent: ppHeadCell,
   },
 ];
 
@@ -157,29 +165,34 @@ export const paymentCols = [
     label: 'Дата запроса',
     colStyle: { ...colStyle, width: '25%' },
     cellComponent: baseCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'payDate',
     label: 'Дата выплаты',
     colStyle: { ...colStyle, width: '20%' },
     cellComponent: baseCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'document',
     label: 'Акт',
     colStyle: { ...colStyle, width: '20%' },
     cellComponent: baseCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'status',
     label: 'Статус',
     colStyle: { ...colStyle, width: '20%' },
     cellComponent: paymentStatusCell,
+    headComponent: ppHeadCell,
   },
   {
     key: 'sum',
     label: 'Сумма выплаты',
     colStyle: { ...colStyle, width: '15%' },
     cellComponent: baseCell,
+    headComponent: ppHeadCell,
   },
 ];

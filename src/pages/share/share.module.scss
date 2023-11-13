@@ -1,0 +1,7 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.container {
+  padding-top: 32px;
+  @include flex(column, $gap: 32px);
+}

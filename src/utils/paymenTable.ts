@@ -3,6 +3,7 @@ import {
   baseCell,
   dateCell,
   statusCell,
+  sapHeadCell,
 } from '../components/table-cells/table-cells';
 
 export const colStyle = {
@@ -49,30 +50,35 @@ export const columns = [
     label: 'Дата',
     colStyle: { ...colStyle, width: '136px' },
     cellComponent: dateCell,
+    headComponent: sapHeadCell,
   },
   {
     key: 'amount',
     label: 'Сумма',
     colStyle: { ...colStyle, width: '136px' },
     cellComponent: baseCell,
+    headComponent: sapHeadCell,
   },
   {
     key: 'operation',
     label: 'Операция',
     colStyle: { ...colStyle, width: '136px' },
     cellComponent: baseCell,
+    headComponent: sapHeadCell,
   },
   {
     key: 'note',
     label: 'Примечание',
     colStyle: colStyle,
     cellComponent: baseCell,
+    headComponent: sapHeadCell,
   },
   {
     key: 'successful',
     label: 'Статус',
     colStyle: { ...colStyle, width: '76px' },
     cellComponent: statusCell,
+    headComponent: sapHeadCell,
   },
 ];
 

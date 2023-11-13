@@ -19,7 +19,6 @@ import {
   rowStyleRef,
   rowStylePayment,
 } from '../../utils/partnershipTable';
-import { ppHeadCell } from '../../components/table-cells/table-cells';
 import { NUMBER_PARTNERSHIP } from '../../utils/config';
 
 const Partnership: FC = (): JSX.Element => {
@@ -114,7 +113,6 @@ const Partnership: FC = (): JSX.Element => {
               )} */}
             <TableComponent
               columns={refCols}
-              headComponent={ppHeadCell}
               tableData={refRows}
               rowStyle={rowStyleRef}
               cellStyle={cellStyle}
@@ -167,7 +165,6 @@ const Partnership: FC = (): JSX.Element => {
             {isPaymentsTableVisible && (
               <TableComponent
                 columns={paymentCols}
-                headComponent={ppHeadCell}
                 tableData={paymentRows}
                 rowStyle={rowStylePayment}
                 cellStyle={cellStyle}
