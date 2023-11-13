@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { ReactFlowProvider } from 'reactflow';
 import InlineButton from './button-inline';
 
 const data = {
@@ -26,9 +27,11 @@ type Story = StoryObj<typeof InlineButton>;
 
 export const Block: Story = {
   render: () => (
-    <div style={divStyles}>
-      <InlineButton data={data} />
-      <InlineButton data={{ name: 'инпут', type: 'answer' }} />
-    </div>
+    <ReactFlowProvider>
+      <div style={divStyles}>
+        <InlineButton data={data} />
+        <InlineButton data={{ name: 'инпут', type: 'answer' }} />
+      </div>
+    </ReactFlowProvider>
   ),
 };

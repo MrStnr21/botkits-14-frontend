@@ -1,8 +1,9 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
 @mixin content ($padding, $gap) {
+  @include flex(column, false, false, $gap);
   padding: $padding;
-  display: flex;
-  flex-direction: column;
-  gap: $gap;
 
   @media screen and (max-width: 520px) {
     gap: 4px
@@ -25,86 +26,29 @@
   }
 }
 
-.hiddent-form{
-  font-family: 'Open Sans';
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 150%;
-  letter-spacing: 0.3px;
-  padding-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-
-  input {
-    width: 6px;
-    height: 6px;
-    border: 0;
-    background: none;
-    border-radius: 50%;
-    vertical-align: middle;
-    outline: 1.5px solid #CCD4E0;
-    outline-offset: 5.33px;
-    appearance: none;
-    -webkit-appearance: none;
-    cursor: pointer;
-
-    &:checked {
-      background-color: #243CBB;
-    }
-
-    @media screen and (max-width: 520px) {
-      width: 3.42px;
-      height: 3.42px;
-      outline-offset: 3.04px;
-    }
-  }
-
-  @media screen and (max-width: 520px) {
-    font-size: 7.41px;
-  }
-}
-
-.hidden-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  @media screen and (max-width: 520px) {
-    gap: 4px
-  }
-}
-
 .labeled-input {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  @include flex(column, false, false, 4px);
 
   label {
-    font-family: 'Open Sans';
-    font-size: 12px;
-    font-weight: 400;
-    color: #A6B3C9;
-    line-height: 150%;
-    letter-spacing: 0.3px;
+    @include font('Open Sans', $xxs-font-size, $normal, $grey-3);
+    @include line-sizes($xl-line-height, $m-letter-space);
+
+    @media screen and (max-width: 520px) {
+      font-size: 6.84px;
+    }
   }
 }
 
 .inputs-num{
+  @include flex(row, false, false, 7px);
   padding-top: 4px;
-  display: flex;
-  flex-direction: row;
-  gap: 7px;
 }
 
 .split-line{
-  margin: 0;
-  padding: 0;
+  @include indents(0, 0);
+  @include size(100%, 1px);
   border: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #F2F4F8;
+  background-color: $secondary-cultured-hover;
 
   @media screen and (max-width: 520px) {
     width: 150px;

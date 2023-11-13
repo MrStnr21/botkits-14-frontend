@@ -1,3 +1,4 @@
+import { ReactFlowProvider } from 'reactflow';
 import SavingToCrmBlock from './saving-to-crm';
 
 export default {
@@ -5,4 +6,14 @@ export default {
   component: SavingToCrmBlock,
 };
 
-export const Default = () => <SavingToCrmBlock data={{ name: 'test name' }} />;
+export const Default = () => (
+  <ReactFlowProvider>
+    <SavingToCrmBlock
+      data={{
+        name: 'CRMBlock',
+        crmList: ['1', '2', '3'],
+        chosenCrm: '',
+      }}
+    />{' '}
+  </ReactFlowProvider>
+);

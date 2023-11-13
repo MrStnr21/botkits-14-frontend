@@ -55,12 +55,8 @@ const Dialog: FC<IDialog> = ({ name, text, time, messageNum, status }) => {
       >
         {text}
       </Typography>
-      <Typography
-        tag="span"
-        className={styles.dialog__timeAgo}
-        fontFamily="primary"
-      >
-        {time}
+      <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
+        {getTimeAgo(timeAgo, 'custom')}
       </Typography>
       {messageNum > 0 ? (
         <div className={styles.dialog__messageNumCircle}>

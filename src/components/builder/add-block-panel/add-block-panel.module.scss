@@ -2,11 +2,14 @@
 @use '../../../stylesheets/mixins' as *;
 
 .panel {
+  display: grid;
   box-sizing: border-box;
   max-width: 612px;
+  min-width: 320px;
   padding: 12px;
   border-radius: $l-border-radius;
   box-shadow: $s-box-shadow;
-  display: grid;
+  background-color: $off-white;
+  z-index: 999;
   grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
 }

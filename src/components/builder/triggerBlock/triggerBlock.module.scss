@@ -2,23 +2,18 @@
 @use '../../../stylesheets/mixins' as *;
 
 .wrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  //@include position(absolute, 0, 0, 0, false);
+  @include flex(column, false, false, 32px);
   width: 364px;
   overflow-y: scroll;
   background-color: $off-white;
   padding: 24px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  z-index: 101;
+
   filter: drop-shadow(-4px 4px 4px rgba(0,0,0,.25));
 
   .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(row, space-between, center);
 
     h2 {
       margin: 0;
@@ -30,9 +25,6 @@
   }
 
   .triggers {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    @include flex(column, false, false, 8px);
   }
-
 }

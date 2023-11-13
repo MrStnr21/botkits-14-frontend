@@ -1,40 +1,81 @@
-import { FC, useState } from 'react';
+import { FC, useState, ChangeEvent, useRef } from 'react';
 import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
 import Input from '../../../../ui/inputs/input/input';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
-import MenuVariable from '../../../../ui/menus/menu-variable/menu-variable';
+import InputSelect from '../../../../ui/inputs/input-select/input-select';
 import {
   TBlockProps,
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
+import { BUTTON_NAME } from '../../../../utils/constants';
+import { currencyAvailable, messagesSuccessful } from '../../utils/data';
+// import VideoCard from '../../../video-card/video-card';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   const [name, setName] = useState(data.name);
+  const [goodsName, setGoodsName] = useState(data.goodsName || '');
+  const [description, setDescription] = useState(data.description || '');
+  const [payment, setPayment] = useState(
+    data.payment ? String(data.payment) : ''
+  );
   const placeholder = 'Введите название';
 
-  const buttonsForSum = ['RUB', 'EUR', 'USD']; // перенести в конфиг
-  const buttonsForAfterPay = ['заглушка'];
+  const ref = useRef<null | HTMLInputElement>(null);
+
+  const onClickAddPhoto = () => {
+    if (ref.current) {
+      ref.current.click();
+    }
+  };
 
   return (
-    <ControlLayout type={name} name={name} nameSetter={setName}>
+    <ControlLayout type="Оплата в Telegram" name={name} nameSetter={setName}>
       <div className={styles.blocks}>
-        <LabeledInput title="Навзание товара">
+        <LabeledInput title="Название товара">
           <Input
             placeholder={placeholder}
-            onChange={() => {}}
+            value={goodsName}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setGoodsName(e.target.value);
+            }}
             styled="bot-builder-default"
           />
         </LabeledInput>
-        <ConstructorAddButton width="100%" icon="photo">
-          Добавить фото
-        </ConstructorAddButton>
+        <div>
+          <input
+            ref={ref}
+            type="file"
+            id={BUTTON_NAME.IMAGE}
+            name={BUTTON_NAME.IMAGE}
+            accept=".jpg, .png, .gif"
+            hidden
+          />
+          <label htmlFor={BUTTON_NAME.IMAGE}>
+            <ConstructorAddButton
+              maxWidth="100%"
+              icon="photo"
+              onClick={onClickAddPhoto}
+            >
+              Добавить фото
+            </ConstructorAddButton>
+          </label>
+          {/* <VideoCard
+            contentType="image"
+            title="title"
+            prewiew={URL.createObjectURL(file)}
+            src={URL.createObjectURL(file)}
+          /> */}
+        </div>
+
         <LabeledInput title="Описание">
           <Input
             placeholder={placeholder}
-            value={data.description}
-            onChange={() => {}}
+            value={description}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setDescription(e.target.value);
+            }}
             styled="bot-builder-default"
           />
         </LabeledInput>
@@ -42,14 +83,18 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           <div className={styles.sumInputs}>
             <Input
               placeholder="Введите сумму"
-              value={String(data.payment)}
-              onChange={() => {}}
+              value={payment}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setPayment(e.target.value);
+              }}
               styled="bot-builder-default"
             />
-            <MenuVariable
-              width="66px"
-              nameMenu={data.currency || buttonsForSum[0]}
-              buttons={buttonsForSum}
+            <InputSelect
+              values={currencyAvailable}
+              maxWidth={67}
+              defaultValue={[data.currency || 'Рубль']}
+              handleFunction={() => {}}
+              isAdaptive
             />
           </div>
         </LabeledInput>
@@ -62,9 +107,12 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           />
         </LabeledInput>
         <LabeledInput title="После успешной оплаты вернуть">
-          <MenuVariable
-            buttons={buttonsForAfterPay}
-            nameMenu={data.onSuccess || buttonsForAfterPay[0]}
+          <InputSelect
+            values={messagesSuccessful}
+            maxWidth={400}
+            defaultValue={[data.onSuccess || 'По умолчанию']}
+            handleFunction={() => {}}
+            isAdaptive
           />
         </LabeledInput>
       </div>

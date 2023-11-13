@@ -1,9 +1,11 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { Position } from 'reactflow';
 
 import cn from 'classnames/bind';
 import Button from '../../../../ui/buttons/button/button';
 import styles from './button-start.module.scss';
 import Typography from '../../../../ui/typography/typography';
+import CustomHandle from '../../flow/custom-handle/custom-handle';
 
 export type TButtonStartProps = {
   data: {
@@ -15,6 +17,8 @@ export type TButtonStartProps = {
 const cx = cn.bind(styles);
 
 const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
+  const [hidden, setHidden] = useState(true);
+
   const getButton = () => {
     switch (data.type) {
       case 'stop': {
@@ -73,7 +77,22 @@ const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
     }
   };
 
-  return getButton();
+  return (
+    <>
+      <CustomHandle
+        position={Position.Bottom}
+        hidden={hidden}
+        type="source"
+        id="1"
+      />
+      <div
+        onMouseEnter={() => setHidden(false)}
+        onMouseLeave={() => setHidden(true)}
+      >
+        {getButton()}
+      </div>
+    </>
+  );
 };
 
 export default ButtonStart;
