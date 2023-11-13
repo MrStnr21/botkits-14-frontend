@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { URL_TELEGRAM_SCRIPT } from '../../utils/config';
+import { URL_TELEGRAM_SCRIPT, BASE_URL_TELEGRAM } from '../../utils/config';
 
 declare global {
   interface Window {
@@ -19,7 +19,7 @@ function TelegramWidget() {
   // Функция для обработки аутентификации Telegram
   async function onTelegramAuth(user: IUser) {
     try {
-      const response = await fetch('http://localhost:3001/telegram', {
+      const response = await fetch(BASE_URL_TELEGRAM!, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

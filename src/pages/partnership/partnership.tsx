@@ -20,6 +20,7 @@ import {
   rowStylePayment,
 } from '../../utils/partnershipTable';
 import { ppHeadCell } from '../../components/table-cells/table-cells';
+import { NUMBER_PARTNERSHIP } from '../../utils/config';
 
 const Partnership: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
@@ -27,7 +28,7 @@ const Partnership: FC = (): JSX.Element => {
   const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
   const [paymentsChevronActive, setPaymentsChevronActive] = useState(false);
   const [refChevronActive, setRefChevronActive] = useState(false);
-  const [inputValue, setInputValue] = useState<string>('botkits.ru/?ref=12345');
+  const [inputValue, setInputValue] = useState<string>(NUMBER_PARTNERSHIP!);
 
   const toggleReferralsTable = () => {
     setReferralsTableVisible(!isReferralsTableVisible);

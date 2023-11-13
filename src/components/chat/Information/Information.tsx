@@ -6,6 +6,7 @@ import MenuInformation from '../../../ui/menus/menu-information/menu-information
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
 import Files from '../Files/Files';
 import Typography from '../../../ui/typography/typography';
+import { URL_AVATAR } from '../../../utils/config';
 
 interface IInformation {
   image?: string;
@@ -35,10 +36,7 @@ const Information: FC<IInformation> = ({
             isBot="no"
             state="offline"
             big="yes"
-            pic={
-              image ||
-              'https://images.unsplash.com/photo-1614035030394-b6e5b01e0737?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZSUyMGtpdHRlbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
-            }
+            pic={image || URL_AVATAR!}
           />
           <Typography
             tag="h4"
