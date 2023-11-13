@@ -96,4 +96,25 @@ export const signSelectValues = [
   },
 ];
 
+export const currencyAvailable = [
+  { value: 'Рубль', nameValue: 'RUB' },
+  { value: 'Евро', nameValue: 'EUR' },
+  { value: 'Доллары США', nameValue: 'USD' },
+];
+
+export const messagesSuccessful = [
+  { value: 'По умолчанию', nameValue: 'Введите название' },
+  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
+  { value: 'Короткое сообщение', nameValue: 'Ok!' },
+  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
+  { value: 'Общее сообщение', nameValue: 'Успешно' },
+];
+
 export default {};
+
+/* export const messagesSuccessfulPayment = [
+  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
+  { value: 'Короткое сообщение', nameValue: 'Ok!' },
+  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
+  { value: 'Общее сообщение', nameValue: 'успешно' },
+]; */
