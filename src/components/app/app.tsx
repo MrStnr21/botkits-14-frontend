@@ -14,7 +14,6 @@ import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat/chat';
-
 import routesUrl from '../../utils/routesData';
 
 import ProtectedRoute from '../../routes/protected-route';
