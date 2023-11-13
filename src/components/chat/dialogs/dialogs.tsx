@@ -7,6 +7,8 @@ import Dialog from '../dialog/dialog';
 import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../../ui/typography/typography';
 import { testData } from '../../../utils/mockChatData';
+import SearchIcon from '../../icons/Search/SearchIcon';
+import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
 
 interface ID {
   setSelectedMessages?: any;
@@ -45,13 +47,21 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
 
   return (
     <div className={styles.dialogs}>
-      <Typography
-        tag="h2"
-        className={styles.dialogs__header}
-        fontFamily="secondary"
-      >
-        Диалоги
-      </Typography>
+      <div className={styles.dialogs__headerContent}>
+        <Typography
+          tag="h2"
+          className={styles.dialogs__header}
+          fontFamily="secondary"
+        >
+          Диалоги
+        </Typography>
+        {isMobile && (
+          <div className={styles.dialogs__icons}>
+            <SearchIcon size="large" />
+            <DialogMenuIcon size="24" />
+          </div>
+        )}
+      </div>
       <div className={styles.dialogs__inputWrapper}>
         {!isMobile && <InputDialogues iconVisible />}
       </div>

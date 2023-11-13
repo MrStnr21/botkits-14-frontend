@@ -16,8 +16,18 @@
     border: none;
   }
 
-  &__header {
-    padding-bottom: 26px;
+  &__headerContent {
+    @include size(100%, unset);
+    @include flex(row, space-between, center);
+    @include indents(0 0 26px 0, 0);
+  }
+
+  // &__header {
+  //   padding-bottom: 26px;
+  // }
+
+  &__icons {
+    @include flex(row, center, center, 8px);
   }
 
   &__line {
