@@ -79,18 +79,22 @@ const ButtonStart: FC<TButtonStartProps> = ({ data }) => {
 
   return (
     <>
-      <CustomHandle
-        position={Position.Bottom}
-        hidden={hidden}
-        type="source"
-        id="1"
-      />
+      {' '}
+      {data.type === 'start' && (
+        <CustomHandle
+          position={Position.Bottom}
+          hidden={hidden}
+          type="source"
+          id="1"
+        />
+      )}{' '}
       <div
         onMouseEnter={() => setHidden(false)}
         onMouseLeave={() => setHidden(true)}
       >
-        {getButton()}
-      </div>
+        {' '}
+        {getButton()}{' '}
+      </div>{' '}
     </>
   );
 };
