@@ -5,7 +5,7 @@
   @include flex(row, center, center);
   @include position(relative);
   @include indents(10px, 0);
-  @include max-size(308px, unset);
+  // @include max-size(308px, unset);
   @include min-size(unset, 40px);
   background-color: $secondary-cultured-default;
   border-radius: $l-border-radius;

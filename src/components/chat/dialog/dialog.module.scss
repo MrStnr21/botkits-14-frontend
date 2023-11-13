@@ -12,7 +12,7 @@
 
   &__line {
     @include size(4px, 81px);
-    @include position(absolute, unset, 15px, unset, unset);
+    @include position(absolute, unset, -15px, unset, unset);
     background-color: $primary-persian-blue-default;
     border-radius: 2px 0 0 2px;
   }

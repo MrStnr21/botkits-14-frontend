@@ -4,10 +4,9 @@
 .dialog {
   @include flex(column, space-between, center, unset);
   @include position(relative);
-  @include size(unset, 100%);
+  @include size(unset, calc(100% - 32px));
+  @include indents(0 32px, 32px 0 0);
   box-sizing: border-box;
-  margin: 32px 0 0;
-  padding: 0 32px;
   flex: 1;
   border-right: 1px solid #d7deea;
 
