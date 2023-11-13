@@ -3,12 +3,10 @@
 
 .layout {
   margin: 0 auto;
-  min-height: 100vh;
   display: grid;
-  grid-template-columns: minmax(0, 120px) minmax($min-content-width, auto);
   grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, min-content) minmax(calc($min-content-width - 300px), auto);
   box-sizing: border-box;
-  padding-left: 16px;
   position: relative;
   background-color: $off-white;
 
@@ -17,15 +15,28 @@
   }
 }
 
+.default {
+  display: grid;
+  min-height: 100vh;
+  padding-left: 16px;
+}
+
+.compact {
+  display: block;
+  max-height: 100vh;
+}
+
 .page {
   grid-column: 2 / 3;
   grid-row: 2;
-
-  max-width: $max-content-width;
   margin: 0 auto;
   width: 100%;
 
   @media (max-width: $switching-width) {
     grid-column: 1 / -1;
   }
+}
+
+.limited {
+  max-width: $max-content-width;
 }

@@ -9,6 +9,7 @@ import moreOrEqualImage from '../../../images/icon/24x24/variables/more or equal
 import moreImage from '../../../images/icon/24x24/variables/more.svg';
 import notInLineWithoutCaseImage from '../../../images/icon/24x24/variables/not in line without case.svg';
 import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg';
+import { MessageDataTypes } from '../../../services/types/builder';
 
 export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
 export const saveOptions = ['Новая запись', 'Дополнить запись'];
@@ -96,4 +97,93 @@ export const signSelectValues = [
   },
 ];
 
+export const currencyAvailable = [
+  { value: 'Рубль', nameValue: 'RUB' },
+  { value: 'Евро', nameValue: 'EUR' },
+  { value: 'Доллары США', nameValue: 'USD' },
+];
+
+export const messagesSuccessful = [
+  { value: 'По умолчанию', nameValue: 'Введите название' },
+  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
+  { value: 'Короткое сообщение', nameValue: 'Ok!' },
+  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
+  { value: 'Общее сообщение', nameValue: 'Успешно' },
+];
+
+export const defaultBlocks = {
+  message: {
+    name: 'Message',
+    data: [
+      {
+        type: MessageDataTypes.message,
+        value: '',
+      },
+      {
+        type: MessageDataTypes.answers,
+        horizontalAmount: 0,
+        verticalAmount: 0,
+      },
+      {
+        type: MessageDataTypes.buttons,
+        horizontalAmount: 0,
+        verticalAmount: 0,
+      },
+    ],
+    saveAnswer: '',
+  },
+  api: {
+    name: 'api',
+    url: '',
+    reqType: '',
+    headers: [],
+    params: [],
+  },
+  conditional: {
+    name: 'Conditional',
+    variables: [],
+  },
+  coordinate: {
+    name: 'Coordinates',
+    coordinates: [],
+  },
+  telegramPay: {
+    name: 'TelegramPay',
+    goodsName: '',
+    image: '',
+    description: '',
+    payment: '',
+    currency: '',
+    providerToken: '',
+    onSuccess: '',
+  },
+  deeplink: {
+    name: 'Deeplink',
+    param: '',
+    type: 'random',
+    signsAmount: 8,
+    additionValue: '',
+    additionLink: '',
+  },
+  crm: {
+    name: 'CRMBlock',
+    crmList: ['1', '2', '3'],
+    chosenCrm: '',
+  },
+  operator: {
+    name: 'Operator call',
+  },
+  variable: {
+    name: 'Variable Block',
+    variables: [],
+  },
+};
+
 export default {};
+
+/* export const messagesSuccessfulPayment = [
+  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
+  { value: 'Короткое сообщение', nameValue: 'Ok!' },
+  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
+  { value: 'Общее сообщение', nameValue: 'успешно' },
+]; */

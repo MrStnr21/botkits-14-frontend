@@ -32,6 +32,7 @@
 
   @media screen and (max-width: 520px) {
     font-size: 7.41px;
+    justify-content: center;
   }
 }
 
@@ -41,4 +42,8 @@
   @media screen and (max-width: 520px) {
     gap: 4px
   }
+}
+
+.label {
+  margin: 0;
 }
