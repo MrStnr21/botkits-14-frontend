@@ -88,7 +88,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
             {isModalOpen && (
               <div className={styles.dialogs__modal}>
                 <DialogMobilePopup />
-                {/* допилить открытие инпута поиска, обощить компонент попапа в один */}
+                {/* допилить общий компонент модального окна */}
               </div>
             )}
           </div>

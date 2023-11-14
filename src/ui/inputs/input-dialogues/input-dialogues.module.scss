@@ -39,6 +39,10 @@
     background: none;
     display: none;
   }
+
+  &:focus {
+    text-indent: 3px;
+  }
 }
 
 .message_hidden {

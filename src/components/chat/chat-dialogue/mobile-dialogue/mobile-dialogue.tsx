@@ -8,8 +8,6 @@ import stylesDialog from '../chat-dialogue.module.scss';
 import Typography from '../../../../ui/typography/typography';
 import InputDialogues from '../../../../ui/inputs/input-dialogues/input-dialogues';
 import Tooltip from '../tooltip/tooltip';
-import SearchIcon from '../../../icons/Search/SearchIcon';
-import CloseIcon from '../../../icons/Close/CloseIcon';
 import PlayIcon from '../../../icons/Play/PlayIcon';
 import DialogMenuIcon from '../../../icons/DialogMenuIcon/DialogMenuIcon';
 import DialogMobilePopup from '../dialog-mobile-popup/dialog-mobile-popup';
