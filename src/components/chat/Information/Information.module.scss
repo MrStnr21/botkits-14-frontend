@@ -14,8 +14,12 @@
 
   @media screen and (max-width: 860px) {
     @include size(100%, unset);
-    @include indents(32px 32px 0 0 , 32px auto 0);
+    @include indents(32px 16px 0 , 32px auto 0);
     @include flex(row, center, unset, unset);
+  }
+
+  @media screen and (max-width: 620px) {
+    margin-top: 16px;
   }
 
   &__container {
@@ -62,6 +66,12 @@
     @media screen and (max-width: 860px) {
       @include size(calc(100% - 32px), unset);
       @include indents();
+      // @include indents(0 16px 0, 0);
+    }
+
+    @media screen and (max-width: 620px) {
+      @include size(100%, unset);
+      @include indents(0 16px 0, 0);
     }
   }
 
