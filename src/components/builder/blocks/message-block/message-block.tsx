@@ -1,7 +1,6 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
 import { FC } from 'react';
-import { v4 as uuid } from 'uuid';
-import { Position, useReactFlow, useNodeId } from 'reactflow';
+import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -20,22 +19,23 @@ import { setFlowData } from '../../utils';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
-  const id = useNodeId();
+  const id = useNodeId() || '';
   const { setNodes, getNodes } = useReactFlow();
 
-  const setVariable = setFlowData(['saveAnswer', 'value']);
-  const toggleVariableBlock = setFlowData(
-    ['saveAnswer', 'show'],
-    !data.saveAnswer.show
-  );
+  const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
+  const toggleVariableBlock = setFlowData({
+    selectors: ['saveAnswer', 'show'],
+    value: !data.saveAnswer.show,
+  });
 
-  const setTime = (type: string) => setFlowData(['showTime', type]);
-  const toggleTimeBlock = setFlowData(
-    ['showTime', 'show'],
-    !data.showTime.show
-  );
+  const setTime = (type: string) =>
+    setFlowData({ selectors: ['showTime', type] });
+  const toggleTimeBlock = setFlowData({
+    selectors: ['showTime', 'show'],
+    value: !data.showTime.show,
+  });
 
-  const addButton = (
+  /* const addButton = (
     blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
     type: 'horButtons' | 'verButtons'
   ) =>
@@ -47,7 +47,31 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         }
         return item;
       })
-    );
+    ); */
+
+  const addButton =
+    (
+      blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
+      direction: 'horizontal' | 'vertical'
+    ) =>
+    () => {
+      const node: Node = {
+        type: 'button',
+        id: Math.random().toString(),
+        position: { x: 100, y: 100 },
+        data: {
+          type: blockType.slice(0, 6),
+          direction,
+          name: 'имя',
+          color: '',
+          url: '',
+        },
+        parentNode: id,
+        draggable: false,
+      };
+
+      setNodes([...getNodes(), node]);
+    };
 
   const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNodes(
@@ -79,14 +103,9 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           <PanelInline
             addHorizontalButton={addButton(
               MessageDataTypes.answers,
-              'horButtons'
+              'horizontal'
             )}
-            addVerticalButton={addButton(
-              MessageDataTypes.answers,
-              'verButtons'
-            )}
-            verButtons={component.verButtons}
-            horButtons={component.horButtons}
+            addVerticalButton={addButton(MessageDataTypes.answers, 'vertical')}
             key={index}
             title="Ответ"
           />
@@ -97,14 +116,9 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           <PanelInline
             addHorizontalButton={addButton(
               MessageDataTypes.buttons,
-              'horButtons'
+              'horizontal'
             )}
-            addVerticalButton={addButton(
-              MessageDataTypes.buttons,
-              'verButtons'
-            )}
-            verButtons={component.verButtons}
-            horButtons={component.horButtons}
+            addVerticalButton={addButton(MessageDataTypes.buttons, 'vertical')}
             key={index}
             title="Инлайн кнопка"
           />
@@ -154,7 +168,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               <Input
                 name="d"
                 placeholder="0"
-                onChange={setTime(days)}
+                onChange={setTime('days')}
                 styled="bot-builder-num"
                 value={days}
                 type="number"
@@ -165,7 +179,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               <Input
                 name="h"
                 placeholder="0"
-                onChange={setTime(hours)}
+                onChange={setTime('hours')}
                 styled="bot-builder-num"
                 value={hours}
                 type="number"
@@ -176,7 +190,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               <Input
                 name="m"
                 placeholder="0"
-                onChange={setTime(minutes)}
+                onChange={setTime('minutes')}
                 styled="bot-builder-num"
                 value={minutes}
                 type="number"
@@ -187,7 +201,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               <Input
                 name="s"
                 placeholder="0"
-                onChange={setTime(seconds)}
+                onChange={setTime('seconds')}
                 styled="bot-builder-num"
                 value={seconds}
                 type="number"

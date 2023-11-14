@@ -18,7 +18,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const { getNodes, setNodes } = useReactFlow();
   const node = getNodes().find((item) => item.id === id);
 
-  const setName = setFlowData(['name']);
+  const setName = setFlowData({ selectors: ['name'] });
 
   const onClick = () => {
     toggleMenu(!menu);
