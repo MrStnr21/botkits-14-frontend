@@ -14,11 +14,11 @@ interface IDialog {
 }
 
 const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
-  function pickChat(e: { target: any } | undefined) {
+  function pickChat(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const allLines = document.querySelectorAll(
       '.line'
     ) as unknown as HTMLCollectionOf<HTMLElement>;
-    const line = e!.target.parentNode.lastChild;
+    const line = e.currentTarget.parentNode?.lastChild as HTMLElement;
     const newAllLines = Array.from(allLines);
 
     newAllLines.forEach((el) => {

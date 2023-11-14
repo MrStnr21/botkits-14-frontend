@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styles from './dialogs.module.scss';
 import Dialog from '../dialog/dialog';
 import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Typography from '../../../ui/typography/typography';
-import { testData } from '../../../utils/mockChatData';
+import {
+  IChatData,
+  IMessage,
+  IUser,
+  testData,
+} from '../../../utils/mockChatData';
 import SearchIcon from '../../icons/Search/SearchIcon';
 import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
 
@@ -20,10 +25,11 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
 
   const count: number[] = [];
 
-  const handleDialogClick = (el: any) => {
+  const handleDialogClick = (el: IChatData) => {
     setSelectedMessages(el.user.messages);
     setSelectedUser({ name: el.user.name, status: el.user.status });
   };
+
   testData.forEach((el) => {
     el.user.messages.forEach((message) => {
       const index = Number(el.user.id);
@@ -39,7 +45,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
     });
   });
 
-  const uniqueData = testData.reduce((a: any[], b) => {
+  const uniqueData = testData.reduce((a: IChatData[], b) => {
     if (a.indexOf(b) < 0 && !a.find((el) => el.user.id === b.user.id))
       a.push(b);
     return a;

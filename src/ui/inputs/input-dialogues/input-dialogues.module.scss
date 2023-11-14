@@ -37,6 +37,7 @@
   &:focus::placeholder {
     color: transparent;
     background: none;
+    display: none;
   }
 }
 

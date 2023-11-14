@@ -29,7 +29,8 @@ const Message: FC<IMessage> = ({ message }) => {
     >
       <div className={stylesMessage.message__avatar}>
         <Avatar
-          isBot={message.user === 'Вы' ? 'no' : 'yes'}
+          isBot="no"
+          // isBot={message.user === 'Вы' ? 'no' : 'yes'}
           state={message.online ? 'online' : 'offline'}
           big="no"
         />

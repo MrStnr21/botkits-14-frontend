@@ -15,12 +15,13 @@ import Avatar from '../../../ui/avatar/avatar';
 import Tooltip from './tooltip/tooltip';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
 import { formatDate, DateType } from '../../../utils/formatDate';
+import { IMessage, IUser } from '../../../utils/mockChatData';
 
 interface IChatDialogue {
   onSidebarClick: () => void;
   isInfoVisible: boolean;
-  selectedMessages?: any;
-  selectedUser?: any;
+  selectedMessages: IMessage[] | null;
+  selectedUser: IUser | null;
 }
 
 const ChatDialogue: FC<IChatDialogue> = ({
@@ -65,7 +66,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
               <div className={stylesDialog.dialog__headerContent}>
                 <Avatar state="offline" isBot="yes" big="no" />
                 <div className={stylesDialog.dialog__nameWrapper}>
-                  <Typography tag="p">{selectedUser.name}</Typography>
+                  <Typography tag="p">{selectedUser!.name}</Typography>
                 </div>
               </div>
               <div className={stylesDialog.dialog__iconsWrapper}>
@@ -117,7 +118,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
             </div>
           </div>
           <div className={stylesDialog.dialog__messages}>
-            {selectedMessages.map((message: any) => {
+            {selectedMessages.map((message) => {
               return <Message message={message} key={message.id} />;
             })}
           </div>

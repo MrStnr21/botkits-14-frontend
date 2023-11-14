@@ -1,5 +1,26 @@
-// eslint-disable-next-line import/prefer-default-export
-export const testData = [
+export interface IMessage {
+  id: number;
+  avatar: string;
+  user: string;
+  message: string;
+  time: string;
+  online: boolean;
+  seen: string;
+  status: 'read' | 'unread';
+}
+
+export interface IUser {
+  id: string | null;
+  name: string | null;
+  status: 'online' | 'offline' | null;
+  messages: IMessage[];
+}
+
+export interface IChatData {
+  user: IUser;
+}
+
+export const testData: IChatData[] = [
   {
     user: {
       id: '1',
@@ -165,7 +186,7 @@ export const testData = [
         {
           id: 1,
           avatar: '',
-          user: 'Артемий',
+          user: 'Артемий Лебедев',
           message: 'Привет, дизайн за миллион?',
           time: '16 мин назад',
           online: false,
