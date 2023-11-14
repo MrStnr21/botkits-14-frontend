@@ -2,28 +2,30 @@
 @use '../../stylesheets/mixins' as *;
 
 .container {
-  @include flex(column, $gap: 32px);
+  @include flex($gap: 28px);
   padding-top: 32px;
   margin-right: 40px;
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
+  &__item {
+    @include flex(column, $gap: 32px);
+
+    &:last-of-type {
+      flex-grow: 1;
+    }
   }
 
   &__button {
+    margin-left: auto;
     width: 188px;
-  }
-
-  &__body {
-    @include flex($gap: 28px);
+    height: 46px;
   }
 }
 
 .subscription {
   @include size(100%, 352px);
-  max-width: 404px;
-  position: relative;
+  width: 404px;
+  position: sticky;
+  top: 32px;
 
   &__header {
     @include size(100%, 228px);
