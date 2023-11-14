@@ -12,16 +12,27 @@ const data = {
     },
     {
       type: MessageDataTypes.answers as const,
-      horizontalAmount: 0,
-      verticalAmount: 0,
+      horButtons: [],
+      verButtons: [],
     },
     {
       type: MessageDataTypes.buttons as const,
-      horizontalAmount: 0,
-      verticalAmount: 0,
+      horButtons: [],
+      verButtons: [],
     },
   ],
-  saveAnswer: '',
+  saveAnswer: {
+    value: '',
+    show: false,
+  },
+  showTime: {
+    show: false,
+    value: '',
+    days: '',
+    hours: '',
+    minutes: '',
+    seconds: '',
+  },
 };
 
 const meta: Meta<typeof MessageBlock> = {

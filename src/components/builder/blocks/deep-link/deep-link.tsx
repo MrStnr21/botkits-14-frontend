@@ -11,18 +11,11 @@ import {
 import { selectValuesType } from '../../utils/data';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
-  const [name, setName] = useState(data.name);
   const [signsAmount, setSignsAmount] = useState(data.signsAmount);
   const [param, setParam] = useState(data.param || 'Название параметра');
 
   return (
-    <ControlLayout
-      type="Deep Link"
-      name={name}
-      nameSetter={(newName: string) => {
-        setName(newName);
-      }}
-    >
+    <ControlLayout type="Deep Link">
       <div className={styles.content}>
         <LabeledInput title="Параметр">
           <Input

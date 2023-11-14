@@ -12,7 +12,7 @@ type Story = StoryObj<typeof FielsField>;
 
 export const Block: Story = {
   render: () => (
-    <ControlLayout name="test" type="test" nameSetter={() => {}}>
+    <ControlLayout type="test">
       <FielsField />
     </ControlLayout>
   ),

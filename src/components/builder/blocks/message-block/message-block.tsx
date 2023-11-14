@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
 import { FC } from 'react';
 import { v4 as uuid } from 'uuid';
-import { Position /* , useReactFlow, useNodeId */ } from 'reactflow';
+import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -20,11 +20,8 @@ import { setFlowData } from '../../utils';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
-  /* const id = useNodeId();
-  const { setNodes, getNodes } = useReactFlow(); */
-
-  const setName = setFlowData(['name']);
-  // const setMessage = setFlowData([ 'data', 'message']); для textField
+  const id = useNodeId();
+  const { setNodes, getNodes } = useReactFlow();
 
   const setVariable = setFlowData(['saveAnswer', 'value']);
   const toggleVariableBlock = setFlowData(
@@ -52,7 +49,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       })
     );
 
-  /*   const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNodes(
       getNodes().map((item) => {
         if (item.id === id) {
@@ -62,7 +59,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               ...item.data,
               data: [
                 ...item.data.data,
-                { type: MessageDataTypes.file, file: e.target.value },
+                {
+                  type: MessageDataTypes.file,
+                  file: e.target.files && e.target.files[0],
+                },
               ],
             },
           };
@@ -70,7 +70,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         return item;
       })
     );
-  }; */
+  };
 
   const content = data.data.map((component, index) => {
     switch (component.type) {
@@ -122,11 +122,11 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     }
   });
   return (
-    <ControlLayout name={data.name} type="Блок сообщений" nameSetter={setName}>
+    <ControlLayout type="Блок сообщений">
       <CustomHandle position={Position.Left} type="target" />
       <div className={styles.content}>
         {content}
-        <FielsField />
+        <FielsField addFile={addFile} />
       </div>
       <hr className={styles['split-line']} />
       <div className={styles['hidden-blocks']}>

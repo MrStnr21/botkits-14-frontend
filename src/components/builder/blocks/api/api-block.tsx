@@ -10,8 +10,6 @@ import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
-  const [name, setName] = useState(data.name);
-
   const [headers, setHeaders] = useState<TApiBlock['headers']>(data.headers);
   const [params, setParams] = useState<TApiBlock['params']>(data.params);
 
@@ -76,13 +74,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   };
 
   return (
-    <ControlLayout
-      type="API"
-      name={name}
-      nameSetter={(newName: string) => {
-        setName(newName);
-      }}
-    >
+    <ControlLayout type="API">
       <div className={styles.container}>
         <LabeledInput title="URL стороннего сервиса">
           <Input

@@ -14,7 +14,6 @@ import { currencyAvailable, messagesSuccessful } from '../../utils/data';
 // import VideoCard from '../../../video-card/video-card';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
-  const [name, setName] = useState(data.name);
   const [goodsName, setGoodsName] = useState(data.goodsName || '');
   const [description, setDescription] = useState(data.description || '');
   const [payment, setPayment] = useState(
@@ -31,7 +30,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   };
 
   return (
-    <ControlLayout type="Оплата в Telegram" name={name} nameSetter={setName}>
+    <ControlLayout type="Оплата в Telegram">
       <div className={styles.blocks}>
         <LabeledInput title="Название товара">
           <Input
