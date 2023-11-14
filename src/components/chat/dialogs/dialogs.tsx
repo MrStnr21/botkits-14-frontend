@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styles from './dialogs.module.scss';
@@ -14,6 +14,7 @@ import {
 } from '../../../utils/mockChatData';
 import SearchIcon from '../../icons/Search/SearchIcon';
 import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
+import DialogMobilePopup from '../chat-dialogue/dialog-mobile-popup/dialog-mobile-popup';
 
 interface ID {
   setSelectedMessages?: Dispatch<SetStateAction<IMessage[]>>;
@@ -22,6 +23,8 @@ interface ID {
 
 const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
   const isMobile = useMediaQuery('(max-width: 860px)');
+  const [isInputVisible, setInputVisible] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false); // временно
 
   const count: number[] = [];
 
@@ -32,7 +35,6 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
 
     if (setSelectedUser) {
       setSelectedUser(el.user);
-      // setSelectedUser({ name: el.user.name, status: el.user.status });
     }
   };
 
@@ -69,16 +71,41 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
         </Typography>
         {isMobile && (
           <div className={styles.dialogs__icons}>
-            <SearchIcon size="large" />
-            <DialogMenuIcon size="24" />
+            <button
+              type="button"
+              onClick={() => setInputVisible(!isInputVisible)}
+              className={styles.dialogs__button}
+            >
+              <SearchIcon size="large" />
+            </button>
+            <button
+              type="button"
+              className={styles.dialogs__button}
+              onClick={() => setModalOpen(!isModalOpen)}
+            >
+              <DialogMenuIcon size="24" />
+            </button>
+            {isModalOpen && (
+              <div className={styles.dialogs__modal}>
+                <DialogMobilePopup />
+                {/* допилить открытие инпута поиска, обощить компонент попапа в один */}
+              </div>
+            )}
           </div>
         )}
       </div>
-      <div className={styles.dialogs__inputWrapper}>
-        {!isMobile && <InputDialogues iconVisible />}
-      </div>
+      {isMobile ? (
+        <div className={styles.dialogs__inputWrapper}>
+          {isInputVisible && <InputDialogues iconVisible />}
+        </div>
+      ) : (
+        <div className={styles.dialogs__inputWrapper}>
+          <InputDialogues iconVisible />
+        </div>
+      )}
       <div className={styles.dialogs__messagesContainer}>
         {uniqueData.map((el: any) => {
+          // исправить типизацию элемента
           const lastMessage = el.user.messages[el.user.messages.length - 1];
           return (
             <div key={Number(el.user.id)}>

@@ -22,12 +22,15 @@
     @include indents(0 0 26px 0, 0);
   }
 
-  // &__header {
-  //   padding-bottom: 26px;
-  // }
-
   &__icons {
+    @include position(relative);
     @include flex(row, center, center, 8px);
+    z-index: 1;
+  }
+
+  &__modal {
+    @include position(absolute, 100%, 0);
+    z-index: 4;
   }
 
   &__line {
@@ -51,5 +54,9 @@
 
   &__link {
     text-decoration: none;
+  }
+
+  &__button {
+    @include button-style-reset();
   }
 }

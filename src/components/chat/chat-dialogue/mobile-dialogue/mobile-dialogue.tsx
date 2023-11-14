@@ -30,9 +30,9 @@ const MobileDialog: FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const handleSearchClick = () => {
-    setInputVisible(!isInputVisible);
-  };
+  // const handleSearchClick = () => {
+  //   setInputVisible(!isInputVisible); // узнать у дизайнера, где открывать инпут поиска по клику
+  // };
 
   const handleChevronClick = () => {
     navigate(-1);
@@ -110,21 +110,6 @@ const MobileDialog: FC = () => {
                 />
               </div>
             )}
-            <button
-              type="button"
-              className={stylesDialog.dialog__headerButton}
-              onClick={() => setInputVisible(!isInputVisible)}
-            >
-              {!isInputVisible ? (
-                <Tooltip text="Поиск">
-                  <SearchIcon size="large" />
-                </Tooltip>
-              ) : (
-                <Tooltip text="Закрыть">
-                  <CloseIcon color="#a6b3c9" />
-                </Tooltip>
-              )}
-            </button>
             <button type="button" className={stylesDialog.dialog__headerButton}>
               <Tooltip text="Воспроизвести">
                 <PlayIcon width={24} height={24} />
@@ -139,7 +124,8 @@ const MobileDialog: FC = () => {
             </button>
             {isModalOpen && (
               <div className={stylesDialog.dialog__modal}>
-                <DialogMobilePopup handleClick={handleSearchClick} />
+                <DialogMobilePopup />
+                {/* допилить общий компонент модального окна */}
               </div>
             )}
           </div>
