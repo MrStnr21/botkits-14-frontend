@@ -1,5 +1,4 @@
-import { FC, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { FC } from 'react';
 
 import LabeledInput from '../../../labeledInput/labeledInput';
 import ConstructorAddButton from '../../../../../ui/buttons/constructor-add-button/constructor-add-button';
@@ -7,30 +6,19 @@ import styles from './panel-inline.module.scss';
 
 interface IPanelInline {
   title: string;
-  horizontalAmount?: number;
-  verticalAmount?: number;
+  horButtons: string[];
+  verButtons: string[];
+  addVerticalButton?: () => void;
+  addHorizontalButton?: () => void;
 }
 
 const PanelInline: FC<IPanelInline> = ({
   title,
-  horizontalAmount,
-  verticalAmount,
+  horButtons,
+  verButtons,
+  addVerticalButton,
+  addHorizontalButton,
 }) => {
-  const [horButtons, setHorButtons] = useState<any[]>(
-    new Array(horizontalAmount || 0)
-  );
-  const [verButtons, setVerButtons] = useState<any[]>(
-    new Array(verticalAmount || 0)
-  );
-
-  const addHor = () => {
-    setHorButtons([...horButtons, uuidv4()]);
-  };
-
-  const addVer = () => {
-    setVerButtons([...verButtons, uuidv4()]);
-  };
-
   return (
     <div className={styles.wrapperButtons}>
       <LabeledInput title={title} extraClass={styles.extraClass}>
@@ -41,7 +29,10 @@ const PanelInline: FC<IPanelInline> = ({
             );
           })}
           <div className={styles.wrapperButton}>
-            <ConstructorAddButton onClick={addHor} icon="horizontal inline">
+            <ConstructorAddButton
+              onClick={addHorizontalButton}
+              icon="horizontal inline"
+            >
               Горизонтальный инлайн
             </ConstructorAddButton>
           </div>
@@ -52,7 +43,10 @@ const PanelInline: FC<IPanelInline> = ({
             );
           })}
           <div className={styles.wrapperButton}>
-            <ConstructorAddButton onClick={addVer} icon="vertical inline">
+            <ConstructorAddButton
+              onClick={addVerticalButton}
+              icon="vertical inline"
+            >
               Вертикальный инлайн
             </ConstructorAddButton>
           </div>

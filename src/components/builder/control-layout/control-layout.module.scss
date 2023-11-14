@@ -4,13 +4,13 @@
 .container {
   @include flex(column);
   border-radius: $l-border-radius;
-  max-width: 296px;
+  width: 296px;
   height: min-content;
   box-shadow: $m-box-shadow;
   background-color: $off-white;
 
   @media screen and (max-width: 520px) {
-    max-width: 168px;
+    width: 168px;
   }
 }
 

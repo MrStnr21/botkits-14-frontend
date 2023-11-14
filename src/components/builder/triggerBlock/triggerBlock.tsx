@@ -5,9 +5,13 @@ import CloseIcon from '../../icons/Close/CloseIcon';
 import ConstructorAddButton from '../../../ui/buttons/constructor-add-button/constructor-add-button';
 import Trigger from '../trigger/trigger';
 
-const TriggerBlock: FC = () => {
+type TTriggerBlockProps = {
+  isOpened: boolean;
+  close: () => void;
+};
+
+const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
   const [triggers, setTriggers] = useState<string[]>([]);
-  const [opened, setOpened] = useState<boolean>(true);
 
   const deleteTrigger = (delId: string) => {
     const newTriggers = triggers.filter((id) => id !== delId);
@@ -20,11 +24,11 @@ const TriggerBlock: FC = () => {
     setTriggers(newTriggers);
   };
 
-  return opened ? (
+  return isOpened ? (
     <aside className={styles.wrap}>
       <div className={styles.header}>
         <h2 className={styles.title}>Триггеры</h2>
-        <div onClick={() => setOpened(false)} className={styles.close}>
+        <div onClick={close} className={styles.close}>
           <CloseIcon color="#A6B3C9" />
         </div>
       </div>

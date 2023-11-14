@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FC, useState } from 'react';
-import { useNodeId, useReactFlow } from 'reactflow';
+import React, { FC } from 'react';
+// import { useNodeId, useReactFlow } from 'reactflow';
 import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -8,72 +8,28 @@ import {
   TBlockProps,
   TCoordinateBlock,
 } from '../../../../services/types/builder';
+import { setFlowData } from '../../utils';
 
 const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
   data,
 }) => {
-  const [name, setName] = useState(data.name);
-  const [coordinates, setCoordinates] = useState({
-    latitude: '',
-    longitude: '',
-  });
-  const { setNodes, getNodes } = useReactFlow();
-  const nodeId = useNodeId();
+  // const [name, setName] = useState(data.name);
 
-  const save = () => {
-    const newNodes = getNodes().map((node) => {
-      if (node.id === nodeId) {
-        return {
-          ...node,
-          data: {
-            ...data,
-            coordinates: [coordinates.longitude, coordinates.latitude],
-          },
-        };
-      }
-      return node;
-    });
-
-    setNodes(newNodes);
-
-    console.log(
-      // eslint-disable-next-line array-callback-return, consistent-return
-      getNodes().map((node) => {
-        if (node.id === nodeId) return node;
-      })
-    );
-  };
-
-  const onChangeNodeInput = (
-    e: ChangeEvent<HTMLInputElement>,
-    type: 'latitude' | 'longitude'
-  ) => {
-    const newCoordinates = { ...coordinates, [type]: e.target.value };
-    setCoordinates(newCoordinates);
-
-    save();
-  };
+  const setLongitude = setFlowData(['coordinates', '0']);
+  const setLatitude = setFlowData(['coordinates', '1']);
 
   return (
-    <ControlLayout
-      type="Отправка координат"
-      name={name}
-      nameSetter={(newName: string) => {
-        setName(newName);
-      }}
-    >
+    <ControlLayout type="Отправка координат">
       <div className={styles.content}>
         <div className={styles.wrapperInput}>
           <LabeledInput title="Долгота" extraClass={styles.extraClass}>
             <Input
               minLength={0}
               type="number"
-              onChange={(e) => {
-                onChangeNodeInput(e, 'longitude');
-              }}
+              onChange={setLongitude}
               styled="bot-builder-default"
               placeholder="Введите параметр"
-              value={String(data.coordinates[0] || coordinates.longitude)}
+              value={String(data.coordinates[0])}
             />
           </LabeledInput>
         </div>
@@ -82,12 +38,10 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
             <Input
               minLength={0}
               type="number"
-              onChange={(e) => {
-                onChangeNodeInput(e, 'latitude');
-              }}
+              onChange={setLatitude}
               styled="bot-builder-default"
               placeholder="Введите параметр"
-              value={String(data.coordinates[1] || coordinates.latitude)}
+              value={String(data.coordinates[1])}
             />
           </LabeledInput>
         </div>

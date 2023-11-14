@@ -6,13 +6,25 @@ import ApiBlockNode from '../blocks/api/api-block';
 import 'reactflow/dist/style.css';
 import SendingCoordinatesBlock from '../blocks/sending-coordinates/sending-coordinates';
 import MessageBlock from '../blocks/message-block/message-block';
+import ConditionalBlock from '../blocks/conditional/conditional';
+import TelegramPayment from '../blocks/telegram-payment/telegram-payment';
+import DeepLink from '../blocks/deep-link/deep-link';
+import SavingToCrmBlock from '../blocks/saving-to-crm/saving-to-crm';
+import TransferToOperatorBlock from '../blocks/transfer-to-operator/transfer-to-operator';
+import VariableBlockNode from '../blocks/variable/variable';
 
 export const nodeTypes: NodeTypes = {
-  inlineButton: InlineButton,
+  button: InlineButton,
   message: MessageBlock,
-  sendingCoordinatesBlock: SendingCoordinatesBlock,
+  coordinate: SendingCoordinatesBlock,
   buttonStart: ButtonStart,
-  apiBlockNode: ApiBlockNode,
+  api: ApiBlockNode,
+  conditional: ConditionalBlock,
+  telegramPay: TelegramPayment,
+  deeplink: DeepLink,
+  crm: SavingToCrmBlock,
+  operator: TransferToOperatorBlock,
+  variable: VariableBlockNode,
 };
 
 export const initialNodes: Node[] = [
@@ -27,33 +39,20 @@ export const initialNodes: Node[] = [
     type: 'message',
     data: {
       name: 'message',
-      data: [{ type: 'message' }, { type: 'answers' }, { type: 'buttons' }],
+      data: [
+        { type: 'message' },
+        { type: 'answers', verButtons: [], horButtons: [] },
+        { type: 'buttons', verButtons: [], horButtons: [] },
+      ],
+      showTime: {
+        show: true,
+        value: 0,
+      },
+      saveAnswer: {
+        show: true,
+        value: '',
+      },
     },
     position: { x: 130, y: 0 },
-  },
-  {
-    id: 'node-3',
-    type: 'apiBlockNode',
-    data: {
-      name: 'API',
-    },
-    position: { x: 500, y: 0 },
-  },
-  {
-    id: 'node-4',
-    type: 'sendingCoordinatesBlock',
-    data: {
-      name: 'Отправка координат',
-      coordinates: [],
-    },
-    position: { x: 900, y: 0 },
-  },
-  {
-    id: 'node-5',
-    type: 'inlineButton',
-    data: {
-      type: 'button',
-    },
-    position: { x: 1300, y: 0 },
   },
 ];

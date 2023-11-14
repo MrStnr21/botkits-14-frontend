@@ -16,19 +16,21 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   );
 
   const addHard = () => {
-    setContent([...content, { type: 'hard' }]);
+    setContent([
+      ...content,
+      { type: 'hard', sign: '', condition: '', blockName: '' },
+    ]);
   };
 
   const addEasy = () => {
-    setContent([...content, { type: 'easy' }]);
+    setContent([
+      ...content,
+      { type: 'hard', sign: '', condition: '', blockName: '' },
+    ]);
   };
 
   return (
-    <ControlLayout
-      type="Условный блок"
-      name="Название условного блока"
-      nameSetter={() => data}
-    >
+    <ControlLayout type="Условный блок">
       <div className={styles.controls}>
         <ToggleButton
           text="Простой режим"

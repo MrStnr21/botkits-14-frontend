@@ -7,14 +7,9 @@ import LabeledInput from '../../labeledInput/labeledInput';
 import { crmList, saveOptions } from '../../utils/data';
 
 const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
-  const [blockName, setBlockName] = useState(data.name);
   const [crm, setCrm] = useState<string>(data.chosenCrm || '');
 
   const [saveAs, setSaveAs] = useState<string>(data.save || '');
-
-  const handleNameChange = (newName: string) => {
-    setBlockName(newName);
-  };
 
   const onCrmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCrm(e.target.value);
@@ -26,11 +21,7 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
 
   return (
     <div>
-      <ControlLayout
-        type="Сохранение в CRM"
-        name={blockName}
-        nameSetter={handleNameChange}
-      >
+      <ControlLayout type="Сохранение в CRM">
         <div className={styles.content}>
           <LabeledInput title="Выбор CRM">
             <div className={styles.block}>

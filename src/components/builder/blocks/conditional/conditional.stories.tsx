@@ -3,12 +3,8 @@ import { ReactFlowProvider } from 'reactflow';
 import ConditionalBlock from './conditional';
 
 const data = {
-  name: 'Тестовое имя',
-  variables: [
-    {
-      type: 'easy' as const,
-    },
-  ],
+  name: 'Conditional',
+  variables: [],
 };
 
 const meta: Meta<typeof ConditionalBlock> = {

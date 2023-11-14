@@ -14,6 +14,7 @@ import createbot from '../../../images/prewiew/createbot.png'; // for example
 import { BUTTON_NAME } from '../../../utils/constants';
 
 import ResultAddFile, { IResultProps } from './result-add-file/result-add-file';
+import { URL_YOUTUBE_CONNECT_CHATBOT } from '../../../utils/config';
 
 import VideoCard from '../../../components/video-card/video-card';
 import Typography from '../../typography/typography';
@@ -107,7 +108,7 @@ const ButtonAddFile: FC = (): JSX.Element => {
             file.type.includes('video') ? (
               <li key={file.name + +index}>
                 <VideoCard
-                  src="https://www.youtube.com/embed/FKOn5DfpJDA"
+                  src={URL_YOUTUBE_CONNECT_CHATBOT!}
                   title="Подключение чат бота и основные параметры | Bot Kits"
                   prewiew={createbot}
                   size="m"

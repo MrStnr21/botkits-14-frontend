@@ -54,7 +54,7 @@ const Dialog: FC<IDialogue> = ({
         {text}
       </Typography>
       <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
-        {getTimeAgo(timeAgo, 'twitter')}
+        {getTimeAgo(timeAgo, 'custom')}
       </Typography>
       {messageNum > 0 ? (
         <div className={styles.messageNumCircle}>

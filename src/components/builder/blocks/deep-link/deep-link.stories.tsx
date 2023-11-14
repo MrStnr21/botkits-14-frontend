@@ -3,9 +3,12 @@ import { ReactFlowProvider } from 'reactflow';
 import DeepLink from './deep-link';
 
 const data = {
-  name: 'Test name',
+  name: 'Deeplink',
+  param: '',
   type: 'random' as const,
   signsAmount: 8,
+  additionValue: '',
+  additionLink: '',
 };
 
 const meta: Meta<typeof DeepLink> = {

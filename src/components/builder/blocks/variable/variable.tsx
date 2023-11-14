@@ -15,18 +15,12 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
     data.variables
   );
 
-  console.log(content);
-
   const addValue = () => {
     setContent([...content, { value: '' }]);
   };
 
   return (
-    <ControlLayout
-      type="Управление переменными"
-      name={data.name}
-      nameSetter={() => data}
-    >
+    <ControlLayout type="Управление переменными">
       <div className={styleVariableBlock.container}>
         {content.map(() => {
           return <Value />;
