@@ -1,4 +1,4 @@
-/* import { Instance } from 'reactflow'; */
+import { useReactFlow, useNodeId } from 'reactflow';
 
 export const getTimeDHMS = (time: number) => {
   const s = Math.floor(time % 60);
@@ -45,4 +45,75 @@ export const getTimeMS = (s: number) => {
   };
 }; */
 
+export const setFlowData = (selectors: string[], value?: any) => {
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
+  return (e?: React.ChangeEvent<HTMLInputElement>) => {
+    const nodes = getNodes();
+    console.log(nodes);
+    const finalData = value === undefined ? e?.target.value : value;
+    switch (selectors.length) {
+      case 1: {
+        return setNodes(
+          nodes.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                data: {
+                  ...item.data,
+                  [selectors[0]]: finalData,
+                },
+              };
+            }
+            return item;
+          })
+        );
+      }
+      case 2: {
+        return setNodes(
+          nodes.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                data: {
+                  ...item.data,
+                  [selectors[0]]: {
+                    ...item.data[selectors[0]],
+                    [selectors[1]]: finalData,
+                  },
+                },
+              };
+            }
+            return item;
+          })
+        );
+      }
+      case 3: {
+        return setNodes(
+          nodes.map((item) => {
+            if (item.id === id) {
+              return {
+                ...item,
+                data: {
+                  ...item.data,
+                  [selectors[0]]: {
+                    ...item.data[selectors[0]],
+                    [selectors[1]]: {
+                      ...item.data[selectors[0]][selectors[1]],
+                      [selectors[2]]: finalData,
+                    },
+                  },
+                },
+              };
+            }
+            return item;
+          })
+        );
+      }
+      default: {
+        return nodes;
+      }
+    }
+  };
+};
 export default {};

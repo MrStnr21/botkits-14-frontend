@@ -9,6 +9,7 @@ type TFileProps = {
 };
 
 const File: FC<TFileProps> = ({ data }) => {
+  console.log(data);
   const [file, setFile] = useState(data);
 
   return (

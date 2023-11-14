@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
 import { FC } from 'react';
+import { v4 as uuid } from 'uuid';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -15,113 +16,100 @@ import {
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
+import { setFlowData } from '../../utils';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
-  const id = useNodeId();
-  const { getNodes, setNodes } = useReactFlow();
   const { seconds, minutes, hours, days } = data.showTime;
+  const id = useNodeId();
+  const { setNodes, getNodes } = useReactFlow();
 
-  const setName = (name: string) => {
-    const nodes = getNodes();
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return { ...item, data: { ...item.data, name } };
+  const setName = setFlowData(['name']);
+  // const setMessage = setFlowData([ 'data', 'message']); для textField
+
+  const setVariable = setFlowData(['saveAnswer', 'value']);
+  const toggleVariableBlock = setFlowData(
+    ['saveAnswer', 'show'],
+    !data.saveAnswer.show
+  );
+
+  const setTime = (type: string) => setFlowData(['showTime', type]);
+  const toggleTimeBlock = setFlowData(
+    ['showTime', 'show'],
+    !data.showTime.show
+  );
+
+  const addButton = (
+    blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
+    type: 'horButtons' | 'verButtons'
+  ) =>
+    setFlowData(
+      ['data'],
+      data.data.map((item) => {
+        if (item.type === MessageDataTypes[blockType]) {
+          return { ...item, [type]: [...item[type], uuid()] };
         }
         return item;
       })
     );
-  };
 
-  const setVariable = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const nodes = getNodes();
+  const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNodes(
-      nodes.map((item) => {
+      getNodes().map((item) => {
         if (item.id === id) {
           return {
             ...item,
             data: {
               ...item.data,
-              saveAnswer: { ...item.data.saveAnswer, value: e.target.value },
+              data: [
+                ...item.data.data,
+                { type: MessageDataTypes.file, file: e.target.value },
+              ],
             },
           };
         }
         return item;
       })
     );
-  };
-
-  const toggleVariableBlock = () => {
-    const nodes = getNodes();
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              saveAnswer: {
-                ...item.data.saveAnswer,
-                show: !item.data.saveAnswer.show,
-              },
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-  const setTime =
-    (type: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const nodes = getNodes();
-      setNodes(
-        nodes.map((item) => {
-          if (item.id === id) {
-            return {
-              ...item,
-              data: {
-                ...item.data,
-                showTime: {
-                  ...item.data.showTime,
-                  [type]: e.target.value,
-                },
-              },
-            };
-          }
-          return item;
-        })
-      );
-    };
-
-  const toggleTimeBlock = () => {
-    const nodes = getNodes();
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              showTime: {
-                ...item.data.showTime,
-                show: !item.data.showTime.show,
-              },
-            },
-          };
-        }
-        return item;
-      })
-    );
+    console.log(getNodes());
   };
 
   const content = data.data.map((component, index) => {
     switch (component.type) {
       case MessageDataTypes.answers: {
-        return <PanelInline key={index} title="Ответ" />;
+        return (
+          <PanelInline
+            addHorizontalButton={addButton(
+              MessageDataTypes.answers,
+              'horButtons'
+            )}
+            addVerticalButton={addButton(
+              MessageDataTypes.answers,
+              'verButtons'
+            )}
+            verButtons={component.verButtons}
+            horButtons={component.horButtons}
+            key={index}
+            title="Ответ"
+          />
+        );
       }
       case MessageDataTypes.buttons: {
-        return <PanelInline key={index} title="Инлайн кнопка" />;
+        return (
+          <PanelInline
+            addHorizontalButton={addButton(
+              MessageDataTypes.buttons,
+              'horButtons'
+            )}
+            addVerticalButton={addButton(
+              MessageDataTypes.buttons,
+              'verButtons'
+            )}
+            verButtons={component.verButtons}
+            horButtons={component.horButtons}
+            key={index}
+            title="Инлайн кнопка"
+          />
+        );
       }
       case MessageDataTypes.file: {
         return <File key={index} data={component.file} />;
@@ -139,7 +127,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       <CustomHandle position={Position.Left} type="target" />
       <div className={styles.content}>
         {content}
-        <FielsField />
+        <FielsField addFile={addFile} />
       </div>
       <hr className={styles['split-line']} />
       <div className={styles['hidden-blocks']}>

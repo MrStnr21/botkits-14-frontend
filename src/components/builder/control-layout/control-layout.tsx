@@ -8,7 +8,7 @@ import CustomHandle from '../flow/custom-handle/custom-handle';
 type TControlLayoutProps = {
   type: string; // Тип блока
   name: string; // Текущее имя блока
-  nameSetter: (a: string) => void; // Фукнция для переопределения имени
+  nameSetter: (e: ChangeEvent<HTMLInputElement>) => void; // Фукнция для переопределения имени
   children?: ReactElement | ReactElement[];
 };
 
@@ -25,10 +25,6 @@ const ControlLayout: FC<TControlLayoutProps> = ({
 
   const onClick = () => {
     toggleMenu(!menu);
-  };
-
-  const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    nameSetter(e.target.value);
   };
 
   const removeNode = () => {
@@ -75,7 +71,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({
             type="text"
             className={styles.name}
             value={name}
-            onChange={onNameChange}
+            onChange={nameSetter}
           />
           <div className={styles.more} onClick={onClick}>
             <img className={styles.img} src={moreIcon} alt="больше" />
