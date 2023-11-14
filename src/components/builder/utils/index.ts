@@ -24,7 +24,7 @@ export const getTimeMS = (s: number) => {
   return `${minutes}:${seconds.length === 2 ? seconds : `0${seconds}`}`;
 };
 
-export const setFlowData = (
+/* export const setFlowData = (
   selector: string,
   id: string,
   getNodes: Instance.GetNodes<any>,
@@ -43,6 +43,6 @@ export const setFlowData = (
       })
     );
   };
-};
+}; */
 
 export default {};

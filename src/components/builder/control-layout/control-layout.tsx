@@ -77,7 +77,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({
             value={name}
             onChange={onNameChange}
           />
-          <button className={styles.more} onClick={onClick} type="button">
+          <div className={styles.more} onClick={onClick}>
             <img className={styles.img} src={moreIcon} alt="больше" />
             <MenuBot
               size="medium"
@@ -87,7 +87,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({
               left={30}
               removeFunction={removeNode}
             />
-          </button>
+          </div>
         </div>
         {children && (
           <>
