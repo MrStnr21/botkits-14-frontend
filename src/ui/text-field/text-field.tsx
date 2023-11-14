@@ -62,7 +62,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096 }) => {
         {emojis && (
           <div className={styles.textarea__emojiPicker}>
             <EmojiPicker
-              width={264}
+              width="100%"
               onEmojiClick={(e) => {
                 setText(`${text}${e.emoji}`);
                 toggleEmojis(false);

@@ -15,7 +15,7 @@
   @media screen and (max-width: 520px) {
     height: 57px;
     border-radius: 5.7px;
-    padding: 9px 7px 1px;
+    padding: 9px 7px 6px;
   }
 }
 
@@ -73,9 +73,9 @@
 .textarea__font {
   @include indents;
   @include size(24px, 24px);
-  // @include position(absolute, 37px, 13px);
   background: none;
   border: 0;
+  line-height: 0;
 
   .icon{
     @include size(100%, 100%);
@@ -94,6 +94,7 @@
 
 .textarea__emojiPicker {
   @include position(absolute, calc(100% + 20px), 0);
+  width: 100%;
   box-shadow: $l-box-shadow;;
   position: absolute;
   z-index: 10;
