@@ -13,11 +13,11 @@ type CommonProps = {
   chartData: number[];
   // типизация из InputSelect.tsx
   periods: {
-    nameValue: string;
+    label: string;
     value: string;
   }[];
   onPeriodSelect: () => void;
-  // onCalendarSelect: () => void;
+  onCalendarSelect: () => void;
 };
 
 // datasetLineOptions через union не прошёл, пришлось сделать два варианта

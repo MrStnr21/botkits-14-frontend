@@ -62,6 +62,9 @@ const Statistics: FC = () => {
           onPeriodSelect={() => {
             console.log('onSelect action');
           }}
+          onCalendarSelect={() => {
+            console.log('onCalendar action');
+          }}
         />
         <StatsChart
           type="Шаблоны"
@@ -75,6 +78,9 @@ const Statistics: FC = () => {
           onPeriodSelect={() => {
             console.log('onSelect action');
           }}
+          onCalendarSelect={() => {
+            console.log('onCalendar action');
+          }}
         />
         <StatsChart
           type="Боты"
@@ -87,6 +93,9 @@ const Statistics: FC = () => {
           periods={mockPeriods}
           onPeriodSelect={() => {
             console.log('onSelect action');
+          }}
+          onCalendarSelect={() => {
+            console.log('onCalendar action');
           }}
         />
       </div>

@@ -1,13 +1,13 @@
 import { Divider } from '@mui/material';
 import { FC, useState } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
-import InputSelect from '../../ui/inputs/input-select/input-select';
 import Typography from '../../ui/typography/typography';
 import styles from './chart.module.scss';
 import { ChartProps } from './types';
 import calendarIcon from '../../images/icon/16x16/common/calendar.svg';
 import DropSelectorButton from '../../ui/buttons/drop-selector-button/drop-selector-button';
 import Calendar from '../calendar/calendar';
+import DateSelect from '../date-selector/date-selector';
 
 const StatsChart: FC<ChartProps> = ({
   type, // подпись над заголовком
@@ -20,7 +20,7 @@ const StatsChart: FC<ChartProps> = ({
   chartData, // данные: массив значений по оси Y
   periods, // данные: за какие периоды можно отобразить статистику
   onPeriodSelect, // при выборе периода
-  // onCalendarSelect, // при выборе календаря
+  onCalendarSelect, // при выборе календаря
 }) => {
   const [showCalendar, setShowCalendar] = useState(false);
 
@@ -30,6 +30,7 @@ const StatsChart: FC<ChartProps> = ({
 
   const onCalendar = () => {
     console.log('calendar handler');
+    onCalendarSelect();
   };
 
   return (
@@ -44,11 +45,10 @@ const StatsChart: FC<ChartProps> = ({
           </Typography>
         </div>
         <div className={styles.selectors}>
-          <InputSelect
-            values={periods}
-            defaultValue={['last14']}
-            maxWidth={165}
-            handleFunction={onPeriodSelect}
+          <DateSelect
+            options={periods}
+            defaultValue="last14"
+            handleSelect={onPeriodSelect}
           />
           <DropSelectorButton icon={calendarIcon} onClick={toggleCalendar} />
           {showCalendar && (
