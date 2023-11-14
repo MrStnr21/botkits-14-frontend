@@ -31,7 +31,8 @@
 }
 
 .message_buttons {
-  @include flex($align-items: start, $gap: 8px);
+  @include flex($justify-content: center ,$align-items: start, $gap: 8px);
+  flex-wrap: wrap;
   padding: 14px 16px 0 0;
 }
 
