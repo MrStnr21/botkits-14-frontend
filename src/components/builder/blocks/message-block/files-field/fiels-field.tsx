@@ -15,7 +15,7 @@ type TFielsFieldProps = {
   video?: File;
   audio?: File;
   doc?: File;
-  addFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  addFile?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const FielsField: FC<TFielsFieldProps> = ({
