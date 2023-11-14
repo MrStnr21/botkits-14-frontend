@@ -126,6 +126,7 @@ export type TApiBlock = {
 
 export type TButtonBlock = {
   type: 'button' | 'answer';
+  direction: 'horizontal' | 'vertical';
   name: string;
   color: string;
   url: string;
@@ -144,7 +145,7 @@ export type TMessageBlock = {
     hours: string;
     minutes: string;
     seconds: string;
-  }; // Время вывода в секундах, нужно перевести в дни/часы/минуты/секунды
+  };
 };
 
 export type TMessageData = {
@@ -155,14 +156,10 @@ export type TMessageData = {
 
 export type TButtonsData = {
   type: MessageDataTypes.buttons;
-  horButtons: string[]; // Кол-во горизонтальных кнопок
-  verButtons: string[]; // Кол-во вертикальных кнопок
 };
 
 export type TAnswersData = {
   type: MessageDataTypes.answers;
-  horButtons: string[]; // Кол-во горизонтальных ответов
-  verButtons: string[]; // Кол-во вертикальных ответов
 };
 
 export type TFileData = {

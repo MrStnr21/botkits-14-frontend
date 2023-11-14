@@ -24,12 +24,25 @@ export const getTimeMS = (s: number) => {
   return `${minutes}:${seconds.length === 2 ? seconds : `0${seconds}`}`;
 };
 
-export const setFlowData = (selectors: string[], value?: any) => {
+export const setFlowData = ({
+  selectors,
+  value,
+  callback,
+}: {
+  selectors: string[];
+  value?: any;
+  callback?: Function;
+}) => {
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
   return (e?: React.ChangeEvent<HTMLInputElement>) => {
     const nodes = getNodes();
-    const finalData = value === undefined ? e?.target.value : value;
+    const finalData =
+      value !== undefined
+        ? value
+        : callback
+        ? callback(e?.target.value)
+        : e?.target.value;
     switch (selectors.length) {
       case 1: {
         return setNodes(

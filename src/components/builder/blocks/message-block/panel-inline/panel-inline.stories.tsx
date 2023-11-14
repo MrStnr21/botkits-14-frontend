@@ -5,6 +5,4 @@ export default {
   component: PanelInline,
 };
 
-export const Default = () => (
-  <PanelInline horButtons={[]} verButtons={[]} title="yuyuu" />
-);
+export const Default = () => <PanelInline title="yuyuu" />;
