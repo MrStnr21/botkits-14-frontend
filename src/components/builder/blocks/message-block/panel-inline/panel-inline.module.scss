@@ -42,14 +42,6 @@
   }
 }
 
-.button-imitation {
-  height: 40px;
-
-  @media screen and (max-width: 520px) {
-    height: 27px
-  }
-}
-
 .split-line{
   @include indents(0, 0);
   @include size(100%, 1px);
