@@ -53,7 +53,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
     <div
       className={selectedMessages ? stylesDialog.dialog : stylesDialog.noBorder}
     >
-      {selectedMessages && (
+      {selectedMessages?.length ? (
         <>
           <RightSidebarButton
             onClick={onSidebarClick}
@@ -131,6 +131,9 @@ const ChatDialogue: FC<IChatDialogue> = ({
             </button>
           </div>
         </>
+      ) : (
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        <></>
       )}
     </div>
   );

@@ -14,6 +14,7 @@ export interface IUser {
   name: string | null;
   status: 'online' | 'offline' | null;
   messages: IMessage[];
+  lastMessageAt: string | null;
 }
 
 export interface IChatData {
@@ -26,6 +27,7 @@ export const testData: IChatData[] = [
       id: '1',
       name: 'Вячеслав Баумтрок',
       status: 'online',
+      lastMessageAt: '2023-11-15 00:30:22',
       messages: [
         {
           id: 1,
@@ -65,6 +67,7 @@ export const testData: IChatData[] = [
       id: '2',
       name: 'Галя',
       status: 'online',
+      lastMessageAt: '2023-11-11 13:15:00',
       messages: [
         {
           id: 1,
@@ -104,6 +107,7 @@ export const testData: IChatData[] = [
       id: '3',
       name: 'Алексей Тимлид',
       status: 'offline',
+      lastMessageAt: '2023-11-9 19:25:17',
       messages: [
         {
           id: 1,
@@ -140,9 +144,10 @@ export const testData: IChatData[] = [
   },
   {
     user: {
-      id: '2',
-      name: 'Галя',
+      id: '4',
+      name: 'Владислав Иванченко',
       status: 'offline',
+      lastMessageAt: '2023-10-27 13:00:00',
       messages: [
         {
           id: 1,
@@ -158,7 +163,7 @@ export const testData: IChatData[] = [
           id: 2,
           avatar: '',
           user: 'Вы',
-          message: `Привет, user, вообще делать не надо`,
+          message: `Привет, вообще делать не надо`,
           time: '14 мин назад',
           online: true,
           seen: '14:12',
@@ -179,9 +184,10 @@ export const testData: IChatData[] = [
   },
   {
     user: {
-      id: '4',
+      id: '5',
       name: 'Артемий Лебедев',
       status: 'online',
+      lastMessageAt: '2023-09-27 13:15:00',
       messages: [
         {
           id: 1,

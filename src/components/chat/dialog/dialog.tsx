@@ -8,7 +8,7 @@ import getTimeAgo from '../../../utils/getTimeAgo';
 interface IDialog {
   name: string;
   text: string;
-  timeAgo?: Date;
+  timeAgo: Date;
   messageNum: number;
   status: string;
 }
@@ -53,11 +53,10 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
           </Typography>
           <Typography
             tag="span"
-            className={styles.timeAgo}
+            className={styles.dialog__timeAgo}
             fontFamily="primary"
           >
-            Сегодня
-            {/* {getTimeAgo(timeAgo, 'custom')} */}
+            {getTimeAgo(timeAgo, 'custom')}
           </Typography>
         </div>
         <div className={styles.dialog__textContainer}>

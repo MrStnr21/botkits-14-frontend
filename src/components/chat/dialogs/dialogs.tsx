@@ -16,8 +16,8 @@ import SearchIcon from '../../icons/Search/SearchIcon';
 import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
 
 interface ID {
-  setSelectedMessages?: any;
-  setSelectedUser?: any;
+  setSelectedMessages?: Dispatch<SetStateAction<IMessage[]>>;
+  setSelectedUser?: Dispatch<SetStateAction<IUser>>;
 }
 
 const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
@@ -26,8 +26,14 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
   const count: number[] = [];
 
   const handleDialogClick = (el: IChatData) => {
-    setSelectedMessages(el.user.messages);
-    setSelectedUser({ name: el.user.name, status: el.user.status });
+    if (setSelectedMessages) {
+      setSelectedMessages(el.user.messages);
+    }
+
+    if (setSelectedUser) {
+      setSelectedUser(el.user);
+      // setSelectedUser({ name: el.user.name, status: el.user.status });
+    }
   };
 
   testData.forEach((el) => {
@@ -84,7 +90,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
                   <Dialog
                     name={el.user.name}
                     text={el.user.messages[el.user.messages.length - 1].message}
-                    // timeAgo={el.user.lastMessageAt}
+                    timeAgo={el.user.lastMessageAt}
                     messageNum={count[Number(el.user.id)]}
                     key={el.user.id}
                     status={el.user.status}
@@ -96,7 +102,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
                   <Dialog
                     name={el.user.name}
                     text={el.user.messages[el.user.messages.length - 1].message}
-                    timeAgo={el.user.messages.time}
+                    timeAgo={el.user.lastMessageAt}
                     messageNum={count[Number(el.user.id)]}
                     key={el.user.id}
                     status={el.user.status}

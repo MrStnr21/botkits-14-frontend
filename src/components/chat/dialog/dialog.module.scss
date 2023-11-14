@@ -27,7 +27,7 @@
 
     @media screen and (min-width: 861px) and (max-width: 1186px) {
       @include max-size(200px, unset);
-      justify-content: flex-start;
+      // justify-content: flex-start;
       gap: 8px;
       padding-left: 8px;
     }
@@ -74,7 +74,7 @@
     letter-spacing: 0;
 
     @media screen and (min-width: 861px) and (max-width: 1186px) {
-      @include max-size(160px, unset);
+      @include max-size(140px, unset);
     }
   }
 
@@ -94,15 +94,5 @@
 
   &__timeAgo {
     color: $grey-3;
-    font-family: 'Open Sans', sans-serif;
-    font-size: $xs-font-size;
-    font-weight: $normal;
-    line-height: $xl-line-height;
-    letter-spacing: $m-letter-space;
-    justify-self: flex-end;
-
-    @media screen and (min-width: 861px) and (max-width: 1186px) {
-      justify-self: flex-start;
-    }
   }
 }
