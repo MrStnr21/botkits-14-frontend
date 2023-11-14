@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -11,16 +11,8 @@ import {
 const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
   data,
 }) => {
-  const [name, setName] = useState(data.name);
-
   return (
-    <ControlLayout
-      type="Отправка координат"
-      name={name}
-      nameSetter={(newName: string) => {
-        setName(newName);
-      }}
-    >
+    <ControlLayout type="Отправка координат">
       <div className={styles.content}>
         <div className={styles.wrapperInput}>
           <LabeledInput title="Долгота" extraClass={styles.extraClass}>

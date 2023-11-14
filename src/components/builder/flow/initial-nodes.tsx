@@ -39,7 +39,19 @@ export const initialNodes: Node[] = [
     type: 'message',
     data: {
       name: 'message',
-      data: [{ type: 'message' }, { type: 'answers' }, { type: 'buttons' }],
+      data: [
+        { type: 'message' },
+        { type: 'answers', verButtons: [], horButtons: [] },
+        { type: 'buttons', verButtons: [], horButtons: [] },
+      ],
+      showTime: {
+        show: true,
+        value: 0,
+      },
+      saveAnswer: {
+        show: true,
+        value: '',
+      },
     },
     position: { x: 130, y: 0 },
   },

@@ -15,9 +15,16 @@ type TFielsFieldProps = {
   video?: File;
   audio?: File;
   doc?: File;
+  addFile?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const FielsField: FC<TFielsFieldProps> = ({ image, video, audio, doc }) => {
+const FielsField: FC<TFielsFieldProps> = ({
+  image,
+  video,
+  audio,
+  doc,
+  addFile,
+}) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.header}>Дополните контентом</h3>
@@ -27,24 +34,28 @@ const FielsField: FC<TFielsFieldProps> = ({ image, video, audio, doc }) => {
           icon={imageIcon}
           accept=".jpg, .png, .gif"
           isActive={!!image}
+          onChange={addFile}
         />
         <Button
           type={BUTTON_NAME.VIDEO}
           icon={videoIcon}
           accept=".mp4, avi"
           isActive={!!video}
+          onChange={addFile}
         />
         <Button
           type={BUTTON_NAME.FILE}
           icon={fileIcon}
           accept=".docx, .doc, .pdf "
           isActive={!!doc}
+          onChange={addFile}
         />
         <Button
           type={BUTTON_NAME.AUDIO}
           icon={musicIcon}
           accept="audio/*"
           isActive={!!audio}
+          onChange={addFile}
         />
       </div>
     </div>

@@ -1,13 +1,19 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './hidden-block.module.scss';
 
 type THiddenBlockProps = {
   children: React.ReactNode | React.ReactNode[];
   name: string;
+  visible: boolean;
+  toggle: () => void;
 };
 
-const HiddenBlock: FC<THiddenBlockProps> = ({ name, children }) => {
-  const [visible, setVisible] = useState(false);
+const HiddenBlock: FC<THiddenBlockProps> = ({
+  name,
+  children,
+  visible,
+  toggle,
+}) => {
   return (
     <div className={styles['hidden-content']}>
       <form className={styles['hiddent-form']}>
@@ -18,9 +24,7 @@ const HiddenBlock: FC<THiddenBlockProps> = ({ name, children }) => {
           name={name}
           type="checkbox"
           checked={visible}
-          onChange={() => {
-            setVisible(!visible);
-          }}
+          onChange={toggle}
         />
       </form>
       {visible && children}

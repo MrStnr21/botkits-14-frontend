@@ -30,11 +30,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   };
 
   return (
-    <ControlLayout
-      type="Условный блок"
-      name="Название условного блока"
-      nameSetter={() => data}
-    >
+    <ControlLayout type="Условный блок">
       <div className={styles.controls}>
         <ToggleButton
           text="Простой режим"
