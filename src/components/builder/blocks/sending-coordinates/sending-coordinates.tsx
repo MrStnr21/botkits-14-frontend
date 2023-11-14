@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-// import { useNodeId, useReactFlow } from 'reactflow';
+import { FC } from 'react';
 import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -15,8 +14,18 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
 }) => {
   // const [name, setName] = useState(data.name);
 
-  const setLongitude = setFlowData(['coordinates', '0']);
-  const setLatitude = setFlowData(['coordinates', '1']);
+  const cb = (e: string | number) => {
+    return Number(e);
+  };
+
+  const setLongitude = setFlowData({
+    selectors: ['coordinates', '0'],
+    callback: cb,
+  });
+  const setLatitude = setFlowData({
+    selectors: ['coordinates', '1'],
+    callback: cb,
+  });
 
   return (
     <ControlLayout type="Отправка координат">
