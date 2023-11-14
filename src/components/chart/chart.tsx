@@ -1,10 +1,13 @@
 import { Divider } from '@mui/material';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import InputSelect from '../../ui/inputs/input-select/input-select';
 import Typography from '../../ui/typography/typography';
 import styles from './chart.module.scss';
 import { ChartProps } from './types';
+import calendarIcon from '../../images/icon/16x16/common/calendar.svg';
+import DropSelectorButton from '../../ui/buttons/drop-selector-button/drop-selector-button';
+import Calendar from '../calendar/calendar';
 
 const StatsChart: FC<ChartProps> = ({
   type, // подпись над заголовком
@@ -19,6 +22,16 @@ const StatsChart: FC<ChartProps> = ({
   onPeriodSelect, // при выборе периода
   // onCalendarSelect, // при выборе календаря
 }) => {
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const toggleCalendar = () => {
+    setShowCalendar(!showCalendar);
+  };
+
+  const onCalendar = () => {
+    console.log('calendar handler');
+  };
+
   return (
     <section className={styles.chart}>
       <div className={styles.title}>
@@ -37,8 +50,12 @@ const StatsChart: FC<ChartProps> = ({
             maxWidth={165}
             handleFunction={onPeriodSelect}
           />
-          {/* Тут будет select с календарём */}
-          <div className={styles.placeholder} />
+          <DropSelectorButton icon={calendarIcon} onClick={toggleCalendar} />
+          {showCalendar && (
+            <div className={styles.calendar}>
+              <Calendar handleFunction={onCalendar} />
+            </div>
+          )}
         </div>
       </div>
       <Divider className={styles.divider} />

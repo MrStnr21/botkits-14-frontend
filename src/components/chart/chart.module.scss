@@ -12,6 +12,7 @@
 .title {
   @include flex(row, space-between);
   margin-bottom: 24px;
+  position: relative;
 }
 
 .type {
@@ -29,8 +30,6 @@
   @include flex($gap: 8px);
 }
 
-.placeholder {
-  @include size(40px, 41px);
-  background-color: $blue-disabled;
-  border-radius: $m-border-radius;
+.calendar {
+  @include position(absolute, 59px, 0);
 }
