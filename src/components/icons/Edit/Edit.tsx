@@ -5,7 +5,7 @@ interface IEditIcon {
   size?: number;
 }
 
-const EditIcon: FC<IEditIcon> = ({ color = '#A6B3C9', size }) => (
+const EditIcon: FC<IEditIcon> = ({ color = '#243CBB', size }) => (
   <svg
     width={size || 16}
     height={size || 16}
