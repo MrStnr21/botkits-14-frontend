@@ -11,22 +11,22 @@ import notInLineWithoutCaseImage from '../../../images/icon/24x24/variables/not 
 import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg';
 import { MessageDataTypes } from '../../../services/types/builder';
 
-/* enum buttonSizes{
+export enum ButtonSizes {
   startXDesk = 32,
   startXMobile = 16,
   firstYDesk = 170 + 74,
   secondYDesk = 256 + 74,
   thirdYDesk = 384 + 74,
   fourthYDesk = 458 + 74,
-  firstYMobile =
-  secondYMobile =
-  thirdYMobile =
-  fourthYMobile =
-  addStringDesk =
-  addStringMobile =
-  buttonHeightDesk =
-  buttonHeightMobile =
-} */
+  firstYMobile = 104 + 41,
+  secondYMobile = 153 + 41,
+  thirdYMobile = 219 + 41,
+  fourthYMobile = 268 + 41,
+  addStringDesk = 16,
+  addStringMobile = 8,
+  buttonHeightDesk = 40,
+  buttonHeightMobile = 27,
+}
 
 export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
 export const saveOptions = ['Новая запись', 'Дополнить запись'];
