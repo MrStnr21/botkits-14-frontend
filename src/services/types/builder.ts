@@ -127,6 +127,7 @@ export type TApiBlock = {
 export type TButtonBlock = {
   type: 'button' | 'answer';
   direction: 'horizontal' | 'vertical';
+  additionalData?: boolean;
   name: string;
   color: string;
   url: string;

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
 import { FC } from 'react';
-import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
+import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -17,10 +17,40 @@ import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
 import { setFlowData } from '../../utils';
 
+enum ButtonsBlocksStartPositions {
+  first = 166 + 74,
+  second = 234 + 74,
+  thisrd = 346 + 74,
+  fourth = 414 + 74,
+}
+
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
   const id = useNodeId() || '';
   const { setNodes, getNodes } = useReactFlow();
+  const nodes = getNodes();
+
+  const { domNode } = useStore((s) => s);
+
+  console.log(domNode);
+
+  const horButtons = nodes.filter(
+    (node) =>
+      node.data.type === 'button' && node.data.direction === 'horizontal'
+  );
+
+  const verButtons = nodes.filter(
+    (node) => node.data.type === 'button' && node.data.direction === 'vertical'
+  );
+
+  const horAnswers = nodes.filter(
+    (node) =>
+      node.data.type === 'answer' && node.data.direction === 'horizontal'
+  );
+
+  const verAnswers = nodes.filter(
+    (node) => node.data.type === 'answer' && node.data.direction === 'vertical'
+  );
 
   const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
   const toggleVariableBlock = setFlowData({
@@ -35,30 +65,18 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     value: !data.showTime.show,
   });
 
-  /* const addButton = (
-    blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
-    type: 'horButtons' | 'verButtons'
-  ) =>
-    setFlowData(
-      ['data'],
-      data.data.map((item) => {
-        if (item.type === MessageDataTypes[blockType]) {
-          return { ...item, [type]: [...item[type], uuid()] };
-        }
-        return item;
-      })
-    ); */
-
   const addButton =
     (
       blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
-      direction: 'horizontal' | 'vertical'
+      direction: 'horizontal' | 'vertical',
+      blockOffset: number
     ) =>
+    ({ x, y }: { x: number; y: number }) =>
     () => {
       const node: Node = {
         type: 'button',
         id: Math.random().toString(),
-        position: { x: 100, y: 100 },
+        position: { x, y: y + blockOffset },
         data: {
           type: blockType.slice(0, 6),
           direction,
@@ -103,9 +121,17 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           <PanelInline
             addHorizontalButton={addButton(
               MessageDataTypes.answers,
-              'horizontal'
+              'horizontal',
+              ButtonsBlocksStartPositions.thisrd
             )}
-            addVerticalButton={addButton(MessageDataTypes.answers, 'vertical')}
+            addVerticalButton={addButton(
+              MessageDataTypes.answers,
+              'vertical',
+              ButtonsBlocksStartPositions.fourth
+            )}
+            buttonsAmountBefore={horButtons.length + verButtons.length}
+            horizontalButtonsAmount={horAnswers.length}
+            verticalButtonsAmount={verAnswers.length}
             key={index}
             title="Ответ"
           />
@@ -116,9 +142,17 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           <PanelInline
             addHorizontalButton={addButton(
               MessageDataTypes.buttons,
-              'horizontal'
+              'horizontal',
+              ButtonsBlocksStartPositions.first
             )}
-            addVerticalButton={addButton(MessageDataTypes.buttons, 'vertical')}
+            addVerticalButton={addButton(
+              MessageDataTypes.buttons,
+              'vertical',
+              ButtonsBlocksStartPositions.second
+            )}
+            buttonsAmountBefore={0}
+            horizontalButtonsAmount={horButtons.length}
+            verticalButtonsAmount={verButtons.length}
             key={index}
             title="Инлайн кнопка"
           />

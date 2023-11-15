@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 
 import { useMediaQuery } from '@mui/material';
 import LabeledInput from '../../../labeledInput/labeledInput';
@@ -8,49 +7,38 @@ import styles from './panel-inline.module.scss';
 
 interface IPanelInline {
   title: string;
-  addVerticalButton?: () => void;
-  addHorizontalButton?: () => void;
+  addVerticalButton?: ({ x, y }: { x: number; y: number }) => () => void;
+  addHorizontalButton?: ({ x, y }: { x: number; y: number }) => () => void;
+  buttonsAmountBefore: number;
+  horizontalButtonsAmount: number;
+  verticalButtonsAmount: number;
 }
 
 enum ButtonPlaceHeight {
   desk = 40,
-  offset = 12,
+  offsetY = 12,
   mobile = 27,
+  offsetX = 32,
 }
 
 const PanelInline: FC<IPanelInline> = ({
   title,
   addVerticalButton,
   addHorizontalButton,
+  buttonsAmountBefore,
+  horizontalButtonsAmount,
+  verticalButtonsAmount,
 }) => {
   const isMobile = useMediaQuery('(max-width: 520px)');
-  const { getNodes } = useReactFlow();
-  const id = useNodeId() || '';
 
-  const nodes = getNodes();
+  const buttonHeight =
+    (isMobile ? ButtonPlaceHeight.mobile : ButtonPlaceHeight.desk) +
+    ButtonPlaceHeight.offsetY;
 
-  const vertical = nodes.filter((item) => {
-    return item.parentNode === id && item.data.direction === 'vertical';
-  });
+  const verticalHeight = buttonHeight * verticalButtonsAmount;
+  const horizontalHeight = buttonHeight * horizontalButtonsAmount;
 
-  const horizontal = nodes.filter((item) => {
-    return item.parentNode === id && item.data.direction === 'horizontal';
-  });
-
-  const verticalHeight = `${
-    (vertical.length ? 12 : 0) +
-    ((isMobile ? ButtonPlaceHeight.mobile : ButtonPlaceHeight.desk) +
-      ButtonPlaceHeight.offset) *
-      vertical.length
-  }px`;
-
-  const horizontalHeight = `${
-    (horizontal.length ? 12 : 0) +
-    ((isMobile ? ButtonPlaceHeight.mobile : ButtonPlaceHeight.desk) +
-      ButtonPlaceHeight.offset) *
-      horizontal.length
-  }px`;
-
+  console.log(verticalHeight, horizontalHeight);
   return (
     <div className={styles.wrapperButtons}>
       <LabeledInput title={title} extraClass={styles.extraClass}>
@@ -61,7 +49,13 @@ const PanelInline: FC<IPanelInline> = ({
           />
           <div className={styles.wrapperButton}>
             <ConstructorAddButton
-              onClick={addHorizontalButton}
+              onClick={
+                addHorizontalButton &&
+                addHorizontalButton({
+                  x: ButtonPlaceHeight.offsetX,
+                  y: horizontalHeight + buttonsAmountBefore * buttonHeight,
+                })
+              }
               icon="horizontal inline"
             >
               Горизонтальный инлайн
@@ -71,7 +65,16 @@ const PanelInline: FC<IPanelInline> = ({
           <div className={styles.buttons} style={{ height: verticalHeight }} />
           <div className={styles.wrapperButton}>
             <ConstructorAddButton
-              onClick={addVerticalButton}
+              onClick={
+                addVerticalButton &&
+                addVerticalButton({
+                  x: ButtonPlaceHeight.offsetX,
+                  y:
+                    verticalHeight +
+                    buttonsAmountBefore * buttonHeight +
+                    horizontalButtonsAmount * buttonHeight,
+                })
+              }
               icon="vertical inline"
             >
               Вертикальный инлайн

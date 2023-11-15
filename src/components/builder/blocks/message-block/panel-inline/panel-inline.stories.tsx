@@ -5,4 +5,11 @@ export default {
   component: PanelInline,
 };
 
-export const Default = () => <PanelInline title="yuyuu" />;
+export const Default = () => (
+  <PanelInline
+    buttonsAmountBefore={0}
+    horizontalButtonsAmount={0}
+    verticalButtonsAmount={0}
+    title="yuyuu"
+  />
+);
