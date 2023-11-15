@@ -11,6 +11,23 @@ import notInLineWithoutCaseImage from '../../../images/icon/24x24/variables/not 
 import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg';
 import { MessageDataTypes } from '../../../services/types/builder';
 
+/* enum buttonSizes{
+  startXDesk = 32,
+  startXMobile = 16,
+  firstYDesk = 170 + 74,
+  secondYDesk = 256 + 74,
+  thirdYDesk = 384 + 74,
+  fourthYDesk = 458 + 74,
+  firstYMobile =
+  secondYMobile =
+  thirdYMobile =
+  fourthYMobile =
+  addStringDesk =
+  addStringMobile =
+  buttonHeightDesk =
+  buttonHeightMobile =
+} */
+
 export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
 export const saveOptions = ['Новая запись', 'Дополнить запись'];
 

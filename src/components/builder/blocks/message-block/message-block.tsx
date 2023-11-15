@@ -86,8 +86,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     (
       blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
       direction: 'horizontal' | 'vertical',
-      blockOffset: number,
-      depNodes: string[]
+      blockOffset: number
     ) =>
     ({ x, y }: { x: number; y: number }) =>
     () => {
@@ -109,7 +108,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
 
       setNodes([
         ...getNodes().map((item) => {
-          if (depNodes.includes(item.id)) {
+          if (
+            item.position.y > node.position.y &&
+            node.parentNode === item.parentNode
+          ) {
             return {
               ...item,
               position: { ...item.position, y: item.position.y + 52 },
@@ -152,14 +154,12 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.answers,
               'horizontal',
-              ButtonsBlocksStartPositions.thisrd,
-              [...verAnswers]
+              ButtonsBlocksStartPositions.thisrd
             )}
             addVerticalButton={addButton(
               MessageDataTypes.answers,
               'vertical',
-              ButtonsBlocksStartPositions.fourth,
-              []
+              ButtonsBlocksStartPositions.fourth
             )}
             buttonsAmountBefore={horButtons.length + verButtons.length}
             horizontalButtonsAmount={horAnswers.length}
@@ -175,14 +175,12 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.buttons,
               'horizontal',
-              ButtonsBlocksStartPositions.first,
-              [...verButtons, ...horAnswers, ...verAnswers]
+              ButtonsBlocksStartPositions.first
             )}
             addVerticalButton={addButton(
               MessageDataTypes.buttons,
               'vertical',
-              ButtonsBlocksStartPositions.second,
-              [...verAnswers, ...horAnswers]
+              ButtonsBlocksStartPositions.second
             )}
             buttonsAmountBefore={0}
             horizontalButtonsAmount={horButtons.length}

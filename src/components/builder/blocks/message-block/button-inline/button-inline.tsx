@@ -44,7 +44,10 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
     const nodes = getNodes().filter((item) => item.id !== id);
     setNodes(
       nodes.map((item) => {
-        if (item.position.y > node!.position.y) {
+        if (
+          item.position.y > node!.position.y &&
+          node?.parentNode === item.parentNode
+        ) {
           return {
             ...item,
             position: { ...item.position, y: item.position.y - 52 },
