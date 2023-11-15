@@ -1,0 +1,92 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.button {
+  @include button-style-reset;
+  @include flex(column, center, stretch, 16px);
+  @include font('Open Sans', $s-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  transition: all 0.1s linear;
+  background-color: transparent;
+
+  &:hover {
+    color: $primary-persian-blue-default;
+
+    .container {
+      background-color: transparent;
+      box-shadow: $l-box-shadow;
+    }
+
+    .plus_icon svg {
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:active {
+    color: $primary-persian-blue-press;
+
+    .container {
+      background-color: transparent;
+      box-shadow: $l-box-shadow;
+    }
+
+    .plus_icon svg {
+      stroke: $primary-persian-blue-press;
+    }
+  }
+
+  &:disabled {
+    color: $grey-1;
+
+    .container {
+      background-color: $secondary-cultured-hover;
+      box-shadow: none;
+    }
+
+    .plus_icon svg {
+      stroke: $grey-1;
+    }
+
+    .template_icon svg {
+      opacity: 0.5;
+    }
+  }
+}
+
+.container {
+  @include size(100%, 88px);
+  display: flex;
+  border-radius: 185px;
+  transition: all 0.1s linear;
+
+  background-color: $secondary-cultured-hover;
+
+  div {
+    @include flex(row, center, center);
+  }
+}
+
+.plus_icon {
+  margin: auto;
+
+  svg {
+    stroke-width: $m-icon-stroke-width;
+    transition: all 0.1s linear;
+    align-self: center;
+    stroke: $grey-1;
+  }
+}
+
+.template_icon svg {
+  @include size(88px, 88px);
+  transition: all 0.1s linear;
+}
+
+.text {
+  @include indents;
+  text-align: left;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

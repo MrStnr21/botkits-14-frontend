@@ -1,0 +1,57 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container {
+  @include flex(column, center, center, 16px);
+}
+
+.header {
+  @include flex(row, space-between, center);
+  margin: 0;
+  width: 100%;
+}
+
+.arrow_button {
+  @include button-style-reset;
+  @include flex(row, center, center);
+  aspect-ratio: 1 / 1;
+  cursor: $cursor;
+  transition: all 0.2s linear;
+}
+
+.arrow_button div {
+  @include flex(row, center, center);
+}
+
+.arrow_button svg {
+  @include size(26px, 26px);
+  stroke: $grey-2;
+  stroke-width: $l-icon-stroke-width;
+  transition: all 0.1s linear;
+}
+
+.arrow_button:hover svg {
+  stroke: $secondary-cultured-press;
+}
+
+.arrow_button_active {
+  rotate: 180deg;
+}
+
+.buttons_container {
+  @include size(100%, 0);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  column-gap: 29px;
+  row-gap: 12px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition:
+    transform 0.2s linear,
+    height 0.2s linear;
+}
+
+.buttons_container_active {
+  transform: scaleY(1);
+  height: 100%;
+}

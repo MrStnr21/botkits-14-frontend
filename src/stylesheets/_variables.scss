@@ -1,0 +1,112 @@
+/* Ширина контента */
+$max-content-width: 1440px;
+$min-content-width: 320px;
+$switching-width: ($min-content-width + 300px);
+
+/* Цветовая схема приложения */
+$grey-1: #CCD4E0;
+$grey-2: #BFC9D9;
+$grey-3: #A6B3C9;
+$grey-4: #8392AB;
+$blue-disabled: #ECEFFF;
+$off-white: #FFFFFF;
+
+$primary-persian-blue-default: #243CBB;
+$primary-persian-blue-press: #435CDB;
+$primary-persian-blue-hover: #2743CE;
+$primary-persian-blue-focus: #314DD8; // только signin-signup
+
+$primary-oxford-blue-default: #060C23;
+
+$primary-medium-spring-green-default: #22FFAA;
+$primary-medium-spring-green-hover: #70FFC8;
+$primary-medium-spring-green-disabled: #85FFD0;
+
+$secondary-cultured-hover: #F2F4F8;
+$secondary-cultured-default: #F8F9FB;
+$secondary-cultured-press: #D7DEEA;
+$secondary-cultured-focus: #E4E9F1;
+
+$secondary-xiketic-default: #131118;
+$secondary-xiketic-press: #2E293D;
+
+$error-default: #FF5656;
+$success-default: #00E98F;
+
+$example-button-color-red: #D3524D;
+$example-button-color-green: #67D057;
+$example-button-color-blue: #5883C6;
+
+$flow-background-color: #B8CEFF;
+
+/* Переменные размеров шрифта */
+//$xl-h1-font-size: 64px;  Используется в 1 компоненте
+$h1-font-size: 48px;
+$xxxl-font-size: 32px;
+$xxl-font-size: 24px;
+$xl-font-size: 20px;
+$l-font-size: 18px;
+$m-font-size: 16px;
+$s-font-size: 14px;
+$xs-font-size: 13px;
+$xxs-font-size: 12px;
+$xxxs-font-size: 10px;
+
+/* Переменные высоты строки */
+$xl-line-height: 150%;
+$l-line-height: 140%; // не используется
+$m-line-height: 130%;
+$s-line-height: 120%;  // не используется
+$xs-line-height: 110%;
+
+/* Переменные жирности шрифта */
+$bold: 600;
+$semi-bold: 500;
+$normal: 400;
+
+/* Переменные расстояния между буквами */
+$xxl-letter-space: 1px;
+//$xl-letter-space: 0.75px; используется в 2-х компонентах
+$l-letter-space: 0.5px;
+$m-letter-space: 0.3px;
+$s-letter-space: -0.2px;
+// $s-letter-space: 0.2px;  используется в 1 компоненте
+
+/* Переменные радиуса скругления */
+// $border-radius-185: 185px; используется в 1 компоненте
+// $border-radius-50: 50px; используется в 2-х компонентах
+$super-border-radius: 32px;
+$xxl-border-radius: 30px;
+$xl-border-radius: 15px;
+$l-border-radius: 10px;
+$m-border-radius: 8px;
+$s-border-radius: 5px;
+$xs-border-radius: 4px;
+$border-radius-circle: 50%;
+
+/* Переменные тени элемента */
+$l-box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+$m-box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+$s-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); // в 2 компонентах
+
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+%screen-reader {  // Используется в 1 компоненте
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/*  Курсор  */
+$cursor: url('../images/icon/cursor/pointing-hand.svg'), pointer;
+
+/* Иконки */
+// возможно не будут нужны после рефакторинга иконок
+$l-icon-stroke-width: 3px;
+$m-icon-stroke-width: 2px;

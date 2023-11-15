@@ -1,0 +1,122 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+@mixin messageTextDefault() {
+  font-weight: $normal;
+  font-size: $xxxs-font-size;
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
+}
+
+@mixin oneHundredPercentWidth() {
+  @include size(100%, unset);
+}
+
+@mixin messageBlock() {
+  @include position(relative);
+  @include flex(column, space-between, flex-start, unset);
+  @include indents(16px, 0);
+  @include oneHundredPercentWidth();
+  @include min-size(230px, unset);
+}
+
+.message {
+  @include flex(row, unset, center, 16px);
+  @include oneHundredPercentWidth();
+  @include max-size(362px, unset);
+  box-sizing: border-box;
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  &__userMessage {
+    @include flex(row-reverse, unset, center, 16px);
+    @include oneHundredPercentWidth();
+    @include max-size(362px, unset);
+    max-width: 362px;
+    align-self: flex-end;
+  }
+
+  &__container {
+    @include flex(column, unset, flex-start, 8px);
+  }
+
+  &__containerUser {
+    @include flex(column, unset, flex-end, 8px);
+  }
+
+  &__block {
+    @include messageBlock();
+    background: $secondary-cultured-default;
+    border-radius: $xl-border-radius $xl-border-radius $xl-border-radius 0;
+
+    &::before {
+      content: '';
+      @include position(absolute, unset, unset, 0, -5px);
+      @include size(20px, 20px);
+      background: $secondary-cultured-default;
+      clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+      transform: rotate(180deg);
+
+      @media screen and (max-width: 620px) {
+        background: $off-white;
+      }
+    }
+
+    @media screen and (max-width: 620px) {
+      background: $off-white;
+    }
+  }
+
+  &__blockUser {
+    @include messageBlock();
+    border-radius: $xl-border-radius $xl-border-radius 0 $xl-border-radius;
+    background: $primary-persian-blue-default;
+
+    &::before {
+      content: '';
+      @include position(absolute, unset, -5px, 0, unset);
+      @include size(20px, 20px);
+      background: $primary-persian-blue-default;
+      clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+      transform: rotate(270deg);
+    }
+  }
+
+  &__content {
+    @include flex(column, unset, flex-start, 16px);
+    @include oneHundredPercentWidth();
+  }
+
+  &__textWrapper {
+    @include flex(row, space-between, center, 8px);
+    flex-wrap: wrap;
+    @include oneHundredPercentWidth();
+  }
+
+  &__user {
+    @include messageTextDefault();
+    font-weight: $bold;
+  }
+
+  &__text {
+    @include messageTextDefault();
+  }
+
+  &__time {
+    @include messageTextDefault();
+    color: $grey-3;
+    font-size: 8px;
+  }
+
+  &__seen {
+    @include messageTextDefault();
+    color: $grey-3;
+    font-size: 8px;
+  }
+}
+
+.textColorWhite {
+  color: $off-white;
+}

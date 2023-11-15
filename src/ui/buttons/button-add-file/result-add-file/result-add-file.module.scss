@@ -1,0 +1,52 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+.result {
+  @include flex(row, space-between, center);
+  @include font('Open Sans', $xs-font-size);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  width: 261px;
+  background-color: inherit;
+}
+
+.result__icon {
+  @include size(47px, 47px);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.result__name {
+  @include ellipsis;
+  color: $primary-oxford-blue-default;
+  margin: 0 auto 0 0;
+  font-weight: $bold;
+  width: 120px;
+  text-align: left;
+}
+
+.result__size {
+  margin: 0 12px 0 0;
+  color: $grey-1;
+  font-weight: $normal;
+}
+
+.result__button {
+  @include size(24px, 24px);
+  cursor: $cursor;
+  color: $grey-1;
+  mask-image: url('../../../../images/icon/24x24/common/close.svg');
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.result_error {
+  .result__name,
+  .result__size {
+    color: $error-default;
+  }
+  .result__icon {
+    fill: $error-default;
+    stroke: $error-default;
+  }
+}

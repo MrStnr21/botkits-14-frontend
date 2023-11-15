@@ -1,0 +1,95 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.button {
+  @include button-style-reset;
+  @include flex(row, center, center);
+  @include size(100%, 76px);
+  transition: box-shadow 0.1s linear;
+  border-radius: $l-border-radius;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+
+  &:hover {
+    box-shadow: $m-box-shadow;
+    background-color: white;
+
+    .text_container {
+      border: 2px solid rgba(0, 0, 0, 0);
+    }
+
+    .image_box {
+      background-color: $primary-medium-spring-green-disabled;
+
+      svg {
+        fill: $primary-medium-spring-green-default;
+      }
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+
+    svg {
+      fill: $grey-1;
+    }
+
+    .text {
+      color: $grey-1;
+    }
+  }
+}
+
+.image_box {
+  @include flex(row, center, center);
+  @include size(173px, 173px);
+  @include position(absolute, -48px, $left: -26px);
+  border-radius: $border-radius-circle;
+  background-color: $secondary-cultured-focus;
+  transition: background-color 0.1s linear;
+  z-index: 1;
+
+  div {
+    @include flex(row, center, center);
+  }
+
+  svg {
+    fill: $grey-3;
+    transition: all 0.1s linear;
+
+    @media screen and (max-width: 670px) {
+      padding-right: 32px;
+    }
+  }
+
+  @media screen and (max-width: 670px) {
+    justify-content: end;
+    left: -56px;
+  }
+}
+
+.text_container {
+  @include flex(row, center, center);
+  @include size(100%, 76px);
+  border: 2px solid $secondary-cultured-focus;
+  box-sizing: border-box;
+  transition: border 0.1s linear;
+  border-radius: $l-border-radius;
+}
+
+.text {
+  @include indents(0 20px 0 201px);
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  width: 100%;
+  text-align: left;
+  @media screen and (max-width: 670px) {
+    padding-left: 137px;
+  }
+}
+
+.button:disabled .text {
+  color: $grey-1;
+}

@@ -1,0 +1,58 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.download {
+  position: relative;
+}
+
+.download__input {
+  opacity: 0;
+  position: absolute;
+}
+
+.download__label {
+  @include flex(row, center, center);
+  @include size(100%, 65px);
+  border-radius: $l-border-radius;
+  box-sizing: border-box;
+  border: 2px dashed #a6b3c9;
+  margin-bottom: 2px;
+  background-color: #fff;
+  cursor: $cursor;
+}
+
+.download__icon {
+  stroke: $grey-3;
+  width: 24px;
+  margin-right: 12px;
+}
+
+.download__text {
+  color: $grey-3;
+}
+
+.textError {
+  @include font('Open Sans', 10px, $normal, $error-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include position(absolute, $bottom: -15px);
+  display: none;
+}
+
+.download_error {
+  .download__label {
+    border-radius: $l-border-radius;
+    border: 1px solid $error-default;
+  }
+
+  .textError {
+    display: block;
+  }
+
+  .download__icon {
+    stroke: $grey-1;
+  }
+
+  .download__text {
+    color: $grey-1;
+  }
+}

@@ -1,0 +1,63 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.box {
+  @include size(264px, 478px);
+  display: none;
+  flex-direction: column;
+  box-shadow: $m-box-shadow;
+  background-color: white;
+  border-radius: $l-border-radius;
+  position: absolute;
+}
+
+.active {
+  display: flex;
+}
+
+.button {
+  @include size(132px, 56px);
+  @include flex(row, center, center);
+  background-color: white;
+  box-sizing: border-box;
+  border: none;
+  border-top: 1px solid $secondary-cultured-hover;
+  border-radius: $l-border-radius;
+  cursor: $cursor;
+}
+
+.button:hover {
+  background-color: $secondary-cultured-default;
+}
+
+.flex_row {
+  @include flex(row);
+}
+
+.numbers_box {
+  @include size(132px, 422px);
+  @include flex(column, start);
+  overflow-y: scroll;
+}
+
+.numbers_box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.numbers_box::-webkit-scrollbar-thumb {
+  background-color: $grey-3;
+  border-radius: 2px;
+  border: solid 4px white;
+}
+
+.numbers_box:first-of-type {
+  border-right: 1px solid $secondary-cultured-hover;
+}
+
+.number_unit {
+  padding: 24px 0;
+}
+
+.number_unit:hover {
+  background-color: $secondary-cultured-default;
+}

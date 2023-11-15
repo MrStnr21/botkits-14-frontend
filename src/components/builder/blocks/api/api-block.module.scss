@@ -1,0 +1,23 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+.container {
+  @include flex(column, $gap: 8px);
+  box-sizing: border-box;
+  width:296px;
+  padding: 12px 16px 16px;
+
+  @media screen and (max-width: 520px) {
+    width: 168px;
+    padding: 7px 9px 9px;
+    gap: 4px;
+  }
+}
+
+.box {
+  @include flex(row, $gap: 4px);
+
+  @media screen and (max-width: 520px) {
+    gap: 2px;
+  }
+}

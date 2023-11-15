@@ -1,0 +1,103 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.create {
+  width: 100%;
+  min-height: 330px;
+}
+
+.create_message {
+  @include flex(column, center, center);
+  min-height: inherit;
+  background-color: $secondary-cultured-hover;
+  border-radius: $xxl-border-radius;
+  padding: 40px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.create_message_title {
+  @media screen and (max-width: 520px) {
+    font-size: $l-font-size;
+  }
+}
+
+.create_message_text {
+  margin: 16px 0 0;
+
+  @media screen and (max-width: 520px) {
+    font-size: $s-font-size;
+  }
+}
+
+.create_main {
+  min-height: inherit;
+  background-color: #FFFFFF;
+  border-radius: $xxl-border-radius;
+  box-shadow: $m-box-shadow;
+  padding: 40px 40px 36px;
+  box-sizing: border-box;
+  position: relative;
+
+  @media screen and (max-width: 670px) {
+    padding: 97px 24px 40px;
+  }
+}
+
+.create_main_bot_name {
+  display: flex;
+}
+
+.create_main_bot_name_img {
+  @include max-size(25px, 25px);
+}
+
+.create_main_bot_name_title {
+  margin: 0 0 0 15px;
+}
+
+.create_main_bot_name_text {
+  color: $primary-persian-blue-default;
+  @include indents(6px 16px, 0 0 0 20px);
+  background-color: $blue-disabled;
+  border-radius: 16px;
+
+  @media screen and (max-width: 670px) {
+    @include indents(20px 24px, 0);
+    @include position(absolute, $top: 0, $left: 0);
+    width: 100%;
+    border-radius: 30px 30px 0 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+}
+
+.create_main_bot_name_span {
+  font-weight: $bold;
+}
+
+.create_main_fill_bot {
+  @include flex($gap: 28px);
+  margin-top: 40px;
+
+  @media screen and (max-width: 960px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.create_main_button_container {
+  @include flex($justify-content: flex-end);
+  @include position(absolute, $right: 40px, $bottom: 36px);
+  margin-top: 16px;
+
+  @media screen and (max-width: 960px) {
+    position: initial;
+    display: block;
+    margin-top: 32px;
+  }
+}
+
+.create_main_button {
+  min-width: 256px;
+}

@@ -1,0 +1,58 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.popup {
+  @include flex(row, right, unset, 0);
+  @include size(100%, 100vh);
+  @include position(fixed, 0, 0);
+  box-sizing: border-box;
+  z-index: 100;
+  transition: right 0.5s linear;
+}
+
+.popup_hidden {
+  @include position(fixed, 0);
+  right: -450px;
+  transition: right 0.5s linear;
+  height: 100vh;
+  z-index: 100;
+}
+
+.container {
+  @include flex(column, unset, center, 0);
+  @include size(364px, 100%);
+  padding: 15px 30px 0 30px;
+  background-color: $off-white;
+  box-shadow: $m-box-shadow;
+  flex-direction: column;
+  position: relative;
+}
+
+.header {
+  @include flex(row, space-between, center, 0);
+  width: 100%;
+}
+
+.wrapper {
+  @include flex(row, unset, baseline, 20px);
+}
+
+.title {
+  background-color: $off-white;
+  margin: 10px 0 20px 0;
+}
+
+.close_btn {
+  @include position(absolute, 28px, 35px);
+  background-color: $off-white;
+  border: none;
+}
+
+@media (max-width: ($min-content-width + 200px)) {
+  .container {
+    @include size(100%, 100vh);
+    box-shadow: none;
+    padding: 9px 15px 0 15px;
+    margin-top: 70px;
+  }
+}

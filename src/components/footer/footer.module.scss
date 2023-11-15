@@ -1,0 +1,26 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.footer {
+  grid-column: 2 / 3;
+  grid-row: 3;
+
+  @include flex(column);
+  @include indents(15px 0 0 0, 32px 40px 15px 0);
+  height: 35px;
+  box-sizing: border-box;
+  border-top: 1px solid $secondary-cultured-press;
+  background-color: $off-white;
+
+  @media (max-width: $switching-width) {
+    grid-column: 1 / 3;
+    margin-right: 0;
+  }
+}
+
+.text {
+  white-space: nowrap;
+  @media (max-width: $switching-width) {
+    margin: 0 auto;
+  }
+}

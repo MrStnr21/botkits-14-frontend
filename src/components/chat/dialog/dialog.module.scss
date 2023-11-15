@@ -1,0 +1,99 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.dialog {
+  @include position(relative);
+  @include size(100%, 48px);
+  @include indents(16px 0, 0);
+  @include flex(row, space-between, center);
+  cursor: pointer;
+
+  @media screen and (max-width: 1186px) {
+    @include max-size(100%, unset);
+  }
+
+  &__content {
+    @include size(100%, unset);
+    @include flex(column, center, flex-start);
+    @include position(relative);
+  }
+
+  &__nameContainer,
+  &__textContainer {
+    @include flex(row, space-between, center);
+    @include size(100%, unset);
+    padding-left: 16px;
+    box-sizing: border-box;
+
+    @media screen and (min-width: 861px) and (max-width: 1186px) {
+      @include max-size(200px, unset);
+      // justify-content: flex-start;
+      gap: 8px;
+      padding-left: 8px;
+    }
+  }
+
+
+  &__line {
+    display: none;
+    @include position(absolute, unset, -15px, unset, unset);
+    @include size(4px, 81px);
+    background-color: $primary-persian-blue-default;
+    border-radius: 2px 0 0 2px;
+  }
+
+  &__avatar {
+    @include size(40px, 40px);
+  }
+
+  &__messageNumCircle {
+    @include indents();
+    @include position(relative);
+    @include size(20px, 20px);
+    justify-self: flex-end;
+    background-color: $primary-persian-blue-default;
+    border-radius: $border-radius-circle;
+  }
+
+  &__messageNum {
+    @include indents();
+    @include position(absolute, 50%, unset, unset, 50%);
+    color: $off-white;
+    transform: translate(-50%, -50%);
+    font-size: $xxxs-font-size;
+    font-weight: $bold;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
+  }
+
+  &__name {
+    @include ellipsis();
+    color: $primary-oxford-blue-default;
+    font-size: $m-font-size;
+    font-weight: $semi-bold;
+    line-height: $xl-line-height;
+    letter-spacing: 0;
+
+    @media screen and (min-width: 861px) and (max-width: 1186px) {
+      @include max-size(140px, unset);
+    }
+  }
+
+  &__text {
+    @include size(230px, 24px);
+    @include ellipsis();
+    color: $grey-3;
+    font-size: $xs-font-size;
+    font-weight: $normal;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
+
+    @media screen and (min-width: 861px) and (max-width: 1186px) {
+      @include max-size(160px, unset);
+    }
+  }
+
+  &__timeAgo {
+    color: $grey-3;
+  }
+}

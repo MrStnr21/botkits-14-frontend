@@ -1,0 +1,60 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.wrapper {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.header {
+  @include flex(row, space-between, center);
+  margin-bottom: 24px;
+}
+
+.header__text {
+  @media (max-width: $switching-width) {
+    font-size: $xxl-font-size;
+    line-height: $m-line-height;
+  }
+}
+
+.header__button {
+  @include button-style-reset;
+  @include font('Open Sans', $xs-font-size, $normal, $grey-4);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  display: block;
+  margin-right: 20px;
+  text-align: right;
+}
+
+.list {
+  @include indents;
+  max-width: 100%;
+  list-style: none;
+  gap: 28px;
+  transition: height 1s;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 296px);
+
+  @media (max-width: $switching-width) {
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, 235px);
+  }
+}
+
+.list_hidden {
+  overflow-x: hidden;
+  grid-auto-flow: column;
+}
+
+.item {
+  min-height: 195px;
+  position: relative;
+}
+
+.buttonAddbot {
+  @include size(296px, 172px);
+  @media (max-width: $switching-width) {
+    @include size(296px, 172px);
+  }
+}

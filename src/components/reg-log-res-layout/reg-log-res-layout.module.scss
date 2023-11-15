@@ -1,0 +1,58 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.signupPage {
+  @include flex(row, center, flex-start);
+  @include size(100%, 100vh);
+  background: linear-gradient(180deg, $off-white 372px, $secondary-cultured-default 0px);
+}
+
+.contentContainer {
+  @include flex(column, center, center);
+  width: 100%;
+  max-width: 770px;
+  margin: 40px 34px 0 34px;
+
+  @media screen and (max-width: 710px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: 600px) {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+}
+
+.logo {
+  @include size(149px, 35px);
+  margin-bottom: 20px;
+  background-image: url('../../images/icon/BOTkitLogo.svg');
+
+  @media screen and (max-width: 600px) {
+    @include size(128px, 30px);
+    margin-bottom: 15px;
+    background-size: contain;
+  }
+}
+
+.label {
+  padding: 0;
+  margin-bottom: 30px;
+  font-weight: $semi-bold;
+  text-align: center;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+
+  @media screen and (max-width: 750px) {
+    @include line-sizes($xs-line-height, $s-letter-space);
+    margin-bottom: 20px;
+    font-size: 41.6px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 31.2px;
+  }
+}

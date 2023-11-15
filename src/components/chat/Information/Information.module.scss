@@ -1,0 +1,81 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.information {
+  @include position(relative);
+  @include size(330px, unset);
+  @include indents(0 0 0 32px, 0);
+  margin: 32px 0 0 0;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 861px) and (max-width: 1186px) {
+    @include indents(0 16px 0, 32px 0 0);
+  }
+
+  @media screen and (max-width: 860px) {
+    @include size(100%, unset);
+    @include indents(32px 16px 0 , 32px auto 0);
+    @include flex(row, center, unset, unset);
+  }
+
+  @media screen and (max-width: 620px) {
+    margin-top: 16px;
+  }
+
+  &__container {
+    @include max-size(331px, unset);
+    @include flex(column, unset, center, unset);
+    background-color: $off-white;
+    box-sizing: border-box;
+    padding-top: 40px;
+
+    @media screen and (max-width: 860px) {
+      @include size(100%, unset);
+      @include max-size(100%, unset);
+    }
+  }
+
+  &__text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: $normal;
+    padding-bottom: 20px;
+    color: $grey-3;
+  }
+
+  &__title {
+    color: $primary-oxford-blue-default;
+    padding-top: $m-font-size;
+    padding-bottom: 4px;
+    font-size: $m-font-size;
+    line-height: $m-line-height;
+    white-space: nowrap;
+  }
+
+  &__wrapper {
+    @include flex(column, unset, unset, 8px);
+    padding-top: 32px;
+  }
+
+  &__header {
+    @include position(absolute, 0, unset, unset, 0);
+    @include size(100%, unset);
+    @include indents(0 20px, 0);
+    @include flex(row, space-between, center);
+    box-sizing: border-box;
+
+    @media screen and (max-width: 860px) {
+      @include size(calc(100% - 32px), unset);
+      @include indents();
+      // @include indents(0 16px 0, 0);
+    }
+
+    @media screen and (max-width: 620px) {
+      @include size(100%, unset);
+      @include indents(0 16px 0, 0);
+    }
+  }
+
+  &__chevron {
+    @include button-style-reset;
+  }
+}

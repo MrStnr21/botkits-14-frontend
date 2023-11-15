@@ -1,0 +1,124 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin button-states($class) {
+  .#{$class}{
+    background-image: url('../../../images/icon/40x40/' + #{$class} + '/default.svg');
+  }
+
+  .button.active{
+    .#{$class}{
+      background-image: url('../../../images/icon/40x40/' + #{$class} + '/hover.svg');
+    }
+  }
+
+  .button.disabled{
+    .#{$class}{
+      background-image: url('../../../images/icon/40x40/' + #{$class} + '/inactive.svg');
+    }
+
+    .button:hover{
+      .#{$class}{
+        background-image: url('../../../images/icon/40x40/' + #{$class} + '/hover.svg');
+      }
+    }
+  }
+
+
+  .button:active{
+    .#{$class}{
+      background-image: url('../../../images/icon/40x40/' + #{$class} + '/hover.svg');
+    }
+  }
+
+  .button:hover{
+    .#{$class}{
+      background-image: url('../../../images/icon/40x40/' + #{$class} + '/hover.svg');
+    }
+  }
+
+  .button:disabled{
+    .#{$class}{
+      background-image: url('../../../images/icon/40x40/' + #{$class} + '/inactive.svg');
+    }
+  }
+}
+
+.button {
+  @include button-style-reset;
+  @include flex(column, center, center, 13px);
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  transition: all 0.1s linear;
+  height: 124px;
+  aspect-ratio: 1 / 1;
+  border-radius: $xxl-border-radius;
+}
+
+.icon {
+  @include flex(row, center, center);
+  height: 52px;
+  aspect-ratio: 1 / 1;
+  transition: background-image 0.1s linear;
+  background-size: cover;
+
+  @media screen and (max-width: 500px) {
+    height: 34px;
+    background-size: contain;
+  }
+}
+
+.text {
+  @include indents;
+}
+
+.button {
+  color: $primary-oxford-blue-default;
+  background-color: $secondary-cultured-default;
+}
+
+.button.active {
+  background-color: transparent;
+  box-shadow: $m-box-shadow;
+}
+
+.button.disabled {
+  color: $grey-3;
+  background-color: $secondary-cultured-default;
+  box-shadow: none;
+}
+
+.button:active {
+  background-color: transparent;
+  box-shadow: $m-box-shadow;
+}
+
+.button:disabled {
+  color: $grey-3;
+  background-color: $secondary-cultured-default;
+  box-shadow: none;
+}
+
+@include button-states('alisa');
+@include button-states('facebook');
+@include button-states('google');
+@include button-states('insta');
+@include button-states('mailru');
+@include button-states('odnoklassniki');
+@include button-states('telegram');
+@include button-states('twitter');
+@include button-states('viber');
+@include button-states('vk');
+@include button-states('web');
+@include button-states('whatsapp');
+@include button-states('yandex');
+@include button-states('youtube');
+
+.buttonSmall {
+  height: 40px;
+  background-color: transparent;
+
+  @media screen and (max-width: 500px) {
+    height: 34px;
+  }
+}

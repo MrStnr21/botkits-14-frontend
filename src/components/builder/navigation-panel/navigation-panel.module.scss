@@ -1,0 +1,44 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.panel {
+  @include flex(column, $align-items: center);
+  @include position(fixed, false, false, 16px, 98px);
+  z-index: 999;
+  background-color: $off-white;
+  border-radius: $l-border-radius;
+  backdrop-filter: blur(15px);
+}
+
+.percent {
+  @include font('Open Sans', $xs-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  width: 35px;
+  text-align: right;
+  font-feature-settings: 'clig' off, 'liga' off;
+
+
+  &:after {
+    content: '%';
+  display: inline-block;
+  }
+}
+
+.controls {
+  @include flex(row, false, center, 12px);
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 0 12px 0 16px;
+
+  >:not(hr){
+    margin: 8px 0;
+  }
+
+  @media screen and (max-width: 520px) {
+    display: none;
+  }
+}
+
+.map {
+  position: static;
+}

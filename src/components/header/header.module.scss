@@ -1,0 +1,97 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.header {
+  grid-column: 2 / 3;
+  grid-row: 1;
+
+  @include flex(row, flex-end, center);
+  height: 72px;
+  border-bottom: 1px solid $secondary-cultured-press;
+  margin-right: 40px;
+
+  @media (max-width: $switching-width) {
+    border-bottom: none;
+    margin-right: 20px;
+  }
+}
+
+.wrapper {
+  @include flex(row, unset, center);
+  color: $primary-oxford-blue-default;
+  position: relative;
+}
+
+.text {
+  & + .text {
+    font-weight: $semi-bold;
+    padding-left: 7px;
+    padding-right: 15px;
+    border-right: 1px solid $secondary-cultured-focus;
+  }
+
+  @media (max-width: $switching-width) {
+    display: none;
+  }
+}
+
+.logo {
+  display: none;
+  @media (max-width: $switching-width) {
+    display: block;
+  }
+}
+
+.icons {
+  @include flex(row, unset, center, 37px);
+  margin-left: 15px;
+
+  @media (max-width: $switching-width) {
+    display: none;
+  }
+}
+
+.userInfo {
+  @include flex(row, unset, center);
+  cursor: $cursor;
+
+  & > .text {
+    @include ellipsis;
+    max-width: 20vw;
+  }
+}
+
+.userInfo__avatar {
+  @include size(36px, 36px);
+  border-radius: $border-radius-circle;
+  margin-left: 33px;
+  margin-right: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  @media (max-width: $switching-width) {
+    margin-right: 0;
+  }
+}
+
+.userInfo__image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.userInfo__button {
+  margin-left: 17px;
+
+  @media (max-width: $switching-width) {
+    display: none;
+  }
+}
+
+.button_default {
+  rotate: 0;
+}
+
+.button_active {
+  rotate: 180deg;
+  transition: all 0.5s linear;
+}

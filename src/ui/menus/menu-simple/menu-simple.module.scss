@@ -1,0 +1,81 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.box {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 264px;
+  box-shadow: $m-box-shadow;
+  background-color: white;
+  border-radius: $l-border-radius;
+  position: absolute;
+  z-index: 2;
+}
+
+.active {
+  display: flex;
+}
+
+.scroll {
+  height: 155px;
+  overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: $grey-3;
+  border-radius: 2px;
+  border: solid 4px white;
+}
+
+.small {
+  width: 80px;
+}
+
+.medium {
+  width: 155px;
+}
+
+.chat {
+  width: 175px;
+}
+
+.large {
+  width: 304px;
+}
+
+.li {
+  @include indents;
+  list-style: none;
+  display: flex;
+}
+
+.ul {
+  @include indents;
+}
+
+.button {
+  @include size(100%, 37px);
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  background-color: white;
+  box-sizing: border-box;
+  padding: 0 0 0 16px;
+  text-align: left;
+  border: none;
+  cursor: $cursor;
+}
+.button:first-of-type {
+  margin-top: 11px;
+}
+.button:last-of-type {
+  margin-bottom: 8px;
+}
+
+.button:hover {
+  background-color: $secondary-cultured-default;
+}

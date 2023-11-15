@@ -1,0 +1,119 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.box {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 200px;
+  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.08); // $l-box-shadow?
+  background-color: white;
+  border-radius: $l-border-radius;
+  position: absolute;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 8px 0 8px;
+
+  @media (max-width: ($switching-width)) {
+    box-sizing: border-box;
+    border-top: 1px solid $secondary-cultured-press;
+    max-width: 360px;
+    min-width: $min-content-width;
+    width: 96vw;
+    border-radius: 0 0 10px 10px;
+    padding: 32px 20px;
+    gap: 20px;
+  }
+}
+
+.active {
+  display: flex;
+}
+
+.text {
+  color: #2e293d;
+  margin: 0 0 0 16px;
+
+  &hover {
+    color: $primary-oxford-blue-default;
+  }
+
+  @media (max-width: ($switching-width)) {
+    color: $primary-oxford-blue-default;
+  }
+}
+
+.button {
+  @include flex(row, $align-items: center);
+  min-height: 37px;
+  box-sizing: border-box;
+  padding: 0 0 0 16px;
+  text-align: left;
+  border: none;
+  cursor: $cursor;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $secondary-cultured-default;
+  }
+
+  @media (max-width: ($switching-width)) {
+    padding-left: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
+.button:nth-child(3) {
+  // подписки и платежи
+  margin-bottom: 11px;
+  @media (max-width: ($switching-width)) {
+    margin-bottom: 0;
+  }
+}
+
+.button:nth-child(4) {
+  // выйти
+  border-top: 1px solid $secondary-cultured-press;
+  padding-top: 18px;
+  padding-bottom: 6px;
+
+  @media (max-width: ($switching-width)) {
+    border-top: none;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Стили для доп.блоков в моб.версии  */
+
+.userInfo,
+.addition {
+  display: none;
+  @media (max-width: ($switching-width)) {
+    display: block;
+  }
+}
+
+.userInfo {
+  margin-bottom: 20px;
+}
+
+.userInfo__name {
+  font-size: $l-font-size;
+}
+
+.tariff_container {
+  @include flex($gap: 5px);
+  color: #8392ab;
+  margin-top: 4px;
+}
+
+.addition {
+  border-top: 1px solid $secondary-cultured-press;
+  padding-top: 20px;
+
+  .button:first-child {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,28 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.wrap {
+  @include flex(column);
+  background-color: $secondary-cultured-default;
+  padding: 16px 20px;
+  border-radius: $l-border-radius;
+  max-width: 296px;
+
+  .header {
+    @include flex(row, space-between, center);
+
+    svg {
+      cursor: $cursor;
+    }
+  }
+
+  .title {
+    margin: 0 0 12px 0;
+    font-size: $s-font-size;
+  }
+
+  .buttons {
+    @include flex(row, false, false, 5px);
+  }
+
+}

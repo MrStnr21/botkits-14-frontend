@@ -1,0 +1,53 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin iconsStyles {
+  @include flex($justify-content: center, $align-items: start, $gap: 8px);
+  padding: 14px 16px 0 0;
+}
+
+.message {
+  @include min-size(272px, 48px);
+  @include flex();
+  box-sizing: border-box;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
+}
+
+.message_input {
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include size(100%, unset);
+  @include indents(14px 16px, 0);
+  border-radius: 10px 0 0 10px;
+  outline: 0;
+  border: 0;
+  resize: none;
+  overflow: hidden;
+  background-color: $secondary-cultured-default;
+
+  &::placeholder {
+    color: $grey-3;
+  }
+}
+
+.message_hidden {
+  @include flex($gap: 8px);
+}
+
+.message_buttons {
+  @include iconsStyles();
+}
+
+.message_buttonsWrapped {
+  @include iconsStyles();
+  flex-wrap: wrap;
+}
+
+.message_button {
+  @include button-style-reset();
+}
+
+.message_button:last-of-type {
+  margin-top: -2px;
+}

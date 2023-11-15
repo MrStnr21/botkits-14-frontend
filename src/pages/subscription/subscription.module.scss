@@ -1,0 +1,124 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.container {
+  @include flex($gap: 28px);
+  padding-top: 32px;
+  margin-right: 40px;
+
+  &__item {
+    @include flex(column, $gap: 32px);
+
+    &:last-of-type {
+      flex-grow: 1;
+    }
+  }
+
+  &__button {
+    margin-left: auto;
+    width: 188px;
+    height: 46px;
+  }
+}
+
+.subscription {
+  @include size(100%, 352px);
+  width: 404px;
+  position: sticky;
+  top: 32px;
+
+  &__header {
+    @include size(100%, 228px);
+    @include position(absolute, 0, $left: 0);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'rate status'
+      'info info'
+      'button button';
+    row-gap: 8px;
+    box-sizing: border-box;
+    background-color: $off-white;
+    border-radius: $xxl-border-radius;
+    box-shadow: $l-box-shadow;
+    overflow: hidden;
+    padding: 32px;
+    z-index: 1;
+  }
+
+  &__rate {
+    grid-area: rate;
+  }
+
+  &__status {
+    grid-area: status;
+    justify-self: end;
+  }
+
+  &__info {
+    grid-area: info;
+  }
+
+  &__button {
+    margin-top: 16px;
+    grid-area: button;
+  }
+
+  &__body {
+    @include size(100%, 205px);
+    @include flex($gap: 24px);
+    @include position(absolute, $right: 0, $bottom: 0);
+    box-sizing: border-box;
+    border-radius: $xxl-border-radius;
+    background-color: $secondary-cultured-hover;
+    padding: 113px 32px 32px;
+  }
+
+  &__balance {
+    @include flex(column, space-between);
+    height: min-content;
+  }
+}
+
+.payment {
+  @include flex(column, $gap: 32px);
+  width: 100%;
+  padding: 36px 0 24px;
+  box-sizing: border-box;
+  background-color: $secondary-cultured-hover;
+  border-radius: $xxl-border-radius;
+
+  &__header {
+    @include flex($justify-content: space-between);
+    padding: 0 32px;
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  &__button {
+    @include flex($align-items: center, $gap: 12px);
+    @include font('Open Sans', $s-font-size, $bold, $grey-4);
+    @include line-sizes($xl-line-height, $m-letter-space);
+    background-color: transparent;
+    border: none;
+    cursor: $cursor;
+  }
+
+  &__list {
+    top: 100% !important;
+
+    & ul {
+      @include flex(column, $gap: 4px);
+      padding: 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    & ul li button {
+      margin: 0 !important;
+    }
+  }
+}

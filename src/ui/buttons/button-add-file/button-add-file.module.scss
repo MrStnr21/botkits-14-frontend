@@ -1,0 +1,28 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.wrapper {
+  @include flex(column);
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $secondary-cultured-default;
+  width: fit-content;
+  border-radius: $l-border-radius;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.inputsBox {
+  @include flex(row, center, center, 6px);
+  flex-shrink: 0;
+}
+
+.output {
+  @include flex(column, $gap:8px);
+  @include indents(8px, 0);
+  background-color: inherit;
+  list-style: none;
+}

@@ -1,0 +1,16 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container {
+  @include indents;
+  // @include size(100px, 100px);
+  min-width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 10%;
+  overflow: hidden;
+
+  img {
+    @include size(auto, 100%);
+  }
+}

@@ -1,0 +1,133 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container {
+  text-align: start;
+  background-color: $off-white;
+  max-width: 100%;
+}
+
+.header_wrapper {
+  @include flex(row, space-between);
+  margin-bottom: 24px;
+  @media (max-width: $switching-width) {
+    margin-right: 20px;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(0, 125px));
+  grid-template-columns: repeat(auto-fit, minmax(134px, 188px));
+  gap: 28px;
+  row-gap: 32px;
+  padding: 0;
+
+  @media (max-width: $switching-width) {
+    grid-template-rows: 125px;
+    grid-template-columns: repeat(auto-fit, minmax(134px, 188px));
+    grid-auto-flow: column;
+  }
+
+  &::-webkit-scrollbar {
+    @include size(4px, 8px);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d7deea;
+    border-radius: 17px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 0;
+  }
+}
+
+.expanded {
+  overflow: auto;
+  max-height: 300px;
+  transition: max-height 1s ease;
+
+  @media (max-width: $switching-width) {
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      @include size(0, 0);
+    }
+  }
+}
+
+.not_expanded {
+  max-height: 125px;
+  overflow: hidden;
+  transition: max-height 1s ease;
+  @media (max-width: $switching-width) {
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      @include size(0, 0);
+    }
+  }
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(134px, 188px));
+  align-items: flex-start;
+}
+
+.accordion_wrapper {
+  @include flex(row);
+}
+
+.accordion_button {
+  @include font('Open Sans', $m-font-size, $bold, $grey-3);
+  cursor: $cursor;
+  background-color: $off-white;
+  border: none;
+  line-height: $xl-line-height;
+  @media (max-width: $switching-width) {
+    display: none;
+  }
+}
+
+.accordion_ico_plus {
+  @include size(26px, 26px);
+  cursor: $cursor;
+  background-image: url('../../../images/icon/24x24/common/chevron-big.svg');
+  background-color: $off-white;
+  background-position: center;
+  border: none;
+  align-self: center;
+  transition: transform 0.3s ease;
+  @media (max-width: $switching-width) {
+    display: none;
+  }
+}
+
+.accordion_ico_minus {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+  @media (max-width: $switching-width) {
+    display: none;
+  }
+}
+
+.modal_overlay {
+  @include size(100%, 100%);
+  @include position(fixed, 0, $left: 0);
+  display: flex;
+  z-index: 2;
+  cursor: $cursor;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+  @include flex(row, center, center);
+  @include size(100%, 100%);
+  @include position(fixed, 0, $left: 0);
+  z-index: 100;
+}
+
+.content {
+  position: absolute;
+  z-index: 2;
+}

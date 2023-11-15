@@ -1,0 +1,188 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin input-main($width, $max-width, $padding, $bg-color, $border, $border-radius){
+  width: $width;
+  max-width: $max-width;
+  padding: $padding;
+  background-color: $bg-color;
+  border: $border;
+  border-radius: $border-radius;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@mixin set-font($color, $font-weight, $font-size, $line-height, $letter-spacing){
+  @include font('Open Sans', $font-size, $font-weight, $color);
+  @include line-sizes($line-height, $letter-spacing);
+}
+
+@mixin input-pseudo($ph-color, $hph-color, $dp-color, $d-color, $d-opacity){
+  &::placeholder{
+    color: $ph-color
+  }
+
+  &::placeholder:hover{
+    color: $hph-color
+  }
+
+  &:disabled::placeholder {
+    color: $dp-color;
+  }
+
+  &:disabled {
+    color: $d-color;
+    opacity: $d-opacity;
+  }
+}
+
+@mixin icon-container($right){
+  @include flex(row, center, center);
+  @include position(absolute, 0, $right, $bottom: 0);
+}
+
+@mixin eye-icon($src){
+  @include indents;
+  @include size(24px, 24px);
+}
+
+@mixin icon-container($right){
+  @include flex(row, center, center);
+  @include position(absolute, 0, $right, $bottom: 0);
+}
+
+@mixin eye-icon($src){
+  @include indents;
+  @include size(24px, 24px);
+  border: none;
+  background-color: transparent;
+  background-image: url($src);
+  opacity: 1;
+}
+
+@mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color){
+  @include input-main(100%, 240px, $padding, $bg-color, 0, 5px);
+  @include set-font($primary-oxford-blue-default, $font-weight, $xs-font-size, $xl-line-height, $m-letter-space);
+  @include input-pseudo($ph-color, $hph-color, $secondary-cultured-press, $secondary-cultured-focus, 1);
+
+  box-sizing: border-box;
+  margin: 0;
+  outline: 0;
+
+  @media screen and (max-width: 520px) {
+    font-size: 7.41px;
+  }
+}
+
+.wrapper {
+  max-width: 580px;
+  position: relative;
+}
+
+.inputMain {
+  @include input-main(100%, 580px, 22px 24px, $secondary-cultured-default, 1px solid transparent, $l-border-radius);
+  @include set-font($primary-oxford-blue-default, $bold, 14px, 21px, 0.3px);
+  @include input-pseudo($grey-2, $grey-3, $secondary-cultured-focus, $secondary-cultured-focus, .5);
+
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+
+}
+
+.incorrect {
+  border: 1px solid $error-default;
+}
+
+.incorrect_text {
+  @include incorrect-text(left);
+}
+
+.inputSecondary {
+  @include input-main(100%, 570px, 16px 50px 17px 0, transparent, none, 0);
+  @include set-font($off-white, $normal, 18px, 150%, 0.75px);
+  @include input-pseudo($grey-2, $grey-3, $secondary-cultured-focus, $secondary-cultured-focus, .5);
+  margin: 0;
+  max-height: 60px;
+  border-bottom: 1px solid $off-white;
+  box-sizing: border-box;
+  outline: 0;
+  text-overflow: ellipsis;
+
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+
+}
+
+.inputBuilderNum{
+  @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3);
+
+  @media screen and (max-width: 520px) {
+    padding: 5px 3px;
+  }
+}
+
+.inputBuilderDefault{
+  @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
+
+  @media screen and (max-width: 520px) {
+    padding: 6.5px 5.82px;
+  }
+}
+
+.iconContainerSecondary {
+  @include icon-container(0)
+}
+
+.iconContainerMain {
+  @include icon-container(5px)
+}
+
+.disabled {
+  color: $secondary-cultured-focus;
+  opacity: 0.5;
+}
+
+.required {
+  @include set-font($grey-2, $normal, 18px, 150%, 0.75px);
+  @include size(24px, 24px);
+  @include flex(row, flex-end);
+}
+
+.passwordSecondary {
+  @include eye-icon('../../../images/icon/24x24/common/eye-off.svg');
+}
+
+.passwordMain {
+  @include eye-icon('../../../images/icon/24x24/common/eye-off-black.svg');
+}
+
+.passwordShow {
+  opacity: 0.5;
+}
+
+.inputSecondaryIncorrect {
+  border: 0;
+  border-bottom: 1px solid $error-default;
+
+  &::placeholder {
+    color: $error-default;
+  }
+
+  &:hover::placeholder {
+    color: $error-default;
+  }
+}
+
+.requiredIncorrect {
+  color: $error-default;
+}
+
+.colorBlue {
+  color: $primary-persian-blue-default
+}

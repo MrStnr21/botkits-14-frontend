@@ -1,0 +1,128 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+%size-m {
+  @include size(264px, 132px);
+  border-radius: $xl-border-radius;
+}
+
+%size-s {
+  @include size(172px, 96px);
+  border-radius: $l-border-radius;
+  margin-right: 20px;
+}
+
+%size-x {
+  @include size(130px, 72px);
+  border-radius: $l-border-radius;
+}
+
+.size-m {
+  @extend %size-m;
+}
+.size-s {
+  @extend %size-s;
+}
+.size-x {
+  @extend %size-x;
+}
+
+.flexWrapper {
+  @include flex($gap: 20px 16px);
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.prewiew {
+  @include size(100%, 100%);
+  @include position(absolute, 0, $left: 0);
+  object-fit: cover;
+}
+
+.cover {
+  @include flex(column, center, center);
+  transition: background-color 0.5s ease;
+  position: relative;
+  z-index: 1;
+
+  &.hover,
+  &:hover {
+    background-color: rgba($primary-oxford-blue-default, 0.4);
+
+    .playButton {
+      @include size(47px, 47px);
+      background-image: url('../../images/icon/add content/play-circle.svg');
+      background-size: 45px 45px;
+      filter: drop-shadow(0px 14px 56px rgba(21, 18, 51, 0.12));
+    }
+  }
+}
+
+.cover_image{
+  @include size(100%, 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.playButton {
+  @include button-style-reset;
+}
+
+.button__remove {
+  @include size(15px, 15px);
+  @include button-style-reset;
+  @include position(absolute, 8px, 8px);
+  mask-image: url('../../images/icon/24x24/common/close.svg');
+  background-color: $grey-1;
+  mask-position: center;
+  mask-size: 15px 15px;
+  z-index: 2;
+
+  &:hover {
+    cursor: $cursor;
+    background-color: $off-white;
+  }
+}
+
+.caption {
+  margin-top: 12px;
+  margin-bottom: 0;
+  text-align: start;
+}
+
+.video__box {
+  @include flex(row, center, center);
+  @include size(100%, 100%);
+  @include position(absolute, 0, $left: 0);
+  z-index: 10;
+  background-color: rgba($primary-oxford-blue-default, 0.4);
+}
+
+.video__iframe {
+  @include size(80%, 80%);
+  position: relative;
+  z-index: 10;
+  box-shadow: $l-box-shadow;
+  border: none;
+}
+
+.button__close {
+  @include size(35px, 35px);
+  @include position(absolute, 20px, 30px);
+  mask-image: url('../../images/icon/24x24/common/close.svg');
+  mask-repeat: no-repeat;
+  background-color: $grey-1;
+  mask-position: center;
+  mask-size: 35px 35px;
+  @include button-style-reset;
+  z-index: 11;
+
+  &:hover {
+    cursor: $cursor;
+    background-color: $off-white;
+  }
+}

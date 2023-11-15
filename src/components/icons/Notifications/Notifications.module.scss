@@ -1,0 +1,15 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container {
+  @include size(25px, 29px);
+  position: relative;
+  cursor: $cursor;
+}
+
+.text {
+  @include position(absolute, -11px, 4px);
+  font-size: $xxxs-font-size;
+  line-height: $xl-line-height;
+  color: $off-white;
+}

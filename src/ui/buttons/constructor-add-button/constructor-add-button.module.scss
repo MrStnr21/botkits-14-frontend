@@ -1,0 +1,80 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.button {
+  @include button-style-reset;
+  @include flex($align-items: center);
+  @include size(100%, 100%);
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  padding: 10px 12px;
+  gap: 8px;
+  transition: all 0.1s linear;
+  border-radius: $l-border-radius;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 520px) {
+    font-size: 7.41px;
+    padding: 6px 7px 5.32px 7px;
+  }
+}
+
+/* .wrapper {
+  width: 100%;
+  height: 100%;
+} */
+
+.button div {
+  @include flex(row, center, center);
+}
+
+.button svg {
+  transition: stroke 0.1s linear;
+
+  @media screen and (max-width: 520px) {
+    height: 13.68px;
+    width: 13.68px;
+  }
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+}
+
+/* Стили цвета кнопки*/
+
+.button {
+  color: #8392ab;
+  background-color: #f8f9fb;
+}
+
+.button svg {
+  stroke: #a6b3c9;
+}
+
+.button:hover {
+  color: #243cbb;
+}
+
+.button:hover svg {
+  stroke: #243cbb;
+}
+
+.button:active {
+  color: #243cbb;
+  background-color: #ecefff;
+}
+
+.button:active svg {
+  stroke: #243cbb;
+}
+
+.button:disabled {
+  color: #d7deea;
+  background-color: #f8f9fb;
+}
+
+.button:disabled svg {
+  stroke: #ccd4e0;
+}

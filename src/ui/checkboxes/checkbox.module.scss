@@ -1,0 +1,46 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.checkbox {
+  gap: 12px;
+  position: relative;
+}
+
+label {
+  @include flex($gap: 12px);
+  align-items: center;
+  margin: auto;
+}
+
+.checkmark {
+  @include size(1px, 1px);
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.cust {
+  @include size(16px, 16px);
+  border: 2px solid #A6B3C9;
+  border-radius: 50%;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+
+  @media screen and (max-width: 520px) {
+    @include size(11.4px, 11.4px)
+  }
+}
+
+.checkmark:checked+.cust::before {
+  @include size(6px, 6px);
+  @include position(absolute, 50%, $left: 50%);
+  content: "";
+  background-color: #243CBB;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
+  @media screen and (max-width: 520px) {
+    @include size(3.42px, 3.42px)
+  }
+}

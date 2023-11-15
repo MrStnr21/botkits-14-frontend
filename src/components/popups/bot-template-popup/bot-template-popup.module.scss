@@ -1,0 +1,74 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.bot_template {
+  padding: 60px 40px;
+  max-width: 620px;
+  box-sizing: border-box;
+  background-color: $off-white;
+  box-shadow: $l-box-shadow;
+  border-radius: $xxl-border-radius;
+  position: relative;
+  min-width: 320px;
+
+  @media screen and (max-width: 420px) {
+    height: 100vh;
+    padding: 60px 20px;
+    border-radius: 0;
+  }
+}
+
+.bot_template_close {
+  @include position(absolute, 37px, 37px);
+  cursor: $cursor;
+  background: 0;
+  border: 0;
+  padding: 0;
+  & * {
+    stroke: $primary-oxford-blue-default;
+  }
+}
+
+.bot_template_image {
+  @include max-size(88px, 88px);
+}
+
+.bot_template_description {
+  @include flex(column, unset, unset, 20px);
+  margin-top: 40px;
+}
+
+.bot_template_list {
+  @include flex(column, unset, unset, 20px);
+  @include indents();
+  list-style: none;
+}
+
+.bot_template_item_index {
+  color: $primary-persian-blue-default;
+  margin-right: 28px;
+}
+
+
+.bot_template_buttons {
+  @include flex(row, flex-end, center, 28px);
+  margin-top: 60px;
+  @media screen and (max-width: 420px) {
+    display: block;
+  }
+}
+
+.bot_template_cancel {
+  @include button-style-reset;
+  @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($m-line-height, $xxl-letter-space);
+  text-transform: uppercase;
+
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
+}
+
+.bot_template_add_button {
+  min-width: 256px;
+}

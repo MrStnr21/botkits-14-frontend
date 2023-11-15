@@ -1,0 +1,30 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.wrap {
+  //@include position(absolute, 0, 0, 0, false);
+  @include flex(column, false, false, 32px);
+  width: 364px;
+  overflow-y: scroll;
+  background-color: $off-white;
+  padding: 24px 28px;
+  z-index: 101;
+
+  filter: drop-shadow(-4px 4px 4px rgba(0,0,0,.25));
+
+  .header {
+    @include flex(row, space-between, center);
+
+    h2 {
+      margin: 0;
+    }
+
+    svg {
+      cursor: $cursor;
+    }
+  }
+
+  .triggers {
+    @include flex(column, false, false, 8px);
+  }
+}

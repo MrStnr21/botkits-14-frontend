@@ -1,0 +1,21 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+.handle.handle {
+  @include size(10px, 10px);
+  display: block;
+  border: $border-radius-circle;
+  background-color: $primary-medium-spring-green-default;
+  border: 1px solid $off-white;
+  z-index: 10;
+
+  &:hover {
+    @include size(14px, 14px);
+    background-image: url('../../../../images/icon/14x14/add-link.svg');
+  }
+}
+
+.hidden.hidden {
+  background-color: hsl(157, 100%, 57%,0);
+  border: none;
+}

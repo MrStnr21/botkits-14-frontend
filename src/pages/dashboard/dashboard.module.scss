@@ -1,0 +1,15 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.dashboard {
+  @include flex(column, space-between, $gap: 60px);
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-top: 40px;
+  margin-right: 40px;
+
+  @media (max-width: $switching-width) {
+    padding-left: 20px;
+    margin-right: 0;
+  }
+}

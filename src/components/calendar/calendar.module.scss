@@ -1,0 +1,156 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.container {
+  @include flex(column, center, center);
+  width: 296px;
+  border-radius: $l-border-radius;
+  background-color: $off-white;
+  padding: 20px 19px 18px 19px;
+  box-shadow: $m-box-shadow;
+
+  [class*="MuiFormControl-root-MuiTextField-root"] {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 296px;
+  }
+}
+
+.containerTimeZone {
+  @include flex(row, space-between, center);
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  width: 100%;
+  padding: 8px 0;
+  border-top: 1px solid $secondary-cultured-hover;
+  border-bottom: 1px solid $secondary-cultured-hover;
+}
+
+.timeZoneLabel {
+  padding-left: 5px;
+}
+
+.containerButton {
+  @include flex(row, flex-start, center);
+  margin-top: 18px;
+  width: 100%;
+}
+
+.button {
+  @include flex(row, center, center);
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  transition: color 0.4s ease-in-out;
+
+  &:hover {
+    color: $grey-3;
+  }
+}
+
+.dataFiled {
+  max-height: 40px;
+  background-color: $secondary-cultured-default;
+
+  [class*="MuiInputBase-input"] {
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
+    font-style: 'normal';
+    padding: 10px 8px 10px 8px;
+  }
+
+  [class*="MuiOutlinedInput-notchedOutline"] {
+    border: none;
+    border-radius: $s-border-radius;
+    max-height: 40px;
+  }
+}
+
+.staticDatePicker {
+  margin-bottom: 26px;
+
+  [class*="MuiDateCalendar-root"] {
+    width: 100%;
+    max-width: 296px;
+  }
+
+  [class*="MuiDayCalendar-weekDayLabel"] {
+    @include indents;
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
+    max-width: 26px;
+    box-sizing: content-box;
+    height: 100%;
+    font-style: normal;
+  }
+
+  [class*="MuiDayCalendar-header"] {
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  [class*="MuiDayCalendar-slideTransition"] {
+    min-height: 200px;
+  }
+
+  [class*="MuiDayCalendar-weekContainer"] {
+    margin: 0px;
+    margin-bottom: 6px;
+    justify-content: space-between;
+  }
+
+  [class*="MuiPickersDay-today"] {
+    border-radius: $xs-border-radius;
+  }
+
+
+  [class*="MuiPickersYear-yearButton"]:hover {
+    border-radius: $xs-border-radius;
+  }
+
+  [class*="MuiPickersCalendarHeader-root"] {
+    @include indents(0 0 0 5px, 0 0 20px);
+    justify-content: space-between;
+
+    [class*="MuiPickersCalendarHeader-switchViewIcon"] {
+      display: none;
+    }
+
+    [class*="MuiPickersCalendarHeader-label"] {
+      @include indents;
+      @include font('Open Sans', $xs-font-size, $bold, $primary-oxford-blue-default);
+      @include line-sizes($xl-line-height, $m-letter-space);
+      font-style: normal;
+      text-transform: capitalize;
+    }
+
+    [class*="MuiPickersArrowSwitcher"] {
+      padding: 0px;
+      color: $grey-3;
+    }
+  }
+
+  [class*="MuiPickersDay-root"] {
+    @include max-size(26px, 26px);
+    @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
+    margin: 0px;
+    font-style: normal;
+
+    &:hover {
+      border-radius: 4px;
+    }
+  }
+
+  [class*="Mui-selected"] {
+    border-radius: $xs-border-radius;
+    color: $off-white;
+  }
+
+  [class*="MuiPickersDay-dayOutsideMonth"] {
+    color: $grey-3;
+  }
+
+}

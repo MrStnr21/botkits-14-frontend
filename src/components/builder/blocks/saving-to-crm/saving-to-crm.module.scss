@@ -1,0 +1,16 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+.content {
+  @include indents(12px 16px 16px, 0);
+  @include flex(column, false, false, 8px);
+  @include font('Open Sans', $xs-font-size, $bold);
+
+  @media screen and (max-width: 520px) {
+    padding: 7px 9px 9px;
+  }
+}
+
+.block {
+  @include flex(column, $gap: 12px);
+}

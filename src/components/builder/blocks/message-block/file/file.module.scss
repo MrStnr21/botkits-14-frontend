@@ -1,0 +1,58 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
+.result {
+  @include flex(row, space-between, center);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include font('Open Sans', $xs-font-size, $normal);
+  width: 261px;
+  background-color: inherit;
+}
+
+.result__icon {
+  @include size(47px, 47px);
+  margin-right: 8px;
+  flex-shrink: 0;
+
+  &_interactive {
+    cursor: pointer;
+    transition: opacity .5s;
+    &:hover {
+      opacity: .6;
+    }
+  }
+}
+
+.result__name {
+  @include font('Open Sans', inherit, $bold, $primary-oxford-blue-default);
+  @include ellipsis();
+  margin: 0 auto 0 0;
+  width: 120px;
+  text-align: left;
+}
+
+.result__size {
+  @include font('Open Sans', inherit, $normal, $grey-1);
+  margin: 0 12px 0 0;
+}
+
+.result__button {
+  @include size(24px, 24px);
+  cursor: $cursor;
+  color: $grey-1;
+  mask-image: url('../../../../../images/icon/24x24/common/close.svg');
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.result_error {
+  .result__name,
+  .result__size {
+    color: $error-default;
+  }
+  .result__icon {
+    fill: $error-default;
+    stroke: $error-default;
+  }
+}

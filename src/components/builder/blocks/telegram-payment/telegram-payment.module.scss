@@ -1,0 +1,16 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+.blocks {
+  @include flex(column, false, false, 8px);
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  @media screen and (max-width: 520px) {
+    padding: 9px;
+  }
+}
+
+.sumInputs {
+  @include flex(row, false, center, 4px);
+}

@@ -1,0 +1,135 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.button {
+  @include button-style-reset;
+  @include flex(row, center, center);
+  @include font('IBM Plex Mono', $s-font-size, $bold);
+  @include line-sizes(21px, 1px);
+  text-transform: uppercase;
+  transition: all 0.1s linear;
+}
+
+.button div {
+  @include flex(row, center, center);
+}
+
+.button svg {
+  transition: stroke 0.1s linear;
+}
+
+.default {
+  border-radius: $l-border-radius;
+  width: 100%;
+}
+
+.circle {
+  border-radius: $border-radius-circle;
+  aspect-ratio: 1 / 1;
+}
+
+.small {
+  height: 46px;
+}
+
+.medium {
+  height: 52px;
+}
+
+.medium svg {
+  stroke-width: $m-icon-stroke-width;
+}
+
+.large {
+  height: 65px;
+}
+
+.large svg {
+  @include size(30px, 30px);
+  stroke-width: $l-icon-stroke-width;
+}
+
+.blue {
+  color: $off-white;
+  background-color: $primary-persian-blue-default;
+}
+
+.blue svg {
+  stroke: $off-white;
+}
+
+.blue:hover {
+  background-color: #435cdb;
+}
+
+.blue:active {
+  background-color: $primary-persian-blue-hover;
+}
+
+.blue:disabled {
+  background-color: $blue-disabled;
+}
+
+.green {
+  color: $primary-oxford-blue-default;
+  background-color: $primary-medium-spring-green-default;
+}
+
+.green svg {
+  stroke: $primary-oxford-blue-default;
+}
+
+.green:hover {
+  background-color: $primary-medium-spring-green-hover;
+}
+
+.green:active {
+  background-color: $primary-medium-spring-green-default;
+}
+
+.green:disabled {
+  color: rgba(0, 0, 0, 0.4);
+  background-color: $primary-medium-spring-green-disabled;
+}
+
+.green:disabled svg {
+  opacity: 0.5;
+}
+
+.grey {
+  color: $primary-oxford-blue-default;
+  background-color: $secondary-cultured-focus;
+}
+
+.grey:hover {
+  color: $primary-persian-blue-default;
+  background-color: $secondary-cultured-focus;
+}
+
+.grey:active {
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.grey:disabled {
+  color: $grey-3;
+  background-color: $secondary-cultured-hover;
+}
+
+.grey:disabled:active {
+  box-shadow: none;
+}
+
+.light-grey {
+  background-color: $secondary-cultured-hover;
+  color: $grey-3;
+  &:hover {
+    color: $primary-persian-blue-default;
+  }
+}
+
+.button_active {
+  color: $primary-persian-blue-default;
+  background-color: $blue-disabled;
+}

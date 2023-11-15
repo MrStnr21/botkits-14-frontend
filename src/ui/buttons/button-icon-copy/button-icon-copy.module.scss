@@ -1,0 +1,43 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.button {
+  @include button-style-reset;
+  @include flex(row, center, center);
+  transition: all 0.1s linear;
+  border-radius: $l-border-radius;
+  height: 40px;
+  background-color: transparent;
+  aspect-ratio: 1 / 1;
+
+  div{
+    @include flex(row, center, center);
+  }
+
+  svg{
+    transition: stroke 0.1s linear;
+    stroke: $grey-3;
+  }
+
+  &:hover{
+    svg{
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:active{
+    background-color: $blue-disabled;
+
+    svg{
+      stroke: $primary-persian-blue-default;
+    }
+  }
+
+  &:disabled{
+    background-color: transparent;
+
+    svg{
+      stroke: $secondary-cultured-press;
+    }
+  }
+}

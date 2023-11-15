@@ -1,0 +1,61 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.button {
+  @include button-style-reset;
+  @include flex($align-items: center, $gap: 16px);
+  height: 64px;
+  min-width: 196px;
+  padding: 10px 7px 10px 16px;
+  border-radius: $l-border-radius;
+  background-color: $off-white;
+  transition: background-color 0.1s linear;
+  color: $primary-oxford-blue-default;
+
+  &:hover {
+    background-color: $secondary-cultured-hover;
+    color: $primary-persian-blue-default;
+  }
+
+  &:active {
+    background-color: $blue-disabled;
+  }
+
+  &:disabled {
+    background-color: $off-white;
+    color: $grey-2;
+  }
+
+  @media screen and (max-width: 670px) {
+    height: 52px;
+    padding: 4px 8px 4px 16px;
+  }
+}
+
+.icon {
+  opacity: 0.3;
+  filter: none;
+  transition: opacity 0.1s linear;
+
+  :hover > & {
+    opacity: 1;
+    filter: brightness(0) saturate(100%) // return to black
+            invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg) brightness(77%) contrast(87%); // apply filter to black
+  }
+
+  :disabled > & {
+    opacity: 0.3;
+    filter: none;
+  }
+}
+
+.name {
+  @include font('Open Sans', $s-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  margin: 0;
+  text-align: start;
+
+  @media screen and (max-width: 670px) {
+    font-size: $xs-font-size;
+  }
+}

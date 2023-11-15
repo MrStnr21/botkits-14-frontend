@@ -1,0 +1,31 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
+.wrapper {
+  @include flex(column);
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $secondary-cultured-default;
+  width: fit-content;
+  border-radius: $l-border-radius;
+
+  @media screen and (max-width: 520px) {
+    padding: 9px 7px;
+  }
+}
+
+.header {
+  @include font('Open Sans', $xs-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  text-align: left;
+  margin: 0 0 12px;
+
+  @media screen and (max-width: 520px) {
+    font-size: 7.41px;
+  }
+}
+
+.inputsBox {
+  @include flex(row, center, center, 6px);
+  flex-shrink: 0;
+}

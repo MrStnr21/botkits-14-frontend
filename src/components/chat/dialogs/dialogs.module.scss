@@ -1,0 +1,62 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.dialogs {
+  @include indents(0 15px 0 0, 32px 0 0);
+  border-right: 1px $secondary-cultured-press solid;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 1186px) {
+    @include max-size(280px, unset);
+  }
+
+  @media screen and (max-width: 860px) {
+    @include min-size(100%, unset);
+    @include indents(0 15px 0, 32px 0 0);
+    border: none;
+  }
+
+  &__headerContent {
+    @include size(100%, unset);
+    @include flex(row, space-between, center);
+    @include indents(0 0 26px 0, 0);
+  }
+
+  &__icons {
+    @include position(relative);
+    @include flex(row, center, center, 8px);
+    z-index: 1;
+  }
+
+  &__modal {
+    @include position(absolute, 100%, 0);
+    z-index: 4;
+  }
+
+  &__line {
+    border-top: 0.8px solid $secondary-cultured-press;
+  }
+
+  &__messagesContainer {
+    padding-top: 16px;
+
+    @media screen and (max-width: 620px) {
+      padding: 0;
+    }
+  }
+
+  &__inputWrapper {
+    @include indents();
+    @include size(100%, unset);
+    @include max-size(unset, 40px);
+    box-sizing: border-box;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__button {
+    @include button-style-reset();
+  }
+}

@@ -1,0 +1,77 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin button_all{
+  @include button-style-reset;
+  background-color: $off-white;
+  color: $grey-1;
+  border-bottom: 2px solid $secondary-cultured-press;
+  padding: 13px;
+  transition: all 0.4s linear;
+  font-weight: $normal;
+  font-size: $s-font-size;
+}
+
+@mixin button_all_disabled{
+  border-bottom: 2px solid $primary-persian-blue-default;
+  color: $primary-persian-blue-default;
+}
+
+.nav{
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  
+    .button{
+      @include button_all;
+      font-weight: $bold;
+      padding: 15px;
+      border-bottom: 1px solid $secondary-cultured-press;
+    }
+
+    .button:disabled {
+      @include button_all_disabled;
+      border-bottom: 0px;
+      position: relative;
+    }
+
+    .button:disabled::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 3px;
+      border-radius: 2px 2px 0 0;
+      background-color: $primary-persian-blue-default;
+      bottom: 0px;
+      left: 50%;
+      transform: translate(-50%);
+    }
+
+    .notifications {
+      @include button_all;
+      font-family: 'IBM Plex', sans-serif;
+      font-size: $l-font-size;
+    }
+
+    .notifications:disabled {
+      @include button_all_disabled;
+    }
+    
+    .builder {
+      @include button_all;
+    }
+
+    .builder:disabled {
+      @include button_all_disabled;
+    }
+  }
+
+  @media (max-width: ($min-content-width + 200px)) {
+
+    .button, .notifications, .builder{
+      width: 160px !important;
+      height: 50px !important;
+      
+    }
+  }

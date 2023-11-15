@@ -1,0 +1,34 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+@mixin text {
+  @include flex(row, center, center);
+  @include line-sizes($m-line-height, $xxl-letter-space);
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+@mixin textStopTest {
+  @include text;
+  @include size(151px, 48px);
+}
+
+.textStop {
+  @include textStopTest;
+}
+
+.textTest {
+  @include textStopTest;
+}
+
+.textStart {
+  @include text;
+  align-items: flex-start;
+  padding-bottom: 15px;
+}
+
+.wrapper {
+  @include size(80px, 29px);
+  border-radius: $super-border-radius;
+  overflow: hidden;
+}

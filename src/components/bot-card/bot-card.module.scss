@@ -1,0 +1,46 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.card {
+  @include size(296px, 172px);
+  @include flex(column, flex-start);
+  background-color: $off-white;
+  border-radius: $xxl-border-radius;
+  box-shadow: $l-box-shadow;
+  position: relative;
+  @media (max-width: $switching-width) {
+    @include size(235px, 177px);
+  }
+}
+
+.icon {
+  @include size(52px, 52px);
+  margin: 24px 0 0 32px;
+}
+
+.more_button {
+  @include size(24px, 24px);
+  @include position(absolute, 32px, $left: 256px);
+  cursor: $cursor;
+  background-image: url('../../images/icon/24x24/common/more.svg');
+
+  @media (max-width: $switching-width) {
+    left: 195px;
+  }
+}
+
+.name_box {
+  @include flex($align-items: center);
+  height: 56px;
+  margin: 24px 0 0 32px;
+  max-width: 170px;
+}
+
+.name {
+  @include ellipsis;
+}
+
+.more_button {
+  @include size(24px, 24px);
+  background-image: url('../../images/icon/24x24/common/more.svg');
+}

@@ -1,0 +1,40 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin button ($color, $bg-color) {
+  @include button-style-reset;
+  @include flex(row, center, center);
+  @include size(100%, 35px);
+  @include font('Open Sans', $xs-font-size, $bold, $color);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  transition: all 0.1s linear;
+  border-radius: $s-border-radius;
+  background-color: $bg-color;
+
+  &:hover {
+    color: $primary-persian-blue-default;
+  }
+
+  &:active {
+    color: $primary-persian-blue-default;
+    background-color: $blue-disabled;
+  }
+
+  &:disabled {
+    color: $grey-1;
+    background-color: $secondary-cultured-focus;
+  }
+
+  @media screen and (max-width: 520px) {
+    @include size(100%, 24px);
+    font-size: 7.41px;
+  }
+}
+
+.button {
+  @include button($secondary-xiketic-default, $secondary-cultured-focus);
+}
+
+.button_active {
+  @include button($primary-persian-blue-default, $blue-disabled);
+}

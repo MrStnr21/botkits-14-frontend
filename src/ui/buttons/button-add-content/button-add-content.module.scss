@@ -1,0 +1,16 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+
+.wrapper {
+  width: fit-content;
+  background-color: $secondary-cultured-default;
+  text-align: left;
+}
+
+.butbox {
+  @include flex(row, center, center);
+  margin: 16px 0 32px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
