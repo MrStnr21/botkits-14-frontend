@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-
+import { useMediaQuery } from '@mui/material';
 import ResetPassword from '../../pages/reset-password/reset-password';
 import Subscription from '../../pages/subscription/subscription';
 import AddBotPage from '../../pages/add-bot-page/add-bot-page';
@@ -13,13 +13,19 @@ import Signup from '../../pages/signup/signup';
 import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
-import Chat from '../../pages/chat/chat';
+import Chat from '../../pages/chat-page/chat-page';
+
 import routesUrl from '../../utils/routesData';
 
 import ProtectedRoute from '../../routes/protected-route';
+import ChatMobile from '../../pages/chat-page/chat-mobile';
+import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
+import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
+  const isMobile = useMediaQuery('(max-width: 860px)');
+
   return (
     <Routes>
       <Route
@@ -76,7 +82,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.botBuilder}
           element={
-            <ProtectedRoute>
+            <ProtectedRoute notAuth>
               <BotBuilder />
             </ProtectedRoute>
           }
@@ -85,10 +91,30 @@ const App: FC = (): JSX.Element => {
           path={routesUrl.chat}
           element={
             <ProtectedRoute>
-              <Chat />
+              {isMobile ? <ChatMobile /> : <Chat />}
             </ProtectedRoute>
           }
         />
+        {isMobile && (
+          <Route
+            path="chat/:id"
+            element={
+              <ProtectedRoute>
+                <MobileDialog />
+              </ProtectedRoute>
+            }
+          />
+        )}
+        {isMobile && (
+          <Route
+            path="chat/:id/info"
+            element={
+              <ProtectedRoute>
+                <MobileDialogInformation />
+              </ProtectedRoute>
+            }
+          />
+        )}
         <Route
           path={routesUrl.mailing}
           element={
@@ -128,30 +154,6 @@ const App: FC = (): JSX.Element => {
         />
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Route>
-      <Route
-        path={routesUrl.partnership}
-        element={
-          <ProtectedRoute>
-            <Partnership />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path={routesUrl.share}
-        element={
-          <ProtectedRoute>
-            <Share />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path={routesUrl.subscription}
-        element={
-          <ProtectedRoute>
-            <Subscription />
-          </ProtectedRoute>
-        }
-      />
       <Route path={routesUrl.notFound} element={<NotFound />} />
     </Routes>
   );

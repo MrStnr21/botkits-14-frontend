@@ -9,7 +9,7 @@ interface IDropDownList {
 
 const DropDownList: FC<IDropDownList> = ({
   caption = 'Информация о пользователе',
-}): JSX.Element => {
+}) => {
   const [isOpened, setIsOpened] = useState(false);
   const info = {
     one: {
@@ -34,18 +34,22 @@ const DropDownList: FC<IDropDownList> = ({
         <ChevronIcon position={`${isOpened ? 'up' : 'down'}`} />
       </div>
       {isOpened && (
-        <div className={stylesList.container}>
-          <Typography tag="p" className={stylesList.textinfo}>
-            <Typography tag="span" className={stylesList.title}>
+        <div className={stylesList.accordion__container}>
+          <Typography tag="p" className={stylesList.accordion__textInfo}>
+            <Typography tag="span" className={stylesList.accordion__title}>
               {info.one.title}
             </Typography>
-            {` ${info.one.paragraph}`}
+            <Typography tag="span" className={stylesList.accordion__paragraph}>
+              {info.one.paragraph}
+            </Typography>
           </Typography>
-          <Typography tag="p" className={stylesList.textinfo}>
-            <Typography tag="span" className={stylesList.title}>
+          <Typography tag="p" className={stylesList.accordion__textInfo}>
+            <Typography tag="span" className={stylesList.accordion__title}>
               {info.two.title}
             </Typography>
-            {` ${info.two.paragraph}`}
+            <Typography tag="span" className={stylesList.accordion__paragraph}>
+              {info.two.paragraph}
+            </Typography>
           </Typography>
         </div>
       )}
