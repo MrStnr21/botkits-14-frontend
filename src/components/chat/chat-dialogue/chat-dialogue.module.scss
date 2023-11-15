@@ -47,7 +47,7 @@
     }
 
     @media screen and (max-width: 620px) {
-      @include indents(0 16px 0, 0);
+      @include indents(0 16px 0, 0 0 8px 0);
     }
   }
 
@@ -115,7 +115,7 @@
       transform: translate(-50%, -50%);
       flex-direction: column;
       gap: 4px;
-      padding-bottom: 16px;
+      // padding-bottom: 16px;
     }
   }
 

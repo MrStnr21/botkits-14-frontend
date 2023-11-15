@@ -92,9 +92,16 @@ const MobileDialog: FC = () => {
               >
                 <Typography tag="p">{user?.user.name}</Typography>
               </Link>
-              <Typography tag="p" className={stylesDialog.dialog__status}>
-                {user!.user.status}
-              </Typography>
+              {user!.user.status === 'online' ? (
+                <Typography tag="p" className={stylesDialog.dialog__status}>
+                  В работе
+                </Typography>
+              ) : (
+                ''
+              )}
+              {/* <Typography tag="p" className={stylesDialog.dialog__status}>
+                {user!.user.status === 'online' ? 'В работе' : ''}
+              </Typography> */}
             </div>
           </div>
           <div className={stylesDialog.dialog__iconsWrapper}>
