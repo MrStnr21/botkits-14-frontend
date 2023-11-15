@@ -16,6 +16,9 @@ import Tooltip from './tooltip/tooltip';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
 import { formatDate, DateType } from '../../../utils/chatDateFunctions';
 import { IMessage, IUser } from '../../../utils/mockChatData';
+import DeleteChatPopup from '../../popups/delete-chat-popup/delete-chat-popup';
+import ModalPopup from '../../popups/modal-popup/modal-popup';
+import useModal from '../../../services/hooks/use-modal';
 
 interface IChatDialogue {
   onSidebarClick: () => void;
@@ -33,7 +36,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
   const [inputValue, setInputValue] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
-
+  const { isModalOpen, closeModal, openModal } = useModal();
   const chatData = useAppSelector((store) => store.websocket.data); // заменить на это моковые данные
 
   useEffect(() => {
@@ -106,6 +109,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
                 <button
                   type="button"
                   className={stylesDialog.dialog__headerButton}
+                  onClick={openModal}
                 >
                   <Tooltip text="Удалить">
                     <TrashIcon width={24} height={24} />
@@ -134,6 +138,11 @@ const ChatDialogue: FC<IChatDialogue> = ({
       ) : (
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <></>
+      )}
+      {isModalOpen && (
+        <ModalPopup onClick={closeModal}>
+          <DeleteChatPopup />
+        </ModalPopup>
       )}
     </div>
   );
