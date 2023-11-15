@@ -14,7 +14,7 @@
 @mixin buttonStyle {
   @include button-style-reset();
   @include flex(row, center, center);
-  @include indents(20px 50px, 0);
+  @include indents(15px 60px, 0);
   box-sizing: border-box;
   border-radius: $l-border-radius;
 }

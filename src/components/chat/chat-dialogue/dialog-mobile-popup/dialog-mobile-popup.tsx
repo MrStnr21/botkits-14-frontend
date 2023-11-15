@@ -4,9 +4,10 @@ import Typography from '../../../../ui/typography/typography';
 
 export interface IProps {
   handleClick?: () => void;
+  openModal?: () => void;
 }
 
-const DialogMobilePopup: FC<IProps> = ({ handleClick }) => {
+const DialogMobilePopup: FC<IProps> = ({ handleClick, openModal }) => {
   return (
     <div className={styles.popup}>
       <button
@@ -18,7 +19,11 @@ const DialogMobilePopup: FC<IProps> = ({ handleClick }) => {
           Поиск
         </Typography>
       </button>
-      <button type="button" className={styles.popup__button}>
+      <button
+        type="button"
+        className={styles.popup__button}
+        onClick={openModal}
+      >
         <Typography tag="p" className={styles.popup__text}>
           Удалить
         </Typography>
