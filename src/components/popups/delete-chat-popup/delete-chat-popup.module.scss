@@ -24,9 +24,9 @@
 }
 
 .popup {
-  @include size(504px, 302px);
+  @include size(464px, 262px);
   @include position(relative);
-  @include flex(column, center, flex-start, 40px);
+  @include flex(column, center, flex-start, 34px);
   @include indents(40px, 0);
   box-sizing: border-box;
   background-color: $off-white;
@@ -39,7 +39,7 @@
   }
 
   &__content {
-    @include flex(column, center, flex-start, 32px);
+    @include flex(column, center, flex-start, 20px);
 
     @media screen and (max-width: 620px) {
       gap: 8px;
@@ -82,7 +82,7 @@
     font-family: 'IBM Plex Mono', sans-serif;
     font-size: $xxl-font-size;
     font-weight: $bold;
-    line-height: $xs-line-height;
+    line-height: $m-line-height;
     letter-spacing: $xxl-letter-space;
     text-align: left;
 
