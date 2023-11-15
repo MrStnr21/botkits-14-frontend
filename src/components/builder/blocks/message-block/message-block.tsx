@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -32,25 +32,34 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
 
   const { domNode } = useStore((s) => s);
 
-  console.log(domNode);
+  useEffect(() => {}, [domNode]);
+  const horButtons = nodes
+    .filter(
+      (node) =>
+        node.data.type === 'button' && node.data.direction === 'horizontal'
+    )
+    .map((item) => item.id);
 
-  const horButtons = nodes.filter(
-    (node) =>
-      node.data.type === 'button' && node.data.direction === 'horizontal'
-  );
+  const verButtons = nodes
+    .filter(
+      (node) =>
+        node.data.type === 'button' && node.data.direction === 'vertical'
+    )
+    .map((item) => item.id);
 
-  const verButtons = nodes.filter(
-    (node) => node.data.type === 'button' && node.data.direction === 'vertical'
-  );
+  const horAnswers = nodes
+    .filter(
+      (node) =>
+        node.data.type === 'answer' && node.data.direction === 'horizontal'
+    )
+    .map((item) => item.id);
 
-  const horAnswers = nodes.filter(
-    (node) =>
-      node.data.type === 'answer' && node.data.direction === 'horizontal'
-  );
-
-  const verAnswers = nodes.filter(
-    (node) => node.data.type === 'answer' && node.data.direction === 'vertical'
-  );
+  const verAnswers = nodes
+    .filter(
+      (node) =>
+        node.data.type === 'answer' && node.data.direction === 'vertical'
+    )
+    .map((item) => item.id);
 
   const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
   const toggleVariableBlock = setFlowData({
@@ -69,7 +78,8 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     (
       blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
       direction: 'horizontal' | 'vertical',
-      blockOffset: number
+      blockOffset: number,
+      depNodes: string[]
     ) =>
     ({ x, y }: { x: number; y: number }) =>
     () => {
@@ -88,7 +98,18 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         draggable: false,
       };
 
-      setNodes([...getNodes(), node]);
+      setNodes([
+        ...getNodes().map((item) => {
+          if (depNodes.includes(item.id)) {
+            return {
+              ...item,
+              position: { ...item.position, y: item.position.y + 52 },
+            };
+          }
+          return item;
+        }),
+        node,
+      ]);
     };
 
   const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,12 +143,14 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.answers,
               'horizontal',
-              ButtonsBlocksStartPositions.thisrd
+              ButtonsBlocksStartPositions.thisrd,
+              [...verAnswers]
             )}
             addVerticalButton={addButton(
               MessageDataTypes.answers,
               'vertical',
-              ButtonsBlocksStartPositions.fourth
+              ButtonsBlocksStartPositions.fourth,
+              []
             )}
             buttonsAmountBefore={horButtons.length + verButtons.length}
             horizontalButtonsAmount={horAnswers.length}
@@ -143,12 +166,14 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.buttons,
               'horizontal',
-              ButtonsBlocksStartPositions.first
+              ButtonsBlocksStartPositions.first,
+              [...verButtons, ...horAnswers, ...verAnswers]
             )}
             addVerticalButton={addButton(
               MessageDataTypes.buttons,
               'vertical',
-              ButtonsBlocksStartPositions.second
+              ButtonsBlocksStartPositions.second,
+              [...verAnswers, ...horAnswers]
             )}
             buttonsAmountBefore={0}
             horizontalButtonsAmount={horButtons.length}
