@@ -18,6 +18,7 @@ import Chat from '../../pages/chat-page/chat-page';
 import routesUrl from '../../utils/routesData';
 
 import ProtectedRoute from '../../routes/protected-route';
+import Statistics from '../../pages/statistics/statistics';
 import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
@@ -149,6 +150,14 @@ const App: FC = (): JSX.Element => {
           element={
             <ProtectedRoute>
               <Subscription />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.statistics}
+          element={
+            <ProtectedRoute>
+              <Statistics />
             </ProtectedRoute>
           }
         />
