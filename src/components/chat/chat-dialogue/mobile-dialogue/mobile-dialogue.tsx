@@ -14,6 +14,9 @@ import DialogMobilePopup from '../dialog-mobile-popup/dialog-mobile-popup';
 import InputMessage from '../../../../ui/inputs/input-message/input-message';
 import SendButton from '../../../../ui/buttons/send-button/send-button';
 import ChevronIcon from '../../../icons/Chevron/ChevronIcon';
+import { formatDate } from '../../../../utils/chatDateFunctions';
+import useClick from '../../../../services/hooks/use-click';
+import useEscapeKey from '../../../../services/hooks/use-esc-key';
 
 interface DateType extends Date {
   toDateString(): string;
@@ -38,7 +41,6 @@ const MobileDialog: FC = () => {
 
   const handleMenuClick = () => {
     setModalOpen(!isModalOpen);
-    setInputVisible(false);
   };
 
   const user = testData.find((el: any) => el.user.id === id);
@@ -52,21 +54,10 @@ const MobileDialog: FC = () => {
       clearInterval(interval);
     };
   }, []);
-  function formatDate(date: DateType): string {
-    const now = new Date();
-    const yesterday = new Date(now);
-    yesterday.setDate(now.getDate() - 1);
 
-    if (date.toDateString() === now.toDateString()) {
-      return 'Сегодня';
-    }
-    if (date.toDateString() === yesterday.toDateString()) {
-      return 'Вчера';
-    }
-    const options: any = { day: 'numeric', month: 'long' };
-    return date.toLocaleDateString('ru-RU', options);
-  }
   const formattedDate = formatDate(currentDate);
+  useClick(() => setModalOpen(false), 'dialogMenuButton');
+  useEscapeKey(() => setModalOpen(false));
 
   return (
     <div className={stylesDialog.dialog}>
@@ -123,7 +114,8 @@ const MobileDialog: FC = () => {
             <button
               type="button"
               className={stylesDialog.dialog__headerButton}
-              onClick={handleMenuClick}
+              id="dialogMenuButton"
+              onClick={() => setModalOpen(true)}
             >
               <DialogMenuIcon />
             </button>

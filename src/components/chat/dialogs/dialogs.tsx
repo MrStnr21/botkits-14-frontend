@@ -15,6 +15,8 @@ import {
 import SearchIcon from '../../icons/Search/SearchIcon';
 import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
 import DialogMobilePopup from '../chat-dialogue/dialog-mobile-popup/dialog-mobile-popup';
+import useClick from '../../../services/hooks/use-click';
+import useEscapeKey from '../../../services/hooks/use-esc-key';
 
 interface ID {
   setSelectedMessages?: Dispatch<SetStateAction<IMessage[]>>;
@@ -59,6 +61,9 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
     return a;
   }, []);
 
+  useClick(() => setModalOpen(false), 'dialogsMenuButton');
+  useEscapeKey(() => setModalOpen(false));
+
   return (
     <div className={styles.dialogs}>
       <div className={styles.dialogs__headerContent}>
@@ -81,7 +86,8 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
             <button
               type="button"
               className={styles.dialogs__button}
-              onClick={() => setModalOpen(!isModalOpen)}
+              onClick={() => setModalOpen(true)}
+              id="dialogsMenuButton"
             >
               <DialogMenuIcon size="24" />
             </button>

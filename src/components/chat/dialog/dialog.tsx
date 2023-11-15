@@ -80,10 +80,7 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
           ) : null}
         </div>
       </div>
-      <div
-        className={`line ${styles.dialog__line}`}
-        // style={{ display: 'none' }}
-      />
+      <div className={`line ${styles.dialog__line}`} />
     </div>
   );
 };
