@@ -17,6 +17,10 @@
   @include indents(15px 60px, 0);
   box-sizing: border-box;
   border-radius: $l-border-radius;
+
+  @media screen and (max-width: 620px) {
+    @include indents(10px, 0);
+  }
 }
 
 .popup {
@@ -29,13 +33,27 @@
   box-shadow: 0 12px 24px 0 #15123321;
   border-radius: $xxl-border-radius;
 
+  @media screen and (max-width: 620px) {
+    @include size(320px, 300px);
+    justify-content: space-around;
+  }
+
   &__content {
     @include flex(column, center, flex-start, 32px);
+
+    @media screen and (max-width: 620px) {
+      gap: 8px;
+    }
   }
 
   &__buttons {
     @include flex(row, center, center, 0);
     align-self: flex-end;
+
+    @media screen and (max-width: 620px) {
+      flex-direction: column;
+      align-self: center;
+    }
   }
 
   &__rejectBtn {
@@ -67,6 +85,13 @@
     line-height: $xs-line-height;
     letter-spacing: $xxl-letter-space;
     text-align: left;
+
+    @media screen and (max-width: 620px) {
+      font-size: $l-font-size;
+      font-weight: $bold;
+      line-height: $xl-line-height;
+      letter-spacing: 0;
+    }
   }
 
   &__text {
