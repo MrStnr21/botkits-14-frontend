@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './checkbox-done.module.scss';
 
-export interface CheckboxProps {
+export interface CheckboxTextProps {
   label: string;
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -10,7 +10,7 @@ export interface CheckboxProps {
   disabled?: boolean;
 }
 
-const CheckboxDone: React.FC<CheckboxProps> = ({
+const CheckboxWithText: React.FC<CheckboxTextProps> = ({
   name,
   label,
   checked,
@@ -39,4 +39,4 @@ const CheckboxDone: React.FC<CheckboxProps> = ({
   );
 };
 
-export default CheckboxDone;
+export default CheckboxWithText;

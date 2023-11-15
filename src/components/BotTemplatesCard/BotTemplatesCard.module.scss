@@ -1,0 +1,14 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.card {
+    @include position(relative);
+    @include size(330px, unset);
+    @include indents(0 0 0 32px, 0);
+    margin: 32px 0 0 0;
+    box-sizing: border-box;
+  
+    @media screen and (min-width: 861px) and (max-width: 1186px) {
+      @include indents(0 16px 0, 32px 0 0);
+    }
+}

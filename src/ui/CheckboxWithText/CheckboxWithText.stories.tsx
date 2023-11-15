@@ -1,12 +1,14 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import CheckboxDone, { CheckboxProps } from './checkbox-done';
+import CheckboxWithText, { CheckboxTextProps } from './CheckboxWithText';
 
 export default {
-  title: 'UI/CheckboxDone',
-  component: CheckboxDone,
+  title: 'UI/CheckboxWithText',
+  component: CheckboxWithText,
 } as Meta;
 
-const Template: StoryFn<CheckboxProps> = (args) => <CheckboxDone {...args} />;
+const Template: StoryFn<CheckboxTextProps> = (args) => (
+  <CheckboxWithText {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
