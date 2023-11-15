@@ -10,6 +10,7 @@ import {
   TButtonBlock,
 } from '../../../../../services/types/builder';
 import { setFlowData } from '../../../utils';
+import { ButtonSizes } from '../../../utils/data';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
@@ -22,10 +23,48 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
 
   const setName = setFlowData({ selectors: ['name'] });
   const setAdditionalString = setFlowData({ selectors: ['str'] });
-  const toggleString = setFlowData({
+  /* const toggleString = setFlowData({
     selectors: ['additionalData'],
     value: !data.additionalData,
-  });
+  }); */
+
+  const toggleString = () => {
+    const node = getNode(id);
+    setNodes([
+      ...getNodes().map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: { ...item.data, additionalData: !data.additionalData },
+          };
+        }
+        if (
+          item.position.y > node!.position.y &&
+          node?.parentNode === item.parentNode
+        ) {
+          if (node && node.data.additionalData) {
+            return {
+              ...item,
+              position: {
+                ...item.position,
+                y: item.position.y - ButtonSizes.addStringDesk,
+              },
+            };
+          }
+          if (node && !node.data.additionalData) {
+            return {
+              ...item,
+              position: {
+                ...item.position,
+                y: item.position.y + ButtonSizes.addStringDesk,
+              },
+            };
+          }
+        }
+        return item;
+      }),
+    ]);
+  };
 
   const setColor = (color: string) => {
     const nodes = getNodes();
@@ -50,7 +89,10 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
         ) {
           return {
             ...item,
-            position: { ...item.position, y: item.position.y - 52 },
+            position: {
+              ...item.position,
+              y: item.position.y - (node!.data.additionalData ? 68 : 52),
+            },
           };
         }
         return item;

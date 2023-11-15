@@ -7,9 +7,9 @@ export default {
 
 export const Default = () => (
   <PanelInline
-    buttonsAmountBefore={0}
-    horizontalButtonsAmount={0}
-    verticalButtonsAmount={0}
+    buttonsBefore={[]}
+    horizontalButtons={[]}
+    verticalButtons={[]}
     title="yuyuu"
   />
 );

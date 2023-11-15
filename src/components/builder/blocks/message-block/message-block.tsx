@@ -33,41 +33,33 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { domNode } = useStore((s) => s);
 
   useEffect(() => {}, [domNode]);
-  const horButtons = nodes
-    .filter(
-      (node) =>
-        node.data.type === 'button' &&
-        node.data.direction === 'horizontal' &&
-        node.parentNode === id
-    )
-    .map((item) => item.id);
+  const horButtons = nodes.filter(
+    (node) =>
+      node.data.type === 'button' &&
+      node.data.direction === 'horizontal' &&
+      node.parentNode === id
+  );
 
-  const verButtons = nodes
-    .filter(
-      (node) =>
-        node.data.type === 'button' &&
-        node.data.direction === 'vertical' &&
-        node.parentNode === id
-    )
-    .map((item) => item.id);
+  const verButtons = nodes.filter(
+    (node) =>
+      node.data.type === 'button' &&
+      node.data.direction === 'vertical' &&
+      node.parentNode === id
+  );
 
-  const horAnswers = nodes
-    .filter(
-      (node) =>
-        node.data.type === 'answer' &&
-        node.data.direction === 'horizontal' &&
-        node.parentNode === id
-    )
-    .map((item) => item.id);
+  const horAnswers = nodes.filter(
+    (node) =>
+      node.data.type === 'answer' &&
+      node.data.direction === 'horizontal' &&
+      node.parentNode === id
+  );
 
-  const verAnswers = nodes
-    .filter(
-      (node) =>
-        node.data.type === 'answer' &&
-        node.data.direction === 'vertical' &&
-        node.parentNode === id
-    )
-    .map((item) => item.id);
+  const verAnswers = nodes.filter(
+    (node) =>
+      node.data.type === 'answer' &&
+      node.data.direction === 'vertical' &&
+      node.parentNode === id
+  );
 
   const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
   const toggleVariableBlock = setFlowData({
@@ -161,9 +153,9 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               'vertical',
               ButtonsBlocksStartPositions.fourth
             )}
-            buttonsAmountBefore={horButtons.length + verButtons.length}
-            horizontalButtonsAmount={horAnswers.length}
-            verticalButtonsAmount={verAnswers.length}
+            buttonsBefore={[...horButtons, ...verButtons]}
+            horizontalButtons={horAnswers}
+            verticalButtons={verAnswers}
             key={index}
             title="Ответ"
           />
@@ -182,9 +174,9 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               'vertical',
               ButtonsBlocksStartPositions.second
             )}
-            buttonsAmountBefore={0}
-            horizontalButtonsAmount={horButtons.length}
-            verticalButtonsAmount={verButtons.length}
+            buttonsBefore={[]}
+            horizontalButtons={horButtons}
+            verticalButtons={verButtons}
             key={index}
             title="Инлайн кнопка"
           />
