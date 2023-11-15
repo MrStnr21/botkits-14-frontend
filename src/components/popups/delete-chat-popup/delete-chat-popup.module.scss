@@ -6,7 +6,7 @@
   font-size: $xs-font-size;
   font-weight: $bold;
   line-height: $xl-line-height;
-  letter-spacing: 1px;
+  letter-spacing: $xxl-letter-space;
   text-transform: uppercase;
   text-align: center;
 }
@@ -15,11 +15,12 @@
   @include button-style-reset();
   @include flex(row, center, center);
   @include indents(20px 50px, 0);
+  box-sizing: border-box;
   border-radius: $l-border-radius;
 }
 
 .popup {
-  @include size(464px, 262px);
+  @include size(504px, 302px);
   @include position(relative);
   @include flex(column, center, flex-start, 40px);
   @include indents(40px, 0);
@@ -33,7 +34,7 @@
   }
 
   &__buttons {
-    @include flex(row, center, center, 32px);
+    @include flex(row, center, center, 0);
     align-self: flex-end;
   }
 
@@ -64,11 +65,12 @@
     font-size: $xxl-font-size;
     font-weight: $bold;
     line-height: $xs-line-height;
-    letter-spacing: 0;
+    letter-spacing: $xxl-letter-space;
     text-align: left;
   }
 
   &__text {
+    font-family: 'IBM Plex Mono', sans-serif;
     font-size: $xs-font-size;
     font-weight: $normal;
     line-height: $xl-line-height;
