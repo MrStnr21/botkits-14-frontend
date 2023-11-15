@@ -18,10 +18,10 @@ import FielsField from './files-field/fiels-field';
 import { setFlowData } from '../../utils';
 
 enum ButtonsBlocksStartPositions {
-  first = 166 + 74,
-  second = 234 + 74,
-  thisrd = 346 + 74,
-  fourth = 414 + 74,
+  first = 170 + 74,
+  second = 256 + 74,
+  thisrd = 384 + 74,
+  fourth = 458 + 74,
 }
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
