@@ -17,6 +17,9 @@ import ChevronIcon from '../../../icons/Chevron/ChevronIcon';
 import { formatDate } from '../../../../utils/chatDateFunctions';
 import useClick from '../../../../services/hooks/use-click';
 import useEscapeKey from '../../../../services/hooks/use-esc-key';
+import ModalPopup from '../../../popups/modal-popup/modal-popup';
+import useModal from '../../../../services/hooks/use-modal';
+import DeleteChatPopup from '../../../popups/delete-chat-popup/delete-chat-popup';
 
 interface DateType extends Date {
   toDateString(): string;
@@ -25,10 +28,10 @@ interface DateType extends Date {
 const MobileDialog: FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const { openModal, isModalOpen, closeModal } = useModal();
   const [inputValue, setInputValue] = useState('');
   const [isInputVisible, setInputVisible] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isPopupOpen, setModalOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
 
   // const handleSearchClick = () => {
@@ -119,9 +122,9 @@ const MobileDialog: FC = () => {
             >
               <DialogMenuIcon />
             </button>
-            {isModalOpen && (
+            {isPopupOpen && (
               <div className={stylesDialog.dialog__modal}>
-                <DialogMobilePopup />
+                <DialogMobilePopup openModal={openModal} />
                 {/* допилить общий компонент модального окна */}
               </div>
             )}
@@ -142,6 +145,11 @@ const MobileDialog: FC = () => {
           <SendButton />
         </button>
       </div>
+      {isModalOpen && (
+        <ModalPopup onClick={closeModal}>
+          <DeleteChatPopup closeModal={closeModal} />
+        </ModalPopup>
+      )}
     </div>
   );
 };
