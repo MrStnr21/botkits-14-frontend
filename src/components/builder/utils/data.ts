@@ -113,24 +113,20 @@ export const messagesSuccessful = [
 
 export const defaultBlocks = {
   message: {
-    name: 'Message',
+    name: 'message',
     data: [
-      {
-        type: MessageDataTypes.message,
-        value: '',
-      },
-      {
-        type: MessageDataTypes.answers,
-        horizontalAmount: 0,
-        verticalAmount: 0,
-      },
-      {
-        type: MessageDataTypes.buttons,
-        horizontalAmount: 0,
-        verticalAmount: 0,
-      },
+      { type: MessageDataTypes.message },
+      { type: MessageDataTypes.buttons, verButtons: [], horButtons: [] },
+      { type: MessageDataTypes.answers, verButtons: [], horButtons: [] },
     ],
-    saveAnswer: '',
+    showTime: {
+      show: true,
+      value: 0,
+    },
+    saveAnswer: {
+      show: true,
+      value: '',
+    },
   },
   api: {
     name: 'api',

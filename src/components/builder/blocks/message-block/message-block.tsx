@@ -36,28 +36,36 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const horButtons = nodes
     .filter(
       (node) =>
-        node.data.type === 'button' && node.data.direction === 'horizontal'
+        node.data.type === 'button' &&
+        node.data.direction === 'horizontal' &&
+        node.parentNode === id
     )
     .map((item) => item.id);
 
   const verButtons = nodes
     .filter(
       (node) =>
-        node.data.type === 'button' && node.data.direction === 'vertical'
+        node.data.type === 'button' &&
+        node.data.direction === 'vertical' &&
+        node.parentNode === id
     )
     .map((item) => item.id);
 
   const horAnswers = nodes
     .filter(
       (node) =>
-        node.data.type === 'answer' && node.data.direction === 'horizontal'
+        node.data.type === 'answer' &&
+        node.data.direction === 'horizontal' &&
+        node.parentNode === id
     )
     .map((item) => item.id);
 
   const verAnswers = nodes
     .filter(
       (node) =>
-        node.data.type === 'answer' && node.data.direction === 'vertical'
+        node.data.type === 'answer' &&
+        node.data.direction === 'vertical' &&
+        node.parentNode === id
     )
     .map((item) => item.id);
 
@@ -92,8 +100,9 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           direction,
           name: 'имя',
           color: '',
-          url: '',
+          str: '',
         },
+        expandParent: true,
         parentNode: id,
         draggable: false,
       };

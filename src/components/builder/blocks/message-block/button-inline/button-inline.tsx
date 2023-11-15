@@ -1,32 +1,59 @@
 import React, { FC, useState } from 'react';
-import { Position } from 'reactflow';
+import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './button-inline.module.scss';
 import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
 import askPhoneIcon from '../../../../../images/icon/24x24/constructor/ask-phone.svg';
 import urlIcon from '../../../../../images/icon/24x24/constructor/url.svg';
 import CustomHandle from '../../../flow/custom-handle/custom-handle';
-
-type TButtonProps = {
-  data: {
-    type: 'button' | 'answer';
-    name?: string;
-    color?: string;
-    str?: string;
-  };
-};
+import {
+  TBlockProps,
+  TButtonBlock,
+} from '../../../../../services/types/builder';
+import { setFlowData } from '../../../utils';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
-const ButtonInline: FC<TButtonProps> = ({ data }) => {
-  const [name, setName] = useState(data.name);
+const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const [hidden, setHidden] = useState(true);
+  const { getNodes, setNodes, getNode } = useReactFlow();
+  const id = useNodeId() || '';
 
-  const [btnColor, setBtnColor] = useState(data.color || 'white');
   const [menu, toggleMenu] = useState<boolean>(false);
-  const [stringVisible, toggleString] = useState<boolean>(false);
-  const [additionalString, setAdditionalString] = useState(data.str);
 
-  const deleteOnClick = () => {}; // заглушка в дальнейшем прописать логику удаления ReactFlow ноды
+  const setName = setFlowData({ selectors: ['name'] });
+  const setAdditionalString = setFlowData({ selectors: ['str'] });
+  const toggleString = setFlowData({
+    selectors: ['additionalData'],
+    value: !data.additionalData,
+  });
+
+  const setColor = (color: string) => {
+    const nodes = getNodes();
+    setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return { ...item, data: { ...item.data, color } };
+        }
+        return item;
+      })
+    );
+  };
+
+  const deleteOnClick = () => {
+    const node = getNode(id);
+    const nodes = getNodes().filter((item) => item.id !== id);
+    setNodes(
+      nodes.map((item) => {
+        if (item.position.y > node!.position.y) {
+          return {
+            ...item,
+            position: { ...item.position, y: item.position.y - 52 },
+          };
+        }
+        return item;
+      })
+    );
+  }; // заглушка в дальнейшем прописать логику удаления ReactFlow ноды
 
   const getIcon = () => {
     switch (data.type) {
@@ -43,7 +70,7 @@ const ButtonInline: FC<TButtonProps> = ({ data }) => {
   };
 
   const getColor = () => {
-    switch (btnColor) {
+    switch (data.color) {
       case 'white': {
         return styles.buttonWhite;
       }
@@ -83,11 +110,11 @@ const ButtonInline: FC<TButtonProps> = ({ data }) => {
         <div className={styles['absolute-wrapper']}>
           <ConstructorHelperButton
             isVisible={menu}
-            askOnClick={() => toggleString(!stringVisible)}
+            askOnClick={toggleString}
             deleteOnClick={deleteOnClick}
             askIcon={getIcon()}
             color
-            colorOnClick={(col) => setBtnColor(col)}
+            colorOnClick={(col) => setColor(col)}
             hide={() => toggleMenu(false)}
           />
         </div>
@@ -97,20 +124,20 @@ const ButtonInline: FC<TButtonProps> = ({ data }) => {
           onClick={() => toggleMenu(!menu)}
         >
           <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={data.name}
+            onChange={setName}
             className={`${
               styles['button-name']
             } ${textAlignClass} ${getColor()}`}
           />
-          {stringVisible && data.type === 'button' && (
+          {data.additionalData && data.type === 'button' && (
             <input
               className={`${styles['button-str']} ${textAlignClass}`}
-              value={additionalString}
-              onChange={(e) => setAdditionalString(e.target.value)}
+              value={data.str}
+              onChange={setAdditionalString}
             />
           )}
-          {stringVisible && data.type === 'answer' && (
+          {data.additionalData && data.type === 'answer' && (
             <span
               className={`${styles['button-str']} ${styles['text-align-start']}`}
             >

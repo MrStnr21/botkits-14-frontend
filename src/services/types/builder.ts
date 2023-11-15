@@ -130,7 +130,7 @@ export type TButtonBlock = {
   additionalData?: boolean;
   name: string;
   color: string;
-  url: string;
+  str: string;
 };
 
 export type TMessageBlock = {

@@ -38,7 +38,6 @@ const PanelInline: FC<IPanelInline> = ({
   const verticalHeight = buttonHeight * verticalButtonsAmount;
   const horizontalHeight = buttonHeight * horizontalButtonsAmount;
 
-  console.log(verticalHeight, horizontalHeight);
   return (
     <div className={styles.wrapperButtons}>
       <LabeledInput title={title} extraClass={styles.extraClass}>
