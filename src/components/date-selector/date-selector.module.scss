@@ -1,0 +1,86 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.container {
+  position: relative;
+}
+
+.button {
+  @include button-style-reset;
+  @include flex(row, center, center, 12px);
+  box-sizing: border-box;
+  min-width: 170px;
+  text-align: center;
+  padding: 10px;
+  border-radius: $m-border-radius;
+  background-color: $blue-disabled;
+
+  &:disabled {
+    background-color: $secondary-cultured-hover;
+
+    .text {
+      $color: $primary-persian-blue-press;
+    }
+
+    svg {
+      filter: brightness(0) saturate(100%) // return to black
+      invert(31%) sepia(94%) saturate(1213%) hue-rotate(213deg) brightness(91%) contrast(90%);
+    }
+  }
+
+  &:hover {
+    .text {
+      $color: $primary-persian-blue-hover;
+    }
+
+    svg {
+      filter: brightness(0) saturate(100%) // return to black
+      invert(18%) sepia(96%) saturate(2946%) hue-rotate(230deg) brightness(87%) contrast(92%);
+    }
+  }
+
+  .text {
+    @include font('Open Sans', $s-font-size, $bold, $primary-persian-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
+  }
+
+  .arrow {
+    line-height: 0;
+
+    svg {
+      @include size(16px, 16px);
+    }
+
+    &.rotated {
+      transform: rotate(-180deg);
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+.dropdown {
+  @include position(absolute, 56px, 0);
+  box-sizing: border-box;
+  width: 264px;
+  border-radius: $l-border-radius;
+  box-shadow: $m-box-shadow;
+  padding: 8px 0;
+  background-color: $off-white;
+}
+
+.item {
+  @include font('Open Sans',$xs-font-size, $normal, $secondary-xiketic-press);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 16px;
+  transition: all 0.1s linear;
+
+  &:hover {
+    background-color: $secondary-cultured-focus;
+  }
+
+  &:active {
+    background-color: $blue-disabled;
+  }
+}

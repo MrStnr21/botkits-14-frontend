@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './tooltip.module.scss';
-import Typography from '../../../ui/typography/typography';
+import Typography from '../../../../ui/typography/typography';
 
 interface ITooltip {
   children: React.ReactNode;

@@ -2,43 +2,41 @@
 @use '../../../stylesheets/mixins' as *;
 
 .accordion {
-  @include flex(row, space-between, flex-start);
+  @include flex(row, space-between, center);
   @include size(250px, 40px);
+  @include indents(10px 8px, 0);
   background-color: $secondary-cultured-default;
   box-sizing: border-box;
-  padding: 10px 8px;
   border-radius: $s-border-radius;
   cursor: $cursor;
-}
 
-@mixin font-r {
-  white-space: nowrap;
-}
+  @media (max-width: ($min-content-width + 200px)) {
+      @include size(318px, 40px);
+  }
 
-.text {
-  @include font-r;
-}
+  &__text {
+    white-space: nowrap;
+  }
 
-.container{
-  background-color: $off-white;
-  width: 250px;
-  padding: 8px;
-  box-sizing: border-box;
-}
+  &__container{
+    box-sizing: border-box;
+    @include size(250px, unset);
+    @include indents(8px 10px, 0);
+    background-color: $off-white;
+  }
 
-.title{
-  font-weight: $bold;
-}
+  &__title{
+    font-weight: $bold;
+  }
 
-.textinfo {
-  @include font-r;
-  padding-top: 12px;
-}
+  &__textInfo {
+    @include flex(row, unset, unset, 8px);
+    white-space: nowrap;
+    padding-top: 12px;
+  }
 
-
-@media (max-width: ($min-content-width + 200px)) {
-
-  .accordion{
-    @include size(318px, 40px);
+  &__paragraph {
+    color: $grey-3;
   }
 }
+

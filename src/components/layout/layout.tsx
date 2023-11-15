@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useMatch } from 'react-router';
 
 import { useMediaQuery } from '@mui/material';
 import stylesLayout from './layout.module.scss';
@@ -15,6 +15,8 @@ type TLayoutProps = {
 
 const Layout: FC<TLayoutProps> = ({ type = 'default', width = 'limited' }) => {
   const matches = useMediaQuery('(max-width: 620px)');
+  const matchChat = useMatch('/chat/:id');
+
   return (
     <div className={`${stylesLayout.layout} ${stylesLayout[type] || ''}`}>
       <Sidebar type={type} />
@@ -22,7 +24,7 @@ const Layout: FC<TLayoutProps> = ({ type = 'default', width = 'limited' }) => {
       <main className={`${stylesLayout.page} ${stylesLayout[width] || ''}`}>
         <Outlet />
       </main>
-      {type === 'default' && <Footer />}
+      {type === 'default' && !matchChat && <Footer />}
     </div>
   );
 };

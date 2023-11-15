@@ -40,7 +40,7 @@ export const links: Array<ILink> = [
     text: 'Списки',
   },
   {
-    navLink: routesUrl.subscription,
+    navLink: routesUrl.statistics,
     icon: chartsIcon,
     text: 'Статистика',
   },
