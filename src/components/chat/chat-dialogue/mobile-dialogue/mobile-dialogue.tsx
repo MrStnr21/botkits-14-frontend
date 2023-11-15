@@ -147,7 +147,7 @@ const MobileDialog: FC = () => {
       </div>
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
-          <DeleteChatPopup />
+          <DeleteChatPopup closeModal={closeModal} />
         </ModalPopup>
       )}
     </div>

@@ -1,7 +1,12 @@
+import { FC } from 'react';
 import Typography from '../../../ui/typography/typography';
 import styles from './delete-chat-popup.module.scss';
 
-const DeleteChatPopup = () => {
+interface IDelete {
+  closeModal: () => void;
+}
+
+const DeleteChatPopup: FC<IDelete> = ({ closeModal }) => {
   return (
     <div className={styles.popup}>
       <div className={styles.popup__content}>
@@ -13,7 +18,11 @@ const DeleteChatPopup = () => {
         </Typography>
       </div>
       <div className={styles.popup__buttons}>
-        <button type="button" className={styles.popup__rejectBtn}>
+        <button
+          type="button"
+          className={styles.popup__rejectBtn}
+          onClick={closeModal}
+        >
           <Typography tag="p" className={styles.popup__rejectText}>
             Отмена
           </Typography>

@@ -141,7 +141,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
       )}
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
-          <DeleteChatPopup />
+          <DeleteChatPopup closeModal={closeModal} />
         </ModalPopup>
       )}
     </div>
