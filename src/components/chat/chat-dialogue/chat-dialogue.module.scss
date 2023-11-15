@@ -1,22 +1,32 @@
-@use '../../stylesheets/variables' as *;
-@use '../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
 
 .dialog {
-  @include flex(column, center, center, unset);
-  @include size(656px, unset);
+  @include flex(column, space-between, center, unset);
   @include position(relative);
-  border-left: 1px $secondary-cultured-press solid;
-  border-right: 1px $secondary-cultured-press solid;
+  @include size(unset, calc(100% - 32px));
+  @include indents(0 32px, 32px 0 0);
   box-sizing: border-box;
-  margin: 32px 0 0;
-  padding: 0 32px;
+  flex: 1;
+  border-right: 1px solid #d7deea;
 
-  & * {
-    box-sizing: border-box;
+  @media screen and (max-width: 1024px) {
+    @include indents(0 32px, 32px 0 0);
+  }
+
+  @media screen and (max-width: 860px) {
+    @include indents(0 40px 0 0, 0);
+    // @include indents();
+    @include size(100%, 100%);
+    border: none;
   }
 
   @media screen and (max-width: 620px) {
     @include indents();
+  }
+
+  & * {
+    box-sizing: border-box;
   }
 
   &__wrapper {
@@ -28,11 +38,16 @@
     @include flex(row, space-between, center, unset);
     @include position(relative);
     @include size(100%, unset);
-    padding: 0 0 16px;
+    padding: 16px 0;
     z-index: 3;
 
+    @media screen and (max-width: 860px) {
+      @include indents(32px 0 16px, 0);
+      @include min-size(unset, 60px);
+    }
+
     @media screen and (max-width: 620px) {
-      padding: 0 20px 20px;
+      @include indents(0 16px 0, 0 0 8px 0);
     }
   }
 
@@ -57,7 +72,7 @@
 
     @media screen and (max-width: 620px) {
       background: $secondary-cultured-default;
-      padding: 32px;
+      @include indents(32px, 0);
     }
   }
 
@@ -100,7 +115,7 @@
       transform: translate(-50%, -50%);
       flex-direction: column;
       gap: 4px;
-      padding-bottom: 16px;
+      // padding-bottom: 16px;
     }
   }
 
@@ -133,17 +148,22 @@
 
   &__messages {
     @include size(100%, unset);
-    @include flex(column, space-between, flex-start, 16px);
+    @include flex(column, unset, flex-start, 16px);
     margin: 32px 0 20px;
     overflow: scroll;
+    flex: 1;
 
     &::-webkit-scrollbar {
       width: 0;
     }
 
+    @media screen and (max-width: 860px) {
+      @include indents(32px 0 0 0, 0);
+    }
+
     @media screen and (max-width: 620px) {
-      margin: 0;
-      padding: 0 20px;
+      @include size(100%, calc(100% - 32px));
+      @include indents(0 16px 0, 0);
       background: $secondary-cultured-default;
     }
   }
@@ -152,8 +172,13 @@
     @include flex(row, space-between, center, 20px);
     @include size(100%, unset);
 
-    @media screen and (max-width: 620px) {
-      padding: 16px 20px 0;
+    @media screen and (max-width: 1024px) {
+      gap: 8px;
+    }
+
+    @media screen and (max-width: 860px) {
+      padding: 16px;
+      margin-bottom: 32px;
     }
   }
 
@@ -166,7 +191,6 @@
   }
 
   &__inputWrapper {
-    // @include max-size(526px, unset);
     @include size(100%, unset);
     @include min-size(unset, 48px);
   }
@@ -176,4 +200,13 @@
     @include button-style-reset();
     @include indents();
   }
+
+  &__link {
+    text-decoration: none;
+  }
+}
+
+.noBorder {
+  @extend .dialog;
+  border: none;
 }

@@ -1,45 +1,6 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
-.files {
-  width: 291px;
-  padding-left: 40px;
-  display: grid;
-  padding-top: 32px;
-  align-items: center;
-
-  grid-template-columns: 226px 65px;
-  grid-template-rows: 20px 112px;
-  grid-row-gap: 20px;
-
-  @mixin item {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    overflow: hidden;
-    display: flex;
-    gap: 8px;
-  }
-
-  .itemRow {
-    @include item;
-  }
-
-  .itemColumn {
-    @include item;
-    flex-direction: column;
-  }
-}
-
-.information {
-  max-width: 331px;
-  display: flex;
-  flex-direction: column;
-  background-color: $off-white;
-  box-sizing: border-box;
-  padding-top: 40px;
-  align-items: center;
-}
-
 @mixin font {
   font-family: 'Open Sans', sans-serif;
   font-weight: $normal;
@@ -48,13 +9,48 @@
   white-space: nowrap;
 }
 
-.text {
-  @include font;
-  color: $grey-3;
-  padding-bottom: 32px;
+@mixin item {
+  @include flex(unset, unset, unset, 8px);
+  grid-column-start: 1;
+  grid-column-end: 3;
+  overflow: hidden;
 }
 
-.paragraph {
-  @include font;
-  font-weight: $bold;
+.files {
+  @include max-size(250px, unset);
+  display: grid;
+  grid-template-columns: 226px 65px;
+  grid-template-rows: 20px 112px;
+  grid-row-gap: 20px;
+  padding-top: 32px;
+  align-items: center;
+
+  &__information {
+    @include max-size(331px, unset);
+    @include flex(column, unset, center);
+    background-color: $off-white;
+    box-sizing: border-box;
+    padding-top: 40px;
+  }
+
+  &__paragraph {
+    @include font;
+    font-weight: $bold;
+  }
+
+
+  &__text {
+    @include font;
+    color: $grey-3;
+    padding-bottom: 32px;
+  }
+
+  &__itemRow {
+    @include item;
+  }
+
+  &__itemColumn {
+    @include item;
+    flex-direction: column;
+  }
 }

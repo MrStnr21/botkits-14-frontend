@@ -1,5 +1,5 @@
-@use '../../../stylesheets/mixins' as *;
-@use '../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
 
 .popup {
   @include flex(column, center, flex-start, 16px);
