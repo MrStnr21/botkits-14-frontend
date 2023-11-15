@@ -1,6 +1,11 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
+@mixin iconsStyles {
+  @include flex($justify-content: center, $align-items: start, $gap: 8px);
+  padding: 14px 16px 0 0;
+}
+
 .message {
   @include min-size(272px, 48px);
   @include flex();
@@ -31,9 +36,12 @@
 }
 
 .message_buttons {
-  @include flex($justify-content: center ,$align-items: start, $gap: 8px);
+  @include iconsStyles();
+}
+
+.message_buttonsWrapped {
+  @include iconsStyles();
   flex-wrap: wrap;
-  padding: 14px 16px 0 0;
 }
 
 .message_button {

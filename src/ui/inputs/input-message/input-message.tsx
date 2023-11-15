@@ -1,5 +1,6 @@
 import React, { FC, ChangeEvent, useState, useEffect } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
+import { useMediaQuery } from '@mui/material';
 import stylesInput from './input-message.module.scss';
 import PaperClipIcon from '../../../components/icons/PaperClip/PaperClipIcon';
 import EmojiIcon from '../../../components/icons/Emoji/EmojiIcon';
@@ -29,6 +30,7 @@ const InputMessage: FC<IInputMessage> = ({
   onClickZap,
 }) => {
   const [rotateAddIcon, setRotateAddIcon] = useState(false);
+  const isNeedToWrap = useMediaQuery('(max-width: 410px)');
   const { isModalOpen, closeModal, openModal } = useModal();
   const onClickClip = () => {
     openModal();
@@ -41,6 +43,7 @@ const InputMessage: FC<IInputMessage> = ({
       openModal();
     }
   }, [openModal]);
+
   const closeModalAndRemoveItem = () => {
     closeModal();
     localStorage.removeItem('isModalOpen');
@@ -55,7 +58,13 @@ const InputMessage: FC<IInputMessage> = ({
         value={value}
         onChange={onChange}
       />
-      <div className={stylesInput.message_buttons}>
+      <div
+        className={
+          rotateAddIcon && isNeedToWrap
+            ? `${stylesInput.message_buttonsWrapped}`
+            : `${stylesInput.message_buttons}`
+        }
+      >
         <button
           className={stylesInput.message_button}
           type="button"
