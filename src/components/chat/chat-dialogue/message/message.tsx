@@ -3,6 +3,8 @@ import { FC } from 'react';
 import Avatar from '../../../../ui/avatar/avatar';
 import stylesMessage from './message.module.scss';
 import Typography from '../../../../ui/typography/typography';
+import getTimeAgo from '../../../../utils/getTimeAgo';
+import { randomDate } from '../../../../utils/chatDateFunctions';
 
 type TMessage = {
   id: number;
@@ -19,6 +21,9 @@ interface IMessage {
 }
 
 const Message: FC<IMessage> = ({ message }) => {
+  const generatedDate: Date = randomDate();
+  const timestamp = getTimeAgo(generatedDate);
+
   return (
     <div
       className={
@@ -78,7 +83,7 @@ const Message: FC<IMessage> = ({ message }) => {
           </div>
         </div>
         <Typography tag="p" className={stylesMessage.message__seen}>
-          Просмотрено в {message.seen}
+          Просмотрено {timestamp}
         </Typography>
       </div>
     </div>

@@ -14,7 +14,7 @@ import SendButton from '../../../ui/buttons/send-button/send-button';
 import Avatar from '../../../ui/avatar/avatar';
 import Tooltip from './tooltip/tooltip';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
-import { formatDate, DateType } from '../../../utils/formatDate';
+import { formatDate, DateType } from '../../../utils/chatDateFunctions';
 import { IMessage, IUser } from '../../../utils/mockChatData';
 
 interface IChatDialogue {

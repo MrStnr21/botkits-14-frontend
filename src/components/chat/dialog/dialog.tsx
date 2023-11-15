@@ -18,7 +18,7 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
     const allLines = document.querySelectorAll(
       '.line'
     ) as unknown as HTMLCollectionOf<HTMLElement>;
-    const line = e.currentTarget.parentNode?.lastChild as HTMLElement;
+    const line = e.currentTarget.lastChild as HTMLElement;
     const newAllLines = Array.from(allLines);
 
     newAllLines.forEach((el) => {
@@ -82,7 +82,7 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
       </div>
       <div
         className={`line ${styles.dialog__line}`}
-        style={{ display: 'none' }}
+        // style={{ display: 'none' }}
       />
     </div>
   );

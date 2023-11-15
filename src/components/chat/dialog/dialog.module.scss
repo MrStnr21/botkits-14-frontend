@@ -35,6 +35,7 @@
 
 
   &__line {
+    display: none;
     @include position(absolute, unset, -15px, unset, unset);
     @include size(4px, 81px);
     background-color: $primary-persian-blue-default;

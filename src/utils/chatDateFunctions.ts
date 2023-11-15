@@ -16,3 +16,13 @@ export function formatDate(date: DateType): string {
   const options: any = { day: 'numeric', month: 'long' };
   return date.toLocaleDateString('ru-RU', options);
 }
+
+export const randomDate = (): Date => {
+  const startTimestamp = new Date('2023-08-05').getTime();
+  const endTimestamp = new Date().getTime();
+
+  const randomTimestamp =
+    startTimestamp + Math.random() * (endTimestamp - startTimestamp);
+
+  return new Date(randomTimestamp);
+};
