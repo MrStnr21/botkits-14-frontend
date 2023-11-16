@@ -4,11 +4,7 @@ import ModalPopup from '../modal-popup/modal-popup';
 import styles from './messangers-popup.module.scss';
 import AttachedFileIcon from '../../icons/AttachedFile/AttachedFileIcon';
 
-interface IMessengersPopup {
-  onClose: () => void;
-}
-
-const MessengersPopup: FC<IMessengersPopup> = () => {
+const MessengersPopup: FC = () => {
   const [open, setOpen] = useState(true);
   const [copied, setCopied] = useState('');
 

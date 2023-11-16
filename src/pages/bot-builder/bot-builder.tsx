@@ -8,7 +8,6 @@ const BotBuilder: FC = (): JSX.Element => {
   return (
     <div className={stylesBotBuilder.title}>
       <LayoutFlow />
-      <MessagersPopup onClose={() => {}} />
     </div>
   );
 };
