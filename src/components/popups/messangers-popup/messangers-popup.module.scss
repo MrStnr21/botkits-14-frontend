@@ -1,0 +1,42 @@
+@use '../../../stylesheets/variables';
+
+.main {
+  width: 728px;
+  background: white;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+
+    .blockLink {
+      display: flex;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .mainLink {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+          font-weight: bold;
+          text-decoration: none;
+          color: variables.$primary-oxford-blue-default;
+        }
+
+        .iconWrap {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
