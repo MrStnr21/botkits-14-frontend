@@ -87,9 +87,9 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
         className={`${styles.box} ${isActive}`}
       >
         <ul className={styles.ul}>
-          {buttons.map((name) => {
+          {buttons.map((name, index) => {
             return (
-              <li className={styles.li}>
+              <li className={styles.li} key={name + index.toString}>
                 <button
                   type="button"
                   className={`${styles.button} ${styles.text}`}

@@ -23,6 +23,8 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
   const setSignsAmount = setFlowData({
     selectors: ['signsAmount'],
   });
+  // const signsAmountIsNaN = Number.isNaN(data.signsAmount);
+
   const setAdditionValue = setFlowData({
     selectors: ['additionValue'],
   });
@@ -41,6 +43,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
             styled="bot-builder-default"
             placeholder="Название параметра"
             value={data.param}
+            minLength={0}
           />
         </LabeledInput>
         <LabeledInput title="Тип значения">
@@ -56,9 +59,12 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
         </LabeledInput>
         <LabeledInput title="Количество знаков в ссылке">
           <Input
+            placeholder="Введите число"
             onChange={setSignsAmount}
             styled="bot-builder-default"
             value={data.signsAmount.toString()}
+            minLength={0}
+            mustNumber
           />
         </LabeledInput>
         <LabeledInput title="Добавить значение в переменную">
@@ -67,6 +73,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
             styled="bot-builder-default"
             placeholder="Введите значение"
             value={data.additionValue}
+            minLength={0}
           />
         </LabeledInput>
         <LabeledInput title="Добавить ссылку в переменную">
@@ -75,6 +82,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
             styled="bot-builder-default"
             placeholder="URL"
             value={data.additionLink}
+            minLength={0}
           />
         </LabeledInput>
       </div>
