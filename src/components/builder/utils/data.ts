@@ -12,20 +12,25 @@ import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg
 import { MessageDataTypes } from '../../../services/types/builder';
 
 export enum ButtonSizes {
-  startXDesk = 32,
-  startXMobile = 16,
-  firstYDesk = 170 + 74,
-  secondYDesk = 256 + 74,
-  thirdYDesk = 384 + 74,
-  fourthYDesk = 458 + 74,
-  firstYMobile = 104 + 41,
-  secondYMobile = 153 + 41,
-  thirdYMobile = 219 + 41,
-  fourthYMobile = 268 + 41,
-  addStringDesk = 16,
-  addStringMobile = 8,
-  buttonHeightDesk = 40,
-  buttonHeightMobile = 27,
+  startX = 32,
+  firstY = 244,
+  secondY = 330,
+  thirdY = 458,
+  fourthY = 532,
+  addString = 16,
+  buttonHeight = 40,
+  gap = 12,
+}
+
+export enum ButtonSizesMobile {
+  startX = ButtonSizes.startX * 0.5,
+  firstY = 155,
+  secondY = 194,
+  thirdY = 260,
+  fourthY = 309,
+  addString = 8,
+  buttonHeight = 27,
+  gap = 12,
 }
 
 export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];

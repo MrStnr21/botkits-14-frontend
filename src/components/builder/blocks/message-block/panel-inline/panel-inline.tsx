@@ -5,7 +5,7 @@ import { useMediaQuery } from '@mui/material';
 import LabeledInput from '../../../labeledInput/labeledInput';
 import ConstructorAddButton from '../../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import styles from './panel-inline.module.scss';
-import { ButtonSizes } from '../../../utils/data';
+import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
 
 interface IPanelInline {
   title: string;
@@ -14,13 +14,6 @@ interface IPanelInline {
   buttonsBefore: Node<any>[];
   horizontalButtons: Node<any>[];
   verticalButtons: Node<any>[];
-}
-
-enum ButtonPlaceHeight {
-  desk = 40,
-  offsetY = 12,
-  mobile = 27,
-  offsetX = 32,
 }
 
 const PanelInline: FC<IPanelInline> = ({
@@ -32,6 +25,7 @@ const PanelInline: FC<IPanelInline> = ({
   verticalButtons,
 }) => {
   const isMobile = useMediaQuery('(max-width: 520px)');
+  const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
 
   const openedHorizontal = horizontalButtons.filter(
     (item) => item.data.additionalData === true
@@ -45,19 +39,14 @@ const PanelInline: FC<IPanelInline> = ({
     (item) => item.data.additionalData === true
   ).length;
 
-  const buttonHeight =
-    (isMobile ? ButtonPlaceHeight.mobile : ButtonPlaceHeight.desk) +
-    ButtonPlaceHeight.offsetY;
-
-  const additionalHeight = isMobile
-    ? ButtonSizes.addStringMobile
-    : ButtonSizes.addStringDesk;
+  const buttonHeight = buttonSizes.buttonHeight + buttonSizes.gap;
 
   const verticalHeight =
-    buttonHeight * verticalButtons.length + openedVertical * additionalHeight;
+    buttonHeight * verticalButtons.length +
+    openedVertical * buttonSizes.addString;
   const horizontalHeight =
     buttonHeight * horizontalButtons.length +
-    openedHorizontal * additionalHeight;
+    openedHorizontal * buttonSizes.addString;
 
   return (
     <div className={styles.wrapperButtons}>
@@ -72,11 +61,11 @@ const PanelInline: FC<IPanelInline> = ({
               onClick={
                 addHorizontalButton &&
                 addHorizontalButton({
-                  x: ButtonPlaceHeight.offsetX,
+                  x: buttonSizes.startX,
                   y:
                     horizontalHeight +
                     buttonsBefore.length * buttonHeight +
-                    openedBefore * additionalHeight,
+                    openedBefore * buttonSizes.addString,
                 })
               }
               icon="horizontal inline"
@@ -91,13 +80,13 @@ const PanelInline: FC<IPanelInline> = ({
               onClick={
                 addVerticalButton &&
                 addVerticalButton({
-                  x: ButtonPlaceHeight.offsetX,
+                  x: buttonSizes.startX,
                   y:
                     verticalHeight +
                     buttonsBefore.length * buttonHeight +
                     horizontalButtons.length * buttonHeight +
-                    openedHorizontal * additionalHeight +
-                    openedBefore * additionalHeight,
+                    openedHorizontal * buttonSizes.addString +
+                    openedBefore * buttonSizes.addString,
                 })
               }
               icon="vertical inline"

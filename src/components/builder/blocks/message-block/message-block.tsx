@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
 import { FC, useEffect } from 'react';
 import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
+import { useMediaQuery } from '@mui/material';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -16,18 +17,14 @@ import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
 import { setFlowData } from '../../utils';
-
-enum ButtonsBlocksStartPositions {
-  first = 170 + 74,
-  second = 256 + 74,
-  thisrd = 384 + 74,
-  fourth = 458 + 74,
-}
+import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
   const id = useNodeId() || '';
   const { setNodes, getNodes } = useReactFlow();
+  const isMobile = useMediaQuery('(max-width: 520px)');
+  const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
 
   const { domNode } = useStore((s) => s);
@@ -106,7 +103,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           ) {
             return {
               ...item,
-              position: { ...item.position, y: item.position.y + 52 },
+              position: {
+                ...item.position,
+                y: item.position.y + buttonSizes.buttonHeight + buttonSizes.gap,
+              },
             };
           }
           return item;
@@ -146,12 +146,12 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.answers,
               'horizontal',
-              ButtonsBlocksStartPositions.thisrd
+              buttonSizes.thirdY
             )}
             addVerticalButton={addButton(
               MessageDataTypes.answers,
               'vertical',
-              ButtonsBlocksStartPositions.fourth
+              buttonSizes.fourthY
             )}
             buttonsBefore={[...horButtons, ...verButtons]}
             horizontalButtons={horAnswers}
@@ -167,12 +167,12 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.buttons,
               'horizontal',
-              ButtonsBlocksStartPositions.first
+              buttonSizes.firstY
             )}
             addVerticalButton={addButton(
               MessageDataTypes.buttons,
               'vertical',
-              ButtonsBlocksStartPositions.second
+              buttonSizes.secondY
             )}
             buttonsBefore={[]}
             horizontalButtons={horButtons}

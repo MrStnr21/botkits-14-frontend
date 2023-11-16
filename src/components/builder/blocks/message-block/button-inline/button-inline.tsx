@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
+import { useMediaQuery } from '@mui/material';
 import styles from './button-inline.module.scss';
 import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
 import askPhoneIcon from '../../../../../images/icon/24x24/constructor/ask-phone.svg';
@@ -10,7 +11,7 @@ import {
   TButtonBlock,
 } from '../../../../../services/types/builder';
 import { setFlowData } from '../../../utils';
-import { ButtonSizes } from '../../../utils/data';
+import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
@@ -18,15 +19,16 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const [hidden, setHidden] = useState(true);
   const { getNodes, setNodes, getNode } = useReactFlow();
   const id = useNodeId() || '';
+  const isMobile = useMediaQuery('(max-width: 520px)');
+
+  const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
+  const closedButtonSize = buttonSizes.buttonHeight + buttonSizes.gap;
+  const openedButtonSize = closedButtonSize + buttonSizes.addString;
 
   const [menu, toggleMenu] = useState<boolean>(false);
 
   const setName = setFlowData({ selectors: ['name'] });
   const setAdditionalString = setFlowData({ selectors: ['str'] });
-  /* const toggleString = setFlowData({
-    selectors: ['additionalData'],
-    value: !data.additionalData,
-  }); */
 
   const toggleString = () => {
     const node = getNode(id);
@@ -47,7 +49,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
               ...item,
               position: {
                 ...item.position,
-                y: item.position.y - ButtonSizes.addStringDesk,
+                y: item.position.y - buttonSizes.addString,
               },
             };
           }
@@ -56,7 +58,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
               ...item,
               position: {
                 ...item.position,
-                y: item.position.y + ButtonSizes.addStringDesk,
+                y: item.position.y + buttonSizes.addString,
               },
             };
           }
@@ -91,7 +93,11 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
             ...item,
             position: {
               ...item.position,
-              y: item.position.y - (node!.data.additionalData ? 68 : 52),
+              y:
+                item.position.y -
+                (node!.data.additionalData
+                  ? openedButtonSize
+                  : closedButtonSize),
             },
           };
         }
