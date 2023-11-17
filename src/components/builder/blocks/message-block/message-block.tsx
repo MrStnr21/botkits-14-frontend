@@ -75,9 +75,21 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     (
       blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
       direction: 'horizontal' | 'vertical',
-      blockOffset: number
+      blockOffset: number,
+      blockOffsetMob: number,
+      blockOffsetDesk: number
     ) =>
-    ({ x, y }: { x: number; y: number }) =>
+    ({
+      x,
+      y,
+      mobY,
+      deskY,
+    }: {
+      x: number;
+      y: number;
+      mobY: number;
+      deskY: number;
+    }) =>
     () => {
       const node: Node = {
         type: 'button',
@@ -89,6 +101,8 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           name: 'имя',
           color: '',
           str: '',
+          deskY: deskY + blockOffsetDesk,
+          mobY: mobY + blockOffsetMob,
         },
         expandParent: true,
         parentNode: id,
@@ -106,6 +120,15 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               position: {
                 ...item.position,
                 y: item.position.y + buttonSizes.buttonHeight + buttonSizes.gap,
+              },
+              data: {
+                ...item.data,
+                deskY:
+                  item.data.deskY + ButtonSizes.buttonHeight + ButtonSizes.gap,
+                mobY:
+                  item.data.mobY +
+                  ButtonSizesMobile.buttonHeight +
+                  ButtonSizesMobile.gap,
               },
             };
           }
@@ -146,12 +169,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.answers,
               'horizontal',
-              buttonSizes.secondY
+              buttonSizes.secondY,
+              ButtonSizesMobile.secondY,
+              ButtonSizes.secondY
             )}
             addVerticalButton={addButton(
               MessageDataTypes.answers,
               'vertical',
-              buttonSizes.secondY + buttonSizes.blockGap
+              buttonSizes.secondY + buttonSizes.blockGap,
+              ButtonSizesMobile.secondY + ButtonSizesMobile.blockGap,
+              ButtonSizes.secondY + ButtonSizes.blockGap
             )}
             buttonsBefore={[...horButtons, ...verButtons]}
             horizontalButtons={horAnswers}
@@ -167,12 +194,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.buttons,
               'horizontal',
-              buttonSizes.firstY
+              buttonSizes.firstY,
+              ButtonSizesMobile.firstY,
+              ButtonSizes.firstY
             )}
             addVerticalButton={addButton(
               MessageDataTypes.buttons,
               'vertical',
-              buttonSizes.firstY + buttonSizes.blockGap
+              buttonSizes.firstY + buttonSizes.blockGap,
+              ButtonSizesMobile.firstY + ButtonSizesMobile.blockGap,
+              ButtonSizes.firstY + ButtonSizes.blockGap
             )}
             buttonsBefore={[]}
             horizontalButtons={horButtons}

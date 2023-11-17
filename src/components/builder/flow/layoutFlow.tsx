@@ -22,6 +22,7 @@ import NavigationPanel from '../navigation-panel/navigation-panel';
 import TriggerBlock from '../triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
+import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
 
 const cx = cn.bind(styles);
 
@@ -52,54 +53,22 @@ const LayoutFlow: FC = () => {
       setNodes(
         nodes.map((item) => {
           if (item.type === 'button') {
-            if (
-              item.data.type === 'button' &&
-              item.data.direction === 'horizontal'
-            ) {
-              return {
-                ...item,
-                position: {
-                  x: item.position.x * 0.5,
-                  y: item.position.y * 0.7,
-                },
-              };
-            }
-            if (
-              item.data.type === 'button' &&
-              item.data.direction === 'vertical'
-            ) {
-              return {
-                ...item,
-                position: {
-                  x: item.position.x * 0.5,
-                  y: item.position.y * 0.7,
-                },
-              };
-            }
-            if (
-              item.data.type === 'answer' &&
-              item.data.direction === 'horizontal'
-            ) {
-              return {
-                ...item,
-                position: {
-                  x: item.position.x * 0.5,
-                  y: item.position.y * 0.7,
-                },
-              };
-            }
-            if (
-              item.data.type === 'answer' &&
-              item.data.direction === 'vertical'
-            ) {
-              return {
-                ...item,
-                position: {
-                  x: item.position.x * 0.5,
-                  y: item.position.y * 0.7,
-                },
-              };
-            }
+            return {
+              ...item,
+              position: { x: ButtonSizesMobile.startX, y: item.data.mobY },
+            };
+          }
+          return item;
+        })
+      );
+    } else {
+      setNodes(
+        nodes.map((item) => {
+          if (item.type === 'button') {
+            return {
+              ...item,
+              position: { x: ButtonSizes.startX, y: item.data.deskY },
+            };
           }
           return item;
         })

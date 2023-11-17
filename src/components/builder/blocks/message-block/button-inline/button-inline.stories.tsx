@@ -8,6 +8,8 @@ const data = {
   direction: 'horizontal' as const,
   color: 'white',
   str: 'Какой-то текст' as const,
+  mobY: 0,
+  deskY: 0,
 };
 
 const divStyles = {

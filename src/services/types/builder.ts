@@ -131,6 +131,8 @@ export type TButtonBlock = {
   name: string;
   color: string;
   str: string;
+  deskY: number;
+  mobY: number;
 };
 
 export type TMessageBlock = {

@@ -9,8 +9,28 @@ import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
 
 interface IPanelInline {
   title: string;
-  addVerticalButton?: ({ x, y }: { x: number; y: number }) => () => void;
-  addHorizontalButton?: ({ x, y }: { x: number; y: number }) => () => void;
+  addVerticalButton?: ({
+    x,
+    y,
+    mobY,
+    deskY,
+  }: {
+    x: number;
+    y: number;
+    mobY: number;
+    deskY: number;
+  }) => () => void;
+  addHorizontalButton?: ({
+    x,
+    y,
+    mobY,
+    deskY,
+  }: {
+    x: number;
+    y: number;
+    mobY: number;
+    deskY: number;
+  }) => () => void;
   buttonsBefore: Node<any>[];
   horizontalButtons: Node<any>[];
   verticalButtons: Node<any>[];
@@ -40,6 +60,9 @@ const PanelInline: FC<IPanelInline> = ({
   ).length;
 
   const buttonHeight = buttonSizes.buttonHeight + buttonSizes.gap;
+  const buttonHeightDesk = ButtonSizes.buttonHeight + ButtonSizes.gap;
+  const buttonHeightMobile =
+    ButtonSizesMobile.buttonHeight + ButtonSizesMobile.gap;
 
   const verticalHeight =
     buttonHeight * verticalButtons.length +
@@ -47,6 +70,20 @@ const PanelInline: FC<IPanelInline> = ({
   const horizontalHeight =
     buttonHeight * horizontalButtons.length +
     openedHorizontal * buttonSizes.addString;
+
+  const verticalHeightDesk =
+    buttonHeightDesk * verticalButtons.length +
+    openedVertical * ButtonSizes.addString;
+  const horizontalHeightDesk =
+    buttonHeightDesk * horizontalButtons.length +
+    openedHorizontal * ButtonSizes.addString;
+
+  const verticalHeightMobile =
+    buttonHeightMobile * verticalButtons.length +
+    openedVertical * ButtonSizesMobile.addString;
+  const horizontalHeightMobile =
+    buttonHeightMobile * horizontalButtons.length +
+    openedHorizontal * ButtonSizesMobile.addString;
 
   return (
     <div className={styles.wrapperButtons}>
@@ -66,6 +103,14 @@ const PanelInline: FC<IPanelInline> = ({
                     horizontalHeight +
                     buttonsBefore.length * buttonHeight +
                     openedBefore * buttonSizes.addString,
+                  deskY:
+                    horizontalHeightDesk +
+                    buttonsBefore.length * buttonHeightDesk +
+                    openedBefore * ButtonSizes.addString,
+                  mobY:
+                    horizontalHeightMobile +
+                    buttonsBefore.length * buttonHeightMobile +
+                    openedBefore * ButtonSizesMobile.addString,
                 })
               }
               icon="horizontal inline"
@@ -87,6 +132,18 @@ const PanelInline: FC<IPanelInline> = ({
                     horizontalButtons.length * buttonHeight +
                     openedHorizontal * buttonSizes.addString +
                     openedBefore * buttonSizes.addString,
+                  deskY:
+                    verticalHeightDesk +
+                    buttonsBefore.length * buttonHeightDesk +
+                    horizontalButtons.length * buttonHeightDesk +
+                    openedHorizontal * ButtonSizes.addString +
+                    openedBefore * ButtonSizes.addString,
+                  mobY:
+                    verticalHeightMobile +
+                    buttonsBefore.length * buttonHeightMobile +
+                    horizontalButtons.length * buttonHeightMobile +
+                    openedHorizontal * ButtonSizesMobile.addString +
+                    openedBefore * ButtonSizesMobile.addString,
                 })
               }
               icon="vertical inline"

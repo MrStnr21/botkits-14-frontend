@@ -25,6 +25,14 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const closedButtonSize = buttonSizes.buttonHeight + buttonSizes.gap;
   const openedButtonSize = closedButtonSize + buttonSizes.addString;
 
+  const closedButtonSizeDesk = ButtonSizes.buttonHeight + ButtonSizes.gap;
+  const openedButtonSizeDesk = closedButtonSizeDesk + ButtonSizes.addString;
+
+  const closedButtonSizeMobile =
+    ButtonSizesMobile.buttonHeight + ButtonSizesMobile.gap;
+  const openedButtonSizeMobile =
+    closedButtonSizeMobile + ButtonSizesMobile.addString;
+
   const [menu, toggleMenu] = useState<boolean>(false);
 
   const setName = setFlowData({ selectors: ['name'] });
@@ -51,6 +59,11 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
                 ...item.position,
                 y: item.position.y - buttonSizes.addString,
               },
+              data: {
+                ...item.data,
+                deskY: item.data.deskY - ButtonSizes.addString,
+                mobY: item.data.mobY - ButtonSizesMobile.addString,
+              },
             };
           }
           if (node && !node.data.additionalData) {
@@ -59,6 +72,11 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
               position: {
                 ...item.position,
                 y: item.position.y + buttonSizes.addString,
+              },
+              data: {
+                ...item.data,
+                deskY: item.data.deskY + ButtonSizes.addString,
+                mobY: item.data.mobY + ButtonSizesMobile.addString,
               },
             };
           }
@@ -98,6 +116,19 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
                 (node!.data.additionalData
                   ? openedButtonSize
                   : closedButtonSize),
+            },
+            data: {
+              ...item.data,
+              deskY:
+                item.data.deskY -
+                (node!.data.additionalData
+                  ? openedButtonSizeDesk
+                  : closedButtonSizeDesk),
+              mobX:
+                item.data.mobY -
+                (node!.data.additionalData
+                  ? openedButtonSizeMobile
+                  : closedButtonSizeMobile),
             },
           };
         }
