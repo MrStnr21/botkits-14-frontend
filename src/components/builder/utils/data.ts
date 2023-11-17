@@ -14,9 +14,8 @@ import { MessageDataTypes } from '../../../services/types/builder';
 export enum ButtonSizes {
   startX = 32,
   firstY = 244,
-  secondY = 330,
-  thirdY = 458,
-  fourthY = 532,
+  secondY = 452,
+  blockGap = 86,
   addString = 16,
   buttonHeight = 40,
   gap = 12,
@@ -25,9 +24,8 @@ export enum ButtonSizes {
 export enum ButtonSizesMobile {
   startX = ButtonSizes.startX * 0.5,
   firstY = 155,
-  secondY = 194,
-  thirdY = 260,
-  fourthY = 309,
+  secondY = 295,
+  blockGap = 55,
   addString = 8,
   buttonHeight = 27,
   gap = 12,

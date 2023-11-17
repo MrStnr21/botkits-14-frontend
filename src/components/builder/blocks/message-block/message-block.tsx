@@ -146,12 +146,12 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addHorizontalButton={addButton(
               MessageDataTypes.answers,
               'horizontal',
-              buttonSizes.thirdY
+              buttonSizes.secondY
             )}
             addVerticalButton={addButton(
               MessageDataTypes.answers,
               'vertical',
-              buttonSizes.fourthY
+              buttonSizes.secondY + buttonSizes.blockGap
             )}
             buttonsBefore={[...horButtons, ...verButtons]}
             horizontalButtons={horAnswers}
@@ -172,7 +172,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             addVerticalButton={addButton(
               MessageDataTypes.buttons,
               'vertical',
-              buttonSizes.secondY
+              buttonSizes.firstY + buttonSizes.blockGap
             )}
             buttonsBefore={[]}
             horizontalButtons={horButtons}
