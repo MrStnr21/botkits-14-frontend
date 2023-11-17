@@ -19,7 +19,6 @@ interface IInput {
   pattern?: string;
   password?: boolean;
   textColor?: 'default' | 'blue';
-  mustNumber?: boolean;
 }
 
 const classNames = {
@@ -45,7 +44,6 @@ const Input: FC<IInput> = ({
   pattern,
   password,
   textColor = 'default',
-  mustNumber = false,
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -93,11 +91,6 @@ const Input: FC<IInput> = ({
         textError: 'Неверный тип данных',
       });
     } else if (isInvalid) {
-      setError({
-        error: true,
-        textError: errorMessage,
-      });
-    } else if (mustNumber && Number.isNaN(Number(input.target.value))) {
       setError({
         error: true,
         textError: errorMessage,

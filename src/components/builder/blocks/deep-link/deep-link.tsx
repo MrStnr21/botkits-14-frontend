@@ -64,7 +64,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
             styled="bot-builder-default"
             value={data.signsAmount.toString()}
             minLength={0}
-            mustNumber
+            type="number"
           />
         </LabeledInput>
         <LabeledInput title="Добавить значение в переменную">
@@ -83,6 +83,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
             placeholder="URL"
             value={data.additionLink}
             minLength={0}
+            type="URL"
           />
         </LabeledInput>
       </div>
