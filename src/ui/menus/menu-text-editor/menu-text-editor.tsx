@@ -6,7 +6,7 @@ import { ReactComponent as TrashIcon } from '../../../images/icon/24x24/construc
 import { ReactComponent as ItalicIcon } from '../../../images/icon/24x24/markdown/italic.svg';
 import { ReactComponent as BoldIcon } from '../../../images/icon/24x24/markdown/bold.svg';
 import { ReactComponent as CodeIcon } from '../../../images/icon/24x24/markdown/code.svg';
-import Tooltip from '../../../components/chat-dialogue/tooltip/tooltip';
+import Tooltip from '../../../components/chat/chat-dialogue/tooltip/tooltip';
 
 export interface IMenuTextEditor {
   isActive?: boolean;
