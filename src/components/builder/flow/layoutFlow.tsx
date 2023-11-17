@@ -10,6 +10,7 @@ import ReactFlow, {
   Edge,
 } from 'reactflow';
 
+import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
@@ -26,6 +27,7 @@ const cx = cn.bind(styles);
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const isMobile = useMediaQuery('(max-width: 520px)');
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [triggerOpened, toggleTrigger] = useState(false);
@@ -44,6 +46,66 @@ const LayoutFlow: FC = () => {
       document.removeEventListener('click', menuCloseHandler);
     };
   }, [menuOpened]);
+
+  useEffect(() => {
+    if (isMobile) {
+      setNodes(
+        nodes.map((item) => {
+          if (item.type === 'button') {
+            if (
+              item.data.type === 'button' &&
+              item.data.direction === 'horizontal'
+            ) {
+              return {
+                ...item,
+                position: {
+                  x: item.position.x * 0.5,
+                  y: item.position.y * 0.7,
+                },
+              };
+            }
+            if (
+              item.data.type === 'button' &&
+              item.data.direction === 'vertical'
+            ) {
+              return {
+                ...item,
+                position: {
+                  x: item.position.x * 0.5,
+                  y: item.position.y * 0.7,
+                },
+              };
+            }
+            if (
+              item.data.type === 'answer' &&
+              item.data.direction === 'horizontal'
+            ) {
+              return {
+                ...item,
+                position: {
+                  x: item.position.x * 0.5,
+                  y: item.position.y * 0.7,
+                },
+              };
+            }
+            if (
+              item.data.type === 'answer' &&
+              item.data.direction === 'vertical'
+            ) {
+              return {
+                ...item,
+                position: {
+                  x: item.position.x * 0.5,
+                  y: item.position.y * 0.7,
+                },
+              };
+            }
+          }
+          return item;
+        })
+      );
+    }
+  }, [isMobile]);
 
   return (
     <div className={cx('flow')}>
