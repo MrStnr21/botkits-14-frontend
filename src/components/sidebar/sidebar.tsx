@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 

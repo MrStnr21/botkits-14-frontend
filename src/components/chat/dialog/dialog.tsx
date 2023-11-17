@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import styles from './dialog.module.scss';
 import Avatar from '../../../ui/avatar/avatar';
-import getTimeAgo from '../../../utils/getTimeAgo';
 import Typography from '../../../ui/typography/typography';
+import getTimeAgo from '../../../utils/getTimeAgo';
 
-interface IDialogue {
+interface IDialog {
   name: string;
   text: string;
   timeAgo: Date;
@@ -12,18 +13,12 @@ interface IDialogue {
   status: string;
 }
 
-const Dialog: FC<IDialogue> = ({
-  name,
-  text,
-  timeAgo,
-  messageNum,
-  status,
-}): JSX.Element => {
-  function pickChat(e: { target: any } | undefined) {
+const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
+  function pickChat(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const allLines = document.querySelectorAll(
       '.line'
     ) as unknown as HTMLCollectionOf<HTMLElement>;
-    const line = e!.target.parentNode.lastChild;
+    const line = e.currentTarget.lastChild as HTMLElement;
     const newAllLines = Array.from(allLines);
 
     newAllLines.forEach((el) => {
@@ -43,31 +38,49 @@ const Dialog: FC<IDialogue> = ({
   }
 
   return (
-    <div className={styles.mainContainer} onClick={(e) => pickChat(e)}>
-      <div className={styles.avatar}>
+    <div className={styles.dialog} onClick={(e) => pickChat(e)}>
+      <div className={styles.dialog__avatar}>
         <Avatar isBot="no" state={status} big="no" />
       </div>
-      <Typography tag="span" className={styles.name} fontFamily="secondary">
-        {name}
-      </Typography>
-      <Typography tag="span" className={styles.text} fontFamily="primary">
-        {text}
-      </Typography>
-      <Typography tag="span" className={styles.timeAgo} fontFamily="primary">
-        {getTimeAgo(timeAgo, 'custom')}
-      </Typography>
-      {messageNum > 0 ? (
-        <div className={styles.messageNumCircle}>
+      <div className={styles.dialog__content}>
+        <div className={styles.dialog__nameContainer}>
           <Typography
             tag="span"
-            className={styles.messageNum}
+            className={styles.dialog__name}
+            fontFamily="secondary"
+          >
+            {name}
+          </Typography>
+          <Typography
+            tag="span"
+            className={styles.dialog__timeAgo}
             fontFamily="primary"
           >
-            {messageNum}
+            {getTimeAgo(timeAgo, 'custom')}
           </Typography>
         </div>
-      ) : null}
-      <div className={`line ${styles.line}`} style={{ display: 'none' }} />
+        <div className={styles.dialog__textContainer}>
+          <Typography
+            tag="span"
+            className={styles.dialog__text}
+            fontFamily="primary"
+          >
+            {text}
+          </Typography>
+          {messageNum > 0 ? (
+            <div className={styles.dialog__messageNumCircle}>
+              <Typography
+                tag="span"
+                className={styles.dialog__messageNum}
+                fontFamily="primary"
+              >
+                {messageNum}
+              </Typography>
+            </div>
+          ) : null}
+        </div>
+      </div>
+      <div className={`line ${styles.dialog__line}`} />
     </div>
   );
 };

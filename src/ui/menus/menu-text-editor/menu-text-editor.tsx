@@ -6,6 +6,7 @@ import { ReactComponent as TrashIcon } from '../../../images/icon/24x24/construc
 import { ReactComponent as ItalicIcon } from '../../../images/icon/24x24/markdown/italic.svg';
 import { ReactComponent as BoldIcon } from '../../../images/icon/24x24/markdown/bold.svg';
 import { ReactComponent as CodeIcon } from '../../../images/icon/24x24/markdown/code.svg';
+import Tooltip from '../../../components/chat-dialogue/tooltip/tooltip';
 
 export interface IMenuTextEditor {
   isActive?: boolean;
@@ -53,28 +54,36 @@ const MenuTextEditor: FC<IMenuTextEditor> = ({
         className={stylesMenuTextEditor.button}
         onClick={boldHandler}
       >
-        <BoldIcon />
+        <Tooltip text="Жирный">
+          <BoldIcon />
+        </Tooltip>
       </button>
       <button
         type="button"
         className={stylesMenuTextEditor.button}
         onClick={italicHandler}
       >
-        <ItalicIcon />
+        <Tooltip text="Курсив">
+          <ItalicIcon />
+        </Tooltip>
       </button>
       <button
         type="button"
         className={stylesMenuTextEditor.button}
         onClick={codeHandler}
       >
-        <CodeIcon />
+        <Tooltip text="Код">
+          <CodeIcon />
+        </Tooltip>
       </button>
       <button
         type="button"
         className={stylesMenuTextEditor.button}
         onClick={deleteHandler}
       >
-        <TrashIcon className={stylesMenuTextEditor.trash} />
+        <Tooltip text="Удалить текст">
+          <TrashIcon className={stylesMenuTextEditor.trash} />
+        </Tooltip>
       </button>
     </div>
   );

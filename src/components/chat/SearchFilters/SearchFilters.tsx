@@ -7,10 +7,7 @@ interface ISearchFilters {
   onClick?: VoidFunction;
 }
 
-const SearchFilters: FC<ISearchFilters> = ({
-  active = true,
-  onClick,
-}): JSX.Element => {
+const SearchFilters: FC<ISearchFilters> = ({ active = true, onClick }) => {
   const array = ['Сначала новые', 'Сначала старые', 'Неотвеченные'];
   return (
     <div>

@@ -12,6 +12,7 @@ const routesUrl: TRoutesUrl = {
   partnership: 'partnership',
   share: 'share',
   subscription: 'subscription',
+  statistics: 'statistics',
   notFound: '*',
 };
 
