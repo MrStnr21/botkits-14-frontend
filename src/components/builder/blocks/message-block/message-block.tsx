@@ -27,9 +27,31 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
 
+  const image = !!data.data.find((item) => {
+    return (
+      item.type === MessageDataTypes.file && item.file.type.includes('image')
+    );
+  });
+  const doc = !!data.data.find((item) => {
+    return (
+      item.type === MessageDataTypes.file && item.file.type.includes('doc')
+    );
+  });
+  const video = !!data.data.find((item) => {
+    return (
+      item.type === MessageDataTypes.file && item.file.type.includes('video')
+    );
+  });
+  const audio = !!data.data.find((item) => {
+    return (
+      item.type === MessageDataTypes.file && item.file.type.includes('audio')
+    );
+  });
+
   const { domNode } = useStore((s) => s);
 
   useEffect(() => {}, [domNode]);
+
   const horButtons = nodes.filter(
     (node) =>
       node.data.type === 'button' &&
@@ -229,7 +251,13 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       <CustomHandle position={Position.Left} type="target" />
       <div className={styles.content}>
         {content}
-        <FielsField addFile={addFile} />
+        <FielsField
+          addFile={addFile}
+          image={image}
+          doc={doc}
+          video={video}
+          audio={audio}
+        />
       </div>
       <hr className={styles['split-line']} />
       <div className={styles['hidden-blocks']}>

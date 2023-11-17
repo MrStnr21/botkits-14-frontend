@@ -137,7 +137,7 @@ export type TButtonBlock = {
 
 export type TMessageBlock = {
   name: string;
-  data: (TMessageData | TButtonsData | TAnswersData | TFileData)[];
+  data: TMessageBlockData[];
   saveAnswer: {
     show: boolean;
     value: string;
@@ -150,6 +150,12 @@ export type TMessageBlock = {
     seconds: string;
   };
 };
+
+export type TMessageBlockData =
+  | TMessageData
+  | TButtonsData
+  | TAnswersData
+  | TFileData;
 
 export type TMessageData = {
   type: MessageDataTypes.message;

@@ -3,9 +3,10 @@ import VideoCard from '../../../../../video-card/video-card';
 
 export type TUploadedVideoProps = {
   file: File | undefined;
+  onRemove: () => void;
 };
 
-const UploadedVideo: FC<TUploadedVideoProps> = ({ file }) => {
+const UploadedVideo: FC<TUploadedVideoProps> = ({ file, onRemove }) => {
   const src = URL.createObjectURL(file!);
 
   return (
@@ -15,6 +16,7 @@ const UploadedVideo: FC<TUploadedVideoProps> = ({ file }) => {
       title="title"
       prewiew={src}
       src={src}
+      onRemove={onRemove}
     />
   );
 };

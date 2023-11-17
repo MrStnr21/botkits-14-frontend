@@ -34,6 +34,7 @@ const Button: FC<TButtonProps> = ({
         accept={accept}
         onChange={onChange}
         hidden
+        disabled={isActive}
       />
       <label htmlFor={type}>
         <ConstructorIconBotton
