@@ -3,12 +3,12 @@
 
 .howIt {
   @include max-size(100%, unset);
-  @include flex(column, unset, unset, 16px);
-  @include indents(20px 24px, 0);
+  @include flex(column, unset, unset, 20px);
+  @include indents(40px, 0);
   background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;
 
   &__buttons {
-    @include flex(columns, flex-start, center, 16px);
+    @include flex(columns, flex-start, center, 32px);
   }
 }
