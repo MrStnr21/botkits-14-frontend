@@ -58,29 +58,7 @@
   }
 }
 
-.dropdown {
+div.dropdown {
   @include position(absolute, 56px, 0);
-  box-sizing: border-box;
   width: 264px;
-  border-radius: $l-border-radius;
-  box-shadow: $m-box-shadow;
-  padding: 8px 0;
-  background-color: $off-white;
-}
-
-.item {
-  @include font('Open Sans',$xs-font-size, $normal, $secondary-xiketic-press);
-  @include line-sizes($xl-line-height, $m-letter-space);
-  width: 100%;
-  box-sizing: border-box;
-  padding: 9px 16px;
-  transition: all 0.1s linear;
-
-  &:hover {
-    background-color: $secondary-cultured-focus;
-  }
-
-  &:active {
-    background-color: $blue-disabled;
-  }
 }

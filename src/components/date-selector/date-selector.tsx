@@ -68,8 +68,9 @@ const DateSelect: FC<IDateSelect> = ({
       {isOpen && (
         <Menu
           options={options}
-          layoutClassName={styles.dropdown}
           onItemClick={handleOptionClick}
+          layoutClassName={styles.dropdown}
+          itemClassName={styles.item}
         />
       )}
     </div>

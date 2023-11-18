@@ -6,13 +6,17 @@ export interface IMenuItem {
   option: {
     value: string;
     label: string;
+    icon?: string;
   };
   onClick: (value: string) => void;
-  icon?: string | undefined;
+  hasIcon?: boolean;
   isChecked?: boolean;
+  /** Чтобы перезаписать свойства MenuItem, в scss файле родителя повысьте селективность,
+   * например: ```div.item { height: 30px;}``` */
+  extraClass?: string;
 }
 
-const renderIcon = (icon: string | undefined) => {
+const renderIcon = (hasIcon: boolean, icon: string | undefined) => {
   if (icon) {
     return <img src={icon} alt="" className={styles.icon} />;
   }
@@ -29,17 +33,18 @@ const renderCheck = (isChecked: boolean) => {
 const MenuItem: FC<IMenuItem> = ({
   option,
   onClick,
-  icon,
+  hasIcon = false,
   isChecked = false,
+  extraClass = '',
 }) => {
   return (
     <div
       key={option.value}
       onClick={() => onClick(option.value)}
-      className={styles.item}
+      className={`${styles.item} ${extraClass}`}
     >
       {' '}
-      {renderIcon(icon)}
+      {renderIcon(hasIcon, option.icon)}
       {option.label}
       {renderCheck(isChecked)}
     </div>

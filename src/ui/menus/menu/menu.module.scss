@@ -3,11 +3,11 @@
 
 .box {
   @include flex(column, $gap: 4px);
-  width: 264px;
+  box-sizing: border-box;
+  padding: 8px 0;
   box-shadow: $m-box-shadow;
   background-color: $off-white;
   border-radius: $l-border-radius;
-  z-index: 2;
 }
 
 .scroll {
@@ -24,20 +24,3 @@
     border: solid 4px $off-white;
   }
 }
-
-.small {
-  width: 80px;
-}
-
-.medium {
-  width: 155px;
-}
-
-.chat {
-  width: 175px;
-}
-
-.large {
-  width: 304px;
-}
-
