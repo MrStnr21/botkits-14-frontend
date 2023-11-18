@@ -1,0 +1,28 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.item {
+  @include font('Open Sans',$xs-font-size, $normal, $secondary-xiketic-press);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include flex($align-items: center);
+  @include size(100%, 37px);
+  box-sizing: border-box;
+  padding: 6px 16px 7px;
+
+  &:hover {
+    cursor: $cursor;
+    background-color: $secondary-cultured-default;
+  }
+}
+
+.icon {
+  @include size(24px, 24px);
+  margin-right: 16px;
+}
+
+.check {
+  @include size(20px, 20px);
+  margin-left: auto;
+  filter: invert(21%) sepia(67%) saturate(5310%) hue-rotate(232deg)
+    brightness(75%) contrast(93%);
+}
