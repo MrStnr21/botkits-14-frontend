@@ -92,7 +92,7 @@
 .video__box {
   @include flex(row, center, center);
   @include size(100%, 100%);
-  @include position(absolute, 0, $left: 0);
+  @include position(fixed, 0, $left: 0);
   z-index: 10;
   background-color: rgba($primary-oxford-blue-default, 0.4);
 }

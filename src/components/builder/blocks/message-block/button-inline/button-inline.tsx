@@ -38,6 +38,12 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const setName = setFlowData({ selectors: ['name'] });
   const setAdditionalString = setFlowData({ selectors: ['str'] });
 
+  const preventButtonRemove = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Backspace') {
+      e.stopPropagation();
+    }
+  };
+
   const toggleString = () => {
     const node = getNode(id);
     setNodes([
@@ -183,6 +189,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
 
   return (
     <div
+      onKeyDown={preventButtonRemove}
       className={`${!hidden && styles.outline}`}
       onMouseEnter={() => setHidden(false)}
       onMouseLeave={() => setHidden(true)}

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import stylesVideo from './video-card.module.scss';
 import Typography from '../../ui/typography/typography';
@@ -99,21 +100,22 @@ const VideoCard: FC<IVideoElement> = ({
           </Typography>
         )}
       </div>
-      {isPlay && (
-        <div className={stylesVideo.video__box}>
-          {/* в макете нет попапа с видео, кнопка примерная */}
-          <button
-            type="button"
-            onClick={() => setIsPlay(false)}
-            className={stylesVideo.button__close}
-            aria-label="Закрыть видео"
-          />
-          {contentType === 'video' && (
-            <iframe
-              className={stylesVideo.video__iframe}
-              src={src}
-              title={title}
-              allow="
+      {isPlay &&
+        createPortal(
+          <div className={stylesVideo.video__box}>
+            {/* в макете нет попапа с видео, кнопка примерная */}
+            <button
+              type="button"
+              onClick={() => setIsPlay(false)}
+              className={stylesVideo.button__close}
+              aria-label="Закрыть видео"
+            />
+            {contentType === 'video' && (
+              <iframe
+                className={stylesVideo.video__iframe}
+                src={src}
+                title={title}
+                allow="
           accelerometer;
           autoplay;
           clipboard-write;
@@ -121,10 +123,11 @@ const VideoCard: FC<IVideoElement> = ({
           gyroscope;
           picture-in-picture;
           web-share"
-            />
-          )}
-        </div>
-      )}
+              />
+            )}
+          </div>,
+          document.body
+        )}
     </>
   );
 };
