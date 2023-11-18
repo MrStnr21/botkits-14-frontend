@@ -1,14 +1,76 @@
-@use '../../../stylesheets/variables' as *;
-@use '../../../stylesheets/mixins' as *;
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
 .card {
-    @include position(relative);
-    @include size(330px, unset);
-    @include indents(0 0 0 32px, 0);
-    margin: 32px 0 0 0;
+    @include size(410px, 572px);
+    @include indents(24px, 0);
     box-sizing: border-box;
-  
-    @media screen and (min-width: 861px) and (max-width: 1186px) {
-      @include indents(0 16px 0, 32px 0 0);
-    }
+    box-shadow: $m-box-shadow;
+    background-color: white;
+    border-radius: $xxl-border-radius;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.avatar{
+  @include position(relative);
+  @include size(88px, 88px);
+}
+
+.editButton{
+  @include position(absolute);
+  bottom: 0;
+  right: -4px;
+}
+
+.more{
+  @include indents;
+  @include size(24px, 24px);
+  @include position(relative);
+  background: none;
+  border: 0;
+}
+
+.moreButton {
+  @include size(24px, 24px);
+  // @include position(relative);
+  cursor: $cursor;
+  border: none;
+  cursor: pointer;
+  background: none;
+  background-image: url('../../images/icon/24x24/common/more.svg');
+}
+
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons{
+  display: flex;
+  justify-content: end;
+  gap: 12px;
+
+  &__button{
+  @include button-style-reset;
+  @include indents(12px, 0);
+  @include line-sizes(21px, 1px);
+  border-radius: $xs-border-radius;
+  color: $off-white;
+  background-color: $primary-persian-blue-default;
+  transition: all 0.1s linear;
+}
+
+&__text{
+  @include font('IBM Plex Mono', $s-font-size, $bold);
+}
+
+&__button:hover {
+  background-color: #435cdb;
+}
+
+&__button:active {
+  background-color: $primary-persian-blue-hover;
+}
 }
