@@ -2,13 +2,11 @@ import { FC } from 'react';
 import VideoCard from '../../../../../video-card/video-card';
 
 export type TUploadedVideoProps = {
-  file: File | undefined;
+  src: string;
   onRemove: () => void;
 };
 
-const UploadedVideo: FC<TUploadedVideoProps> = ({ file, onRemove }) => {
-  const src = URL.createObjectURL(file!);
-
+const UploadedVideo: FC<TUploadedVideoProps> = ({ src, onRemove }) => {
   return (
     <VideoCard
       hover

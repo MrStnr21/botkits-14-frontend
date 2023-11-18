@@ -1,5 +1,4 @@
-import React, { FC, useEffect } from 'react';
-import { useStore } from 'reactflow';
+import React, { FC } from 'react';
 
 import styles from './files-field.module.scss';
 
@@ -26,9 +25,6 @@ const FielsField: FC<TFielsFieldProps> = ({
   doc,
   addFile,
 }) => {
-  const { domNode } = useStore((s) => s);
-
-  useEffect(() => {}, [domNode]);
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.header}>Дополните контентом</h3>

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
 import styles from './message-block.module.scss';
@@ -27,57 +27,92 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
 
-  const image = !!data.data.find((item) => {
-    return (
-      item.type === MessageDataTypes.file && item.file.type.includes('image')
-    );
-  });
-  const doc = !!data.data.find((item) => {
-    return (
-      item.type === MessageDataTypes.file && item.file.type.includes('doc')
-    );
-  });
-  const video = !!data.data.find((item) => {
-    return (
-      item.type === MessageDataTypes.file && item.file.type.includes('video')
-    );
-  });
-  const audio = !!data.data.find((item) => {
-    return (
-      item.type === MessageDataTypes.file && item.file.type.includes('audio')
-    );
-  });
+  const image = useMemo(
+    () =>
+      !!data.data.find((item) => {
+        return (
+          item.type === MessageDataTypes.file &&
+          item.file.type.includes('image')
+        );
+      }),
+    [data.data]
+  );
+  const doc = useMemo(
+    () =>
+      !!data.data.find((item) => {
+        return (
+          item.type === MessageDataTypes.file && item.file.type.includes('doc')
+        );
+      }),
+    [data.data]
+  );
+  const video = useMemo(
+    () =>
+      !!data.data.find((item) => {
+        return (
+          item.type === MessageDataTypes.file &&
+          item.file.type.includes('video')
+        );
+      }),
+    [data.data]
+  );
+  const audio = useMemo(
+    () =>
+      !!data.data.find((item) => {
+        return (
+          item.type === MessageDataTypes.file &&
+          item.file.type.includes('audio')
+        );
+      }),
+    [data.data]
+  );
 
   const { domNode } = useStore((s) => s);
 
   useEffect(() => {}, [domNode]);
 
-  const horButtons = nodes.filter(
-    (node) =>
-      node.data.type === 'button' &&
-      node.data.direction === 'horizontal' &&
-      node.parentNode === id
+  const horButtons = useMemo(
+    () =>
+      nodes.filter(
+        (node) =>
+          node.data.type === 'button' &&
+          node.data.direction === 'horizontal' &&
+          node.parentNode === id
+      ),
+    [nodes]
   );
 
-  const verButtons = nodes.filter(
-    (node) =>
-      node.data.type === 'button' &&
-      node.data.direction === 'vertical' &&
-      node.parentNode === id
+  const verButtons = useMemo(
+    () =>
+      nodes.filter(
+        (node) =>
+          node.data.type === 'button' &&
+          node.data.direction === 'vertical' &&
+          node.parentNode === id
+      ),
+    [nodes]
   );
 
-  const horAnswers = nodes.filter(
-    (node) =>
-      node.data.type === 'answer' &&
-      node.data.direction === 'horizontal' &&
-      node.parentNode === id
+  const horAnswers = useMemo(
+    () =>
+      nodes.filter(
+        (node) =>
+          node.data.type === 'answer' &&
+          node.data.direction === 'horizontal' &&
+          node.parentNode === id
+      ),
+    [nodes]
   );
 
-  const verAnswers = nodes.filter(
-    (node) =>
-      node.data.type === 'answer' &&
-      node.data.direction === 'vertical' &&
-      node.parentNode === id
+  const verAnswers = useMemo(
+    () =>
+      nodes.filter(
+        (node) =>
+          node.data.type === 'answer' &&
+          node.data.direction === 'vertical' &&
+          node.parentNode === id
+      ),
+    [nodes]
   );
 
   const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
@@ -183,69 +218,73 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     );
   };
 
-  const content = data.data.map((component, index) => {
-    switch (component.type) {
-      case MessageDataTypes.answers: {
-        return (
-          <PanelInline
-            addHorizontalButton={addButton(
-              MessageDataTypes.answers,
-              'horizontal',
-              buttonSizes.secondY,
-              ButtonSizesMobile.secondY,
-              ButtonSizes.secondY
-            )}
-            addVerticalButton={addButton(
-              MessageDataTypes.answers,
-              'vertical',
-              buttonSizes.secondY + buttonSizes.blockGap,
-              ButtonSizesMobile.secondY + ButtonSizesMobile.blockGap,
-              ButtonSizes.secondY + ButtonSizes.blockGap
-            )}
-            buttonsBefore={[...horButtons, ...verButtons]}
-            horizontalButtons={horAnswers}
-            verticalButtons={verAnswers}
-            key={index}
-            title="Ответ"
-          />
-        );
-      }
-      case MessageDataTypes.buttons: {
-        return (
-          <PanelInline
-            addHorizontalButton={addButton(
-              MessageDataTypes.buttons,
-              'horizontal',
-              buttonSizes.firstY,
-              ButtonSizesMobile.firstY,
-              ButtonSizes.firstY
-            )}
-            addVerticalButton={addButton(
-              MessageDataTypes.buttons,
-              'vertical',
-              buttonSizes.firstY + buttonSizes.blockGap,
-              ButtonSizesMobile.firstY + ButtonSizesMobile.blockGap,
-              ButtonSizes.firstY + ButtonSizes.blockGap
-            )}
-            buttonsBefore={[]}
-            horizontalButtons={horButtons}
-            verticalButtons={verButtons}
-            key={index}
-            title="Инлайн кнопка"
-          />
-        );
-      }
-      case MessageDataTypes.file: {
-        return <File key={index} data={component.file} />;
-      }
-      case MessageDataTypes.message: {
-        return <TextField key={index} />;
-      }
-      default: {
-        return null;
-      }
-    }
-  });
+  const content = useMemo(
+    () =>
+      data.data.map((component, index) => {
+        switch (component.type) {
+          case MessageDataTypes.answers: {
+            return (
+              <PanelInline
+                addHorizontalButton={addButton(
+                  MessageDataTypes.answers,
+                  'horizontal',
+                  buttonSizes.secondY,
+                  ButtonSizesMobile.secondY,
+                  ButtonSizes.secondY
+                )}
+                addVerticalButton={addButton(
+                  MessageDataTypes.answers,
+                  'vertical',
+                  buttonSizes.secondY + buttonSizes.blockGap,
+                  ButtonSizesMobile.secondY + ButtonSizesMobile.blockGap,
+                  ButtonSizes.secondY + ButtonSizes.blockGap
+                )}
+                buttonsBefore={[...horButtons, ...verButtons]}
+                horizontalButtons={horAnswers}
+                verticalButtons={verAnswers}
+                key={index}
+                title="Ответ"
+              />
+            );
+          }
+          case MessageDataTypes.buttons: {
+            return (
+              <PanelInline
+                addHorizontalButton={addButton(
+                  MessageDataTypes.buttons,
+                  'horizontal',
+                  buttonSizes.firstY,
+                  ButtonSizesMobile.firstY,
+                  ButtonSizes.firstY
+                )}
+                addVerticalButton={addButton(
+                  MessageDataTypes.buttons,
+                  'vertical',
+                  buttonSizes.firstY + buttonSizes.blockGap,
+                  ButtonSizesMobile.firstY + ButtonSizesMobile.blockGap,
+                  ButtonSizes.firstY + ButtonSizes.blockGap
+                )}
+                buttonsBefore={[]}
+                horizontalButtons={horButtons}
+                verticalButtons={verButtons}
+                key={index}
+                title="Инлайн кнопка"
+              />
+            );
+          }
+          case MessageDataTypes.file: {
+            return <File key={index} data={component.file} />;
+          }
+          case MessageDataTypes.message: {
+            return <TextField key={index} />;
+          }
+          default: {
+            return null;
+          }
+        }
+      }),
+    [data, nodes]
+  );
   return (
     <ControlLayout type="Блок сообщений">
       <CustomHandle position={Position.Left} type="target" />
@@ -289,6 +328,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                 styled="bot-builder-num"
                 value={days}
                 type="number"
+                min="0"
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -300,6 +340,8 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                 styled="bot-builder-num"
                 value={hours}
                 type="number"
+                min="0"
+                max="23"
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -311,6 +353,8 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                 styled="bot-builder-num"
                 value={minutes}
                 type="number"
+                min="0"
+                max="59"
               />
             </div>
             <div className={styles['labeled-input']}>
@@ -322,6 +366,8 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                 styled="bot-builder-num"
                 value={seconds}
                 type="number"
+                min="0"
+                max="59"
               />
             </div>
           </form>

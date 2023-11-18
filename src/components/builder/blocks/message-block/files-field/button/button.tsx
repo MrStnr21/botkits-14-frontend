@@ -24,6 +24,14 @@ const Button: FC<TButtonProps> = ({
       ref.current.click();
     }
   };
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e);
+    }
+    if (ref.current) {
+      ref.current!.value = '';
+    }
+  };
   return (
     <div>
       <input
@@ -32,7 +40,7 @@ const Button: FC<TButtonProps> = ({
         id={type}
         name={type}
         accept={accept}
-        onChange={onChange}
+        onChange={changeHandler}
         hidden
         disabled={isActive}
       />

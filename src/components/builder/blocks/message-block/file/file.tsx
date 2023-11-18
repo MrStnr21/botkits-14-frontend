@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import UploadedVideo from './uploaded-video/uploaded-video';
 import UploadedPicture from './uploaded-pick/uploaded-pick';
@@ -16,6 +16,7 @@ type TdataProps = {
 const File: FC<TdataProps> = ({ data }) => {
   const { setNodes, getNodes } = useReactFlow();
   const id = useNodeId();
+  const src = useMemo(() => URL.createObjectURL(data), [data]);
   const removeFile = () =>
     setNodes(
       getNodes().map((item) => {
@@ -39,23 +40,16 @@ const File: FC<TdataProps> = ({ data }) => {
   return (
     <>
       {data && data.type.includes('video') && (
-        <UploadedVideo file={data} onRemove={removeFile} />
+        <UploadedVideo src={src} onRemove={removeFile} />
       )}
       {data && data.type.includes('image') && (
-        <UploadedPicture
-          src={URL.createObjectURL(data)}
-          onRemove={removeFile}
-        />
+        <UploadedPicture src={src} onRemove={removeFile} />
       )}
       {data && data.type.includes('text') && (
         <UploadedDock name={data.name} size={data.size} onRemove={removeFile} />
       )}
       {data && data.type.includes('audio') && (
-        <UploadedAudio
-          src={URL.createObjectURL(data)}
-          name={data.name}
-          onRemove={removeFile}
-        />
+        <UploadedAudio src={src} name={data.name} onRemove={removeFile} />
       )}
     </>
   );
