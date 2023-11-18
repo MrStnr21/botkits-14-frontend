@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 import styles from './date-selector.module.scss';
 import chevronIcon from '../../images/icon/16x16/common/chevron.svg';
+import Menu from '../../ui/menus/menu/menu';
 
 interface IDateSelect {
   defaultValue: string;
@@ -65,17 +66,11 @@ const DateSelect: FC<IDateSelect> = ({
         />
       </button>
       {isOpen && (
-        <div className={styles.dropdown}>
-          {options.map((option) => (
-            <div
-              key={option.value}
-              onClick={() => handleOptionClick(option.value)}
-              className={styles.item}
-            >
-              {option.label}
-            </div>
-          ))}
-        </div>
+        <Menu
+          options={options}
+          layoutClassName={styles.dropdown}
+          onItemClick={handleOptionClick}
+        />
       )}
     </div>
   );
