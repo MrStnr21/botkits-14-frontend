@@ -108,4 +108,31 @@ export const setFlowData = ({
   };
 };
 
+export const setFlowDataButton = ({
+  selectors,
+  value,
+}: {
+  selectors: string[];
+  value: any;
+}) => {
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
+  const nodes = getNodes();
+  const finalData = value;
+  setNodes(
+    nodes.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          data: {
+            ...item.data,
+            [selectors[0]]: finalData,
+          },
+        };
+      }
+      return item;
+    })
+  );
+};
+
 export default {};

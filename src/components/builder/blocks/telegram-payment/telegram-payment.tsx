@@ -1,5 +1,5 @@
-import { FC, useState, ChangeEvent, useRef } from 'react';
-import { useReactFlow } from 'reactflow';
+import { FC, useState, ChangeEvent, useRef, useEffect } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
 import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -17,22 +17,51 @@ import { setFlowData } from '../../utils';
 // import VideoCard from '../../../video-card/video-card';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
-  const setCurrency = () =>
-    setFlowData({
+  const [active, setActive] = useState(data.onSuccess !== '');
+  useEffect(() => setActive(data.onSuccess !== ''), [data.onSuccess]);
+
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
+
+  const setFlowDataButton = ({
+    selectors,
+    value,
+  }: {
+    selectors: string[];
+    value: any;
+  }) => {
+    const nodes = getNodes();
+    const finalData = value;
+    setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              [selectors[0]]: finalData,
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const setCurrency = (name: string) =>
+    setFlowDataButton({
       selectors: ['currency'],
-    });
-
-  const { getNodes } = useReactFlow();
-  // const [active, setActive] = useState(false);
-  const i = 2;
-  const a = getNodes()[i].data.name + getNodes()[i].data.onSuccess;
-
-  const setOnSuccess = (name: string) => {
-    setFlowData({
-      selectors: ['onSuccess'],
       value: name,
     });
-  };
+
+  const i = 2;
+  const a = getNodes()[i].data.name + getNodes()[i].data.currency;
+
+  const setOnSuccess = (value: string) =>
+    setFlowDataButton({
+      selectors: ['onSuccess'],
+      value,
+    });
 
   const setGoodsName = setFlowData({
     selectors: ['goodsName'],
@@ -116,7 +145,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
               <MenumenuSelectFlow
                 buttons={buttonsCurrency}
                 nameMenu={data.currency || buttonsCurrency[0]}
-                onClick={() => setCurrency}
+                onClick={(name: string) => setCurrency(name)}
                 active
               />
             </div>
@@ -134,7 +163,8 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           <MenumenuSelectFlow
             buttons={buttonsOnSuccess}
             nameMenu={data.onSuccess || 'Введите название'}
-            onClick={() => setOnSuccess}
+            onClick={(name: string) => setOnSuccess(name)}
+            active={active}
           />
         </LabeledInput>
       </div>

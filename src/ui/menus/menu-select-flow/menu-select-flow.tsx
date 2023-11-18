@@ -100,6 +100,7 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
                     onClick && onClick(name);
                     setIsOpen('');
                     activeHandler();
+                    openHandler();
                   }}
                 >
                   {name}
