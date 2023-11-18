@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useMediaQuery } from '@mui/material';
 import VideoCard from '../../../../../video-card/video-card';
 
 export type TUploadedPictureProps = {
@@ -7,10 +8,12 @@ export type TUploadedPictureProps = {
 };
 
 const UploadedPicture: FC<TUploadedPictureProps> = ({ src, onRemove }) => {
+  const isMobile = useMediaQuery('(max-width: 520px)');
   return (
     <VideoCard
       contentType="image"
       title="title"
+      size={isMobile ? 'sx' : 'm'}
       prewiew={src}
       src={src}
       onRemove={onRemove}

@@ -9,7 +9,7 @@ interface IVideoElement {
   previewType?: 'image' | 'video';
   contentType?: 'image' | 'video';
   prewiew: string; // заставка
-  size?: 's' | 'm' | 'x'; // размер окна заставки и видео
+  size?: 's' | 'm' | 'x' | 'sx'; // размер окна заставки и видео
   hiddenRemoveButton?: boolean; // скрыть кнопку удаления компонента с видео
   hover?: boolean; // отобразить кнопку play
   onRemove?: () => void;
