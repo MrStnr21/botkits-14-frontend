@@ -154,7 +154,7 @@ export const defaultBlocks = {
     payment: '',
     currency: '',
     providerToken: '',
-    onSuccess: 'zz',
+    onSuccess: '',
   },
   deeplink: {
     name: 'Deeplink',
