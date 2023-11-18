@@ -104,7 +104,6 @@ export const currencyAvailable = [
 ];
 
 export const messagesSuccessful = [
-  { value: 'По умолчанию', nameValue: 'Введите название' },
   { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
   { value: 'Короткое сообщение', nameValue: 'Ok!' },
   { value: 'Формальное сообщение', nameValue: 'Оплачено' },
@@ -155,7 +154,7 @@ export const defaultBlocks = {
     payment: '',
     currency: '',
     providerToken: '',
-    onSuccess: '',
+    onSuccess: 'zz',
   },
   deeplink: {
     name: 'Deeplink',

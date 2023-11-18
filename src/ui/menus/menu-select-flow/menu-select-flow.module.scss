@@ -26,7 +26,7 @@
   cursor: pointer;
   z-index: 999;
   @media screen and (max-width: 520px) {
-    height: 30px;
+    height: 25px;
   }
 }
 
@@ -108,11 +108,12 @@
 
 .icon {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  right: 10px;
   width: 16px;
   height: 16px;
   @media screen and (max-width: 520px) {
-    top: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
   }
 }

@@ -1,25 +1,52 @@
 import { FC, useState, ChangeEvent, useRef } from 'react';
+import { useReactFlow } from 'reactflow';
 import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
 import Input from '../../../../ui/inputs/input/input';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
-import InputSelect from '../../../../ui/inputs/input-select/input-select';
+import MenumenuSelectFlow from '../../../../ui/menus/menu-select-flow/menu-select-flow';
+
 import {
   TBlockProps,
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
 import { BUTTON_NAME } from '../../../../utils/constants';
 import { currencyAvailable, messagesSuccessful } from '../../utils/data';
+import { setFlowData } from '../../utils';
 // import VideoCard from '../../../video-card/video-card';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
-  const [goodsName, setGoodsName] = useState(data.goodsName || '');
+  const setCurrency = () =>
+    setFlowData({
+      selectors: ['currency'],
+    });
+
+  const { getNodes } = useReactFlow();
+  // const [active, setActive] = useState(false);
+  const i = 2;
+  const a = getNodes()[i].data.name + getNodes()[i].data.onSuccess;
+
+  const setOnSuccess = (name: string) => {
+    setFlowData({
+      selectors: ['onSuccess'],
+      value: name,
+    });
+  };
+
+  const setGoodsName = setFlowData({
+    selectors: ['goodsName'],
+  });
+
+  const setPayment = setFlowData({
+    selectors: ['payment'],
+  });
+
   const [description, setDescription] = useState(data.description || '');
-  const [payment, setPayment] = useState(
-    data.payment ? String(data.payment) : ''
-  );
+
   const placeholder = 'Введите название';
+  const buttonsCurrency = currencyAvailable.map((item) => item.nameValue);
+  const buttonsOnSuccess = messagesSuccessful.map((item) => item.nameValue);
 
   const ref = useRef<null | HTMLInputElement>(null);
 
@@ -35,10 +62,8 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         <LabeledInput title="Название товара">
           <Input
             placeholder={placeholder}
-            value={goodsName}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setGoodsName(e.target.value);
-            }}
+            value={data.goodsName || ''}
+            onChange={setGoodsName}
             styled="bot-builder-default"
           />
         </LabeledInput>
@@ -82,19 +107,19 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           <div className={styles.sumInputs}>
             <Input
               placeholder="Введите сумму"
-              value={payment}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                setPayment(e.target.value);
-              }}
+              value={data.payment ? String(data.payment) : ''}
+              onChange={setPayment}
               styled="bot-builder-default"
             />
-            <InputSelect
-              values={currencyAvailable}
-              maxWidth={67}
-              defaultValue={[data.currency || 'Рубль']}
-              handleFunction={() => {}}
-              isAdaptive
-            />
+            <div className={styles.wrapperCurrency}>
+              {`${a} sssddd`}
+              <MenumenuSelectFlow
+                buttons={buttonsCurrency}
+                nameMenu={data.currency || buttonsCurrency[0]}
+                onClick={() => setCurrency}
+                active
+              />
+            </div>
           </div>
         </LabeledInput>
         <LabeledInput title="Токен провайдера">
@@ -106,12 +131,10 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           />
         </LabeledInput>
         <LabeledInput title="После успешной оплаты вернуть">
-          <InputSelect
-            values={messagesSuccessful}
-            maxWidth={400}
-            defaultValue={[data.onSuccess || 'По умолчанию']}
-            handleFunction={() => {}}
-            isAdaptive
+          <MenumenuSelectFlow
+            buttons={buttonsOnSuccess}
+            nameMenu={data.onSuccess || 'Введите название'}
+            onClick={() => setOnSuccess}
           />
         </LabeledInput>
       </div>

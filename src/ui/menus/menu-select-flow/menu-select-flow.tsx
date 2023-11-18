@@ -23,33 +23,37 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
   active = true,
 }): JSX.Element => {
   const [variable, setVariable] = useState<string>(nameMenu);
-  const [isActive, setIsActive] = useState<string>('');
-  const [textColor, setTextColor] = useState<string>('');
+  const [isOpen, setIsOpen] = useState<string>('');
+  const [textColor, setTextColor] = useState<string>(active ? '' : styles.grey);
 
   const changeVariableHandler = (text: string) => {
     setVariable(text);
   };
 
   const openHandler = () => {
-    setTextColor(isActive === '' ? styles.grey : '');
-    setIsActive(isActive === '' ? styles.active : '');
+    setTextColor(isOpen === '' ? styles.grey : '');
+    setIsOpen(isOpen === '' ? styles.active : '');
+  };
+
+  const activeHandler = () => {
+    setTextColor(!active ? styles.grey : '');
   };
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setIsActive('');
+        setIsOpen('');
       }
     };
 
-    if (isActive !== '') {
+    if (isOpen !== '') {
       document.addEventListener('keydown', handleEsc);
     }
 
     return () => {
       document.removeEventListener('keydown', handleEsc);
     };
-  }, [isActive]);
+  }, [isOpen]);
 
   return (
     <div>
@@ -71,10 +75,10 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
       >
         <div
           onClick={() => {
-            if (isActive !== '') setIsActive('');
+            if (isOpen !== '') setIsOpen('');
           }}
           className={`${styles.overlay} ${
-            isActive !== '' ? styles.overlayActive : ''
+            isOpen !== '' ? styles.overlayActive : ''
           }`}
         />
         <Typography tag="p" className={`${styles.text} ${textColor}`}>
@@ -82,10 +86,7 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
         </Typography>
         <img src={arrowIcon} alt="стрелка" className={styles.icon} />
       </div>
-      <div
-        style={width ? { width } : {}}
-        className={`${styles.box} ${isActive}`}
-      >
+      <div style={width ? { width } : {}} className={`${styles.box} ${isOpen}`}>
         <ul className={styles.ul}>
           {buttons.map((name, index) => {
             return (
@@ -95,10 +96,10 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
                   className={`${styles.button} ${styles.text}`}
                   onClick={() => {
                     changeVariableHandler(name);
-                    onClick!(name);
-                    setIsActive('');
                     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                    active && openHandler();
+                    onClick && onClick(name);
+                    setIsOpen('');
+                    activeHandler();
                   }}
                 >
                   {name}

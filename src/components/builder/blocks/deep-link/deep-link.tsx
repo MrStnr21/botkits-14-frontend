@@ -47,7 +47,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
           />
         </LabeledInput>
         <LabeledInput title="Тип значения">
-          <div style={{ zIndex: 10 }}>
+          <div>
             <MenumenuSelectFlow
               buttons={buttons}
               width="240"

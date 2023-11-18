@@ -82,7 +82,6 @@
 .adaptive {
   @media screen and (max-width: 520px) {
     max-height: 25px;
-    z-index: 10;
 
     .chosen {
       @include position(absolute, 6px, $left: 5px);
@@ -102,7 +101,6 @@
 
 .optionContainer{
   @include flex(row, flex-start, center, 12px);
-  z-index: 10;
 }
 
 .chosen{
