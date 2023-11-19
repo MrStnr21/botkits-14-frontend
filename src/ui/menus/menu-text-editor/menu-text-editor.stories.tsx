@@ -29,6 +29,9 @@ export default {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  decorators: [
+    (storyFn) => <div style={{ position: 'relative' }}>{storyFn()}</div>,
+  ],
 } as Meta<IMenuTextEditor>;
 
 /* prettier-ignore */

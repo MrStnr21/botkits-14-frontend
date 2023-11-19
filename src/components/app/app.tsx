@@ -84,7 +84,7 @@ const App: FC = (): JSX.Element => {
         <Route
           path={routesUrl.botBuilder}
           element={
-            <ProtectedRoute notAuth>
+            <ProtectedRoute>
               <BotBuilder />
             </ProtectedRoute>
           }

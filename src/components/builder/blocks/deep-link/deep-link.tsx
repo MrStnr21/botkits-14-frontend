@@ -1,6 +1,6 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC } from 'react';
 import styles from './deep-link.module.scss';
-import InputSelect from '../../../../ui/inputs/input-select/input-select';
+import MenumenuSelectFlow from '../../../../ui/menus/menu-select-flow/menu-select-flow';
 import Input from '../../../../ui/inputs/input/input';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -9,56 +9,81 @@ import {
   TDeepLinkBlock,
 } from '../../../../services/types/builder';
 import { selectValuesType } from '../../utils/data';
+import { setFlowData } from '../../utils';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
-  const [signsAmount, setSignsAmount] = useState(data.signsAmount);
-  const [param, setParam] = useState(data.param || 'Название параметра');
+  const setParam = setFlowData({
+    selectors: ['param'],
+  });
+  const setType = (value: any) =>
+    setFlowData({
+      selectors: ['type'],
+      value,
+    });
+  const setSignsAmount = setFlowData({
+    selectors: ['signsAmount'],
+  });
+  // const signsAmountIsNaN = Number.isNaN(data.signsAmount);
+
+  const setAdditionValue = setFlowData({
+    selectors: ['additionValue'],
+  });
+  const setAdditionLink = setFlowData({
+    selectors: ['additionLink'],
+  });
+
+  const buttons = selectValuesType.map((item) => item.nameValue);
 
   return (
     <ControlLayout type="Deep Link">
       <div className={styles.content}>
         <LabeledInput title="Параметр">
           <Input
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setParam(e.target.value);
-            }}
+            onChange={setParam}
             styled="bot-builder-default"
             placeholder="Название параметра"
-            value={param}
+            value={data.param}
+            minLength={0}
           />
         </LabeledInput>
         <LabeledInput title="Тип значения">
-          <InputSelect
-            values={selectValuesType}
-            maxWidth={240}
-            defaultValue={[data.type]}
-            handleFunction={() => {}}
-            isAdaptive
-          />
+          <div style={{ zIndex: 10 }}>
+            <MenumenuSelectFlow
+              buttons={buttons}
+              width="240"
+              nameMenu={data.type}
+              onClick={() => setType}
+              active
+            />
+          </div>
         </LabeledInput>
         <LabeledInput title="Количество знаков в ссылке">
           <Input
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setSignsAmount(Number(e.target.value));
-            }}
+            placeholder="Введите число"
+            onChange={setSignsAmount}
             styled="bot-builder-default"
-            value={signsAmount.toString()}
+            value={data.signsAmount.toString()}
+            minLength={0}
+            type="number"
           />
         </LabeledInput>
         <LabeledInput title="Добавить значение в переменную">
           <Input
-            onChange={() => {}}
+            onChange={setAdditionValue}
             styled="bot-builder-default"
             placeholder="Введите значение"
             value={data.additionValue}
+            minLength={0}
           />
         </LabeledInput>
         <LabeledInput title="Добавить ссылку в переменную">
           <Input
-            onChange={() => {}}
+            onChange={setAdditionLink}
             styled="bot-builder-default"
             placeholder="URL"
             value={data.additionLink}
+            minLength={0}
+            type="URL"
           />
         </LabeledInput>
       </div>
