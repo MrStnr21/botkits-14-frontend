@@ -3,7 +3,7 @@ import stylesSendButton from './button-edit.module.scss';
 import EditIcon from '../../../components/icons/Edit/Edit';
 
 interface IEditButton {
-  onClick?: VoidFunction;
+  onClick?: () => void;
 }
 
 const EditButton: FC<IEditButton> = ({ onClick }): JSX.Element => {
