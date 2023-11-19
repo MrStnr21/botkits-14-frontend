@@ -40,7 +40,7 @@ export const initialNodes: Node[] = [
     data: {
       name: 'message',
       data: [
-        { type: 'message' },
+        { type: 'message', value: '' },
         { type: 'buttons', verButtons: [], horButtons: [] },
         { type: 'answers', verButtons: [], horButtons: [] },
       ],

@@ -135,7 +135,7 @@ export const defaultBlocks = {
   message: {
     name: 'message',
     data: [
-      { type: MessageDataTypes.message },
+      { type: MessageDataTypes.message, value: '' },
       { type: MessageDataTypes.buttons, verButtons: [], horButtons: [] },
       { type: MessageDataTypes.answers, verButtons: [], horButtons: [] },
     ],

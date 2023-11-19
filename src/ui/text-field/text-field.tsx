@@ -10,9 +10,11 @@ import MenuTextEditor from '../menus/menu-text-editor/menu-text-editor';
 
 interface ITextField {
   maxTextLength?: number;
+  text: string;
+  setText: (value: string) => void;
 }
 
-const TextField: FC<ITextField> = ({ maxTextLength = 4096 }) => {
+const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
   const [emojis, toggleEmojis] = useState(false);
   const [textMenu, toggleTextMenu] = useState(false);
 
@@ -23,8 +25,6 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096 }) => {
   const onEmojiClick = () => {
     toggleEmojis(!emojis);
   };
-
-  const [text, setText] = useState('');
 
   return (
     <div className={styles.textarea}>

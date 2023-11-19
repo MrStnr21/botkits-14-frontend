@@ -12,6 +12,7 @@ import {
   MessageDataTypes,
   TBlockProps,
   TMessageBlock,
+  TMessageBlockData,
 } from '../../../../services/types/builder';
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
@@ -218,6 +219,33 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     );
   };
 
+  const setText = (value: string) => {
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              data: [
+                ...item.data.data.map((content: TMessageBlockData) => {
+                  if (content.type === MessageDataTypes.message) {
+                    return {
+                      ...content,
+                      value,
+                    };
+                  }
+                  return content;
+                }),
+              ],
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   const content = useMemo(
     () =>
       data.data.map((component, index) => {
@@ -276,7 +304,9 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             return <File key={index} data={component.file} />;
           }
           case MessageDataTypes.message: {
-            return <TextField key={index} />;
+            return (
+              <TextField text={component.value} setText={setText} key={index} />
+            );
           }
           default: {
             return null;
