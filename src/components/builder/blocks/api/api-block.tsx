@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
 import ControlLayout from '../../control-layout/control-layout';
@@ -8,50 +9,45 @@ import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
+import { setFlowData } from '../../utils';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
-  const [headers, setHeaders] = useState<TApiBlock['headers']>(data.headers);
-  const [params, setParams] = useState<TApiBlock['params']>(data.params);
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
 
-  const [reqType, setReqType] = useState<'GET' | 'POST' | ''>('');
+  const setUrl = setFlowData({ selectors: ['url'] });
+  const setGetType = setFlowData({ selectors: ['reqType'], value: 'get' });
+  const setPostType = setFlowData({ selectors: ['reqType'], value: 'post' });
 
-  const addHeader = (type: 'variable' | 'const') => {
-    return () => setHeaders([...headers!, { type, name: '', variable: '' }]);
-  };
-
-  const addParam = (type: 'variable' | 'const') => {
-    return () => setParams([...params!, { type, name: '', variable: '' }]);
-  };
-
-  const setHeaderConstructor = (index: number, param: 'name' | 'variable') => {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-      setHeaders([
-        ...headers!.slice(0, index),
-        { ...headers![index], [param]: e.target.value },
-        ...headers!.slice(index + 1),
-      ]);
-    };
-  };
-
-  const setParamConstructor = (index: number, param: 'name' | 'variable') => {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-      setParams([
-        ...params!.slice(0, index),
-        { ...params![index], [param]: e.target.value },
-        ...params!.slice(index + 1),
-      ]);
-    };
-  };
+  const addField =
+    (field: 'headers' | 'params', type: 'variable' | 'const') => () =>
+      setNodes(
+        getNodes().map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              data: {
+                ...item.data,
+                [field]: [
+                  ...item.data[field],
+                  { type, name: '', variable: '' },
+                ],
+              },
+            };
+          }
+          return item;
+        })
+      );
 
   const getHeaderFields = (type: 'variable' | 'const') => {
-    return headers!.map((item, index) => {
+    return data.headers.map((item, index) => {
       return (
         item.type === type && (
           <ValField
             name={item.name || ''}
             value={item.variable || ''}
-            onChangeVal={setHeaderConstructor(index, 'variable')}
-            onChangeName={setHeaderConstructor(index, 'name')}
+            field="headers"
+            index={index}
           />
         )
       );
@@ -59,14 +55,14 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   };
 
   const getParamFields = (type: 'variable' | 'const') => {
-    return params!.map((item, index) => {
+    return data.params.map((item, index) => {
       return (
         item.type === type && (
           <ValField
             name={item.name || ''}
             value={item.variable || ''}
-            onChangeVal={setParamConstructor(index, 'variable')}
-            onChangeName={setParamConstructor(index, 'name')}
+            field="params"
+            index={index}
           />
         )
       );
@@ -80,28 +76,29 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
           <Input
             placeholder="Введите URL"
             value={data.url}
-            onChange={() => {}}
+            onChange={setUrl}
             styled="bot-builder-default"
             disabled={false}
             errorMessage="Неправильный URL"
             name="control"
+            minLength={0}
           />
         </LabeledInput>
         <LabeledInput title="Тип запроса">
           <div className={styles.box}>
             <ConstructorDefaultButton
               buttonHtmlType="button"
-              onClick={() => setReqType('GET')}
+              onClick={setGetType}
               disabled={false}
-              isActive={reqType === 'GET'}
+              isActive={data.reqType === 'get'}
             >
               Get
             </ConstructorDefaultButton>
             <ConstructorDefaultButton
               buttonHtmlType="button"
-              onClick={() => setReqType('POST')}
+              onClick={setPostType}
               disabled={false}
-              isActive={reqType === 'POST'}
+              isActive={data.reqType === 'post'}
             >
               Post
             </ConstructorDefaultButton>
@@ -110,14 +107,14 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
         <RequestSettings
           variableFields={getHeaderFields('variable')}
           constFields={getHeaderFields('const')}
-          addFieldVariable={addHeader('variable')}
-          addFieldConst={addHeader('const')}
+          addFieldVariable={addField('headers', 'variable')}
+          addFieldConst={addField('headers', 'const')}
         />
         <RequestSettings
           variableFields={getParamFields('variable')}
           constFields={getParamFields('const')}
-          addFieldVariable={addParam('variable')}
-          addFieldConst={addParam('const')}
+          addFieldVariable={addField('params', 'variable')}
+          addFieldConst={addField('params', 'const')}
         />
         <LabeledInput title="Сохранить результат">
           <ConstructorAddButton
