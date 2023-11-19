@@ -22,8 +22,6 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const isMobile = useMediaQuery('(max-width: 520px)');
 
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
-  const closedButtonSize = buttonSizes.buttonHeight + buttonSizes.gap;
-  const openedButtonSize = closedButtonSize + buttonSizes.addString;
 
   const closedButtonSizeDesk = ButtonSizes.buttonHeight + ButtonSizes.gap;
   const openedButtonSizeDesk = closedButtonSizeDesk + ButtonSizes.addString;
@@ -32,6 +30,13 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
     ButtonSizesMobile.buttonHeight + ButtonSizesMobile.gap;
   const openedButtonSizeMobile =
     closedButtonSizeMobile + ButtonSizesMobile.addString;
+
+  const closedButtonSize = isMobile
+    ? closedButtonSizeMobile
+    : closedButtonSizeDesk;
+  const openedButtonSize = isMobile
+    ? openedButtonSizeMobile
+    : openedButtonSizeDesk;
 
   const [menu, toggleMenu] = useState<boolean>(false);
 
