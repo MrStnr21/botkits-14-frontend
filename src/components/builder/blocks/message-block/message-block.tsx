@@ -313,7 +313,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           }
         }
       }),
-    [data, nodes]
+    [nodes]
   );
   return (
     <ControlLayout type="Блок сообщений">

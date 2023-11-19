@@ -141,7 +141,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
         return item;
       })
     );
-  }; // заглушка в дальнейшем прописать логику удаления ReactFlow ноды
+  };
 
   const getIcon = () => {
     switch (data.type) {
