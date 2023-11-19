@@ -176,7 +176,7 @@ export const defaultBlocks = {
   deeplink: {
     name: 'Deeplink',
     param: '',
-    type: 'random',
+    type: 'Случайное',
     signsAmount: 8,
     additionValue: '',
     additionLink: '',

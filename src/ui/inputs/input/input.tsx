@@ -8,7 +8,7 @@ interface IInput {
   isInvalid?: boolean;
   placeholder?: string;
   errorMessage?: string;
-  value?: string;
+  value?: string | number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   name?: string;
