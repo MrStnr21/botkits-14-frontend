@@ -46,7 +46,7 @@ const FielsField: FC<TFielsFieldProps> = ({
         <Button
           type={BUTTON_NAME.FILE}
           icon={fileIcon}
-          accept=".docx, .doc, .pdf "
+          accept=".docx, .doc, .pdf"
           isActive={doc}
           onChange={addFile}
         />

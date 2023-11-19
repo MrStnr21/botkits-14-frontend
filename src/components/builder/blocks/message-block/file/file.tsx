@@ -45,7 +45,7 @@ const File: FC<TdataProps> = ({ data }) => {
       {data && data.type.includes('image') && (
         <UploadedPicture src={src} onRemove={removeFile} />
       )}
-      {data && data.type.includes('text') && (
+      {data && data.type.includes('application') && (
         <UploadedDock name={data.name} size={data.size} onRemove={removeFile} />
       )}
       {data && data.type.includes('audio') && (

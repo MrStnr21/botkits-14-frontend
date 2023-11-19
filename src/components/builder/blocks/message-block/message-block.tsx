@@ -42,7 +42,8 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     () =>
       !!data.data.find((item) => {
         return (
-          item.type === MessageDataTypes.file && item.file.type.includes('doc')
+          item.type === MessageDataTypes.file &&
+          item.file.type.includes('application')
         );
       }),
     [data.data]
