@@ -7,7 +7,7 @@ import stylesConstructorHelperButton from './constructor-helper-botton.module.sc
 export interface IConstructorHelperButton {
   askButtonHtmlType?: 'button' | 'submit' | 'reset';
   deleteButtonHtmlType?: 'button' | 'submit' | 'reset';
-  askOnClick?: (val: boolean) => void;
+  askOnClick?: () => void;
   deleteOnClick: () => void;
   askIcon: string;
   color?: boolean;
@@ -88,9 +88,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
           </div>
           <button
             className={stylesConstructorHelperButton.ask_button}
-            onClick={() => {
-              if (askOnClick) askOnClick(true);
-            }}
+            onClick={askOnClick}
             // eslint-disable-next-line react/button-has-type
             type={askButtonHtmlType}
           >
@@ -98,7 +96,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
           </button>
           <button
             className={stylesConstructorHelperButton.delete_button}
-            onClick={() => deleteOnClick}
+            onClick={deleteOnClick}
             // eslint-disable-next-line react/button-has-type
             type={deleteButtonHtmlType}
           >

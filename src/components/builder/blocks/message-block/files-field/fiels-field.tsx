@@ -11,10 +11,10 @@ import { BUTTON_NAME } from '../../../../../utils/constants';
 import Button from './button/button';
 
 type TFielsFieldProps = {
-  image?: File;
-  video?: File;
-  audio?: File;
-  doc?: File;
+  image?: boolean;
+  video?: boolean;
+  audio?: boolean;
+  doc?: boolean;
   addFile?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -33,28 +33,28 @@ const FielsField: FC<TFielsFieldProps> = ({
           type={BUTTON_NAME.IMAGE}
           icon={imageIcon}
           accept=".jpg, .png, .gif"
-          isActive={!!image}
+          isActive={image}
           onChange={addFile}
         />
         <Button
           type={BUTTON_NAME.VIDEO}
           icon={videoIcon}
           accept=".mp4, avi"
-          isActive={!!video}
+          isActive={video}
           onChange={addFile}
         />
         <Button
           type={BUTTON_NAME.FILE}
           icon={fileIcon}
-          accept=".docx, .doc, .pdf "
-          isActive={!!doc}
+          accept=".docx, .doc, .pdf"
+          isActive={doc}
           onChange={addFile}
         />
         <Button
           type={BUTTON_NAME.AUDIO}
           icon={musicIcon}
           accept="audio/*"
-          isActive={!!audio}
+          isActive={audio}
           onChange={addFile}
         />
       </div>

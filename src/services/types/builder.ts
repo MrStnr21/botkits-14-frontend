@@ -127,14 +127,17 @@ export type TApiBlock = {
 export type TButtonBlock = {
   type: 'button' | 'answer';
   direction: 'horizontal' | 'vertical';
+  additionalData?: boolean;
   name: string;
   color: string;
-  url: string;
+  str: string;
+  deskY: number;
+  mobY: number;
 };
 
 export type TMessageBlock = {
   name: string;
-  data: (TMessageData | TButtonsData | TAnswersData | TFileData)[];
+  data: TMessageBlockData[];
   saveAnswer: {
     show: boolean;
     value: string;
@@ -147,6 +150,12 @@ export type TMessageBlock = {
     seconds: string;
   };
 };
+
+export type TMessageBlockData =
+  | TMessageData
+  | TButtonsData
+  | TAnswersData
+  | TFileData;
 
 export type TMessageData = {
   type: MessageDataTypes.message;
