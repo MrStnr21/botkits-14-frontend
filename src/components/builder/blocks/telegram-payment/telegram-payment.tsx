@@ -48,7 +48,6 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   };
 
   const image = useMemo(() => !!data.image, [data.image]);
-  // const [isImage, setisImage] = useState(true);
 
   const setCurrency = (name: string) =>
     setFlowDataButton({
@@ -96,7 +95,6 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         return item;
       })
     );
-    // setisImage(true);
     e.target.value = '';
   };
 
@@ -115,7 +113,6 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         return item;
       })
     );
-    // setisImage(false);
   };
 
   const content = useMemo(
@@ -167,7 +164,6 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
             </div>
           </div>
         </LabeledInput>
-        {/* aa */}
         <LabeledInput title="Токен провайдера">
           <Input
             placeholder={placeholder}
@@ -191,12 +187,3 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
 };
 
 export default TelegramPayment;
-
-/* {
-          // eslint-disable-next-line no-param-reassign
-          delete item.data.image;
-          return item;
-        } 
-        
-        const ii = 2;
-  const aa = getNodes()[ii].data.name + getNodes()[ii].data.image; */
