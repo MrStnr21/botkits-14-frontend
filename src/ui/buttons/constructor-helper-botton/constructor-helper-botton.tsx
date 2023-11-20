@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { ReactSVG } from 'react-svg';
 import DeleteIcon from '../../../images/icon/24x24/constructor/delete.svg';
 
@@ -29,11 +29,9 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
 }) => {
   const colorTypes = ['white', 'red', 'green', 'blue'];
 
-  const ref = useRef<null | HTMLDivElement>(null);
-
   /* Скрытие элемента при клике, переработать */
-  function documentListener(e: MouseEvent) {
-    if (hide && ref.current !== e.target) {
+  function documentListener() {
+    if (hide) {
       hide();
     }
   }
@@ -59,7 +57,6 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
       {isVisible && (
         <div
           onClick={menuListener}
-          ref={ref}
           className={`${stylesConstructorHelperButton.container}${
             color ? ` ${stylesConstructorHelperButton.container_color}` : ''
           }`}
