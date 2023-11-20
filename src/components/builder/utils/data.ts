@@ -124,11 +124,15 @@ export const currencyAvailable = [
 ];
 
 export const messagesSuccessful = [
-  { value: 'По умолчанию', nameValue: 'Введите название' },
-  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
-  { value: 'Короткое сообщение', nameValue: 'Ok!' },
-  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
-  { value: 'Общее сообщение', nameValue: 'Успешно' },
+  { value: 'message', nameValue: 'Блок сообщений' },
+  { value: 'api', nameValue: 'API' },
+  { value: 'conditional', nameValue: 'Условный блок' },
+  { value: 'coordinate', nameValue: 'Отправка координат' },
+  { value: 'telegramPay', nameValue: 'Оплата в Telegram' },
+  { value: 'deeplink', nameValue: 'Deep Link' },
+  { value: 'crm', nameValue: 'Сохранение в CRM' },
+  { value: 'operator', nameValue: 'Перевод на оператора' },
+  { value: 'variable', nameValue: 'Управление переменными' },
 ];
 
 export const defaultBlocks = {
@@ -202,4 +206,12 @@ export default {};
   { value: 'Короткое сообщение', nameValue: 'Ok!' },
   { value: 'Формальное сообщение', nameValue: 'Оплачено' },
   { value: 'Общее сообщение', nameValue: 'успешно' },
+]; 
+
+export const messagesSuccessful = [
+  { value: 'По умолчанию', nameValue: 'Введите название' },
+  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
+  { value: 'Короткое сообщение', nameValue: 'Ok!' },
+  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
+  { value: 'Общее сообщение', nameValue: 'Успешно' },
 ]; */
