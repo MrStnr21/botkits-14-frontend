@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
@@ -44,6 +45,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
       return (
         item.type === type && (
           <ValField
+            key={index}
             name={item.name || ''}
             value={item.variable || ''}
             field="headers"
@@ -59,6 +61,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
       return (
         item.type === type && (
           <ValField
+            key={index}
             name={item.name || ''}
             value={item.variable || ''}
             field="params"
