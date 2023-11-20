@@ -1,7 +1,8 @@
-@use '../../../stylesheets/variables';
+@use '../../../stylesheets/variables' as *;
 
 .main {
-  width: 728px;
+  // max-width: 728px;
+  min-width: 320px;
   background: white;
   box-sizing: border-box;
   padding: 40px;
@@ -9,6 +10,18 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (min-width: $max-content-width) {
+    width: 728px;
+  }
+
+  @media screen and (max-width: $max-content-width) {
+    width: 728px;
+  }
+
+  @media screen and (max-width: 740px) {
+    width: 100%;
+  }
 
   .links {
     display: flex;
@@ -30,7 +43,7 @@
         a {
           font-weight: bold;
           text-decoration: none;
-          color: variables.$primary-oxford-blue-default;
+          color: $primary-oxford-blue-default;
         }
 
         .iconWrap {
