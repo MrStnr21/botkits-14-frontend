@@ -7,6 +7,11 @@
   @include font('Open Sans', $xs-font-size, $normal);
   width: 261px;
   background-color: inherit;
+
+  @media screen and (max-width: 520px) {
+    width: 150px;
+    font-size: 7.41px;
+  }
 }
 
 .result__icon {
@@ -21,6 +26,11 @@
       opacity: .6;
     }
   }
+
+  @media screen and (max-width: 520px) {
+    @include size(24px, 24px);
+    margin-right: 4px;
+  }
 }
 
 .result__name {
@@ -29,11 +39,18 @@
   margin: 0 auto 0 0;
   width: 120px;
   text-align: left;
+  @media screen and (max-width: 520px) {
+    width: 75px;
+  }
 }
 
 .result__size {
   @include font('Open Sans', inherit, $normal, $grey-1);
   margin: 0 12px 0 0;
+
+  @media screen and (max-width: 520px) {
+    margin-right: 6px;
+  }
 }
 
 .result__button {
@@ -44,6 +61,12 @@
   mask-size: 24px 24px;
   mask-repeat: no-repeat;
   mask-position: center;
+  overflow: hidden;
+
+  @media screen and (max-width: 520px) {
+    mask-size: 12px 12px;
+    @include size(12px, 12px);
+  }
 }
 
 .result_error {

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import stylesVideo from './video-card.module.scss';
 import Typography from '../../ui/typography/typography';
@@ -9,9 +10,10 @@ interface IVideoElement {
   previewType?: 'image' | 'video';
   contentType?: 'image' | 'video';
   prewiew: string; // заставка
-  size?: 's' | 'm' | 'x'; // размер окна заставки и видео
+  size?: 's' | 'm' | 'x' | 'sx'; // размер окна заставки и видео
   hiddenRemoveButton?: boolean; // скрыть кнопку удаления компонента с видео
   hover?: boolean; // отобразить кнопку play
+  onRemove?: () => void;
 }
 
 const VideoCard: FC<IVideoElement> = ({
@@ -23,6 +25,7 @@ const VideoCard: FC<IVideoElement> = ({
   hover,
   previewType = 'image',
   contentType = 'video',
+  onRemove,
 }): JSX.Element | null => {
   const [isVisible, setIsVisible] = useState(true);
   const [isPlay, setIsPlay] = useState(false);
@@ -67,7 +70,7 @@ const VideoCard: FC<IVideoElement> = ({
           )}
           <button
             type="button"
-            onClick={remove}
+            onClick={onRemove || remove}
             className={stylesVideo.button__remove}
             aria-label="Удалить загруженное видео"
             hidden={hiddenRemoveButton}
@@ -97,21 +100,22 @@ const VideoCard: FC<IVideoElement> = ({
           </Typography>
         )}
       </div>
-      {isPlay && (
-        <div className={stylesVideo.video__box}>
-          {/* в макете нет попапа с видео, кнопка примерная */}
-          <button
-            type="button"
-            onClick={() => setIsPlay(false)}
-            className={stylesVideo.button__close}
-            aria-label="Закрыть видео"
-          />
-          {contentType === 'video' && (
-            <iframe
-              className={stylesVideo.video__iframe}
-              src={src}
-              title={title}
-              allow="
+      {isPlay &&
+        createPortal(
+          <div className={stylesVideo.video__box}>
+            {/* в макете нет попапа с видео, кнопка примерная */}
+            <button
+              type="button"
+              onClick={() => setIsPlay(false)}
+              className={stylesVideo.button__close}
+              aria-label="Закрыть видео"
+            />
+            {contentType === 'video' && (
+              <iframe
+                className={stylesVideo.video__iframe}
+                src={src}
+                title={title}
+                allow="
           accelerometer;
           autoplay;
           clipboard-write;
@@ -119,10 +123,11 @@ const VideoCard: FC<IVideoElement> = ({
           gyroscope;
           picture-in-picture;
           web-share"
-            />
-          )}
-        </div>
-      )}
+              />
+            )}
+          </div>,
+          document.body
+        )}
     </>
   );
 };

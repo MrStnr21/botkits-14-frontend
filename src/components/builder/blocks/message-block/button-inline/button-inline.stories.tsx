@@ -5,7 +5,11 @@ import InlineButton from './button-inline';
 const data = {
   type: 'button' as const,
   name: 'кнопка' as const,
+  direction: 'horizontal' as const,
+  color: 'white',
   str: 'Какой-то текст' as const,
+  mobY: 0,
+  deskY: 0,
 };
 
 const divStyles = {
@@ -30,7 +34,7 @@ export const Block: Story = {
     <ReactFlowProvider>
       <div style={divStyles}>
         <InlineButton data={data} />
-        <InlineButton data={{ name: 'инпут', type: 'answer' }} />
+        <InlineButton data={{ ...data, type: 'answer' }} />
       </div>
     </ReactFlowProvider>
   ),

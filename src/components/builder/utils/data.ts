@@ -11,6 +11,26 @@ import notInLineWithoutCaseImage from '../../../images/icon/24x24/variables/not 
 import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg';
 import { MessageDataTypes } from '../../../services/types/builder';
 
+export enum ButtonSizes {
+  startX = 32,
+  firstY = 244,
+  secondY = 452,
+  blockGap = 86,
+  addString = 16,
+  buttonHeight = 40,
+  gap = 12,
+}
+
+export enum ButtonSizesMobile {
+  startX = ButtonSizes.startX * 0.5,
+  firstY = 155,
+  secondY = 295,
+  blockGap = 55,
+  addString = 8,
+  buttonHeight = 27,
+  gap = 12,
+}
+
 export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
 export const saveOptions = ['Новая запись', 'Дополнить запись'];
 
@@ -113,24 +133,20 @@ export const messagesSuccessful = [
 
 export const defaultBlocks = {
   message: {
-    name: 'Message',
+    name: 'message',
     data: [
-      {
-        type: MessageDataTypes.message,
-        value: '',
-      },
-      {
-        type: MessageDataTypes.answers,
-        horizontalAmount: 0,
-        verticalAmount: 0,
-      },
-      {
-        type: MessageDataTypes.buttons,
-        horizontalAmount: 0,
-        verticalAmount: 0,
-      },
+      { type: MessageDataTypes.message, value: '' },
+      { type: MessageDataTypes.buttons, verButtons: [], horButtons: [] },
+      { type: MessageDataTypes.answers, verButtons: [], horButtons: [] },
     ],
-    saveAnswer: '',
+    showTime: {
+      show: true,
+      value: 0,
+    },
+    saveAnswer: {
+      show: true,
+      value: '',
+    },
   },
   api: {
     name: 'api',
@@ -160,7 +176,7 @@ export const defaultBlocks = {
   deeplink: {
     name: 'Deeplink',
     param: '',
-    type: 'random',
+    type: 'Случайное',
     signsAmount: 8,
     additionValue: '',
     additionLink: '',
