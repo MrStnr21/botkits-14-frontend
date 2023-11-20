@@ -48,7 +48,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   };
 
   const image = useMemo(() => !!data.image, [data.image]);
-  const [isImage, setisImage] = useState(true);
+  // const [isImage, setisImage] = useState(true);
 
   const setCurrency = (name: string) =>
     setFlowDataButton({
@@ -96,7 +96,8 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         return item;
       })
     );
-    setisImage(true);
+    // setisImage(true);
+    e.target.value = '';
   };
 
   const removeFile = () => {
@@ -114,12 +115,12 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         return item;
       })
     );
-    setisImage(false);
+    // setisImage(false);
   };
 
   const content = useMemo(
     () => data.image && <File data={data.image} removeFile={removeFile} />,
-    [data, isImage]
+    [data]
   );
 
   return (
