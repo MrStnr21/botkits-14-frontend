@@ -1,0 +1,81 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
+.result {
+  @include flex(row, space-between, center);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include font('Open Sans', $xs-font-size, $normal);
+  width: 261px;
+  background-color: inherit;
+
+  @media screen and (max-width: 520px) {
+    width: 150px;
+    font-size: 7.41px;
+  }
+}
+
+.result__icon {
+  @include size(47px, 47px);
+  margin-right: 8px;
+  flex-shrink: 0;
+
+  &_interactive {
+    cursor: pointer;
+    transition: opacity .5s;
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+    @include size(24px, 24px);
+    margin-right: 4px;
+  }
+}
+
+.result__name {
+  @include font('Open Sans', inherit, $bold, $primary-oxford-blue-default);
+  @include ellipsis();
+  margin: 0 auto 0 0;
+  width: 120px;
+  text-align: left;
+  @media screen and (max-width: 520px) {
+    width: 75px;
+  }
+}
+
+.result__size {
+  @include font('Open Sans', inherit, $normal, $grey-1);
+  margin: 0 12px 0 0;
+
+  @media screen and (max-width: 520px) {
+    margin-right: 6px;
+  }
+}
+
+.result__button {
+  @include size(24px, 24px);
+  cursor: $cursor;
+  color: $grey-1;
+  mask-image: url('../../../../../images/icon/24x24/common/close.svg');
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  overflow: hidden;
+
+  @media screen and (max-width: 520px) {
+    mask-size: 12px 12px;
+    @include size(12px, 12px);
+  }
+}
+
+.result_error {
+  .result__name,
+  .result__size {
+    color: $error-default;
+  }
+  .result__icon {
+    fill: $error-default;
+    stroke: $error-default;
+  }
+}
