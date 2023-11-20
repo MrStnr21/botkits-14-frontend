@@ -367,6 +367,7 @@ $additional-grey-pressed: #c3d1d8;
   .sidebar {
     max-height: calc(100vh - 16px*2 - 62px);
     overflow-y: scroll;
+    background-color: $off-white;
 
     @media (max-width: $switching-width) {
       max-height: unset;

@@ -42,9 +42,12 @@
 .name {
   @include font('IBM Plex Mono', $m-font-size, $semi-bold, $primary-oxford-blue-default);
   @include line-sizes($m-line-height, 0px);
+  @include ellipsis;
+  padding-right: 20px;
   outline: 0;
   border: 0;
   @media screen and (max-width: 520px) {
+    padding-right: 10px;
     font-size: 9.12px;
     line-height: $m-line-height;
   }
