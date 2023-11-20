@@ -6,6 +6,7 @@
   display: grid;
   grid-template-columns: auto minmax(0, min-content);
   height: 100vh;
+  background-color: $secondary-cultured-default;
 
   @media screen and (max-width: $switching-width) {
     height: calc(100vh - 72px);  // 72 - высота header
