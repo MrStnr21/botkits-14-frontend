@@ -2,14 +2,21 @@
 @use '../../stylesheets/mixins' as *;
 
 .textarea {
-  @include size(264px, 102px);
+  @include size(100%, 102px);
   @include flex(column, space-between);
   position: relative;
+  max-width: 296px;
   background-color: $secondary-cultured-default;
   border-radius: 12px;
   box-sizing: border-box;
   padding: 12px 12px 8px;
   z-index: 1;
+
+  @media screen and (max-width: 520px) {
+    height: 57px;
+    border-radius: 5.7px;
+    padding: 9px 7px 6px;
+  }
 }
 
 .textarea__input {
@@ -23,6 +30,10 @@
   resize: none;
   border: none;
   text-align: left;
+
+  @media screen and (max-width: 520px) {
+    font-size: 7.41px;
+  }
 }
 
 .textarea__input::placeholder {
@@ -42,26 +53,49 @@
 }
 
 .textarea__footer {
-  @include flex($align-items: center);
+  @include flex($justify-content: space-between, $align-items: center);
   @include font('IBM Plex Mono', $xxs-font-size, $normal, $grey-3);
-  @include line-sizes($xl-line-height, $m-letter-space);
+  @include line-sizes($m-line-height, $m-letter-space);
   z-index: 1;
   text-align: left;
   column-gap: 12px;
+
+  @media screen and (max-width: 520px) {
+    font-size: 7px;
+    letter-spacing: 0.4px;
+  }
 }
 
 .textarea__counter {
   margin: 0 auto 0 0;
 }
 
-.textarea__icon {
-  cursor: $cursor;
+.textarea__font {
+  @include indents;
+  @include size(24px, 24px);
+  background: none;
+  border: 0;
+  line-height: 0;
+
+  .icon{
+    @include size(100%, 100%);
+  }
+
+  &:hover {
+    cursor: $cursor;
+  }
+
+  @media screen and (max-width: 520px) {
+    @include size(9.12px, 9.12px);
+    top: 20px;
+    right: 5px;
+  }
 }
 
 .textarea__emojiPicker {
-  @include position(absolute, 20px, -38px);
+  @include position(absolute, calc(100% + 20px), 0);
+  width: 100%;
+  box-shadow: $l-box-shadow;;
   position: absolute;
   z-index: 10;
-  top: 20px;
-  right: -38px;
 }

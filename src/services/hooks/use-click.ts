@@ -1,6 +1,6 @@
 import React from 'react';
 
-function useClick(func: () => void, id: string) {
+function useClick(func: () => void, id: string | null) {
   const closeOnClick = (e: MouseEvent) => {
     if (e) {
       func();
@@ -8,18 +8,22 @@ function useClick(func: () => void, id: string) {
   };
 
   React.useEffect(() => {
-    window.addEventListener('click', (e) => {
+    const handleClick = (e: MouseEvent) => {
       const target = e.target as Element;
       const parent = target.parentNode as Element;
-      if (parent!.id !== id) {
+      const clickedId = parent?.id || target.id;
+
+      if (id && clickedId !== id) {
         closeOnClick(e);
       }
-    });
+    };
+
+    window.addEventListener('click', handleClick);
 
     return () => {
-      window.removeEventListener('click', (e) => closeOnClick(e));
+      window.removeEventListener('click', handleClick);
     };
-  }, [closeOnClick]);
+  }, [closeOnClick, id]);
 }
 
 export default useClick;

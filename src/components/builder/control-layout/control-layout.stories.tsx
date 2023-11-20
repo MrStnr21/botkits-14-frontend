@@ -51,7 +51,7 @@ export const LayoutFilled: Story = {
   render: () => {
     return (
       <ReactFlowProvider>
-        <ControlLayout name="name" type="type" nameSetter={() => {}}>
+        <ControlLayout type="type">
           <div style={styleContainer}>
             <div style={stylesInner} />
             <div style={stylesInner} />

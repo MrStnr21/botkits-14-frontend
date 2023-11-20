@@ -61,12 +61,56 @@ const Subscription: FC = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <div className={style.container__header}>
-        <Typography tag="h2" fontFamily="secondary">
-          Подписка и платежи
-        </Typography>
-        {subscriptionStatus.status && (
-          <div className={style.container__button}>
+      <div className={style.container__item}>
+        <Typography tag="h2">Подписка и платежи</Typography>
+        <div className={style.subscription}>
+          <div className={style.subscription__header}>
+            <Typography tag="h3" className={style.subscription__rate}>
+              {subscriptionStatus.tariff}
+            </Typography>
+            <Typography
+              tag="h4"
+              className={cn(
+                style.subscription__status,
+                style.text,
+                subscriptionStatus.status
+                  ? style.text_succsess
+                  : style.text_failure
+              )}
+            >
+              {subscriptionStatus.status ? 'активен' : 'неактивен'}
+            </Typography>
+            <Typography tag="span" className={style.subscription__info}>
+              Инфо
+            </Typography>
+            <div className={style.subscription__button}>
+              <Button
+                variant="default"
+                color="green"
+                onClick={() => handleActivateSubscription('subscription')}
+              >
+                Активировать подписку
+              </Button>
+            </div>
+          </div>
+          <div className={style.subscription__body}>
+            <div className={style.subscription__balance}>
+              <Typography tag="p">Баланс</Typography>
+              <Typography tag="h3">{`${subscriptionStatus.balance}₽`}</Typography>
+            </div>
+            <Button
+              variant="default"
+              color="grey"
+              onClick={() => handleActivatePromoCode('activatePromoCode')}
+            >
+              Активировать промокод
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className={style.container__item}>
+        <div className={style.container__button}>
+          {subscriptionStatus.status && (
             <Button
               variant="default"
               size="small"
@@ -75,58 +119,9 @@ const Subscription: FC = (): JSX.Element => {
             >
               Сменить тариф
             </Button>
-          </div>
-        )}
-      </div>
-      <div className={style.container__body}>
-        <div className={cn(style.subscription, style.container__subscription)}>
-          <div className={style.subscription}>
-            <div className={style.subscription__header}>
-              <Typography
-                tag="h3"
-                fontFamily="secondary"
-                className={style.subscription__rate}
-              >
-                Тариф
-              </Typography>
-              <Typography
-                tag="h4"
-                fontFamily="secondary"
-                className={style.subscription__status}
-              >
-                Статус
-              </Typography>
-              <Typography tag="p" className={style.subscription__info}>
-                Инфо
-              </Typography>
-              <div className={style.subscription__button}>
-                <Button
-                  variant="default"
-                  color="green"
-                  onClick={() => handleActivateSubscription('subscription')}
-                >
-                  Активировать подписку
-                </Button>
-              </div>
-            </div>
-            <div className={style.subscription__body}>
-              <div className={style.subscription__balance}>
-                <Typography tag="p">Баланс</Typography>
-                <Typography
-                  tag="h3"
-                  fontFamily="secondary"
-                >{`${0}₽`}</Typography>
-              </div>
-              <Button
-                variant="default"
-                color="grey"
-                onClick={() => handleActivatePromoCode('activatePromoCode')}
-              >
-                Активировать промокод
-              </Button>
-            </div>
-          </div>
+          )}
         </div>
+
         <div className={style.payment}>
           <div className={style.payment__header}>
             <Typography tag="h4" fontFamily="secondary">
@@ -157,6 +152,7 @@ const Subscription: FC = (): JSX.Element => {
           />
         </div>
       </div>
+
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
           <div className={style.modal}>

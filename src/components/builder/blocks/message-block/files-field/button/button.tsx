@@ -7,6 +7,7 @@ type TButtonProps = {
   isActive?: boolean;
   icon: string;
   accept: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const Button: FC<TButtonProps> = ({
@@ -14,12 +15,21 @@ const Button: FC<TButtonProps> = ({
   icon,
   accept,
   isActive,
+  onChange,
 }): JSX.Element => {
   const ref = useRef<null | HTMLInputElement>(null);
 
   const onClick = () => {
     if (ref.current) {
       ref.current.click();
+    }
+  };
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e);
+    }
+    if (ref.current) {
+      ref.current!.value = '';
     }
   };
   return (
@@ -30,7 +40,9 @@ const Button: FC<TButtonProps> = ({
         id={type}
         name={type}
         accept={accept}
+        onChange={changeHandler}
         hidden
+        disabled={isActive}
       />
       <label htmlFor={type}>
         <ConstructorIconBotton
