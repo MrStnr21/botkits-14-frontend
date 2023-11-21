@@ -16,7 +16,7 @@ const MailingFilled: FC = () => {
           fontFamily="secondary"
           className={styles.table__title}
         >
-          Рассылки
+          Мои рассылки
         </Typography>
         <button type="button" className={styles.table__button}>
           Все <ChevronIcon color="#8392AB" width={26} height={26} />

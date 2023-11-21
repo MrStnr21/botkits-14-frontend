@@ -4,7 +4,7 @@
 .mailing {
   @include flex(column, unset, center);
   @include max-size(1268px, unset);
-  height: calc(100vh - 155px);
+  // height: calc(100vh - 155px);
   @include indents(0, 40px 40px 0 0);
 
   &__header {
@@ -26,5 +26,10 @@
     @include size(100%, unset);
     background-color: $secondary-cultured-hover;
     border-radius: $xxl-border-radius;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
   }
 }

@@ -1,0 +1,25 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.customCheckbox {
+  @include indents(8px, 0);
+  @include flex(row, flex-start, center);
+  // @include size(556px, 40px);
+  box-sizing: border-box;
+  background-color: $secondary-cultured-default;
+  border-radius: $s-border-radius;
+  cursor: pointer;
+
+  &__text {
+    color: $grey-2;
+  }
+
+  &__checkedText {
+    color: $primary-oxford-blue-default;
+  }
+}
+
+.customCheckbox input {
+  opacity: 0;
+  position: absolute;
+}

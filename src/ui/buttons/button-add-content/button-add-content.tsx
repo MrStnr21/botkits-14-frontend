@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Mailing/Add content
 // @TODO перенести в нужную папку, доделать стили, ДЛЯ ДОБАВЛЕНИЯ КОНТЕНТА В РАССЫЛКУ.. крупные кнопки с надписью
 import { FC, useState } from 'react';
@@ -36,9 +37,9 @@ const ButtonAddContent: FC = (): JSX.Element => {
       className={stylesButtonAddContent.wrapper}
     >
       {/* @TODO  add style for h2 */}
-      <Typography tag="h2" className={stylesButtonAddContent.header}>
+      {/* <Typography tag="h2" className={stylesButtonAddContent.header}>
         Добавить
-      </Typography>
+      </Typography> */}
       <div className={stylesButtonAddContent.butbox}>
         <ConstructorIconBotton
           text={BUTTON_NAME.IMAGE}

@@ -1,0 +1,88 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+@mixin buttonStyles {
+  @include button-style-reset();
+  @include size(188px, 65px);
+  @include indents(20px 50px, 0);
+  border-radius: $l-border-radius;
+}
+
+.create {
+  @include flex(row, unset, unset, 40px);
+  @include size(100%, unset);
+
+  &__wrapper {
+    @include size(924px, unset);
+    background-color: $secondary-cultured-hover;
+    border-radius: $xxl-border-radius;
+  }
+
+  &__form {
+    @include indents(40px 40px 0 40px, 0);
+    border-radius: $xxl-border-radius;
+    background-color: $off-white;
+    box-shadow: 0px 6px 16px 0px #15123321;
+    box-sizing: border-box;
+  }
+
+  &__formFieldset {
+    @include flex(row, space-between, flex-start, 24px);
+    @include size(100%, unset);
+    @include indents(0 0 32px 0, 0);
+    border: none;
+  }
+
+  &__legend {
+    @include indents();
+    @include font('IBM Plex Mono', $m-font-size, $semi-bold, $primary-oxford-blue-default);
+    line-height: $m-line-height;
+    margin-bottom: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  &__buttons {
+    @include size(100%, unset);
+    @include indents(40px, 0);
+    @include flex(row, flex-end, center, 0);
+    box-sizing: border-box
+  }
+
+  &__commonButton {
+    @include buttonStyles();
+  }
+
+  &__greenButton {
+    @include buttonStyles();
+    background-color: $primary-medium-spring-green-disabled;
+  }
+
+  &__buttonText {
+    @include font('IBM Plex Mono', $l-font-size, $bold, $grey-4);
+    line-height: $m-line-height;
+    letter-spacing: $xxl-letter-space;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__inputWrapper {
+    @include indents();
+    @include size(100%, 65px);
+    box-sizing: border-box;
+  }
+
+  &__checkboxes {
+    @include flex(column, center, flex-start, 8px);
+  }
+
+  &__checkbox {
+    @include flex(row, space-between);
+    @include indents(8px, 0);
+    @include size(556px, 40px);
+    box-sizing: border-box;
+    background-color: $secondary-cultured-default;
+    border-radius: $s-border-radius;
+    cursor: pointer;
+  }
+}
