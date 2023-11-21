@@ -25,6 +25,8 @@ import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
 import BotName from '../../../ui/bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
+import { useAppDispatch } from '../../../services/hooks/hooks';
+import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
 
 const cx = cn.bind(styles);
 
@@ -78,6 +80,8 @@ const LayoutFlow: FC = () => {
     }
   }, [isMobile]);
 
+  const dispatch = useAppDispatch();
+
   return (
     <div className={cx('flow')}>
       <ReactFlow
@@ -109,7 +113,12 @@ const LayoutFlow: FC = () => {
             <ButtonStart data={{ type: 'stop' }} />
           </div>
           <div className={cx('wrapper')}>
-            <ButtonStart data={{ type: 'test' }} />
+            <ButtonStart
+              data={{
+                type: 'test',
+                onClick: () => dispatch({ type: OPEN_MES_POPUP }),
+              }}
+            />
           </div>
         </div>
         <NavigationPanel />
