@@ -24,6 +24,7 @@ import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
 import BotName from '../../../ui/bot-name/bot-name';
+import ModalPopup from '../../popups/modal-popup/modal-popup';
 
 const cx = cn.bind(styles);
 
@@ -113,7 +114,7 @@ const LayoutFlow: FC = () => {
         </div>
         <NavigationPanel />
         <div className={cx('addBlock')}>
-          {menuOpened && (
+          {!isMobile && menuOpened && (
             <div className={cx('addBlock__menu')}>
               <AddBlockPanel />
             </div>
@@ -125,6 +126,13 @@ const LayoutFlow: FC = () => {
             onClick={() => toggleMenu(true)}
           />
         </div>
+        {isMobile && menuOpened && (
+          <ModalPopup closeIcon={false} onClick={() => toggleMenu(false)}>
+            <div className={cx('addBlock__menu')}>
+              <AddBlockPanel />
+            </div>
+          </ModalPopup>
+        )}
       </ReactFlow>
       <TriggerBlock
         isOpened={triggerOpened}
