@@ -9,7 +9,6 @@ import { CLOSE_MES_POPUP } from '../../../services/actions/popups/messengers-pop
 const MessengersPopup: FC = () => {
   const state = useAppSelector((s) => s.toggleMessengersPopup.opened);
 
-  // const [open, setOpen] = useState(state);
   const [onCursor, setOnCursor] = useState('');
 
   const getBlockLink = (name: string, link: string) => {
