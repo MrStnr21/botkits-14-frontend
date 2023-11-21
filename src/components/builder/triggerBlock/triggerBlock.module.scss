@@ -4,6 +4,10 @@
 @mixin content {
   margin: 0 28px;
   min-width: 296px;
+
+  @media screen and (max-width: $switching-width) {
+    margin: 0 auto;
+  }
 }
 
 .wrap {
@@ -33,10 +37,20 @@
     @include flex(column, false, false, 8px);
     @include content;
   }
+
+  @media screen and (max-width: $switching-width) {
+    @include position(fixed, 0, 0);
+    height: 100vh;
+    transition: none;
+  }
 }
 
 .opened {
   width: 364px;
+
+  @media screen and (max-width: $switching-width) {
+    width: 100vw;
+  }
 }
 
 .closed {

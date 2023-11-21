@@ -6,7 +6,7 @@ import { ReactComponent as UpdateIcon } from '../../images/icon/20x20/update.svg
 import Typography from '../typography/typography';
 
 export interface IBotName {
-  platform_icon: string;
+  platform_icon?: string;
   isUpdating: boolean;
 }
 

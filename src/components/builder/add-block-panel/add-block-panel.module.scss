@@ -5,10 +5,10 @@
   display: grid;
   box-sizing: border-box;
   max-width: 612px;
+  width: 100%;
   min-width: 320px;
   padding: 12px;
   border-radius: $l-border-radius;
-  box-shadow: $s-box-shadow;
   background-color: $off-white;
   z-index: 999;
   grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));

@@ -23,12 +23,13 @@ import TriggerBlock from '../triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
+import BotName from '../../../ui/bot-name/bot-name';
 
 const cx = cn.bind(styles);
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isMobile = useMediaQuery('(max-width: 520px)');
+  const isMobile = useMediaQuery('(max-width: 620px)');
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [triggerOpened, toggleTrigger] = useState(false);
@@ -96,6 +97,12 @@ const LayoutFlow: FC = () => {
         defaultEdgeOptions={edgeOptions}
       >
         <Background />
+        <div className={styles['bot-name']}>
+          <BotName isUpdating={false} />
+        </div>
+        <div className={styles['trigger-button']}>
+          <TriggerButton onClick={() => toggleTrigger(true)} />
+        </div>
         <div className={cx('upWrapper')}>
           <div className={cx('wrapper')}>
             <ButtonStart data={{ type: 'stop' }} />
@@ -103,11 +110,14 @@ const LayoutFlow: FC = () => {
           <div className={cx('wrapper')}>
             <ButtonStart data={{ type: 'test' }} />
           </div>
-          <TriggerButton onClick={() => toggleTrigger(true)} />
         </div>
         <NavigationPanel />
         <div className={cx('addBlock')}>
-          {menuOpened && <AddBlockPanel />}
+          {menuOpened && (
+            <div className={cx('addBlock__menu')}>
+              <AddBlockPanel />
+            </div>
+          )}
           <Button
             size="large"
             variant="circle"
