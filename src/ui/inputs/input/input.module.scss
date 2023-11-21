@@ -65,7 +65,7 @@
 }
 
 @mixin input-builder($padding, $bg-color, $font-weight, $ph-color, $hph-color){
-  @include input-main(100%, 240px, $padding, $bg-color, 0, 5px);
+  @include input-main(100%, unset, $padding, $bg-color, 0, 5px);
   @include set-font($primary-oxford-blue-default, $font-weight, $xs-font-size, $xl-line-height, $m-letter-space);
   @include input-pseudo($ph-color, $hph-color, $secondary-cultured-press, $secondary-cultured-focus, 1);
 
@@ -81,6 +81,7 @@
 .wrapper {
   max-width: 580px;
   position: relative;
+  width: 100%;
 }
 
 .inputMain {
