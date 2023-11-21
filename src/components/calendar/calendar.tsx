@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 
 import {
   LocalizationProvider,
@@ -25,7 +25,9 @@ interface ICalendar {
   handleFunction: (payload: string) => void;
 }
 
-const Calendar: FC<ICalendar> = ({ handleFunction }): JSX.Element => {
+type Ref = HTMLDivElement;
+
+const Calendar = forwardRef<Ref, ICalendar>(({ handleFunction }, ref) => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [timeZone, setTimeZone] = useState<string>('');
   const [reset, setReset] = useState<boolean>(false);
@@ -73,56 +75,58 @@ const Calendar: FC<ICalendar> = ({ handleFunction }): JSX.Element => {
   });
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
-      <ThemeProvider theme={calendarTheme}>
-        <div className={stylesCalendar.container}>
-          <DateField
-            value={date}
-            fullWidth
-            timezone="UTC"
-            onChange={handleChangeDate}
-            className={stylesCalendar.dataFiled}
-          />
-          <StaticDatePicker
-            onChange={handleChangeDate}
-            value={date}
-            className={stylesCalendar.staticDatePicker}
-            slotProps={{
-              actionBar: {
-                actions: [],
-              },
-              toolbar: { hidden: true },
-              day: {
-                showDaysOutsideCurrentMonth: true,
-              },
-            }}
-            defaultValue={date}
-          />
-          <div className={stylesCalendar.containerTimeZone}>
-            <Typography tag="span" className={stylesCalendar.timeZoneLabel}>
-              Часовой пояс
-            </Typography>
-            <InputSelect
-              maxWidth={144}
-              values={TIME_ZONE}
-              defaultValue={[localTimeZone]}
-              handleFunction={getInputTimeZone}
-              resetSelect={reset}
+    <div ref={ref}>
+      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
+        <ThemeProvider theme={calendarTheme}>
+          <div className={stylesCalendar.container}>
+            <DateField
+              value={date}
+              fullWidth
+              timezone="UTC"
+              onChange={handleChangeDate}
+              className={stylesCalendar.dataFiled}
             />
+            <StaticDatePicker
+              onChange={handleChangeDate}
+              value={date}
+              className={stylesCalendar.staticDatePicker}
+              slotProps={{
+                actionBar: {
+                  actions: [],
+                },
+                toolbar: { hidden: true },
+                day: {
+                  showDaysOutsideCurrentMonth: true,
+                },
+              }}
+              defaultValue={date}
+            />
+            <div className={stylesCalendar.containerTimeZone}>
+              <Typography tag="span" className={stylesCalendar.timeZoneLabel}>
+                Часовой пояс
+              </Typography>
+              <InputSelect
+                maxWidth={144}
+                values={TIME_ZONE}
+                defaultValue={[localTimeZone]}
+                handleFunction={getInputTimeZone}
+                resetSelect={reset}
+              />
+            </div>
+            <div className={stylesCalendar.containerButton}>
+              <button
+                type="button"
+                className={stylesCalendar.button}
+                onClick={handleClear}
+              >
+                Очистить
+              </button>
+            </div>
           </div>
-          <div className={stylesCalendar.containerButton}>
-            <button
-              type="button"
-              className={stylesCalendar.button}
-              onClick={handleClear}
-            >
-              Очистить
-            </button>
-          </div>
-        </div>
-      </ThemeProvider>
-    </LocalizationProvider>
+        </ThemeProvider>
+      </LocalizationProvider>
+    </div>
   );
-};
+});
 
 export default Calendar;

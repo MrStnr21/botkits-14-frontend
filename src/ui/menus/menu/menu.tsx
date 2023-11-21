@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { forwardRef } from 'react';
 import cn from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,36 +23,43 @@ export interface IMenu {
   selectedValues?: string[];
 }
 
-const Menu: FC<IMenu> = ({
-  options,
-  onItemClick,
-  layoutClassName = '',
-  itemClassName = '',
-  isScroll = false,
-  isMultiple = false,
-  selectedValues = [],
-}) => {
-  let containerCN = cn(styles.box, layoutClassName);
+export type Ref = HTMLDivElement;
 
-  if (isScroll) {
-    containerCN += ` ${styles.scroll}`;
+const Menu = forwardRef<Ref, IMenu>(
+  (
+    {
+      options,
+      onItemClick,
+      layoutClassName = '',
+      itemClassName = '',
+      isScroll = false,
+      isMultiple = false,
+      selectedValues = [],
+    },
+    ref
+  ) => {
+    let containerCN = cn(styles.box, layoutClassName);
+
+    if (isScroll) {
+      containerCN += ` ${styles.scroll}`;
+    }
+
+    return (
+      <div className={containerCN} ref={ref}>
+        {options.map((option) => {
+          return (
+            <MenuItem
+              key={uuidv4()}
+              option={{ ...option }}
+              onClick={() => onItemClick(option.value)}
+              isChecked={isMultiple && selectedValues.includes(option.value)}
+              extraClass={itemClassName}
+            />
+          );
+        })}
+      </div>
+    );
   }
-
-  return (
-    <div className={containerCN}>
-      {options.map((option) => {
-        return (
-          <MenuItem
-            key={uuidv4()}
-            option={{ ...option }}
-            onClick={() => onItemClick(option.value)}
-            isChecked={isMultiple && selectedValues.includes(option.value)}
-            extraClass={itemClassName}
-          />
-        );
-      })}
-    </div>
-  );
-};
+);
 
 export default Menu;

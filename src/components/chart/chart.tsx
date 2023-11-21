@@ -1,5 +1,5 @@
 import { Divider } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import Typography from '../../ui/typography/typography';
 import styles from './chart.module.scss';
@@ -8,6 +8,7 @@ import calendarIcon from '../../images/icon/16x16/common/calendar.svg';
 import DropSelectorButton from '../../ui/buttons/drop-selector-button/drop-selector-button';
 import Calendar from '../calendar/calendar';
 import DateSelect from '../date-selector/date-selector';
+import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 
 const StatsChart: FC<ChartProps> = ({
   type, // подпись над заголовком
@@ -24,9 +25,14 @@ const StatsChart: FC<ChartProps> = ({
 }) => {
   const [showCalendar, setShowCalendar] = useState(false);
 
+  const calendarRef = useRef<HTMLDivElement>(null);
+
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
   };
+  useOutsideClickAndEscape(calendarRef, () => {
+    setShowCalendar(false);
+  });
 
   const onCalendar = () => {
     console.log('calendar handler');
@@ -53,7 +59,7 @@ const StatsChart: FC<ChartProps> = ({
           <DropSelectorButton icon={calendarIcon} onClick={toggleCalendar} />
           {showCalendar && (
             <div className={styles.calendar}>
-              <Calendar handleFunction={onCalendar} />
+              <Calendar handleFunction={onCalendar} ref={calendarRef} />
             </div>
           )}
         </div>

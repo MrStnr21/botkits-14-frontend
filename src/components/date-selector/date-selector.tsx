@@ -1,8 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 import styles from './date-selector.module.scss';
 import chevronIcon from '../../images/icon/16x16/common/chevron.svg';
 import Menu from '../../ui/menus/menu/menu';
+import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 
 interface IDateSelect {
   defaultValue: string;
@@ -21,9 +22,15 @@ const DateSelect: FC<IDateSelect> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(defaultValue);
 
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  useOutsideClickAndEscape(menuRef, () => {
+    setIsOpen(false);
+  });
 
   const handleOptionClick = (value: string) => {
     setSelectedValue(value);
@@ -67,6 +74,7 @@ const DateSelect: FC<IDateSelect> = ({
       </button>
       {isOpen && (
         <Menu
+          ref={menuRef}
           options={options}
           onItemClick={handleOptionClick}
           layoutClassName={styles.dropdown}

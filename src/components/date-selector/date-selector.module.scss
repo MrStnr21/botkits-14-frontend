@@ -9,6 +9,7 @@
   @include button-style-reset;
   @include flex(row, center, center, 12px);
   box-sizing: border-box;
+  outline: none;
   min-width: 170px;
   text-align: center;
   padding: 10px;
