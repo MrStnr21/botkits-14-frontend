@@ -12,6 +12,10 @@ import CheckIcon from '../../../components/icons/Check/CheckIcon';
 import AsideMailing from '../../../components/mailing/aside/aside';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
 import BotFace from '../../../components/icons/Bot/BotIcon';
+import MailingModal from '../../../components/popups/mailing-popup/mailing-popup';
+
+const mailingList = ['Все пользователи', 'Список 1', 'Список 2', 'Список 3'];
+const messengerList = ['Telegram, VK', 'Одноклассники', 'WhatsApp', 'Facebook'];
 
 const CreateMailing: FC = () => {
   const [nameValue, setNameValue] = useState('');
@@ -65,7 +69,7 @@ const CreateMailing: FC = () => {
         <form className={styles.create__form}>
           <fieldset className={styles.create__formFieldset}>
             <legend className={styles.create__legend}>
-              Шаг 1 {'>'} Создание рассылки
+              Шаг 1 {'>'} Создание рассылки {/* сделать breadcrumbs */}
             </legend>
             <div className={styles.create__inputWrapper}>
               <Input
@@ -74,12 +78,12 @@ const CreateMailing: FC = () => {
                 value={nameValue}
               />
             </div>
-            <DropDownList caption="Список рассылки" />
+            <MailingModal caption="Список рассылок" elements={mailingList} />
           </fieldset>
           <fieldset className={styles.create__formFieldset}>
             <legend className={styles.create__legend}>Текст сообщения</legend>
             <TextField onChangeText={handleTextChange} textValue={textValue} />
-            <DropDownList caption="Telegram, VK" />
+            <MailingModal caption="Telegram, VK" elements={messengerList} />
           </fieldset>
           <fieldset className={styles.create__formFieldset}>
             <legend className={styles.create__legend}>Добавить</legend>

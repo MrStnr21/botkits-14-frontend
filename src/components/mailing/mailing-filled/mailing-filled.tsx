@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import styles from './mailing-filled.module.scss';
 import TableComponent from '../../table-component/table-component';
 import { cols, rows, rowStyle, cellStyle } from '../../../utils/mailingTable';
 import { ppHeadCell } from '../../table-cells/table-cells';
 import Typography from '../../../ui/typography/typography';
+import MailingModal from '../../popups/mailing-popup/mailing-popup';
 import ChevronIcon from '../../icons/Chevron/ChevronIcon';
 
+const mailings = ['Все', 'Запущены', 'Отклонены'];
+
 const MailingFilled: FC = () => {
-  // доделать выпадающий список и функцию для его октрытия
   return (
     <div className={styles.table}>
       <div className={styles.table__titleContainer}>
@@ -18,6 +21,7 @@ const MailingFilled: FC = () => {
         >
           Мои рассылки
         </Typography>
+        {/* <MailingModal caption="Все" elements={mailings} /> */}
         <button type="button" className={styles.table__button}>
           Все <ChevronIcon color="#8392AB" width={26} height={26} />
         </button>

@@ -10,7 +10,7 @@ import MailingFilled from '../../components/mailing/mailing-filled/mailing-fille
 import CreateMailing from './create-mailing/create-mailing';
 
 const Mailing: FC = (): JSX.Element => {
-  const [is, setIs] = useState(false); // временно
+  const [is, setIs] = useState(true); // временно
   const matchMailing = useMatch('/mailing');
 
   return (
