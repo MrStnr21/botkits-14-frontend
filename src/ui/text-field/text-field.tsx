@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 
 import EmojiPicker from 'emoji-picker-react';
@@ -10,9 +11,15 @@ import MenuTextEditor from '../menus/menu-text-editor/menu-text-editor';
 
 interface ITextField {
   maxTextLength?: number;
+  textValue?: string;
+  onChangeText?: (textValue: string) => void;
 }
 
-const TextField: FC<ITextField> = ({ maxTextLength = 4096 }) => {
+const TextField: FC<ITextField> = ({
+  maxTextLength = 4096,
+  textValue,
+  onChangeText,
+}) => {
   const [emojis, toggleEmojis] = useState(false);
   const [textMenu, toggleTextMenu] = useState(false);
 
@@ -34,7 +41,12 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096 }) => {
         placeholder="Введите текст"
         maxLength={maxTextLength}
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          setText(e.target.value);
+          if (onChangeText) {
+            onChangeText(e.target.value);
+          }
+        }}
         draggable={false}
         className={styles.textarea__input}
       />

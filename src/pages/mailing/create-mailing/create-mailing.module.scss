@@ -8,7 +8,15 @@
   border-radius: $l-border-radius;
 }
 
+@mixin defaultFontStyles {
+  line-height: $m-line-height;
+  letter-spacing: $xxl-letter-space;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .create {
+  @include position(relative);
   @include flex(row, unset, unset, 40px);
   @include size(100%, unset);
 
@@ -19,7 +27,7 @@
   }
 
   &__form {
-    @include indents(40px 40px 0 40px, 0);
+    @include indents(32px 32px 0 32px, 0);
     border-radius: $xxl-border-radius;
     background-color: $off-white;
     box-shadow: 0px 6px 16px 0px #15123321;
@@ -44,7 +52,7 @@
 
   &__buttons {
     @include size(100%, unset);
-    @include indents(40px, 0);
+    @include indents(32px, 0);
     @include flex(row, flex-end, center, 0);
     box-sizing: border-box
   }
@@ -58,13 +66,21 @@
     background-color: $primary-medium-spring-green-disabled;
   }
 
+  &__greenActiveButton {
+    @include buttonStyles();
+    background-color: $primary-medium-spring-green-default;
+  }
+
+  &__blackText {
+    @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
+    @include defaultFontStyles();
+  }
+
   &__buttonText {
     @include font('IBM Plex Mono', $l-font-size, $bold, $grey-4);
-    line-height: $m-line-height;
-    letter-spacing: $xxl-letter-space;
-    text-align: center;
-    text-transform: uppercase;
+    @include defaultFontStyles();
   }
+
 
   &__inputWrapper {
     @include indents();
@@ -84,5 +100,22 @@
     background-color: $secondary-cultured-default;
     border-radius: $s-border-radius;
     cursor: pointer;
+  }
+
+  &__sideButton {
+    @include position(absolute, -60px, -50px, unset, unset);
+    @include button-style-reset();
+    @include flex($justify-content: center, $align-items: center);
+    @include size(40px, 40px);
+    border-radius: 50%;
+    box-shadow: -2px 4px 10px 0px #2222220D;
+  }
+
+  &__blue {
+    @include position(absolute, 0, -60px, unset, unset);
+    @include size(100px, 80px);
+    @include flex($justify-content: center, $align-items: center);
+    background-color: $primary-persian-blue-default;
+    border-radius: 64px 0 0 64px;
   }
 }

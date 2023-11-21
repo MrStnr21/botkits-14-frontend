@@ -22,7 +22,7 @@ import Statistics from '../../pages/statistics/statistics';
 import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
-import CreateMailing from '../mailing/create-mailing/create-mailing';
+import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
