@@ -35,7 +35,7 @@ const DateSelect: FC<IDateSelect> = ({
     array: IDateSelect['options'],
     targetValue: string
   ): string => {
-    const foundOption = options.find((option) => option.value === targetValue);
+    const foundOption = array.find((option) => option.value === targetValue);
     return foundOption ? foundOption.label : '';
   };
 
@@ -70,7 +70,6 @@ const DateSelect: FC<IDateSelect> = ({
           options={options}
           onItemClick={handleOptionClick}
           layoutClassName={styles.dropdown}
-          itemClassName={styles.item}
         />
       )}
     </div>
