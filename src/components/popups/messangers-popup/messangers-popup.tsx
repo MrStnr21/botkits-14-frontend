@@ -10,7 +10,7 @@ const MessengersPopup: FC = () => {
   const state = useAppSelector((s) => s.toggleMessengersPopup.opened);
 
   // const [open, setOpen] = useState(state);
-  const [copied, setCopied] = useState('');
+  const [onCursor, setOnCursor] = useState('');
 
   const getBlockLink = (name: string, link: string) => {
     return (
@@ -22,10 +22,16 @@ const MessengersPopup: FC = () => {
             className={styles.iconWrap}
             onClick={() => {
               navigator.clipboard.writeText(link);
-              setCopied(name);
             }}
           >
-            <AttachedFileIcon color={copied === name ? '#A6B3C9' : '#243CBB'} />
+            <div
+              onMouseEnter={() => setOnCursor(name)}
+              onMouseLeave={() => setOnCursor('')}
+            >
+              <AttachedFileIcon
+                color={onCursor === name ? '#A6B3C9' : '#243CBB'}
+              />
+            </div>
           </div>
         </div>
       </div>
