@@ -8,6 +8,7 @@
   @include size(100%, 37px);
   box-sizing: border-box;
   padding: 6px 16px 7px;
+  background-color: $off-white;
   transition: all 0.1s linear;
 
   &:hover {

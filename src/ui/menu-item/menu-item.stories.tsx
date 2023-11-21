@@ -1,9 +1,18 @@
-/* eslint-disable react/destructuring-assignment */
-import type { Meta, StoryFn } from '@storybook/react';
-import MenuItem, { IMenuItem } from './menu-item'; // Import your MenuItem component
+import { Meta, StoryObj } from '@storybook/react';
+import MenuItem, { IMenuItem } from './menu-item';
 import copyIcon from '../../images/icon/24x24/drop down/copy bot.svg';
 
-export default {
+const divStyles: React.CSSProperties = {
+  width: '264px',
+  padding: '20px',
+  gap: '20px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'start',
+  backgroundColor: '#E0E6EB',
+};
+
+const meta: Meta<IMenuItem> = {
   title: 'UI/Menu-Item',
   component: MenuItem,
   argTypes: {
@@ -20,34 +29,40 @@ export default {
       action: 'clicked',
       description: 'Callback функция, вызываемая при клике',
     },
+    extraClass: {
+      type: 'string',
+      description: 'Класс для дополнительной стилизации компонента',
+      defaultValue: '',
+    },
   },
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  decorators: [
-    (storyFn) => (
-      <div
-        style={{
-          width: 264,
-          boxShadow: '0px 12px 24px 0px rgba(41, 34, 116, 0.438)',
-        }}
-      >
-        {storyFn()}
-      </div>
-    ),
-  ],
-} as Meta<IMenuItem>;
-
-const Template: StoryFn<IMenuItem> = (args) => <MenuItem {...args} />;
-
-export const Item = {
-  args: {
-    option: {
-      value: 'val1',
-      label: 'Переменная 1',
-      icon: copyIcon,
-    },
-  },
-  render: Template,
 };
+
+const option = {
+  value: 'val1',
+  label: 'Компонент',
+};
+
+const onClick = () => {};
+
+export const Item: StoryObj<IMenuItem> = {
+  render: () => (
+    <div style={divStyles}>
+      <MenuItem option={option} onClick={onClick} />
+      <MenuItem option={option} onClick={onClick} isChecked />
+      <MenuItem option={{ ...option, icon: copyIcon }} onClick={onClick} />
+      {/* Имитация действия extraClass */}
+      <div style={{ width: '200px', backgroundColor: '#E0E0E0' }}>
+        <MenuItem
+          option={{ ...option, label: 'width через extraClass' }}
+          onClick={onClick}
+        />
+      </div>
+    </div>
+  ),
+};
+
+export default meta;

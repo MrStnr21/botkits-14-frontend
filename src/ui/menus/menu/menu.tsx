@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './menu.module.scss';
 import MenuItem from '../../menu-item/menu-item';
@@ -42,7 +43,7 @@ const Menu: FC<IMenu> = ({
       {options.map((option) => {
         return (
           <MenuItem
-            key={option.value}
+            key={uuidv4()}
             option={{ ...option }}
             onClick={() => onItemClick(option.value)}
             isChecked={isMultiple && selectedValues.includes(option.value)}

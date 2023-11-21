@@ -5,6 +5,7 @@
   @include flex(column, $gap: 4px);
   box-sizing: border-box;
   padding: 8px 0;
+  background-color: $off-white;
   box-shadow: $m-box-shadow;
   background-color: $off-white;
   border-radius: $l-border-radius;
