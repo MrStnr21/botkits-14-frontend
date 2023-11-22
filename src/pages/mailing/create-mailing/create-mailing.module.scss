@@ -1,62 +1,63 @@
 @use '../../../stylesheets/mixins' as *;
 @use '../../../stylesheets/variables' as *;
 
-@mixin buttonStyles {
-  @include button-style-reset();
-  @include size(188px, 65px);
-  @include indents(20px 50px, 0);
-  border-radius: $l-border-radius;
-}
+// @mixin buttonStyles {
+//   @include button-style-reset();
+//   @include size(188px, 65px);
+//   @include indents(20px 50px, 0);
+//   border-radius: $l-border-radius;
+// }
 
-@mixin defaultFontStyles {
-  line-height: $m-line-height;
-  letter-spacing: $xxl-letter-space;
-  text-align: center;
-  text-transform: uppercase;
-}
+// @mixin defaultFontStyles {
+//   line-height: $m-line-height;
+//   letter-spacing: $xxl-letter-space;
+//   text-align: center;
+//   text-transform: uppercase;
+// }
 
 .create {
   @include position(relative);
   @include flex(row, unset, unset, 40px);
   @include size(100%, unset);
 
-  &__wrapper {
-    @include max-size(924px, unset);
-    @include size(100%, unset);
-    background-color: $secondary-cultured-hover;
-    border-radius: $xxl-border-radius;
-  }
+  // &__wrapper {
+  //   @include max-size(924px, unset);
+  //   @include size(100%, fit-content);
+  //   background-color: $secondary-cultured-hover;
+  //   border-radius: $xxl-border-radius;
+  // }
 
-  &__buttons {
-    @include size(100%, unset);
-    @include indents(32px, 0);
-    @include flex(row, flex-end, center, 0);
-    box-sizing: border-box
-  }
+  // &__buttons {
+  //   @include size(100%, unset);
+  //   @include indents(32px, 0);
+  //   @include flex(row, flex-end, center, 0);
+  //   border-radius: 0 0 $xxl-border-radius $xxl-border-radius;
+  //   box-sizing: border-box;
+  // }
 
-  &__commonButton {
-    @include buttonStyles();
-  }
+  // &__commonButton {
+  //   @include buttonStyles();
+  // }
 
-  &__greenButton {
-    @include buttonStyles();
-    background-color: $primary-medium-spring-green-disabled;
-  }
+  // &__greenButton {
+  //   @include buttonStyles();
+  //   background-color: $primary-medium-spring-green-disabled;
+  // }
 
-  &__greenActiveButton {
-    @include buttonStyles();
-    background-color: $primary-medium-spring-green-default;
-  }
+  // &__greenActiveButton {
+  //   @include buttonStyles();
+  //   background-color: $primary-medium-spring-green-default;
+  // }
 
-  &__blackText {
-    @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
-    @include defaultFontStyles();
-  }
+  // &__blackText {
+  //   @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
+  //   @include defaultFontStyles();
+  // }
 
-  &__buttonText {
-    @include font('IBM Plex Mono', $l-font-size, $bold, $grey-4);
-    @include defaultFontStyles();
-  }
+  // &__buttonText {
+  //   @include font('IBM Plex Mono', $l-font-size, $bold, $grey-4);
+  //   @include defaultFontStyles();
+  // }
 
   &__sideButton {
     @include position(absolute, -60px, -50px, unset, unset);

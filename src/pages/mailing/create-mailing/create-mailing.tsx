@@ -1,17 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
-import { useMatch, useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
-import Input from '../../../ui/inputs/input/input';
+import { useNavigate } from 'react-router';
 import styles from './create-mailing.module.scss';
-import TextField from '../../../ui/text-field/text-field';
 import Typography from '../../../ui/typography/typography';
-import ButtonAddContent from '../../../ui/buttons/button-add-content/button-add-content';
-import CheckIcon from '../../../components/icons/Check/CheckIcon';
 import AsideMailing from '../../../components/mailing/aside/aside';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
 import BotFace from '../../../components/icons/Bot/BotIcon';
-import MailingPopup from '../../../components/popups/mailing-popup/mailing-popup';
 import MailingForm from '../../../components/mailing/mailing-form/mailing-form';
 import MailingConditions from '../../../components/mailing/mailing-conditions/mailing-condition';
 
@@ -22,7 +16,6 @@ const CreateMailing: FC = () => {
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
   const [isAsideVisible, setAsideVisible] = useState(true);
-  const isLinkDisabled = !nameValue && !textValue;
 
   const handleClickButton = () => {
     setCurrentComponent('Conditions');
@@ -52,14 +45,16 @@ const CreateMailing: FC = () => {
           </div>
         )}
       </div>
-      <div className={styles.create__wrapper}>
+      <MailingForm
+        nameValue={nameValue}
+        textValue={textValue}
+        setNameValue={setNameValue}
+        setTextValue={setTextValue}
+        handleBack={handleBack}
+        handleClickButton={handleClickButton}
+      />
+      {/* <div className={styles.create__wrapper}>
         {currentComponent === 'MailingForm' && (
-          <MailingForm
-            nameValue={nameValue}
-            textValue={textValue}
-            setNameValue={setNameValue}
-            setTextValue={setTextValue}
-          />
         )}
         {currentComponent === 'Conditions' && (
           <MailingConditions title={nameValue} />
@@ -95,7 +90,7 @@ const CreateMailing: FC = () => {
             </Typography>
           </button>
         </div>
-      </div>
+      </div> */}
       {isAsideVisible && <AsideMailing title={nameValue} text={textValue} />}
     </div>
   );

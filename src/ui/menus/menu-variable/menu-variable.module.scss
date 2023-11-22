@@ -17,13 +17,13 @@
 .open_button {
   display: flex;
   flex-direction: row;
-  width: 240px;
+  width: 265px;
   height: 40px;
   background-color: #f8f9fb;
   border-radius: 5px;
   position: relative;
   cursor: pointer;
-  z-index: 999;
+  z-index: 995;
 }
 
 .box {
@@ -64,7 +64,6 @@
   margin: 0;
   list-style: none;
   display: flex;
-  z-index: 999;
 }
 
 .ul {
