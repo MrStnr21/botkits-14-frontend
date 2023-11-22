@@ -5,13 +5,13 @@ import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape
 import PeriodSelectButton from '../../ui/buttons/period-select-button/period-select-button';
 import type { Option } from '../../utils/types';
 
-export interface IDateSelect {
+export interface IDateSelector {
   currentOption: Option;
   options: Option[];
   handleSelect: (option: Option) => void;
 }
 
-const DateSelect: FC<IDateSelect> = ({
+const DateSelect: FC<IDateSelector> = ({
   currentOption,
   options,
   handleSelect,
