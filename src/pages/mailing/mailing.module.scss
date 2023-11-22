@@ -4,7 +4,6 @@
 .mailing {
   @include flex(column, unset, center);
   @include max-size(1268px, unset);
-  height: 100vh;
   @include indents(0, 40px 40px 0 0);
 
   &__header {

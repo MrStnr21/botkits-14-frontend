@@ -23,6 +23,7 @@ import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
+// import MailingConditions from '../mailing/mailing-conditions/mailing-condition';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
@@ -126,10 +127,7 @@ const App: FC = (): JSX.Element => {
           }
         >
           <Route path="create" element={<CreateMailing />} />
-          {/* <Route path="" element={<First... />} />
-              <Route path="start" element={<My... />} />
-              <Route path="add" element={<Create... />} />
-              <Route path="conditions" element={<Conditions.. />} /> */}
+          {/* <Route path="conditions" element={<MailingConditions />} /> */}
         </Route>
         <Route
           path={routesUrl.partnership}

@@ -27,31 +27,6 @@
     border-radius: $xxl-border-radius;
   }
 
-  &__form {
-    @include size(100%, unset);
-    @include indents(32px 32px 0 32px, 0);
-    border-radius: $xxl-border-radius;
-    background-color: $off-white;
-    box-shadow: 0px 6px 16px 0px #15123321;
-    box-sizing: border-box;
-  }
-
-  &__formFieldset {
-    @include flex(row, space-between, flex-start, 24px);
-    @include size(100%, unset);
-    @include indents(0 0 32px 0, 0);
-    border: none;
-  }
-
-  &__legend {
-    @include indents();
-    @include font('IBM Plex Mono', $m-font-size, $semi-bold, $primary-oxford-blue-default);
-    line-height: $m-line-height;
-    margin-bottom: 20px;
-    letter-spacing: 0px;
-    text-align: left;
-  }
-
   &__buttons {
     @include size(100%, unset);
     @include indents(32px, 0);
@@ -83,27 +58,6 @@
     @include defaultFontStyles();
   }
 
-
-  &__inputWrapper {
-    @include indents();
-    @include size(100%, 65px);
-    box-sizing: border-box;
-  }
-
-  &__checkboxes {
-    @include flex(column, center, flex-start, 8px);
-  }
-
-  &__popupWrapper {
-    @include flex(row, space-between, center);
-    @include indents(8px, 0);
-    @include size(556px, 40px);
-    box-sizing: border-box;
-    background-color: $secondary-cultured-default;
-    border-radius: $s-border-radius;
-    cursor: pointer;
-  }
-
   &__sideButton {
     @include position(absolute, -60px, -50px, unset, unset);
     @include button-style-reset();
@@ -119,5 +73,10 @@
     @include flex($justify-content: center, $align-items: center);
     background-color: $primary-persian-blue-default;
     border-radius: 64px 0 0 64px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
   }
 }
