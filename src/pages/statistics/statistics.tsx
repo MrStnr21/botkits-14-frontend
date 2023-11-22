@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Chart, registerables } from 'chart.js';
 import Typography from '../../ui/typography/typography';
 import Button from '../../ui/buttons/button/button';
@@ -18,6 +18,7 @@ import {
 } from './chartsConfig';
 import StatsChart from '../../components/chart/chart';
 import { Data, Labels } from '../../components/chart/types';
+import { Option } from '../../utils/types';
 
 Chart.register(...registerables);
 
@@ -32,6 +33,32 @@ const totalBotsLabels: Labels = mockInstallment.map((data) => data.month);
 const totalBotsData: Data = mockInstallment.map((data) => data.count);
 
 const Statistics: FC = () => {
+  // TODO заменить хардкод для дефолтного периода
+  const [messengersPeriod, setMessengersPeriod] = useState<Option>(
+    mockPeriods[4]
+  );
+  const [installmentPeriod, setInstallmentPeriod] = useState<Option>(
+    mockPeriods[4]
+  );
+  const [totalBotsPeriod, setTotalBotsPeriod] = useState<Option>(
+    mockPeriods[4]
+  );
+
+  const messengersPeriodSelect = (period: Option) => {
+    console.log(period);
+    setMessengersPeriod(period);
+  };
+
+  const installmentPeriodSelect = (period: Option) => {
+    console.log(period);
+    setInstallmentPeriod(period);
+  };
+
+  const totalBotsPeriodSelect = (period: Option) => {
+    console.log(period);
+    setTotalBotsPeriod(period);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -59,9 +86,8 @@ const Statistics: FC = () => {
           chartLabels={messengersLabels}
           chartData={messengersData}
           periods={mockPeriods}
-          onPeriodSelect={() => {
-            console.log('onSelect action');
-          }}
+          currentPeriod={messengersPeriod}
+          onPeriodSelect={messengersPeriodSelect}
           onCalendarSelect={() => {
             console.log('onCalendar action');
           }}
@@ -75,9 +101,8 @@ const Statistics: FC = () => {
           chartLabels={installmentLabels}
           chartData={installmentData}
           periods={mockPeriods}
-          onPeriodSelect={() => {
-            console.log('onSelect action');
-          }}
+          currentPeriod={installmentPeriod}
+          onPeriodSelect={installmentPeriodSelect}
           onCalendarSelect={() => {
             console.log('onCalendar action');
           }}
@@ -91,9 +116,8 @@ const Statistics: FC = () => {
           chartLabels={totalBotsLabels}
           chartData={totalBotsData}
           periods={mockPeriods}
-          onPeriodSelect={() => {
-            console.log('onSelect action');
-          }}
+          currentPeriod={totalBotsPeriod}
+          onPeriodSelect={totalBotsPeriodSelect}
           onCalendarSelect={() => {
             console.log('onCalendar action');
           }}

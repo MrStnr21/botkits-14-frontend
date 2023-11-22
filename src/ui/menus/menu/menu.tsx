@@ -4,14 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import styles from './menu.module.scss';
 import MenuItem from '../../menu-item/menu-item';
+import type { Option } from '../../../utils/types';
 
 export interface IMenu {
-  options: {
-    label: string;
-    value: string;
-    icon?: string;
-  }[];
-  onItemClick: (value: string) => void;
+  options: Option[];
+  onItemClick: (option: Option) => void;
   /** Чтобы перезаписать свойства Menu, в scss файле родителя повысьте селективность,
    * например: ```div.dropdown { padding: 10px 0;}``` */
   layoutClassName?: string;
@@ -23,7 +20,7 @@ export interface IMenu {
   selectedValues?: string[];
 }
 
-export type Ref = HTMLDivElement;
+type Ref = HTMLDivElement;
 
 const Menu = forwardRef<Ref, IMenu>(
   (
@@ -51,7 +48,7 @@ const Menu = forwardRef<Ref, IMenu>(
             <MenuItem
               key={uuidv4()}
               option={{ ...option }}
-              onClick={() => onItemClick(option.value)}
+              onClick={() => onItemClick(option)}
               isChecked={isMultiple && selectedValues.includes(option.value)}
               extraClass={itemClassName}
             />

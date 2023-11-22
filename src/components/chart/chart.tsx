@@ -20,6 +20,7 @@ const StatsChart: FC<ChartProps> = ({
   chartLabels, // данные: массив значений по оси X
   chartData, // данные: массив значений по оси Y
   periods, // данные: за какие периоды можно отобразить статистику
+  currentPeriod, // данные: выбранный период
   onPeriodSelect, // при выборе периода
   onCalendarSelect, // при выборе календаря
 }) => {
@@ -53,7 +54,7 @@ const StatsChart: FC<ChartProps> = ({
         <div className={styles.selectors}>
           <DateSelect
             options={periods}
-            defaultValue="last14"
+            currentOption={currentPeriod}
             handleSelect={onPeriodSelect}
           />
           <DropSelectorButton icon={calendarIcon} onClick={toggleCalendar} />

@@ -1,26 +1,23 @@
 import { FC, useRef, useState } from 'react';
-import { ReactSVG } from 'react-svg';
 import styles from './date-selector.module.scss';
-import chevronIcon from '../../images/icon/16x16/common/chevron.svg';
 import Menu from '../../ui/menus/menu/menu';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
+import PeriodSelectButton from '../../ui/buttons/period-select-button/period-select-button';
+import type { Option } from '../../utils/types';
 
-interface IDateSelect {
-  defaultValue: string;
-  options: {
-    label: string;
-    value: string;
-  }[];
-  handleSelect: (payload: string) => void;
+export interface IDateSelect {
+  currentOption: Option;
+  options: Option[];
+  handleSelect: (option: Option) => void;
 }
 
 const DateSelect: FC<IDateSelect> = ({
-  defaultValue,
+  currentOption,
   options,
   handleSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(defaultValue);
+  const [selectedOption, setSelectedOption] = useState(currentOption);
 
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -32,18 +29,10 @@ const DateSelect: FC<IDateSelect> = ({
     setIsOpen(false);
   });
 
-  const handleOptionClick = (value: string) => {
-    setSelectedValue(value);
-    handleSelect(value);
+  const handleOptionClick = (option: Option) => {
+    setSelectedOption(option);
+    handleSelect(option);
     setIsOpen(false);
-  };
-
-  const findLabelByValue = (
-    array: IDateSelect['options'],
-    targetValue: string
-  ): string => {
-    const foundOption = array.find((option) => option.value === targetValue);
-    return foundOption ? foundOption.label : '';
   };
 
   const shortenLabel = (label: string): string => {
@@ -56,22 +45,14 @@ const DateSelect: FC<IDateSelect> = ({
     return label;
   };
 
-  const formatLabel = (
-    array: IDateSelect['options'],
-    targetValue: string
-  ): string => shortenLabel(findLabelByValue(array, targetValue));
-
   return (
     <div className={styles.container}>
-      <button onClick={toggleDropdown} type="button" className={styles.button}>
-        <span className={styles.text}>
-          {formatLabel(options, selectedValue)}
-        </span>
-        <ReactSVG
-          src={chevronIcon}
-          className={`${styles.arrow} ${isOpen ? styles.rotated : ''}`}
-        />
-      </button>
+      <PeriodSelectButton
+        option={selectedOption}
+        isOpen={isOpen}
+        onClick={toggleDropdown}
+        formatLabel={shortenLabel}
+      />
       {isOpen && (
         <Menu
           ref={menuRef}
