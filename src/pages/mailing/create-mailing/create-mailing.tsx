@@ -3,19 +3,20 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Input from '../../../ui/inputs/input/input';
 import styles from './create-mailing.module.scss';
-import DropDownList from '../../../components/chat/DropDownList/DropDownList';
 import TextField from '../../../ui/text-field/text-field';
 import Typography from '../../../ui/typography/typography';
 import ButtonAddContent from '../../../ui/buttons/button-add-content/button-add-content';
-import CustomCheckbox from '../../../ui/checkboxes/custom-checkbox/custom-checkbox';
 import CheckIcon from '../../../components/icons/Check/CheckIcon';
 import AsideMailing from '../../../components/mailing/aside/aside';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
 import BotFace from '../../../components/icons/Bot/BotIcon';
-import MailingModal from '../../../components/popups/mailing-popup/mailing-popup';
+import MailingPopup from '../../../components/popups/mailing-popup/mailing-popup';
+import DownloadFile from '../../../ui/inputs/add-file/add-file';
+import { SIZE_INPUT } from '../../../utils/constants';
 
 const mailingList = ['Все пользователи', 'Список 1', 'Список 2', 'Список 3'];
 const messengerList = ['Telegram, VK', 'Одноклассники', 'WhatsApp', 'Facebook'];
+const acitveFunnel = ['Воронка 1', 'Воронка 2', 'Воронка 3'];
 
 const CreateMailing: FC = () => {
   const [nameValue, setNameValue] = useState('');
@@ -26,6 +27,7 @@ const CreateMailing: FC = () => {
   const [isFirstChecked, setIsFirstChecked] = useState(false);
   const [isSecChecked, setIsSecChecked] = useState(false);
   const [isAsideVisible, setAsideVisible] = useState(true);
+  // const [isInputvisible, setInputVisible] = useState(true);
 
   const handleFirstClick = () => {
     setIsSecChecked(false);
@@ -78,37 +80,52 @@ const CreateMailing: FC = () => {
                 value={nameValue}
               />
             </div>
-            <MailingModal caption="Список рассылок" elements={mailingList} />
+            <MailingPopup
+              caption="Список рассылок"
+              elements={mailingList}
+              chevron
+            />
           </fieldset>
           <fieldset className={styles.create__formFieldset}>
             <legend className={styles.create__legend}>Текст сообщения</legend>
             <TextField onChangeText={handleTextChange} textValue={textValue} />
-            <MailingModal caption="Telegram, VK" elements={messengerList} />
+            <MailingPopup
+              caption="Telegram, VK"
+              elements={messengerList}
+              chevron
+            />
           </fieldset>
           <fieldset className={styles.create__formFieldset}>
             <legend className={styles.create__legend}>Добавить</legend>
             <ButtonAddContent />
+            <MailingPopup
+              caption="Telegram, VK"
+              elements={messengerList}
+              chevron
+            />
           </fieldset>
+          {/* {isInputvisible && (
+            <div className={styles.create__downloadWrapper}>
+              <DownloadFile size={SIZE_INPUT.L} />
+            </div>
+          )} */}
           <fieldset className={styles.create__formFieldset}>
             <legend className={styles.create__legend}>
               Активировать воронку
             </legend>
             <div className={styles.create__checkboxes}>
               <div
-                className={styles.create__checkbox}
+                className={styles.create__popupWrapper}
                 onClick={handleFirstClick}
               >
-                <CustomCheckbox
-                  text="Активировать"
-                  isChecked={isFirstChecked}
-                />
+                <MailingPopup caption="Активировать" elements={acitveFunnel} />
                 {isFirstChecked && <CheckIcon />}
               </div>
-              <div className={styles.create__checkbox} onClick={handleSecClick}>
-                <CustomCheckbox
-                  text="Не активировать"
-                  isChecked={isSecChecked}
-                />
+              <div
+                className={styles.create__popupWrapper}
+                onClick={handleSecClick}
+              >
+                <MailingPopup caption="Не активировать" elements={[]} />
                 {isSecChecked && <CheckIcon />}
               </div>
             </div>

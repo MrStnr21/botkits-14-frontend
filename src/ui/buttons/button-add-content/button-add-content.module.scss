@@ -11,6 +11,17 @@
 .butbox {
   @include flex(row, center, center);
   // margin: 16px 0 32px;
-  flex-wrap: wrap;
   gap: 20px;
+}
+
+.inputs {
+  @include indents(0, 32px 0 0 0);
+
+  &__wrapper {
+    @include flex(column, $gap: 8px);
+  }
+
+  &__input {
+    @include size(unset, 40px);
+  }
 }

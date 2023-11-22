@@ -3,9 +3,9 @@
 
 .aside {
   @include position(relative);
-  @include size(296px, unset);
+  @include min-size(296px, unset);
+  @include size(100%, 100%);
   @include flex(column, center, stretch);
-  @include min-size(unset, 651px);
   @include indents(16px, 0);
   box-shadow: -2px 4px 10px 0px #2222220D;
   border-radius: $l-border-radius;

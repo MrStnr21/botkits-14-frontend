@@ -10,19 +10,45 @@ interface IProps {
   caption: string;
   elements: string[];
   handleClick?: (selectedElement: string) => void;
+  chevron?: boolean;
 }
 
-const MailingModal: FC<IProps> = ({ caption, elements, handleClick }) => {
+const MailingPopup: FC<IProps> = ({
+  caption,
+  elements,
+  handleClick,
+  chevron,
+}) => {
   const [isOpened, setOpened] = useState(false);
-  const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const [selectedElements, setSelectedElements] = useState<string[] | null>(
+    null
+  );
 
   const onButtonClick = (el: string) => {
     if (handleClick) {
       handleClick(el);
     }
 
-    const newSelectedElement = selectedElement === el ? null : el;
-    setSelectedElement(newSelectedElement);
+    const isSelected = selectedElements?.includes(el);
+
+    if (isSelected) {
+      setSelectedElements(
+        (prev) => prev?.filter((selectedEl) => selectedEl !== el) || null
+      );
+    } else {
+      setSelectedElements((prev) => (prev ? [...prev, el] : [el]));
+    }
+  };
+
+  const renderCaption = () => {
+    switch (true) {
+      case selectedElements && selectedElements.length > 1:
+        return `Выбрано несколько`;
+      case selectedElements && selectedElements.length === 1:
+        return selectedElements![0];
+      default:
+        return caption;
+    }
   };
 
   useClick(() => setOpened(false), 'div');
@@ -39,14 +65,19 @@ const MailingModal: FC<IProps> = ({ caption, elements, handleClick }) => {
         <Typography
           tag="p"
           className={
-            !selectedElement ? styles.modal__caption : styles.modal__selected
+            !selectedElements ? styles.modal__caption : styles.modal__selected
           }
         >
-          {selectedElement !== null ? selectedElement : caption}
+          {renderCaption()}
         </Typography>
-        <ChevronIcon position={`${isOpened ? 'up' : 'down'}`} color="#BFC9D9" />
+        {chevron && (
+          <ChevronIcon
+            position={`${isOpened ? 'up' : 'down'}`}
+            color="#BFC9D9"
+          />
+        )}
       </div>
-      {isOpened && (
+      {isOpened && elements.length > 0 && (
         <div className={styles.content}>
           {elements.map((el) => (
             <div
@@ -59,7 +90,7 @@ const MailingModal: FC<IProps> = ({ caption, elements, handleClick }) => {
                   {el}
                 </Typography>
               </button>
-              {selectedElement === el && <CheckIcon />}
+              {selectedElements?.includes(el) && <CheckIcon />}
             </div>
           ))}
         </div>
@@ -68,4 +99,4 @@ const MailingModal: FC<IProps> = ({ caption, elements, handleClick }) => {
   );
 };
 
-export default MailingModal;
+export default MailingPopup;

@@ -21,12 +21,14 @@
   @include size(100%, unset);
 
   &__wrapper {
-    @include size(924px, unset);
+    @include max-size(924px, unset);
+    @include size(100%, unset);
     background-color: $secondary-cultured-hover;
     border-radius: $xxl-border-radius;
   }
 
   &__form {
+    @include size(100%, unset);
     @include indents(32px 32px 0 32px, 0);
     border-radius: $xxl-border-radius;
     background-color: $off-white;
@@ -92,8 +94,8 @@
     @include flex(column, center, flex-start, 8px);
   }
 
-  &__checkbox {
-    @include flex(row, space-between);
+  &__popupWrapper {
+    @include flex(row, space-between, center);
     @include indents(8px, 0);
     @include size(556px, 40px);
     box-sizing: border-box;
