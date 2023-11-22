@@ -4,9 +4,9 @@ import Typography from '../../../ui/typography/typography';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 
 interface IProps {
-  title: string;
-  handleBack: () => void;
-  handleClickButton: () => void;
+  title?: string;
+  handleBack?: () => void;
+  handleClickButton?: () => void;
 }
 
 const repeat = [
@@ -60,7 +60,7 @@ const MailingConditions: FC<IProps> = ({
           onClick={handleBack}
         >
           <Typography tag="p" className={styles.container__buttonText}>
-            Выйти
+            Назад
           </Typography>
         </button>
         <button

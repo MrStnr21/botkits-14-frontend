@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useMatch, useNavigate } from 'react-router';
 import styles from './create-mailing.module.scss';
-import Typography from '../../../ui/typography/typography';
 import AsideMailing from '../../../components/mailing/aside/aside';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
 import BotFace from '../../../components/icons/Bot/BotIcon';
@@ -11,14 +10,15 @@ import MailingConditions from '../../../components/mailing/mailing-conditions/ma
 
 const CreateMailing: FC = () => {
   const navigate = useNavigate();
-  const [currentComponent, setCurrentComponent] = useState('MailingForm');
-
+  const matchConditions = useMatch('/mailing/create/conditions');
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
   const [isAsideVisible, setAsideVisible] = useState(true);
 
   const handleClickButton = () => {
-    setCurrentComponent('Conditions');
+    if (nameValue && textValue) {
+      navigate('/mailing/create/conditions');
+    }
   };
 
   const handleChevronClick = () => {
@@ -45,52 +45,22 @@ const CreateMailing: FC = () => {
           </div>
         )}
       </div>
-      <MailingForm
-        nameValue={nameValue}
-        textValue={textValue}
-        setNameValue={setNameValue}
-        setTextValue={setTextValue}
-        handleBack={handleBack}
-        handleClickButton={handleClickButton}
-      />
-      {/* <div className={styles.create__wrapper}>
-        {currentComponent === 'MailingForm' && (
-        )}
-        {currentComponent === 'Conditions' && (
-          <MailingConditions title={nameValue} />
-        )}
-        <div className={styles.create__buttons}>
-          <button
-            type="button"
-            className={styles.create__commonButton}
-            onClick={handleBack}
-          >
-            <Typography tag="p" className={styles.create__buttonText}>
-              Выйти
-            </Typography>
-          </button>
-          <button
-            type="button"
-            className={
-              nameValue && textValue
-                ? styles.create__greenActiveButton
-                : styles.create__greenButton
-            }
-            onClick={handleClickButton}
-          >
-            <Typography
-              tag="p"
-              className={
-                nameValue && textValue
-                  ? styles.create__blackText
-                  : styles.create__buttonText
-              }
-            >
-              Далее
-            </Typography>
-          </button>
-        </div>
-      </div> */}
+      {matchConditions ? (
+        <MailingConditions
+          title={nameValue}
+          handleBack={handleBack}
+          // handleClickButton={handleClickButton}
+        />
+      ) : (
+        <MailingForm
+          nameValue={nameValue}
+          textValue={textValue}
+          setNameValue={setNameValue}
+          setTextValue={setTextValue}
+          handleBack={handleBack}
+          handleClickButton={handleClickButton}
+        />
+      )}
       {isAsideVisible && <AsideMailing title={nameValue} text={textValue} />}
     </div>
   );

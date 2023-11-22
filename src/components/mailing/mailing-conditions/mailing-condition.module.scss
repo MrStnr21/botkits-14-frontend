@@ -2,6 +2,7 @@
 @use '../../../stylesheets/variables' as *;
 
 @mixin buttonStyles {
+  @include flex(row, center, center);
   @include button-style-reset();
   @include size(188px, 65px);
   @include indents(20px 50px, 0);
@@ -24,7 +25,7 @@
   box-sizing: border-box;
 
   &__formFieldset {
-    @include flex(row, space-between, flex-start, 24px);
+    @include flex(column, space-between, flex-start, 24px);
     @include size(100%, unset);
     @include indents(0 0 32px 0, 0);
     border: none;
@@ -47,6 +48,10 @@
 
   &__checkboxes {
     @include flex(column, center, flex-start, 8px);
+  }
+
+  &__menuWrapper {
+    @include flex(row, flex-start, center, 8px);
   }
 
   &__popupWrapper {

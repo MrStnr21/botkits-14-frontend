@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
-import { Link, Outlet, useMatch } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
 import stylesMailing from './mailing.module.scss';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import HowToMailing from '../../components/mailing/how-to-mailing/how-to-mailing';
 import MailingStart from '../../components/mailing/mailing-start/mailing-start';
 import MailingFilled from '../../components/mailing/mailing-filled/mailing-filled';
+import CreateMailing from './create-mailing/create-mailing';
 
 const Mailing: FC = (): JSX.Element => {
   const [is, setIs] = useState(true); // временно
@@ -39,7 +40,7 @@ const Mailing: FC = (): JSX.Element => {
           <HowToMailing />
         </div>
       ) : (
-        <Outlet />
+        <CreateMailing />
       )}
     </div>
   );

@@ -23,7 +23,7 @@ import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
-// import MailingConditions from '../mailing/mailing-conditions/mailing-condition';
+import MailingConditions from '../mailing/mailing-conditions/mailing-conditions';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
@@ -126,7 +126,9 @@ const App: FC = (): JSX.Element => {
             </ProtectedRoute>
           }
         >
-          <Route path="create" element={<CreateMailing />} />
+          <Route path="create" element={<CreateMailing />}>
+            <Route path="conditions" element={<MailingConditions />} />
+          </Route>
           {/* <Route path="conditions" element={<MailingConditions />} /> */}
         </Route>
         <Route
