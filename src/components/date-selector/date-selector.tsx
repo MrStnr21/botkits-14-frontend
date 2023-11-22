@@ -20,14 +20,20 @@ const DateSelect: FC<IDateSelect> = ({
   const [selectedOption, setSelectedOption] = useState(currentOption);
 
   const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  useOutsideClickAndEscape(menuRef, () => {
-    setIsOpen(false);
-  });
+  useOutsideClickAndEscape(
+    menuRef,
+    document,
+    () => {
+      setIsOpen(false);
+    },
+    buttonRef
+  );
 
   const handleOptionClick = (option: Option) => {
     setSelectedOption(option);
@@ -48,6 +54,7 @@ const DateSelect: FC<IDateSelect> = ({
   return (
     <div className={styles.container}>
       <PeriodSelectButton
+        ref={buttonRef}
         option={selectedOption}
         isOpen={isOpen}
         onClick={toggleDropdown}

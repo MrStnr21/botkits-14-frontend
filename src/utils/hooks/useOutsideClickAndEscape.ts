@@ -4,9 +4,11 @@ import useOutsideClick from './useOutsideClick';
 
 const useOutsideClickAndEscape = (
   ref: RefObject<HTMLDivElement>,
-  callback: () => void
+  element: Document | Element,
+  callback: () => void,
+  handlerRef?: RefObject<HTMLDivElement> | RefObject<HTMLButtonElement>
 ) => {
-  useOutsideClick(ref, callback);
+  useOutsideClick(ref, element, callback, handlerRef);
   useEscapeKey(callback);
 };
 

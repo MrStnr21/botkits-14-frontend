@@ -31,7 +31,7 @@ const StatsChart: FC<ChartProps> = ({
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
   };
-  useOutsideClickAndEscape(calendarRef, () => {
+  useOutsideClickAndEscape(calendarRef, document, () => {
     setShowCalendar(false);
   });
 

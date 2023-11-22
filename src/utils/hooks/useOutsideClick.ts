@@ -1,20 +1,31 @@
 import { RefObject, useEffect } from 'react';
 
 const useOutsideClick = (
-  ref: RefObject<HTMLDivElement> | null,
-  callback: () => void
+  elemRef: RefObject<HTMLDivElement> | null,
+  element: Document | Element,
+  callback: () => void,
+  handlerRef?: RefObject<HTMLDivElement> | RefObject<HTMLButtonElement>
 ) => {
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref && ref.current && !ref.current.contains(event.target as Node)) {
+    const handleClickOutside: EventListener = (event) => {
+      if (
+        elemRef &&
+        elemRef.current &&
+        !elemRef.current.contains(event.target as Node) &&
+        // если нет хэндлера, по которому происходит toggle элемента либо кликнули не на него
+        (!handlerRef ||
+          (handlerRef &&
+            handlerRef.current &&
+            !handlerRef.current.contains(event.target as Node)))
+      ) {
         callback();
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    element.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      element.removeEventListener('mousedown', handleClickOutside);
     };
   }, [callback]);
 };
