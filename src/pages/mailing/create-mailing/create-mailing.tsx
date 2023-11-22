@@ -6,7 +6,7 @@ import AsideMailing from '../../../components/mailing/aside/aside';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
 import BotFace from '../../../components/icons/Bot/BotIcon';
 import MailingForm from '../../../components/mailing/mailing-form/mailing-form';
-import MailingConditions from '../../../components/mailing/mailing-conditions/mailing-condition';
+import MailingConditions from '../../../components/mailing/mailing-conditions/mailing-conditions';
 
 const CreateMailing: FC = () => {
   const navigate = useNavigate();

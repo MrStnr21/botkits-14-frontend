@@ -46,12 +46,39 @@
     box-sizing: border-box;
   }
 
+  &__inputsFieldset {
+    @include size(360px, unset);
+    @include indents(0 0 32px 0, 0);
+    @include flex(column, unset, flex-end, 24px);
+    border: none;
+  }
+
+  &__smallContainer {
+    @include flex(column, space-between, unset, 8px);
+  }
+
+  &__hiddenInputs {
+    @include flex(column, space-between, unset, 40px);
+  }
+
   &__checkboxes {
     @include flex(column, center, flex-start, 8px);
   }
 
+  &__menuContainer {
+    @include flex(row, space-between, center, 8px);
+  }
+
   &__menuWrapper {
-    @include flex(row, flex-start, center, 8px);
+    @include size(265px, unset);
+  }
+
+  &__dateInput {
+    @include size(367px, unset);
+  }
+
+  &__smallMenuWrapper {
+    @include size(174px, unset);
   }
 
   &__popupWrapper {

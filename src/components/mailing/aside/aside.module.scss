@@ -7,7 +7,7 @@
   @include min-size(296px, unset);
   @include flex(column, center, stretch);
   @include min-size(unset, 651px);
-  @include indents(16px, 0);
+  @include indents(16px, 0 0 0 48px);
   box-shadow: -2px 4px 10px 0px #2222220D;
   border-radius: $l-border-radius;
   box-sizing: border-box;
@@ -31,10 +31,7 @@
   }
 
   &__title {
-    @include font('IBM Plex Mono', $xxs-font-size, $semi-bold, $primary-oxford-blue-default);
-    line-height: $xl-line-height;
-    letter-spacing: 0;
-    text-align: left;
+    @include ellipsis();
   }
 
   &__main {

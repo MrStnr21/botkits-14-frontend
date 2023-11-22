@@ -1,7 +1,10 @@
-import { FC } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FC, useState } from 'react';
 import styles from './mailing-condition.module.scss';
 import Typography from '../../../ui/typography/typography';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
+import Input from '../../../ui/inputs/input/input';
+import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues';
 
 interface IProps {
   title?: string;
@@ -18,14 +21,19 @@ const repeat = [
   'Свой вариант',
 ];
 const send = ['Сейчас', 'Дата/Время'];
+const howManyTimes = ['По дням', 'По неделям', 'По месяцам', 'По годам'];
 
 const MailingConditions: FC<IProps> = ({
   title,
   handleBack,
   handleClickButton,
 }) => {
-  const handleDateClick = (e: any) => {
-    console.log(e.target);
+  const [selectedVariable, setSelectedVariable] =
+    useState<string>('Без повтора');
+  const [date, setDate] = useState('');
+  const handleMenuClick = (selected: string) => {
+    console.log(`Selected variable: ${selected}`);
+    setSelectedVariable(selected);
   };
 
   return (
@@ -33,24 +41,58 @@ const MailingConditions: FC<IProps> = ({
       <form className={styles.form}>
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>
-            Шаг 1 {'>'} Создание рассылки, Шаг 2 {'>'} Условия рассылки
+            Шаг 1 {'>'} Создание рассылки Шаг 2 {'>'} Условия рассылки
           </legend>
         </fieldset>
         <fieldset className={styles.form__formFieldset}>
           <Typography tag="h2">{title}</Typography>
         </fieldset>
-        <fieldset className={styles.form__formFieldset}>
-          <div className={styles.form__menuWrapper}>
-            Отправить <MenuVariable buttons={send} nameMenu="Сейчас" />
+        <fieldset className={styles.form__inputsFieldset}>
+          <div className={styles.form__menuContainer}>
+            <Typography tag="p">Отправить</Typography>
+            <div className={styles.form__menuWrapper}>
+              <MenuVariable buttons={send} nameMenu="Сейчас" />
+            </div>
           </div>
-          <div className={styles.form__menuWrapper}>
-            Повторять{' '}
-            <MenuVariable
-              buttons={repeat}
-              nameMenu="Без повтора"
-              onClick={handleDateClick}
-            />
+          <div className={styles.form__menuContainer}>
+            <Typography tag="p">Повторять</Typography>
+            <div className={styles.form__menuWrapper}>
+              <MenuVariable
+                buttons={repeat}
+                nameMenu="Без повтора"
+                onClick={handleMenuClick}
+              />
+            </div>
           </div>
+          {selectedVariable === 'Свой вариант' && (
+            <div className={styles.form__hiddenInputs}>
+              <div className={styles.form__smallContainer}>
+                <div className={styles.form__menuContainer}>
+                  <Typography tag="span">Настроить</Typography>
+                  <div className={styles.form__smallMenuWrapper}>
+                    <MenuVariable buttons={howManyTimes} nameMenu="По дням" />
+                  </div>
+                </div>
+                <div className={styles.form__menuContainer}>
+                  <Typography tag="span">Каждый</Typography>
+                  <div className={styles.form__smallMenuWrapper}>
+                    <InputDialogsues
+                      placeholder="Введите значение"
+                      onChange={() => setDate}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={styles.form__checkboxes}>
+                <div className={styles.form__dateInput}>
+                  <InputDialogsues placeholder="Число месяца" />
+                </div>
+                <div className={styles.form__dateInput}>
+                  <InputDialogsues placeholder="День месяца" />
+                </div>
+              </div>
+            </div>
+          )}
         </fieldset>
       </form>
       <div className={styles.container__buttons}>

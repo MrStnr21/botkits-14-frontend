@@ -17,7 +17,9 @@ const AsideMailing: FC<IProps> = ({ title, text }) => {
         <Typography tag="p" className={styles.aside__defaultText}>
           Тестовый виджет
         </Typography>
-        <Typography tag="h3">{title}</Typography>
+        <Typography tag="h3" className={styles.aside__title}>
+          {title}
+        </Typography>
       </div>
       <div className={styles.aside__main}>
         <div className={styles.aside__message}>

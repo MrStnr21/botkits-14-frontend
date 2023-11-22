@@ -59,12 +59,16 @@ const MailingForm: FC<IProps> = ({
               value={nameValue}
             />
           </div>
-          <MenuVariable buttons={mailingList} nameMenu="Список рассылки" />
+          <div className={styles.form__menuVariableWrapper}>
+            <MenuVariable buttons={mailingList} nameMenu="Список рассылки" />
+          </div>
         </fieldset>
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>Текст сообщения</legend>
           <TextField onChangeText={handleTextChange} textValue={textValue} />
-          <MenuVariable buttons={messengerList} nameMenu="Telegram, VK" />
+          <div className={styles.form__menuVariableWrapper}>
+            <MenuVariable buttons={messengerList} nameMenu="Telegram, VK" />
+          </div>
         </fieldset>
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>Добавить</legend>

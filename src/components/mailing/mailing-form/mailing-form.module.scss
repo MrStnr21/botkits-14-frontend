@@ -58,6 +58,10 @@
     border-radius: $s-border-radius;
     cursor: pointer;
   }
+
+  &__menuVariableWrapper {
+    @include min-size(265px, unset);
+  }
 }
 
 .container {
