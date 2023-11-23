@@ -7,6 +7,8 @@ import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Calendar from '../../calendar/calendar';
 import MenuTime from '../../../ui/menus/menu-time/menu-time';
+import ConstructorAddButton from '../../../ui/buttons/constructor-add-button/constructor-add-button';
+import CheckIcon from '../../icons/Check/CheckIcon';
 
 interface IProps {
   title?: string;
@@ -24,6 +26,15 @@ const repeat = [
 ];
 const send = ['Сейчас', 'Дата/Время'];
 const howManyTimes = ['По дням', 'По неделям', 'По месяцам', 'По годам'];
+const week = [
+  'Понедельник',
+  'Вторник',
+  'Среда',
+  'Четверг',
+  'Пятница',
+  'Суббота',
+  'Воскресенье',
+];
 
 const MailingConditions: FC<IProps> = ({
   title,
@@ -36,12 +47,25 @@ const MailingConditions: FC<IProps> = ({
   const [date, setDate] = useState<string>('');
   const [selectedInterval, setSelectedInterval] = useState<string>('По дням');
   const [period, setPeriod] = useState<string>('');
+  const [weekDay, setWeekDay] = useState<string>('');
 
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [timeMenuOpen, setTimeMenuOpen] = useState(false);
-  const [isOff, off] = useState(false);
+  const [isFirstOpen, setFirstOpen] = useState(false);
+  const [isSecondOpen, setSecondOpen] = useState(false);
 
+  const [isOff, off] = useState(false);
   const [dat, setDat] = useState('');
+
+  const toggleFirst = () => {
+    setFirstOpen(!isFirstOpen);
+    setSecondOpen(false);
+  };
+
+  const toggleSecond = () => {
+    setSecondOpen(!isSecondOpen);
+    setFirstOpen(false);
+  };
 
   const handleRepeatClick = (selected: string) => {
     setSelectedRepeat(selected);
@@ -174,13 +198,60 @@ const MailingConditions: FC<IProps> = ({
                 )}
               </div>
               <div className={styles.form__smallInputsContainer}>
-                <div className={styles.form__dateInput}>
-                  <InputDialogsues placeholder="Число месяца" />
-                </div>
-                <div className={styles.form__dateInput}>
-                  {/* Создать компонент инпута */}
-                  <InputDialogsues placeholder="День месяца" />
-                </div>
+                {(selectedInterval === 'По месяцам' ||
+                  selectedInterval === 'По годам') && (
+                  <div className={styles.form__dateButtons}>
+                    <button
+                      type="button"
+                      className={styles.form__dateButton}
+                      onClick={toggleFirst}
+                    >
+                      {selectedInterval === 'По месяцам'
+                        ? 'Число месяца'
+                        : 'Месяц отправки'}
+                      {weekDay && <CheckIcon />}
+                    </button>
+                    {isFirstOpen && (
+                      <div className={styles.form__chooseWrapper}>
+                        <Typography tag="span">
+                          Выберите
+                          {selectedInterval === 'По месяцам'
+                            ? ' число '
+                            : ' месяц '}
+                          отправки
+                        </Typography>
+                        <MenuVariable
+                          width="174px"
+                          nameMenu={!date ? '1' : date}
+                          buttons={[]}
+                        />
+                      </div>
+                    )}
+                    <button
+                      className={styles.form__dateButton}
+                      type="button"
+                      onClick={toggleSecond}
+                    >
+                      День месяца
+                      {weekDay && <CheckIcon />}
+                    </button>
+                    {isSecondOpen && (
+                      <div className={styles.form__chooseWrapper}>
+                        <MenuVariable
+                          width="174px"
+                          nameMenu={!date ? '1' : date}
+                          buttons={[]}
+                        />
+                        <MenuVariable
+                          width="174px"
+                          buttons={week}
+                          nameMenu={!weekDay ? 'Понедельник' : weekDay}
+                          onClick={(selected: string) => setWeekDay(selected)}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           )}
