@@ -1,6 +1,6 @@
+/* eslint-disable default-case */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
-import { CalendarIcon } from '@mui/x-date-pickers';
+import { FC, useEffect, useState } from 'react';
 import styles from './mailing-condition.module.scss';
 import Typography from '../../../ui/typography/typography';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
@@ -35,6 +35,7 @@ const MailingConditions: FC<IProps> = ({
   const [time, setTime] = useState<string>('');
   const [date, setDate] = useState<string>('');
   const [selectedInterval, setSelectedInterval] = useState<string>('По дням');
+  const [period, setPeriod] = useState<string>('');
 
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [timeMenuOpen, setTimeMenuOpen] = useState(false);
@@ -58,21 +59,22 @@ const MailingConditions: FC<IProps> = ({
     setSelectedInterval(selected);
   };
 
-  function renderResult(interval: string) {
-    console.log('interval:', interval);
-    switch (interval) {
+  useEffect(() => {
+    switch (selectedInterval) {
       case 'По дням':
-        return 'День';
+        setPeriod('День');
+        break;
       case 'По неделям':
-        return 'Неделю';
+        setPeriod('Неделю');
+        break;
       case 'По месяцам':
-        return 'Месяц';
+        setPeriod('Месяц');
+        break;
       case 'По годам':
-        return 'Год';
-      default:
-        return 'День';
+        setPeriod('Год');
+        break;
     }
-  }
+  }, [selectedInterval]);
 
   return (
     <div className={styles.container}>
@@ -98,7 +100,6 @@ const MailingConditions: FC<IProps> = ({
           {sendTime === 'Дата/Время' && (
             <fieldset className={styles.form__dateTimeWrapper}>
               <div className={styles.form__menuContainer}>
-                <CalendarIcon />
                 <Typography tag="span">Дата</Typography>
                 <MenuVariable
                   width="144px"
@@ -154,11 +155,7 @@ const MailingConditions: FC<IProps> = ({
                 </div>
                 <div className={styles.form__menuContainer}>
                   <Typography tag="span">Каждый</Typography>
-                  <MenuVariable
-                    nameMenu={renderResult(selectedInterval)}
-                    buttons={[]}
-                    width="174px"
-                  />
+                  <MenuVariable nameMenu={period} buttons={[]} width="174px" />
                 </div>
                 {!isOff && (
                   <div className={styles.form__relativeInput}>
@@ -181,6 +178,7 @@ const MailingConditions: FC<IProps> = ({
                   <InputDialogsues placeholder="Число месяца" />
                 </div>
                 <div className={styles.form__dateInput}>
+                  {/* Создать компонент инпута */}
                   <InputDialogsues placeholder="День месяца" />
                 </div>
               </div>
