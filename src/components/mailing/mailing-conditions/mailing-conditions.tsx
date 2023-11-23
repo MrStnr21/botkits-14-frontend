@@ -7,7 +7,6 @@ import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Calendar from '../../calendar/calendar';
 import MenuTime from '../../../ui/menus/menu-time/menu-time';
-import ConstructorAddButton from '../../../ui/buttons/constructor-add-button/constructor-add-button';
 import CheckIcon from '../../icons/Check/CheckIcon';
 
 interface IProps {
@@ -44,7 +43,7 @@ const MailingConditions: FC<IProps> = ({
   const [selectedRepeat, setSelectedRepeat] = useState<string>('Без повтора');
   const [sendTime, setSendTime] = useState<string>('Сейчас');
   const [time, setTime] = useState<string>('');
-  const [date, setDate] = useState<string>('');
+  const [date, setDate] = useState<string | null>(null);
   const [selectedInterval, setSelectedInterval] = useState<string>('По дням');
   const [period, setPeriod] = useState<string>('');
   const [weekDay, setWeekDay] = useState<string>('');
@@ -220,11 +219,7 @@ const MailingConditions: FC<IProps> = ({
                             : ' месяц '}
                           отправки
                         </Typography>
-                        <MenuVariable
-                          width="174px"
-                          nameMenu={!date ? '1' : date}
-                          buttons={[]}
-                        />
+                        <MenuVariable width="174px" nameMenu="1" buttons={[]} />
                       </div>
                     )}
                     <button
@@ -237,11 +232,7 @@ const MailingConditions: FC<IProps> = ({
                     </button>
                     {isSecondOpen && (
                       <div className={styles.form__chooseWrapper}>
-                        <MenuVariable
-                          width="174px"
-                          nameMenu={!date ? '1' : date}
-                          buttons={[]}
-                        />
+                        <MenuVariable width="174px" nameMenu="1" buttons={[]} />
                         <MenuVariable
                           width="174px"
                           buttons={week}
