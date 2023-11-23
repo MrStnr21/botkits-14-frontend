@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 import cn from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
 
 import styles from './menu.module.scss';
 import MenuItem from '../../menu-item/menu-item';
@@ -43,10 +42,11 @@ const Menu = forwardRef<Ref, IMenu>(
 
     return (
       <div className={containerCN} ref={ref}>
-        {options.map((option) => {
+        {options.map((option, index) => {
           return (
             <MenuItem
-              key={uuidv4()}
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
               option={{ ...option }}
               onClick={() => onItemClick(option)}
               isChecked={isMultiple && selectedValues.includes(option.value)}
