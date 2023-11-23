@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
+import { CalendarIcon } from '@mui/x-date-pickers';
 import styles from './mailing-condition.module.scss';
 import Typography from '../../../ui/typography/typography';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
-import Input from '../../../ui/inputs/input/input';
 import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues';
+import Calendar from '../../calendar/calendar';
+import MenuTime from '../../../ui/menus/menu-time/menu-time';
 
 interface IProps {
   title?: string;
@@ -28,13 +30,49 @@ const MailingConditions: FC<IProps> = ({
   handleBack,
   handleClickButton,
 }) => {
-  const [selectedVariable, setSelectedVariable] =
-    useState<string>('Без повтора');
-  const [date, setDate] = useState('');
-  const handleMenuClick = (selected: string) => {
-    console.log(`Selected variable: ${selected}`);
-    setSelectedVariable(selected);
+  const [selectedRepeat, setSelectedRepeat] = useState<string>('Без повтора');
+  const [sendTime, setSendTime] = useState<string>('Сейчас');
+  const [time, setTime] = useState<string>('');
+  const [date, setDate] = useState<string>('');
+  const [selectedInterval, setSelectedInterval] = useState<string>('По дням');
+
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [timeMenuOpen, setTimeMenuOpen] = useState(false);
+  const [isOff, off] = useState(false);
+
+  const [dat, setDat] = useState('');
+
+  const handleRepeatClick = (selected: string) => {
+    setSelectedRepeat(selected);
   };
+
+  const handleSendTimeClick = (selected: string) => {
+    setSendTime(selected);
+  };
+
+  const handleCalendarClick = (selected: any) => {
+    setDate(selected);
+  };
+
+  const handleIntervalClick = (selected: any) => {
+    setSelectedInterval(selected);
+  };
+
+  function renderResult(interval: string) {
+    console.log('interval:', interval);
+    switch (interval) {
+      case 'По дням':
+        return 'День';
+      case 'По неделям':
+        return 'Неделю';
+      case 'По месяцам':
+        return 'Месяц';
+      case 'По годам':
+        return 'Год';
+      default:
+        return 'День';
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -50,40 +88,95 @@ const MailingConditions: FC<IProps> = ({
         <fieldset className={styles.form__inputsFieldset}>
           <div className={styles.form__menuContainer}>
             <Typography tag="p">Отправить</Typography>
-            <div className={styles.form__menuWrapper}>
-              <MenuVariable buttons={send} nameMenu="Сейчас" />
-            </div>
+            <MenuVariable
+              width="265px"
+              buttons={send}
+              nameMenu={sendTime}
+              onClick={handleSendTimeClick}
+            />
           </div>
+          {sendTime === 'Дата/Время' && (
+            <fieldset className={styles.form__dateTimeWrapper}>
+              <div className={styles.form__menuContainer}>
+                <CalendarIcon />
+                <Typography tag="span">Дата</Typography>
+                <MenuVariable
+                  width="144px"
+                  nameMenu={!date ? '24.05.2022' : date}
+                  buttons={[]}
+                  onDivClick={() => setCalendarOpen(!calendarOpen)}
+                />
+                {calendarOpen && (
+                  <div className={styles.form__calendar}>
+                    <Calendar handleFunction={handleCalendarClick} />
+                  </div>
+                )}
+              </div>
+              <div className={styles.form__menuContainer}>
+                <Typography tag="span">Время</Typography>
+                <MenuVariable
+                  nameMenu={!time ? '04:00' : time}
+                  buttons={[]}
+                  width="144px"
+                  onDivClick={() => setTimeMenuOpen(!timeMenuOpen)}
+                />
+                {timeMenuOpen && (
+                  <div className={styles.form__calendar}>
+                    <MenuTime
+                      saveFunction={(selected: string) => setTime(selected)}
+                      clearFunction={() => setTime('')}
+                    />
+                  </div>
+                )}
+              </div>
+            </fieldset>
+          )}
           <div className={styles.form__menuContainer}>
             <Typography tag="p">Повторять</Typography>
-            <div className={styles.form__menuWrapper}>
-              <MenuVariable
-                buttons={repeat}
-                nameMenu="Без повтора"
-                onClick={handleMenuClick}
-              />
-            </div>
+            <MenuVariable
+              width="265px"
+              buttons={repeat}
+              nameMenu={selectedRepeat}
+              onClick={handleRepeatClick}
+            />
           </div>
-          {selectedVariable === 'Свой вариант' && (
+          {selectedRepeat === 'Свой вариант' && (
             <div className={styles.form__hiddenInputs}>
-              <div className={styles.form__smallContainer}>
+              <div className={styles.form__smallInputsContainer}>
                 <div className={styles.form__menuContainer}>
                   <Typography tag="span">Настроить</Typography>
-                  <div className={styles.form__smallMenuWrapper}>
-                    <MenuVariable buttons={howManyTimes} nameMenu="По дням" />
-                  </div>
+                  <MenuVariable
+                    buttons={howManyTimes}
+                    nameMenu={selectedInterval}
+                    width="174px"
+                    onClick={handleIntervalClick}
+                  />
                 </div>
                 <div className={styles.form__menuContainer}>
                   <Typography tag="span">Каждый</Typography>
-                  <div className={styles.form__smallMenuWrapper}>
+                  <MenuVariable
+                    nameMenu={renderResult(selectedInterval)}
+                    buttons={[]}
+                    width="174px"
+                  />
+                </div>
+                {!isOff && (
+                  <div className={styles.form__relativeInput}>
                     <InputDialogsues
                       placeholder="Введите значение"
-                      onChange={() => setDate}
+                      onChange={() => setDat}
                     />
+                    <button
+                      type="button"
+                      className={styles.form__hideBtn}
+                      onClick={() => off(!isOff)}
+                    >
+                      Скрыть
+                    </button>
                   </div>
-                </div>
+                )}
               </div>
-              <div className={styles.form__checkboxes}>
+              <div className={styles.form__smallInputsContainer}>
                 <div className={styles.form__dateInput}>
                   <InputDialogsues placeholder="Число месяца" />
                 </div>

@@ -9,6 +9,7 @@ export interface IMenuVariable {
   onClick?: Function;
   nameMenu?: string;
   width?: string;
+  onDivClick?: () => void;
 }
 
 const MenuVariable: FC<IMenuVariable> = ({
@@ -16,6 +17,7 @@ const MenuVariable: FC<IMenuVariable> = ({
   onClick,
   nameMenu = 'Переменная',
   width,
+  onDivClick,
 }): JSX.Element => {
   const [variable, setVariable] = useState<string>(nameMenu);
   const [isActive, setIsActive] = useState<string>('');
@@ -47,7 +49,7 @@ const MenuVariable: FC<IMenuVariable> = ({
   }, [isActive]);
 
   return (
-    <div>
+    <div onClick={onDivClick}>
       <div
         style={width ? { width } : {}}
         className={stylesMenuVariable.open_button}

@@ -3,7 +3,6 @@
 
 .box {
   @include size(264px, 478px);
-  display: none;
   flex-direction: column;
   box-shadow: $m-box-shadow;
   background-color: white;
