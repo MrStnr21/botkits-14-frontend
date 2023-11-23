@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import styles from './mailing-form.module.scss';
 import CheckIcon from '../../icons/Check/CheckIcon';
@@ -31,6 +32,8 @@ const MailingForm: FC<IProps> = ({
 }) => {
   const [isFirstChecked, setIsFirstChecked] = useState(false);
   const [isSecChecked, setIsSecChecked] = useState(false);
+  const [list, setList] = useState('');
+  const [messengers, setMessengers] = useState(''); // переработать на массив
 
   const handleFirstClick = () => {
     setIsSecChecked(false);
@@ -60,14 +63,22 @@ const MailingForm: FC<IProps> = ({
             />
           </div>
           <div className={styles.form__menuVariableWrapper}>
-            <MenuVariable buttons={mailingList} nameMenu="Список рассылки" />
+            <MenuVariable
+              buttons={mailingList}
+              nameMenu="Список рассылки"
+              onClick={(selected: string) => setList(selected)}
+            />
           </div>
         </fieldset>
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>Текст сообщения</legend>
           <TextField onChangeText={handleTextChange} textValue={textValue} />
           <div className={styles.form__menuVariableWrapper}>
-            <MenuVariable buttons={messengerList} nameMenu="Telegram, VK" />
+            <MenuVariable
+              buttons={messengerList}
+              nameMenu="Telegram, VK"
+              onClick={(selected: string) => setMessengers(selected)}
+            />
           </div>
         </fieldset>
         <fieldset className={styles.form__formFieldset}>

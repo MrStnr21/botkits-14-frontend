@@ -106,7 +106,7 @@ const Dialogs: FC<ID> = ({ setSelectedMessages, setSelectedUser }) => {
         </div>
       ) : (
         <div className={styles.dialogs__inputWrapper}>
-          <InputDialogues iconVisible />
+          <InputDialogues iconVisible search />
         </div>
       )}
       <div className={styles.dialogs__messagesContainer}>
