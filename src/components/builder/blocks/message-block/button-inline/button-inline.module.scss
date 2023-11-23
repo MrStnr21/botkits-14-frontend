@@ -21,7 +21,7 @@
 }
 
 .container {
-  position: relative
+  position: relative;
 }
 
 .outline {
@@ -30,6 +30,7 @@
 
 .absolute-wrapper {
   @include position(absolute, -56px, 0, false, false);
+  background-color: $off-white;
 }
 
 .button {

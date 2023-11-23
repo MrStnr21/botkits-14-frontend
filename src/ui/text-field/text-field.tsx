@@ -11,15 +11,11 @@ import MenuTextEditor from '../menus/menu-text-editor/menu-text-editor';
 
 interface ITextField {
   maxTextLength?: number;
-  textValue?: string;
-  onChangeText?: (textValue: string) => void;
+  text: string;
+  setText: (value: string) => void;
 }
 
-const TextField: FC<ITextField> = ({
-  maxTextLength = 4096,
-  textValue,
-  onChangeText,
-}) => {
+const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
   const [emojis, toggleEmojis] = useState(false);
   const [textMenu, toggleTextMenu] = useState(false);
 
@@ -31,8 +27,6 @@ const TextField: FC<ITextField> = ({
     toggleEmojis(!emojis);
   };
 
-  const [text, setText] = useState('');
-
   return (
     <div className={styles.textarea}>
       <textarea
@@ -43,9 +37,9 @@ const TextField: FC<ITextField> = ({
         value={text}
         onChange={(e) => {
           setText(e.target.value);
-          if (onChangeText) {
-            onChangeText(e.target.value);
-          }
+          // if (onChangeText) {
+          //   onChangeText(e.target.value);
+          // }
         }}
         draggable={false}
         className={styles.textarea__input}

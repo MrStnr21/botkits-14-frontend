@@ -24,8 +24,10 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
     setTriggers(newTriggers);
   };
 
-  return isOpened ? (
-    <aside className={styles.wrap}>
+  return (
+    <aside
+      className={`${styles.wrap} ${isOpened ? styles.opened : styles.closed}`}
+    >
       <div className={styles.header}>
         <h2 className={styles.title}>Триггеры</h2>
         <div onClick={close} className={styles.close}>
@@ -41,7 +43,7 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
         </ConstructorAddButton>
       </div>
     </aside>
-  ) : null;
+  );
 };
 
 export default TriggerBlock;

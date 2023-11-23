@@ -12,9 +12,14 @@ const modalContainer = document.querySelector('#modals') as HTMLElement;
 interface IModalPopup {
   onClick: () => void;
   children: JSX.Element;
+  closeIcon?: boolean;
 }
 
-const ModalPopup: FC<IModalPopup> = ({ onClick, children }): JSX.Element => {
+const ModalPopup: FC<IModalPopup> = ({
+  onClick,
+  children,
+  closeIcon = true,
+}): JSX.Element => {
   useEffect(() => {
     function closeEscModal(evt: KeyboardEvent) {
       if (evt.key === 'Escape') onClick();
@@ -32,13 +37,15 @@ const ModalPopup: FC<IModalPopup> = ({ onClick, children }): JSX.Element => {
       <ModalOverlayPopup onClick={onClick} />
       <div className={stylesModalPopup.content}>
         {children}
-        <button
-          className={stylesModalPopup.close}
-          onClick={onClick}
-          type="button"
-        >
-          <Close />
-        </button>
+        {closeIcon && (
+          <button
+            className={stylesModalPopup.close}
+            onClick={onClick}
+            type="button"
+          >
+            <Close />
+          </button>
+        )}
       </div>
     </div>,
     modalContainer

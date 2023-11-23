@@ -72,7 +72,7 @@ const MailingForm: FC<IProps> = ({
         </fieldset>
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>Текст сообщения</legend>
-          <TextField onChangeText={handleTextChange} textValue={textValue} />
+          <TextField setText={handleTextChange} text={textValue} />
           <div className={styles.form__menuVariableWrapper}>
             <MenuVariable
               buttons={messengerList}
