@@ -1,30 +1,25 @@
 @use '../../stylesheets/variables' as *;
 @use '../../stylesheets/mixins' as *;
 
-%size-m {
-  @include size(264px, 132px);
+@mixin media-size($width, $hieght) {
+  @include size($width, $hieght);
   border-radius: $xl-border-radius;
 }
 
-%size-s {
-  @include size(172px, 96px);
-  border-radius: $l-border-radius;
+.size-m {
+  @include media-size(264px, 132px);
+}
+
+.size-s {
+  @include media-size(172px, 96px);
   margin-right: 20px;
 }
 
-%size-x {
-  @include size(130px, 72px);
-  border-radius: $l-border-radius;
-}
-
-.size-m {
-  @extend %size-m;
-}
-.size-s {
-  @extend %size-s;
-}
 .size-x {
-  @extend %size-x;
+  @include media-size(130px, 72px);
+}
+.size-sx {
+  @include media-size(150px, 83px);
 }
 
 .flexWrapper {
@@ -97,7 +92,7 @@
 .video__box {
   @include flex(row, center, center);
   @include size(100%, 100%);
-  @include position(absolute, 0, $left: 0);
+  @include position(fixed, 0, $left: 0);
   z-index: 10;
   background-color: rgba($primary-oxford-blue-default, 0.4);
 }

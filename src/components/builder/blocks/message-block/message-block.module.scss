@@ -42,6 +42,10 @@
 .inputs-num{
   @include flex(row, false, false, 7px);
   padding-top: 4px;
+
+  @media screen and (max-width: 520px) {
+    padding: 0;
+  }
 }
 
 .split-line{

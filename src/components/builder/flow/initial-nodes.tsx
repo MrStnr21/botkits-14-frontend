@@ -40,9 +40,9 @@ export const initialNodes: Node[] = [
     data: {
       name: 'message',
       data: [
-        { type: 'message' },
-        { type: 'answers', verButtons: [], horButtons: [] },
+        { type: 'message', value: '' },
         { type: 'buttons', verButtons: [], horButtons: [] },
+        { type: 'answers', verButtons: [], horButtons: [] },
       ],
       showTime: {
         show: true,
