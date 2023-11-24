@@ -30,10 +30,14 @@
 .labeled-content {
   @include flex(column, false, false, 4px);
   box-sizing: border-box;
+  @media screen and (max-width: 520px) {
+    max-width: 196px;
+  }
 }
 
 .selects-string {
   @include flex(row, false, false, 4px);
+  width: 52px;
 
   @media screen and (max-width: 520px) {
     :nth-child(1) {
@@ -41,17 +45,20 @@
     }
 
     :nth-child(2) {
-      max-width: 37px;
+      max-width: 96px;
     }
   }
 }
 .selectsIcon {
   min-width: 52px;
+  @media screen and (max-width: 520px) {
+    min-width: 34px;
+  }
 }
 
 .selectsVariable {
   min-width: 184px;
   @media screen and (max-width: 520px) {
-    max-width: 96px;
+    min-width: 93px;
   }
 }

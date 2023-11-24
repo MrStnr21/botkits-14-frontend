@@ -84,7 +84,7 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
           }`}
         />
         {isIcon ? (
-          <img src={nameMenu} alt="icon" />
+          <img src={nameMenu} alt="icon" className={styles.img} />
         ) : (
           <Typography tag="p" className={`${styles.text} ${textColor}`}>
             {variable}
@@ -109,7 +109,11 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
                     openHandler();
                   }}
                 >
-                  {isIcon ? <img src={name} alt="icon" /> : name}
+                  {isIcon ? (
+                    <img src={name} alt="icon" className={styles.img} />
+                  ) : (
+                    name
+                  )}
                 </button>
               </li>
             );
