@@ -12,10 +12,27 @@
   padding: 12px 12px 8px;
   z-index: 1;
 
-  @media screen and (max-width: 520px) {
-    height: 57px;
-    border-radius: 5.7px;
-    padding: 9px 7px 6px;
+  &_adaptive {
+    @media screen and (max-width: 520px) {
+      height: 57px;
+      border-radius: 5.7px;
+      padding: 9px 7px 6px;
+
+      .textarea__input {
+        font-size: 7.41px;
+      }
+
+      .textarea__footer {
+        font-size: 7px;
+        letter-spacing: 0.4px;
+      }
+
+      .textarea__font {
+        @include size(9.12px, 9.12px);
+        top: 20px;
+        right: 5px;
+      }
+    }
   }
 }
 
@@ -30,10 +47,6 @@
   resize: none;
   border: none;
   text-align: left;
-
-  @media screen and (max-width: 520px) {
-    font-size: 7.41px;
-  }
 }
 
 .textarea__input::placeholder {
@@ -59,11 +72,6 @@
   z-index: 1;
   text-align: left;
   column-gap: 12px;
-
-  @media screen and (max-width: 520px) {
-    font-size: 7px;
-    letter-spacing: 0.4px;
-  }
 }
 
 .textarea__counter {
@@ -83,12 +91,6 @@
 
   &:hover {
     cursor: $cursor;
-  }
-
-  @media screen and (max-width: 520px) {
-    @include size(9.12px, 9.12px);
-    top: 20px;
-    right: 5px;
   }
 }
 

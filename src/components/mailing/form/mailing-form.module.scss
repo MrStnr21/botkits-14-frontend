@@ -22,14 +22,13 @@
   background-color: $off-white;
   box-shadow: 0px 6px 16px 0px #15123321;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
 
   &__formFieldset {
     @include flex(row, space-between, flex-start, 24px);
     @include size(100%, unset);
     @include indents(0 0 32px 0, 0);
     min-width: 0;
-    overflow: hidden;
     border: none;
   }
 
@@ -71,6 +70,7 @@
 .container {
   /* @include max-size(924px, unset); */
   @include size(100%, fit-content);
+  min-width: 300px;
   background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;
 

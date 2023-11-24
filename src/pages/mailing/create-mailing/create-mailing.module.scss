@@ -21,6 +21,11 @@
     @include flex($justify-content: center, $align-items: center);
     background-color: $primary-persian-blue-default;
     border-radius: 64px 0 0 64px;
+
+    @media screen and (max-width: 860px) {
+      @include position(fixed, unset, 20px, 40px, unset);
+      background: none;
+    }
   }
 
   &__link {

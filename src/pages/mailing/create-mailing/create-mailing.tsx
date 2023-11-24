@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import { useMatch, useNavigate } from 'react-router';
+import { useMediaQuery } from '@mui/material';
 import styles from './create-mailing.module.scss';
 import AsideMailing from '../../../components/mailing/aside/aside';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
 import BotFace from '../../../components/icons/Bot/BotIcon';
 import MailingForm from '../../../components/mailing/form/mailing-form';
 import MailingConditions from '../../../components/mailing/mailing-conditions/mailing-conditions';
+import ModalPopup from '../../../components/popups/modal-popup/modal-popup';
 
 const CreateMailing: FC = () => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const CreateMailing: FC = () => {
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
   const [isAsideVisible, setAsideVisible] = useState(true);
+  const isMobile = useMediaQuery('(max-width: 860px)');
 
   const handleClickButton = () => {
     if (nameValue && textValue) {
@@ -32,13 +35,15 @@ const CreateMailing: FC = () => {
   return (
     <>
       <div className={styles.create}>
-        <button
-          type="button"
-          className={styles.create__sideButton}
-          onClick={handleChevronClick}
-        >
-          <ChevronIcon position={isAsideVisible ? 'right' : 'left'} />
-        </button>
+        {!isMobile && (
+          <button
+            type="button"
+            className={styles.create__sideButton}
+            onClick={handleChevronClick}
+          >
+            <ChevronIcon position={isAsideVisible ? 'right' : 'left'} />
+          </button>
+        )}
         {/* {!isAsideVisible && (
         <div className={styles.create__blue}>
           <BotFace width={64} height={64} />
@@ -60,10 +65,20 @@ const CreateMailing: FC = () => {
             handleClickButton={handleClickButton}
           />
         )}
-        {isAsideVisible && <AsideMailing title={nameValue} text={textValue} />}
+        {isAsideVisible &&
+          (isMobile ? (
+            <ModalPopup onClick={() => setAsideVisible(false)}>
+              <AsideMailing title={nameValue} text={textValue} />
+            </ModalPopup>
+          ) : (
+            <AsideMailing title={nameValue} text={textValue} />
+          ))}
       </div>
-      {!isAsideVisible && (
-        <div className={styles.create__blue}>
+      {(!isAsideVisible || isMobile) && (
+        <div
+          onClick={isMobile ? handleChevronClick : () => {}}
+          className={styles.create__blue}
+        >
           <BotFace width={64} height={64} />
         </div>
       )}

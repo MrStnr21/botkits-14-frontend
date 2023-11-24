@@ -13,9 +13,15 @@ interface ITextField {
   maxTextLength?: number;
   text: string;
   setText: (value: string) => void;
+  isAdaptive?: boolean;
 }
 
-const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
+const TextField: FC<ITextField> = ({
+  maxTextLength = 4096,
+  text,
+  setText,
+  isAdaptive = true,
+}) => {
   const [emojis, toggleEmojis] = useState(false);
   const [textMenu, toggleTextMenu] = useState(false);
 
@@ -28,7 +34,11 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
   };
 
   return (
-    <div className={styles.textarea}>
+    <div
+      className={`${styles.textarea} ${
+        isAdaptive ? styles.textarea_adaptive : ''
+      }`}
+    >
       <textarea
         name="textarea"
         id="textarea"
