@@ -5,18 +5,17 @@ import {
   BarControllerDatasetOptions,
 } from 'chart.js';
 
+import type { Option } from '../../utils/types';
+
 type CommonProps = {
   type: string;
   title: string;
   chartOptions: ChartOptions<'line' | 'bar'>;
   chartLabels: string[];
   chartData: number[];
-  // типизация из InputSelect.tsx
-  periods: {
-    label: string;
-    value: string;
-  }[];
-  onPeriodSelect: () => void;
+  periods: Option[];
+  currentPeriod: Option;
+  onPeriodSelect: (period: Option) => void;
   onCalendarSelect: () => void;
 };
 
