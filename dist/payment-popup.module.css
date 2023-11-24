@@ -1,0 +1,217 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.paymentPopupContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: unset;
+  gap: 20px;
+  padding: 40px 40px 37px 40px;
+  width: 970px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  border: none;
+  border-radius: 30px;
+  position: relative;
+  text-align: center;
+}
+
+.wrapperTariffTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 213px;
+}
+
+.iconRocketBot {
+  width: 193px;
+  height: 139px;
+  position: absolute;
+  top: -37px;
+  left: 44px;
+}
+
+.iconCheck {
+  margin-left: 0;
+  left: 45px;
+  position: relative;
+}
+
+.tariffTitle {
+  padding: 24px 0 20px;
+  left: 35px;
+  position: relative;
+}
+
+.linkWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 890px;
+  height: 257px;
+  background: #F8F9FB;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: unset;
+  gap: 20px;
+  padding-bottom: 33px;
+}
+
+.linkBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  width: 260px;
+  height: 70px;
+  background: #FFFFFF;
+  outline: solid 1.5px rgba(6, 12, 35, 0.3);
+  border-radius: 8px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.selected {
+  outline: 1.5px solid #433FB8;
+  background: #FFFFFF;
+}
+
+.nameTariff {
+  padding: 0 24px;
+}
+
+.wrapperPrice {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.price {
+  color: #433FB8;
+}
+
+.currency {
+  position: relative;
+  padding-right: 24px;
+}
+
+.paymentButtonsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: unset;
+  gap: 20px;
+  z-index: 2;
+  left: 40px;
+  top: 460px;
+  padding: 80px 35px 0;
+}
+
+.wrapperTotalPrice {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.totalPrice {
+  color: #FFFFFF;
+  display: inline;
+}
+
+.lightGrayBackgroundWrapper {
+  width: 970px;
+  height: 207px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #D7DEEA;
+  text-align: center;
+  z-index: 0;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.title {
+  z-index: 1;
+}
+
+.description {
+  padding-bottom: 12px;
+}
+
+.blackBackgroundWrapper {
+  width: 970px;
+  height: 144px;
+  position: absolute;
+  top: 420px;
+  left: 0;
+  background: #131118;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.greyBackgroundWrapper {
+  width: 890px;
+  height: 64px;
+  position: absolute;
+  top: 460px;
+  left: 40px;
+  opacity: 0.15;
+  background: #EFFDFF;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.logoUkassaIcon {
+  padding-top: 5px;
+  width: 300px;
+  gap: 14px;
+}
+
+.requestInvoiceText {
+  color: #131118;
+  width: 150px;
+  padding: 0 20px;
+}
+
+.requestInvoiceText:hover {
+  color: #243CBB;
+}
+
+.paymentButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

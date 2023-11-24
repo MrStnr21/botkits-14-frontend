@@ -1,0 +1,137 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.header {
+  grid-column: 2/3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 72px;
+  border-bottom: 1px solid #D7DEEA;
+  margin-right: 40px;
+}
+@media (max-width: 620px) {
+  .header {
+    border-bottom: none;
+    margin-right: 20px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: unset;
+  align-items: center;
+  color: #060C23;
+  position: relative;
+}
+
+.text + .text {
+  font-weight: 500;
+  padding-left: 7px;
+  padding-right: 15px;
+  border-right: 1px solid #E4E9F1;
+}
+@media (max-width: 620px) {
+  .text {
+    display: none;
+  }
+}
+
+.logo {
+  display: none;
+}
+@media (max-width: 620px) {
+  .logo {
+    display: block;
+  }
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: unset;
+  align-items: center;
+  gap: 37px;
+  margin-left: 15px;
+}
+@media (max-width: 620px) {
+  .icons {
+    display: none;
+  }
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: unset;
+  align-items: center;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.userInfo > .text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 20vw;
+}
+
+.userInfo__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-left: 33px;
+  margin-right: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+@media (max-width: 620px) {
+  .userInfo__avatar {
+    margin-right: 0;
+  }
+}
+
+.userInfo__image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.userInfo__button {
+  margin-left: 17px;
+}
+@media (max-width: 620px) {
+  .userInfo__button {
+    display: none;
+  }
+}
+
+.button_default {
+  rotate: 0;
+}
+
+.button_active {
+  rotate: 180deg;
+  transition: all 0.5s linear;
+}

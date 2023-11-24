@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: 16px;
+  left: 98px;
+  z-index: 999;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+}
+
+.percent {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  width: 35px;
+  text-align: right;
+  font-feature-settings: "clig" off, "liga" off;
+}
+.percent:after {
+  content: "%";
+  display: inline-block;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  width: fit-content;
+  padding: 0 12px 0 16px;
+}
+.controls > :not(hr) {
+  margin: 8px 0;
+}
+@media screen and (max-width: 620px) {
+  .controls {
+    display: none;
+  }
+}
+
+.map {
+  position: static;
+}

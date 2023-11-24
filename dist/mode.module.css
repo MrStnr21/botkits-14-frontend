@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.conditional {
+  display: flex;
+  flex-direction: column;
+  background-color: #F8F9FB;
+  border-radius: 10px;
+}
+@media screen and (max-width: 520px) {
+  .conditional {
+    border-radius: 5.7px;
+  }
+}
+
+.extraClass:first-of-type {
+  padding: 12px 12px 8px !important;
+}
+@media screen and (max-width: 520px) {
+  .extraClass:first-of-type {
+    padding: 9px 9px 6px !important;
+  }
+}
+
+.extraClass:last-of-type {
+  padding: 8px 12px 12px !important;
+}
+@media screen and (max-width: 520px) {
+  .extraClass:last-of-type {
+    padding: 6px 9px 9px !important;
+  }
+}
+
+.labeled-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+}
+
+.selects-string {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+@media screen and (max-width: 520px) {
+  .selects-string :nth-child(1) {
+    max-width: 96px;
+  }
+  .selects-string :nth-child(2) {
+    max-width: 37px;
+  }
+}
+
+.selectsIcon {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+@media screen and (max-width: 520px) {
+  .selectsIcon :nth-child(1) {
+    max-width: 96px;
+  }
+  .selectsIcon :nth-child(2) {
+    max-width: 37px;
+  }
+}

@@ -99,11 +99,12 @@ export type TVariablesControlBlock = {
 export type TConditionalBlock = {
   name: string;
   variables: {
+    id: string;
     type: 'easy' | 'hard'; // В зависимости от типа переменной нужны (variable, sign, blockName) для easy и (condition, blockName) для hard
     variable?: TVariable; // Некая переменная
     sign: string; // Одно из value принимаемых select, 11 значений, значения стоит отправить в конфиг.
-    condition: string; // Строка-условие для сложного режима
-    blockName: string; // name одного из блоков
+    condition: string; // Строка-условие для сложного режима или значение для легкого
+    targetBlock: string; // name одного из блоков
   }[];
 };
 

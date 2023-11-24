@@ -1,0 +1,155 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  padding-top: 32px;
+  margin-right: 40px;
+}
+.container__item {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.container__item:last-of-type {
+  flex-grow: 1;
+}
+.container__button {
+  margin-left: auto;
+  width: 188px;
+  height: 46px;
+}
+
+.subscription {
+  width: 100%;
+  height: 352px;
+  width: 404px;
+  position: sticky;
+  top: 32px;
+}
+.subscription__header {
+  width: 100%;
+  height: 228px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "rate status" "info info" "button button";
+  row-gap: 8px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  overflow: hidden;
+  padding: 32px;
+  z-index: 1;
+}
+.subscription__rate {
+  grid-area: rate;
+}
+.subscription__status {
+  grid-area: status;
+  justify-self: end;
+}
+.subscription__info {
+  grid-area: info;
+}
+.subscription__button {
+  margin-top: 16px;
+  grid-area: button;
+}
+.subscription__body {
+  width: 100%;
+  height: 205px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  border-radius: 30px;
+  background-color: #F2F4F8;
+  padding: 113px 32px 32px;
+}
+.subscription__balance {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: min-content;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  padding: 36px 0 24px;
+  box-sizing: border-box;
+  background-color: #F2F4F8;
+  border-radius: 30px;
+}
+.payment__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.dropdown {
+  position: relative;
+}
+.dropdown__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8392AB;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  background-color: transparent;
+  border: none;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.dropdown__list {
+  top: 100% !important;
+}
+.dropdown__list ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dropdown__list ul li button {
+  margin: 0 !important;
+}

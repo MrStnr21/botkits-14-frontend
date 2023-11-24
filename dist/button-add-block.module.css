@@ -1,0 +1,90 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  height: 64px;
+  min-width: 196px;
+  padding: 10px 7px 10px 16px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  transition: background-color 0.1s linear;
+  color: #060C23;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.button:hover {
+  background-color: #F2F4F8;
+  color: #243CBB;
+}
+.button:active {
+  background-color: #ECEFFF;
+}
+.button:disabled {
+  background-color: #FFFFFF;
+  color: #BFC9D9;
+}
+@media screen and (max-width: 670px) {
+  .button {
+    height: 52px;
+    padding: 4px 8px 4px 16px;
+  }
+}
+
+.icon {
+  opacity: 0.3;
+  filter: none;
+  transition: opacity 0.1s linear;
+}
+:hover > .icon {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(16%) sepia(79%) saturate(4843%) hue-rotate(234deg) brightness(77%) contrast(87%);
+}
+:disabled > .icon {
+  opacity: 0.3;
+  filter: none;
+}
+
+.name {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  margin: 0;
+  text-align: start;
+}
+@media screen and (max-width: 670px) {
+  .name {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s linear;
+  flex-shrink: 0;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.button svg {
+  transition: all 0.1s linear;
+}
+.button:active {
+  background-color: #ECEFFF;
+}
+.button:active svg {
+  stroke: #243CBB;
+}
+.button:disabled {
+  background-color: #F2F4F8;
+}
+.button:disabled svg {
+  stroke: #CCD4E0;
+}
+
+.buttonBld {
+  width: 56px;
+  height: 52px;
+  border-radius: 10px;
+  background-color: #F2F4F8;
+}
+.buttonBld svg {
+  stroke: #A6B3C9;
+}
+.buttonBld:hover svg {
+  stroke: #243CBB;
+}
+@media screen and (max-width: 520px) {
+  .buttonBld {
+    width: 30px;
+    height: 28px;
+  }
+}
+
+.buttonMln {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 124px;
+  height: 124px;
+  border-radius: 30px;
+  background-color: #F8F9FB;
+}
+
+.icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.icon div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+@media screen and (max-width: 520px) {
+  .icon svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.iconMln {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #ccd4e0;
+}
+.iconMln svg {
+  stroke: white;
+}
+.iconMln:hover {
+  background-color: white;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+}
+.iconMln:hover .iconMln {
+  background-color: #243CBB;
+}
+
+.buttonBld_active {
+  background-color: #ECEFFF;
+}
+.buttonBld_active svg {
+  stroke: #243CBB;
+}
+
+.buttonMln_active {
+  background-color: #ECEFFF;
+}
+.buttonMln_active .iconMln {
+  background-color: #243CBB;
+}
+
+.text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin: 12px 0 0;
+}

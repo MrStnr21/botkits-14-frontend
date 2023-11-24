@@ -1,0 +1,167 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.popup {
+  width: 464px;
+  height: 262px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 34px;
+  padding: 40px;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  box-shadow: 0 12px 24px 0 rgba(21, 18, 51, 0.1294117647);
+  border-radius: 30px;
+}
+@media screen and (max-width: 620px) {
+  .popup {
+    width: 320px;
+    height: 300px;
+    justify-content: space-around;
+  }
+}
+.popup__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+@media screen and (max-width: 620px) {
+  .popup__content {
+    gap: 8px;
+  }
+}
+.popup__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  align-self: flex-end;
+}
+@media screen and (max-width: 620px) {
+  .popup__buttons {
+    flex-direction: column;
+    align-self: center;
+  }
+}
+.popup__rejectBtn {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 60px;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 118px;
+  height: unset;
+  background-color: transparent;
+}
+.popup__rejectBtn:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+@media screen and (max-width: 620px) {
+  .popup__rejectBtn {
+    padding: 10px;
+    margin: 0;
+  }
+}
+.popup__confirmBtn {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 60px;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 165px;
+  height: unset;
+  background-color: #243CBB;
+}
+.popup__confirmBtn:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+@media screen and (max-width: 620px) {
+  .popup__confirmBtn {
+    padding: 10px;
+    margin: 0;
+  }
+}
+.popup__rejectText {
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #8392AB;
+}
+.popup__confirmText {
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #FFFFFF;
+}
+.popup__heading {
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 130%;
+  letter-spacing: 1px;
+  text-align: left;
+}
+@media screen and (max-width: 620px) {
+  .popup__heading {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 0;
+  }
+}
+.popup__text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  text-align: left;
+}

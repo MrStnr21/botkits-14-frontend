@@ -1,0 +1,167 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.primary_h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 48px;
+  line-height: 110%;
+  letter-spacing: -0.2px;
+}
+.primary_h2 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+.primary_h3 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 24px;
+  line-height: 130%;
+  letter-spacing: 0px;
+}
+.primary_h4 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 18px;
+  line-height: 130%;
+  letter-spacing: 0px;
+}
+.primary_h5 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: 0.5px;
+}
+.primary_p {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+}
+.primary_span {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+}
+
+.secondary_h1 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 48px;
+  line-height: 110%;
+  letter-spacing: -0.2px;
+}
+.secondary_h2 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+.secondary_h3 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 24px;
+  line-height: 130%;
+  letter-spacing: 0px;
+}
+.secondary_h4 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 18px;
+  line-height: 130%;
+  letter-spacing: 0px;
+}
+.secondary_h5 {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: 0.5px;
+}
+.secondary_p {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+}
+.secondary_span {
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-family: "IBM Plex Mono", sans-serif;
+  margin: 0;
+  font-weight: 600;
+  color: #060C23;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+}

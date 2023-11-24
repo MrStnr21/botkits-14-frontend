@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+.main {
+  min-width: 320px;
+  background: white;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media screen and (min-width: 1440px) {
+  .main {
+    width: 728px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .main {
+    width: 728px;
+  }
+}
+@media screen and (max-width: 740px) {
+  .main {
+    width: 100%;
+  }
+}
+.main .links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+.main .links .blockLink {
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.main .links .blockLink .mainLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main .links .blockLink .mainLink a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #060C23;
+}
+.main .links .blockLink .mainLink .iconWrap {
+  cursor: pointer;
+}

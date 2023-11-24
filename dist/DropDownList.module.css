@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.accordion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  height: 40px;
+  padding: 10px 8px;
+  margin: 0;
+  background-color: #F8F9FB;
+  box-sizing: border-box;
+  border-radius: 5px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+@media (max-width: 520px) {
+  .accordion {
+    width: 318px;
+    height: 40px;
+  }
+}
+.accordion__text {
+  white-space: nowrap;
+}
+.accordion__container {
+  box-sizing: border-box;
+  width: 250px;
+  height: unset;
+  padding: 8px 10px;
+  margin: 0;
+  background-color: #FFFFFF;
+}
+.accordion__title {
+  font-weight: 600;
+}
+.accordion__textInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: unset;
+  align-items: unset;
+  gap: 8px;
+  white-space: nowrap;
+  padding-top: 12px;
+}
+.accordion__paragraph {
+  color: #A6B3C9;
+}

@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.files {
+  max-width: 250px;
+  max-height: unset;
+  display: grid;
+  grid-template-columns: 226px 65px;
+  grid-template-rows: 20px 112px;
+  grid-row-gap: 20px;
+  padding-top: 32px;
+  align-items: center;
+}
+.files__information {
+  max-width: 331px;
+  max-height: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: center;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  padding-top: 40px;
+}
+.files__paragraph {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.files__text {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0;
+  white-space: nowrap;
+  color: #A6B3C9;
+  padding-bottom: 32px;
+}
+.files__itemRow {
+  display: flex;
+  flex-direction: unset;
+  justify-content: unset;
+  align-items: unset;
+  gap: 8px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  overflow: hidden;
+}
+.files__itemColumn {
+  display: flex;
+  flex-direction: unset;
+  justify-content: unset;
+  align-items: unset;
+  gap: 8px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  overflow: hidden;
+  flex-direction: column;
+}

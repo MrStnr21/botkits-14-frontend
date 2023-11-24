@@ -1,0 +1,299 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.wrapper {
+  max-width: 580px;
+  position: relative;
+  width: 100%;
+}
+
+.inputMain {
+  width: 100%;
+  max-width: 580px;
+  padding: 22px 24px;
+  background-color: #F8F9FB;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #060C23;
+  line-height: 21px;
+  letter-spacing: 0.3px;
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+.inputMain::-webkit-outer-spin-button, .inputMain::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputMain::placeholder {
+  color: #BFC9D9;
+}
+.inputMain::placeholder:hover {
+  color: #A6B3C9;
+}
+.inputMain:disabled::placeholder {
+  color: #E4E9F1;
+}
+.inputMain:disabled {
+  color: #E4E9F1;
+  opacity: 0.5;
+}
+
+.incorrect {
+  border: 1px solid #FF5656;
+}
+
+.incorrect_text {
+  font-family: "PT Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: #FF5656;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  position: absolute;
+  margin: 2px 0 0 0;
+  left: 0;
+  right: 0;
+  text-align: left;
+}
+
+.inputSecondary {
+  width: 100%;
+  max-width: 570px;
+  padding: 16px 50px 17px 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 150%;
+  letter-spacing: 0.75px;
+  margin: 0;
+  max-height: 60px;
+  border-bottom: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  outline: 0;
+  text-overflow: ellipsis;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+.inputSecondary::-webkit-outer-spin-button, .inputSecondary::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputSecondary::placeholder {
+  color: #BFC9D9;
+}
+.inputSecondary::placeholder:hover {
+  color: #A6B3C9;
+}
+.inputSecondary:disabled::placeholder {
+  color: #E4E9F1;
+}
+.inputSecondary:disabled {
+  color: #E4E9F1;
+  opacity: 0.5;
+}
+
+.inputBuilderNum {
+  width: 100%;
+  max-width: unset;
+  padding: 6px 4px;
+  background-color: #F8F9FB;
+  border: 0;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  box-sizing: border-box;
+  margin: 0;
+  outline: 0;
+}
+.inputBuilderNum::-webkit-outer-spin-button, .inputBuilderNum::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputBuilderNum::placeholder {
+  color: #A6B3C9;
+}
+.inputBuilderNum::placeholder:hover {
+  color: #A6B3C9;
+}
+.inputBuilderNum:disabled::placeholder {
+  color: #D7DEEA;
+}
+.inputBuilderNum:disabled {
+  color: #E4E9F1;
+  opacity: 1;
+}
+@media screen and (max-width: 520px) {
+  .inputBuilderNum {
+    font-size: 7.41px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .inputBuilderNum {
+    padding: 5px 3px;
+  }
+}
+
+.inputBuilderDefault {
+  width: 100%;
+  max-width: unset;
+  padding: 10px 8px;
+  background-color: #F2F4F8;
+  border: 0;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  box-sizing: border-box;
+  margin: 0;
+  outline: 0;
+}
+.inputBuilderDefault::-webkit-outer-spin-button, .inputBuilderDefault::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputBuilderDefault::placeholder {
+  color: #BFC9D9;
+}
+.inputBuilderDefault::placeholder:hover {
+  color: #BFC9D9;
+}
+.inputBuilderDefault:disabled::placeholder {
+  color: #D7DEEA;
+}
+.inputBuilderDefault:disabled {
+  color: #E4E9F1;
+  opacity: 1;
+}
+@media screen and (max-width: 520px) {
+  .inputBuilderDefault {
+    font-size: 7.41px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .inputBuilderDefault {
+    padding: 6.5px 5.82px;
+  }
+}
+
+.iconContainerSecondary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.iconContainerMain {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  bottom: 0;
+}
+
+.disabled {
+  color: #E4E9F1;
+  opacity: 0.5;
+}
+
+.required {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #BFC9D9;
+  line-height: 150%;
+  letter-spacing: 0.75px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.passwordSecondary {
+  padding: 0;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../../images/icon/24x24/common/eye-off.svg");
+  opacity: 1;
+}
+
+.passwordMain {
+  padding: 0;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../../images/icon/24x24/common/eye-off-black.svg");
+  opacity: 1;
+}
+
+.passwordShow {
+  opacity: 0.5;
+}
+
+.inputSecondaryIncorrect {
+  border: 0;
+  border-bottom: 1px solid #FF5656;
+}
+.inputSecondaryIncorrect::placeholder {
+  color: #FF5656;
+}
+.inputSecondaryIncorrect:hover::placeholder {
+  color: #FF5656;
+}
+
+.requiredIncorrect {
+  color: #FF5656;
+}
+
+.colorBlue {
+  color: #243CBB;
+}

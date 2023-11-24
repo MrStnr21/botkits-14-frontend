@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: inherit;
+  color: inherit;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  width: 261px;
+  background-color: inherit;
+}
+
+.result__icon {
+  width: 47px;
+  height: 47px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.result__name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #060C23;
+  margin: 0 auto 0 0;
+  font-weight: 600;
+  width: 120px;
+  text-align: left;
+}
+
+.result__size {
+  margin: 0 12px 0 0;
+  color: #CCD4E0;
+  font-weight: 400;
+}
+
+.result__button {
+  width: 24px;
+  height: 24px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  color: #CCD4E0;
+  mask-image: url("../../../../images/icon/24x24/common/close.svg");
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.result_error .result__name,
+.result_error .result__size {
+  color: #FF5656;
+}
+.result_error .result__icon {
+  fill: #FF5656;
+  stroke: #FF5656;
+}

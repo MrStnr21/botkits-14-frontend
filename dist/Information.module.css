@@ -1,0 +1,139 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.information {
+  position: relative;
+  width: 330px;
+  height: unset;
+  padding: 0 0 0 32px;
+  margin: 0;
+  margin: 32px 0 0 0;
+  box-sizing: border-box;
+}
+@media screen and (min-width: 861px) and (max-width: 1186px) {
+  .information {
+    padding: 0 16px 0;
+    margin: 32px 0 0;
+  }
+}
+@media screen and (max-width: 860px) {
+  .information {
+    width: 100%;
+    height: unset;
+    padding: 32px 16px 0;
+    margin: 32px auto 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: unset;
+    gap: unset;
+  }
+}
+@media screen and (max-width: 620px) {
+  .information {
+    margin-top: 16px;
+  }
+}
+.information__container {
+  max-width: 331px;
+  max-height: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: center;
+  gap: unset;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  padding-top: 40px;
+}
+@media screen and (max-width: 860px) {
+  .information__container {
+    width: 100%;
+    height: unset;
+    max-width: 100%;
+    max-height: unset;
+  }
+}
+.information__text {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  padding-bottom: 20px;
+  color: #A6B3C9;
+}
+.information__title {
+  color: #060C23;
+  padding-top: 16px;
+  padding-bottom: 4px;
+  font-size: 16px;
+  line-height: 130%;
+  white-space: nowrap;
+}
+.information__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: unset;
+  gap: 8px;
+  padding-top: 32px;
+}
+.information__header {
+  position: absolute;
+  top: 0;
+  right: unset;
+  bottom: unset;
+  left: 0;
+  width: 100%;
+  height: unset;
+  padding: 0 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 860px) {
+  .information__header {
+    width: calc(100% - 32px);
+    height: unset;
+    padding: 0;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 620px) {
+  .information__header {
+    width: 100%;
+    height: unset;
+    padding: 0 16px 0;
+    margin: 0;
+  }
+}
+.information__chevron {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+.information__chevron:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}

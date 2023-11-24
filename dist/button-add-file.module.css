@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: #F8F9FB;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.inputsBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  margin: 0;
+  background-color: inherit;
+  list-style: none;
+}

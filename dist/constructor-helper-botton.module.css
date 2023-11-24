@@ -1,0 +1,203 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s linear;
+  height: 40px;
+  width: 96px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+}
+
+.container_color {
+  width: 176px;
+}
+
+.container div {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container svg {
+  transition: stroke 0.1s linear;
+}
+
+.ask_button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  padding: 0 12px;
+  border-right: solid 1px #F2F4F8;
+}
+.ask_button:hover {
+  cursor: url("../../../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.delete_button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  padding: 0 12px;
+}
+.delete_button:hover {
+  cursor: url("../../../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+/* Стили цвета кнопки*/
+.container {
+  background-color: transparent;
+}
+
+.ask_button svg {
+  stroke: #243CBB;
+}
+
+.delete_button svg {
+  stroke: #a6b3c9;
+}
+
+.ask_button:hover svg {
+  stroke: #435CDB;
+}
+
+.delete_button:hover svg {
+  stroke: #ccd4e0;
+}
+
+.ask_button:active svg {
+  stroke: #243CBB;
+}
+
+.delete_button:active svg {
+  stroke: #a6b3c9;
+}
+
+.wrapper {
+  width: 0;
+}
+
+.wrapper_color {
+  width: 80px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around !important;
+  border-right: solid 1px #F2F4F8;
+  padding-right: 6px;
+}
+
+.color_button_white {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  background-color: #ffffff;
+  border: 1px solid #F2F4F8;
+}
+.color_button_white:hover {
+  border-color: #3172da;
+}
+
+.color_button_red {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  background-color: #d3524d;
+  border-color: #d3524d;
+}
+.color_button_red:hover {
+  border-color: #3172da;
+}
+
+.color_button_green {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  background-color: #67b057;
+  border-color: #67b057;
+}
+.color_button_green:hover {
+  border-color: #3172da;
+}
+
+.color_button_blue {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  background-color: #5883c6;
+  border-color: #5883c6;
+}
+.color_button_blue:hover {
+  border-color: #3172da;
+}
+
+.wrapper {
+  width: 0;
+}
+
+.wrapper_color {
+  width: 80px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around !important;
+  border-right: solid 1px #F2F4F8;
+  padding-right: 6px;
+}
+
+.color_button_white {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  background-color: #ffffff;
+  border: 1px solid #F2F4F8;
+}
+.color_button_white:hover svg {
+  stroke: #CCD4E0;
+}
+.color_button_white:active svg {
+  stroke: #A6B3C9;
+}

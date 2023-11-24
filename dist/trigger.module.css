@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: #F8F9FB;
+  padding: 16px 20px;
+  border-radius: 10px;
+  max-width: 296px;
+}
+.wrap .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 256px;
+}
+.wrap .header svg {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.wrap .title {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  width: 100%;
+}
+.wrap .buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+}
+.wrap .block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}

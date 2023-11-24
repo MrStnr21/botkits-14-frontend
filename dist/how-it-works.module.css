@@ -1,0 +1,96 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+.arrow_button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  transition: all 0.2s linear;
+}
+.arrow_button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.arrow_button div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow_button svg {
+  width: 26px;
+  height: 26px;
+  stroke: #BFC9D9;
+  stroke-width: 3px;
+  transition: all 0.1s linear;
+}
+
+.arrow_button:hover svg {
+  stroke: #D7DEEA;
+}
+
+.arrow_button_active {
+  rotate: 180deg;
+}
+
+.buttons_container {
+  width: 100%;
+  height: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  column-gap: 29px;
+  row-gap: 12px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.2s linear, height 0.2s linear;
+}
+
+.buttons_container_active {
+  transform: scaleY(1);
+  height: 100%;
+}

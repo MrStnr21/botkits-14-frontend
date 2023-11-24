@@ -1,0 +1,172 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+  line-height: 21px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.1s linear;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.button div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button svg {
+  transition: stroke 0.1s linear;
+}
+
+.default {
+  border-radius: 10px;
+  width: 100%;
+}
+
+.circle {
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
+.small {
+  height: 46px;
+}
+
+.medium {
+  height: 52px;
+}
+
+.medium svg {
+  stroke-width: 2px;
+}
+
+.large {
+  height: 65px;
+}
+
+.large svg {
+  width: 30px;
+  height: 30px;
+  stroke-width: 3px;
+}
+
+.blue {
+  color: #FFFFFF;
+  background-color: #243CBB;
+}
+
+.blue svg {
+  stroke: #FFFFFF;
+}
+
+.blue:hover {
+  background-color: #435cdb;
+}
+
+.blue:active {
+  background-color: #2743CE;
+}
+
+.blue:disabled {
+  background-color: #ECEFFF;
+}
+
+.green {
+  color: #060C23;
+  background-color: #22FFAA;
+}
+
+.green svg {
+  stroke: #060C23;
+}
+
+.green:hover {
+  background-color: #70FFC8;
+}
+
+.green:active {
+  background-color: #22FFAA;
+}
+
+.green:disabled {
+  color: rgba(0, 0, 0, 0.4);
+  background-color: #85FFD0;
+}
+
+.green:disabled svg {
+  opacity: 0.5;
+}
+
+.grey {
+  color: #060C23;
+  background-color: #E4E9F1;
+}
+
+.grey:hover {
+  color: #243CBB;
+  background-color: #E4E9F1;
+}
+
+.grey:active {
+  color: #243CBB;
+  background-color: #ECEFFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.grey:disabled {
+  color: #A6B3C9;
+  background-color: #F2F4F8;
+}
+
+.grey:disabled:active {
+  box-shadow: none;
+}
+
+.light-grey {
+  background-color: #F2F4F8;
+  color: #A6B3C9;
+}
+.light-grey:hover {
+  color: #243CBB;
+}
+
+.button_active {
+  color: #243CBB;
+  background-color: #ECEFFF;
+}

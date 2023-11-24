@@ -1,0 +1,93 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.box {
+  width: 264px;
+  height: 478px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+}
+
+.active {
+  display: flex;
+}
+
+.button {
+  width: 132px;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  border: none;
+  border-top: 1px solid #F2F4F8;
+  border-radius: 10px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.button:hover {
+  background-color: #F8F9FB;
+}
+
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.numbers_box {
+  width: 132px;
+  height: 422px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  overflow-y: scroll;
+}
+
+.numbers_box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.numbers_box::-webkit-scrollbar-thumb {
+  background-color: #A6B3C9;
+  border-radius: 2px;
+  border: solid 4px white;
+}
+
+.numbers_box:first-of-type {
+  border-right: 1px solid #F2F4F8;
+}
+
+.number_unit {
+  padding: 24px 0;
+}
+
+.number_unit:hover {
+  background-color: #F8F9FB;
+}

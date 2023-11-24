@@ -12,6 +12,7 @@ export interface IMenuSelectFlow {
   width?: string;
   height?: string;
   active?: boolean;
+  isIcon?: boolean;
 }
 
 const MenuSelectFlow: FC<IMenuSelectFlow> = ({
@@ -21,6 +22,7 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
   width,
   height,
   active = true,
+  isIcon = false,
 }): JSX.Element => {
   const [variable, setVariable] = useState<string>(nameMenu);
   const [isOpen, setIsOpen] = useState<string>('');
@@ -81,9 +83,13 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
             isOpen !== '' ? styles.overlayActive : ''
           }`}
         />
-        <Typography tag="p" className={`${styles.text} ${textColor}`}>
-          {variable}
-        </Typography>
+        {isIcon ? (
+          <img src={nameMenu} alt="icon" />
+        ) : (
+          <Typography tag="p" className={`${styles.text} ${textColor}`}>
+            {variable}
+          </Typography>
+        )}
         <img src={arrowIcon} alt="стрелка" className={styles.icon} />
       </div>
       <div style={width ? { width } : {}} className={`${styles.box} ${isOpen}`}>
@@ -103,7 +109,7 @@ const MenuSelectFlow: FC<IMenuSelectFlow> = ({
                     openHandler();
                   }}
                 >
-                  {name}
+                  {isIcon ? <img src={name} alt="icon" /> : name}
                 </button>
               </li>
             );

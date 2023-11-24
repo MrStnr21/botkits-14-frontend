@@ -1,0 +1,484 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  transition: all 0.1s linear;
+  height: 124px;
+  aspect-ratio: 1/1;
+  border-radius: 30px;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 52px;
+  aspect-ratio: 1/1;
+  transition: background-image 0.1s linear;
+  background-size: cover;
+}
+@media screen and (max-width: 500px) {
+  .icon {
+    height: 34px;
+    background-size: contain;
+  }
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+}
+
+.button {
+  color: #060C23;
+  background-color: #F8F9FB;
+}
+
+.button.active {
+  background-color: transparent;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+}
+
+.button.disabled {
+  color: #A6B3C9;
+  background-color: #F8F9FB;
+  box-shadow: none;
+}
+
+.button:active {
+  background-color: transparent;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+}
+
+.button:disabled {
+  color: #A6B3C9;
+  background-color: #F8F9FB;
+  box-shadow: none;
+}
+
+.alisa {
+  background-image: url("../../../images/icon/40x40/alisa/default.svg");
+}
+
+.button.active .alisa {
+  background-image: url("../../../images/icon/40x40/alisa/hover.svg");
+}
+
+.button.disabled .alisa {
+  background-image: url("../../../images/icon/40x40/alisa/inactive.svg");
+}
+.button.disabled .button:hover .alisa {
+  background-image: url("../../../images/icon/40x40/alisa/hover.svg");
+}
+
+.button:active .alisa {
+  background-image: url("../../../images/icon/40x40/alisa/hover.svg");
+}
+
+.button:hover .alisa {
+  background-image: url("../../../images/icon/40x40/alisa/hover.svg");
+}
+
+.button:disabled .alisa {
+  background-image: url("../../../images/icon/40x40/alisa/inactive.svg");
+}
+
+.facebook {
+  background-image: url("../../../images/icon/40x40/facebook/default.svg");
+}
+
+.button.active .facebook {
+  background-image: url("../../../images/icon/40x40/facebook/hover.svg");
+}
+
+.button.disabled .facebook {
+  background-image: url("../../../images/icon/40x40/facebook/inactive.svg");
+}
+.button.disabled .button:hover .facebook {
+  background-image: url("../../../images/icon/40x40/facebook/hover.svg");
+}
+
+.button:active .facebook {
+  background-image: url("../../../images/icon/40x40/facebook/hover.svg");
+}
+
+.button:hover .facebook {
+  background-image: url("../../../images/icon/40x40/facebook/hover.svg");
+}
+
+.button:disabled .facebook {
+  background-image: url("../../../images/icon/40x40/facebook/inactive.svg");
+}
+
+.google {
+  background-image: url("../../../images/icon/40x40/google/default.svg");
+}
+
+.button.active .google {
+  background-image: url("../../../images/icon/40x40/google/hover.svg");
+}
+
+.button.disabled .google {
+  background-image: url("../../../images/icon/40x40/google/inactive.svg");
+}
+.button.disabled .button:hover .google {
+  background-image: url("../../../images/icon/40x40/google/hover.svg");
+}
+
+.button:active .google {
+  background-image: url("../../../images/icon/40x40/google/hover.svg");
+}
+
+.button:hover .google {
+  background-image: url("../../../images/icon/40x40/google/hover.svg");
+}
+
+.button:disabled .google {
+  background-image: url("../../../images/icon/40x40/google/inactive.svg");
+}
+
+.insta {
+  background-image: url("../../../images/icon/40x40/insta/default.svg");
+}
+
+.button.active .insta {
+  background-image: url("../../../images/icon/40x40/insta/hover.svg");
+}
+
+.button.disabled .insta {
+  background-image: url("../../../images/icon/40x40/insta/inactive.svg");
+}
+.button.disabled .button:hover .insta {
+  background-image: url("../../../images/icon/40x40/insta/hover.svg");
+}
+
+.button:active .insta {
+  background-image: url("../../../images/icon/40x40/insta/hover.svg");
+}
+
+.button:hover .insta {
+  background-image: url("../../../images/icon/40x40/insta/hover.svg");
+}
+
+.button:disabled .insta {
+  background-image: url("../../../images/icon/40x40/insta/inactive.svg");
+}
+
+.mailru {
+  background-image: url("../../../images/icon/40x40/mailru/default.svg");
+}
+
+.button.active .mailru {
+  background-image: url("../../../images/icon/40x40/mailru/hover.svg");
+}
+
+.button.disabled .mailru {
+  background-image: url("../../../images/icon/40x40/mailru/inactive.svg");
+}
+.button.disabled .button:hover .mailru {
+  background-image: url("../../../images/icon/40x40/mailru/hover.svg");
+}
+
+.button:active .mailru {
+  background-image: url("../../../images/icon/40x40/mailru/hover.svg");
+}
+
+.button:hover .mailru {
+  background-image: url("../../../images/icon/40x40/mailru/hover.svg");
+}
+
+.button:disabled .mailru {
+  background-image: url("../../../images/icon/40x40/mailru/inactive.svg");
+}
+
+.odnoklassniki {
+  background-image: url("../../../images/icon/40x40/odnoklassniki/default.svg");
+}
+
+.button.active .odnoklassniki {
+  background-image: url("../../../images/icon/40x40/odnoklassniki/hover.svg");
+}
+
+.button.disabled .odnoklassniki {
+  background-image: url("../../../images/icon/40x40/odnoklassniki/inactive.svg");
+}
+.button.disabled .button:hover .odnoklassniki {
+  background-image: url("../../../images/icon/40x40/odnoklassniki/hover.svg");
+}
+
+.button:active .odnoklassniki {
+  background-image: url("../../../images/icon/40x40/odnoklassniki/hover.svg");
+}
+
+.button:hover .odnoklassniki {
+  background-image: url("../../../images/icon/40x40/odnoklassniki/hover.svg");
+}
+
+.button:disabled .odnoklassniki {
+  background-image: url("../../../images/icon/40x40/odnoklassniki/inactive.svg");
+}
+
+.telegram {
+  background-image: url("../../../images/icon/40x40/telegram/default.svg");
+}
+
+.button.active .telegram {
+  background-image: url("../../../images/icon/40x40/telegram/hover.svg");
+}
+
+.button.disabled .telegram {
+  background-image: url("../../../images/icon/40x40/telegram/inactive.svg");
+}
+.button.disabled .button:hover .telegram {
+  background-image: url("../../../images/icon/40x40/telegram/hover.svg");
+}
+
+.button:active .telegram {
+  background-image: url("../../../images/icon/40x40/telegram/hover.svg");
+}
+
+.button:hover .telegram {
+  background-image: url("../../../images/icon/40x40/telegram/hover.svg");
+}
+
+.button:disabled .telegram {
+  background-image: url("../../../images/icon/40x40/telegram/inactive.svg");
+}
+
+.twitter {
+  background-image: url("../../../images/icon/40x40/twitter/default.svg");
+}
+
+.button.active .twitter {
+  background-image: url("../../../images/icon/40x40/twitter/hover.svg");
+}
+
+.button.disabled .twitter {
+  background-image: url("../../../images/icon/40x40/twitter/inactive.svg");
+}
+.button.disabled .button:hover .twitter {
+  background-image: url("../../../images/icon/40x40/twitter/hover.svg");
+}
+
+.button:active .twitter {
+  background-image: url("../../../images/icon/40x40/twitter/hover.svg");
+}
+
+.button:hover .twitter {
+  background-image: url("../../../images/icon/40x40/twitter/hover.svg");
+}
+
+.button:disabled .twitter {
+  background-image: url("../../../images/icon/40x40/twitter/inactive.svg");
+}
+
+.viber {
+  background-image: url("../../../images/icon/40x40/viber/default.svg");
+}
+
+.button.active .viber {
+  background-image: url("../../../images/icon/40x40/viber/hover.svg");
+}
+
+.button.disabled .viber {
+  background-image: url("../../../images/icon/40x40/viber/inactive.svg");
+}
+.button.disabled .button:hover .viber {
+  background-image: url("../../../images/icon/40x40/viber/hover.svg");
+}
+
+.button:active .viber {
+  background-image: url("../../../images/icon/40x40/viber/hover.svg");
+}
+
+.button:hover .viber {
+  background-image: url("../../../images/icon/40x40/viber/hover.svg");
+}
+
+.button:disabled .viber {
+  background-image: url("../../../images/icon/40x40/viber/inactive.svg");
+}
+
+.vk {
+  background-image: url("../../../images/icon/40x40/vk/default.svg");
+}
+
+.button.active .vk {
+  background-image: url("../../../images/icon/40x40/vk/hover.svg");
+}
+
+.button.disabled .vk {
+  background-image: url("../../../images/icon/40x40/vk/inactive.svg");
+}
+.button.disabled .button:hover .vk {
+  background-image: url("../../../images/icon/40x40/vk/hover.svg");
+}
+
+.button:active .vk {
+  background-image: url("../../../images/icon/40x40/vk/hover.svg");
+}
+
+.button:hover .vk {
+  background-image: url("../../../images/icon/40x40/vk/hover.svg");
+}
+
+.button:disabled .vk {
+  background-image: url("../../../images/icon/40x40/vk/inactive.svg");
+}
+
+.web {
+  background-image: url("../../../images/icon/40x40/web/default.svg");
+}
+
+.button.active .web {
+  background-image: url("../../../images/icon/40x40/web/hover.svg");
+}
+
+.button.disabled .web {
+  background-image: url("../../../images/icon/40x40/web/inactive.svg");
+}
+.button.disabled .button:hover .web {
+  background-image: url("../../../images/icon/40x40/web/hover.svg");
+}
+
+.button:active .web {
+  background-image: url("../../../images/icon/40x40/web/hover.svg");
+}
+
+.button:hover .web {
+  background-image: url("../../../images/icon/40x40/web/hover.svg");
+}
+
+.button:disabled .web {
+  background-image: url("../../../images/icon/40x40/web/inactive.svg");
+}
+
+.whatsapp {
+  background-image: url("../../../images/icon/40x40/whatsapp/default.svg");
+}
+
+.button.active .whatsapp {
+  background-image: url("../../../images/icon/40x40/whatsapp/hover.svg");
+}
+
+.button.disabled .whatsapp {
+  background-image: url("../../../images/icon/40x40/whatsapp/inactive.svg");
+}
+.button.disabled .button:hover .whatsapp {
+  background-image: url("../../../images/icon/40x40/whatsapp/hover.svg");
+}
+
+.button:active .whatsapp {
+  background-image: url("../../../images/icon/40x40/whatsapp/hover.svg");
+}
+
+.button:hover .whatsapp {
+  background-image: url("../../../images/icon/40x40/whatsapp/hover.svg");
+}
+
+.button:disabled .whatsapp {
+  background-image: url("../../../images/icon/40x40/whatsapp/inactive.svg");
+}
+
+.yandex {
+  background-image: url("../../../images/icon/40x40/yandex/default.svg");
+}
+
+.button.active .yandex {
+  background-image: url("../../../images/icon/40x40/yandex/hover.svg");
+}
+
+.button.disabled .yandex {
+  background-image: url("../../../images/icon/40x40/yandex/inactive.svg");
+}
+.button.disabled .button:hover .yandex {
+  background-image: url("../../../images/icon/40x40/yandex/hover.svg");
+}
+
+.button:active .yandex {
+  background-image: url("../../../images/icon/40x40/yandex/hover.svg");
+}
+
+.button:hover .yandex {
+  background-image: url("../../../images/icon/40x40/yandex/hover.svg");
+}
+
+.button:disabled .yandex {
+  background-image: url("../../../images/icon/40x40/yandex/inactive.svg");
+}
+
+.youtube {
+  background-image: url("../../../images/icon/40x40/youtube/default.svg");
+}
+
+.button.active .youtube {
+  background-image: url("../../../images/icon/40x40/youtube/hover.svg");
+}
+
+.button.disabled .youtube {
+  background-image: url("../../../images/icon/40x40/youtube/inactive.svg");
+}
+.button.disabled .button:hover .youtube {
+  background-image: url("../../../images/icon/40x40/youtube/hover.svg");
+}
+
+.button:active .youtube {
+  background-image: url("../../../images/icon/40x40/youtube/hover.svg");
+}
+
+.button:hover .youtube {
+  background-image: url("../../../images/icon/40x40/youtube/hover.svg");
+}
+
+.button:disabled .youtube {
+  background-image: url("../../../images/icon/40x40/youtube/inactive.svg");
+}
+
+.buttonSmall {
+  height: 40px;
+  background-color: transparent;
+}
+@media screen and (max-width: 500px) {
+  .buttonSmall {
+    height: 34px;
+  }
+}

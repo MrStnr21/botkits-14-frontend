@@ -1,0 +1,196 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 296px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  padding: 20px 19px 18px 19px;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+}
+.container [class*=MuiFormControl-root-MuiTextField-root] {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 296px;
+}
+
+.containerTimeZone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  width: 100%;
+  padding: 8px 0;
+  border-top: 1px solid #F2F4F8;
+  border-bottom: 1px solid #F2F4F8;
+}
+
+.timeZoneLabel {
+  padding-left: 5px;
+}
+
+.containerButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 18px;
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: inherit;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  transition: color 0.4s ease-in-out;
+}
+.button:hover {
+  color: #A6B3C9;
+}
+
+.dataFiled {
+  max-height: 40px;
+  background-color: #F8F9FB;
+}
+.dataFiled [class*=MuiInputBase-input] {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  font-style: "normal";
+  padding: 10px 8px 10px 8px;
+}
+.dataFiled [class*=MuiOutlinedInput-notchedOutline] {
+  border: none;
+  border-radius: 5px;
+  max-height: 40px;
+}
+
+.staticDatePicker {
+  margin-bottom: 26px;
+}
+.staticDatePicker [class*=MuiDateCalendar-root] {
+  width: 100%;
+  max-width: 296px;
+}
+.staticDatePicker [class*=MuiDayCalendar-weekDayLabel] {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  max-width: 26px;
+  box-sizing: content-box;
+  height: 100%;
+  font-style: normal;
+}
+.staticDatePicker [class*=MuiDayCalendar-header] {
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.staticDatePicker [class*=MuiDayCalendar-slideTransition] {
+  min-height: 200px;
+}
+.staticDatePicker [class*=MuiDayCalendar-weekContainer] {
+  margin: 0px;
+  margin-bottom: 6px;
+  justify-content: space-between;
+}
+.staticDatePicker [class*=MuiPickersDay-today] {
+  border-radius: 4px;
+}
+.staticDatePicker [class*=MuiPickersYear-yearButton]:hover {
+  border-radius: 4px;
+}
+.staticDatePicker [class*=MuiPickersCalendarHeader-root] {
+  padding: 0 0 0 5px;
+  margin: 0 0 20px;
+  justify-content: space-between;
+}
+.staticDatePicker [class*=MuiPickersCalendarHeader-root] [class*=MuiPickersCalendarHeader-switchViewIcon] {
+  display: none;
+}
+.staticDatePicker [class*=MuiPickersCalendarHeader-root] [class*=MuiPickersCalendarHeader-label] {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  font-style: normal;
+  text-transform: capitalize;
+}
+.staticDatePicker [class*=MuiPickersCalendarHeader-root] [class*=MuiPickersArrowSwitcher] {
+  padding: 0px;
+  color: #A6B3C9;
+}
+.staticDatePicker [class*=MuiPickersDay-root] {
+  max-width: 26px;
+  max-height: 26px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  margin: 0px;
+  font-style: normal;
+}
+.staticDatePicker [class*=MuiPickersDay-root]:hover {
+  border-radius: 4px;
+}
+.staticDatePicker [class*=Mui-selected] {
+  border-radius: 4px;
+  color: #FFFFFF;
+}
+.staticDatePicker [class*=MuiPickersDay-dayOutsideMonth] {
+  color: #A6B3C9;
+}

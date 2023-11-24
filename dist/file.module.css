@@ -1,0 +1,124 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: inherit;
+  width: 261px;
+  background-color: inherit;
+}
+@media screen and (max-width: 520px) {
+  .result {
+    width: 150px;
+    font-size: 7.41px;
+  }
+}
+
+.result__icon {
+  width: 47px;
+  height: 47px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.result__icon_interactive {
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+.result__icon_interactive:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 520px) {
+  .result__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+  }
+}
+
+.result__name {
+  font-family: "Open Sans", sans-serif;
+  font-size: inherit;
+  font-weight: 600;
+  color: #060C23;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0 auto 0 0;
+  width: 120px;
+  text-align: left;
+}
+@media screen and (max-width: 520px) {
+  .result__name {
+    width: 75px;
+  }
+}
+
+.result__size {
+  font-family: "Open Sans", sans-serif;
+  font-size: inherit;
+  font-weight: 400;
+  color: #CCD4E0;
+  margin: 0 12px 0 0;
+}
+@media screen and (max-width: 520px) {
+  .result__size {
+    margin-right: 6px;
+  }
+}
+
+.result__button {
+  width: 24px;
+  height: 24px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  color: #CCD4E0;
+  mask-image: url("../../../../../images/icon/24x24/common/close.svg");
+  mask-size: 24px 24px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  overflow: hidden;
+}
+@media screen and (max-width: 520px) {
+  .result__button {
+    mask-size: 12px 12px;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.result_error .result__name,
+.result_error .result__size {
+  color: #FF5656;
+}
+.result_error .result__icon {
+  fill: #FF5656;
+  stroke: #FF5656;
+}

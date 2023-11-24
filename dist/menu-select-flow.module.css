@@ -1,0 +1,131 @@
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 998;
+  pointer-events: none;
+}
+
+.overlayActive {
+  display: block;
+  pointer-events: all;
+}
+
+.open_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background-color: #f2f4f8;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  z-index: 999;
+}
+@media screen and (max-width: 520px) {
+  .open_button {
+    height: 25px;
+  }
+}
+
+.box {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 240px;
+  box-shadow: 0 6px 16px 0 rgba(21, 18, 51, 0.08);
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+}
+@media screen and (max-width: 520px) {
+  .box {
+    width: 135px;
+  }
+}
+
+.active {
+  display: flex;
+}
+
+.text {
+  font-size: 13px;
+  font-weight: 400;
+  color: black;
+  transition: color 0.3s linear;
+}
+@media screen and (max-width: 520px) {
+  .text {
+    font-size: 8px;
+  }
+}
+
+.open_button .text {
+  margin-left: 8px;
+}
+
+.grey {
+  color: #bfc9d9;
+}
+
+.li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  z-index: 999;
+}
+
+.ul {
+  padding: 0;
+  margin: 0;
+  z-index: 99999;
+  background-color: white;
+}
+
+.button {
+  height: 37px;
+  background-color: white;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 0 0 16px;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+@media screen and (max-width: 520px) {
+  .button {
+    height: 24px;
+  }
+}
+
+.button:first-of-type {
+  margin-top: 11px;
+}
+
+.button:last-of-type {
+  margin-bottom: 8px;
+}
+
+.button:hover {
+  background-color: #f8f9fb;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+}
+@media screen and (max-width: 520px) {
+  .icon {
+    right: 5px;
+    width: 12px;
+    height: 12px;
+  }
+}

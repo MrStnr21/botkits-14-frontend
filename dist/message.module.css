@@ -1,0 +1,186 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.message {
+  display: flex;
+  flex-direction: row;
+  justify-content: unset;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: unset;
+  max-width: 362px;
+  max-height: unset;
+  box-sizing: border-box;
+}
+.message * {
+  box-sizing: border-box;
+}
+.message__userMessage {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: unset;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: unset;
+  max-width: 362px;
+  max-height: unset;
+  max-width: 362px;
+  align-self: flex-end;
+}
+.message__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: flex-start;
+  gap: 8px;
+}
+.message__containerUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: flex-end;
+  gap: 8px;
+}
+.message__block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: unset;
+  padding: 16px;
+  margin: 0;
+  width: 100%;
+  height: unset;
+  min-width: 230px;
+  min-height: unset;
+  background: #F8F9FB;
+  border-radius: 15px 15px 15px 0;
+}
+.message__block::before {
+  content: "";
+  position: absolute;
+  top: unset;
+  right: unset;
+  bottom: 0;
+  left: -5px;
+  width: 20px;
+  height: 20px;
+  background: #F8F9FB;
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  transform: rotate(180deg);
+}
+@media screen and (max-width: 620px) {
+  .message__block::before {
+    background: #FFFFFF;
+  }
+}
+@media screen and (max-width: 620px) {
+  .message__block {
+    background: #FFFFFF;
+  }
+}
+.message__blockUser {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: unset;
+  padding: 16px;
+  margin: 0;
+  width: 100%;
+  height: unset;
+  min-width: 230px;
+  min-height: unset;
+  border-radius: 15px 15px 0 15px;
+  background: #243CBB;
+}
+.message__blockUser::before {
+  content: "";
+  position: absolute;
+  top: unset;
+  right: -5px;
+  bottom: 0;
+  left: unset;
+  width: 20px;
+  height: 20px;
+  background: #243CBB;
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  transform: rotate(270deg);
+}
+.message__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  height: unset;
+}
+.message__textWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+  height: unset;
+}
+.message__user {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+.message__text {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+}
+.message__time {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  color: #A6B3C9;
+  font-size: 8px;
+}
+.message__seen {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  color: #A6B3C9;
+  font-size: 8px;
+}
+
+.textColorWhite {
+  color: #FFFFFF;
+}

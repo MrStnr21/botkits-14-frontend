@@ -1,0 +1,68 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip * {
+  box-sizing: border-box;
+}
+.tooltip__text {
+  position: absolute;
+  top: unset;
+  right: unset;
+  bottom: 130%;
+  left: 50%;
+  padding: 5px;
+  margin: 0;
+  transform: translateX(-50%);
+  background-color: #2E293D;
+  color: #FFFFFF;
+  border-radius: 5px;
+  letter-spacing: 0.3px;
+  visibility: hidden;
+  text-align: center;
+  z-index: 1;
+  opacity: 0;
+  white-space: nowrap;
+}
+.tooltip:hover .tooltip__text {
+  visibility: visible;
+  opacity: 1;
+}
+.tooltip:hover::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: unset;
+  bottom: unset;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #2E293D;
+}

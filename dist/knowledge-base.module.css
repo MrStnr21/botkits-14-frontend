@@ -1,0 +1,146 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.base__header {
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: inherit;
+  line-height: 130%;
+}
+
+.wrapper {
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  min-height: 283px;
+  max-width: 100%;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  column-gap: 60px;
+  row-gap: 40px;
+  align-content: space-between;
+  background-color: #F2F4F8;
+  color: #060C23;
+}
+@media (max-width: 620px) {
+  .wrapper {
+    margin-right: 20px;
+  }
+}
+
+.video {
+  box-sizing: border-box;
+  padding-left: 32px;
+  padding-bottom: 32px;
+}
+@media (max-width: 620px) {
+  .video {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 0;
+  }
+}
+
+.video__header {
+  margin-top: 32px;
+  margin-bottom: 24px;
+  text-align: start;
+}
+
+.video__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 172px);
+  gap: 20px;
+}
+@media (max-width: 620px) {
+  .video__container {
+    grid-template-columns: repeat(auto-fit, 250px);
+  }
+}
+
+.base {
+  border-radius: 30px;
+  background-color: #e4e9f1;
+  box-sizing: border-box;
+  padding: 32px;
+  text-align: start;
+  min-height: 283px;
+}
+@media (max-width: 620px) {
+  .base {
+    padding: 32px 20px;
+  }
+}
+
+.base__header {
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-decoration: none;
+  color: inherit;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.base__header:hover {
+  opacity: 0.6;
+}
+
+.base__text {
+  margin-bottom: 24px;
+}
+
+.base__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 215px);
+  column-gap: 75px;
+}
+
+.base__item {
+  margin-bottom: 16px;
+}
+
+.base__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+}
+.base__link:hover {
+  opacity: 0.6;
+}
+
+.base__link::before {
+  width: 24px;
+  height: 20px;
+  display: block;
+  content: "";
+  background: url("../../../images/icon/24x24/common/list-icon.svg") no-repeat;
+  background-position: left;
+}

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: inherit;
+  width: 100%;
+  height: 50px;
+  border: none;
+  padding: 0;
+  background: transparent;
+  line-height: 130%;
+  letter-spacing: 0.3px;
+  text-align: center;
+  transition: border 0.5s, color 0.5s;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.button:hover {
+  color: #243CBB;
+}
+@media screen and (max-width: 520px) {
+  .button {
+    line-height: 150%;
+    letter-spacing: 0.3px;
+    height: 32px;
+    font-size: 7.41px;
+  }
+}
+
+.active {
+  color: #243CBB;
+  border-bottom: 2px solid #243CBB;
+}
+@media screen and (max-width: 520px) {
+  .active {
+    border-bottom: 1px solid #243CBB;
+  }
+}
+
+.none-active {
+  color: #BFC9D9;
+  border-bottom: 2px solid #BFC9D9;
+}
+@media screen and (max-width: 520px) {
+  .none-active {
+    border-bottom: 1px solid #BFC9D9;
+  }
+}

@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.dialogs {
+  padding: 0 15px 0 0;
+  margin: 32px 0 0;
+  border-right: 1px #D7DEEA solid;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 1186px) {
+  .dialogs {
+    max-width: 280px;
+    max-height: unset;
+  }
+}
+@media screen and (max-width: 860px) {
+  .dialogs {
+    min-width: 100%;
+    min-height: unset;
+    padding: 0 15px 0;
+    margin: 32px 0 0;
+    border: none;
+  }
+}
+.dialogs__headerContent {
+  width: 100%;
+  height: unset;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 26px 0;
+  margin: 0;
+}
+.dialogs__icons {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+.dialogs__modal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 4;
+}
+.dialogs__line {
+  border-top: 0.8px solid #D7DEEA;
+}
+.dialogs__messagesContainer {
+  padding-top: 16px;
+}
+@media screen and (max-width: 620px) {
+  .dialogs__messagesContainer {
+    padding: 0;
+  }
+}
+.dialogs__inputWrapper {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: unset;
+  max-width: unset;
+  max-height: 40px;
+  box-sizing: border-box;
+}
+.dialogs__link {
+  text-decoration: none;
+}
+.dialogs__button {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+.dialogs__button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}

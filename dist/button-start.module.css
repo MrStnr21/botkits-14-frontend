@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.textStop {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  line-height: 130%;
+  letter-spacing: 1px;
+  font-style: normal;
+  text-transform: uppercase;
+  width: 151px;
+  height: 48px;
+}
+
+.textTest {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  line-height: 130%;
+  letter-spacing: 1px;
+  font-style: normal;
+  text-transform: uppercase;
+  width: 151px;
+  height: 48px;
+}
+
+.textStart {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  line-height: 130%;
+  letter-spacing: 1px;
+  font-style: normal;
+  text-transform: uppercase;
+  align-items: flex-start;
+  padding-bottom: 15px;
+}
+
+.wrapper {
+  width: 80px;
+  height: 29px;
+  border-radius: 32px;
+  overflow: hidden;
+}

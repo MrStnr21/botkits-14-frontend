@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+  line-height: 130%;
+  letter-spacing: 0.5px;
+  width: 100%;
+  height: 172px;
+  transition: all 0.1s linear;
+  border-radius: 30px;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  box-sizing: border-box;
+  border: 3px solid;
+  border-radius: 50%;
+  transition: all 0.1s linear;
+}
+
+.icon div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon svg {
+  stroke-width: 2px;
+  transition: stroke 0.1s linear;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+}
+
+.icon {
+  border-color: #A6B3C9;
+}
+
+.button {
+  color: #A6B3C9;
+  background-color: #F2F4F8;
+}
+.button svg {
+  stroke: #A6B3C9;
+}
+.button:hover {
+  color: #243CBB;
+}
+.button:hover .icon {
+  border-color: #243CBB;
+}
+.button:hover svg {
+  stroke: #243CBB;
+}
+.button:active {
+  color: #243CBB;
+  background-color: #ECEFFF;
+}
+.button:active .icon {
+  border-color: #243CBB;
+}
+.button:active svg {
+  stroke: #243CBB;
+}
+.button:disabled {
+  color: #CCD4E0;
+  background-color: #F2F4F8;
+}
+.button:disabled .icon {
+  border-color: #CCD4E0;
+}
+.button:disabled svg {
+  stroke: #CCD4E0;
+}

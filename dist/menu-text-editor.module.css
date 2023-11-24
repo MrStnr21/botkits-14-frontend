@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.box {
+  width: 192px;
+  height: 40px;
+  display: none;
+  flex-direction: row;
+  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.active {
+  display: flex;
+}
+
+.button {
+  width: 48px;
+  height: 100%;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  border: none;
+  border-right: 1px solid #F2F4F8;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.button:last-of-type {
+  border: none;
+}
+
+.button:hover {
+  background-color: #F8F9FB;
+}
+
+.trash path {
+  stroke: #A6B3C9;
+}
+
+.icon__grey {
+  filter: invert(77%) sepia(17%) saturate(297%) hue-rotate(179deg) brightness(89%) contrast(93%);
+}

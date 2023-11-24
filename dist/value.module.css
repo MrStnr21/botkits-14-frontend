@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.overlay {
+  width: 264px;
+  height: 64px;
+  font-family: "Open Sans", sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  color: #F8F9FB;
+  padding: 12px;
+  margin: 0 0 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #F8F9FB;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 520px) {
+  .overlay {
+    width: 150px;
+    height: 36px;
+    padding: 6px 7px;
+    margin: 0 0 4px;
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 36px;
+  height: 40px;
+  padding: 8px 6px;
+  margin: 0 3px 0 4px;
+  border-radius: 5px;
+  background-color: #F2F4F8;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 520px) {
+  .box {
+    width: 20px;
+    height: 22px;
+    padding: 5px 3px;
+    margin: 0 2px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .v {
+    width: 56px;
+    height: 24px;
+  }
+  .v .svg {
+    width: 14px;
+    height: 14px;
+  }
+}

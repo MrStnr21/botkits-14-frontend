@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.container {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  width: 244px;
+  min-height: 323px;
+  box-sizing: border-box;
+  padding: 8px 0;
+  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  z-index: 4;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: unset;
+  align-items: center;
+  gap: 15px;
+  padding: 0 16px;
+  margin: 6px 0 0 0;
+  height: 37px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  color: #2E293D;
+  position: relative;
+  box-sizing: border-box;
+}
+.item:hover {
+  background-color: #F2F4F8;
+  color: #060C23;
+}
+
+.item:nth-child(1) {
+  padding-bottom: 6px;
+  border-bottom: 1px solid #D7DEEA;
+}
+
+.item:nth-child(7) {
+  padding-top: 6px;
+  border-top: 1px solid #D7DEEA;
+}
+
+.item:nth-child(8) {
+  display: none;
+  height: 43px;
+  padding-top: 6px;
+  border-top: 1px solid #D7DEEA;
+}
+@media (max-width: 420px) {
+  .item:nth-child(8) {
+    display: flex;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    min-height: 416px;
+    position: fixed;
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+  .text {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .item {
+    height: 44px;
+  }
+  .flexItem {
+    grid-row: 6/7;
+  }
+}

@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.textarea {
+  width: 100%;
+  height: 102px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  max-width: 296px;
+  background-color: #F8F9FB;
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 12px 12px 8px;
+  z-index: 1;
+}
+@media screen and (max-width: 520px) {
+  .textarea {
+    height: 57px;
+    border-radius: 5.7px;
+    padding: 9px 7px 6px;
+  }
+}
+
+.textarea__input {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  display: block;
+  height: 56px;
+  background-color: inherit;
+  padding: 0;
+  z-index: 1;
+  resize: none;
+  border: none;
+  text-align: left;
+}
+@media screen and (max-width: 520px) {
+  .textarea__input {
+    font-size: 7.41px;
+  }
+}
+
+.textarea__input::placeholder {
+  color: #A6B3C9;
+}
+
+.textarea__input:focus {
+  outline: none;
+}
+
+.textarea__input:focus ~ .textarea__outline {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 1px solid #22FFAA;
+  background-color: transparent;
+  z-index: 0;
+  border-radius: 12px;
+}
+
+.textarea__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #A6B3C9;
+  line-height: 130%;
+  letter-spacing: 0.3px;
+  z-index: 1;
+  text-align: left;
+  column-gap: 12px;
+}
+@media screen and (max-width: 520px) {
+  .textarea__footer {
+    font-size: 7px;
+    letter-spacing: 0.4px;
+  }
+}
+
+.textarea__counter {
+  margin: 0 auto 0 0;
+}
+
+.textarea__font {
+  padding: 0;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: 0;
+  line-height: 0;
+}
+.textarea__font .icon {
+  width: 100%;
+  height: 100%;
+}
+.textarea__font:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+@media screen and (max-width: 520px) {
+  .textarea__font {
+    width: 9.12px;
+    height: 9.12px;
+    top: 20px;
+    right: 5px;
+  }
+}
+
+.textarea__emojiPicker {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  width: 100%;
+  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  position: absolute;
+  z-index: 10;
+}

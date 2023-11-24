@@ -1,0 +1,134 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+[class*=MuiMenu-root] [class*=MuiMenu-paper] {
+  border-radius: 10px;
+  box-shadow: 0px 6px 16px 0px rgba(21, 18, 51, 0.08);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  box-sizing: border-box;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=os-theme-dark] {
+  --os-size: 8px;
+  margin-right: 2px;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=os-theme-dark] [class*=os-scrollbar-handle] {
+  background-color: #A6B3C9;
+  max-height: 60px;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=os-theme-dark] .os-scrollbar-vertical {
+  --os-size: 20px;
+  background-color: aqua;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=MuiList-root] [class*=MuiMenuItem-root] {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  position: relative;
+  background-color: #FFFFFF;
+  font-style: normal;
+  text-transform: capitalize;
+  max-height: 37px;
+  padding: 9px 0 16px 8px;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=MuiList-root] [class*=Mui-selected] {
+  background-color: #F2F4F8;
+  position: relative;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=MuiList-root] [class*=Mui-selected]:hover {
+  background-color: #F2F4F8;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=MuiList-root] [class*=MuiMenuItem-root]:hover {
+  background-color: #F2F4F8;
+}
+[class*=MuiMenu-root] [class*=MuiMenu-paper] [class*=MuiList-root] :focus {
+  background-color: #F2F4F8;
+}
+
+[class*=MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root] {
+  background-color: #F2F4F8;
+  padding: 10px 0 10px 8px;
+  max-height: 40px;
+}
+[class*=MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root] [class*=MuiOutlinedInput-notchedOutline] {
+  border: none;
+}
+[class*=MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root] [class*=MuiOutlinedInput-input] {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #060C23;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  font-style: normal;
+  text-transform: capitalize;
+  padding: 0;
+}
+[class*=MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root] [class*=MuiSelect-icon] {
+  max-width: 16px;
+  transform: rotate(-90deg);
+}
+
+@media screen and (max-width: 520px) {
+  .adaptive {
+    max-height: 25px;
+    z-index: 10;
+  }
+  .adaptive .chosen {
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    width: 14px;
+    height: 14px;
+  }
+  .adaptive .chosen_text {
+    font-family: "Open Sans", sans-serif;
+    font-size: 7.41px;
+    font-weight: 400;
+    color: inherit;
+    line-height: 150%;
+    letter-spacing: 0.3px;
+  }
+  .adaptive [class*=MuiSelect-icon] {
+    max-width: 9px;
+  }
+}
+
+.optionContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.chosen {
+  position: absolute;
+  top: 8px;
+  left: 6px;
+}

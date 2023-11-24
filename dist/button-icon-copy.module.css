@@ -1,0 +1,66 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s linear;
+  border-radius: 10px;
+  height: 40px;
+  background-color: transparent;
+  aspect-ratio: 1/1;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+.button div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.button svg {
+  transition: stroke 0.1s linear;
+  stroke: #A6B3C9;
+}
+.button:hover svg {
+  stroke: #243CBB;
+}
+.button:active {
+  background-color: #ECEFFF;
+}
+.button:active svg {
+  stroke: #243CBB;
+}
+.button:disabled {
+  background-color: transparent;
+}
+.button:disabled svg {
+  stroke: #D7DEEA;
+}

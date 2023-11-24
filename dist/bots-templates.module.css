@@ -1,0 +1,182 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.container {
+  text-align: start;
+  background-color: #FFFFFF;
+  max-width: 100%;
+}
+
+.header_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+@media (max-width: 620px) {
+  .header_wrapper {
+    margin-right: 20px;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(0, 125px));
+  grid-template-columns: repeat(auto-fit, minmax(134px, 188px));
+  gap: 28px;
+  row-gap: 32px;
+  padding: 0;
+}
+@media (max-width: 620px) {
+  .list {
+    grid-template-rows: 125px;
+    grid-template-columns: repeat(auto-fit, minmax(134px, 188px));
+    grid-auto-flow: column;
+  }
+}
+.list::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+.list::-webkit-scrollbar-thumb {
+  background: #d7deea;
+  border-radius: 17px;
+}
+.list::-webkit-scrollbar-track {
+  margin: 0;
+}
+
+.expanded {
+  overflow: auto;
+  max-height: 300px;
+  transition: max-height 1s ease;
+}
+@media (max-width: 620px) {
+  .expanded {
+    overflow-x: scroll;
+  }
+  .expanded::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.not_expanded {
+  max-height: 125px;
+  overflow: hidden;
+  transition: max-height 1s ease;
+}
+@media (max-width: 620px) {
+  .not_expanded {
+    overflow-x: scroll;
+  }
+  .not_expanded::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(134px, 188px));
+  align-items: flex-start;
+}
+
+.accordion_wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.accordion_button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #A6B3C9;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  background-color: #FFFFFF;
+  border: none;
+  line-height: 150%;
+}
+@media (max-width: 620px) {
+  .accordion_button {
+    display: none;
+  }
+}
+
+.accordion_ico_plus {
+  width: 26px;
+  height: 26px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  background-image: url("../../../images/icon/24x24/common/chevron-big.svg");
+  background-color: #FFFFFF;
+  background-position: center;
+  border: none;
+  align-self: center;
+  transition: transform 0.3s ease;
+}
+@media (max-width: 620px) {
+  .accordion_ico_plus {
+    display: none;
+  }
+}
+
+.accordion_ico_minus {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+@media (max-width: 620px) {
+  .accordion_ico_minus {
+    display: none;
+  }
+}
+
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 2;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.content {
+  position: absolute;
+  z-index: 2;
+}

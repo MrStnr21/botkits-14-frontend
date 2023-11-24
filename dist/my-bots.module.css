@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.wrapper {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 620px) {
+  .header__text {
+    font-size: 24px;
+    line-height: 130%;
+  }
+}
+
+.header__button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #8392AB;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  display: block;
+  margin-right: 20px;
+  text-align: right;
+}
+.header__button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  list-style: none;
+  gap: 28px;
+  transition: height 1s;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 296px);
+}
+@media (max-width: 620px) {
+  .list {
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, 235px);
+  }
+}
+
+.list_hidden {
+  overflow-x: hidden;
+  grid-auto-flow: column;
+}
+
+.item {
+  min-height: 195px;
+  position: relative;
+}
+
+.buttonAddbot {
+  width: 296px;
+  height: 172px;
+}
+@media (max-width: 620px) {
+  .buttonAddbot {
+    width: 296px;
+    height: 172px;
+  }
+}

@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.upload_img * {
+  fill: #CCD4E0;
+}
+
+.selects {
+  width: 100%;
+  max-width: 580px;
+  background-color: #F8F9FB;
+  border-radius: 10px;
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+
+.selects_items {
+  padding: 16px 8px 16px 12px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-height: 146px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  list-style: none;
+}
+.selects_items::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+.selects_items::-webkit-scrollbar-thumb {
+  background: #d7deea;
+  border-radius: 17px;
+}
+.selects_items::-webkit-scrollbar-track {
+  margin: 18px 0;
+}
+
+.scroll {
+  padding: 16px 4px 16px 12px;
+}
+
+.selects_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  width: 100%;
+  background-color: #F8F9FB;
+  border: 0;
+  padding: 16px 12px;
+  border-radius: 10px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  transition: 0.2s linear;
+}
+.selects_button:hover * {
+  transition: 0.2s linear;
+  fill: #A6B3C9;
+  color: #6392ab;
+}
+.selects_button:disabled * {
+  fill: #CCD4E0;
+  color: #D7DEEA;
+}
+
+.selects_text {
+  color: #BFC9D9;
+}
+
+.selects_item {
+  display: flex;
+  flex: 1 1;
+}

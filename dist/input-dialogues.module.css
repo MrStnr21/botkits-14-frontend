@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  margin: 0;
+  min-width: unset;
+  min-height: 40px;
+  background-color: #F8F9FB;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.message:focus-within {
+  border: 1.5px #243CBB solid;
+}
+
+.input {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: unset;
+  font-family: "Open-Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #060C23;
+  border-radius: 10px 0 0 10px;
+  outline: 0;
+  border: 0;
+  background-color: #F8F9FB;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  text-indent: 25px;
+  box-sizing: border-box;
+}
+.input::placeholder {
+  color: #8392AB;
+  background: url("../../../images/icon/20x20/search.svg") no-repeat;
+}
+.input:focus::placeholder {
+  color: transparent;
+  background: none;
+  display: none;
+}
+.input:focus {
+  text-indent: 3px;
+}
+
+.message_hidden {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.button:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.icon {
+  stroke: #CCD4E0;
+}

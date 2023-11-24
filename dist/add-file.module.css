@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.download {
+  position: relative;
+}
+
+.download__input {
+  opacity: 0;
+  position: absolute;
+}
+
+.download__label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 2px dashed #a6b3c9;
+  margin-bottom: 2px;
+  background-color: #fff;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+
+.download__icon {
+  stroke: #A6B3C9;
+  width: 24px;
+  margin-right: 12px;
+}
+
+.download__text {
+  color: #A6B3C9;
+}
+
+.textError {
+  font-family: "Open Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: #FF5656;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  position: absolute;
+  bottom: -15px;
+  display: none;
+}
+
+.download_error .download__label {
+  border-radius: 10px;
+  border: 1px solid #FF5656;
+}
+.download_error .textError {
+  display: block;
+}
+.download_error .download__icon {
+  stroke: #CCD4E0;
+}
+.download_error .download__text {
+  color: #CCD4E0;
+}

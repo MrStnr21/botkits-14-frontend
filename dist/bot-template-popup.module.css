@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.bot_template {
+  padding: 60px 40px;
+  max-width: 620px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
+  border-radius: 30px;
+  position: relative;
+  min-width: 320px;
+}
+@media screen and (max-width: 420px) {
+  .bot_template {
+    height: 100vh;
+    padding: 60px 20px;
+    border-radius: 0;
+  }
+}
+
+.bot_template_close {
+  position: absolute;
+  top: 37px;
+  right: 37px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+  background: 0;
+  border: 0;
+  padding: 0;
+}
+.bot_template_close * {
+  stroke: #060C23;
+}
+
+.bot_template_image {
+  max-width: 88px;
+  max-height: 88px;
+}
+
+.bot_template_description {
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: unset;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.bot_template_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  align-items: unset;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.bot_template_item_index {
+  color: #243CBB;
+  margin-right: 28px;
+}
+
+.bot_template_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 28px;
+  margin-top: 60px;
+}
+@media screen and (max-width: 420px) {
+  .bot_template_buttons {
+    display: block;
+  }
+}
+
+.bot_template_cancel {
+  border: none;
+  padding: 0;
+  background: transparent;
+  font-family: "IBM Plex Mono", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #060C23;
+  line-height: 130%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.bot_template_cancel:hover {
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+@media screen and (max-width: 420px) {
+  .bot_template_cancel {
+    display: none;
+  }
+}
+
+.bot_template_add_button {
+  min-width: 256px;
+}

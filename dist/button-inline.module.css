@@ -1,0 +1,156 @@
+@charset "UTF-8";
+/* Ширина контента */
+/* Цветовая схема приложения */
+/* Переменные размеров шрифта */
+/* Переменные высоты строки */
+/* Переменные жирности шрифта */
+/* Переменные расстояния между буквами */
+/* Переменные радиуса скругления */
+/* Переменные тени элемента */
+/* Шаблонныe селекторы
+для скрытия блока с текстом объяснения, что это за ссылка */
+/*  Курсор  */
+/* Иконки */
+/* Миксины для всего проекта */
+/* Flex-блок */
+/* Отступы */
+/* Размеры элемента' */
+/* Позиционирование элемента */
+/* Свойства шрифта и строки */
+/* Обрезание текста - эллипсис */
+/* Сброс стиля кнопок и единый курсор */
+/* Сброс стиля инпута */
+/* Миксины для повторяющихся элементов */
+/* Сообщение для ошибки в формах авторизации */
+.container {
+  position: relative;
+}
+
+.outline {
+  outline: 1px solid #85FFD0;
+}
+
+.absolute-wrapper {
+  position: absolute;
+  top: -56px;
+  right: 0;
+  background-color: #FFFFFF;
+}
+
+.button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  line-height: 150%;
+  letter-spacing: 0.3px;
+  border-radius: 5px;
+  width: 232px;
+  min-height: 40px;
+  border: 0;
+  padding: 8px 12px;
+  cursor: url("../images/icon/cursor/pointing-hand.svg"), pointer;
+}
+@media screen and (max-width: 520px) {
+  .button {
+    width: 136px;
+    min-height: 27px;
+    padding: 6px 8px;
+  }
+}
+
+.button-flex-start {
+  align-items: flex-start;
+}
+
+.button-flex-center {
+  align-items: center;
+}
+
+.button-name {
+  border: none;
+  padding: 0;
+  background: transparent;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  outline: 0;
+  font-size: 13px;
+  line-height: 150%;
+  color: unset;
+  text-decoration: none;
+}
+@media screen and (max-width: 520px) {
+  .button-name {
+    font-size: 7.48px;
+  }
+}
+
+.button-str {
+  border: none;
+  padding: 0;
+  background: transparent;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  outline: 0;
+  font-size: 12px;
+  line-height: 150%;
+  color: #A6B3C9;
+  text-decoration: none;
+}
+@media screen and (max-width: 520px) {
+  .button-str {
+    font-size: 6.48px;
+  }
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-start {
+  text-align: start;
+}
+
+.button-white {
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+  border-color: #F2F4F8;
+}
+.button-white:hover {
+  border-color: #2743CE;
+}
+
+.button-red {
+  color: #FFFFFF;
+  background-color: #D3524D;
+  border-color: #D3524D;
+}
+.button-red:hover {
+  border-color: #2743CE;
+}
+
+.button-green {
+  color: #FFFFFF;
+  background-color: #67D057;
+  border-color: #67D057;
+}
+.button-green:hover {
+  border-color: #2743CE;
+}
+
+.button-blue {
+  color: #FFFFFF;
+  background-color: #5883C6;
+  border-color: #5883C6;
+}
+.button-blue:hover {
+  border-color: #2743CE;
+}
