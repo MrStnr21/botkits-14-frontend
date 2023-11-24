@@ -1,4 +1,8 @@
 import { getUserInfoApi } from '../../../api/index';
+import {
+  removeAccessToken,
+  removeRefreshToken,
+} from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
@@ -41,9 +45,13 @@ const getUserInfoAction: AppThunk = (token: string) => {
           });
         }
       })
-      .catch((err: { message: string }) => {
+      .catch((err) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err);
+        if (err[0] === 'Ошибка 401') {
+          removeAccessToken();
+          removeRefreshToken();
+        }
         dispatch({
           type: GET_USER_INFO_ERROR,
         });
