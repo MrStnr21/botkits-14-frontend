@@ -3,12 +3,8 @@
 
 .create {
   @include position(relative);
-  /* @include flex(row, flex-start, unset); */
+  @include flex(row, flex-start, unset, 48px);
   @include size(100%, unset);
-  display: grid;
-  grid-template-columns: minmax(auto, 100%) minmax(min-content, 296px);
-  grid-template-rows: auto;
-  gap: 48px;
 
   &__sideButton {
     @include position(absolute, -60px, 0, unset, unset);

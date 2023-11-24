@@ -3,7 +3,8 @@
 
 .aside {
   @include position(relative);
-  @include min-size(185px, 651);
+  @include size(100%, unset);
+  @include min-size(185px, 651px);
   @include flex(column, center, stretch);
   @include max-size(296px, 703px);
   @include indents(16px, 0);

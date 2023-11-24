@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Mailing/Add content
 // @TODO перенести в нужную папку, доделать стили, ДЛЯ ДОБАВЛЕНИЯ КОНТЕНТА В РАССЫЛКУ.. крупные кнопки с надписью
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
+import { useDraggable } from 'react-use-draggable-scroll';
 
 import stylesButtonAddContent from './button-add-content.module.scss';
 
@@ -28,6 +29,8 @@ const ButtonAddContent: FC = (): JSX.Element => {
   const [horizontal, setHorizontal] = useState(false);
   const [vertical, setVertical] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const ref =
+    useRef<HTMLDivElement>() as unknown as React.MutableRefObject<HTMLDivElement>;
 
   const addContent = (value: BUTTON_NAME) => {
     if (value === iconSelected) {
@@ -51,6 +54,8 @@ const ButtonAddContent: FC = (): JSX.Element => {
     setVertical(false);
   };
 
+  const { events } = useDraggable(ref);
+
   return (
     <section
       aria-label="Добавить контент в рассылку"
@@ -60,7 +65,7 @@ const ButtonAddContent: FC = (): JSX.Element => {
       {/* <Typography tag="h2" className={stylesButtonAddContent.header}>
         Добавить
       </Typography> */}
-      <div className={stylesButtonAddContent.butbox}>
+      <div ref={ref} {...events} className={stylesButtonAddContent.butbox}>
         <ConstructorIconBotton
           text={BUTTON_NAME.IMAGE}
           value={BUTTON_NAME.IMAGE}
@@ -95,7 +100,7 @@ const ButtonAddContent: FC = (): JSX.Element => {
         />
       </div>
       <div className={stylesButtonAddContent.inputs}>
-        {addFileInput && !buttonInput && <DownloadFile size={SIZE_INPUT.L} />}
+        {addFileInput && !buttonInput && <DownloadFile />}
         {buttonInput && !addFileInput && (
           <div className={stylesButtonAddContent.inputs__wrapper}>
             <ConstructorAddButton

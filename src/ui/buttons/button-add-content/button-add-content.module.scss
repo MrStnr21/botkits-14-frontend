@@ -3,15 +3,21 @@
 
 
 .wrapper {
-  width: fit-content;
+  width: 100%;
   // background-color: $secondary-cultured-default;
   text-align: left;
 }
 
 .butbox {
-  @include flex(row, center, center);
+  @include flex(row, start, center);
   // margin: 16px 0 32px;
+  width: 100%;
   gap: 20px;
+  list-style: none;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    @include size(0, 0);
+  }
 }
 
 .inputs {
