@@ -60,6 +60,7 @@ const MailingForm: FC<IProps> = ({
               placeholder="Название рассылки"
               onChange={(e) => setNameValue(e.target.value)}
               value={nameValue}
+              minLength={0}
             />
           </div>
           <div className={styles.form__menuVariableWrapper}>

@@ -178,7 +178,11 @@ const MailingConditions: FC<IProps> = ({
                 </div>
                 <div className={styles.form__menuContainer}>
                   <Typography tag="span">Каждый</Typography>
-                  <MenuVariable nameMenu={period} buttons={[]} width="174px" />
+                  <MenuVariable
+                    nameMenu={period}
+                    buttons={['1', '2', '3']}
+                    width="174px"
+                  />
                 </div>
                 {!isOff && (
                   <div className={styles.form__relativeInput}>

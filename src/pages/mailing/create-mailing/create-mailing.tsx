@@ -30,8 +30,8 @@ const CreateMailing: FC = () => {
   };
 
   return (
-    <div className={styles.create}>
-      <div>
+    <>
+      <div className={styles.create}>
         <button
           type="button"
           className={styles.create__sideButton}
@@ -39,30 +39,35 @@ const CreateMailing: FC = () => {
         >
           <ChevronIcon position={isAsideVisible ? 'right' : 'left'} />
         </button>
-        {!isAsideVisible && (
-          <div className={styles.create__blue}>
-            <BotFace width={64} height={64} />
-          </div>
+        {/* {!isAsideVisible && (
+        <div className={styles.create__blue}>
+          <BotFace width={64} height={64} />
+        </div>
+      )} */}
+        {matchConditions ? (
+          <MailingConditions
+            title={nameValue}
+            handleBack={handleBack}
+            // handleClickButton={handleClickButton}
+          />
+        ) : (
+          <MailingForm
+            nameValue={nameValue}
+            textValue={textValue}
+            setNameValue={setNameValue}
+            setTextValue={setTextValue}
+            handleBack={handleBack}
+            handleClickButton={handleClickButton}
+          />
         )}
+        {isAsideVisible && <AsideMailing title={nameValue} text={textValue} />}
       </div>
-      {matchConditions ? (
-        <MailingConditions
-          title={nameValue}
-          handleBack={handleBack}
-          // handleClickButton={handleClickButton}
-        />
-      ) : (
-        <MailingForm
-          nameValue={nameValue}
-          textValue={textValue}
-          setNameValue={setNameValue}
-          setTextValue={setTextValue}
-          handleBack={handleBack}
-          handleClickButton={handleClickButton}
-        />
+      {!isAsideVisible && (
+        <div className={styles.create__blue}>
+          <BotFace width={64} height={64} />
+        </div>
       )}
-      {isAsideVisible && <AsideMailing title={nameValue} text={textValue} />}
-    </div>
+    </>
   );
 };
 

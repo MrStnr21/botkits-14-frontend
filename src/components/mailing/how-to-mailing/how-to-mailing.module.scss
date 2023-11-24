@@ -4,11 +4,42 @@
 .howIt {
   @include max-size(100%, unset);
   @include flex(column, unset, unset, 20px);
-  @include indents(40px, 0);
+  @include indents(0 40px 40px, 0);
+  position: relative;
   background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;
 
   &__buttons {
-    @include flex(columns, flex-start, center, 32px);
+    @include flex(row, flex-start, center, 32px);
+    transition: height .3s linear;
+
+    &_visible {
+      @media screen and (max-width: 820px) {
+        height: calc(76px*2 + 12px);
+      }
+    }
+
+    &_hidden {
+      @media screen and (max-width: 820px) {
+        height: 0;
+      }
+    }
+
+    @media screen and (max-width: 820px) {
+      @include flex(column, flex-start, center, 12px);
+    }
+  }
+
+  &__hide {
+    @include indents(0, 0);
+    @include position(absolute, 0, 24px);
+    border: 0;
+    background: 0;
+    transition: transform .2s;
+    cursor: $cursor;
+
+    &_closed {
+      transform: rotate(180deg);
+    }
   }
 }

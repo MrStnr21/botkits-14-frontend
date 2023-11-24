@@ -3,7 +3,7 @@
 
 .mailing {
   @include flex(column, unset, center);
-  @include max-size(1268px, unset);
+  /* @include max-size(1268px, unset); */
   @include indents(0, 40px 40px 0 0);
 
   &__header {
@@ -13,7 +13,6 @@
 
     @media screen and (max-width: 620px) {
       @include indents(0 0 26px 0, 0);
-      justify-content: center;
     }
   }
 
@@ -23,6 +22,7 @@
 
   &__content {
     @include size(100%, unset);
+    @include flex(column, $gap: 32px);
     background-color: $secondary-cultured-hover;
     border-radius: $xxl-border-radius;
   }

@@ -3,11 +3,15 @@
 
 .create {
   @include position(relative);
-  @include flex(row, flex-start, unset);
+  /* @include flex(row, flex-start, unset); */
   @include size(100%, unset);
+  display: grid;
+  grid-template-columns: minmax(auto, 100%) minmax(min-content, 296px);
+  grid-template-rows: auto;
+  gap: 48px;
 
   &__sideButton {
-    @include position(absolute, -60px, -50px, unset, unset);
+    @include position(absolute, -60px, 0, unset, unset);
     @include button-style-reset();
     @include flex($justify-content: center, $align-items: center);
     @include size(40px, 40px);
@@ -16,7 +20,7 @@
   }
 
   &__blue {
-    @include position(absolute, 0, -60px, unset, unset);
+    @include position(absolute, 178px, 0, unset, unset);
     @include size(100px, 80px);
     @include flex($justify-content: center, $align-items: center);
     background-color: $primary-persian-blue-default;

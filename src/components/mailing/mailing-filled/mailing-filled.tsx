@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
+import { useMediaQuery } from '@mui/material';
 import styles from './mailing-filled.module.scss';
 import TableComponent from '../../table-component/table-component';
 import { cols, rows, rowStyle, cellStyle } from '../../../utils/mailingTable';
@@ -7,10 +8,13 @@ import { ppHeadCell } from '../../table-cells/table-cells';
 import Typography from '../../../ui/typography/typography';
 import MailingModal from '../../popups/mailing-popup/mailing-popup';
 import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import MobileTable from './mobile-table/mobile-table';
 
 const mailings = ['Все', 'Запущены', 'Отклонены'];
 
 const MailingFilled: FC = () => {
+  const isMobile = useMediaQuery('(max-width: 860px)');
+
   return (
     <div className={styles.table}>
       <div className={styles.table__titleContainer}>
@@ -27,13 +31,17 @@ const MailingFilled: FC = () => {
         </button>
       </div>
       <div>
-        <TableComponent
-          columns={cols}
-          headComponent={ppHeadCell}
-          tableData={rows}
-          rowStyle={rowStyle}
-          cellStyle={cellStyle}
-        />
+        {isMobile ? (
+          <MobileTable data={rows} />
+        ) : (
+          <TableComponent
+            columns={cols}
+            headComponent={ppHeadCell}
+            tableData={rows}
+            rowStyle={rowStyle}
+            cellStyle={cellStyle}
+          />
+        )}
       </div>
     </div>
   );

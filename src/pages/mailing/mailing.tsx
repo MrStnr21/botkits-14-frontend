@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import { Link, useMatch } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
 import stylesMailing from './mailing.module.scss';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
@@ -12,6 +13,7 @@ import CreateMailing from './create-mailing/create-mailing';
 const Mailing: FC = (): JSX.Element => {
   const [is, setIs] = useState(true); // временно
   const matchMailing = useMatch('/mailing');
+  const isMobile = useMediaQuery('(max-width: 860px)');
 
   return (
     <div className={stylesMailing.mailing}>
@@ -19,7 +21,7 @@ const Mailing: FC = (): JSX.Element => {
         <Typography tag="h2" fontFamily="secondary">
           Рассылки
         </Typography>
-        {matchMailing && (
+        {matchMailing && !isMobile && (
           <div className={stylesMailing.mailing__buttonWrapper}>
             <Button
               variant="default"

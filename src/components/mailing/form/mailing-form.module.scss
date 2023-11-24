@@ -65,7 +65,7 @@
 }
 
 .container {
-  @include max-size(924px, unset);
+  /* @include max-size(924px, unset); */
   @include size(100%, fit-content);
   background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;
