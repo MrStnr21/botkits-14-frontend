@@ -6,6 +6,11 @@
   @include size(188px, 65px);
   @include indents(20px 50px, 0);
   border-radius: $l-border-radius;
+
+  @media screen and (max-width: 860px) {
+    @include size(130px, 48px);
+    @include indents(14.5px 42px, 0);
+  }
 }
 
 @mixin defaultFontStyles {
@@ -28,8 +33,13 @@
     @include flex(row, space-between, flex-start, 24px);
     @include size(100%, unset);
     @include indents(0 0 32px 0, 0);
+    flex-wrap: wrap;
     min-width: 0;
     border: none;
+
+    /* @media screen and (max-width: $switching-width) {
+      flex-direction: column;
+    } */
   }
 
   &__legend {
@@ -43,7 +53,8 @@
 
   &__inputWrapper {
     @include indents();
-    @include size(100%, 65px);
+    @include max-size(556px, 65px);
+    width: 100%;
     box-sizing: border-box;
   }
 
@@ -68,7 +79,7 @@
 }
 
 .container {
-  /* @include max-size(924px, unset); */
+  @include max-size(924px, unset);
   @include size(100%, fit-content);
   min-width: 300px;
   background-color: $secondary-cultured-hover;
@@ -84,11 +95,11 @@
 
 
   &__commonButton {
-    @include buttonStyles();
+    @include buttonStyles;
   }
 
   &__greenButton {
-    @include buttonStyles();
+    @include buttonStyles;
     background-color: $primary-medium-spring-green-disabled;
   }
 
@@ -100,10 +111,20 @@
   &__blackText {
     @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
     @include defaultFontStyles();
+
+    @media screen and (max-width: 860px) {
+      @include font('IBM Plex Mono', $s-font-size, $bold, $primary-oxford-blue-default);
+      @include line-sizes(18.76px, $xxl-letter-space)
+    }
   }
 
   &__buttonText {
     @include font('IBM Plex Mono', $l-font-size, $bold, $grey-4);
     @include defaultFontStyles();
+
+    @media screen and (max-width: 860px) {
+      @include font('IBM Plex Mono', $s-font-size, $bold, $grey-4);
+      @include line-sizes(18.76px, $xxl-letter-space)
+    }
   }
 }

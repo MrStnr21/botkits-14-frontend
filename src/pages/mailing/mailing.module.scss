@@ -31,4 +31,8 @@
     text-decoration: none;
     color: inherit;
   }
+
+  @media screen and (max-width: $switching-width) {
+    margin: 24px 20px;
+  }
 }
