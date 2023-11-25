@@ -10,6 +10,7 @@ import ReactFlow, {
   Edge,
 } from 'reactflow';
 
+import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
@@ -21,11 +22,17 @@ import NavigationPanel from '../navigation-panel/navigation-panel';
 import TriggerBlock from '../triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
+import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
+import BotName from '../../../ui/bot-name/bot-name';
+import ModalPopup from '../../popups/modal-popup/modal-popup';
+import { useAppDispatch } from '../../../services/hooks/hooks';
+import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
 
 const cx = cn.bind(styles);
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const isMobile = useMediaQuery('(max-width: 620px)');
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [triggerOpened, toggleTrigger] = useState(false);
@@ -44,6 +51,36 @@ const LayoutFlow: FC = () => {
       document.removeEventListener('click', menuCloseHandler);
     };
   }, [menuOpened]);
+
+  useEffect(() => {
+    if (isMobile) {
+      setNodes(
+        nodes.map((item) => {
+          if (item.type === 'button') {
+            return {
+              ...item,
+              position: { x: ButtonSizesMobile.startX, y: item.data.mobY },
+            };
+          }
+          return item;
+        })
+      );
+    } else {
+      setNodes(
+        nodes.map((item) => {
+          if (item.type === 'button') {
+            return {
+              ...item,
+              position: { x: ButtonSizes.startX, y: item.data.deskY },
+            };
+          }
+          return item;
+        })
+      );
+    }
+  }, [isMobile]);
+
+  const dispatch = useAppDispatch();
 
   return (
     <div className={cx('flow')}>
@@ -65,18 +102,32 @@ const LayoutFlow: FC = () => {
         defaultEdgeOptions={edgeOptions}
       >
         <Background />
+        <div className={styles['bot-name']}>
+          <BotName isUpdating={false} />
+        </div>
+        <div className={styles['trigger-button']}>
+          <TriggerButton onClick={() => toggleTrigger(true)} />
+        </div>
         <div className={cx('upWrapper')}>
           <div className={cx('wrapper')}>
             <ButtonStart data={{ type: 'stop' }} />
           </div>
           <div className={cx('wrapper')}>
-            <ButtonStart data={{ type: 'test' }} />
+            <ButtonStart
+              data={{
+                type: 'test',
+                onClick: () => dispatch({ type: OPEN_MES_POPUP }),
+              }}
+            />
           </div>
-          <TriggerButton onClick={() => toggleTrigger(true)} />
         </div>
         <NavigationPanel />
         <div className={cx('addBlock')}>
-          {menuOpened && <AddBlockPanel />}
+          {!isMobile && menuOpened && (
+            <div className={cx('addBlock__menu')}>
+              <AddBlockPanel />
+            </div>
+          )}
           <Button
             size="large"
             variant="circle"
@@ -84,6 +135,13 @@ const LayoutFlow: FC = () => {
             onClick={() => toggleMenu(true)}
           />
         </div>
+        {isMobile && menuOpened && (
+          <ModalPopup closeIcon={false} onClick={() => toggleMenu(false)}>
+            <div className={cx('addBlock__menu')}>
+              <AddBlockPanel />
+            </div>
+          </ModalPopup>
+        )}
       </ReactFlow>
       <TriggerBlock
         isOpened={triggerOpened}

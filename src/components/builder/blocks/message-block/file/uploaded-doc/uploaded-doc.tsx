@@ -7,9 +7,10 @@ import { sizeFormated } from '../../../../../../utils/utils';
 export type TUploadedDockProps = {
   name: string;
   size: number;
+  onRemove: () => void;
 };
 
-const UploadedDock: FC<TUploadedDockProps> = ({ name, size }) => {
+const UploadedDock: FC<TUploadedDockProps> = ({ name, size, onRemove }) => {
   const isRequired = size <= 1024 * 1024 * 10;
   const Icon = isRequired ? DocImage : DocErrorImage;
   return (
@@ -21,6 +22,7 @@ const UploadedDock: FC<TUploadedDockProps> = ({ name, size }) => {
         type="button"
         aria-label="Удалить файл"
         className={styles.result__button}
+        onClick={onRemove}
       />
     </div>
   );

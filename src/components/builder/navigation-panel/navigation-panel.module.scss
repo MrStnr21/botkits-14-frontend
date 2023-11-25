@@ -34,7 +34,7 @@
     margin: 8px 0;
   }
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     display: none;
   }
 }

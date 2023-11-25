@@ -1,0 +1,54 @@
+@use '../../../stylesheets/variables' as *;
+
+.main {
+  min-width: 320px;
+  background: white;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (min-width: $max-content-width) {
+    width: 728px;
+  }
+
+  @media screen and (max-width: $max-content-width) {
+    width: 728px;
+  }
+
+  @media screen and (max-width: 740px) {
+    width: 100%;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+
+    .blockLink {
+      display: flex;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .mainLink {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+          font-weight: bold;
+          text-decoration: none;
+          color: $primary-oxford-blue-default;
+        }
+
+        .iconWrap {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

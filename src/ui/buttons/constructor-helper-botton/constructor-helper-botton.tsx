@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { ReactSVG } from 'react-svg';
 import DeleteIcon from '../../../images/icon/24x24/constructor/delete.svg';
 
@@ -7,7 +7,7 @@ import stylesConstructorHelperButton from './constructor-helper-botton.module.sc
 export interface IConstructorHelperButton {
   askButtonHtmlType?: 'button' | 'submit' | 'reset';
   deleteButtonHtmlType?: 'button' | 'submit' | 'reset';
-  askOnClick?: (val: boolean) => void;
+  askOnClick?: () => void;
   deleteOnClick: () => void;
   askIcon: string;
   color?: boolean;
@@ -29,11 +29,9 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
 }) => {
   const colorTypes = ['white', 'red', 'green', 'blue'];
 
-  const ref = useRef<null | HTMLDivElement>(null);
-
   /* Скрытие элемента при клике, переработать */
-  function documentListener(e: MouseEvent) {
-    if (hide && ref.current !== e.target) {
+  function documentListener() {
+    if (hide) {
       hide();
     }
   }
@@ -59,7 +57,6 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
       {isVisible && (
         <div
           onClick={menuListener}
-          ref={ref}
           className={`${stylesConstructorHelperButton.container}${
             color ? ` ${stylesConstructorHelperButton.container_color}` : ''
           }`}
@@ -88,9 +85,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
           </div>
           <button
             className={stylesConstructorHelperButton.ask_button}
-            onClick={() => {
-              if (askOnClick) askOnClick(true);
-            }}
+            onClick={askOnClick}
             // eslint-disable-next-line react/button-has-type
             type={askButtonHtmlType}
           >
@@ -98,7 +93,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
           </button>
           <button
             className={stylesConstructorHelperButton.delete_button}
-            onClick={() => deleteOnClick}
+            onClick={deleteOnClick}
             // eslint-disable-next-line react/button-has-type
             type={deleteButtonHtmlType}
           >

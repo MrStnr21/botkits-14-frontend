@@ -6,18 +6,50 @@
   display: grid;
   grid-template-columns: auto minmax(0, min-content);
   height: 100vh;
+  min-width: 360px;
+  background-color: $secondary-cultured-default;
 
   @media screen and (max-width: $switching-width) {
     height: calc(100vh - 72px);  // 72 - высота header
   }
 }
 
+.bot-name{
+  @include position(absolute, 16px, $left: 98px);
+  z-index: 100;
+
+  @media screen and (max-width: $switching-width) {
+    top: 8px;
+    left: 20px;
+  }
+}
+
+.trigger-button{
+  @include position(absolute, 16px, 40px);
+  z-index: 100;
+
+  @media screen and (max-width: $switching-width) {
+    top: 8px;
+    right: 20px;
+  }
+}
+
 .upWrapper {
+  @include position(absolute, 16px, 124px);
   @include flex(row, end, false, 8px);
   @include size(100%, fit-content);
+  z-index: 100;
   box-sizing: border-box;
-  padding: 12px;
-  position: right;
+
+  @media screen and (max-width: $switching-width) {
+    @include position(absolute, unset, 0, 0);
+    justify-content: center;
+    padding: 12px 0 32px;
+    right: 0;
+    width: 100%;
+    height: 92px;
+    background-color: $off-white;
+  }
 }
 
 .addBlock{
@@ -25,8 +57,19 @@
   @include flex(row,$align-items: flex-end ,$gap: 10px);
   max-width: calc(100% - 150px);
   z-index: 999;
-  @media screen and (max-width: 520px) {
+
+  @media screen and (max-width: $switching-width) {
+    flex-direction: column;
+    bottom: 112px;
     max-width: calc(100% - 24px*2);
+  }
+}
+
+.addBlock__menu {
+  width: calc(100% - 66px - 9px);
+
+  @media screen and (max-width: $switching-width) {
+    width: 320px;
   }
 }
 
@@ -40,7 +83,7 @@
   max-width: 296px;
   height: min-content;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     max-width: 168px;
   }
 }
@@ -49,7 +92,7 @@
   @include flex(column, false, false, 8px);
   padding: 12px 16px 16px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 12px 9px 9px;
   }
 }
@@ -57,7 +100,7 @@
 .extraClass:first-of-type {
   padding: 12px 12px 8px !important;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 9px 9px 6px !important;
   }
 }
@@ -65,7 +108,7 @@
 .extraClass:last-of-type {
   padding: 8px 12px 12px !important;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 6px 9px 9px !important;
   }
 }
@@ -76,7 +119,7 @@
   background-color: $secondary-cultured-default;
   border-radius: $l-border-radius;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     border-radius: 5.7px;
   }
 }

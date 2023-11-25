@@ -136,8 +136,11 @@ const MiniMap = ({
     >
       {nodes
         .filter((node) => !node.hidden)
-        .map((node) => (
-          <MiniMapNode
+        .map((node) => {
+          if(node.type === 'button'){
+            return null
+          }
+          return <MiniMapNode
             key={node.id}
             x={node.position.x}
             y={node.position.y}
@@ -150,8 +153,8 @@ const MiniMap = ({
             strokeColor={nodeStrokeColorFunc(node)}
             strokeWidth={nodeStrokeWidth}
             shapeRendering={shapeRendering}
-          />
-        ))}
+          />}
+        )}
       <rect
         ref={rectRef}
         className="react-flow__minimap-mask"

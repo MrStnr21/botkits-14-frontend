@@ -40,6 +40,7 @@ const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
           </div>
         </div>
         <Input
+          styled="bot-builder-default"
           placeholder="Введите тэг"
           value={`${tag}`}
           onChange={handleChange}
@@ -48,10 +49,16 @@ const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
       <div className={styles.block}>
         <h3 className={styles.title}>Ответное действие бота</h3>
         <div className={styles.buttons}>
-          <ConstructorDefaultButton onClick={() => setAnswerType('block')}>
+          <ConstructorDefaultButton
+            onClick={() => setAnswerType('block')}
+            isActive={answerType === 'block'}
+          >
             Блоком
           </ConstructorDefaultButton>
-          <ConstructorDefaultButton onClick={() => setAnswerType('text')}>
+          <ConstructorDefaultButton
+            onClick={() => setAnswerType('text')}
+            isActive={answerType === 'text'}
+          >
             Текстом
           </ConstructorDefaultButton>
         </div>
@@ -60,6 +67,7 @@ const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
           onClick={(action: TButtons) => {
             setAction(action);
           }}
+          width="256px"
           nameMenu={getButtons()[0]}
           buttons={getButtons()}
         />

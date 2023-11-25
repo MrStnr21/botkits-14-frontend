@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: 0 */
 import { FC, ChangeEvent, useState, useEffect } from 'react';
 
 import stylesInput from './input.module.scss';
@@ -19,6 +20,8 @@ interface IInput {
   pattern?: string;
   password?: boolean;
   textColor?: 'default' | 'blue';
+  min?: string;
+  max?: string;
 }
 
 const classNames = {
@@ -44,6 +47,8 @@ const Input: FC<IInput> = ({
   pattern,
   password,
   textColor = 'default',
+  min,
+  max,
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -97,6 +102,15 @@ const Input: FC<IInput> = ({
       });
     } else {
       setError({ error: false, textError: '' });
+    }
+    if (min && Number(input.target.value) < Number(min)) {
+      input.target.value = min;
+      if (input.target.value === '0') {
+        input.target.value = '';
+      }
+    }
+    if (max && Number(input.target.value) > Number(max)) {
+      input.target.value = max;
     }
     onChange(input);
   };

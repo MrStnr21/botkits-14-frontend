@@ -26,7 +26,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
 
   const removeNode = () => {
     const nodes = getNodes().filter((item) => {
-      return item.id !== id;
+      return item.id !== id && item.parentNode !== id;
     });
     setNodes(nodes);
   };
