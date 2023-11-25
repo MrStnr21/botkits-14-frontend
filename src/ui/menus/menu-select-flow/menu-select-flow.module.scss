@@ -117,3 +117,14 @@
     height: 12px;
   }
 }
+
+.img {
+  padding-left: 7px;
+  width: 16px;
+  height: 16px;
+  @media screen and (max-width: 520px) {
+    padding-left: 4px;
+    width: 12px;
+    height: 12px;
+  }
+}

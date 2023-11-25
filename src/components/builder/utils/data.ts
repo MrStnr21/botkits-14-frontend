@@ -35,9 +35,9 @@ export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
 export const saveOptions = ['Новая запись', 'Дополнить запись'];
 
 export const selectValues = [
-  { value: '1', nameValue: '1' },
-  { value: '2', nameValue: '2' },
-  { value: '3', nameValue: '3' },
+  { value: '1', nameValue: 'Вариант' },
+  { value: '2', nameValue: 'Ответ' },
+  { value: '3', nameValue: 'Значение' },
 ];
 
 export const selectValuesType = [
@@ -124,15 +124,15 @@ export const currencyAvailable = [
 ];
 
 export const messagesSuccessful = [
-  { value: 'message', nameValue: 'Блок сообщений' },
-  { value: 'api', nameValue: 'API' },
-  { value: 'conditional', nameValue: 'Условный блок' },
-  { value: 'coordinate', nameValue: 'Отправка координат' },
-  { value: 'telegramPay', nameValue: 'Оплата в Telegram' },
-  { value: 'deeplink', nameValue: 'Deep Link' },
-  { value: 'crm', nameValue: 'Сохранение в CRM' },
-  { value: 'operator', nameValue: 'Перевод на оператора' },
-  { value: 'variable', nameValue: 'Управление переменными' },
+  { value: 'Message', nameValue: 'Блок сообщений' },
+  { value: 'Api', nameValue: 'API' },
+  { value: 'Conditional', nameValue: 'Условный блок' },
+  { value: 'Coordinate', nameValue: 'Отправка координат' },
+  { value: 'TelegramPay', nameValue: 'Оплата в Telegram' },
+  { value: 'Deeplink', nameValue: 'Deep Link' },
+  { value: 'Crm', nameValue: 'Сохранение в CRM' },
+  { value: 'Operator', nameValue: 'Перевод на оператора' },
+  { value: 'Variable', nameValue: 'Управление переменными' },
 ];
 
 export const defaultBlocks = {
