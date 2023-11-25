@@ -80,7 +80,8 @@
 
   &__menuContainer {
     @include position(relative);
-    @include flex(row, flex-end, center, 8px);
+    @include flex(row, space-between, center, 8px);
+    width: 100%
   }
 
   &__menuWrapper {
@@ -132,6 +133,12 @@
     background-color: $secondary-cultured-default;
     border-radius: $s-border-radius;
     cursor: pointer;
+  }
+
+  &__iconString {
+    @include flex(row, flex-start, center, 12px);
+    @include font('Open Sans', $xs-font-size, $normal, $grey-3);
+    @include line-sizes($xl-line-height, $m-letter-space);
   }
 }
 

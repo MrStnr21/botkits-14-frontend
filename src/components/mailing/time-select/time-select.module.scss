@@ -1,0 +1,31 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin chevron($rotate) {
+  @include size(16px, 16px);
+  transform: rotate($rotate);
+}
+
+.container {
+  @include button-style-reset;
+  @include flex(row, space-between, center);
+  @include max-size(100%, 40px);
+  @include size(144px, 40px);
+  @include indents(8px 10px, 0);
+  box-sizing: border-box;
+  position: relative;
+  background-color: $secondary-cultured-hover;
+  border-radius: 5px;
+}
+
+.menu {
+  @include position(absolute, 40px, $left: 144px);
+}
+
+.chevronLeft {
+  @include chevron(90deg)
+}
+
+.chevronRight {
+  @include chevron(-90deg)
+}

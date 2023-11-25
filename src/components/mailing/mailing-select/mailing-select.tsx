@@ -72,7 +72,17 @@ const MailingSelect: FC<IMailingSelect> = ({
       {!selectedOption && (
         <span className={styles.placeholder}>{placeholder}</span>
       )}
-      <ChevronIcon width={16} height={16} color="#BFC9D9" />
+      <span
+        className={`${styles.chevron} ${
+          isOpen ? styles.chevron_opened : styles.chevron_closed
+        }`}
+      >
+        <ChevronIcon
+          width={16}
+          height={16}
+          color={currentOption ? '#060C23' : '#BFC9D9'}
+        />
+      </span>
       {isOpen && options && (
         <Menu
           ref={menuRef}

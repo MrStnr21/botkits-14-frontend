@@ -18,6 +18,19 @@
   border-radius: 5px;
 }
 
+.chevron {
+  transition: transform .2s;
+}
+
+.chevron_opened {
+  transform: rotate(180deg);
+}
+
+.chevron_closed {
+  transform: rotate(0);
+}
+
+
 .label {
   @include holder($primary-oxford-blue-default)
 }

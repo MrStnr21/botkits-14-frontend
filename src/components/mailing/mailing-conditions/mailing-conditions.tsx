@@ -13,6 +13,9 @@ import MailingSelect from '../mailing-select/mailing-select';
 import { Option } from '../../../utils/types';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import { ReactComponent as CalendarIcon } from '../../../images/icon/24x24/time/calandar.svg';
+import { ReactComponent as TimeIcon } from '../../../images/icon/24x24/time/time.svg';
+import TimeSelect from '../time-select/time-select';
 
 interface IProps {
   title?: string;
@@ -72,10 +75,7 @@ const MailingConditions: FC<IProps> = ({
     repeat[0]
   );
   const [sendTime, setSendTime] = useState<Option | null>(send[0]);
-  const [time, setTime] = useState<Option | null>({
-    label: '4:00',
-    value: '4:00',
-  });
+  const [time, setTime] = useState<string>('4:00');
   const [date, setDate] = useState<Option | null>({
     label: '24.05.22',
     value: '24.05.22',
@@ -158,7 +158,9 @@ const MailingConditions: FC<IProps> = ({
           {sendTime?.value === 'Дата/Время' && (
             <fieldset className={styles.form__dateTimeWrapper}>
               <div className={styles.form__menuContainer}>
-                <Typography tag="span">Дата</Typography>
+                <span className={styles.form__iconString}>
+                  <CalendarIcon /> Дата
+                </span>
                 <MailingSelect
                   currentOption={date}
                   toggleSelect={() => setCalendarOpen(!calendarOpen)}
@@ -180,23 +182,16 @@ const MailingConditions: FC<IProps> = ({
                   ))}
               </div>
               <div className={styles.form__menuContainer}>
-                <Typography tag="span">Время</Typography>
-                <MailingSelect
-                  currentOption={time}
-                  toggleSelect={() => setTimeMenuOpen(!timeMenuOpen)}
-                  closeSelect={() => setTimeMenuOpen(false)}
-                  maxWidth={144}
+                <span className={styles.form__iconString}>
+                  <TimeIcon /> Время
+                </span>
+                <TimeSelect
+                  value={time}
+                  onDecrease={() => {}}
+                  onIncrease={() => {}}
+                  saveFunction={() => {}}
+                  clearFunction={() => {}}
                 />
-                {timeMenuOpen && (
-                  <div className={styles.form__calendar}>
-                    <MenuTime
-                      saveFunction={(selected: string) =>
-                        setTime({ value: selected, label: selected })
-                      }
-                      clearFunction={() => setTime({ value: '', label: '' })}
-                    />
-                  </div>
-                )}
               </div>
             </fieldset>
           )}
