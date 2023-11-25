@@ -4,6 +4,7 @@
 .button {
   @include button-style-reset;
   @include size(40px, 41px);
+  outline: none;
   box-sizing: border-box;
   line-height: 0;
   padding: 12px 12px 13px;

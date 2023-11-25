@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
-
+import { NavLink } from 'react-router-dom';
 import stylesMenuUser from './menu-user.module.scss';
 
 import settingsIcon from '../../../images/icon/24x24/drop down/settings.svg';
@@ -73,20 +73,20 @@ const MenuUser: FC<IMenuUser> = ({
           <Typography tag="p">Демо</Typography>
         </div>
       </div>
-      <a href="#id" className={stylesMenuUser.button}>
+      <NavLink to="/user" className={stylesMenuUser.button}>
         <img src={settingsIcon} alt="Иконка" />
         <Typography tag="p" className={stylesMenuUser.text}>
           Настройки аккаунта
         </Typography>
-      </a>
+      </NavLink>
       <a href={routesUrl.subscription} className={stylesMenuUser.button}>
         <img src={paymentsIcon} alt="Иконка" />
         <Typography tag="p" className={stylesMenuUser.text}>
           Подписка и платежи
         </Typography>
       </a>
-      <a
-        href="#id"
+      <NavLink
+        to="/"
         className={stylesMenuUser.button}
         onClick={() => onLogout(token!)}
       >
@@ -94,7 +94,7 @@ const MenuUser: FC<IMenuUser> = ({
         <Typography tag="p" className={stylesMenuUser.text}>
           Выйти
         </Typography>
-      </a>
+      </NavLink>
       <div className={stylesMenuUser.addition}>
         <div
           className={stylesMenuUser.button}
