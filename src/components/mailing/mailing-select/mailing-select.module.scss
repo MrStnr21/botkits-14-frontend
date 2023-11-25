@@ -1,0 +1,33 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin holder($color){
+  @include font('Open Sans', $xs-font-size, $normal, $color);
+  @include line-sizes($xl-line-height, $m-letter-space)
+}
+
+.container {
+  @include button-style-reset;
+  @include flex(row, space-between, center);
+  @include max-size(100%, 40px);
+  @include size(264px, 40px);
+  @include indents(8px 10px, 0);
+  box-sizing: border-box;
+  position: relative;
+  background-color: $secondary-cultured-hover;
+  border-radius: 5px;
+}
+
+.label {
+  @include holder($primary-oxford-blue-default)
+}
+
+.placeholder {
+  @include holder($grey-2)
+}
+
+div.dropdown {
+  @include position(absolute, 56px, 0);
+  width: 264px;
+  z-index: 9
+}

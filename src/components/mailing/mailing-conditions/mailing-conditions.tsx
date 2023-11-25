@@ -1,6 +1,7 @@
 /* eslint-disable default-case */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useEffect, useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 import styles from './mailing-condition.module.scss';
 import Typography from '../../../ui/typography/typography';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
@@ -8,6 +9,10 @@ import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues'
 import Calendar from '../../calendar/calendar';
 import MenuTime from '../../../ui/menus/menu-time/menu-time';
 import CheckIcon from '../../icons/Check/CheckIcon';
+import MailingSelect from '../mailing-select/mailing-select';
+import { Option } from '../../../utils/types';
+import ModalPopup from '../../popups/modal-popup/modal-popup';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 interface IProps {
   title?: string;
@@ -16,15 +21,32 @@ interface IProps {
 }
 
 const repeat = [
-  'Без повтора',
-  'Каждый день',
-  'Каждую неделю',
-  'Каждый месяц',
-  'Каждый год',
-  'Свой вариант',
+  { label: 'Без повтора', value: 'Без повтора' },
+  { label: 'Без повтора', value: 'Без повтора' },
+  { label: 'Каждый день', value: 'Каждый день' },
+  { label: 'Каждый месяц', value: 'Каждый месяц' },
+  { label: 'Каждый год', value: 'Каждый год' },
+  { label: 'Свой вариант', value: 'Свой вариант' },
 ];
-const send = ['Сейчас', 'Дата/Время'];
-const howManyTimes = ['По дням', 'По неделям', 'По месяцам', 'По годам'];
+
+const send = [
+  { label: 'Сейчас', value: 'Сейчас' },
+  { label: 'Дата/Время', value: 'Дата/Время' },
+];
+
+const howManyTimes = [
+  { label: 'По дням', value: 'По дням' },
+  { label: 'По неделям', value: 'По неделям' },
+  { label: 'По месяцам', value: 'По месяцам' },
+  { label: 'По годам', value: 'По годам' },
+];
+
+const howOften = [
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  { label: '3', value: '3' },
+];
+
 const week = [
   'Понедельник',
   'Вторник',
@@ -35,17 +57,33 @@ const week = [
   'Воскресенье',
 ];
 
+const crumbs = [
+  { label: 'Создание рассылки', to: '/mailing/create' },
+  { label: 'Условия рассылки', to: '/mailing/create/conditions' },
+];
+
 const MailingConditions: FC<IProps> = ({
   title,
   handleBack,
   handleClickButton,
 }) => {
-  const [selectedRepeat, setSelectedRepeat] = useState<string>('Без повтора');
-  const [sendTime, setSendTime] = useState<string>('Сейчас');
-  const [time, setTime] = useState<string>('');
-  const [date, setDate] = useState<string | null>(null);
-  const [selectedInterval, setSelectedInterval] = useState<string>('По дням');
-  const [period, setPeriod] = useState<string>('');
+  const isMobile = useMediaQuery('(max-width: 860px)');
+  const [selectedRepeat, setSelectedRepeat] = useState<Option | null>(
+    repeat[0]
+  );
+  const [sendTime, setSendTime] = useState<Option | null>(send[0]);
+  const [time, setTime] = useState<Option | null>({
+    label: '4:00',
+    value: '4:00',
+  });
+  const [date, setDate] = useState<Option | null>({
+    label: '24.05.22',
+    value: '24.05.22',
+  });
+  const [selectedInterval, setSelectedInterval] = useState<Option | null>(
+    howManyTimes[0]
+  );
+  const [period, setPeriod] = useState<Option | null>(howOften[0]);
   const [weekDay, setWeekDay] = useState<string>('');
 
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -66,11 +104,11 @@ const MailingConditions: FC<IProps> = ({
     setFirstOpen(false);
   };
 
-  const handleRepeatClick = (selected: string) => {
+  const handleRepeatClick = (selected: Option) => {
     setSelectedRepeat(selected);
   };
 
-  const handleSendTimeClick = (selected: string) => {
+  const handleSendTimeClick = (selected: Option) => {
     setSendTime(selected);
   };
 
@@ -82,8 +120,8 @@ const MailingConditions: FC<IProps> = ({
     setSelectedInterval(selected);
   };
 
-  useEffect(() => {
-    switch (selectedInterval) {
+  /* useEffect(() => {
+    switch (selectedInterval?.value) {
       case 'По дням':
         setPeriod('День');
         break;
@@ -97,58 +135,65 @@ const MailingConditions: FC<IProps> = ({
         setPeriod('Год');
         break;
     }
-  }, [selectedInterval]);
+  }, [selectedInterval]); */
 
   return (
     <div className={styles.container}>
       <form className={styles.form}>
-        <fieldset className={styles.form__formFieldset}>
-          <legend className={styles.form__legend}>
-            Шаг 1 {'>'} Создание рассылки Шаг 2 {'>'} Условия рассылки
-          </legend>
-        </fieldset>
+        <div className={styles.form__breadcrumbs}>
+          <Breadcrumbs crumbs={crumbs} />
+        </div>
         <fieldset className={styles.form__formFieldset}>
           <Typography tag="h2">{title}</Typography>
         </fieldset>
         <fieldset className={styles.form__inputsFieldset}>
           <div className={styles.form__menuContainer}>
             <Typography tag="p">Отправить</Typography>
-            <MenuVariable
-              width="265px"
-              buttons={send}
-              nameMenu={sendTime}
-              onClick={handleSendTimeClick}
+            <MailingSelect
+              options={send}
+              currentOption={sendTime}
+              handleSelect={handleSendTimeClick}
             />
           </div>
-          {sendTime === 'Дата/Время' && (
+          {sendTime?.value === 'Дата/Время' && (
             <fieldset className={styles.form__dateTimeWrapper}>
               <div className={styles.form__menuContainer}>
                 <Typography tag="span">Дата</Typography>
-                <MenuVariable
-                  width="144px"
-                  nameMenu={!date ? '24.05.2022' : date}
-                  buttons={[]}
-                  onDivClick={() => setCalendarOpen(!calendarOpen)}
+                <MailingSelect
+                  currentOption={date}
+                  toggleSelect={() => setCalendarOpen(!calendarOpen)}
+                  closeSelect={() => setCalendarOpen(false)}
+                  maxWidth={144}
                 />
-                {calendarOpen && (
-                  <div className={styles.form__calendar}>
-                    <Calendar handleFunction={handleCalendarClick} />
-                  </div>
-                )}
+                {calendarOpen &&
+                  (isMobile ? (
+                    <ModalPopup
+                      onClick={() => setCalendarOpen(false)}
+                      closeIcon={false}
+                    >
+                      <Calendar handleFunction={handleCalendarClick} />
+                    </ModalPopup>
+                  ) : (
+                    <div className={styles.form__calendar}>
+                      <Calendar handleFunction={handleCalendarClick} />
+                    </div>
+                  ))}
               </div>
               <div className={styles.form__menuContainer}>
                 <Typography tag="span">Время</Typography>
-                <MenuVariable
-                  nameMenu={!time ? '04:00' : time}
-                  buttons={[]}
-                  width="144px"
-                  onDivClick={() => setTimeMenuOpen(!timeMenuOpen)}
+                <MailingSelect
+                  currentOption={time}
+                  toggleSelect={() => setTimeMenuOpen(!timeMenuOpen)}
+                  closeSelect={() => setTimeMenuOpen(false)}
+                  maxWidth={144}
                 />
                 {timeMenuOpen && (
                   <div className={styles.form__calendar}>
                     <MenuTime
-                      saveFunction={(selected: string) => setTime(selected)}
-                      clearFunction={() => setTime('')}
+                      saveFunction={(selected: string) =>
+                        setTime({ value: selected, label: selected })
+                      }
+                      clearFunction={() => setTime({ value: '', label: '' })}
                     />
                   </div>
                 )}
@@ -157,31 +202,31 @@ const MailingConditions: FC<IProps> = ({
           )}
           <div className={styles.form__menuContainer}>
             <Typography tag="p">Повторять</Typography>
-            <MenuVariable
-              width="265px"
-              buttons={repeat}
-              nameMenu={selectedRepeat}
-              onClick={handleRepeatClick}
+            <MailingSelect
+              options={repeat}
+              handleSelect={handleRepeatClick}
+              currentOption={selectedRepeat}
             />
           </div>
-          {selectedRepeat === 'Свой вариант' && (
+          {selectedRepeat?.value === 'Свой вариант' && (
             <div className={styles.form__hiddenInputs}>
               <div className={styles.form__smallInputsContainer}>
                 <div className={styles.form__menuContainer}>
                   <Typography tag="span">Настроить</Typography>
-                  <MenuVariable
-                    buttons={howManyTimes}
-                    nameMenu={selectedInterval}
-                    width="174px"
-                    onClick={handleIntervalClick}
+                  <MailingSelect
+                    options={howManyTimes}
+                    currentOption={selectedInterval}
+                    handleSelect={handleIntervalClick}
+                    maxWidth={174}
                   />
                 </div>
                 <div className={styles.form__menuContainer}>
                   <Typography tag="span">Каждый</Typography>
-                  <MenuVariable
-                    nameMenu={period}
-                    buttons={['1', '2', '3']}
-                    width="174px"
+                  <MailingSelect
+                    options={howOften}
+                    currentOption={period}
+                    handleSelect={(option) => setPeriod(option)}
+                    maxWidth={174}
                   />
                 </div>
                 {!isOff && (
@@ -201,15 +246,15 @@ const MailingConditions: FC<IProps> = ({
                 )}
               </div>
               <div className={styles.form__smallInputsContainer}>
-                {(selectedInterval === 'По месяцам' ||
-                  selectedInterval === 'По годам') && (
+                {(selectedInterval?.value === 'По месяцам' ||
+                  selectedInterval?.value === 'По годам') && (
                   <div className={styles.form__dateButtons}>
                     <button
                       type="button"
                       className={styles.form__dateButton}
                       onClick={toggleFirst}
                     >
-                      {selectedInterval === 'По месяцам'
+                      {selectedInterval.value === 'По месяцам'
                         ? 'Число месяца'
                         : 'Месяц отправки'}
                       {weekDay && <CheckIcon />}
@@ -218,7 +263,7 @@ const MailingConditions: FC<IProps> = ({
                       <div className={styles.form__chooseWrapper}>
                         <Typography tag="span">
                           Выберите
-                          {selectedInterval === 'По месяцам'
+                          {selectedInterval.value === 'По месяцам'
                             ? ' число '
                             : ' месяц '}
                           отправки

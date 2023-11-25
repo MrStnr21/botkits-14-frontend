@@ -8,10 +8,25 @@ import TextField from '../../../ui/text-field/text-field';
 import Input from '../../../ui/inputs/input/input';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import Typography from '../../../ui/typography/typography';
+import MailingSelect from '../mailing-select/mailing-select';
+import { Option } from '../../../utils/types';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
-const mailingList = ['Все пользователи', 'Список 1', 'Список 2', 'Список 3'];
-const messengerList = ['Telegram, VK', 'Одноклассники', 'WhatsApp', 'Facebook'];
+const mailingList = [
+  { label: 'Все пользователи', value: '1' },
+  { label: 'Список 1', value: '2' },
+  { label: 'Список 2', value: '3' },
+  { label: 'Список 3', value: '4' },
+];
+const messengerList = [
+  { label: 'Telegram, VK', value: '1' },
+  { label: 'Одноклассники', value: '1' },
+  { label: 'WhatsApp', value: '1' },
+  { label: 'Facebook', value: '1' },
+];
 const acitveFunnel = ['Воронка 1', 'Воронка 2', 'Воронка 3'];
+
+const crumbs = [{ label: 'Создание рассылки', to: '/mailing/create' }];
 
 interface IProps {
   nameValue: string;
@@ -32,8 +47,8 @@ const MailingForm: FC<IProps> = ({
 }) => {
   const [isFirstChecked, setIsFirstChecked] = useState(false);
   const [isSecChecked, setIsSecChecked] = useState(false);
-  const [list, setList] = useState('');
-  const [messengers, setMessengers] = useState(''); // переработать на массив
+  const [list, setList] = useState<Option | null>(null);
+  const [messenger, setMessenger] = useState<Option | null>(null); // переработать на массив
 
   const handleFirstClick = () => {
     setIsSecChecked(false);
@@ -51,10 +66,10 @@ const MailingForm: FC<IProps> = ({
   return (
     <div className={styles.container}>
       <form className={styles.form}>
+        <div className={styles.form__breadcrumbs}>
+          <Breadcrumbs crumbs={crumbs} />
+        </div>
         <fieldset className={styles.form__formFieldset}>
-          <legend className={styles.form__legend}>
-            Шаг 1 {'>'} Создание рассылки {/* сделать breadcrumbs */}
-          </legend>
           <div className={styles.form__inputWrapper}>
             <Input
               placeholder="Название рассылки"
@@ -64,10 +79,11 @@ const MailingForm: FC<IProps> = ({
             />
           </div>
           <div className={styles.form__menuVariableWrapper}>
-            <MenuVariable
-              buttons={mailingList}
-              nameMenu="Список рассылки"
-              onClick={(selected: string) => setList(selected)}
+            <MailingSelect
+              options={mailingList}
+              currentOption={list}
+              handleSelect={(option: Option) => setList(option)}
+              placeholder="Список рассылки"
             />
           </div>
         </fieldset>
@@ -79,10 +95,11 @@ const MailingForm: FC<IProps> = ({
             isAdaptive={false}
           />
           <div className={styles.form__menuVariableWrapper}>
-            <MenuVariable
-              buttons={messengerList}
-              nameMenu="Telegram, VK"
-              onClick={(selected: string) => setMessengers(selected)}
+            <MailingSelect
+              options={messengerList}
+              currentOption={messenger}
+              handleSelect={(option: Option) => setMessenger(option)}
+              placeholder="Список мессенджеров"
             />
           </div>
         </fieldset>

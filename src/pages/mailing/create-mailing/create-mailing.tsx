@@ -15,7 +15,7 @@ const CreateMailing: FC = () => {
   const matchConditions = useMatch('/mailing/create/conditions');
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
-  const [isAsideVisible, setAsideVisible] = useState(true);
+  const [isAsideVisible, setAsideVisible] = useState(false);
   const isMobile = useMediaQuery('(max-width: 860px)');
 
   const handleClickButton = () => {

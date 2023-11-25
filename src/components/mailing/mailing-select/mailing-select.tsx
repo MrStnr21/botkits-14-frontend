@@ -1,0 +1,88 @@
+import { FC, useRef, useState } from 'react';
+import styles from './mailing-select.module.scss';
+import Menu from '../../../ui/menus/menu/menu';
+import useOutsideClickAndEscape from '../../../utils/hooks/useOutsideClickAndEscape';
+import { Option } from '../../../utils/types';
+import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+
+export interface IMailingSelect {
+  currentOption: Option | null;
+  options?: Option[];
+  handleSelect?: (option: Option) => void;
+  placeholder?: string;
+  toggleSelect?: () => void;
+  closeSelect?: () => void;
+  maxWidth?: number;
+}
+
+const MailingSelect: FC<IMailingSelect> = ({
+  currentOption,
+  options,
+  handleSelect,
+  placeholder,
+  toggleSelect,
+  closeSelect,
+  maxWidth,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(currentOption);
+
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const toggleDropdown =
+    toggleSelect ||
+    (() => {
+      setIsOpen(!isOpen);
+    });
+
+  const closeDropdown =
+    closeSelect ||
+    (() => {
+      setIsOpen(false);
+    });
+
+  useOutsideClickAndEscape(menuRef, document, closeDropdown, buttonRef);
+
+  const handleOptionClick = handleSelect
+    ? (option: Option) => {
+        setSelectedOption(option);
+        handleSelect(option);
+        setIsOpen(false);
+      }
+    : () => {};
+
+  const buttonStyle = maxWidth
+    ? {
+        maxWidth: `${maxWidth}px`,
+      }
+    : {};
+
+  return (
+    <button
+      ref={buttonRef}
+      onClick={toggleDropdown}
+      type="button"
+      className={styles.container}
+      style={buttonStyle}
+    >
+      {selectedOption && (
+        <span className={styles.label}>{selectedOption.label}</span>
+      )}
+      {!selectedOption && (
+        <span className={styles.placeholder}>{placeholder}</span>
+      )}
+      <ChevronIcon width={16} height={16} color="#BFC9D9" />
+      {isOpen && options && (
+        <Menu
+          ref={menuRef}
+          options={options}
+          onItemClick={handleOptionClick}
+          layoutClassName={styles.dropdown}
+        />
+      )}
+    </button>
+  );
+};
+
+export default MailingSelect;

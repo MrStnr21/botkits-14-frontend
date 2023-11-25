@@ -12,6 +12,12 @@
   &__buttons {
     @include flex(row, flex-start, center, 32px);
     transition: height .3s linear;
+    flex-wrap: wrap;
+
+    button {
+      flex-basis: 300px;
+      flex-grow: 1;
+    }
 
     &_visible {
       @media screen and (max-width: 820px) {
@@ -25,9 +31,9 @@
       }
     }
 
-    @media screen and (max-width: 820px) {
+    /* @media screen and (max-width: 820px) {
       @include flex(column, flex-start, center, 12px);
-    }
+    } */
   }
 
   &__hide {

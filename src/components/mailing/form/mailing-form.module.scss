@@ -29,6 +29,10 @@
   box-sizing: border-box;
   overflow-x: hidden;
 
+  &__breadcrumbs {
+    padding: 0 0 40px;
+  }
+
   &__formFieldset {
     @include flex(row, space-between, flex-start, 24px);
     @include size(100%, unset);
@@ -36,17 +40,13 @@
     flex-wrap: wrap;
     min-width: 0;
     border: none;
-
-    /* @media screen and (max-width: $switching-width) {
-      flex-direction: column;
-    } */
   }
 
   &__legend {
-    @include indents();
+    @include indents(0, 0);
     @include font('IBM Plex Mono', $m-font-size, $semi-bold, $primary-oxford-blue-default);
     line-height: $m-line-height;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     letter-spacing: 0px;
     text-align: left;
   }
@@ -54,6 +54,8 @@
   &__inputWrapper {
     @include indents();
     @include max-size(556px, 65px);
+    flex-basis: 300px;
+    flex-grow: 1;
     width: 100%;
     box-sizing: border-box;
   }
@@ -91,6 +93,10 @@
     @include flex(row, flex-end, center, 0);
     border-radius: 0 0 $xxl-border-radius $xxl-border-radius;
     box-sizing: border-box;
+
+    @media screen and (max-width: 820px) {
+      justify-content: center;
+    }
   }
 
 
