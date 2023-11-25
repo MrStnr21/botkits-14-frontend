@@ -59,3 +59,15 @@
   justify-content: end;
   gap: 12px;
 }
+
+.dropdown{
+  flex-direction: column;
+  gap: 4px;
+  width: 175px;
+  box-shadow: $l-box-shadow;
+  background-color: white;
+  border-radius: $l-border-radius;
+  position: absolute;
+  top:0;
+  left:30px;
+}

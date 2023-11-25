@@ -4,7 +4,7 @@ import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
 import imageAvatar from '../../images/avatar/circled/bot_templates/answering machine.svg';
 import EditButton from '../../ui/buttons/button-edit/button-edit';
-import MenuBotTemplate from '../../ui/menus/menu-bot/menu-bot-template';
+import Menu from '../../ui/menus/menu/menu';
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
 import InputTemplate from '../../ui/inputs/input-template/input-template';
 
@@ -12,13 +12,15 @@ import { BUTTON_NAME } from '../../utils/constants';
 
 interface IBotTemplatesCard {
   image?: string;
-  nameBot?: string;
 }
 
-const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image, nameBot }) => {
+const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
   const [crm, setCrm] = useState(true);
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>();
+  const [nameBot, setNameBot] = useState<string>();
+  const [aboutBot, setAboutBot] = useState<string>();
+  const [priceBot, setPriceBot] = useState<string>();
 
   const onCrmChange = () => {
     setCrm(!crm);
@@ -29,6 +31,21 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image, nameBot }) => {
 
   const onClickEditAvatar = () => {
     document.getElementById('upload-file')!.click();
+  };
+
+  const handleOptionClick = () => {
+    toggleMenu(false);
+  };
+
+  const options = [
+    { label: 'Настроить воронку', value: 'setupBuilder' },
+    { label: 'Удалить', value: 'delete' },
+  ];
+
+  const clearInputs = () => {
+    setNameBot('');
+    setAboutBot('');
+    setPriceBot('');
   };
 
   return (
@@ -69,12 +86,10 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image, nameBot }) => {
               {' '}
             </button>
             {menu && (
-              <MenuBotTemplate
-                builderFunction={() => {}}
-                isActive={menu}
-                top={0}
-                left={30}
-                removeFunction={() => {}}
+              <Menu
+                options={options}
+                onItemClick={handleOptionClick}
+                layoutClassName={stylesCard.dropdown}
               />
             )}
           </div>
@@ -85,8 +100,18 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image, nameBot }) => {
           placeholder="Название бота"
           value={nameBot}
         />
-        <InputTemplate size="big" color="grey" placeholder="Описание бота..." />
-        <InputTemplate size="small" color="grey" placeholder="Цена в рублях" />
+        <InputTemplate
+          size="big"
+          color="grey"
+          placeholder="Описание бота..."
+          value={aboutBot}
+        />
+        <InputTemplate
+          size="small"
+          color="grey"
+          placeholder="Цена в рублях"
+          value={priceBot}
+        />
         <CheckboxWithText
           label="Опубликовать"
           name="crm"
@@ -96,7 +121,11 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image, nameBot }) => {
         />
       </div>
       <div className={stylesCard.buttons}>
-        <ButtonBotTemplate buttonHtmlType="button" color="white">
+        <ButtonBotTemplate
+          onClick={clearInputs}
+          buttonHtmlType="button"
+          color="white"
+        >
           Отменить
         </ButtonBotTemplate>
         <ButtonBotTemplate buttonHtmlType="button" color="blue">
