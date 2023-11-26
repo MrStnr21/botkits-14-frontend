@@ -4,16 +4,12 @@ import stylesMenuTime from './menu-time.module.scss';
 
 export interface IMenuTime {
   isActive?: boolean;
-  top?: number;
-  left?: number;
   saveFunction: Function;
   clearFunction: Function;
 }
 
 const MenuTime: FC<IMenuTime> = ({
   isActive = false,
-  top = 0,
-  left = 0,
   clearFunction,
   saveFunction,
 }): JSX.Element => {
@@ -43,10 +39,7 @@ const MenuTime: FC<IMenuTime> = ({
   }
 
   return (
-    <div
-      className={boxClassName}
-      style={{ top: `${top}px`, left: `${left}px` }}
-    >
+    <div className={boxClassName}>
       <div className={stylesMenuTime.flex_row}>
         <div className={stylesMenuTime.numbers_box}>
           {hours.map((item) => {

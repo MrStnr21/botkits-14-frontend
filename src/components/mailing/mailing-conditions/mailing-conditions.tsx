@@ -16,6 +16,7 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 import { ReactComponent as CalendarIcon } from '../../../images/icon/24x24/time/calandar.svg';
 import { ReactComponent as TimeIcon } from '../../../images/icon/24x24/time/time.svg';
 import TimeSelect from '../time-select/time-select';
+import DayPicker from '../day-picker/day-picker';
 
 interface IProps {
   title?: string;
@@ -30,6 +31,16 @@ const repeat = [
   { label: 'Каждый месяц', value: 'Каждый месяц' },
   { label: 'Каждый год', value: 'Каждый год' },
   { label: 'Свой вариант', value: 'Свой вариант' },
+];
+
+const dayButtonsData = [
+  { label: 'ПН', value: 'ПН' },
+  { label: 'ВТ', value: 'ВТ' },
+  { label: 'СР', value: 'СР' },
+  { label: 'ЧТ', value: 'ЧТ' },
+  { label: 'ПТ', value: 'ПТ' },
+  { label: 'СБ', value: 'СБ' },
+  { label: 'ВС', value: 'ВС' },
 ];
 
 const send = [
@@ -86,6 +97,8 @@ const MailingConditions: FC<IProps> = ({
   const [period, setPeriod] = useState<Option | null>(howOften[0]);
   const [weekDay, setWeekDay] = useState<string>('');
 
+  const [dayButtons, setDayButtons] = useState<Option[]>([]);
+
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [timeMenuOpen, setTimeMenuOpen] = useState(false);
   const [isFirstOpen, setFirstOpen] = useState(false);
@@ -118,6 +131,21 @@ const MailingConditions: FC<IProps> = ({
 
   const handleIntervalClick = (selected: any) => {
     setSelectedInterval(selected);
+  };
+
+  const handleDayClick = (selected: Option) => {
+    const itemIndex = dayButtons.findIndex(
+      (item) => item.value === selected.value
+    );
+
+    if (itemIndex !== -1) {
+      setDayButtons([
+        ...dayButtons.slice(0, itemIndex),
+        ...dayButtons.slice(itemIndex + 1),
+      ]);
+    } else {
+      setDayButtons([...dayButtons, selected]);
+    }
   };
 
   /* useEffect(() => {
@@ -291,6 +319,15 @@ const MailingConditions: FC<IProps> = ({
             </div>
           )}
         </fieldset>
+        {selectedInterval && selectedInterval.value === 'По неделям' && (
+          <div>
+            <DayPicker
+              buttons={dayButtonsData}
+              active={dayButtons}
+              setValue={handleDayClick}
+            />
+          </div>
+        )}
       </form>
       <div className={styles.container__buttons}>
         <button

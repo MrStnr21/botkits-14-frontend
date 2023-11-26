@@ -3,11 +3,11 @@
 
 .box {
   @include size(264px, 478px);
+  @include max-size(264px, 80vh);
   flex-direction: column;
   box-shadow: $m-box-shadow;
   background-color: white;
   border-radius: $l-border-radius;
-  position: absolute;
 }
 
 .active {
@@ -35,6 +35,7 @@
 
 .numbers_box {
   @include size(132px, 422px);
+  @include max-size(132px, calc(80vh - 56px));
   @include flex(column, start);
   overflow-y: scroll;
 }
@@ -54,6 +55,7 @@
 }
 
 .number_unit {
+  text-align: center;
   padding: 24px 0;
 }
 
