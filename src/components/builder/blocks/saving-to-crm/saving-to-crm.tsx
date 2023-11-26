@@ -1,22 +1,50 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
+import { useNodeId, useReactFlow } from 'reactflow';
 import styles from './saving-to-crm.module.scss';
+import { crmList, saveOptions } from '../../utils/data';
 import ControlLayout from '../../control-layout/control-layout';
 import Checkbox from '../../../../ui/checkboxes/checkbox';
 import { TBlockProps, TCRMBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
-import { crmList, saveOptions } from '../../utils/data';
 
 const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
-  const [crm, setCrm] = useState<string>(data.chosenCrm || '');
-
-  const [saveAs, setSaveAs] = useState<string>(data.save || '');
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
 
   const onCrmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCrm(e.target.value);
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === id) {
+          const newItem = {
+            ...item,
+            data: {
+              ...item.data,
+              chosenCrm: e.target.value,
+            },
+          };
+          return newItem;
+        }
+        return item;
+      })
+    );
   };
 
   const onSaveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSaveAs(e.target.value);
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === id) {
+          const newItem = {
+            ...item,
+            data: {
+              ...item.data,
+              chosenSaveAs: e.target.value,
+            },
+          };
+          return newItem;
+        }
+        return item;
+      })
+    );
   };
 
   return (
@@ -28,12 +56,12 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
               {crmList.map((item) => {
                 return (
                   <Checkbox
-                    key={item}
-                    name="crm"
-                    label={item}
-                    value={item}
+                    key={item.value}
+                    name="saveCRM"
+                    label={item.nameValue}
+                    value={item.value}
                     onChange={onCrmChange}
-                    checked={item === crm}
+                    checked={item.value === data.chosenCrm}
                   />
                 );
               })}
@@ -44,12 +72,12 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
               {saveOptions.map((item) => {
                 return (
                   <Checkbox
-                    key={item}
+                    key={item.value}
                     name="saveAs"
-                    label={item}
-                    value={item}
+                    label={item.nameValue}
+                    value={item.value}
                     onChange={onSaveChange}
-                    checked={item === saveAs}
+                    checked={item.value === data.chosenSaveAs}
                   />
                 );
               })}

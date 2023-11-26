@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export enum MessageDataTypes {
   buttons = 'buttons',
   message = 'message',
@@ -24,15 +25,15 @@ export type TReactFlowNode = {
   type: string; // один из типов блоков (нужно придумать)
   data: // Пропсы блока
   | TApiBlock
-    | TConditionalBlock
-    | TVariablesControlBlock
-    | TOperatorBlock
-    | TCRMBlock
-    | TDeepLinkBlock
-    | TTelegramPayBlock
-    | TCoordinateBlock
-    | TMessageBlock
-    | TButtonBlock;
+  | TConditionalBlock
+  | TVariablesControlBlock
+  | TOperatorBlock
+  | TCRMBlock
+  | TDeepLinkBlock
+  | TTelegramPayBlock
+  | TCoordinateBlock
+  | TMessageBlock
+  | TButtonBlock;
   position: { y: number; x: number }; // Координаты ноды
   parentNode?: string; // id родительской ноды, если такая есть
 };
@@ -83,7 +84,8 @@ export type TCRMBlock = {
   name: string;
   crmList: string[]; // Подтянуть список crm пользователя, пока закроем хардкодом
   chosenCrm?: string; // Выбор из crmList, можно просто выбрать первую
-  save?: 'new' | 'suppl';
+  chosenSaveAs?: string;
+  saveAsList?: string[];
 };
 
 export type TOperatorBlock = {

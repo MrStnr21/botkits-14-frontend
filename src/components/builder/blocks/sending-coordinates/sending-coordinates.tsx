@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { FC } from 'react';
 import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -19,7 +20,7 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
             <Input
               minLength={0}
               type="number"
-              onChange={() => {}}
+              onChange={() => { }}
               styled="bot-builder-default"
               placeholder="Введите параметр"
               value={String(data.coordinates[0] || '')}
@@ -31,7 +32,7 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
             <Input
               minLength={0}
               type="number"
-              onChange={() => {}}
+              onChange={() => { }}
               styled="bot-builder-default"
               placeholder="Введите параметр"
               value={String(data.coordinates[1] || '')}
