@@ -31,6 +31,8 @@
 }
 
 .v {
+  @include size(95px, 40px);
+  
   @media screen and (max-width: 520px) {
     @include size(56px, 24px);
 
@@ -39,4 +41,8 @@
       height: 14px;
     }
   }
+}
+
+.input {
+  width: 102px;
 }

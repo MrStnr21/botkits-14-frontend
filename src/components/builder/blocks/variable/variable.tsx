@@ -1,5 +1,6 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
+import { v4 as uuidv4 } from 'uuid';
 import {
   TBlockProps,
   TVariablesControlBlock,
@@ -17,10 +18,6 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
 
-  const [num, setNum] = useState(0);
-
-  console.log(data);
-
   const addField = () => {
     setNodes(
       getNodes().map((item) => {
@@ -32,7 +29,7 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
               variables: [
                 ...item.data.variables,
                 {
-                  id: num + 1,
+                  id: uuidv4(),
                   variable: '',
                   value: '',
                 },
@@ -43,14 +40,13 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
         return item;
       })
     );
-    setNum(num + 1);
   };
 
   return (
     <ControlLayout type="Управление переменными">
       <div className={styleVariableBlock.container}>
         {content.map((item) => {
-          return <Value idNum={item.id} />;
+          return <Value idNum={item.id} key={item.id} />;
         })}
         <div className={styleVariableBlock.field}>
           <ConstructorAddButton

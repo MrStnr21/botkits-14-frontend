@@ -47,15 +47,18 @@ const Value: FC<TValueProps> = ({ idNum }) => {
 
   return (
     <div className={styles.overlay}>
-      <Input
-        placeholder="Переменная"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setVar(idNum, e.target.value)
-        }
-        type="text"
-        styled="bot-builder-default"
-        textColor="default"
-      />
+      <div className={styles.input}>
+        <Input
+          placeholder="Переменная"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setVar(idNum, e.target.value)
+          }
+          type="text"
+          styled="bot-builder-default"
+          textColor="default"
+          minLength={1}
+        />
+      </div>
       <div className={styles.box}>
         <Equal />
       </div>
