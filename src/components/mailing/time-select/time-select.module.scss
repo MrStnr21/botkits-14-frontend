@@ -9,8 +9,7 @@
 .container {
   @include button-style-reset;
   @include flex(row, space-between, center);
-  @include max-size(100%, 40px);
-  @include size(144px, 40px);
+  @include size(100%, 40px);
   @include indents(8px 10px, 0);
   box-sizing: border-box;
   position: relative;

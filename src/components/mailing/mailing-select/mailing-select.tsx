@@ -78,6 +78,7 @@ const MailingSelect: FC<IMailingSelect> = ({
         }`}
       >
         <ChevronIcon
+          strokeWidth={1.5}
           width={16}
           height={16}
           color={currentOption ? '#060C23' : '#BFC9D9'}

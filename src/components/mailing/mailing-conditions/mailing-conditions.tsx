@@ -220,6 +220,8 @@ const MailingConditions: FC<IProps> = ({
                 onIncrease={() => {}}
                 saveFunction={() => {}}
                 clearFunction={() => {}}
+                style={{ maxWidth: '144px' }}
+                isSelect
               />
             </div>
           </fieldset>
@@ -293,7 +295,14 @@ const MailingConditions: FC<IProps> = ({
                         : ' месяц '}
                       отправки
                     </Typography>
-                    <MenuVariable width="174px" nameMenu="1" buttons={[]} />
+                    <TimeSelect
+                      value="1"
+                      onDecrease={() => {}}
+                      onIncrease={() => {}}
+                      saveFunction={() => {}}
+                      clearFunction={() => {}}
+                      style={{ maxWidth: '174px' }}
+                    />
                   </div>
                 )}
                 <button
@@ -306,7 +315,14 @@ const MailingConditions: FC<IProps> = ({
                 </button>
                 {isSecondOpen && (
                   <div className={styles.form__chooseWrapper}>
-                    <MenuVariable width="174px" nameMenu="1" buttons={[]} />
+                    <TimeSelect
+                      value="1"
+                      onDecrease={() => {}}
+                      onIncrease={() => {}}
+                      saveFunction={() => {}}
+                      clearFunction={() => {}}
+                      style={{ maxWidth: '174px' }}
+                    />
                     <MenuVariable
                       width="174px"
                       buttons={week}

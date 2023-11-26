@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import useOutsideClickAndEscape from '../../../utils/hooks/useOutsideClickAndEscape';
 import styles from './time-select.module.scss';
@@ -12,6 +12,10 @@ type TTimeSelectProps = {
   onIncrease: () => void;
   saveFunction: () => void;
   clearFunction: () => void;
+  style?: {
+    [key: string]: string;
+  };
+  isSelect?: boolean;
 };
 
 const TimeSelect: FC<TTimeSelectProps> = ({
@@ -20,6 +24,8 @@ const TimeSelect: FC<TTimeSelectProps> = ({
   onIncrease,
   saveFunction,
   clearFunction,
+  style,
+  isSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 860px)');
@@ -40,20 +46,21 @@ const TimeSelect: FC<TTimeSelectProps> = ({
       onClick={() => setIsOpen(!isOpen)}
       type="button"
       className={styles.container}
+      style={style}
     >
       <span onClick={onDecrease} className={styles.chevronLeft}>
-        <ChevronIcon width={16} height={16} color="#060C23" />
+        <ChevronIcon strokeWidth={1.5} width={16} height={16} color="#060C23" />
       </span>
       <span>{value}</span>
       <span onClick={onIncrease} className={styles.chevronRight}>
-        <ChevronIcon width={16} height={16} color="#060C23" />
+        <ChevronIcon strokeWidth={1.5} width={16} height={16} color="#060C23" />
       </span>
-      {isOpen && !isMobile && (
+      {isOpen && !isMobile && isSelect && (
         <div ref={menuRef} className={styles.menu}>
           <MenuTime saveFunction={saveFunction} clearFunction={clearFunction} />
         </div>
       )}
-      {isOpen && isMobile && (
+      {isOpen && isMobile && isSelect && (
         <ModalPopup onClick={() => setIsOpen(false)} closeIcon={false}>
           <MenuTime saveFunction={saveFunction} clearFunction={clearFunction} />
         </ModalPopup>
