@@ -17,7 +17,9 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
 
-  const [amount, setAmount] = useState(0);
+  const [num, setNum] = useState(0);
+
+  console.log(data);
 
   const addField = () => {
     setNodes(
@@ -30,7 +32,7 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
               variables: [
                 ...item.data.variables,
                 {
-                  id: amount + 1,
+                  id: num + 1,
                   variable: '',
                   value: '',
                 },
@@ -41,7 +43,7 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
         return item;
       })
     );
-    setAmount(amount + 1);
+    setNum(num + 1);
   };
 
   return (

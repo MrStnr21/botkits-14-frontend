@@ -17,11 +17,11 @@ const Value: FC<TValueProps> = ({ idNum }) => {
   const id = useNodeId();
   const node = getNodes().find((el) => el.id === id);
 
-  const itemVariables = (idItem: string) =>
+  const itemLine = (idItem: string) =>
     node && node.data.variables.find((el: { id: string }) => el.id === idItem);
 
-  const setItemVariables = (idItem: string, key: string, value: any) => {
-    itemVariables(idItem)[key] = value;
+  const setItemValues = (idItem: string, key: string, value: any) => {
+    itemLine(idItem)[key] = value;
 
     setNodes(
       getNodes().map((el) => {
@@ -40,10 +40,10 @@ const Value: FC<TValueProps> = ({ idNum }) => {
   };
 
   const setVar = (idItem: string, value: any) =>
-    setItemVariables(idItem, 'variable', value);
+    setItemValues(idItem, 'variable', value);
 
   const setVal = (idItem: string, value: any) =>
-    setItemVariables(idItem, 'value', value);
+    setItemValues(idItem, 'value', value);
 
   return (
     <div className={styles.overlay}>
