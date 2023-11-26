@@ -38,21 +38,21 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         draggable={false}
-        className={styles.textarea__input}
+        className={styles.input}
       />
-      <span className={styles.textarea__outline} />
+      <span className={styles.outline} />
 
-      <div className={styles.textarea__footer}>
-        <p className={styles.textarea__counter}>
+      <div className={styles.footer}>
+        <p className={styles.counter}>
           {text.length}/{maxTextLength}
         </p>
-        <Bracket className={styles.extarea__icon} onClick={onBracketClick} />
+        <Bracket className={styles.icon} onClick={onBracketClick} />
         <EmojiIcon
-          className={styles.textarea__icon}
+          className={styles.icon}
           onClick={() => setShowEmojis(!showEmojis)}
         />
         {showEmojis && (
-          <div className={styles.textarea__emojiPicker} ref={refPicker}>
+          <div className={styles.emojiPicker} ref={refPicker}>
             (
             <EmojiPicker
               width={300}

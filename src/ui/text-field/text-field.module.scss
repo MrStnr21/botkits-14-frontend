@@ -17,7 +17,7 @@
   }
 }
 
-.textarea__input {
+.input {
   @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
   @include line-sizes($xl-line-height, $m-letter-space);
   display: block;
@@ -32,25 +32,25 @@
   @media screen and (max-width: 520px) {
     font-size: 7.41px;
   }
+
+  &::placeholder {
+    color: $grey-3;
+  }
+
+  &:focus {
+    outline: none;
+
+    & ~ .outline {
+      @include position(absolute, 0, 0, 0, 0);
+      border: 1px solid $primary-medium-spring-green-default;
+      background-color: transparent;
+      z-index: 0;
+      border-radius: 12px;
+    }
+  }
 }
 
-.textarea__input::placeholder {
-  color: $grey-3;
-}
-
-.textarea__input:focus {
-  outline: none;
-}
-
-.textarea__input:focus ~ .textarea__outline {
-  @include position(absolute, 0, 0, 0, 0);
-  border: 1px solid $primary-medium-spring-green-default;
-  background-color: transparent;
-  z-index: 0;
-  border-radius: 12px;
-}
-
-.textarea__footer {
+.footer {
   @include flex($justify-content: space-between, $align-items: center);
   @include font('IBM Plex Mono', $xxs-font-size, $normal, $grey-3);
   @include line-sizes($m-line-height, $m-letter-space);
@@ -64,11 +64,11 @@
   }
 }
 
-.textarea__counter {
+.counter {
   margin: 0 auto 0 0;
 }
 
-.textarea__font {
+.font {
   @include indents;
   @include size(24px, 24px);
   background: none;
@@ -90,7 +90,7 @@
   }
 }
 
-.textarea__emojiPicker {
+.emojiPicker {
   @include position(absolute, calc(100% + 20px), 0);
   width: 100%;
   box-shadow: $l-box-shadow;;
