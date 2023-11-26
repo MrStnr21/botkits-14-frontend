@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export enum MessageDataTypes {
   buttons = 'buttons',
   message = 'message',
@@ -25,15 +24,15 @@ export type TReactFlowNode = {
   type: string; // один из типов блоков (нужно придумать)
   data: // Пропсы блока
   | TApiBlock
-  | TConditionalBlock
-  | TVariablesControlBlock
-  | TOperatorBlock
-  | TCRMBlock
-  | TDeepLinkBlock
-  | TTelegramPayBlock
-  | TCoordinateBlock
-  | TMessageBlock
-  | TButtonBlock;
+    | TConditionalBlock
+    | TVariablesControlBlock
+    | TOperatorBlock
+    | TCRMBlock
+    | TDeepLinkBlock
+    | TTelegramPayBlock
+    | TCoordinateBlock
+    | TMessageBlock
+    | TButtonBlock;
   position: { y: number; x: number }; // Координаты ноды
   parentNode?: string; // id родительской ноды, если такая есть
 };
@@ -84,8 +83,7 @@ export type TCRMBlock = {
   name: string;
   crmList: string[]; // Подтянуть список crm пользователя, пока закроем хардкодом
   chosenCrm?: string; // Выбор из crmList, можно просто выбрать первую
-  chosenSaveAs?: string;
-  saveAsList?: string[];
+  save?: 'new' | 'suppl';
 };
 
 export type TOperatorBlock = {
@@ -101,11 +99,12 @@ export type TVariablesControlBlock = {
 export type TConditionalBlock = {
   name: string;
   variables: {
+    id: string;
     type: 'easy' | 'hard'; // В зависимости от типа переменной нужны (variable, sign, blockName) для easy и (condition, blockName) для hard
     variable?: TVariable; // Некая переменная
-    sign: string; // Одно из value принимаемых select, 11 значений, значения стоит отправить в конфиг.
-    condition: string; // Строка-условие для сложного режима
-    blockName: string; // name одного из блоков
+    sign?: string; // Одно из value принимаемых select, 11 значений, значения стоит отправить в конфиг.
+    condition?: string; // Строка-условие для сложного режима или значение для легкого
+    targetBlock: string; // name одного из блоков
   }[];
 };
 
