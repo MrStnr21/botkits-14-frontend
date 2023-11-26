@@ -1,10 +1,11 @@
-import { FC, useState } from 'react';
+import { FC, useState, useRef } from 'react';
 import stylesCard from './BotTemplatesCard.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
-import imageAvatar from '../../images/avatar/circled/bot_templates/answering machine.svg';
+import imageAvatar from '../../images/icon/template/answering machine.svg';
 import EditButton from '../../ui/buttons/button-edit/button-edit';
 import Menu from '../../ui/menus/menu/menu';
+import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
 import InputTemplate from '../../ui/inputs/input-template/input-template';
 
@@ -21,6 +22,17 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
   const [nameBot, setNameBot] = useState<string>();
   const [aboutBot, setAboutBot] = useState<string>();
   const [priceBot, setPriceBot] = useState<string>();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useOutsideClickAndEscape(
+    menuRef,
+    document,
+    () => {
+      toggleMenu(false);
+    },
+    buttonRef
+  );
 
   const onCrmChange = () => {
     setCrm(!crm);
@@ -67,7 +79,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
                 hidden
                 accept="image/*"
                 onChange={({ target: { files } }) => {
-                  if (files![0]) {
+                  if (files !== null && files[0]) {
                     setImageEdit(URL.createObjectURL(files![0]));
                   }
                 }}
@@ -79,6 +91,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
           </div>
           <div className={stylesCard.more}>
             <button
+              ref={buttonRef}
               type="button"
               className={stylesCard.more__Button}
               onClick={onClick}
@@ -87,6 +100,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
             </button>
             {menu && (
               <Menu
+                ref={menuRef}
                 options={options}
                 onItemClick={handleOptionClick}
                 layoutClassName={stylesCard.dropdown}
