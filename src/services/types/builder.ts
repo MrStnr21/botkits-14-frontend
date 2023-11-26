@@ -56,7 +56,7 @@ export type TTrigger = {
 
 export type TCoordinateBlock = {
   name: string;
-  coordinates: number[]; // Массив из 2-х чисел
+  coordinates: string[];
 };
 
 export type TTelegramPayBlock = {

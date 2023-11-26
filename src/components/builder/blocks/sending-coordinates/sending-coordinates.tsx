@@ -20,30 +20,29 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
   const save =
     (type: 'longitude' | 'latitude') =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNodes(
-        getNodes().map((item) => {
-          if (item.id === id) {
-            const newItem = {
-              ...item,
-              data: {
-                ...item.data,
-                coordinates:
-                  type === 'longitude'
-                    ? [
-                        Number(e.target.value),
-                        ...item.data.coordinates.slice(1),
-                      ]
-                    : [
-                        ...item.data.coordinates.slice(0, 1),
-                        Number(e.target.value),
-                      ],
-              },
-            };
-            return newItem;
-          }
-          return item;
-        })
-      );
+      if (/^\d*[.,]?\d*$/.test(e.target.value))
+        setNodes(
+          getNodes().map((item) => {
+            if (item.id === id) {
+              const newValue = e.target.value.replace(/,/g, '.');
+              const newItem = {
+                ...item,
+                data: {
+                  ...item.data,
+                  coordinates:
+                    type === 'longitude'
+                      ? [newValue, ...item.data.coordinates.slice(1)]
+                      : [
+                          ...item.data.coordinates.slice(0, 1),
+                          Number(e.target.value),
+                        ],
+                },
+              };
+              return newItem;
+            }
+            return item;
+          })
+        );
     };
 
   return (
@@ -52,24 +51,24 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
         <div className={styles.wrapperInput}>
           <LabeledInput title="Долгота" extraClass={styles.extraClass}>
             <Input
-              minLength={0}
-              type="number"
+              // minLength={0}
+              // type="number"
               onChange={save('longitude')}
               styled="bot-builder-default"
               placeholder="Введите параметр"
-              value={String(data.coordinates[0])}
+              value={String(data.coordinates[0] || '')}
             />
           </LabeledInput>
         </div>
         <div className={styles.wrapperInput}>
           <LabeledInput title="Широта" extraClass={styles.extraClass}>
             <Input
-              minLength={0}
-              type="number"
+              // minLength={0}
+              // type="number"
               onChange={save('latitude')}
               styled="bot-builder-default"
               placeholder="Введите параметр"
-              value={String(data.coordinates[1])}
+              value={String(data.coordinates[1] || '')}
             />
           </LabeledInput>
         </div>
