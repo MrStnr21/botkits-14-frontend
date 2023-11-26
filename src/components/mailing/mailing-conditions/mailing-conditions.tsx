@@ -174,153 +174,153 @@ const MailingConditions: FC<IProps> = ({
         <fieldset className={styles.form__formFieldset}>
           <Typography tag="h2">{title}</Typography>
         </fieldset>
-        <fieldset className={styles.form__inputsFieldset}>
-          <div className={styles.form__menuContainer}>
-            <Typography tag="p">Отправить</Typography>
-            <MailingSelect
-              options={send}
-              currentOption={sendTime}
-              handleSelect={handleSendTimeClick}
-            />
-          </div>
-          {sendTime?.value === 'Дата/Время' && (
-            <fieldset className={styles.form__dateTimeWrapper}>
-              <div className={styles.form__menuContainer}>
-                <span className={styles.form__iconString}>
-                  <CalendarIcon /> Дата
-                </span>
-                <MailingSelect
-                  currentOption={date}
-                  toggleSelect={() => setCalendarOpen(!calendarOpen)}
-                  closeSelect={() => setCalendarOpen(false)}
-                  maxWidth={144}
-                />
-                {calendarOpen &&
-                  (isMobile ? (
-                    <ModalPopup
-                      onClick={() => setCalendarOpen(false)}
-                      closeIcon={false}
-                    >
-                      <Calendar handleFunction={handleCalendarClick} />
-                    </ModalPopup>
-                  ) : (
-                    <div className={styles.form__calendar}>
-                      <Calendar handleFunction={handleCalendarClick} />
-                    </div>
-                  ))}
-              </div>
-              <div className={styles.form__menuContainer}>
-                <span className={styles.form__iconString}>
-                  <TimeIcon /> Время
-                </span>
-                <TimeSelect
-                  value={time}
-                  onDecrease={() => {}}
-                  onIncrease={() => {}}
-                  saveFunction={() => {}}
-                  clearFunction={() => {}}
-                />
-              </div>
-            </fieldset>
-          )}
-          <div className={styles.form__menuContainer}>
-            <Typography tag="p">Повторять</Typography>
-            <MailingSelect
-              options={repeat}
-              handleSelect={handleRepeatClick}
-              currentOption={selectedRepeat}
-            />
-          </div>
-          {selectedRepeat?.value === 'Свой вариант' && (
-            <div className={styles.form__hiddenInputs}>
-              <div className={styles.form__smallInputsContainer}>
-                <div className={styles.form__menuContainer}>
-                  <Typography tag="span">Настроить</Typography>
-                  <MailingSelect
-                    options={howManyTimes}
-                    currentOption={selectedInterval}
-                    handleSelect={handleIntervalClick}
-                    maxWidth={174}
-                  />
-                </div>
-                <div className={styles.form__menuContainer}>
-                  <Typography tag="span">Каждый</Typography>
-                  <MailingSelect
-                    options={howOften}
-                    currentOption={period}
-                    handleSelect={(option) => setPeriod(option)}
-                    maxWidth={174}
-                  />
-                </div>
-                {!isOff && (
-                  <div className={styles.form__relativeInput}>
-                    <InputDialogsues
-                      placeholder="Введите значение"
-                      onChange={() => setDat}
-                    />
-                    <button
-                      type="button"
-                      className={styles.form__hideBtn}
-                      onClick={() => off(!isOff)}
-                    >
-                      Скрыть
-                    </button>
+        <div
+          className={`${styles.form__menuContainer} ${styles['grid_1-3_3']}`}
+        >
+          <Typography tag="p">Отправить</Typography>
+          <MailingSelect
+            options={send}
+            currentOption={sendTime}
+            handleSelect={handleSendTimeClick}
+          />
+        </div>
+        {sendTime?.value === 'Дата/Время' && (
+          <fieldset className={styles.form__smallInputsContainer}>
+            <div className={styles.form__menuContainer}>
+              <span className={styles.form__iconString}>
+                <CalendarIcon /> Дата
+              </span>
+              <MailingSelect
+                currentOption={date}
+                toggleSelect={() => setCalendarOpen(!calendarOpen)}
+                closeSelect={() => setCalendarOpen(false)}
+                maxWidth={144}
+              />
+              {calendarOpen &&
+                (isMobile ? (
+                  <ModalPopup
+                    onClick={() => setCalendarOpen(false)}
+                    closeIcon={false}
+                  >
+                    <Calendar handleFunction={handleCalendarClick} />
+                  </ModalPopup>
+                ) : (
+                  <div className={styles.form__calendar}>
+                    <Calendar handleFunction={handleCalendarClick} />
                   </div>
-                )}
-              </div>
-              <div className={styles.form__smallInputsContainer}>
-                {(selectedInterval?.value === 'По месяцам' ||
-                  selectedInterval?.value === 'По годам') && (
-                  <div className={styles.form__dateButtons}>
-                    <button
-                      type="button"
-                      className={styles.form__dateButton}
-                      onClick={toggleFirst}
-                    >
-                      {selectedInterval.value === 'По месяцам'
-                        ? 'Число месяца'
-                        : 'Месяц отправки'}
-                      {weekDay && <CheckIcon />}
-                    </button>
-                    {isFirstOpen && (
-                      <div className={styles.form__chooseWrapper}>
-                        <Typography tag="span">
-                          Выберите
-                          {selectedInterval.value === 'По месяцам'
-                            ? ' число '
-                            : ' месяц '}
-                          отправки
-                        </Typography>
-                        <MenuVariable width="174px" nameMenu="1" buttons={[]} />
-                      </div>
-                    )}
-                    <button
-                      className={styles.form__dateButton}
-                      type="button"
-                      onClick={toggleSecond}
-                    >
-                      День месяца
-                      {weekDay && <CheckIcon />}
-                    </button>
-                    {isSecondOpen && (
-                      <div className={styles.form__chooseWrapper}>
-                        <MenuVariable width="174px" nameMenu="1" buttons={[]} />
-                        <MenuVariable
-                          width="174px"
-                          buttons={week}
-                          nameMenu={!weekDay ? 'Понедельник' : weekDay}
-                          onClick={(selected: string) => setWeekDay(selected)}
-                        />
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+                ))}
             </div>
-          )}
-        </fieldset>
+            <div className={styles.form__menuContainer}>
+              <span className={styles.form__iconString}>
+                <TimeIcon /> Время
+              </span>
+              <TimeSelect
+                value={time}
+                onDecrease={() => {}}
+                onIncrease={() => {}}
+                saveFunction={() => {}}
+                clearFunction={() => {}}
+              />
+            </div>
+          </fieldset>
+        )}
+        <div
+          className={`${styles.form__menuContainer} ${styles['grid_1-3_5']}`}
+        >
+          <Typography tag="p">Повторять</Typography>
+          <MailingSelect
+            options={repeat}
+            handleSelect={handleRepeatClick}
+            currentOption={selectedRepeat}
+          />
+        </div>
+        {selectedRepeat?.value === 'Свой вариант' && (
+          <>
+            <div className={styles.form__smallInputsContainer}>
+              <div className={styles.form__menuContainer}>
+                <Typography tag="span">Настроить</Typography>
+                <MailingSelect
+                  options={howManyTimes}
+                  currentOption={selectedInterval}
+                  handleSelect={handleIntervalClick}
+                  maxWidth={174}
+                />
+              </div>
+              <div className={styles.form__menuContainer}>
+                <Typography tag="span">Каждый</Typography>
+                <MailingSelect
+                  options={howOften}
+                  currentOption={period}
+                  handleSelect={(option) => setPeriod(option)}
+                  maxWidth={174}
+                />
+              </div>
+              {!isOff && (
+                <div className={styles.form__relativeInput}>
+                  <InputDialogsues
+                    placeholder="Введите значение"
+                    onChange={() => setDat}
+                  />
+                  <button
+                    type="button"
+                    className={styles.form__hideBtn}
+                    onClick={() => off(!isOff)}
+                  >
+                    Скрыть
+                  </button>
+                </div>
+              )}
+            </div>
+            {(selectedInterval?.value === 'По месяцам' ||
+              selectedInterval?.value === 'По годам') && (
+              <div className={styles.form__dateButtons}>
+                <button
+                  type="button"
+                  className={styles.form__dateButton}
+                  onClick={toggleFirst}
+                >
+                  {selectedInterval.value === 'По месяцам'
+                    ? 'Число месяца'
+                    : 'Месяц отправки'}
+                  {weekDay && <CheckIcon />}
+                </button>
+                {isFirstOpen && (
+                  <div className={styles.form__chooseWrapper}>
+                    <Typography tag="span">
+                      Выберите
+                      {selectedInterval.value === 'По месяцам'
+                        ? ' число '
+                        : ' месяц '}
+                      отправки
+                    </Typography>
+                    <MenuVariable width="174px" nameMenu="1" buttons={[]} />
+                  </div>
+                )}
+                <button
+                  className={styles.form__dateButton}
+                  type="button"
+                  onClick={toggleSecond}
+                >
+                  День месяца
+                  {weekDay && <CheckIcon />}
+                </button>
+                {isSecondOpen && (
+                  <div className={styles.form__chooseWrapper}>
+                    <MenuVariable width="174px" nameMenu="1" buttons={[]} />
+                    <MenuVariable
+                      width="174px"
+                      buttons={week}
+                      nameMenu={!weekDay ? 'Понедельник' : weekDay}
+                      onClick={(selected: string) => setWeekDay(selected)}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </>
+        )}
         {selectedInterval && selectedInterval.value === 'По неделям' && (
-          <div>
+          <div className={styles.form__dayPicker}>
             <DayPicker
               buttons={dayButtonsData}
               active={dayButtons}

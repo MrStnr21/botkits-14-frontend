@@ -18,7 +18,10 @@
 
 .form {
   @include size(100%, unset);
-  @include indents(32px 32px 0 32px, 0);
+  @include indents(32px 32px 32px 32px, 0);
+  display: grid;
+  grid-template-columns: 87px 264px auto;
+  column-gap: 16px;
   border-radius: $xxl-border-radius;
   background-color: $off-white;
   box-shadow: 0px 6px 16px 0px #15123321;
@@ -26,13 +29,17 @@
   z-index: 2;
 
   &__breadcrumbs {
+    grid-column: 1/4;
+    grid-row: 1;
     padding: 0 0 40px;
   }
 
   &__formFieldset {
     @include flex(column, flex-start, flex-start, 24px);
     @include size(100%, unset);
-    @include indents(0 0 32px 0, 0);
+    @include indents(0, 0);
+    grid-column: 1/4;
+    grid-row: 2;
     border: none;
   }
 
@@ -58,15 +65,11 @@
     border: none;
   }
 
-  &__dateTimeWrapper {
-    @include size(264px, unset);
-    @include flex(column, center, flex-end, 8px);
-    @include indents(0, 0);
-    border: none;
-  }
-
   &__smallInputsContainer {
     @include flex(column, space-between, unset, 8px);
+    @include indents(16px 0 0, 0);
+    grid-column: 2/3;
+    border: none;
   }
 
   &__hiddenInputs {
@@ -96,6 +99,8 @@
   &__dateButtons {
     @include size(367px, unset);
     @include flex(column, $gap: 8px);
+    grid-column: 1/3;
+    padding-top: 33px;
   }
 
   &__dateButton {
@@ -140,6 +145,11 @@
     @include font('Open Sans', $xs-font-size, $normal, $grey-3);
     @include line-sizes($xl-line-height, $m-letter-space);
   }
+
+  &__dayPicker {
+    grid-column: 2/4;
+    padding-top: 20px;
+  }
 }
 
 .container {
@@ -179,4 +189,14 @@
     @include font('IBM Plex Mono', $l-font-size, $bold, $grey-4);
     @include defaultFontStyles();
   }
+}
+
+.grid_1-3_3 {
+  grid-column: 1/3;
+  padding-top: 23px;
+}
+
+.grid_1-3_5 {
+  grid-column: 1/3;
+  padding-top: 30px;
 }
