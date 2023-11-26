@@ -93,7 +93,11 @@ export type TOperatorBlock = {
 export type TVariablesControlBlock = {
   // В данном блоке должно происходить присваивание переменной некоторого значения. Вилами по воде писано
   name: string;
-  variables: { variable?: TVariable; value: string }[]; // Пока  не точно
+  variables: {
+    id: string;
+    variable: string;
+    value: string;
+  }[];
 };
 
 export type TConditionalBlock = {

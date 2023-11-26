@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
 import {
   TBlockProps,
   TVariablesControlBlock,
@@ -11,25 +12,49 @@ import Value from './value/value';
 const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   data,
 }) => {
-  const [content, setContent] = useState<TVariablesControlBlock['variables']>(
-    data.variables
-  );
+  const content = useMemo(() => data.variables, [data]);
 
-  const addValue = () => {
-    setContent([...content, { value: '' }]);
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
+
+  const [amount, setAmount] = useState(0);
+
+  const addField = () => {
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              variables: [
+                ...item.data.variables,
+                {
+                  id: amount + 1,
+                  variable: '',
+                  value: '',
+                },
+              ],
+            },
+          };
+        }
+        return item;
+      })
+    );
+    setAmount(amount + 1);
   };
 
   return (
     <ControlLayout type="Управление переменными">
       <div className={styleVariableBlock.container}>
-        {content.map(() => {
-          return <Value />;
+        {content.map((item) => {
+          return <Value idNum={item.id} />;
         })}
         <div className={styleVariableBlock.field}>
           <ConstructorAddButton
             buttonHtmlType="button"
             disabled={false}
-            onClick={addValue}
+            onClick={addField}
           >
             Добавить переменную
           </ConstructorAddButton>
