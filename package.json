@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.8",
@@ -50,6 +51,9 @@
     "redux-thunk": "^2.4.2",
     "redux-ts": "^4.3.0",
     "sass": "^1.67.0",
+    "slate": "^0.101.1",
+    "slate-history": "^0.100.0",
+    "slate-react": "^0.101.1",
     "socket.io-client": "^4.7.2",
     "styled-components": "^5.3.11",
     "stylelint-scss": "^5.1.0",

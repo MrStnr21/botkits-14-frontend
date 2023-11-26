@@ -19,6 +19,7 @@ import {
 import StatsChart from '../../components/stats-chart/stats-chart';
 import { Data, Labels } from '../../components/stats-chart/types';
 import { Option } from '../../utils/types';
+import HoveringMenuExample from '../../ui/text-field/textarea/textarea';
 
 Chart.register(...registerables);
 
@@ -65,6 +66,7 @@ const Statistics: FC = () => {
         <Typography tag="h2" fontFamily="secondary">
           Статистика
         </Typography>
+        <HoveringMenuExample />
         <div className={styles.wrapper}>
           <Button
             variant="default"

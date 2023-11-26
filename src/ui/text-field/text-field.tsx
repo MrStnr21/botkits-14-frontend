@@ -6,6 +6,7 @@ import styles from './text-field.module.scss';
 
 import { ReactComponent as Bracket } from '../../images/icon/24x24/constructor/bracket.svg';
 import { ReactComponent as EmojiIcon } from '../../images/icon/24x24/constructor/emoji.svg';
+import HoveringMenuExample from './textarea/textarea';
 // import useOutsideClick from '../../utils/hooks/useOutsideClick';
 
 interface ITextField {
@@ -30,7 +31,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
 
   return (
     <div className={styles.textarea}>
-      <textarea
+      {/* <textarea
         name="textarea"
         id="textarea"
         placeholder="Введите текст"
@@ -39,7 +40,10 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
         onChange={(e) => setText(e.target.value)}
         draggable={false}
         className={styles.input}
-      />
+      /> */}
+      <div className="nodrag">
+        <HoveringMenuExample />
+      </div>
       <span className={styles.outline} />
 
       <div className={styles.footer}>
