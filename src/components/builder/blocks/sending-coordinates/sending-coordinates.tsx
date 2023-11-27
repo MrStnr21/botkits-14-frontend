@@ -13,11 +13,6 @@ import { rangeForCoordinates } from '../../utils/data';
 const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
   data,
 }) => {
-  // const [isInvalid, setIsInvalid] = useState({
-  //   type: false,
-  //   message: 'Вы ввели неправильное значение',
-  // });
-  // const [name, setName] = useState(data.name);
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
 
@@ -86,8 +81,6 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
           <LabeledInput title="Долгота" extraClass={styles.extraClass}>
             <Input
               minLength={0}
-              // errorMessage={isInvalid.message}
-              // isInvalid={isInvalid.type}
               onChange={validateAndSave('longitude')}
               styled="bot-builder-default"
               placeholder="Введите параметр"
@@ -99,8 +92,6 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
           <LabeledInput title="Широта" extraClass={styles.extraClass}>
             <Input
               minLength={0}
-              // errorMessage={isInvalid.message}
-              // isInvalid={isInvalid.type}
               onChange={validateAndSave('latitude')}
               styled="bot-builder-default"
               placeholder="Введите параметр"
