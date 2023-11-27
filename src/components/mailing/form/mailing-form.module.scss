@@ -29,6 +29,10 @@
   box-sizing: border-box;
   overflow-x: hidden;
 
+  @media screen and (max-width: 860px) {
+    @include indents(24px 24px 0 24px, 0);
+  }
+
   &__breadcrumbs {
     padding: 0 0 40px;
   }
@@ -76,14 +80,18 @@
   }
 
   &__menuVariableWrapper {
-    @include min-size(265px, unset);
+    @include min-size(264px, unset);
+  }
+
+  &__textField {
+    width: 264px;
   }
 }
 
 .container {
   @include max-size(924px, unset);
   @include size(100%, fit-content);
-  min-width: 300px;
+  min-width: 320px;
   background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;
 

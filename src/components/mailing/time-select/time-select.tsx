@@ -31,7 +31,7 @@ const TimeSelect: FC<TTimeSelectProps> = ({
   const isMobile = useMediaQuery('(max-width: 860px)');
 
   const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useOutsideClickAndEscape(
     menuRef,
@@ -41,10 +41,9 @@ const TimeSelect: FC<TTimeSelectProps> = ({
   );
 
   return (
-    <button
+    <div
       ref={buttonRef}
       onClick={() => setIsOpen(!isOpen)}
-      type="button"
       className={styles.container}
       style={style}
     >
@@ -65,7 +64,7 @@ const TimeSelect: FC<TTimeSelectProps> = ({
           <MenuTime saveFunction={saveFunction} clearFunction={clearFunction} />
         </ModalPopup>
       )}
-    </button>
+    </div>
   );
 };
 

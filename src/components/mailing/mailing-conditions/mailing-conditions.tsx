@@ -194,7 +194,6 @@ const MailingConditions: FC<IProps> = ({
                 currentOption={date}
                 toggleSelect={() => setCalendarOpen(!calendarOpen)}
                 closeSelect={() => setCalendarOpen(false)}
-                maxWidth={144}
               />
               {calendarOpen &&
                 (isMobile ? (
@@ -220,7 +219,6 @@ const MailingConditions: FC<IProps> = ({
                 onIncrease={() => {}}
                 saveFunction={() => {}}
                 clearFunction={() => {}}
-                style={{ maxWidth: '144px' }}
                 isSelect
               />
             </div>
@@ -245,7 +243,7 @@ const MailingConditions: FC<IProps> = ({
                   options={howManyTimes}
                   currentOption={selectedInterval}
                   handleSelect={handleIntervalClick}
-                  maxWidth={174}
+                  maxWidth={!isMobile ? 174 : undefined}
                 />
               </div>
               <div className={styles.form__menuContainer}>
@@ -254,7 +252,7 @@ const MailingConditions: FC<IProps> = ({
                   options={howOften}
                   currentOption={period}
                   handleSelect={(option) => setPeriod(option)}
-                  maxWidth={174}
+                  maxWidth={!isMobile ? 174 : undefined}
                 />
               </div>
               {!isOff && (
@@ -263,13 +261,15 @@ const MailingConditions: FC<IProps> = ({
                     placeholder="Введите значение"
                     onChange={() => setDat}
                   />
-                  <button
-                    type="button"
-                    className={styles.form__hideBtn}
-                    onClick={() => off(!isOff)}
-                  >
-                    Скрыть
-                  </button>
+                  {!isMobile && (
+                    <button
+                      type="button"
+                      className={styles.form__hideBtn}
+                      onClick={() => off(!isOff)}
+                    >
+                      Скрыть
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -301,7 +301,7 @@ const MailingConditions: FC<IProps> = ({
                       onIncrease={() => {}}
                       saveFunction={() => {}}
                       clearFunction={() => {}}
-                      style={{ maxWidth: '174px' }}
+                      style={!isMobile ? { maxWidth: '174px' } : {}}
                     />
                   </div>
                 )}
@@ -321,7 +321,7 @@ const MailingConditions: FC<IProps> = ({
                       onIncrease={() => {}}
                       saveFunction={() => {}}
                       clearFunction={() => {}}
-                      style={{ maxWidth: '174px' }}
+                      style={!isMobile ? { maxWidth: '174px' } : {}}
                     />
                     <MenuVariable
                       width="174px"

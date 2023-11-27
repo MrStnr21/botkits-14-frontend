@@ -11,10 +11,13 @@
   @include flex(row, space-between, center);
   @include size(100%, 40px);
   @include indents(8px 10px, 0);
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
   box-sizing: border-box;
   position: relative;
   background-color: $secondary-cultured-hover;
   border-radius: 5px;
+  z-index: 3;
 }
 
 .menu {

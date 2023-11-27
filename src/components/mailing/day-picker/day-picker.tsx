@@ -14,7 +14,12 @@ const DayPicker: FC<TDayPicker> = ({ buttons, active, setValue }) => {
     const isActive =
       active.findIndex((item) => item.value === button.value) !== -1;
     return (
-      <DayButton option={button} setValue={setValue} isActive={isActive} />
+      <DayButton
+        option={button}
+        setValue={setValue}
+        isActive={isActive}
+        key={button.value}
+      />
     );
   });
   return <div className={styles.container}>{buttonElements}</div>;

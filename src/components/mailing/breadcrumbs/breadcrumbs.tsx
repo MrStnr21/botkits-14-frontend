@@ -13,7 +13,7 @@ const Breadcrumbs: FC<TBreadcrumbsProps> = ({ crumbs }) => {
   return (
     <div className={styles.container}>
       {crumbs.map((crumb, index) => (
-        <Crumb {...crumb} index={index + 1} />
+        <Crumb {...crumb} index={index + 1} key={crumb.to} />
       ))}
     </div>
   );

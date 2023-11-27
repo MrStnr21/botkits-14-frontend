@@ -23,6 +23,7 @@
     border-radius: 64px 0 0 64px;
 
     @media screen and (max-width: 860px) {
+      @include button-style-reset;
       @include position(fixed, unset, 20px, 40px, unset);
       background: none;
     }

@@ -89,11 +89,13 @@ const MailingForm: FC<IProps> = ({
         </fieldset>
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>Текст сообщения</legend>
-          <TextField
-            setText={handleTextChange}
-            text={textValue}
-            isAdaptive={false}
-          />
+          <div className={styles.form__textField}>
+            <TextField
+              setText={handleTextChange}
+              text={textValue}
+              isAdaptive={false}
+            />
+          </div>
           <div className={styles.form__menuVariableWrapper}>
             <MailingSelect
               options={messengerList}

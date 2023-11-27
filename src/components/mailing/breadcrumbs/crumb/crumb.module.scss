@@ -11,6 +11,10 @@
   span {
     width: max-content
   }
+
+  @media screen and (max-width: $switching-width) {
+    gap: 12px;
+  }
 }
 
 .container {

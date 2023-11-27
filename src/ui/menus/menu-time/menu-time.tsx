@@ -47,6 +47,7 @@ const MenuTime: FC<IMenuTime> = ({
               <div
                 className={stylesMenuTime.number_unit}
                 onClick={() => setHour(item)}
+                key={item}
               >
                 {item}
               </div>
@@ -59,6 +60,7 @@ const MenuTime: FC<IMenuTime> = ({
               <div
                 className={stylesMenuTime.number_unit}
                 onClick={() => setMinute(item)}
+                key={item}
               >
                 {item}
               </div>
