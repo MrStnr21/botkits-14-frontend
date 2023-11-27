@@ -6,6 +6,7 @@ import EasyMode from './easy';
 import HardMode from './hard';
 import { messagesSuccessful } from '../../../utils/data';
 import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
+import Menu from '../../../../../ui/menus/menu/menu';
 
 export type TModeProps = {
   id: string;
@@ -36,6 +37,9 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
   );
 
   const buttonsTargetBlock = messagesSuccessful.map((item) => item.value);
+  const options = messagesSuccessful.map((item) => {
+    return { label: item.value, value: item.nameValue };
+  });
 
   const active = useMemo(
     () => itemFromVariables.targetBlock !== '',
@@ -70,6 +74,7 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
           }}
           active={active}
         />
+        <Menu options={options} onItemClick={() => setTargetBlock} />
       </LabeledInput>
     </div>
   );

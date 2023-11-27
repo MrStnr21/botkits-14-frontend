@@ -37,7 +37,7 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
             ...item,
             data: {
               ...item.data,
-              chosenSaveAs: e.target.value,
+              save: e.target.value,
             },
           };
           return newItem;
@@ -77,7 +77,7 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
                     label={item.nameValue}
                     value={item.value}
                     onChange={onSaveChange}
-                    checked={item.value === data.chosenSaveAs}
+                    checked={item.value === data.save}
                   />
                 );
               })}

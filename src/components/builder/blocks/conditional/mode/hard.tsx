@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
 
@@ -7,6 +7,7 @@ export type THardBlockProps = {
 };
 
 const HardMode: FC<THardBlockProps> = ({ id }) => {
+  const [input, setInput] = useState(false);
   const { getNodes, setNodes } = useReactFlow();
   const idNode = useNodeId();
 
@@ -42,18 +43,27 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
     );
   };
 
-  const setCondition = (value: any) => setItemVariables('condition', value);
+  const setCondition = (value: any) => {
+    setItemVariables('condition', value);
+    setInput(!input);
+  };
 
-  return (
-    <Input
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-        setCondition(event.target.value)
-      }
-      styled="bot-builder-default"
-      placeholder="Условие"
-      value={itemVariables().condition}
-    />
+  const content = useMemo(
+    () => (
+      <Input
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setCondition(event.target.value)
+        }
+        styled="bot-builder-default"
+        placeholder="Условие"
+        value={itemVariables().condition}
+      />
+    ),
+    [node, input]
   );
+
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{content}</>;
 };
 
 export default HardMode;
