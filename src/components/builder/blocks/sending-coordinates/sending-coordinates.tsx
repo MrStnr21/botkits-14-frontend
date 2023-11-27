@@ -54,11 +54,12 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
 
           const rangeValidate = () => {
             if (
-              (e.target.value.length > 2 &&
+              (newValue.length > 2 &&
                 type === 'longitude' &&
                 (int < rangeForCoordinates.longitude.min ||
                   int > rangeForCoordinates.longitude.max)) ||
-              (type === 'latitude' &&
+              (newValue.length > 2 &&
+                type === 'latitude' &&
                 (int < rangeForCoordinates.latitude.min ||
                   int > rangeForCoordinates.latitude.max))
             ) {
