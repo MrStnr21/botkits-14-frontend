@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useReactFlow, useNodeId } from 'reactflow';
 
 export const getTimeDHMS = (time: number) => {
@@ -41,8 +42,8 @@ export const setFlowData = ({
       value !== undefined
         ? value
         : callback
-        ? callback(e?.target.value)
-        : e?.target.value;
+          ? callback(e?.target.value)
+          : e?.target.value;
     switch (selectors.length) {
       case 1: {
         return setNodes(

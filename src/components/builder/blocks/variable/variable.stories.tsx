@@ -6,6 +6,8 @@ const data = {
   name: 'Название переменной',
   variables: [
     {
+      id: '',
+      variable: '',
       value: '',
     },
   ],
