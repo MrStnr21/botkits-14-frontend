@@ -32,8 +32,10 @@ const addBotAction: AppThunk = (botinfo: TBot, token: string) => {
     dispatch({
       type: ADDBOT_REQUEST,
     });
+    console.log(botinfo);
     addBotApi(botinfo, token)
-      .then((res: TBot) => {
+      .then((res) => {
+        console.log(res);
         if (res) {
           dispatch({
             type: ADDBOT_SUCCESS,
@@ -41,9 +43,9 @@ const addBotAction: AppThunk = (botinfo: TBot, token: string) => {
           });
         }
       })
-      .catch((err: { message: string }) => {
+      .catch((err) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err);
         dispatch({
           type: ADDBOT_ERROR,
         });

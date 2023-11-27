@@ -33,7 +33,8 @@ const getBotsAction: AppThunk = (token: string) => {
       type: GETBOTS_REQUEST,
     });
     getBotsApi(token)
-      .then((res: Array<TBot>) => {
+      .then((res) => {
+        console.log(res);
         if (res) {
           dispatch({
             type: GETBOTS_SUCCESS,
@@ -41,9 +42,9 @@ const getBotsAction: AppThunk = (token: string) => {
           });
         }
       })
-      .catch((err: { message: string }) => {
+      .catch((err) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err);
         dispatch({
           type: GETBOTS_ERROR,
         });
