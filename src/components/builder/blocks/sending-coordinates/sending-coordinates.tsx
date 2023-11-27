@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useNodeId, useReactFlow } from 'reactflow';
 import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -13,10 +13,10 @@ import { rangeForCoordinates } from '../../utils/data';
 const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
   data,
 }) => {
-  const [isInvalid, setIsInvalid] = useState({
-    type: false,
-    message: 'Вы ввели неправильное значение',
-  });
+  // const [isInvalid, setIsInvalid] = useState({
+  //   type: false,
+  //   message: 'Вы ввели неправильное значение',
+  // });
   // const [name, setName] = useState(data.name);
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
@@ -52,23 +52,27 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
           const int = Number(valueArr[0]);
           const fractialPart = valueArr[1];
 
-          if (
-            (type === 'longitude' &&
-              (int < rangeForCoordinates.longitude.min ||
-                int > rangeForCoordinates.longitude.max)) ||
-            (type === 'latitude' &&
-              (int < rangeForCoordinates.latitude.min ||
-                int > rangeForCoordinates.latitude.max))
-          ) {
-            setIsInvalid({ type: true, message: 'Неверный диапазон' });
-          } else {
-            setIsInvalid({ ...isInvalid, type: false });
-          }
+          const rangeValidate = () => {
+            if (
+              (e.target.value.length > 2 &&
+                type === 'longitude' &&
+                (int < rangeForCoordinates.longitude.min ||
+                  int > rangeForCoordinates.longitude.max)) ||
+              (type === 'latitude' &&
+                (int < rangeForCoordinates.latitude.min ||
+                  int > rangeForCoordinates.latitude.max))
+            ) {
+              return false;
+            }
+            return true;
+          };
 
-          if (newValue.includes('.') && fractialPart) {
-            if (fractialPart.length < 6) save(type, newValue);
-          } else {
-            save(type, newValue);
+          if (valueArr[0].length < 4 && rangeValidate()) {
+            if (newValue.includes('.') && fractialPart) {
+              if (fractialPart.length < 6) save(type, newValue);
+            } else {
+              save(type, newValue);
+            }
           }
         }
       }
@@ -81,8 +85,8 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
           <LabeledInput title="Долгота" extraClass={styles.extraClass}>
             <Input
               minLength={0}
-              errorMessage={isInvalid.message}
-              isInvalid={isInvalid.type}
+              // errorMessage={isInvalid.message}
+              // isInvalid={isInvalid.type}
               onChange={validateAndSave('longitude')}
               styled="bot-builder-default"
               placeholder="Введите параметр"
@@ -94,8 +98,8 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
           <LabeledInput title="Широта" extraClass={styles.extraClass}>
             <Input
               minLength={0}
-              errorMessage={isInvalid.message}
-              isInvalid={isInvalid.type}
+              // errorMessage={isInvalid.message}
+              // isInvalid={isInvalid.type}
               onChange={validateAndSave('latitude')}
               styled="bot-builder-default"
               placeholder="Введите параметр"
