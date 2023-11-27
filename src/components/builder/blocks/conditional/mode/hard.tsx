@@ -17,10 +17,10 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
     node && node.data.variables.find((item: { id: string }) => item.id === id);
 
   const setItemVariables = (
-    keyy: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
+    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
     value: any
   ) => {
-    itemVariables()[keyy] = value;
+    itemVariables()[key] = value;
 
     setNodes(
       getNodes().map((item) => {
@@ -57,6 +57,8 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
         styled="bot-builder-default"
         placeholder="Условие"
         value={itemVariables().condition}
+        minLength={0}
+        required={false}
       />
     ),
     [node, input]

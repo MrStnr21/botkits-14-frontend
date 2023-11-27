@@ -23,14 +23,9 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [amountEasy, setAmountEasy] = useState(0);
   const [amountHard, setAmountHard] = useState(0);
 
-  // const node = getNodes().find((item) => item.id === idNode);
-
-  const itemVariables1 = node.data.variables.map(
+  /* const itemVariables1 = node.data.variables.map(
     (el: { type: any }) => el.type
-  );
-
-  /* const { domNode } = useStore((s) => s);
-  useEffect(() => {}, [domNode]); */
+  ); */
 
   const addHard = () => {
     setNodes(
@@ -178,7 +173,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
         />
       </div>
       <div className={styles.content}>
-        {`yuwtwtw ${itemVariables1} ${node && node.data.variables.length}`}
+        {/* `yuwtwtw ${itemVariables1} ${node && node.data.variables.length}` */}
         {content}
         <ConstructorAddButton onClick={mode === 'easy' ? addEasy : addHard}>
           Добавить условие
