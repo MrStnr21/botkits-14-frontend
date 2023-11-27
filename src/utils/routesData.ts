@@ -10,6 +10,7 @@ const routesUrl: TRoutesUrl = {
   chat: 'chat',
   mailing: 'mailing',
   partnership: 'partnership',
+  bottemplates: 'bottemplates',
   share: 'share',
   subscription: 'subscription',
   statistics: 'statistics',

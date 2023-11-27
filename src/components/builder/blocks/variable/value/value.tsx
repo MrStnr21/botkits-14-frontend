@@ -1,37 +1,73 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
 import styles from './value.module.scss';
-import InputSelect from '../../../../../ui/inputs/input-select/input-select';
 import Equal from '../../../../icons/Equal/Equal';
 import Input from '../../../../../ui/inputs/input/input';
-import { TVariable } from '../../../../../services/types/builder';
 import { selectValues } from '../../../utils/data';
+import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
 
 export type TValueProps = {
-  variable?: TVariable;
-  value?: string;
+  idNum: string;
 };
 
-const Value: FC<TValueProps> = ({ variable, value }) => {
+const Value: FC<TValueProps> = ({ idNum }) => {
+  const selectOptions = selectValues.map((el) => el.nameValue);
+
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
+  const node = getNodes().find((el) => el.id === id);
+
+  const itemLine = (idItem: string) =>
+    node && node.data.variables.find((el: { id: string }) => el.id === idItem);
+
+  const setItemValues = (idItem: string, key: string, value: any) => {
+    itemLine(idItem)[key] = value;
+
+    setNodes(
+      getNodes().map((el) => {
+        if (el.id === id) {
+          return {
+            ...el,
+            data: {
+              ...el.data,
+              variables: [...el.data.variables],
+            },
+          };
+        }
+        return el;
+      })
+    );
+  };
+
+  const setVar = (idItem: string, value: any) =>
+    setItemValues(idItem, 'variable', value);
+
+  const setVal = (idItem: string, value: any) =>
+    setItemValues(idItem, 'value', value);
+
   return (
     <div className={styles.overlay}>
-      <Input
-        placeholder="Переменная"
-        onChange={() => {}}
-        type="text"
-        styled="bot-builder-default"
-        textColor="default"
-        value={variable && variable.name}
-      />
+      <div className={styles.input}>
+        <Input
+          placeholder="Переменная"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setVar(idNum, e.target.value)
+          }
+          type="text"
+          styled="bot-builder-default"
+          textColor="default"
+          minLength={1}
+        />
+      </div>
       <div className={styles.box}>
         <Equal />
       </div>
       <div className={styles.v}>
-        <InputSelect
-          defaultValue={[value || selectValues[0].value]}
-          values={selectValues}
-          maxWidth={98}
-          handleFunction={() => {}}
-          isAdaptive
+        <MenumenuSelectFlow
+          buttons={selectOptions}
+          nameMenu={selectOptions[0]}
+          onClick={(name: string) => setVal(idNum, name)}
+          active
         />
       </div>
     </div>

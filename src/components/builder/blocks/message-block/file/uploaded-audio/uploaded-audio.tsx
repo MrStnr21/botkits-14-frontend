@@ -6,9 +6,10 @@ import { ReactComponent as PlayImage } from '../../../../../../images/icon/add c
 export type TUploadedAudioProps = {
   src: string;
   name: string;
+  onRemove: () => void;
 };
 
-const UploadedAudio: FC<TUploadedAudioProps> = ({ src, name }) => {
+const UploadedAudio: FC<TUploadedAudioProps> = ({ src, name, onRemove }) => {
   const audio = new Audio(src);
   const [duration, setDuration] = useState<number>(audio.duration);
   audio.onloadedmetadata = () => {
@@ -34,6 +35,7 @@ const UploadedAudio: FC<TUploadedAudioProps> = ({ src, name }) => {
       <p className={styles.result__name}>{name}</p>
       <p className={styles.result__size}>{getTimeMS(duration)}</p>
       <button
+        onClick={onRemove}
         type="button"
         aria-label="Удалить файл"
         className={styles.result__button}

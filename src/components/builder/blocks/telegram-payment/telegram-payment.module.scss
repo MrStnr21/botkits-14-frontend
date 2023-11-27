@@ -14,3 +14,10 @@
 .sumInputs {
   @include flex(row, false, center, 4px);
 }
+
+.wrapperCurrency {
+  min-width: 66px;
+  @media screen and (max-width: 520px) {
+    min-width: 50px;
+  }
+}

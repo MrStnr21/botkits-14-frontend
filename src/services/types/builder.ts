@@ -56,7 +56,7 @@ export type TTrigger = {
 
 export type TCoordinateBlock = {
   name: string;
-  coordinates: number[]; // Массив из 2-х чисел
+  coordinates: string[];
 };
 
 export type TTelegramPayBlock = {
@@ -93,17 +93,22 @@ export type TOperatorBlock = {
 export type TVariablesControlBlock = {
   // В данном блоке должно происходить присваивание переменной некоторого значения. Вилами по воде писано
   name: string;
-  variables: { variable?: TVariable; value: string }[]; // Пока  не точно
+  variables: {
+    id: string;
+    variable: string;
+    value: string;
+  }[];
 };
 
 export type TConditionalBlock = {
   name: string;
   variables: {
+    id: string;
     type: 'easy' | 'hard'; // В зависимости от типа переменной нужны (variable, sign, blockName) для easy и (condition, blockName) для hard
     variable?: TVariable; // Некая переменная
-    sign: string; // Одно из value принимаемых select, 11 значений, значения стоит отправить в конфиг.
-    condition: string; // Строка-условие для сложного режима
-    blockName: string; // name одного из блоков
+    sign?: string; // Одно из value принимаемых select, 11 значений, значения стоит отправить в конфиг.
+    condition?: string; // Строка-условие для сложного режима или значение для легкого
+    targetBlock: string; // name одного из блоков
   }[];
 };
 
@@ -127,14 +132,17 @@ export type TApiBlock = {
 export type TButtonBlock = {
   type: 'button' | 'answer';
   direction: 'horizontal' | 'vertical';
+  additionalData?: boolean;
   name: string;
   color: string;
-  url: string;
+  str: string;
+  deskY: number;
+  mobY: number;
 };
 
 export type TMessageBlock = {
   name: string;
-  data: (TMessageData | TButtonsData | TAnswersData | TFileData)[];
+  data: TMessageBlockData[];
   saveAnswer: {
     show: boolean;
     value: string;
@@ -147,6 +155,12 @@ export type TMessageBlock = {
     seconds: string;
   };
 };
+
+export type TMessageBlockData =
+  | TMessageData
+  | TButtonsData
+  | TAnswersData
+  | TFileData;
 
 export type TMessageData = {
   type: MessageDataTypes.message;

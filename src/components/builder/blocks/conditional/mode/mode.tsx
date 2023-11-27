@@ -1,45 +1,80 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
 import styles from './mode.module.scss';
 import LabeledInput from '../../../labeledInput/labeledInput';
-import EasyMode, { TEasyBlockProps } from './easy';
-import HardMode, { THardBlockProps } from './hard';
-import InputSelect from '../../../../../ui/inputs/input-select/input-select';
-import { selectValues } from '../../../utils/data';
+import EasyMode from './easy';
+import HardMode from './hard';
+import { messagesSuccessful } from '../../../utils/data';
+import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
+import Menu from '../../../../../ui/menus/menu/menu';
 
-type TModeProps = {
-  type: 'easy' | 'hard';
-  title: string;
-  data: TEasyBlockProps | THardBlockProps;
-  targetBlock?: string;
+export type TModeProps = {
+  id: string;
+  setTargetBlock: Function;
 };
 
-const Mode: FC<TModeProps> = ({ title, type, data, targetBlock }) => {
-  const getBlock = () => {
-    switch (type) {
+const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
+  const { getNodes } = useReactFlow();
+  const idNode = useNodeId();
+  const nodes = getNodes();
+  const node = useMemo(
+    () => nodes.filter((el) => el.id === idNode)[0],
+    [nodes]
+  );
+
+  const itemFromVariables: {
+    id: string;
+    type: 'easy' | 'hard';
+    variable?: {
+      [keyy: string]: any;
+    };
+    sign?: string;
+    condition?: string;
+    targetBlock: string;
+  } = useMemo(
+    () => node.data.variables.filter((el: { id: string }) => el.id === id)[0],
+    [node]
+  );
+
+  const buttonsTargetBlock = messagesSuccessful.map((item) => item.value);
+  const options = messagesSuccessful.map((item) => {
+    return { label: item.value, value: item.nameValue };
+  });
+
+  const active = useMemo(
+    () => itemFromVariables.targetBlock !== '',
+    [itemFromVariables]
+  );
+
+  const getBlock = useMemo(() => {
+    switch (itemFromVariables.type) {
       case 'easy': {
-        return <EasyMode {...data} />;
+        return <EasyMode id={id} />;
       }
       case 'hard': {
-        return <HardMode {...data} />;
+        return <HardMode id={id} />;
       }
       default: {
         return null;
       }
     }
-  };
+  }, [nodes]);
+
   return (
     <div className={styles.conditional}>
-      <LabeledInput title={title} extraClass={styles.extraClass}>
-        {getBlock()}
+      <LabeledInput title="Если" extraClass={styles.extraClass}>
+        {getBlock}
       </LabeledInput>
       <LabeledInput title="То перейти" extraClass={styles.extraClass}>
-        <InputSelect
-          values={selectValues}
-          defaultValue={[targetBlock || selectValues[0].value]}
-          maxWidth={240}
-          handleFunction={() => {}}
-          isAdaptive
+        <MenumenuSelectFlow
+          buttons={buttonsTargetBlock}
+          nameMenu={itemFromVariables.targetBlock || 'Имя блока'}
+          onClick={(name: string) => {
+            setTargetBlock(name);
+          }}
+          active={active}
         />
+        <Menu options={options} onItemClick={() => setTargetBlock} />
       </LabeledInput>
     </div>
   );

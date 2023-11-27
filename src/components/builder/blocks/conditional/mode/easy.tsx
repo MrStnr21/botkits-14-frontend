@@ -1,40 +1,101 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
+
 import styles from './mode.module.scss';
-import InputSelect from '../../../../../ui/inputs/input-select/input-select';
 import { selectValues, signSelectValues } from '../../../utils/data';
-import { TVariable } from '../../../../../services/types/builder';
+// import { TVariable } from '../../../../../services/types/builder';
 import Input from '../../../../../ui/inputs/input/input';
+import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
 
 export type TEasyBlockProps = {
-  condition?: string;
-  variable?: TVariable;
-  sign?: string;
+  id: string;
 };
+const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
+  const buttonsSignSelect = signSelectValues.map((item) => item.nameValue);
+  const buttonsSelectValues = selectValues.map((item) => item.nameValue);
+  const { getNodes, setNodes } = useReactFlow();
+  const idNode = useNodeId();
 
-const EasyMode: FC<TEasyBlockProps> = ({ variable, sign, condition }) => {
+  const node = getNodes().find((item) => item.id === idNode);
+
+  const itemVariables = () =>
+    node && node.data.variables.find((item: { id: string }) => item.id === id);
+
+  const setItemVariables = (key: string, value: any) => {
+    itemVariables()[key] = value;
+
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              variables: [
+                ...item.data.variables,
+                {
+                  itemVariables,
+                },
+              ],
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const setCondition = (value: any) => setItemVariables('condition', value);
+
+  const setVariable = (value: any) => setItemVariables('variable', value);
+
+  const setSign = (value: any) => setItemVariables('sign', value);
+
+  const active = useMemo(
+    () =>
+      itemVariables().variable &&
+      Object.values(itemVariables().variable)[0] !== '',
+    [itemVariables().variable]
+  );
+
   return (
     <div className={styles['labeled-content']}>
       <div className={styles['selects-string']}>
-        <InputSelect
-          values={selectValues}
-          defaultValue={[(variable && variable.name) || selectValues[0].value]}
-          maxWidth={184}
-          handleFunction={() => {}}
-          isAdaptive
-        />
-        <InputSelect
-          handleFunction={() => {}}
-          maxWidth={52}
-          values={signSelectValues}
-          defaultValue={[sign || signSelectValues[0].value]}
-          isAdaptive
-        />
+        <div className={styles.selectsVariable}>
+          <MenumenuSelectFlow
+            width="184"
+            buttons={buttonsSelectValues}
+            nameMenu={
+              (itemVariables().variable &&
+                Object.values(itemVariables().variable)[0]) ||
+              'Переменная'
+            }
+            onClick={(name: string) => {
+              setVariable({ key: name });
+            }}
+            active={active}
+          />
+        </div>
+        <div className={styles.selectsIcon}>
+          <MenumenuSelectFlow
+            width="52"
+            buttons={buttonsSignSelect}
+            nameMenu={itemVariables().sign || buttonsSignSelect[0]}
+            onClick={(name: string) => {
+              setSign(name);
+            }}
+            active
+            isIcon
+          />
+        </div>
       </div>
       <Input
-        onChange={() => {}}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setCondition(event.target.value)
+        }
         styled="bot-builder-default"
         placeholder="Значение"
-        value={condition}
+        value={itemVariables().condition}
       />
     </div>
   );

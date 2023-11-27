@@ -16,3 +16,9 @@ export type TRowData = {
   document?: any;
   status?: boolean;
 };
+
+export type Option = {
+  label: string;
+  value: string;
+  icon?: string;
+};

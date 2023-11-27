@@ -11,8 +11,41 @@ import notInLineWithoutCaseImage from '../../../images/icon/24x24/variables/not 
 import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg';
 import { MessageDataTypes } from '../../../services/types/builder';
 
-export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
-export const saveOptions = ['Новая запись', 'Дополнить запись'];
+export enum ButtonSizes {
+  startX = 32,
+  firstY = 244,
+  secondY = 452,
+  blockGap = 86,
+  addString = 16,
+  buttonHeight = 40,
+  gap = 12,
+}
+
+export enum ButtonSizesMobile {
+  startX = ButtonSizes.startX * 0.5,
+  firstY = 155,
+  secondY = 295,
+  blockGap = 55,
+  addString = 8,
+  buttonHeight = 27,
+  gap = 12,
+}
+
+export const rangeForCoordinates = {
+  longitude: { min: -180, max: 180 },
+  latitude: { min: -90, max: 90 },
+};
+
+export const crmList = [
+  { value: '1', nameValue: 'CRM 1' },
+  { value: '2', nameValue: 'CRM 2' },
+  { value: '3', nameValue: 'CRM 3' },
+];
+
+export const saveOptions = [
+  { value: 'new', nameValue: 'Новая запись' },
+  { value: 'suppl', nameValue: 'Дополнить запись' },
+];
 
 export const selectValues = [
   { value: '1', nameValue: '1' },
@@ -104,33 +137,33 @@ export const currencyAvailable = [
 ];
 
 export const messagesSuccessful = [
-  { value: 'По умолчанию', nameValue: 'Введите название' },
-  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
-  { value: 'Короткое сообщение', nameValue: 'Ok!' },
-  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
-  { value: 'Общее сообщение', nameValue: 'Успешно' },
+  { value: 'message', nameValue: 'Блок сообщений' },
+  { value: 'api', nameValue: 'API' },
+  { value: 'conditional', nameValue: 'Условный блок' },
+  { value: 'coordinate', nameValue: 'Отправка координат' },
+  { value: 'telegramPay', nameValue: 'Оплата в Telegram' },
+  { value: 'deeplink', nameValue: 'Deep Link' },
+  { value: 'crm', nameValue: 'Сохранение в CRM' },
+  { value: 'operator', nameValue: 'Перевод на оператора' },
+  { value: 'variable', nameValue: 'Управление переменными' },
 ];
 
 export const defaultBlocks = {
   message: {
-    name: 'Message',
+    name: 'message',
     data: [
-      {
-        type: MessageDataTypes.message,
-        value: '',
-      },
-      {
-        type: MessageDataTypes.answers,
-        horizontalAmount: 0,
-        verticalAmount: 0,
-      },
-      {
-        type: MessageDataTypes.buttons,
-        horizontalAmount: 0,
-        verticalAmount: 0,
-      },
+      { type: MessageDataTypes.message, value: '' },
+      { type: MessageDataTypes.buttons, verButtons: [], horButtons: [] },
+      { type: MessageDataTypes.answers, verButtons: [], horButtons: [] },
     ],
-    saveAnswer: '',
+    showTime: {
+      show: true,
+      value: 0,
+    },
+    saveAnswer: {
+      show: true,
+      value: '',
+    },
   },
   api: {
     name: 'api',
@@ -160,7 +193,7 @@ export const defaultBlocks = {
   deeplink: {
     name: 'Deeplink',
     param: '',
-    type: 'random',
+    type: 'Случайное',
     signsAmount: 8,
     additionValue: '',
     additionLink: '',
@@ -169,6 +202,8 @@ export const defaultBlocks = {
     name: 'CRMBlock',
     crmList: ['1', '2', '3'],
     chosenCrm: '',
+    saveAsList: ['new', 'suppl'],
+    chosenSaveAs: '',
   },
   operator: {
     name: 'Operator call',
@@ -186,4 +221,12 @@ export default {};
   { value: 'Короткое сообщение', nameValue: 'Ok!' },
   { value: 'Формальное сообщение', nameValue: 'Оплачено' },
   { value: 'Общее сообщение', nameValue: 'успешно' },
+];
+
+export const messagesSuccessful = [
+  { value: 'По умолчанию', nameValue: 'Введите название' },
+  { value: 'Полное сообщение', nameValue: 'Оплата прошла успешно' },
+  { value: 'Короткое сообщение', nameValue: 'Ok!' },
+  { value: 'Формальное сообщение', nameValue: 'Оплачено' },
+  { value: 'Общее сообщение', nameValue: 'Успешно' },
 ]; */
