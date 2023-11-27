@@ -15,7 +15,7 @@ const MobileTable: FC<TMobileTable> = ({ data }) => {
     <div className={styles.content}>
       <ul className={styles.list}>
         {data.map((item) => (
-          <MobileTableRow {...item} />
+          <MobileTableRow key={item.id} {...item} />
         ))}
       </ul>
       <Button
