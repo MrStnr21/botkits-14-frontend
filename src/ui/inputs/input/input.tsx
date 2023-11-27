@@ -134,6 +134,8 @@ const Input: FC<IInput> = ({
         minLength={minLength}
         maxLength={maxLength}
         required={required}
+        // step="0.01"
+        // lang="en"
       />
       {(error.error || isInvalid) && (
         <Typography tag="p" className={stylesInput.incorrect_text}>
