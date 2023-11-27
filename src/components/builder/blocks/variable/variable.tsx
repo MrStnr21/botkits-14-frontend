@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -13,7 +13,7 @@ import Value from './value/value';
 const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   data,
 }) => {
-  const content = useMemo(() => data.variables, [data]);
+  const content = data.variables;
 
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
