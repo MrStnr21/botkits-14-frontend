@@ -36,8 +36,16 @@ export const rangeForCoordinates = {
   latitude: { min: -90, max: 90 },
 };
 
-export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
-export const saveOptions = ['Новая запись', 'Дополнить запись'];
+export const crmList = [
+  { value: '1', nameValue: 'CRM 1' },
+  { value: '2', nameValue: 'CRM 2' },
+  { value: '3', nameValue: 'CRM 3' },
+];
+
+export const saveOptions = [
+  { value: 'new', nameValue: 'Новая запись' },
+  { value: 'suppl', nameValue: 'Дополнить запись' },
+];
 
 export const selectValues = [
   { value: '1', nameValue: '1' },
@@ -194,6 +202,8 @@ export const defaultBlocks = {
     name: 'CRMBlock',
     crmList: ['1', '2', '3'],
     chosenCrm: '',
+    saveAsList: ['new', 'suppl'],
+    chosenSaveAs: '',
   },
   operator: {
     name: 'Operator call',

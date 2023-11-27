@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import stylesCreateBot from './create-bot.module.scss';
 import { addBotAction } from '../../../services/actions/bots/addBot';
 
-import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
+import { useAppDispatch } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -25,7 +25,6 @@ import Input from '../../../ui/inputs/input/input';
 
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
-import { signinSel, signupSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 
 interface ImageMap {
@@ -54,8 +53,6 @@ const img: ImageMap = {
 
 const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
   const [arrPages, setArrPages] = useState<string[]>([]);
-
-  const profile = useAppSelector(signupSel || signinSel);
 
   const { values, handleChange, setValues } = useForm({
     botName: { value: '', valueValid: false },
@@ -91,21 +88,20 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
     const dataBot = {
       type: 'custom',
       title: values?.botName.value,
-      profile,
       messengers: [
         {
           name: botName,
-          page: 'страница',
+          pages: arrPages,
           accessKey: values?.accessKey.value,
           url: values?.uri.value,
         },
       ],
-      botSettings: {},
+      settings: {},
     };
 
     try {
       dispatch(addBotAction(dataBot, token));
-      history(routesUrl.homePage);
+      history(`/${routesUrl.botBuilder}`);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);

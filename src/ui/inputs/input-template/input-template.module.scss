@@ -1,0 +1,38 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.template {
+  @include size(362px, 40px);
+  @include flex();
+  box-sizing: border-box;
+  background-color: $secondary-cultured-default;
+
+  &__big {
+    @include size(362px, 70px);
+  }
+
+  &__input {
+    @include font('Open Sans', $xs-font-size, $normal, $grey-3);
+    @include line-sizes($xl-line-height, $m-letter-space);
+    @include size(100%, unset);
+    @include indents(12px, 0);
+    border-radius: $m-border-radius;
+    outline: 0;
+    resize: none;
+    overflow: hidden;
+    background-color: $off-white;
+    border: 1px solid $grey-2;
+
+    &::placeholder {
+      color: $grey-3;
+    }
+  }
+
+  &__black {
+    color: $primary-oxford-blue-default;
+
+    &::placeholder {
+      color: $primary-oxford-blue-default;
+    }
+  }
+}

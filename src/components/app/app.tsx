@@ -22,6 +22,7 @@ import Statistics from '../../pages/statistics/statistics';
 import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
+import BotTemplates from '../../pages/bot-templates/bot-templates';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
@@ -134,6 +135,14 @@ const App: FC = (): JSX.Element => {
           element={
             <ProtectedRoute>
               <Partnership />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.bottemplates}
+          element={
+            <ProtectedRoute>
+              <BotTemplates />
             </ProtectedRoute>
           }
         />

@@ -1,4 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
+import { v4 as uuidv4 } from 'uuid';
 import {
   TBlockProps,
   TVariablesControlBlock,
@@ -11,25 +13,46 @@ import Value from './value/value';
 const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   data,
 }) => {
-  const [content, setContent] = useState<TVariablesControlBlock['variables']>(
-    data.variables
-  );
+  const content = data.variables;
 
-  const addValue = () => {
-    setContent([...content, { value: '' }]);
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
+
+  const addField = () => {
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              variables: [
+                ...item.data.variables,
+                {
+                  id: uuidv4(),
+                  variable: '',
+                  value: '',
+                },
+              ],
+            },
+          };
+        }
+        return item;
+      })
+    );
   };
 
   return (
     <ControlLayout type="Управление переменными">
       <div className={styleVariableBlock.container}>
-        {content.map(() => {
-          return <Value />;
+        {content.map((item) => {
+          return <Value idNum={item.id} key={item.id} />;
         })}
         <div className={styleVariableBlock.field}>
           <ConstructorAddButton
             buttonHtmlType="button"
             disabled={false}
-            onClick={addValue}
+            onClick={addField}
           >
             Добавить переменную
           </ConstructorAddButton>

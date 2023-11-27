@@ -5,7 +5,7 @@ import DropDownList from '../DropDownList/DropDownList';
 import MenuInformation from '../../../ui/menus/menu-information/menu-information';
 import Files from '../Files/Files';
 import Typography from '../../../ui/typography/typography';
-import { URL_AVATAR } from '../../../utils/config';
+// import { URL_AVATAR } from '../../../utils/config';
 
 interface IInformation {
   image?: string;
@@ -18,12 +18,7 @@ const Information: FC<IInformation> = ({ image, selectedUser }) => {
   return (
     <div className={stylesInformation.information}>
       <div className={stylesInformation.information__container}>
-        <Avatar
-          isBot="no"
-          state="offline"
-          big="yes"
-          pic={image || URL_AVATAR}
-        />
+        <Avatar isBot="no" state="offline" big="yes" pic={image} />
         <Typography
           tag="h4"
           fontFamily="secondary"
