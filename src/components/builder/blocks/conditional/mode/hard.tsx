@@ -10,31 +10,35 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
   const [input, setInput] = useState(false);
   const { getNodes, setNodes } = useReactFlow();
   const idNode = useNodeId();
-
-  const node = getNodes().find((item) => item.id === idNode);
+  const nodes = getNodes();
+  const node = nodes.filter((el) => el.id === idNode)[0];
 
   const itemVariables = () =>
     node && node.data.variables.find((item: { id: string }) => item.id === id);
 
   const setItemVariables = (
+    idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
     value: any
   ) => {
-    itemVariables()[key] = value;
+    // itemFromVariables(idItem)[key] = value;
 
     setNodes(
       getNodes().map((item) => {
-        if (item.id === id) {
+        if (item.id === idNode) {
           return {
             ...item,
             data: {
               ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  itemVariables,
-                },
-              ],
+              variables: node.data.variables.map(
+                (elem: { [x: string]: any; id: string }) => {
+                  if (elem.id === idItem) {
+                    // eslint-disable-next-line no-param-reassign
+                    elem[key] = value;
+                  }
+                  return elem;
+                }
+              ),
             },
           };
         }
@@ -44,7 +48,7 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
   };
 
   const setCondition = (value: any) => {
-    setItemVariables('condition', value);
+    setItemVariables(id, 'condition', value);
     setInput(!input);
   };
 
