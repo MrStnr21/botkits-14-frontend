@@ -58,7 +58,7 @@ const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
                 type === 'longitude' &&
                 (int < rangeForCoordinates.longitude.min ||
                   int > rangeForCoordinates.longitude.max)) ||
-              (newValue.length > 2 &&
+              (newValue.length > 1 &&
                 type === 'latitude' &&
                 (int < rangeForCoordinates.latitude.min ||
                   int > rangeForCoordinates.latitude.max))
