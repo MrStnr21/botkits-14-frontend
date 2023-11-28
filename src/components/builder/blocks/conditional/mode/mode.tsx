@@ -13,13 +13,10 @@ export type TModeProps = {
 };
 
 const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
-  const { getNodes } = useReactFlow();
-  const idNode = useNodeId();
+  const { getNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
   const nodes = getNodes();
-  const node = useMemo(
-    () => nodes.filter((el) => el.id === idNode)[0],
-    [nodes]
-  );
+  const node = getNode(idNode);
 
   const itemFromVariables: {
     id: string;
@@ -31,7 +28,9 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
     condition?: string;
     targetBlock: string;
   } = useMemo(
-    () => node.data.variables.filter((el: { id: string }) => el.id === id)[0],
+    () =>
+      node &&
+      node.data.variables.filter((el: { id: string }) => el.id === id)[0],
     [node]
   );
 

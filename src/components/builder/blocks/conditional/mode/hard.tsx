@@ -7,13 +7,13 @@ export type THardBlockProps = {
 };
 
 const HardMode: FC<THardBlockProps> = ({ id }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const idNode = useNodeId();
-  const nodes = getNodes();
-  const node = nodes.filter((el) => el.id === idNode)[0];
+  const { getNodes, setNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
+  const node = getNode(idNode);
 
   const itemFromVariables = useMemo(
     () =>
+      node &&
       node.data.variables.filter((item: { id: string }) => item.id === id)[0],
     [node]
   );
@@ -30,15 +30,17 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
             ...item,
             data: {
               ...item.data,
-              variables: node.data.variables.map(
-                (elem: { [x: string]: any; id: string }) => {
-                  if (elem.id === idItem) {
-                    // eslint-disable-next-line no-param-reassign
-                    elem[key] = value;
+              variables:
+                node &&
+                node.data.variables.map(
+                  (elem: { [x: string]: any; id: string }) => {
+                    if (elem.id === idItem) {
+                      // eslint-disable-next-line no-param-reassign
+                      elem[key] = value;
+                    }
+                    return elem;
                   }
-                  return elem;
-                }
-              ),
+                ),
             },
           };
         }

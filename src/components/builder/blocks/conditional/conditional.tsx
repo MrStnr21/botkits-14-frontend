@@ -8,17 +8,15 @@ import {
   TBlockProps,
   TConditionalBlock,
 } from '../../../../services/types/builder';
-// eslint-disable-next-line import/no-named-as-default
 import Mode from './mode/mode';
 import ToggleButton from './toggle-button/toggle-button';
 
 const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
 
-  const { getNodes, setNodes } = useReactFlow();
-  const idNode = useNodeId();
-  const nodes = getNodes();
-  const node = nodes.filter((el) => el.id === idNode)[0];
+  const { getNodes, setNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
+  const node = getNode(idNode);
   const [amountEasy, setAmountEasy] = useState(0);
   const [amountHard, setAmountHard] = useState(0);
 
@@ -88,15 +86,17 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
             ...item,
             data: {
               ...item.data,
-              variables: node.data.variables.map(
-                (elem: { [x: string]: any; id: string }) => {
-                  if (elem.id === idItem) {
-                    // eslint-disable-next-line no-param-reassign
-                    elem[key] = value;
+              variables:
+                node &&
+                node.data.variables.map(
+                  (elem: { [x: string]: any; id: string }) => {
+                    if (elem.id === idItem) {
+                      // eslint-disable-next-line no-param-reassign
+                      elem[key] = value;
+                    }
+                    return elem;
                   }
-                  return elem;
-                }
-              ),
+                ),
             },
           };
         }
@@ -145,7 +145,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
           }
         }
       }),
-    [nodes, mode]
+    [node, mode]
   );
 
   return (
