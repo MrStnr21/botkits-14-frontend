@@ -7,6 +7,7 @@ import ConstructorDefaultButton from '../../../ui/buttons/constructor-default-bu
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import TrashIcon from '../../icons/Trash/TrashIcon';
 import { TTrigger } from '../../../services/types/builder';
+import { messagesSuccessful } from '../utils/data';
 
 export interface ITriggerProps {
   handleTriggerData: (
@@ -19,18 +20,44 @@ export interface ITriggerProps {
   id: string;
   myTag: string;
   type?: 'block' | 'text';
+  text?: string;
+  name?: string;
 }
 
-type TButtons = 'Приветствие' | 'Какое-нибудь действие' | 'Прощание';
+const Trigger: FC<ITriggerProps> = ({
+  id,
+  handleTriggerData,
+  myTag,
+  type,
+  text,
+  name,
+}) => {
+  const getDefaultAnswerType = () => {
+    if (text) {
+      return 'text';
+    }
+    if (name) {
+      return 'block';
+    }
+    if (type) {
+      return type;
+    }
+    return 'block';
+  };
 
-const Trigger: FC<ITriggerProps> = ({ id, handleTriggerData, myTag, type }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [answerType, setAnswerType] = useState<'block' | 'text'>(type!);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [action, setAction] = useState<TButtons>('Приветствие');
+  const getButtons = () => {
+    return messagesSuccessful.map((item) => item.nameValue);
+  };
+
+  const [answerType, setAnswerType] = useState<'block' | 'text'>(
+    getDefaultAnswerType()
+  );
 
   const handleChangeState =
-    (state: 'tag' | 'answer type', answer?: 'block' | 'text') =>
+    (
+      state: 'tag' | 'answer type' | 'text' | 'block',
+      answer?: 'block' | 'text'
+    ) =>
     (e?: ChangeEvent<HTMLInputElement>) => {
       switch (state) {
         case 'tag': {
@@ -46,16 +73,17 @@ const Trigger: FC<ITriggerProps> = ({ id, handleTriggerData, myTag, type }) => {
           });
           break;
         }
+        case 'text': {
+          handleTriggerData('update', {
+            trigger: { id, type: 'text', tag: myTag, text: e?.target.value },
+          });
+          break;
+        }
         default: {
           break;
         }
       }
     };
-
-  // Это заглушка, пока неизвестно что и как будет сюда попадать
-  const getButtons = () => {
-    return ['Приветствие', 'Какое-нибудь действие', 'Прощание'];
-  };
 
   return (
     <article className={styles.wrap}>
@@ -89,15 +117,24 @@ const Trigger: FC<ITriggerProps> = ({ id, handleTriggerData, myTag, type }) => {
             Текстом
           </ConstructorDefaultButton>
         </div>
-        <MenuVariable
-          // eslint-disable-next-line @typescript-eslint/no-shadow
-          onClick={(action: TButtons) => {
-            setAction(action);
-          }}
-          width="256px"
-          nameMenu={getButtons()[0]}
-          buttons={getButtons()}
-        />
+        {answerType === 'block' ? (
+          <MenuVariable
+            onClick={(action: string) => {
+              handleTriggerData('update', {
+                trigger: { id, type: 'block', tag: myTag, name: action },
+              });
+            }}
+            width="256px"
+            nameMenu={getButtons()[0]}
+            buttons={getButtons()}
+          />
+        ) : (
+          <Input
+            value={text}
+            onChange={handleChangeState('text')}
+            placeholder="Введите ответ"
+          />
+        )}
       </div>
     </article>
   );

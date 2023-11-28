@@ -11,6 +11,9 @@ type TTriggerBlockProps = {
   close: () => void;
 };
 
+// eslint-disable-next-line import/no-mutable-exports
+export let triggers: TTrigger[] = [];
+
 const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
   const [triggersData, setTriggersData] = useState<TTrigger[]>([]);
 
@@ -23,8 +26,10 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
   ) => {
     if (typeOfAction === 'add' && optional.trigger) {
       setTriggersData([...triggersData, optional.trigger]);
+      triggers = triggersData;
     } else if (typeOfAction === 'delete' && optional.id) {
       setTriggersData(triggersData.filter((item) => item.id !== optional.id));
+      triggers = triggersData;
     } else if (typeOfAction === 'update' && optional.trigger) {
       setTriggersData(
         triggersData.map((item) => {
@@ -35,6 +40,7 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
           return item;
         })
       );
+      triggers = triggersData;
     }
   };
 
@@ -44,6 +50,7 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
         id: uuidv4(),
         tag: 'start',
         type: 'block',
+        name: 'Блок сообщений',
       },
     });
   };
