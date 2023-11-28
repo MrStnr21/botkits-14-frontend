@@ -24,13 +24,13 @@
       background-color: $primary-persian-blue-default;
     }
 
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: $switching-width) {
       @include size(3.42px, 3.42px);
       outline-offset: 3.04px;
     }
   }
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
     justify-content: center;
   }
@@ -39,7 +39,7 @@
 .hidden-content {
   @include flex(column, false, false, 8px);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     gap: 4px
   }
 }

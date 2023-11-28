@@ -9,7 +9,7 @@
   box-shadow: $m-box-shadow;
   background-color: $off-white;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     width: 168px;
   }
 }
@@ -23,7 +23,7 @@
   position: relative;
   padding: 13px 16px 16px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 7px 9px 9px;
   }
 }
@@ -33,7 +33,7 @@
   color: $grey-3;
   font-size: 12px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 6.84px;
     line-height: $m-line-height;
   }
@@ -46,7 +46,7 @@
   padding-right: 20px;
   outline: 0;
   border: 0;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding-right: 10px;
     font-size: 9.12px;
     line-height: $m-line-height;
@@ -68,7 +68,7 @@
     cursor: $cursor;
   }
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include size(14px, 14px);
     top: 20px;
     right: 5px;
@@ -80,7 +80,7 @@
   background-color: $secondary-cultured-hover;
   margin: 0;
   border: 0;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     height: 0.5px;
   }
 }

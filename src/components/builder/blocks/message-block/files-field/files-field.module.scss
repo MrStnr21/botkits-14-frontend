@@ -9,7 +9,7 @@
   width: fit-content;
   border-radius: $l-border-radius;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 9px 7px;
   }
 }
@@ -20,7 +20,7 @@
   text-align: left;
   margin: 0 0 12px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
   }
 }

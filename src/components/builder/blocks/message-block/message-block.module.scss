@@ -5,7 +5,7 @@
   @include flex(column, false, false, $gap);
   padding: $padding;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     gap: 4px
   }
 }
@@ -13,7 +13,7 @@
 .content {
   @include content(12px 16px 16px, 8px);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 7px 9px 8px;
   }
 }
@@ -21,7 +21,7 @@
 .hidden-blocks{
   @include content(16px, 16px);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 8px 9px 9px;
   }
 }
@@ -33,7 +33,7 @@
     @include font('Open Sans', $xxs-font-size, $normal, $grey-3);
     @include line-sizes($xl-line-height, $m-letter-space);
 
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: $switching-width) {
       font-size: 6.84px;
     }
   }
@@ -43,7 +43,7 @@
   @include flex(row, false, false, 7px);
   padding-top: 4px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 0;
   }
 }
@@ -54,7 +54,7 @@
   border: 0;
   background-color: $secondary-cultured-hover;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     width: 150px;
     align-self: center;
   }
