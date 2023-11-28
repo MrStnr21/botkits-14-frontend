@@ -4,6 +4,7 @@ import styles from './triggerBlock.module.scss';
 import CloseIcon from '../../icons/Close/CloseIcon';
 import ConstructorAddButton from '../../../ui/buttons/constructor-add-button/constructor-add-button';
 import Trigger from '../trigger/trigger';
+import { TTrigger } from '../../../services/types/builder';
 
 type TTriggerBlockProps = {
   isOpened: boolean;
@@ -11,17 +12,40 @@ type TTriggerBlockProps = {
 };
 
 const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
-  const [triggers, setTriggers] = useState<string[]>([]);
+  const [triggersData, setTriggersData] = useState<TTrigger[]>([]);
 
-  const deleteTrigger = (delId: string) => {
-    const newTriggers = triggers.filter((id) => id !== delId);
-    setTriggers(newTriggers);
+  const handleTriggerData = (
+    typeOfAction: 'add' | 'delete' | 'update',
+    optional: {
+      trigger?: TTrigger;
+      id?: string;
+    }
+  ) => {
+    if (typeOfAction === 'add' && optional.trigger) {
+      setTriggersData([...triggersData, optional.trigger]);
+    } else if (typeOfAction === 'delete' && optional.id) {
+      setTriggersData(triggersData.filter((item) => item.id !== optional.id));
+    } else if (typeOfAction === 'update' && optional.trigger) {
+      setTriggersData(
+        triggersData.map((item) => {
+          if (item.id === optional.trigger?.id) {
+            // eslint-disable-next-line no-param-reassign
+            item = optional.trigger!;
+          }
+          return item;
+        })
+      );
+    }
   };
 
   const addTrigger = () => {
-    const newTriggers = [...triggers];
-    newTriggers.push(uuidv4());
-    setTriggers(newTriggers);
+    handleTriggerData('add', {
+      trigger: {
+        id: uuidv4(),
+        tag: 'start',
+        type: 'block',
+      },
+    });
   };
 
   return (
@@ -35,8 +59,16 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
         </div>
       </div>
       <div className={styles.triggers}>
-        {triggers.map((id) => {
-          return <Trigger deleteTrigger={deleteTrigger} id={id} key={id} />;
+        {triggersData.map((item) => {
+          return (
+            <Trigger
+              handleTriggerData={handleTriggerData}
+              id={item.id}
+              key={item.id}
+              myTag={item.tag}
+              type={item.type}
+            />
+          );
         })}
         <ConstructorAddButton onClick={addTrigger}>
           Добавить тэг
