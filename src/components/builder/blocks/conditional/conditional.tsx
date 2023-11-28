@@ -24,7 +24,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [amountHard, setAmountHard] = useState(0);
 
   /* const itemVariables1 = node.data.variables.map(
-    (el: { type: any }) => el.type
+    (el: { condition: any; type: any }) => el.condition
   ); */
 
   const addHard = () => {
@@ -81,16 +81,11 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
     setAmountEasy(amountEasy + 1);
   };
 
-  /* const itemFromVariables = (idItem: string) =>
-    node.data.variables.filter((el: { id: string }) => el.id === idItem)[0]; */
-
   const setItemVariables = (
     idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
     value: any
   ) => {
-    // itemFromVariables(idItem)[key] = value;
-
     setNodes(
       getNodes().map((item) => {
         if (item.id === idNode) {

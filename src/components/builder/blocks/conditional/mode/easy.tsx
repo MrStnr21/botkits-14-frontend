@@ -1,9 +1,8 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 
 import styles from './mode.module.scss';
 import { selectValues, signSelectValues } from '../../../utils/data';
-// import { TVariable } from '../../../../../services/types/builder';
 import Input from '../../../../../ui/inputs/input/input';
 import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
 
@@ -11,7 +10,6 @@ export type TEasyBlockProps = {
   id: string;
 };
 const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
-  const [input, setInput] = useState(false);
   const buttonsSignSelect = signSelectValues.map((item) => item.nameValue);
   const buttonsSelectValues = selectValues.map((item) => item.nameValue);
   const { getNodes, setNodes } = useReactFlow();
@@ -19,16 +17,17 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
   const nodes = getNodes();
   const node = nodes.filter((el) => el.id === idNode)[0];
 
-  const itemVariables = () =>
-    node && node.data.variables.find((item: { id: string }) => item.id === id);
+  const itemFromVariables = useMemo(
+    () =>
+      node.data.variables.filter((item: { id: string }) => item.id === id)[0],
+    [node]
+  );
 
   const setItemVariables = (
     idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
     value: any
   ) => {
-    // itemFromVariables(idItem)[key] = value;
-
     setNodes(
       getNodes().map((item) => {
         if (item.id === idNode) {
@@ -55,7 +54,6 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
 
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);
-    setInput(!input);
   };
 
   const setVariable = (value: any) => setItemVariables(id, 'variable', value);
@@ -64,9 +62,9 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
 
   const active = useMemo(
     () =>
-      itemVariables().variable &&
-      Object.values(itemVariables().variable)[0] !== '',
-    [itemVariables().variable]
+      itemFromVariables.variable &&
+      Object.values(itemFromVariables.variable)[0] !== '',
+    [itemFromVariables.variable]
   );
 
   const content = useMemo(
@@ -78,8 +76,8 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
               width="184"
               buttons={buttonsSelectValues}
               nameMenu={
-                (itemVariables().variable &&
-                  Object.values(itemVariables().variable)[0]) ||
+                (itemFromVariables.variable &&
+                  Object.values(itemFromVariables.variable)[0]) ||
                 'Переменная'
               }
               onClick={(name: string) => {
@@ -92,7 +90,7 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
             <MenumenuSelectFlow
               width="52"
               buttons={buttonsSignSelect}
-              nameMenu={itemVariables().sign || buttonsSignSelect[0]}
+              nameMenu={itemFromVariables.sign || buttonsSignSelect[0]}
               onClick={(name: string) => {
                 setSign(name);
               }}
@@ -107,13 +105,13 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
           }
           styled="bot-builder-default"
           placeholder="Значение"
-          value={itemVariables().condition}
+          value={itemFromVariables.condition}
           minLength={0}
           required={false}
         />
       </>
     ),
-    [node, input]
+    [node]
   );
 
   return <div className={styles['labeled-content']}>{content}</div>;

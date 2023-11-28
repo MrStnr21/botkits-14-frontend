@@ -1,5 +1,5 @@
-import { FC, useMemo, useState } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
+import { FC, useMemo /* useEffect */ } from 'react';
+import { useReactFlow, useNodeId /* useStore */ } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
 
 export type THardBlockProps = {
@@ -7,22 +7,27 @@ export type THardBlockProps = {
 };
 
 const HardMode: FC<THardBlockProps> = ({ id }) => {
-  const [input, setInput] = useState(false);
+  // Костыль1 для ререндеринга
+  // const [input, setInput] = useState(false);
   const { getNodes, setNodes } = useReactFlow();
   const idNode = useNodeId();
   const nodes = getNodes();
   const node = nodes.filter((el) => el.id === idNode)[0];
 
-  const itemVariables = () =>
-    node && node.data.variables.find((item: { id: string }) => item.id === id);
+  const itemFromVariables = useMemo(
+    () =>
+      node.data.variables.filter((item: { id: string }) => item.id === id)[0],
+    [node]
+  );
+  // Костыль2 для ререндеринга
+  /* const { domNode } = useStore((s) => s);
+  useEffect(() => {}, [domNode]); */
 
   const setItemVariables = (
     idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
     value: any
   ) => {
-    // itemFromVariables(idItem)[key] = value;
-
     setNodes(
       getNodes().map((item) => {
         if (item.id === idNode) {
@@ -49,7 +54,7 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
 
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);
-    setInput(!input);
+    // setInput(!input);
   };
 
   const content = useMemo(
@@ -60,16 +65,15 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
         }
         styled="bot-builder-default"
         placeholder="Условие"
-        value={itemVariables().condition}
+        value={itemFromVariables.condition}
         minLength={0}
         required={false}
       />
     ),
-    [node, input]
+    [node]
   );
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{content}</>;
+  return content;
 };
 
 export default HardMode;
