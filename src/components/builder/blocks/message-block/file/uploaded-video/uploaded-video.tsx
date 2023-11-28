@@ -8,7 +8,7 @@ export type TUploadedVideoProps = {
 };
 
 const UploadedVideo: FC<TUploadedVideoProps> = ({ src, onRemove }) => {
-  const isMobile = useMediaQuery('(max-width: 520px)');
+  const isMobile = useMediaQuery('(max-width: 620px)');
   return (
     <VideoCard
       hover

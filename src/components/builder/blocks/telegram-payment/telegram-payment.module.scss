@@ -6,7 +6,7 @@
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 9px;
   }
 }
@@ -17,7 +17,7 @@
 
 .wrapperCurrency {
   min-width: 66px;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     min-width: 50px;
   }
 }

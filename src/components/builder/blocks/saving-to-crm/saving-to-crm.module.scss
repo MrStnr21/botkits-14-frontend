@@ -6,7 +6,7 @@
   @include flex(column, false, false, 8px);
   @include font('Open Sans', $xs-font-size, $bold);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 7px 9px 9px;
   }
 }

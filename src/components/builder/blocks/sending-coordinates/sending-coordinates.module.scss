@@ -6,7 +6,7 @@
   padding: 12px 16px 16px;
   box-sizing: border-box;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 12px 9px 9px;
   }
 }
@@ -14,7 +14,7 @@
 .extraClass:first-of-type{
   padding: 12px 12px 8px !important;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 9px 9px 6px !important
   }
 }
@@ -22,7 +22,7 @@
 .extraClass:last-of-type{
   padding: 8px 12px 12px !important;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 6px 9px 9px !important
   }
 }
@@ -32,7 +32,7 @@
   background-color: $secondary-cultured-default;
   border-radius: $l-border-radius;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     border-radius: 5.7px;
   }
 }

@@ -10,7 +10,7 @@
   border-radius: $l-border-radius;
   box-sizing: border-box;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include size(150px, 36px);
     @include indents(6px 7px, 0 0 4px);
   }
@@ -24,7 +24,7 @@
   background-color: $secondary-cultured-hover;
   box-sizing: border-box;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include size(20px, 22px);
     @include indents(5px 3px, 0 2px);
   }
@@ -32,8 +32,8 @@
 
 .v {
   @include size(95px, 40px);
-  
-  @media screen and (max-width: 520px) {
+
+  @media screen and (max-width: $switching-width) {
     @include size(56px, 24px);
 
     .svg {
