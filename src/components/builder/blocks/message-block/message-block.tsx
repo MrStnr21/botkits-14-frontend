@@ -2,6 +2,7 @@
 import { FC, useEffect, useMemo } from 'react';
 import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
+import { v4 as uuid } from 'uuid';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -152,7 +153,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     () => {
       const node: Node = {
         type: 'button',
-        id: Math.random().toString(),
+        id: uuid(),
         position: { x, y: y + blockOffset },
         data: {
           type: blockType.slice(0, 6),
