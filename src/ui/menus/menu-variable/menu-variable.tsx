@@ -73,9 +73,10 @@ const MenuVariable: FC<IMenuVariable> = ({
         className={`${stylesMenuVariable.box} ${isActive}`}
       >
         <ul className={stylesMenuVariable.ul}>
-          {buttons.map((name) => {
+          {buttons.map((name, index) => {
+            const key = index;
             return (
-              <li className={stylesMenuVariable.li}>
+              <li key={key} className={stylesMenuVariable.li}>
                 <button
                   type="button"
                   className={`${stylesMenuVariable.button} ${stylesMenuVariable.text}`}
