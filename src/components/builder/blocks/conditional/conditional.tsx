@@ -1,6 +1,5 @@
 import { FC, useState, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
-// import { v4 as uuidv4 } from 'uuid';
 
 import styles from './conditional.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -22,10 +21,6 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const node = nodes.filter((el) => el.id === idNode)[0];
   const [amountEasy, setAmountEasy] = useState(0);
   const [amountHard, setAmountHard] = useState(0);
-
-  /* const itemVariables1 = node.data.variables.map(
-    (el: { condition: any; type: any }) => el.condition
-  ); */
 
   const addHard = () => {
     setNodes(
@@ -168,7 +163,6 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
         />
       </div>
       <div className={styles.content}>
-        {/* `yuwtwtw ${itemVariables1} ${node && node.data.variables.length}` */}
         {content}
         <ConstructorAddButton onClick={mode === 'easy' ? addEasy : addHard}>
           Добавить условие

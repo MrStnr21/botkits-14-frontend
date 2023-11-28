@@ -1,5 +1,5 @@
-import { FC, useMemo /* useEffect */ } from 'react';
-import { useReactFlow, useNodeId /* useStore */ } from 'reactflow';
+import { FC, useMemo } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
 
 export type THardBlockProps = {
@@ -7,8 +7,6 @@ export type THardBlockProps = {
 };
 
 const HardMode: FC<THardBlockProps> = ({ id }) => {
-  // Костыль1 для ререндеринга
-  // const [input, setInput] = useState(false);
   const { getNodes, setNodes } = useReactFlow();
   const idNode = useNodeId();
   const nodes = getNodes();
@@ -19,9 +17,6 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
       node.data.variables.filter((item: { id: string }) => item.id === id)[0],
     [node]
   );
-  // Костыль2 для ререндеринга
-  /* const { domNode } = useStore((s) => s);
-  useEffect(() => {}, [domNode]); */
 
   const setItemVariables = (
     idItem: string,
@@ -54,7 +49,6 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
 
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);
-    // setInput(!input);
   };
 
   const content = useMemo(
