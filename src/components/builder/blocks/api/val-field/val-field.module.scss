@@ -1,9 +1,10 @@
 @use '../../../../../stylesheets/mixins' as *;
+@use '../../../../../stylesheets/variables' as *;
 
 .form {
   @include flex(row, $gap: 4px);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     gap: 2px;
   }
 }

@@ -6,7 +6,6 @@ import EasyMode from './easy';
 import HardMode from './hard';
 import { messagesSuccessful } from '../../../utils/data';
 import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
-import Menu from '../../../../../ui/menus/menu/menu';
 
 export type TModeProps = {
   id: string;
@@ -14,13 +13,10 @@ export type TModeProps = {
 };
 
 const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
-  const { getNodes } = useReactFlow();
-  const idNode = useNodeId();
+  const { getNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
   const nodes = getNodes();
-  const node = useMemo(
-    () => nodes.filter((el) => el.id === idNode)[0],
-    [nodes]
-  );
+  const node = getNode(idNode);
 
   const itemFromVariables: {
     id: string;
@@ -32,14 +28,13 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
     condition?: string;
     targetBlock: string;
   } = useMemo(
-    () => node.data.variables.filter((el: { id: string }) => el.id === id)[0],
+    () =>
+      node &&
+      node.data.variables.filter((el: { id: string }) => el.id === id)[0],
     [node]
   );
 
   const buttonsTargetBlock = messagesSuccessful.map((item) => item.value);
-  const options = messagesSuccessful.map((item) => {
-    return { label: item.value, value: item.nameValue };
-  });
 
   const active = useMemo(
     () => itemFromVariables.targetBlock !== '',
@@ -74,7 +69,6 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
           }}
           active={active}
         />
-        <Menu options={options} onItemClick={() => setTargetBlock} />
       </LabeledInput>
     </div>
   );

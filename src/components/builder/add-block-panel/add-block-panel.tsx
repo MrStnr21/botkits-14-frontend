@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useReactFlow } from 'reactflow';
+import { v4 as uuid } from 'uuid';
 import styles from './add-block-panel.module.scss';
 import ButtonAddBlock from '../../../ui/buttons/button-add-block/button-add-block';
 import api from '../../../images/icon/24x24/add block/api.svg';
@@ -20,7 +21,7 @@ const AddBlockPanel: FC = () => {
     return () => {
       const { x, y, zoom } = getViewport();
       const newNode = {
-        id: Math.random().toString(), // Добавить логику уникального id
+        id: uuid(),
         position: {
           // Задание блока примерно по центру экрана
           x: (-x + window.innerWidth / 2) / zoom,

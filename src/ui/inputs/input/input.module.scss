@@ -73,7 +73,7 @@
   margin: 0;
   outline: 0;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
   }
 }
@@ -123,7 +123,7 @@
 .inputBuilderNum{
   @include input-builder(6px 4px, $secondary-cultured-default, $bold, $grey-3, $grey-3);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 5px 3px;
   }
 }
@@ -131,7 +131,7 @@
 .inputBuilderDefault{
   @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 6.5px 5.82px;
   }
 }

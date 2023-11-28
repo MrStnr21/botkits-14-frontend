@@ -9,7 +9,7 @@
   @include flex(column, false, false, 8px);
   padding: 12px 16px 16px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 12px 9px 9px;
   }
 }
@@ -17,7 +17,7 @@
 .extraClass {
   padding: 12px 16px 21px !important;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 9px 7px !important;
   }
 }
@@ -28,7 +28,7 @@
   background-color: $secondary-cultured-default;
   border-radius: $l-border-radius;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     border-radius: 5.7px;
     width: 150px;
   }
@@ -37,7 +37,7 @@
 .wrapperButton {
   @include size(232px, 44px);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include size(138px, 25px);
   }
 }

@@ -15,7 +15,7 @@
   color: $color;
   text-decoration: none;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: $m-font-size;
   }
 }
@@ -44,7 +44,7 @@
   padding: 8px 12px;
   cursor: $cursor;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     width: 136px;
     min-height: 27px;
     padding: 6px 8px;

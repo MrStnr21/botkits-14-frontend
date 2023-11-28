@@ -19,7 +19,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const [hidden, setHidden] = useState(true);
   const { getNodes, setNodes, getNode } = useReactFlow();
   const id = useNodeId() || '';
-  const isMobile = useMediaQuery('(max-width: 520px)');
+  const isMobile = useMediaQuery('(max-width: 620px)');
 
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
 
