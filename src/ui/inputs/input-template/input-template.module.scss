@@ -22,17 +22,10 @@
     overflow: hidden;
     background-color: $off-white;
     border: 1px solid $grey-2;
-
-    &::placeholder {
-      color: $grey-3;
-    }
-  }
-
-  &__black {
     color: $primary-oxford-blue-default;
 
     &::placeholder {
-      color: $primary-oxford-blue-default;
+      color: $grey-3;
     }
   }
 }

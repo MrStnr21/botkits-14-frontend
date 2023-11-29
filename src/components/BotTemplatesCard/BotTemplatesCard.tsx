@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from 'react';
+import { FC, useState, useRef, useEffect, ChangeEvent } from 'react';
 import stylesCard from './BotTemplatesCard.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
@@ -13,17 +13,44 @@ import { BUTTON_NAME } from '../../utils/constants';
 
 interface IBotTemplatesCard {
   image?: string;
+  title?: string;
+  description?: string;
+  price?: number;
+  isToPublish: boolean;
 }
 
-const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
-  const [crm, setCrm] = useState(true);
+const BotTemplatesCard: FC<IBotTemplatesCard> = ({
+  image,
+  title,
+  description,
+  price,
+  isToPublish,
+}) => {
+  const [crm, setCrm] = useState(isToPublish);
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>();
-  const [nameBot, setNameBot] = useState<string>();
-  const [aboutBot, setAboutBot] = useState<string>();
-  const [priceBot, setPriceBot] = useState<string>();
+  const [nameBot, setNameBot] = useState<string>(title || '');
+  const [aboutBot, setAboutBot] = useState<string>(description || '');
+  const [priceBot, setPriceBot] = useState<string>(String(price) || '');
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const importImage = async () => {
+    try {
+      const imageModule = await import(
+        `../../images/icon/template/${image}.svg`
+      );
+      return imageModule.default;
+    } catch (error) {
+      return 'null';
+    }
+  };
+
+  useEffect(() => {
+    importImage().then((importedImage) => {
+      setImageEdit(importedImage);
+    });
+  }, [image]);
 
   useOutsideClickAndEscape(
     menuRef,
@@ -70,7 +97,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
               state="offline"
               big="yes"
               botTemplates="yes"
-              pic={imageEdit || image || imageAvatar}
+              pic={imageEdit || imageAvatar}
             />
             <div className={stylesCard.editButton}>
               <input
@@ -80,7 +107,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
                 accept="image/*"
                 onChange={({ target: { files } }) => {
                   if (files !== null && files[0]) {
-                    setImageEdit(URL.createObjectURL(files![0]));
+                    setImageEdit(URL.createObjectURL(files[0]));
                   }
                 }}
               />
@@ -109,22 +136,28 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
           </div>
         </div>
         <InputTemplate
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setNameBot(e.target.value)
+          }
           size="small"
-          color="black"
           placeholder="Название бота"
           value={nameBot}
         />
         <InputTemplate
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setAboutBot(e.target.value)
+          }
           size="big"
-          color="grey"
           placeholder="Описание бота..."
           value={aboutBot}
         />
         <InputTemplate
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setPriceBot(e.target.value)
+          }
           size="small"
-          color="grey"
           placeholder="Цена в рублях"
-          value={priceBot}
+          value={String(priceBot)}
         />
         <CheckboxWithText
           label="Опубликовать"

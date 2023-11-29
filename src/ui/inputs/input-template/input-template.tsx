@@ -6,7 +6,6 @@ export interface IInputTemplate {
   value?: string;
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   size: 'small' | 'big';
-  color: 'grey' | 'black';
 }
 
 const InputTemplate: FC<IInputTemplate> = ({
@@ -14,24 +13,18 @@ const InputTemplate: FC<IInputTemplate> = ({
   placeholder = 'Введите сообщение...',
   onChange,
   size,
-  color,
 }) => {
-  let inputClassName = stylesInput.template__input;
   let inputContainerClassName = stylesInput.template;
 
   if (size === 'big') {
     inputContainerClassName += ' ';
     inputContainerClassName += stylesInput.template__big;
   }
-  if (color === 'black') {
-    inputClassName += ' ';
-    inputClassName += stylesInput.template__black;
-  }
 
   return (
     <div className={inputContainerClassName}>
       <textarea
-        className={inputClassName}
+        className={stylesInput.template__input}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
