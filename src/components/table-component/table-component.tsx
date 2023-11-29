@@ -87,6 +87,10 @@ const TableComponent: FC<Props> = ({
   };
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
+  const startIdx = page * rowsPerPage;
+  const endIdx = startIdx + rowsPerPage;
+  const paginatedData = tableData.slice(startIdx, endIdx);
+
   return (
     <Box sx={{ width: '100%' }}>
       {toolbar && <TableToolbar needFilter />}
@@ -126,7 +130,7 @@ const TableComponent: FC<Props> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {tableData?.map((row, index) => (
+              {paginatedData?.map((row, index) => (
                 <TableRow key={uuidv4()} sx={props.rowStyle}>
                   {check && (
                     <Checkbox

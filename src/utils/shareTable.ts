@@ -77,6 +77,33 @@ export const shareRows = [
     hands: false,
     stats: false,
   },
+  {
+    name: 'Robert Kennedy',
+    mail: 'leslie@gmail.com',
+    adm: false,
+    shared: true,
+    mailing: true,
+    hands: false,
+    stats: false,
+  },
+  {
+    name: 'Ivan Ivanov',
+    mail: 'ivan@gmail.com',
+    adm: true,
+    shared: true,
+    mailing: true,
+    hands: false,
+    stats: false,
+  },
+  {
+    name: 'John Snow',
+    mail: 'traitor@mail.com',
+    adm: true,
+    shared: true,
+    mailing: true,
+    hands: false,
+    stats: false,
+  },
 ];
 
 export const shareCols = [
