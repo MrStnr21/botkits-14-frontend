@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, useState, useMemo } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
 import { v4 as uuid } from 'uuid';
 import styles from './control-layout.module.scss';
@@ -12,6 +12,9 @@ type TControlLayoutProps = {
   type: string;
 };
 
+// eslint-disable-next-line import/no-mutable-exports
+export let namesOfBlocks: string[] = [];
+
 const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
@@ -19,6 +22,10 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
+  namesOfBlocks = useMemo(
+    () => getNodes().map((item) => item.data.name),
+    [getNodes()]
+  );
   const setName = setFlowData({ selectors: ['name'] });
 
   const onClick = () => {
