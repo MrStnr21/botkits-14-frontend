@@ -38,6 +38,9 @@ const LayoutFlow: FC = () => {
   const [triggerOpened, toggleTrigger] = useState(false);
   const [menuOpened, toggleMenu] = useState(false);
   const onConnect = useCallback((connection: Edge | Connection) => {
+    if (connection.source === connection.target) {
+      return; // Предотвращение соединения узла с самим собой
+    }
     setEdges((eds) => addEdge(connection, eds));
   }, []);
 
