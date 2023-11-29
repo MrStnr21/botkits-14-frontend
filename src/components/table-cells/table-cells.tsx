@@ -3,6 +3,7 @@ import cn from 'classnames';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
+import Checkbox from '../../ui/checkboxes/checkbox';
 
 /* Общее */
 export const dateCell = (date: string) => (
@@ -64,4 +65,8 @@ export const paymentStatusCell = (status: boolean) => (
   >
     {status ? 'Оплачено' : 'В обработке'}
   </Typography>
+);
+
+export const checkBoxCell = (data: string) => (
+  <Checkbox label="" checked onChange={() => {}} name="Имя" value="" />
 );
