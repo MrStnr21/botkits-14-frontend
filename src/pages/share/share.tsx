@@ -16,6 +16,7 @@ const Share: FC = (): JSX.Element => {
       <TableComponent
         pagination
         check
+        toolbar
         columns={shareCols}
         headComponent={ppHeadCell}
         tableData={shareRows}

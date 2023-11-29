@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
 import { Box, Checkbox } from '@mui/material';
 import Typography from '../../ui/typography/typography';
+import TableToolbar from '../table-toolbar/table-toolbar';
 
 type Columns = {
   key: string;
@@ -33,15 +34,11 @@ type Props = {
   cellStyle?: SxProps;
   pagination?: boolean;
   check?: boolean;
+  toolbar?: boolean;
 };
 
 const paperStyles = {
-  // width: '100%',
-  // padding: '40px',
   backgroundColor: 'inherit',
-  // borderRadius: '30px',
-  // boxSizing: 'border-box',
-  // boxShadow: '0px 6px 16px 0px rgba(21, 18, 51, 0.08)',
 };
 const paginationStyles = {
   width: '100%',
@@ -64,6 +61,7 @@ const TableComponent: FC<Props> = ({
   tableData,
   pagination,
   check,
+  toolbar,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -91,6 +89,7 @@ const TableComponent: FC<Props> = ({
 
   return (
     <Box sx={{ width: '100%' }}>
+      {toolbar && <TableToolbar needFilter />}
       <Paper elevation={0} sx={paperStyles}>
         <TableContainer>
           <Table>
