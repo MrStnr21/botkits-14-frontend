@@ -5,12 +5,15 @@ import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
 import CustomHandle from '../flow/custom-handle/custom-handle';
-import { setFlowData } from '../utils';
+// import { setFlowData } from '../utils';
 
 type TControlLayoutProps = {
   children?: ReactElement | ReactElement[];
   type: string;
 };
+
+// eslint-disable-next-line import/no-mutable-exports
+export let namesOfBlocks: string[] = [];
 
 const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const [hidden, setHidden] = useState(true);
@@ -19,7 +22,35 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
-  const setName = setFlowData({ selectors: ['name'] });
+  namesOfBlocks = getNodes().map((item) => item.data.name);
+
+  const setName = (e?: React.ChangeEvent<HTMLInputElement>) => {
+    const template = e?.target.value || '';
+    let nameBlock = e?.target.value || '';
+    let i = 0;
+
+    while (namesOfBlocks.includes(nameBlock)) {
+      // eslint-disable-next-line no-plusplus
+      nameBlock = `${template}-${++i}`;
+    }
+
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              name: nameBlock,
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  namesOfBlocks = getNodes().map((item) => item.data.name);
 
   const onClick = () => {
     toggleMenu(!menu);
@@ -92,7 +123,9 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
             type="text"
             className={styles.name}
             value={node?.data.name}
-            onChange={setName}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setName(event)
+            }
           />
           <div className={styles.more} onClick={onClick}>
             <img className={styles.img} src={moreIcon} alt="больше" />

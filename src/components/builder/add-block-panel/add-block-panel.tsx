@@ -13,11 +13,29 @@ import message from '../../../images/icon/24x24/add block/message-square.svg';
 import sliders from '../../../images/icon/24x24/add block/sliders.svg';
 import table from '../../../images/icon/24x24/add block/table.svg';
 import { defaultBlocks } from '../utils/data';
+import { namesOfBlocks } from '../control-layout/control-layout';
 
 const AddBlockPanel: FC = () => {
   const { setNodes, getNodes, getViewport } = useReactFlow();
 
   const addNode = (type: keyof typeof defaultBlocks) => {
+    // let changedNameDefaultBlocks = defaultBlocks;
+    const template = defaultBlocks[type].name;
+    let nameBlock = defaultBlocks[type].name;
+    let i = 0;
+    while (namesOfBlocks.includes(nameBlock)) {
+      // eslint-disable-next-line no-plusplus
+      nameBlock = `${template}-${++i}`;
+    }
+
+    const changedNameDefaultBlocks = {
+      ...defaultBlocks,
+      [type]: {
+        ...defaultBlocks[type],
+        name: nameBlock,
+      },
+    };
+
     return () => {
       const { x, y, zoom } = getViewport();
       const newNode = {
@@ -28,7 +46,7 @@ const AddBlockPanel: FC = () => {
           y: (-y + window.innerHeight / 2) / zoom,
         },
         type,
-        data: defaultBlocks[type],
+        data: changedNameDefaultBlocks[type],
       };
       setNodes([...getNodes(), newNode]);
     };
