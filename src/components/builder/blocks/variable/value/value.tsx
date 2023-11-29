@@ -4,7 +4,8 @@ import styles from './value.module.scss';
 import Equal from '../../../../icons/Equal/Equal';
 import Input from '../../../../../ui/inputs/input/input';
 import { selectValues } from '../../../utils/data';
-import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
+import Select from '../../../../../ui/select/select';
+import { Option } from '../../../../../utils/types';
 
 export type TValueProps = {
   idNum: string;
@@ -13,15 +14,16 @@ export type TValueProps = {
 const Value: FC<TValueProps> = ({ idNum }) => {
   const selectOptions = selectValues.map((el) => el.nameValue);
 
-  const { getNodes, setNodes } = useReactFlow();
+  const { getNodes, setNodes, getNode } = useReactFlow();
   const id = useNodeId();
-  const node = getNodes().find((el) => el.id === id);
+  const node = getNode(id!);
 
-  const itemLine = (idItem: string) =>
-    node && node.data.variables.find((el: { id: string }) => el.id === idItem);
+  const itemLine = node!.data.variables.find(
+    (el: { id: string }) => el.id === idNum
+  );
 
-  const setItemValues = (idItem: string, key: string, value: any) => {
-    itemLine(idItem)[key] = value;
+  const setItemValues = (key: string, value: any) => {
+    itemLine[key] = value;
 
     setNodes(
       getNodes().map((el) => {
@@ -39,11 +41,9 @@ const Value: FC<TValueProps> = ({ idNum }) => {
     );
   };
 
-  const setVar = (idItem: string, value: any) =>
-    setItemValues(idItem, 'variable', value);
+  const setVar = (value: any) => setItemValues('variable', value);
 
-  const setVal = (idItem: string, value: any) =>
-    setItemValues(idItem, 'value', value);
+  const setVal = (option: Option) => setItemValues('value', option.value);
 
   return (
     <div className={styles.overlay}>
@@ -51,8 +51,9 @@ const Value: FC<TValueProps> = ({ idNum }) => {
         <Input
           placeholder="Переменная"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setVar(idNum, e.target.value)
+            setVar(e.target.value)
           }
+          value={itemLine.variable}
           type="text"
           styled="bot-builder-default"
           textColor="default"
@@ -63,11 +64,13 @@ const Value: FC<TValueProps> = ({ idNum }) => {
         <Equal />
       </div>
       <div className={styles.v}>
-        <MenumenuSelectFlow
-          buttons={selectOptions}
-          nameMenu={selectOptions[0]}
-          onClick={(name: string) => setVal(idNum, name)}
-          active
+        <Select
+          options={selectOptions}
+          currentOption={itemLine.value}
+          handleSelect={setVal}
+          placeholder="переменная"
+          elementToCloseListener="flow"
+          adaptive
         />
       </div>
     </div>

@@ -54,98 +54,87 @@ export const selectValues = [
 ];
 
 export const selectValuesType = [
-  { value: 'random', nameValue: 'Случайное' },
-  { value: 'static', nameValue: 'Статичное' },
-  { value: 'variable', nameValue: 'Переменная' },
-  { value: 'JS', nameValue: 'JavaScript' },
-  { value: 'CRM', nameValue: 'CRM' },
+  { value: 'random', label: 'Случайное' },
+  { value: 'static', label: 'Статичное' },
+  { value: 'variable', label: 'Переменная' },
+  { value: 'JS', label: 'JavaScript' },
+  { value: 'CRM', label: 'CRM' },
 ];
 
 export const signSelectValues = [
   {
-    nameValue: equalImage,
+    icon: equalImage,
     value: 'eq',
-    isIcon: true,
-    iconDescription: 'Равно',
+    label: 'Равно',
   },
   {
-    nameValue: notEqualImage,
+    icon: notEqualImage,
     value: 'neq',
-    isIcon: true,
-    iconDescription: 'Не равно',
+    label: 'Не равно',
   },
   {
-    nameValue: moreImage,
+    icon: moreImage,
     value: 'more',
-    isIcon: true,
-    iconDescription: 'Больше',
+    label: 'Больше',
   },
   {
-    nameValue: moreOrEqualImage,
+    icon: moreOrEqualImage,
     value: 'moreeq',
-    isIcon: true,
-    iconDescription: 'Больше или равно',
+    label: 'Больше или равно',
   },
   {
-    nameValue: lessImage,
+    icon: lessImage,
     value: 'less',
-    isIcon: true,
-    iconDescription: 'Меньше',
+    label: 'Меньше',
   },
   {
-    nameValue: lessOrEqualImage,
+    icon: lessOrEqualImage,
     value: 'lesseq',
-    isIcon: true,
-    iconDescription: 'Меньше или равно',
+    label: 'Меньше или равно',
   },
   {
-    nameValue: noCaseEqualImage,
+    icon: noCaseEqualImage,
     value: 'eqnoreg',
-    isIcon: true,
-    iconDescription: 'Равно (без учёта регистра)',
+    label: 'Равно (без учёта регистра)',
   },
   {
-    nameValue: inLineNoCaseImage,
+    icon: inLineNoCaseImage,
     value: 'instrnoreg',
-    isIcon: true,
-    iconDescription: 'Входит в строку (без учёта регистра)',
+    label: 'Входит в строку (без учёта регистра)',
   },
   {
-    nameValue: inLineImage,
+    icon: inLineImage,
     value: 'instr',
-    isIcon: true,
-    iconDescription: 'Входит в строку',
+    label: 'Входит в строку',
   },
   {
-    nameValue: notInLineWithoutCaseImage,
+    icon: notInLineWithoutCaseImage,
     value: 'notinstrnoreg',
-    isIcon: true,
-    iconDescription: 'Не входит в строку (без учёта регистра)',
+    label: 'Не входит в строку (без учёта регистра)',
   },
   {
-    nameValue: notInLineImage,
+    icon: notInLineImage,
     value: 'notinstr',
-    isIcon: true,
-    iconDescription: 'Не входит в строку',
+    label: 'Не входит в строку',
   },
 ];
 
 export const currencyAvailable = [
-  { value: 'Рубль', nameValue: 'RUB' },
-  { value: 'Евро', nameValue: 'EUR' },
-  { value: 'Доллары США', nameValue: 'USD' },
+  { value: 'Рубль', label: 'RUB' },
+  { value: 'Евро', label: 'EUR' },
+  { value: 'Доллары США', label: 'USD' },
 ];
 
 export const messagesSuccessful = [
-  { value: 'message', nameValue: 'Блок сообщений' },
-  { value: 'api', nameValue: 'API' },
-  { value: 'conditional', nameValue: 'Условный блок' },
-  { value: 'coordinate', nameValue: 'Отправка координат' },
-  { value: 'telegramPay', nameValue: 'Оплата в Telegram' },
-  { value: 'deeplink', nameValue: 'Deep Link' },
-  { value: 'crm', nameValue: 'Сохранение в CRM' },
-  { value: 'operator', nameValue: 'Перевод на оператора' },
-  { value: 'variable', nameValue: 'Управление переменными' },
+  { value: 'message', label: 'Блок сообщений' },
+  { value: 'api', label: 'API' },
+  { value: 'conditional', label: 'Условный блок' },
+  { value: 'coordinate', label: 'Отправка координат' },
+  { value: 'telegramPay', label: 'Оплата в Telegram' },
+  { value: 'deeplink', label: 'Deep Link' },
+  { value: 'crm', label: 'Сохранение в CRM' },
+  { value: 'operator', label: 'Перевод на оператора' },
+  { value: 'variable', label: 'Управление переменными' },
 ];
 
 export const defaultBlocks = {
@@ -193,7 +182,7 @@ export const defaultBlocks = {
   deeplink: {
     name: 'Deeplink',
     param: '',
-    type: 'Случайное',
+    type: selectValuesType[0].value,
     signsAmount: 8,
     additionValue: '',
     additionLink: '',

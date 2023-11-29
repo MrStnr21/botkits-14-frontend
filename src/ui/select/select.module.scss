@@ -1,0 +1,72 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+@mixin holder($color){
+  @include font('Open Sans', $xs-font-size, $normal, $color);
+  @include line-sizes($xl-line-height, $m-letter-space);
+}
+
+.container {
+  @include button-style-reset;
+  @include flex(row, space-between, center);
+  @include size(100%, 100%);
+  @include indents(8px 10px, 0);
+  box-sizing: border-box;
+  position: relative;
+  background-color: $secondary-cultured-hover;
+  border-radius: 5px;
+}
+
+.chevron {
+  transition: transform .2s;
+}
+
+.chevron_opened {
+  transform: rotate(180deg);
+}
+
+.chevron_closed {
+  transform: rotate(0);
+}
+
+.icon {
+  @include size(24px, 24px);
+}
+
+
+.label {
+  @include holder($primary-oxford-blue-default);
+  max-width: calc(100% - 16px);
+  @include ellipsis;
+}
+
+.placeholder {
+  @include holder($grey-2);
+  max-width: calc(100% - 16px);
+  @include ellipsis;
+}
+
+div.dropdown {
+  @include position(absolute, 56px, 0);
+  width: 264px;
+  z-index: 900
+}
+
+.container_adaptive {
+  @media screen and (max-width: $switching-width) {
+    @include indents(4.5px 6.5px, 0);
+    border-radius: 2.85px;
+
+    & .label {
+      font-size: 7.41px;
+    }
+
+    & .placeholder {
+      font-size: 7.41px;
+    }
+
+    & .icon {
+      @include size(14px, 14px);
+    }
+  }
+}
