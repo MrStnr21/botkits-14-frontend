@@ -22,13 +22,13 @@
     }
 
     &_visible {
-      @media screen and (max-width: 820px) {
+      @media screen and (max-width: 860px) {
         height: calc(76px*2 + 50px);
       }
     }
 
     &_hidden {
-      @media screen and (max-width: 820px) {
+      @media screen and (max-width: 860px) {
         height: 0;
       }
     }
