@@ -43,7 +43,7 @@
     }
   }
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include size(30px, 28px);
   }
 }
@@ -85,7 +85,7 @@
   svg {
     @include size(24px, 24px);
 
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: $switching-width) {
       @include size(13px, 13px);
     }
   }

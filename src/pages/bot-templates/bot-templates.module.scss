@@ -1,0 +1,8 @@
+@use '../../stylesheets/mixins' as *;
+@use '../../stylesheets/variables' as *;
+
+.layout {
+  @include flex(row, center);
+  height: calc(100vh - 155px);
+  margin-right: 40px;
+}

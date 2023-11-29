@@ -48,6 +48,7 @@ export type TVariable = {
 };
 
 export type TTrigger = {
+  id: string;
   tag: string;
   type: 'block' | 'text'; // Тип цели триггера
   name?: string; // Имя одного из блоков
@@ -56,7 +57,7 @@ export type TTrigger = {
 
 export type TCoordinateBlock = {
   name: string;
-  coordinates: number[]; // Массив из 2-х чисел
+  coordinates: string[];
 };
 
 export type TTelegramPayBlock = {
@@ -93,17 +94,22 @@ export type TOperatorBlock = {
 export type TVariablesControlBlock = {
   // В данном блоке должно происходить присваивание переменной некоторого значения. Вилами по воде писано
   name: string;
-  variables: { variable?: TVariable; value: string }[]; // Пока  не точно
+  variables: {
+    id: string;
+    variable: string;
+    value: string;
+  }[];
 };
 
 export type TConditionalBlock = {
   name: string;
   variables: {
+    id: string;
     type: 'easy' | 'hard'; // В зависимости от типа переменной нужны (variable, sign, blockName) для easy и (condition, blockName) для hard
     variable?: TVariable; // Некая переменная
-    sign: string; // Одно из value принимаемых select, 11 значений, значения стоит отправить в конфиг.
-    condition: string; // Строка-условие для сложного режима
-    blockName: string; // name одного из блоков
+    sign?: string; // Одно из value принимаемых select, 11 значений, значения стоит отправить в конфиг.
+    condition?: string; // Строка-условие для сложного режима или значение для легкого
+    targetBlock: string; // name одного из блоков
   }[];
 };
 

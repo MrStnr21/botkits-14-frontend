@@ -1,10 +1,11 @@
 @use '../../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
 
 .content{
   @include flex(column, false, false, 8px);
   padding: 12px 16px 16px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 7px 9px 9px;
   }
 }

@@ -44,7 +44,7 @@ const PanelInline: FC<IPanelInline> = ({
   horizontalButtons,
   verticalButtons,
 }) => {
-  const isMobile = useMediaQuery('(max-width: 520px)');
+  const isMobile = useMediaQuery('(max-width: 620px)');
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
 
   const openedHorizontal = horizontalButtons.filter(

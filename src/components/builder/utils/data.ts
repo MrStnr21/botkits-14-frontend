@@ -31,8 +31,21 @@ export enum ButtonSizesMobile {
   gap = 12,
 }
 
-export const crmList = ['CRM 1', 'CRM 2', 'CRM 3'];
-export const saveOptions = ['Новая запись', 'Дополнить запись'];
+export const rangeForCoordinates = {
+  longitude: { min: -180, max: 180 },
+  latitude: { min: -90, max: 90 },
+};
+
+export const crmList = [
+  { value: '1', nameValue: 'CRM 1' },
+  { value: '2', nameValue: 'CRM 2' },
+  { value: '3', nameValue: 'CRM 3' },
+];
+
+export const saveOptions = [
+  { value: 'new', nameValue: 'Новая запись' },
+  { value: 'suppl', nameValue: 'Дополнить запись' },
+];
 
 export const selectValues = [
   { value: '1', nameValue: '1' },
@@ -189,6 +202,8 @@ export const defaultBlocks = {
     name: 'CRMBlock',
     crmList: ['1', '2', '3'],
     chosenCrm: '',
+    saveAsList: ['new', 'suppl'],
+    chosenSaveAs: '',
   },
   operator: {
     name: 'Operator call',
@@ -206,7 +221,7 @@ export default {};
   { value: 'Короткое сообщение', nameValue: 'Ok!' },
   { value: 'Формальное сообщение', nameValue: 'Оплачено' },
   { value: 'Общее сообщение', nameValue: 'успешно' },
-]; 
+];
 
 export const messagesSuccessful = [
   { value: 'По умолчанию', nameValue: 'Введите название' },

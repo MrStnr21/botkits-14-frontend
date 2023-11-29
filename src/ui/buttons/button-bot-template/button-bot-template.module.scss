@@ -1,0 +1,38 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.button{
+    @include button-style-reset;
+    @include indents((0 12px 0 12px), 0);
+    height:32px;
+    @include line-sizes(21px, 1px);
+    border-radius: $xs-border-radius;
+    transition: all 0.1s linear;
+    letter-spacing: $l-letter-space;
+  }
+
+.blue{
+    color: $off-white;
+    background-color: $primary-persian-blue-default;
+}
+  
+.blue:hover {
+    background-color: #435cdb;
+}
+  
+.blue:active {
+    background-color: $primary-persian-blue-hover;
+}
+
+.white{
+    color: #A6B3C9;
+    background-color: $off-white;
+}
+  
+.white:hover {
+    color: #E4E9F1;
+}
+  
+.white:active {
+    color: #A6B3C9;
+}

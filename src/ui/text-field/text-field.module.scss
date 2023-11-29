@@ -13,7 +13,7 @@
   z-index: 1;
 
   &_adaptive {
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: $switching-width) {
       height: 57px;
       border-radius: 5.7px;
       padding: 9px 7px 6px;

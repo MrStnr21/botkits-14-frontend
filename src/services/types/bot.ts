@@ -1,7 +1,10 @@
 // Типизация данных бота
 export type TBot = {
-  icon: string;
+  type: string;
+  icon?: string;
   title: string;
+  description: string;
+  features: Array<Object>;
   profile: string;
   messengers: Array<{
     name: string;
@@ -9,8 +12,11 @@ export type TBot = {
     accessKey: string;
     url: string;
   }>;
-  botSettings?: any;
+  commands: Array<string>;
+  content: Array<Object>;
+  isToPublish: boolean;
   _id: string;
+  success: boolean;
 };
 
 // Типизация данных шаблона

@@ -1,4 +1,6 @@
-import { FC, useState } from 'react';
+import { FC, useState, useMemo } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
+
 import styles from './conditional.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
@@ -11,23 +13,140 @@ import ToggleButton from './toggle-button/toggle-button';
 
 const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
-  const [content, setContent] = useState<TConditionalBlock['variables']>(
-    data.variables
-  );
+
+  const { getNodes, setNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
+  const node = getNode(idNode);
+  const [amountEasy, setAmountEasy] = useState(0);
+  const [amountHard, setAmountHard] = useState(0);
 
   const addHard = () => {
-    setContent([
-      ...content,
-      { type: 'hard', sign: '', condition: '', blockName: '' },
-    ]);
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === idNode) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              variables: [
+                ...item.data.variables,
+                {
+                  id: `hard-${amountHard + 1}`,
+                  type: 'hard',
+                  condition: '',
+                  targetBlock: '',
+                },
+              ],
+            },
+          };
+        }
+        return item;
+      })
+    );
+    setAmountHard(amountHard + 1);
   };
 
   const addEasy = () => {
-    setContent([
-      ...content,
-      { type: 'hard', sign: '', condition: '', blockName: '' },
-    ]);
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === idNode) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              variables: [
+                ...item.data.variables,
+                {
+                  id: `easy-${amountEasy + 1}`,
+                  type: 'easy',
+                  variable: { key: '' },
+                  sign: '',
+                  condition: '',
+                  targetBlock: '',
+                },
+              ],
+            },
+          };
+        }
+        return item;
+      })
+    );
+    setAmountEasy(amountEasy + 1);
   };
+
+  const setItemVariables = (
+    idItem: string,
+    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
+    value: any
+  ) => {
+    setNodes(
+      getNodes().map((item) => {
+        if (item.id === idNode) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              variables:
+                node &&
+                node.data.variables.map(
+                  (elem: { [x: string]: any; id: string }) => {
+                    if (elem.id === idItem) {
+                      // eslint-disable-next-line no-param-reassign
+                      elem[key] = value;
+                    }
+                    return elem;
+                  }
+                ),
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const setTargetBlock = (idItem: string, name: string) =>
+    setItemVariables(idItem, 'targetBlock', name);
+
+  const content = useMemo(
+    () =>
+      data.variables.map((item, index) => {
+        switch (mode) {
+          case 'easy': {
+            return (
+              item.type === 'easy' && (
+                <Mode
+                  id={item.id}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  setTargetBlock={(name: string) =>
+                    setTargetBlock(item.id, name)
+                  }
+                />
+              )
+            );
+          }
+          case 'hard': {
+            return (
+              item.type === 'hard' && (
+                <Mode
+                  id={item.id}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  setTargetBlock={(name: string) =>
+                    setTargetBlock(item.id, name)
+                  }
+                />
+              )
+            );
+          }
+          default: {
+            return null;
+          }
+        }
+      }),
+    [node, mode]
+  );
 
   return (
     <ControlLayout type="Условный блок">
@@ -44,12 +163,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
         />
       </div>
       <div className={styles.content}>
-        {content.map((item) => {
-          if (item.type === 'easy') {
-            return <Mode type={item.type} title="Если" data={{ ...item }} />;
-          }
-          return <Mode type={item.type} title="Если" data={{ ...item }} />;
-        })}
+        {content}
         <ConstructorAddButton onClick={mode === 'easy' ? addEasy : addHard}>
           Добавить условие
         </ConstructorAddButton>

@@ -1,5 +1,6 @@
 import { FC, ReactElement, useState } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
+import { v4 as uuid } from 'uuid';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
@@ -15,8 +16,8 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
   const id = useNodeId();
-  const { getNodes, setNodes } = useReactFlow();
-  const node = getNodes().find((item) => item.id === id);
+  const { getNodes, setNodes, getNode } = useReactFlow();
+  const node = getNode(id!);
 
   const setName = setFlowData({ selectors: ['name'] });
 
@@ -29,6 +30,29 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
       return item.id !== id && item.parentNode !== id;
     });
     setNodes(nodes);
+  };
+
+  const copyNode = () => {
+    const newNode = {
+      id: uuid(),
+      type: node!.type,
+      position: { x: node!.position.x + 300, y: node!.position.y },
+      data: node!.data,
+    };
+    const childNodes = getNodes()
+      .filter((item) => item.parentNode === id)
+      .map((item) => {
+        return {
+          id: uuid(),
+          position: item.position,
+          type: item.type,
+          data: item.data,
+          expandParent: true,
+          parentNode: newNode.id,
+          draggable: false,
+        };
+      });
+    setNodes([...getNodes(), newNode, ...childNodes]);
   };
 
   return (
@@ -79,6 +103,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
               top={0}
               left={30}
               removeFunction={removeNode}
+              copyFuntion={copyNode}
             />
           </div>
         </div>

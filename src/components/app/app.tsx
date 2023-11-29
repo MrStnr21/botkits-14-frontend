@@ -24,6 +24,7 @@ import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue'
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
 import MailingConditions from '../mailing/mailing-conditions/mailing-conditions';
+import BotTemplates from '../../pages/bot-templates/bot-templates';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
@@ -136,6 +137,14 @@ const App: FC = (): JSX.Element => {
           element={
             <ProtectedRoute>
               <Partnership />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.bottemplates}
+          element={
+            <ProtectedRoute>
+              <BotTemplates />
             </ProtectedRoute>
           }
         />

@@ -1,21 +1,19 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
 //используемая палитра цветов
 $green: #22FFAA;
 $white: #FFFFFF;
 
-@mixin containerWidth {
-  width: 40px;
-  height: 40px;
-}
-
 .avatar {
-  @include containerWidth;
+  @include size(40px, 40px);
   border-radius: 50%;
   object-fit: cover;
   background-repeat: no-repeat;
 }
 
 .avatarBot {
-  @include containerWidth;
+  @include size(40px, 40px);
   border-radius: 50%;
   object-fit: cover;
   background-repeat: no-repeat;
@@ -46,24 +44,33 @@ $white: #FFFFFF;
 
 .avatarContainer {
   position: relative;
-  @include containerWidth;
+  @include size(40px, 40px);
 }
 
 .avatarContainerBot {
   position: relative;
-  width: 44px;
-  height: 44px;
+  @include size(44px, 44px);
 }
 
 .avatarBigContainer {
-  // position: relative;
-  width: 80px;
-  height: 80px;
+  position: relative;
+  @include size(80px, 80px);
 }
 
 .avatarBig {
-  width: 80px;
-  height: 80px;
+  @include size(80px, 80px);
+  border-radius: 50%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
+
+.avatarBigContainer {
+  position: relative;
+  @include size(88px, 88px);
+}
+
+.avatarBotTemplates {
+  @include size(88px, 88px);
   border-radius: 50%;
   object-fit: cover;
   background-repeat: no-repeat;
