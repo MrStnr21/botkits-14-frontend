@@ -44,8 +44,19 @@ const LayoutFlow: FC = () => {
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
 
   const onConnect = useCallback((connection: Edge | Connection) => {
+    if (connection.source === connection.target) {
+      return; // Предотвращение соединения узла с самим собой
+    }
     setEdges((eds) => addEdge(connection, eds));
   }, []);
+
+  const isValidConnection = (connection: Connection) => {
+    const { source, target } = connection;
+    // Проверяем, что связь между двумя узлами еще не существует
+    return !edges.some(
+      (edge) => edge.source === source && edge.target === target
+    );
+  };
 
   const menuCloseHandler = () => {
     toggleMenu(false);
@@ -106,6 +117,7 @@ const LayoutFlow: FC = () => {
         nodeTypes={nodeTypes}
         fitView
         defaultEdgeOptions={edgeOptions}
+        isValidConnection={isValidConnection}
       >
         <Background />
         <div className={styles['bot-name']}>
