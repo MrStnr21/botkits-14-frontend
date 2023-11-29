@@ -7,7 +7,7 @@
   width:296px;
   padding: 12px 16px 16px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     width: 168px;
     padding: 7px 9px 9px;
     gap: 4px;
@@ -17,7 +17,7 @@
 .box {
   @include flex(row, $gap: 4px);
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     gap: 2px;
   }
 }

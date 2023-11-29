@@ -31,11 +31,17 @@ export enum ButtonSizesMobile {
   gap = 12,
 }
 
+export const rangeForCoordinates = {
+  longitude: { min: -180, max: 180 },
+  latitude: { min: -90, max: 90 },
+};
+
 export const crmList = [
   { value: '1', nameValue: 'CRM 1' },
   { value: '2', nameValue: 'CRM 2' },
   { value: '3', nameValue: 'CRM 3' },
 ];
+
 export const saveOptions = [
   { value: 'new', nameValue: 'Новая запись' },
   { value: 'suppl', nameValue: 'Дополнить запись' },

@@ -5,7 +5,7 @@
   color: $color;
   border-bottom: 2px solid $color;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     border-bottom: 1px solid $color;
   }
 }
@@ -23,7 +23,7 @@
     color: $primary-persian-blue-default;
   }
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include line-sizes($xl-line-height, $m-letter-space);
     height: 32px;
     font-size: 7.41px;

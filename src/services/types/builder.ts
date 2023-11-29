@@ -48,6 +48,7 @@ export type TVariable = {
 };
 
 export type TTrigger = {
+  id: string;
   tag: string;
   type: 'block' | 'text'; // Тип цели триггера
   name?: string; // Имя одного из блоков
@@ -56,7 +57,7 @@ export type TTrigger = {
 
 export type TCoordinateBlock = {
   name: string;
-  coordinates: number[]; // Массив из 2-х чисел
+  coordinates: string[];
 };
 
 export type TTelegramPayBlock = {

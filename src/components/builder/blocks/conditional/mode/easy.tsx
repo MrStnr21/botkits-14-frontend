@@ -3,7 +3,6 @@ import { useReactFlow, useNodeId } from 'reactflow';
 
 import styles from './mode.module.scss';
 import { selectValues, signSelectValues } from '../../../utils/data';
-// import { TVariable } from '../../../../../services/types/builder';
 import Input from '../../../../../ui/inputs/input/input';
 import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
 
@@ -13,30 +12,40 @@ export type TEasyBlockProps = {
 const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
   const buttonsSignSelect = signSelectValues.map((item) => item.nameValue);
   const buttonsSelectValues = selectValues.map((item) => item.nameValue);
-  const { getNodes, setNodes } = useReactFlow();
-  const idNode = useNodeId();
+  const { getNodes, setNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
+  const node = getNode(idNode);
 
-  const node = getNodes().find((item) => item.id === idNode);
+  const itemFromVariables = useMemo(
+    () =>
+      node &&
+      node.data.variables.filter((item: { id: string }) => item.id === id)[0],
+    [node]
+  );
 
-  const itemVariables = () =>
-    node && node.data.variables.find((item: { id: string }) => item.id === id);
-
-  const setItemVariables = (key: string, value: any) => {
-    itemVariables()[key] = value;
-
+  const setItemVariables = (
+    idItem: string,
+    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
+    value: any
+  ) => {
     setNodes(
       getNodes().map((item) => {
-        if (item.id === id) {
+        if (item.id === idNode) {
           return {
             ...item,
             data: {
               ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  itemVariables,
-                },
-              ],
+              variables:
+                node &&
+                node.data.variables.map(
+                  (elem: { [x: string]: any; id: string }) => {
+                    if (elem.id === idItem) {
+                      // eslint-disable-next-line no-param-reassign
+                      elem[key] = value;
+                    }
+                    return elem;
+                  }
+                ),
             },
           };
         }
@@ -45,60 +54,69 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     );
   };
 
-  const setCondition = (value: any) => setItemVariables('condition', value);
+  const setCondition = (value: any) => {
+    setItemVariables(id, 'condition', value);
+  };
 
-  const setVariable = (value: any) => setItemVariables('variable', value);
+  const setVariable = (value: any) => setItemVariables(id, 'variable', value);
 
-  const setSign = (value: any) => setItemVariables('sign', value);
+  const setSign = (value: any) => setItemVariables(id, 'sign', value);
 
   const active = useMemo(
     () =>
-      itemVariables().variable &&
-      Object.values(itemVariables().variable)[0] !== '',
-    [itemVariables().variable]
+      itemFromVariables.variable &&
+      Object.values(itemFromVariables.variable)[0] !== '',
+    [itemFromVariables.variable]
   );
 
-  return (
-    <div className={styles['labeled-content']}>
-      <div className={styles['selects-string']}>
-        <div className={styles.selectsVariable}>
-          <MenumenuSelectFlow
-            width="184"
-            buttons={buttonsSelectValues}
-            nameMenu={
-              (itemVariables().variable &&
-                Object.values(itemVariables().variable)[0]) ||
-              'Переменная'
-            }
-            onClick={(name: string) => {
-              setVariable({ key: name });
-            }}
-            active={active}
-          />
+  const content = useMemo(
+    () => (
+      <>
+        <div className={styles['selects-string']}>
+          <div className={styles.selectsVariable}>
+            <MenumenuSelectFlow
+              width="184"
+              buttons={buttonsSelectValues}
+              nameMenu={
+                (itemFromVariables.variable &&
+                  Object.values(itemFromVariables.variable)[0]) ||
+                'Переменная'
+              }
+              onClick={(name: string) => {
+                setVariable({ key: name });
+              }}
+              active={active}
+            />
+          </div>
+          <div className={styles.selectsIcon}>
+            <MenumenuSelectFlow
+              width="52"
+              buttons={buttonsSignSelect}
+              nameMenu={itemFromVariables.sign || buttonsSignSelect[0]}
+              onClick={(name: string) => {
+                setSign(name);
+              }}
+              active
+              isIcon
+            />
+          </div>
         </div>
-        <div className={styles.selectsIcon}>
-          <MenumenuSelectFlow
-            width="52"
-            buttons={buttonsSignSelect}
-            nameMenu={itemVariables().sign || buttonsSignSelect[0]}
-            onClick={(name: string) => {
-              setSign(name);
-            }}
-            active
-            isIcon
-          />
-        </div>
-      </div>
-      <Input
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          setCondition(event.target.value)
-        }
-        styled="bot-builder-default"
-        placeholder="Значение"
-        value={itemVariables().condition}
-      />
-    </div>
+        <Input
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setCondition(event.target.value)
+          }
+          styled="bot-builder-default"
+          placeholder="Значение"
+          value={itemFromVariables.condition}
+          minLength={0}
+          required={false}
+        />
+      </>
+    ),
+    [node]
   );
+
+  return <div className={styles['labeled-content']}>{content}</div>;
 };
 
 export default EasyMode;

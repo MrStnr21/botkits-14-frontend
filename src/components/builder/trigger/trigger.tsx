@@ -6,71 +6,135 @@ import Input from '../../../ui/inputs/input/input';
 import ConstructorDefaultButton from '../../../ui/buttons/constructor-default-button/constructor-default-button';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import TrashIcon from '../../icons/Trash/TrashIcon';
+import { TTrigger } from '../../../services/types/builder';
+import { messagesSuccessful } from '../utils/data';
 
 export interface ITriggerProps {
-  deleteTrigger: (id: string) => void;
+  handleTriggerData: (
+    typeOfAction: 'add' | 'delete' | 'update',
+    optional: {
+      trigger?: TTrigger;
+      id?: string;
+    }
+  ) => void;
   id: string;
+  myTag: string;
+  type?: 'block' | 'text';
+  text?: string;
+  name?: string;
 }
 
-type TButtons = 'Приветствие' | 'Какое-нибудь действие' | 'Прощание';
-
-const Trigger: FC<ITriggerProps> = ({ deleteTrigger, id }) => {
-  const [tag, setTag] = useState<string>('start');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [answerType, setAnswerType] = useState<'block' | 'text'>('block');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [action, setAction] = useState<TButtons>('Приветствие');
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTag(e.target.value);
+const Trigger: FC<ITriggerProps> = ({
+  id,
+  handleTriggerData,
+  myTag,
+  type,
+  text,
+  name,
+}) => {
+  const getDefaultAnswerType = () => {
+    if (text) {
+      return 'text';
+    }
+    if (name) {
+      return 'block';
+    }
+    if (type) {
+      return type;
+    }
+    return 'block';
   };
 
-  // Это заглушка, пока неизвестно что и как будет сюда попадать
   const getButtons = () => {
-    return ['Приветствие', 'Какое-нибудь действие', 'Прощание'];
+    return messagesSuccessful.map((item) => item.nameValue);
   };
+
+  const [answerType, setAnswerType] = useState<'block' | 'text'>(
+    getDefaultAnswerType()
+  );
+
+  const handleChangeState =
+    (
+      state: 'tag' | 'answer type' | 'text' | 'block',
+      answer?: 'block' | 'text'
+    ) =>
+    (e?: ChangeEvent<HTMLInputElement>) => {
+      switch (state) {
+        case 'tag': {
+          handleTriggerData('update', {
+            trigger: { id, type: answerType, tag: e!.target.value },
+          });
+          break;
+        }
+        case 'answer type': {
+          setAnswerType(answer!);
+          handleTriggerData('update', {
+            trigger: { id, type: answer!, tag: myTag },
+          });
+          break;
+        }
+        case 'text': {
+          handleTriggerData('update', {
+            trigger: { id, type: 'text', tag: myTag, text: e?.target.value },
+          });
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    };
 
   return (
     <article className={styles.wrap}>
       <div className={styles.block}>
         <div className={styles.header}>
           <h3 className={styles.title}>Тэг</h3>
-          <div onClick={() => deleteTrigger(id)}>
+          <div onClick={() => handleTriggerData('delete', { id })}>
             <TrashIcon />
           </div>
         </div>
         <Input
           styled="bot-builder-default"
           placeholder="Введите тэг"
-          value={`${tag}`}
-          onChange={handleChange}
+          value={`${myTag}`}
+          onChange={handleChangeState('tag')}
         />
       </div>
       <div className={styles.block}>
         <h3 className={styles.title}>Ответное действие бота</h3>
         <div className={styles.buttons}>
           <ConstructorDefaultButton
-            onClick={() => setAnswerType('block')}
+            onClick={handleChangeState('answer type', 'block')}
             isActive={answerType === 'block'}
           >
             Блоком
           </ConstructorDefaultButton>
           <ConstructorDefaultButton
-            onClick={() => setAnswerType('text')}
+            onClick={handleChangeState('answer type', 'text')}
             isActive={answerType === 'text'}
           >
             Текстом
           </ConstructorDefaultButton>
         </div>
-        <MenuVariable
-          // eslint-disable-next-line @typescript-eslint/no-shadow
-          onClick={(action: TButtons) => {
-            setAction(action);
-          }}
-          width="256px"
-          nameMenu={getButtons()[0]}
-          buttons={getButtons()}
-        />
+        {answerType === 'block' ? (
+          <MenuVariable
+            onClick={(action: string) => {
+              handleTriggerData('update', {
+                trigger: { id, type: 'block', tag: myTag, name: action },
+              });
+            }}
+            width="256px"
+            nameMenu={getButtons()[0]}
+            buttons={getButtons()}
+          />
+        ) : (
+          <Input
+            value={text}
+            onChange={handleChangeState('text')}
+            placeholder="Введите ответ"
+          />
+        )}
       </div>
     </article>
   );

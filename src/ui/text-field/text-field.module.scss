@@ -12,7 +12,7 @@
   padding: 12px 12px 8px;
   z-index: 1;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     height: 57px;
     border-radius: 5.7px;
     padding: 9px 7px 6px;
@@ -31,7 +31,7 @@
   border: none;
   text-align: left;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
   }
 }
@@ -60,7 +60,7 @@
   text-align: left;
   column-gap: 12px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 7px;
     letter-spacing: 0.4px;
   }
@@ -85,7 +85,7 @@
     cursor: $cursor;
   }
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include size(9.12px, 9.12px);
     top: 20px;
     right: 5px;
