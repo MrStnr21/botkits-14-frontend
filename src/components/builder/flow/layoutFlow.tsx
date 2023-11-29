@@ -1,4 +1,4 @@
-import { FC, useCallback, useState, useEffect } from 'react';
+import { FC, useCallback, useState, useEffect, useMemo } from 'react';
 import cn from 'classnames/bind';
 
 import ReactFlow, {
@@ -30,6 +30,9 @@ import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popu
 
 const cx = cn.bind(styles);
 
+// eslint-disable-next-line import/no-mutable-exports
+export let namesOfBlocks: string[] = [];
+
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isMobile = useMediaQuery('(max-width: 620px)');
@@ -37,6 +40,9 @@ const LayoutFlow: FC = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [triggerOpened, toggleTrigger] = useState(false);
   const [menuOpened, toggleMenu] = useState(false);
+
+  namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
+
   const onConnect = useCallback((connection: Edge | Connection) => {
     setEdges((eds) => addEdge(connection, eds));
   }, []);
