@@ -4,6 +4,7 @@ import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
 import Checkbox from '../../ui/checkboxes/checkbox';
+import Switcher from '../../ui/checkboxes/switcher/switcher';
 
 /* Общее */
 export const dateCell = (date: string) => (
@@ -68,5 +69,6 @@ export const paymentStatusCell = (status: boolean) => (
 );
 
 export const checkBoxCell = (data: string) => (
-  <Checkbox label="" checked onChange={() => {}} name="Имя" value="" />
+  <Switcher />
+  // <Checkbox label="" checked onChange={() => {}} name="Имя" value="" />
 );

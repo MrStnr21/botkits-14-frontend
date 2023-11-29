@@ -1,0 +1,51 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.switcher {
+  @include flex($align-items: center, $gap: 22px);
+
+  &__on {
+    @include size(44px, 24px);
+    @include indents();
+    @include position(relative);
+    display: inline-block;
+    border-radius: 12px;
+    background: $grey-1;
+    z-index: 0;
+    border: none;
+    transition-duration: 300ms;
+
+    &::after {
+      content: "";
+      @include size(20px, 20px);
+      @include position(absolute, $top: 2px, $left: 2px);
+      border-radius: 50%;
+      background: $off-white;
+      position: absolute;
+      z-index: 1;
+      transition-duration: 300ms;
+    }
+  }
+
+  &__off {
+    display: inline-block;
+    @include size(44px, 24px);
+    @include indents();
+    @include position(relative);
+    border-radius: 12px;
+    background: $primary-persian-blue-default;
+    z-index: 0;
+    border: none;
+    transition-duration: 300ms;
+
+    &::after {
+      content: "";
+      @include size(20px, 20px);
+      @include position(absolute, $top: 2px, $left: 22px);
+      border-radius: 50%;
+      background: $off-white;
+      z-index: 1;
+      transition-duration: 300ms;
+    }
+  }
+}
