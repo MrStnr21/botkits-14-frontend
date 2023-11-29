@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, useState, useMemo } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
 import { v4 as uuid } from 'uuid';
 import styles from './control-layout.module.scss';
@@ -22,7 +22,10 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
-  namesOfBlocks = getNodes().map((item) => item.data.name);
+  namesOfBlocks = useMemo(
+    () => getNodes().map((item) => item.data.name),
+    [getNodes()]
+  );
 
   const setName = (e?: React.ChangeEvent<HTMLInputElement>) => {
     const template = e?.target.value || '';
