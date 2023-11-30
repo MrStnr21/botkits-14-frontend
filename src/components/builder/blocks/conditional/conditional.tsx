@@ -1,5 +1,6 @@
 import { FC, useState, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './conditional.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -17,8 +18,6 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
-  const [amountEasy, setAmountEasy] = useState(0);
-  const [amountHard, setAmountHard] = useState(0);
 
   const addHard = () => {
     setNodes(
@@ -31,7 +30,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
               variables: [
                 ...item.data.variables,
                 {
-                  id: `hard-${amountHard + 1}`,
+                  id: `hard-${uuidv4()}`,
                   type: 'hard',
                   condition: '',
                   targetBlock: '',
@@ -43,7 +42,6 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
         return item;
       })
     );
-    setAmountHard(amountHard + 1);
   };
 
   const addEasy = () => {
@@ -57,7 +55,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
               variables: [
                 ...item.data.variables,
                 {
-                  id: `easy-${amountEasy + 1}`,
+                  id: `easy-${uuidv4()}`,
                   type: 'easy',
                   variable: { key: '' },
                   sign: '',
@@ -71,7 +69,6 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
         return item;
       })
     );
-    setAmountEasy(amountEasy + 1);
   };
 
   const setItemVariables = (

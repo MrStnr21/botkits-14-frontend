@@ -5,7 +5,8 @@ import LabeledInput from '../../../labeledInput/labeledInput';
 import EasyMode from './easy';
 import HardMode from './hard';
 import { messagesSuccessful } from '../../../utils/data';
-import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
+import Select from '../../../../../ui/select/select';
+import { getSelectItemByValue } from '../../../utils';
 
 export type TModeProps = {
   id: string;
@@ -34,13 +35,6 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
     [node]
   );
 
-  const buttonsTargetBlock = messagesSuccessful.map((item) => item.value);
-
-  const active = useMemo(
-    () => itemFromVariables.targetBlock !== '',
-    [itemFromVariables]
-  );
-
   const getBlock = useMemo(() => {
     switch (itemFromVariables.type) {
       case 'easy': {
@@ -61,13 +55,15 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
         {getBlock}
       </LabeledInput>
       <LabeledInput title="То перейти" extraClass={styles.extraClass}>
-        <MenumenuSelectFlow
-          buttons={buttonsTargetBlock}
-          nameMenu={itemFromVariables.targetBlock || 'Имя блока'}
-          onClick={(name: string) => {
-            setTargetBlock(name);
-          }}
-          active={active}
+        <Select
+          options={messagesSuccessful}
+          handleSelect={(option) => setTargetBlock(option.value)}
+          currentOption={getSelectItemByValue(
+            itemFromVariables.targetBlock,
+            messagesSuccessful
+          )}
+          elementToCloseListener="flow"
+          adaptive
         />
       </LabeledInput>
     </div>

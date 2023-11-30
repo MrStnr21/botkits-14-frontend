@@ -4,10 +4,12 @@ import styles from './trigger.module.scss';
 
 import Input from '../../../ui/inputs/input/input';
 import ConstructorDefaultButton from '../../../ui/buttons/constructor-default-button/constructor-default-button';
-import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import TrashIcon from '../../icons/Trash/TrashIcon';
 import { TTrigger } from '../../../services/types/builder';
 import { messagesSuccessful } from '../utils/data';
+import Select from '../../../ui/select/select';
+import { Option } from '../../../utils/types';
+import { getSelectItemByValue } from '../utils';
 
 export interface ITriggerProps {
   handleTriggerData: (
@@ -43,10 +45,6 @@ const Trigger: FC<ITriggerProps> = ({
       return type;
     }
     return 'block';
-  };
-
-  const getButtons = () => {
-    return messagesSuccessful.map((item) => item.nameValue);
   };
 
   const [answerType, setAnswerType] = useState<'block' | 'text'>(
@@ -118,15 +116,15 @@ const Trigger: FC<ITriggerProps> = ({
           </ConstructorDefaultButton>
         </div>
         {answerType === 'block' ? (
-          <MenuVariable
-            onClick={(action: string) => {
+          <Select
+            options={messagesSuccessful}
+            handleSelect={(option: Option) =>
               handleTriggerData('update', {
-                trigger: { id, type: 'block', tag: myTag, name: action },
-              });
-            }}
-            width="256px"
-            nameMenu={getButtons()[0]}
-            buttons={getButtons()}
+                trigger: { id, type: 'block', tag: myTag, name: option.value },
+              })
+            }
+            currentOption={getSelectItemByValue(name!, messagesSuccessful)}
+            elementToCloseListener="flow"
           />
         ) : (
           <Input

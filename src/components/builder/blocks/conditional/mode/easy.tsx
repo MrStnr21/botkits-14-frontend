@@ -4,14 +4,13 @@ import { useReactFlow, useNodeId } from 'reactflow';
 import styles from './mode.module.scss';
 import { selectValues, signSelectValues } from '../../../utils/data';
 import Input from '../../../../../ui/inputs/input/input';
-import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
+import Select from '../../../../../ui/select/select';
+import { getSelectItemByValue } from '../../../utils';
 
 export type TEasyBlockProps = {
   id: string;
 };
 const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
-  const buttonsSignSelect = signSelectValues.map((item) => item.nameValue);
-  const buttonsSelectValues = selectValues.map((item) => item.nameValue);
   const { getNodes, setNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
@@ -54,6 +53,8 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     );
   };
 
+  console.log(node);
+
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);
   };
@@ -62,42 +63,36 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
 
   const setSign = (value: any) => setItemVariables(id, 'sign', value);
 
-  const active = useMemo(
-    () =>
-      itemFromVariables.variable &&
-      Object.values(itemFromVariables.variable)[0] !== '',
-    [itemFromVariables.variable]
-  );
-
   const content = useMemo(
     () => (
       <>
         <div className={styles['selects-string']}>
           <div className={styles.selectsVariable}>
-            <MenumenuSelectFlow
-              width="184"
-              buttons={buttonsSelectValues}
-              nameMenu={
-                (itemFromVariables.variable &&
-                  Object.values(itemFromVariables.variable)[0]) ||
-                'Переменная'
-              }
-              onClick={(name: string) => {
-                setVariable({ key: name });
-              }}
-              active={active}
+            <Select
+              options={selectValues}
+              handleSelect={(option) => setVariable(option.value)}
+              currentOption={getSelectItemByValue(
+                itemFromVariables.variable,
+                selectValues
+              )}
+              elementToCloseListener="flow"
+              adaptive
             />
           </div>
           <div className={styles.selectsIcon}>
-            <MenumenuSelectFlow
-              width="52"
-              buttons={buttonsSignSelect}
-              nameMenu={itemFromVariables.sign || buttonsSignSelect[0]}
-              onClick={(name: string) => {
-                setSign(name);
-              }}
-              active
-              isIcon
+            <Select
+              options={signSelectValues}
+              handleSelect={(option) => setSign(option.value)}
+              currentOption={
+                getSelectItemByValue(
+                  itemFromVariables.sign,
+                  signSelectValues
+                ) || signSelectValues[0]
+              }
+              layoutClassName={styles.selectLayout}
+              itemClassName={styles.selectItem}
+              elementToCloseListener="flow"
+              adaptive
             />
           </div>
         </div>
