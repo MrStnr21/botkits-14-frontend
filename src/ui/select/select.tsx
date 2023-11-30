@@ -48,7 +48,6 @@ const Select: FC<IMailingSelect> = ({
       ? { label: currentOption, value: currentOption }
       : currentOption;
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(formatedOption);
   const isMobile = useMediaQuery('(max-width: 620px)');
 
   const menuRef = useRef<HTMLDivElement>(null);
@@ -82,7 +81,6 @@ const Select: FC<IMailingSelect> = ({
 
   const handleOptionClick = handleSelect
     ? (option: Option) => {
-        setSelectedOption(option);
         handleSelect(option);
         setIsOpen(false);
       }
@@ -98,14 +96,14 @@ const Select: FC<IMailingSelect> = ({
       }`}
       style={buttonStyle}
     >
-      {selectedOption && !selectedOption.icon && (
-        <span className={styles.label}>{selectedOption.label}</span>
+      {formatedOption && !formatedOption.icon && (
+        <span className={styles.label}>{formatedOption.label}</span>
       )}
-      {!selectedOption && (
+      {!formatedOption && (
         <span className={styles.placeholder}>{placeholder}</span>
       )}
-      {selectedOption && selectedOption.icon && (
-        <img className={styles.icon} src={selectedOption.icon} alt="icon" />
+      {formatedOption && formatedOption.icon && (
+        <img className={styles.icon} src={formatedOption.icon} alt="icon" />
       )}
       <span
         className={`${styles.chevron} ${
