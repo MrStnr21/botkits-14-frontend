@@ -74,6 +74,7 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
               key={item.id}
               myTag={item.tag}
               type={item.type}
+              name={item.name}
             />
           );
         })}
