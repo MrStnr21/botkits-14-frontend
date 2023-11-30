@@ -43,6 +43,7 @@ const BotTemplates: FC = () => {
               description={templateBot.description}
               isToPublish={templateBot.isToPublish}
               deleteCard={onDeleteCard}
+              key={templateBot.id}
             />
           ))}
       </ul>

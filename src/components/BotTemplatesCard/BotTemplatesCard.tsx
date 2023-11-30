@@ -75,7 +75,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   };
 
   const onClickEditAvatar = () => {
-    document.getElementById('upload-file')!.click();
+    document.getElementById(`upload-file${id}`)!.click();
   };
 
   const handleOptionClick = (e: string) => {
@@ -114,7 +114,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
             <div className={stylesCard.editButton}>
               <input
                 type="file"
-                id="upload-file"
+                id={`upload-file${id}`}
                 hidden
                 accept="image/*"
                 onChange={({ target: { files } }) => {
