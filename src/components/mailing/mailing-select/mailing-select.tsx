@@ -25,9 +25,6 @@ const MailingSelect: FC<IMailingSelect> = ({
   maxWidth,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(currentOption);
-
-  console.log(currentOption);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -48,7 +45,6 @@ const MailingSelect: FC<IMailingSelect> = ({
 
   const handleOptionClick = handleSelect
     ? (option: Option) => {
-        setSelectedOption(option);
         handleSelect(option);
         setIsOpen(false);
       }
@@ -68,12 +64,10 @@ const MailingSelect: FC<IMailingSelect> = ({
       className={styles.container}
       style={buttonStyle}
     >
-      {(selectedOption || currentOption) && (
-        <span className={styles.label}>
-          {options ? selectedOption!.label : currentOption?.label}
-        </span>
+      {currentOption && (
+        <span className={styles.label}>{currentOption?.label}</span>
       )}
-      {!selectedOption && !currentOption && (
+      {!currentOption && (
         <span className={styles.placeholder}>{placeholder}</span>
       )}
       <span
