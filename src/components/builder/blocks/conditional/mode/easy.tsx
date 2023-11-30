@@ -11,7 +11,6 @@ export type TEasyBlockProps = {
   id: string;
 };
 const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
-  const buttonsSelectValues = selectValues.map((item) => item.nameValue);
   const { getNodes, setNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
@@ -70,9 +69,12 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
         <div className={styles['selects-string']}>
           <div className={styles.selectsVariable}>
             <Select
-              options={buttonsSelectValues}
+              options={selectValues}
               handleSelect={(option) => setVariable(option.value)}
-              currentOption={itemFromVariables.variable}
+              currentOption={getSelectItemByValue(
+                itemFromVariables.variable,
+                selectValues
+              )}
               elementToCloseListener="flow"
               adaptive
             />

@@ -48,9 +48,9 @@ export const saveOptions = [
 ];
 
 export const selectValues = [
-  { value: '1', nameValue: '1' },
-  { value: '2', nameValue: '2' },
-  { value: '3', nameValue: '3' },
+  { value: '1', label: '1' },
+  { value: '2', label: '2' },
+  { value: '3', label: '3' },
 ];
 
 export const selectValuesType = [

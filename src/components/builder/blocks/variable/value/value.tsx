@@ -6,14 +6,13 @@ import Input from '../../../../../ui/inputs/input/input';
 import { selectValues } from '../../../utils/data';
 import Select from '../../../../../ui/select/select';
 import { Option } from '../../../../../utils/types';
+import { getSelectItemByValue } from '../../../utils';
 
 export type TValueProps = {
   idNum: string;
 };
 
 const Value: FC<TValueProps> = ({ idNum }) => {
-  const selectOptions = selectValues.map((el) => el.nameValue);
-
   const { getNodes, setNodes, getNode } = useReactFlow();
   const id = useNodeId();
   const node = getNode(id!);
@@ -65,8 +64,8 @@ const Value: FC<TValueProps> = ({ idNum }) => {
       </div>
       <div className={styles.v}>
         <Select
-          options={selectOptions}
-          currentOption={itemLine.value}
+          options={selectValues}
+          currentOption={getSelectItemByValue(itemLine.value, selectValues)}
           handleSelect={setVal}
           placeholder="переменная"
           elementToCloseListener="flow"
