@@ -9,17 +9,29 @@ import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
 type ElementListener = 'document' | 'flow';
 
 export interface ISelect {
+  /** Текущее значение select */
   currentOption?: Option | string | null;
   options?: Option[] | string[];
+  /** Функция, вызываемая при клике на элемент селекта */
   handleSelect?: (option: Option) => void;
   placeholder?: string;
+  /** style-объект для контейнера select */
   buttonStyle?: React.CSSProperties;
+  /** Функция, вызываемая при клике на элемент селекта */
   elementToCloseListener?: ElementListener;
+  /** Переключатель адаптивности на 620px */
   adaptive?: boolean;
+  /** extra-класс для контейнера селекта */
+  containerClassName?: string;
+  /** extra-класс для контейнера выпадающего меню */
   layoutClassName?: string;
+  /** extra-класс для элемента выпадающего меню */
   itemClassName?: string;
+  /** настройка прокрутки выпадающего меню, требует доработки */
   isScroll?: boolean;
+  /** внешняя функция-контроллер для переключения состояния селекта */
   toggleSelect?: () => void;
+  /** внешняя функция-контроллер для закрытия селекта */
   closeSelect?: () => void;
 }
 
@@ -32,6 +44,7 @@ const Select: FC<ISelect> = ({
   elementToCloseListener,
   adaptive,
   isScroll,
+  containerClassName,
   layoutClassName,
   itemClassName,
   toggleSelect,
@@ -102,7 +115,7 @@ const Select: FC<ISelect> = ({
       type="button"
       className={`${styles.container} ${
         adaptive ? styles.container_adaptive : ''
-      }`}
+      } ${containerClassName || ''}`}
       style={buttonStyle}
     >
       {formatedOption && !formatedOption.icon && (
