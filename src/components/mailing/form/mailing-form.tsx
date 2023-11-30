@@ -7,7 +7,6 @@ import MailingPopup from '../../popups/mailing-popup/mailing-popup';
 import TextField from '../../../ui/text-field/text-field';
 import Input from '../../../ui/inputs/input/input';
 import Typography from '../../../ui/typography/typography';
-import MailingSelect from '../mailing-select/mailing-select';
 import { Option } from '../../../utils/types';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 import {
@@ -16,6 +15,7 @@ import {
   MFmailingList,
   MFmessengerList,
 } from '../../../utils/mockMailingData';
+import Select from '../../../ui/select/select';
 
 interface IProps {
   nameValue: string;
@@ -68,7 +68,7 @@ const MailingForm: FC<IProps> = ({
             />
           </div>
           <div className={styles.form__menuVariableWrapper}>
-            <MailingSelect
+            <Select
               options={MFmailingList}
               currentOption={list}
               handleSelect={(option: Option) => setList(option)}
@@ -86,7 +86,7 @@ const MailingForm: FC<IProps> = ({
             />
           </div>
           <div className={styles.form__menuVariableWrapper}>
-            <MailingSelect
+            <Select
               options={MFmessengerList}
               currentOption={messenger}
               handleSelect={(option: Option) => setMessenger(option)}

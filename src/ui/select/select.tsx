@@ -8,9 +8,9 @@ import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
 
 type ElementListener = 'document' | 'flow';
 
-export interface IMailingSelect {
+export interface ISelect {
   currentOption?: Option | string | null;
-  options: Option[] | string[];
+  options?: Option[] | string[];
   handleSelect?: (option: Option) => void;
   placeholder?: string;
   buttonStyle?: React.CSSProperties;
@@ -19,9 +19,11 @@ export interface IMailingSelect {
   layoutClassName?: string;
   itemClassName?: string;
   isScroll?: boolean;
+  toggleSelect?: () => void;
+  closeSelect?: () => void;
 }
 
-const Select: FC<IMailingSelect> = ({
+const Select: FC<ISelect> = ({
   currentOption,
   options,
   handleSelect,
@@ -32,9 +34,12 @@ const Select: FC<IMailingSelect> = ({
   isScroll,
   layoutClassName,
   itemClassName,
+  toggleSelect,
+  closeSelect,
 }) => {
   const formatedOptions = useMemo(
     () =>
+      options &&
       options.map((option) => {
         if (typeof option === 'string') {
           return { value: option, label: option };
@@ -64,13 +69,17 @@ const Select: FC<IMailingSelect> = ({
     }
   }, []);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleDropdown =
+    toggleSelect ||
+    (() => {
+      setIsOpen(!isOpen);
+    });
 
-  const closeDropdown = () => {
-    setIsOpen(false);
-  };
+  const closeDropdown =
+    closeSelect ||
+    (() => {
+      setIsOpen(false);
+    });
 
   useOutsideClickAndEscape(
     menuRef,

@@ -7,9 +7,7 @@ import Typography from '../../../ui/typography/typography';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Calendar from '../../calendar/calendar';
-import MenuTime from '../../../ui/menus/menu-time/menu-time';
 import CheckIcon from '../../icons/Check/CheckIcon';
-import MailingSelect from '../mailing-select/mailing-select';
 import { Option } from '../../../utils/types';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
@@ -26,6 +24,7 @@ import {
   MCsend,
   MCweek,
 } from '../../../utils/mockMailingData';
+import Select from '../../../ui/select/select';
 
 interface IProps {
   title?: string;
@@ -86,7 +85,7 @@ const MailingConditions: FC<IProps> = ({
     });
   };
 
-  const handleIntervalClick = (selected: any) => {
+  const handleIntervalClick = (selected: Option) => {
     setSelectedInterval(selected);
   };
 
@@ -155,7 +154,7 @@ const MailingConditions: FC<IProps> = ({
           className={`${styles.form__menuContainer} ${styles['grid_1-3_3']}`}
         >
           <Typography tag="p">Отправить</Typography>
-          <MailingSelect
+          <Select
             options={MCsend}
             currentOption={sendTime}
             handleSelect={handleSendTimeClick}
@@ -167,7 +166,7 @@ const MailingConditions: FC<IProps> = ({
               <span className={styles.form__iconString}>
                 <CalendarIcon /> Дата
               </span>
-              <MailingSelect
+              <Select
                 currentOption={date}
                 toggleSelect={() => setCalendarOpen(!calendarOpen)}
                 closeSelect={() => setCalendarOpen(false)}
@@ -209,7 +208,7 @@ const MailingConditions: FC<IProps> = ({
           className={`${styles.form__menuContainer} ${styles['grid_1-3_5']}`}
         >
           <Typography tag="p">Повторять</Typography>
-          <MailingSelect
+          <Select
             options={MCrepeat}
             handleSelect={handleRepeatClick}
             currentOption={selectedRepeat}
@@ -220,20 +219,32 @@ const MailingConditions: FC<IProps> = ({
             <div className={styles.form__smallInputsContainer}>
               <div className={styles.form__menuContainer}>
                 <Typography tag="span">Настроить</Typography>
-                <MailingSelect
+                <Select
                   options={MChowManyTimes}
                   currentOption={selectedInterval}
                   handleSelect={handleIntervalClick}
-                  maxWidth={!isMobile ? 174 : undefined}
+                  buttonStyle={
+                    !isMobile
+                      ? {
+                          maxWidth: '174px',
+                        }
+                      : {}
+                  }
                 />
               </div>
               <div className={styles.form__menuContainer}>
                 <Typography tag="span">Каждый</Typography>
-                <MailingSelect
+                <Select
                   options={MChowOften}
                   currentOption={period}
                   handleSelect={(option) => setPeriod(option)}
-                  maxWidth={!isMobile ? 174 : undefined}
+                  buttonStyle={
+                    !isMobile
+                      ? {
+                          maxWidth: '174px',
+                        }
+                      : {}
+                  }
                 />
               </div>
               {!isOff && (
