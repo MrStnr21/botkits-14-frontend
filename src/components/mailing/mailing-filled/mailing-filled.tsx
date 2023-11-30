@@ -6,11 +6,8 @@ import TableComponent from '../../table-component/table-component';
 import { cols, rows, rowStyle, cellStyle } from '../../../utils/mailingTable';
 import { ppHeadCell } from '../../table-cells/table-cells';
 import Typography from '../../../ui/typography/typography';
-import MailingModal from '../../popups/mailing-popup/mailing-popup';
 import ChevronIcon from '../../icons/Chevron/ChevronIcon';
 import MobileTable from './mobile-table/mobile-table';
-
-const mailings = ['Все', 'Запущены', 'Отклонены'];
 
 const MailingFilled: FC = () => {
   const isMobile = useMediaQuery('(max-width: 860px)');

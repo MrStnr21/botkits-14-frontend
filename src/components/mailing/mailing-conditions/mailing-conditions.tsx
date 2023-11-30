@@ -17,64 +17,21 @@ import { ReactComponent as CalendarIcon } from '../../../images/icon/24x24/time/
 import { ReactComponent as TimeIcon } from '../../../images/icon/24x24/time/time.svg';
 import TimeSelect from '../time-select/time-select';
 import DayPicker from '../day-picker/day-picker';
+import {
+  MCcrumbs,
+  MCdayButtonsData,
+  MChowManyTimes,
+  MChowOften,
+  MCrepeat,
+  MCsend,
+  MCweek,
+} from '../../../utils/mockMailingData';
 
 interface IProps {
   title?: string;
   handleBack?: () => void;
   handleClickButton?: () => void;
 }
-
-const repeat = [
-  { label: 'Без повтора', value: 'Без повтора' },
-  { label: 'Без повтора', value: 'Без повтора' },
-  { label: 'Каждый день', value: 'Каждый день' },
-  { label: 'Каждый месяц', value: 'Каждый месяц' },
-  { label: 'Каждый год', value: 'Каждый год' },
-  { label: 'Свой вариант', value: 'Свой вариант' },
-];
-
-const dayButtonsData = [
-  { label: 'ПН', value: 'ПН' },
-  { label: 'ВТ', value: 'ВТ' },
-  { label: 'СР', value: 'СР' },
-  { label: 'ЧТ', value: 'ЧТ' },
-  { label: 'ПТ', value: 'ПТ' },
-  { label: 'СБ', value: 'СБ' },
-  { label: 'ВС', value: 'ВС' },
-];
-
-const send = [
-  { label: 'Сейчас', value: 'Сейчас' },
-  { label: 'Дата/Время', value: 'Дата/Время' },
-];
-
-const howManyTimes = [
-  { label: 'По дням', value: 'По дням' },
-  { label: 'По неделям', value: 'По неделям' },
-  { label: 'По месяцам', value: 'По месяцам' },
-  { label: 'По годам', value: 'По годам' },
-];
-
-const howOften = [
-  { label: '1', value: '1' },
-  { label: '2', value: '2' },
-  { label: '3', value: '3' },
-];
-
-const week = [
-  'Понедельник',
-  'Вторник',
-  'Среда',
-  'Четверг',
-  'Пятница',
-  'Суббота',
-  'Воскресенье',
-];
-
-const crumbs = [
-  { label: 'Создание рассылки', to: '/mailing/create' },
-  { label: 'Условия рассылки', to: '/mailing/create/conditions' },
-];
 
 const MailingConditions: FC<IProps> = ({
   title,
@@ -83,15 +40,15 @@ const MailingConditions: FC<IProps> = ({
 }) => {
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [selectedRepeat, setSelectedRepeat] = useState<Option | null>(
-    repeat[0]
+    MCrepeat[0]
   );
-  const [sendTime, setSendTime] = useState<Option | null>(send[0]);
+  const [sendTime, setSendTime] = useState<Option | null>(MCsend[0]);
   const [time, setTime] = useState<number>(0);
   const [date, setDate] = useState<Option | null>(null);
   const [selectedInterval, setSelectedInterval] = useState<Option | null>(
-    howManyTimes[0]
+    MChowManyTimes[0]
   );
-  const [period, setPeriod] = useState<Option | null>(howOften[0]);
+  const [period, setPeriod] = useState<Option | null>(MChowOften[0]);
   const [weekDay, setWeekDay] = useState<string>('');
 
   const [dayButtons, setDayButtons] = useState<Option[]>([]);
@@ -123,7 +80,6 @@ const MailingConditions: FC<IProps> = ({
   };
 
   const handleCalendarClick = (selected: string) => {
-    console.log(selected);
     setDate({
       value: selected,
       label: selected.split(' ')[0].replaceAll('-', '.'),
@@ -190,7 +146,7 @@ const MailingConditions: FC<IProps> = ({
     <div className={styles.container}>
       <form className={styles.form}>
         <div className={styles.form__breadcrumbs}>
-          <Breadcrumbs crumbs={crumbs} />
+          <Breadcrumbs crumbs={MCcrumbs} />
         </div>
         <fieldset className={styles.form__formFieldset}>
           <Typography tag="h2">{title}</Typography>
@@ -200,7 +156,7 @@ const MailingConditions: FC<IProps> = ({
         >
           <Typography tag="p">Отправить</Typography>
           <MailingSelect
-            options={send}
+            options={MCsend}
             currentOption={sendTime}
             handleSelect={handleSendTimeClick}
           />
@@ -254,7 +210,7 @@ const MailingConditions: FC<IProps> = ({
         >
           <Typography tag="p">Повторять</Typography>
           <MailingSelect
-            options={repeat}
+            options={MCrepeat}
             handleSelect={handleRepeatClick}
             currentOption={selectedRepeat}
           />
@@ -265,7 +221,7 @@ const MailingConditions: FC<IProps> = ({
               <div className={styles.form__menuContainer}>
                 <Typography tag="span">Настроить</Typography>
                 <MailingSelect
-                  options={howManyTimes}
+                  options={MChowManyTimes}
                   currentOption={selectedInterval}
                   handleSelect={handleIntervalClick}
                   maxWidth={!isMobile ? 174 : undefined}
@@ -274,7 +230,7 @@ const MailingConditions: FC<IProps> = ({
               <div className={styles.form__menuContainer}>
                 <Typography tag="span">Каждый</Typography>
                 <MailingSelect
-                  options={howOften}
+                  options={MChowOften}
                   currentOption={period}
                   handleSelect={(option) => setPeriod(option)}
                   maxWidth={!isMobile ? 174 : undefined}
@@ -350,7 +306,7 @@ const MailingConditions: FC<IProps> = ({
                     />
                     <MenuVariable
                       width="174px"
-                      buttons={week}
+                      buttons={MCweek}
                       nameMenu={!weekDay ? 'Понедельник' : weekDay}
                       onClick={(selected: string) => setWeekDay(selected)}
                     />
@@ -363,7 +319,7 @@ const MailingConditions: FC<IProps> = ({
         {selectedInterval && selectedInterval.value === 'По неделям' && (
           <div className={styles.form__dayPicker}>
             <DayPicker
-              buttons={dayButtonsData}
+              buttons={MCdayButtonsData}
               active={dayButtons}
               setValue={handleDayClick}
             />

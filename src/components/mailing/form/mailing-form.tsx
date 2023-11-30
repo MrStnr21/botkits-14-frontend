@@ -6,27 +6,16 @@ import ButtonAddContent from '../../../ui/buttons/button-add-content/button-add-
 import MailingPopup from '../../popups/mailing-popup/mailing-popup';
 import TextField from '../../../ui/text-field/text-field';
 import Input from '../../../ui/inputs/input/input';
-import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import Typography from '../../../ui/typography/typography';
 import MailingSelect from '../mailing-select/mailing-select';
 import { Option } from '../../../utils/types';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
-
-const mailingList = [
-  { label: 'Все пользователи', value: '1' },
-  { label: 'Список 1', value: '2' },
-  { label: 'Список 2', value: '3' },
-  { label: 'Список 3', value: '4' },
-];
-const messengerList = [
-  { label: 'Telegram, VK', value: '1' },
-  { label: 'Одноклассники', value: '1' },
-  { label: 'WhatsApp', value: '1' },
-  { label: 'Facebook', value: '1' },
-];
-const acitveFunnel = ['Воронка 1', 'Воронка 2', 'Воронка 3'];
-
-const crumbs = [{ label: 'Создание рассылки', to: '/mailing/create' }];
+import {
+  MFacitveFunnel,
+  MFcrumbs,
+  MFmailingList,
+  MFmessengerList,
+} from '../../../utils/mockMailingData';
 
 interface IProps {
   nameValue: string;
@@ -67,7 +56,7 @@ const MailingForm: FC<IProps> = ({
     <div className={styles.container}>
       <form className={styles.form}>
         <div className={styles.form__breadcrumbs}>
-          <Breadcrumbs crumbs={crumbs} />
+          <Breadcrumbs crumbs={MFcrumbs} />
         </div>
         <fieldset className={styles.form__formFieldset}>
           <div className={styles.form__inputWrapper}>
@@ -80,7 +69,7 @@ const MailingForm: FC<IProps> = ({
           </div>
           <div className={styles.form__menuVariableWrapper}>
             <MailingSelect
-              options={mailingList}
+              options={MFmailingList}
               currentOption={list}
               handleSelect={(option: Option) => setList(option)}
               placeholder="Список рассылки"
@@ -98,7 +87,7 @@ const MailingForm: FC<IProps> = ({
           </div>
           <div className={styles.form__menuVariableWrapper}>
             <MailingSelect
-              options={messengerList}
+              options={MFmessengerList}
               currentOption={messenger}
               handleSelect={(option: Option) => setMessenger(option)}
               placeholder="Список мессенджеров"
@@ -116,7 +105,7 @@ const MailingForm: FC<IProps> = ({
               className={styles.form__popupWrapper}
               onClick={handleFirstClick}
             >
-              <MailingPopup caption="Активировать" elements={acitveFunnel} />
+              <MailingPopup caption="Активировать" elements={MFacitveFunnel} />
               {isFirstChecked && <CheckIcon />}
             </div>
             <div className={styles.form__popupWrapper} onClick={handleSecClick}>
