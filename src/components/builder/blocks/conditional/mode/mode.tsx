@@ -6,6 +6,7 @@ import EasyMode from './easy';
 import HardMode from './hard';
 import { messagesSuccessful } from '../../../utils/data';
 import Select from '../../../../../ui/select/select';
+import { getSelectItemByValue } from '../../../utils';
 
 export type TModeProps = {
   id: string;
@@ -34,13 +35,6 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
     [node]
   );
 
-  const buttonsTargetBlock = messagesSuccessful.map((item) => item.value);
-
-  /* const active = useMemo(
-    () => itemFromVariables.targetBlock !== '',
-    [itemFromVariables]
-  ); */
-
   const getBlock = useMemo(() => {
     switch (itemFromVariables.type) {
       case 'easy': {
@@ -62,9 +56,12 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
       </LabeledInput>
       <LabeledInput title="То перейти" extraClass={styles.extraClass}>
         <Select
-          options={buttonsTargetBlock}
+          options={messagesSuccessful}
           handleSelect={(option) => setTargetBlock(option.value)}
-          currentOption={itemFromVariables.targetBlock}
+          currentOption={getSelectItemByValue(
+            itemFromVariables.targetBlock,
+            messagesSuccessful
+          )}
           elementToCloseListener="flow"
           adaptive
         />

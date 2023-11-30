@@ -42,8 +42,6 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
     selectors: ['signsAmount'],
   });
 
-  console.log(data);
-
   const setAdditionValue = setFlowData({
     selectors: ['additionValue'],
   });
