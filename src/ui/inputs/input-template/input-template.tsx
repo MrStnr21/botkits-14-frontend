@@ -15,16 +15,19 @@ const InputTemplate: FC<IInputTemplate> = ({
   size,
 }) => {
   let inputContainerClassName = stylesInput.template;
+  let inputClassName = stylesInput.template__input;
 
   if (size === 'big') {
     inputContainerClassName += ' ';
     inputContainerClassName += stylesInput.template__big;
+    inputClassName += ' ';
+    inputClassName += stylesInput.template__input_big;
   }
 
   return (
     <div className={inputContainerClassName}>
       <textarea
-        className={stylesInput.template__input}
+        className={inputClassName}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

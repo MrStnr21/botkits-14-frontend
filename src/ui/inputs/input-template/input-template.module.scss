@@ -9,7 +9,8 @@
 
   &__big {
     @include size(362px, 70px);
-  }
+    
+}
 
   &__input {
     @include font('Open Sans', $xs-font-size, $normal, $grey-3);
@@ -27,5 +28,26 @@
     &::placeholder {
       color: $grey-3;
     }
+  }
+
+  &__input_big {
+    overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $off-white;
+    border-radius: $m-border-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-1;
+    box-sizing: border-box;
+    border-radius: $m-border-radius;
+    border: solid 5px $off-white;
+  }
+
   }
 }
