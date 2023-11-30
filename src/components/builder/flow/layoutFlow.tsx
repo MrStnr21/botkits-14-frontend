@@ -1,5 +1,6 @@
 import { FC, useCallback, useState, useEffect, useMemo } from 'react';
 import cn from 'classnames/bind';
+import { v4 as uuid } from 'uuid';
 
 import ReactFlow, {
   addEdge,
@@ -33,6 +34,12 @@ const cx = cn.bind(styles);
 // eslint-disable-next-line import/no-mutable-exports
 export let namesOfBlocks: string[] = [];
 
+// eslint-disable-next-line import/no-mutable-exports
+export let storOfVariables: (
+  | { id: string; name: string; value: any }
+  | undefined
+)[] = [{ id: '', name: '', value: '' }];
+
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isMobile = useMediaQuery('(max-width: 620px)');
@@ -42,6 +49,47 @@ const LayoutFlow: FC = () => {
   const [menuOpened, toggleMenu] = useState(false);
 
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
+
+  storOfVariables = useMemo(
+    () =>
+      nodes.map((node) => {
+        switch (node.type) {
+          case 'message': {
+            return;
+          }
+          case 'api': {
+            // eslint-disable-next-line consistent-return
+            return { id: uuid(), name: 'variable', value: node.data.variable };
+          }
+          case 'conditional': {
+            return;
+          }
+          case 'coordinate': {
+            return;
+          }
+          case 'telegramPay': {
+            return;
+          }
+          case 'deeplink': {
+            return;
+          }
+          case 'crm': {
+            return;
+          }
+          case 'operator': {
+            return;
+          }
+          case 'variable': {
+            return;
+          }
+          default: {
+            // eslint-disable-next-line consistent-return
+            return { id: '', name: '', value: '' };
+          }
+        }
+      }),
+    [nodes]
+  );
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     if (connection.source === connection.target) {
