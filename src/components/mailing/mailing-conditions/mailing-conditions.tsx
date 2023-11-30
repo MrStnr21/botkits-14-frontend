@@ -87,10 +87,7 @@ const MailingConditions: FC<IProps> = ({
   );
   const [sendTime, setSendTime] = useState<Option | null>(send[0]);
   const [time, setTime] = useState<number>(0);
-  const [date, setDate] = useState<Option | null>({
-    label: '24.05.22',
-    value: '24.05.22',
-  });
+  const [date, setDate] = useState<Option | null>(null);
   const [selectedInterval, setSelectedInterval] = useState<Option | null>(
     howManyTimes[0]
   );
@@ -125,8 +122,12 @@ const MailingConditions: FC<IProps> = ({
     setSendTime(selected);
   };
 
-  const handleCalendarClick = (selected: any) => {
-    setDate(selected);
+  const handleCalendarClick = (selected: string) => {
+    console.log(selected);
+    setDate({
+      value: selected,
+      label: selected.split(' ')[0].replaceAll('-', '.'),
+    });
   };
 
   const handleIntervalClick = (selected: any) => {
