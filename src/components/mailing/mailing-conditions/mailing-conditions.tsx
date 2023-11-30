@@ -86,7 +86,7 @@ const MailingConditions: FC<IProps> = ({
     repeat[0]
   );
   const [sendTime, setSendTime] = useState<Option | null>(send[0]);
-  const [time, setTime] = useState<string>('4:00');
+  const [time, setTime] = useState<number>(0);
   const [date, setDate] = useState<Option | null>({
     label: '24.05.22',
     value: '24.05.22',
@@ -131,6 +131,26 @@ const MailingConditions: FC<IProps> = ({
 
   const handleIntervalClick = (selected: any) => {
     setSelectedInterval(selected);
+  };
+
+  const handleTimeIncrease = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (time >= 23 * 60 + 59) {
+      return;
+    }
+    setTime(time + 1);
+  };
+
+  const handleTimeDecrease = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (time <= 0) {
+      return;
+    }
+    setTime(time - 1);
+  };
+
+  const handleSaveTime = (selectedTime: number) => {
+    setTime(selectedTime);
   };
 
   const handleDayClick = (selected: Option) => {
@@ -214,10 +234,14 @@ const MailingConditions: FC<IProps> = ({
                 <TimeIcon /> Время
               </span>
               <TimeSelect
-                value={time}
-                onDecrease={() => {}}
-                onIncrease={() => {}}
-                saveFunction={() => {}}
+                value={`${Math.floor(time / 60) < 10 ? '0' : ''}${Math.floor(
+                  time / 60
+                )}:${time % 60 < 10 ? '0' : ''}${time % 60}`}
+                curHour={Math.floor(time / 60)}
+                curMin={time % 60}
+                onDecrease={handleTimeDecrease}
+                onIncrease={handleTimeIncrease}
+                saveFunction={handleSaveTime}
                 clearFunction={() => {}}
                 isSelect
               />

@@ -8,9 +8,11 @@ import ModalPopup from '../../popups/modal-popup/modal-popup';
 
 type TTimeSelectProps = {
   value: string;
-  onDecrease: () => void;
-  onIncrease: () => void;
-  saveFunction: () => void;
+  curMin?: number;
+  curHour?: number;
+  onDecrease: (e: React.MouseEvent) => void;
+  onIncrease: (e: React.MouseEvent) => void;
+  saveFunction: (t: number) => void;
   clearFunction: () => void;
   style?: {
     [key: string]: string;
@@ -20,6 +22,8 @@ type TTimeSelectProps = {
 
 const TimeSelect: FC<TTimeSelectProps> = ({
   value,
+  curMin,
+  curHour,
   onDecrease,
   onIncrease,
   saveFunction,
@@ -56,12 +60,24 @@ const TimeSelect: FC<TTimeSelectProps> = ({
       </span>
       {isOpen && !isMobile && isSelect && (
         <div ref={menuRef} className={styles.menu}>
-          <MenuTime saveFunction={saveFunction} clearFunction={clearFunction} />
+          <MenuTime
+            curMin={curMin}
+            curHour={curHour}
+            saveFunction={saveFunction}
+            clearFunction={clearFunction}
+            closeMenu={() => setIsOpen(false)}
+          />
         </div>
       )}
       {isOpen && isMobile && isSelect && (
         <ModalPopup onClick={() => setIsOpen(false)} closeIcon={false}>
-          <MenuTime saveFunction={saveFunction} clearFunction={clearFunction} />
+          <MenuTime
+            curMin={curMin}
+            curHour={curHour}
+            saveFunction={saveFunction}
+            clearFunction={clearFunction}
+            closeMenu={() => setIsOpen(false)}
+          />
         </ModalPopup>
       )}
     </div>

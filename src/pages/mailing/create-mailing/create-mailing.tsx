@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useMatch, useNavigate } from 'react-router';
 import { useMediaQuery } from '@mui/material';
 import styles from './create-mailing.module.scss';
@@ -15,8 +15,18 @@ const CreateMailing: FC = () => {
   const matchConditions = useMatch('/mailing/create/conditions');
   const [nameValue, setNameValue] = useState('');
   const [textValue, setTextValue] = useState('');
+  const [mobile, setMobile] = useState(false);
   const [isAsideVisible, setAsideVisible] = useState(false);
   const isMobile = useMediaQuery('(max-width: 860px)');
+
+  if (isMobile && isAsideVisible && !mobile) {
+    setMobile(true);
+    setAsideVisible(false);
+  }
+
+  if (!isMobile && mobile) {
+    setMobile(false);
+  }
 
   const handleClickButton = () => {
     if (nameValue && textValue) {

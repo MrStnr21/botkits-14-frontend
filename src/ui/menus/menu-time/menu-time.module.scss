@@ -4,14 +4,11 @@
 .box {
   @include size(264px, 478px);
   @include max-size(264px, 80vh);
+  display: flex;
   flex-direction: column;
   box-shadow: $m-box-shadow;
   background-color: white;
   border-radius: $l-border-radius;
-}
-
-.active {
-  display: flex;
 }
 
 .button {
@@ -55,10 +52,21 @@
 }
 
 .number_unit {
+  @include button-style-reset;
   text-align: center;
-  padding: 24px 0;
+  padding: 12px 0;
+}
+
+.number_unit_active {
+  background-color: $blue-disabled;
+  color: $primary-persian-blue-default;
 }
 
 .number_unit:hover {
   background-color: $secondary-cultured-default;
+}
+
+.number_unit_active:hover {
+  background-color: $blue-disabled;
+  color: $primary-persian-blue-default;
 }
