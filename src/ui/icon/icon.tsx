@@ -10,9 +10,11 @@ export interface IIcon {
   size: number;
   /** Цвет иконки в формате HEX. Если не задан, то будет использован оригинальный цвет иконки */
   color?: string;
+  /** Дополнительная стилизация иконки */
+  extraClass?: string;
 }
 
-const Icon: FC<IIcon> = ({ icon, size, color }) => {
+const Icon: FC<IIcon> = ({ icon, size, color, extraClass }) => {
   const filterId = useId();
   const [iconSrc, setIconSrc] = useState<string | null>(null);
 
@@ -39,7 +41,7 @@ const Icon: FC<IIcon> = ({ icon, size, color }) => {
   ) : null;
 
   return (
-    <svg width={size} height={size}>
+    <svg width={size} height={size} className={extraClass}>
       {filter}
       {iconSrc && (
         <image
