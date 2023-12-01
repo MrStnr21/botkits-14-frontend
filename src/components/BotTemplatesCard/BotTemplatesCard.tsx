@@ -1,4 +1,5 @@
-import { FC, useState, useRef } from 'react';
+import { FC, useState, useRef, useEffect, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import stylesCard from './BotTemplatesCard.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
@@ -9,21 +10,53 @@ import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
 import InputTemplate from '../../ui/inputs/input-template/input-template';
 
+import routesUrl from '../../utils/routesData';
+
 import { BUTTON_NAME } from '../../utils/constants';
 
 interface IBotTemplatesCard {
+  id: string;
   image?: string;
+  title?: string;
+  description?: string;
+  isToPublish: boolean;
+  deleteCard: (id: string) => void;
 }
 
-const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
-  const [crm, setCrm] = useState(true);
+const BotTemplatesCard: FC<IBotTemplatesCard> = ({
+  image,
+  id,
+  title,
+  description,
+  isToPublish,
+  deleteCard,
+}) => {
+  const [crm, setCrm] = useState(isToPublish);
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>();
-  const [nameBot, setNameBot] = useState<string>();
-  const [aboutBot, setAboutBot] = useState<string>();
-  const [priceBot, setPriceBot] = useState<string>();
+  const [nameBot, setNameBot] = useState<string>(title || '');
+  const [aboutBot, setAboutBot] = useState<string>(description || '');
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const navigate = useNavigate();
+
+  const importImage = async () => {
+    try {
+      const imageModule = await import(
+        `../../images/icon/template/${image}.svg`
+      );
+      return imageModule.default;
+    } catch (error) {
+      return 'null';
+    }
+  };
+
+  useEffect(() => {
+    importImage().then((importedImage) => {
+      setImageEdit(importedImage);
+    });
+  }, [image]);
 
   useOutsideClickAndEscape(
     menuRef,
@@ -42,11 +75,18 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
   };
 
   const onClickEditAvatar = () => {
-    document.getElementById('upload-file')!.click();
+    document.getElementById(`upload-file${id}`)!.click();
   };
 
-  const handleOptionClick = () => {
+  const handleOptionClick = (e: string) => {
     toggleMenu(false);
+    if (e === 'setupBuilder') {
+      const path = routesUrl.botBuilder;
+      navigate(`/${path}`);
+    }
+    if (e === 'delete') {
+      deleteCard(id);
+    }
   };
 
   const options = [
@@ -57,7 +97,6 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
   const clearInputs = () => {
     setNameBot('');
     setAboutBot('');
-    setPriceBot('');
   };
 
   return (
@@ -70,17 +109,17 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
               state="offline"
               big="yes"
               botTemplates="yes"
-              pic={imageEdit || image || imageAvatar}
+              pic={imageEdit || imageAvatar}
             />
             <div className={stylesCard.editButton}>
               <input
                 type="file"
-                id="upload-file"
+                id={`upload-file${id}`}
                 hidden
                 accept="image/*"
                 onChange={({ target: { files } }) => {
                   if (files !== null && files[0]) {
-                    setImageEdit(URL.createObjectURL(files![0]));
+                    setImageEdit(URL.createObjectURL(files[0]));
                   }
                 }}
               />
@@ -102,29 +141,27 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({ image }) => {
               <Menu
                 ref={menuRef}
                 options={options}
-                onItemClick={handleOptionClick}
+                onItemClick={(e) => handleOptionClick(e.value)}
                 layoutClassName={stylesCard.dropdown}
               />
             )}
           </div>
         </div>
         <InputTemplate
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setNameBot(e.target.value)
+          }
           size="small"
-          color="black"
           placeholder="Название бота"
           value={nameBot}
         />
         <InputTemplate
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setAboutBot(e.target.value)
+          }
           size="big"
-          color="grey"
           placeholder="Описание бота..."
           value={aboutBot}
-        />
-        <InputTemplate
-          size="small"
-          color="grey"
-          placeholder="Цена в рублях"
-          value={priceBot}
         />
         <CheckboxWithText
           label="Опубликовать"
