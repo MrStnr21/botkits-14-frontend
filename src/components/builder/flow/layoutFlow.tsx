@@ -28,15 +28,14 @@ import BotName from '../../../ui/bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
+import { TVariable } from '../../../services/types/builder';
 
 const cx = cn.bind(styles);
 
 // eslint-disable-next-line import/no-mutable-exports
 export let namesOfBlocks: string[] = [];
 
-export const storOfVariables: { id: string; name: string; value: any }[] = [
-  { id: '', name: '', value: '' },
-];
+export const storOfVariables: TVariable[] = [{ id: '', name: '', value: '' }];
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -47,46 +46,6 @@ const LayoutFlow: FC = () => {
   const [menuOpened, toggleMenu] = useState(false);
 
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
-  /* storOfVariables = useMemo(
-    () =>
-      nodes.map((node) => {
-        switch (node.type) {
-          case 'message': {
-            return;
-          }
-          case 'api': {
-            // eslint-disable-next-line consistent-return
-            return { id: uuid(), name: 'variable', value: node.data.variable };
-          }
-          case 'conditional': {
-            return;
-          }
-          case 'coordinate': {
-            return;
-          }
-          case 'telegramPay': {
-            return;
-          }
-          case 'deeplink': {
-            return;
-          }
-          case 'crm': {
-            return;
-          }
-          case 'operator': {
-            return;
-          }
-          case 'variable': {
-            return;
-          }
-          default: {
-            // eslint-disable-next-line consistent-return
-            return { id: '', name: '', value: '' };
-          }
-        }
-      }),
-    [nodes]
-  ); */
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     if (connection.source === connection.target) {

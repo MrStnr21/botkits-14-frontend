@@ -120,20 +120,20 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
-  // const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
+  const setVariable = (finalValue: string) => {
+    const idVariable = uuid();
 
-  const setVariable = (finalValue: any) => {
     if (storOfVariables.length === 1 && storOfVariables[0].id === '') {
       storOfVariables.splice(0, 1, {
-        id: uuid(),
+        id: idVariable,
         name: finalValue,
-        value: { [finalValue]: '' },
+        value: '',
       });
     }
     storOfVariables.push({
-      id: uuid(),
+      id: idVariable,
       name: finalValue,
-      value: { [finalValue]: '' },
+      value: '',
     });
 
     return setNodes(
@@ -145,7 +145,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               ...item.data,
               saveAnswer: {
                 ...item.data.saveAnswer,
-                value: { [finalValue]: '' },
+                value: { id: idVariable, name: finalValue, value: '' },
               },
             },
           };
@@ -380,7 +380,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               setVariable(event.target.value)
             }
             styled="bot-builder-default"
-            value={Object.keys(data.saveAnswer.value)[0]}
+            value={data.saveAnswer.value.name}
           />
         </HiddenBlock>
         <HiddenBlock

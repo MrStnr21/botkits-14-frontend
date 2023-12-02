@@ -22,7 +22,7 @@ const data = {
     },
   ],
   saveAnswer: {
-    value: '',
+    value: { id: '1', name: '', value: '' },
     show: false,
   },
   showTime: {

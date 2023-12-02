@@ -44,7 +44,9 @@ export type TReactFlowEdge = {
 };
 
 export type TVariable = {
-  [key: string]: any; // Пока не понятная структура переменных
+  id: string;
+  name: string;
+  value: any; // Пока не понятная структура переменных
 };
 
 export type TTrigger = {
