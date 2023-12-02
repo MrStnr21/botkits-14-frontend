@@ -20,6 +20,8 @@ import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
 import { setFlowData } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
+// eslint-disable-next-line import/no-cycle
+import { storOfVariables } from '../../flow/layoutFlow';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
@@ -118,7 +120,41 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
-  const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
+  // const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
+
+  const setVariable = (finalValue: any) => {
+    if (storOfVariables.length === 1 && storOfVariables[0].id === '') {
+      storOfVariables.splice(0, 1, {
+        id: uuid(),
+        name: finalValue,
+        value: { [finalValue]: '' },
+      });
+    }
+    storOfVariables.push({
+      id: uuid(),
+      name: finalValue,
+      value: { [finalValue]: '' },
+    });
+
+    return setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              saveAnswer: {
+                ...item.data.saveAnswer,
+                value: { [finalValue]: '' },
+              },
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   const toggleVariableBlock = setFlowData({
     selectors: ['saveAnswer', 'show'],
     value: !data.saveAnswer.show,
@@ -340,9 +376,11 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           <Input
             minLength={0}
             placeholder="Введите переменную"
-            onChange={setVariable}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setVariable(event.target.value)
+            }
             styled="bot-builder-default"
-            value={data.saveAnswer.value}
+            value={Object.keys(data.saveAnswer.value)[0]}
           />
         </HiddenBlock>
         <HiddenBlock

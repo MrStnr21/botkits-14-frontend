@@ -146,7 +146,7 @@ export type TMessageBlock = {
   data: TMessageBlockData[];
   saveAnswer: {
     show: boolean;
-    value: string;
+    value: TVariable;
   };
   showTime: {
     show: boolean;

@@ -1,6 +1,5 @@
 import { FC, useCallback, useState, useEffect, useMemo } from 'react';
 import cn from 'classnames/bind';
-import { v4 as uuid } from 'uuid';
 
 import ReactFlow, {
   addEdge,
@@ -14,6 +13,7 @@ import ReactFlow, {
 import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
+// eslint-disable-next-line import/no-cycle
 import { initialNodes, nodeTypes } from './initial-nodes';
 import { initialEdges, edgeOptions } from './initial-edges';
 
@@ -34,11 +34,9 @@ const cx = cn.bind(styles);
 // eslint-disable-next-line import/no-mutable-exports
 export let namesOfBlocks: string[] = [];
 
-// eslint-disable-next-line import/no-mutable-exports
-export let storOfVariables: (
-  | { id: string; name: string; value: any }
-  | undefined
-)[] = [{ id: '', name: '', value: '' }];
+export const storOfVariables: { id: string; name: string; value: any }[] = [
+  { id: '', name: '', value: '' },
+];
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -49,8 +47,7 @@ const LayoutFlow: FC = () => {
   const [menuOpened, toggleMenu] = useState(false);
 
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
-
-  storOfVariables = useMemo(
+  /* storOfVariables = useMemo(
     () =>
       nodes.map((node) => {
         switch (node.type) {
@@ -89,7 +86,7 @@ const LayoutFlow: FC = () => {
         }
       }),
     [nodes]
-  );
+  ); */
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     if (connection.source === connection.target) {
