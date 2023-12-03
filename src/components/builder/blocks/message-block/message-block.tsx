@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
-import { FC, useEffect, useMemo } from 'react';
-import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
+import { FC, useMemo, useState } from 'react';
+import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import styles from './message-block.module.scss';
@@ -25,6 +25,7 @@ import { storOfVariables } from '../../flow/layoutFlow';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
+  const [amount, render] = useState(0);
   const id = useNodeId() || '';
   const { setNodes, getNodes } = useReactFlow();
   const isMobile = useMediaQuery('(max-width: 620px)');
@@ -71,10 +72,6 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       }),
     [data.data]
   );
-
-  const { domNode } = useStore((s) => s);
-
-  useEffect(() => {}, [domNode]);
 
   const horButtons = useMemo(
     () =>
@@ -356,7 +353,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   return (
     <ControlLayout type="Блок сообщений">
       <CustomHandle position={Position.Left} type="target" />
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        onClick={() => setTimeout(() => render(amount + 1))}
+      >
         {content}
         <FielsField
           addFile={addFile}
