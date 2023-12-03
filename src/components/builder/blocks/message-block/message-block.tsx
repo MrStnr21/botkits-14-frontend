@@ -123,13 +123,6 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const setVariable = (finalValue: string) => {
     const idVariable = uuid();
 
-    if (storOfVariables.length === 1 && storOfVariables[0].id === '') {
-      storOfVariables.splice(0, 1, {
-        id: idVariable,
-        name: finalValue,
-        value: '',
-      });
-    }
     storOfVariables.push({
       id: idVariable,
       name: finalValue,
