@@ -35,7 +35,7 @@ const cx = cn.bind(styles);
 // eslint-disable-next-line import/no-mutable-exports
 export let namesOfBlocks: string[] = [];
 
-export const storOfVariables: TVariable[] = [{ id: '', name: '', value: '' }];
+export const storOfVariables: TVariable[] = [];
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
