@@ -60,7 +60,7 @@ const TableComponent: FC<Props> = ({
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [selected, setSelected] = useState<any[]>([]);
+  const [selected, setSelected] = useState<number[]>([]);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -73,11 +73,33 @@ const TableComponent: FC<Props> = ({
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = tableData.map((n) => n.id);
+      const newSelected = Array.from(
+        { length: tableData.length },
+        (_, index) => index
+      );
       setSelected(newSelected);
-      return;
+    } else {
+      setSelected([]);
     }
-    setSelected([]);
+  };
+
+  const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected: any[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, id);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+    setSelected(newSelected);
   };
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
@@ -132,6 +154,7 @@ const TableComponent: FC<Props> = ({
                     position: 'relative', // временно для выравнивания чекбокса
                     ...props.rowStyle,
                   }}
+                  onClick={(event) => handleClick(event, index)}
                 >
                   {check && (
                     <Checkbox
