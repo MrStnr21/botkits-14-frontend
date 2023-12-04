@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
-import { FC, useEffect, useMemo } from 'react';
-import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
+import { FC, useMemo, useState } from 'react';
+import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import styles from './message-block.module.scss';
@@ -18,11 +18,14 @@ import {
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
-import { setFlowData } from '../../utils';
+import { saveVariable, setFlowData } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
+// eslint-disable-next-line import/no-cycle
+import { storOfVariables } from '../../flow/layoutFlow';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
+  const [amount, render] = useState(0);
   const id = useNodeId() || '';
   const { setNodes, getNodes } = useReactFlow();
   const isMobile = useMediaQuery('(max-width: 620px)');
@@ -70,10 +73,6 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [data.data]
   );
 
-  const { domNode } = useStore((s) => s);
-
-  useEffect(() => {}, [domNode]);
-
   const horButtons = useMemo(
     () =>
       nodes.filter(
@@ -118,7 +117,28 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
-  const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
+  const setVariable = (finalValue: string) => {
+    saveVariable(storOfVariables, finalValue, id);
+
+    return setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              saveAnswer: {
+                ...item.data.saveAnswer,
+                value: { id, name: finalValue, value: '' },
+              },
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   const toggleVariableBlock = setFlowData({
     selectors: ['saveAnswer', 'show'],
     value: !data.saveAnswer.show,
@@ -320,7 +340,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   return (
     <ControlLayout type="Блок сообщений">
       <CustomHandle position={Position.Left} type="target" />
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        onClick={() => setTimeout(() => render(amount + 1))}
+      >
         {content}
         <FielsField
           addFile={addFile}
@@ -340,9 +363,11 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           <Input
             minLength={0}
             placeholder="Введите переменную"
-            onChange={setVariable}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setVariable(event.target.value)
+            }
             styled="bot-builder-default"
-            value={data.saveAnswer.value}
+            value={data.saveAnswer.value.name}
           />
         </HiddenBlock>
         <HiddenBlock

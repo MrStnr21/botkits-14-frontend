@@ -23,7 +23,9 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
     id: string;
     type: 'easy' | 'hard';
     variable?: {
-      [keyy: string]: any;
+      id: string;
+      name: string;
+      value: any;
     };
     sign?: string;
     condition?: string;

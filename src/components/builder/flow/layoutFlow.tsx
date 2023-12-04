@@ -13,6 +13,7 @@ import ReactFlow, {
 import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
+// eslint-disable-next-line import/no-cycle
 import { initialNodes, nodeTypes } from './initial-nodes';
 import { initialEdges, edgeOptions } from './initial-edges';
 
@@ -27,11 +28,14 @@ import BotName from '../../../ui/bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
+import { TVariable } from '../../../services/types/builder';
 
 const cx = cn.bind(styles);
 
 // eslint-disable-next-line import/no-mutable-exports
 export let namesOfBlocks: string[] = [];
+
+export const storOfVariables: TVariable[] = [];
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

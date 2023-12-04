@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
+
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
 import ControlLayout from '../../control-layout/control-layout';
@@ -10,11 +11,14 @@ import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
-import { setFlowData } from '../../utils';
+import { saveVariable, setFlowData } from '../../utils';
+// eslint-disable-next-line import/no-cycle
+import { storOfVariables } from '../../flow/layoutFlow';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
+  const nodes = getNodes();
 
   const setUrl = setFlowData({ selectors: ['url'] });
   const setGetType = setFlowData({ selectors: ['reqType'], value: 'get' });
@@ -23,7 +27,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   const addField =
     (field: 'headers' | 'params', type: 'variable' | 'const') => () =>
       setNodes(
-        getNodes().map((item) => {
+        nodes.map((item) => {
           if (item.id === id) {
             return {
               ...item,
@@ -70,6 +74,28 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
         )
       );
     });
+  };
+
+  const setVariable = (finalValue: string) => {
+    saveVariable(storOfVariables, finalValue, id);
+
+    return setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              saveAnswer: {
+                ...item.data.saveAnswer,
+                value: { id, name: finalValue, value: '' },
+              },
+            },
+          };
+        }
+        return item;
+      })
+    );
   };
 
   return (
@@ -123,7 +149,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
           <ConstructorAddButton
             buttonHtmlType="button"
             disabled={false}
-            onClick={() => {}}
+            onClick={() => setVariable}
           >
             Переменная
           </ConstructorAddButton>

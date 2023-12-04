@@ -53,8 +53,6 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     );
   };
 
-  console.log(node);
-
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);
   };

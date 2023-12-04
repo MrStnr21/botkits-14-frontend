@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-param-reassign */
 import { useReactFlow, useNodeId } from 'reactflow';
 import { Option } from '../../../utils/types';
+import { TVariable } from '../../../services/types/builder';
 
 export const getTimeDHMS = (time: number) => {
   const s = Math.floor(time % 60);
@@ -28,6 +30,24 @@ export const getTimeMS = (s: number) => {
 
 export const getSelectItemByValue = (value: string, arr: Option[]) => {
   return arr.find(item => item.value === value)
+}
+
+export const saveVariable = (variables: TVariable[], name: string, id: string) => {
+  const variableIndex = variables.findIndex(
+    (item) => item.id === id
+  );
+  if (variableIndex === -1) {
+    variables.push({
+      id,
+      name,
+      value: '',
+    });
+  } else {
+    variables[variableIndex] = {
+      ...variables[variableIndex],
+      name,
+    };
+  }
 }
 
 export const setFlowData = ({
