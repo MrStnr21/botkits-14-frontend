@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import cn from 'classnames';
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
 import Switcher from '../../ui/checkboxes/switcher/switcher';
-import MoreIcon from '../icons/More/MoreIcon';
-import Input from '../../ui/inputs/input/input';
 import InputDialogsues from '../../ui/inputs/input-dialogues/input-dialogues';
-import DialogMobilePopup from '../chat/chat-dialogue/dialog-mobile-popup/dialog-mobile-popup';
-import Menu from '../../ui/menus/menu/menu';
-import MoreCell from '../table-component/moreCell/more-cell';
+import MoreCell from './more-cell/more-cell';
+import EditableInputCell from './input-cell/editable-input-cell';
+import SelectCell from './select-cell/select-cell';
 
 /* Общее */
 export const dateCell = (date: string) => (
@@ -73,41 +71,11 @@ export const paymentStatusCell = (status: boolean) => (
     {status ? 'Оплачено' : 'В обработке'}
   </Typography>
 );
-// Общий доступ
+// Промокоды, общий доступ, пользователи:
 export const checkBoxCell = (status: boolean) => <Switcher status={status} />;
-// Промокоды
-interface IProps {
-  value: string;
-  onChange?: any;
-}
-const EditablePromoCell: FC<IProps> = ({ value, onChange }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [inpValue, setValue] = useState('промокод');
-
-  const handleDoubleClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleBlur = () => {
-    setIsEditing(false);
-    return null;
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
-    setValue(e.target.value);
-  };
-
-  return isEditing ? (
-    <InputDialogsues onChange={handleChange} value={value} />
-  ) : (
-    <span onClick={handleDoubleClick}>{value}</span>
-  );
-};
-export default EditablePromoCell;
 
 export const inputCell = (value: string) => {
-  return <EditablePromoCell value={value} />;
+  return <EditableInputCell value={value} />;
 };
 
 export const statusPromoCell = (status: boolean) => (
@@ -121,5 +89,7 @@ export const statusPromoCell = (status: boolean) => (
     {status ? 'Активен' : 'Неактивен'}
   </Typography>
 );
-// Ячейка таблицы с кнопкой "три точки"
+// Ячейка таблицы с функцией открытия модального окна
 export const menuCell = () => <MoreCell />;
+
+export const selectCell = (start: boolean) => <SelectCell />;

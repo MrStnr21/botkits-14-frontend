@@ -1,5 +1,5 @@
 import { FC, useRef, useState } from 'react';
-import style from './menu-cell.module.scss';
+import style from './more-cell.module.scss';
 import MoreIcon from '../../icons/More/MoreIcon';
 import Menu from '../../../ui/menus/menu/menu';
 

@@ -6,4 +6,5 @@
   @include size(100%, unset);
   @include flex(row, space-between, center);
   @include indents(0, 20px 0 0 0);
+  @include max-size(1286px, unset);
 }

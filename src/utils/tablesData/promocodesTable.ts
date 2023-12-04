@@ -48,26 +48,26 @@ export const promoCellStyle = {
 export const promoRows = [
   {
     date: 'John Snow',
-    promo: 'сделать инпут',
+    promo: 'GHBDTN5',
     price: '30р',
     status: true,
   },
   {
     date: 'John Snow',
-    promo: 'сделать инпут',
+    promo: 'HELLO10',
     price: '30р',
     status: true,
   },
   {
     date: 'John Snow',
-    promo: 'сделать инпут',
+    promo: 'uae009',
     price: '30р',
     status: true,
     menu: true,
   },
   {
     date: 'John Snow',
-    promo: 'инпут',
+    promo: 'darkza444',
     price: '30р',
     status: false,
   },
@@ -77,25 +77,25 @@ export const promoColumns = [
   {
     key: 'date',
     label: 'Дата',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...headStyle, width: '20%' },
     cellComponent: baseCell,
   },
   {
     key: 'promo',
     label: 'Промокод',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...headStyle, width: '27%' },
     cellComponent: inputCell,
   },
   {
     key: 'price',
     label: 'Стоимость',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...headStyle, width: '27%' },
     cellComponent: inputCell,
   },
   {
     key: 'status',
     label: 'Статус',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...headStyle, width: '20%' },
     cellComponent: statusPromoCell,
   },
   {

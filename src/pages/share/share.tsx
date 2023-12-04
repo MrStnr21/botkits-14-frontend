@@ -17,6 +17,7 @@ import {
   promoRowStyleRef,
   promoRows,
 } from '../../utils/tablesData/promocodesTable';
+import { tariffsCols, tariffsRows } from '../../utils/tablesData/tariffTable';
 
 const Share: FC = (): JSX.Element => {
   return (
@@ -53,6 +54,7 @@ const Share: FC = (): JSX.Element => {
         cellStyle={cellStyle}
         shadow={1}
       />
+      {/* Удалить перед мёрджем весь код ниже */}
       <div>
         <div>
           <Typography tag="h2">Созданные промокоды</Typography>
@@ -69,6 +71,21 @@ const Share: FC = (): JSX.Element => {
             shadow={0}
           />
         </div>
+      </div>
+      <div>
+        <div>
+          <Typography tag="h2">Тарифы</Typography>
+        </div>
+        <TableComponent
+          check
+          columns={tariffsCols}
+          headComponent={ppHeadCell}
+          tableData={tariffsRows}
+          rowStyle={promoRowStyleRef}
+          cellStyle={promoCellStyle}
+          shadow={1}
+          pagination
+        />
       </div>
     </div>
   );

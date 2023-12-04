@@ -1,0 +1,287 @@
+import {
+  inputCell,
+  selectCell,
+} from '../../components/table-cells/table-cells';
+
+export const headStyle = {
+  border: 'none',
+  backgroundColor: '#ECEFFF',
+  padding: '12px 0',
+  ':first-of-type': {
+    paddingLeft: '40px',
+  },
+  ':last-of-type': {
+    paddingRight: '40px',
+  },
+  borderRadius: '0',
+  ':first-child': {
+    borderRadius: '10px 0 0 10px',
+  },
+  ':last-child': {
+    borderRadius: '0 10px 10px 0',
+  },
+};
+
+export const rowStyleRef = {
+  height: '72px',
+  borderBottom: '.5px #CCD4E0 solid',
+  ':hover': {
+    backgroundColor: '#F8F9FB',
+  },
+  cursor: 'pointer',
+};
+
+export const cellStyle = {
+  border: 'none',
+  padding: '0',
+  boxSizing: 'border-box',
+  ':first-of-type': {
+    paddingLeft: '40px',
+  },
+  ':last-of-type': {
+    paddingRight: '40px',
+  },
+};
+
+export const tariffsRows = [
+  {
+    name: 'Демо',
+    price: '400',
+    bots: 10,
+    followers: 600,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Акция',
+    price: '50',
+    bots: 10,
+    followers: 3500,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Бесплатный',
+    price: '100',
+    bots: 24,
+    followers: 4013,
+    duration: '7D',
+    start: true,
+  },
+  {
+    name: 'Бизнес',
+    price: '250',
+    bots: 15,
+    followers: 2000,
+    duration: '3W',
+    start: true,
+  },
+  {
+    name: 'Старт',
+    price: '120',
+    bots: 32,
+    followers: 223,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Elite',
+    price: '33',
+    bots: 11,
+    followers: 780,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Комфорт +',
+    price: '900',
+    bots: 10,
+    followers: 5775,
+    duration: '5D',
+    start: true,
+  },
+  {
+    name: 'Старт',
+    price: '120',
+    bots: 32,
+    followers: 223,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Elite',
+    price: '33',
+    bots: 11,
+    followers: 780,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Комфорт +',
+    price: '900',
+    bots: 10,
+    followers: 5775,
+    duration: '5D',
+    start: true,
+  },
+  {
+    name: 'Старт',
+    price: '120',
+    bots: 32,
+    followers: 223,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Elite',
+    price: '33',
+    bots: 11,
+    followers: 780,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Комфорт +',
+    price: '900',
+    bots: 10,
+    followers: 5775,
+    duration: '5D',
+    start: true,
+  },
+  {
+    name: 'Старт',
+    price: '120',
+    bots: 32,
+    followers: 223,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Elite',
+    price: '33',
+    bots: 11,
+    followers: 780,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Комфорт +',
+    price: '900',
+    bots: 10,
+    followers: 5775,
+    duration: '5D',
+    start: true,
+  },
+
+  {
+    name: 'Старт',
+    price: '120',
+    bots: 32,
+    followers: 223,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Elite',
+    price: '33',
+    bots: 11,
+    followers: 780,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Комфорт +',
+    price: '900',
+    bots: 10,
+    followers: 5775,
+    duration: '5D',
+    start: true,
+  },
+  {
+    name: 'Старт',
+    price: '120',
+    bots: 32,
+    followers: 223,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Elite',
+    price: '33',
+    bots: 11,
+    followers: 780,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Комфорт +',
+    price: '900',
+    bots: 10,
+    followers: 5775,
+    duration: '5D',
+    start: true,
+  },
+  {
+    name: 'Старт',
+    price: '120',
+    bots: 32,
+    followers: 223,
+    duration: '1M',
+    start: false,
+  },
+  {
+    name: 'Elite',
+    price: '33',
+    bots: 11,
+    followers: 780,
+    duration: '7D',
+    start: false,
+  },
+  {
+    name: 'Комфорт +',
+    price: '900',
+    bots: 10,
+    followers: 5775,
+    duration: '5D',
+    start: true,
+  },
+];
+
+export const tariffsCols = [
+  {
+    key: 'name',
+    label: 'Название тарифа',
+    colStyle: { ...headStyle, minWidth: '15%' },
+    cellComponent: inputCell,
+  },
+  {
+    key: 'price',
+    label: 'Цена',
+    colStyle: { ...headStyle, minWidth: '15%' },
+    cellComponent: inputCell,
+  },
+  {
+    key: 'bots',
+    label: 'Кол-во ботов',
+    colStyle: { ...headStyle, minWidth: '15%' },
+    cellComponent: inputCell,
+  },
+  {
+    key: 'followers',
+    label: 'Кол-во подписчиков',
+    colStyle: { ...headStyle, minWidth: '15%' },
+    cellComponent: inputCell,
+  },
+  {
+    key: 'duration',
+    label: 'Длительность',
+    colStyle: { ...headStyle, minWidth: '15%' },
+    cellComponent: inputCell,
+  },
+  {
+    key: 'start',
+    label: 'Стартовый тариф',
+    colStyle: { ...headStyle },
+    cellComponent: selectCell,
+  },
+];
