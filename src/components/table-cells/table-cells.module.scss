@@ -12,13 +12,3 @@
     color: $error-default;
   }
 }
-
-.button {
-  @include button-style-reset();
-  z-index: 0;
-}
-
-div.dropdown {
-  @include position(absolute, 56px, 0);
-  z-index: 2;
-}

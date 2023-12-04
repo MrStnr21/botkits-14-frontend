@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import cn from 'classnames';
-import { ChangeEvent, FC, useRef, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
@@ -10,6 +10,7 @@ import Input from '../../ui/inputs/input/input';
 import InputDialogsues from '../../ui/inputs/input-dialogues/input-dialogues';
 import DialogMobilePopup from '../chat/chat-dialogue/dialog-mobile-popup/dialog-mobile-popup';
 import Menu from '../../ui/menus/menu/menu';
+import MoreCell from '../table-component/moreCell/more-cell';
 
 /* Общее */
 export const dateCell = (date: string) => (
@@ -121,33 +122,4 @@ export const statusPromoCell = (status: boolean) => (
   </Typography>
 );
 // Ячейка таблицы с кнопкой "три точки"
-export const menuCell = () => {
-  const mockData = [
-    { label: 'Удалить', value: 'del' },
-    { label: 'Дополнительно', value: 'adv' },
-  ];
-
-  const menuRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setOpen] = useState(false);
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setOpen(!isOpen);
-  };
-
-  return (
-    <>
-      <button className={style.button} type="button" onClick={handleClick}>
-        <MoreIcon />
-      </button>
-      {isOpen && (
-        <Menu
-          ref={menuRef}
-          options={mockData}
-          onItemClick={() => setOpen(!isOpen)}
-          layoutClassName={style.dropdown}
-        />
-      )}
-    </>
-  );
-};
+export const menuCell = () => <MoreCell />;
