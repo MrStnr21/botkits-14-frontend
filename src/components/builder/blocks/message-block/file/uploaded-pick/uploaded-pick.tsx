@@ -8,7 +8,7 @@ export type TUploadedPictureProps = {
 };
 
 const UploadedPicture: FC<TUploadedPictureProps> = ({ src, onRemove }) => {
-  const isMobile = useMediaQuery('(max-width: 520px)');
+  const isMobile = useMediaQuery('(max-width: 620px)');
   return (
     <VideoCard
       contentType="image"

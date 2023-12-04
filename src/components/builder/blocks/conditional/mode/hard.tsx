@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
 
@@ -7,34 +7,40 @@ export type THardBlockProps = {
 };
 
 const HardMode: FC<THardBlockProps> = ({ id }) => {
-  const [input, setInput] = useState(false);
-  const { getNodes, setNodes } = useReactFlow();
-  const idNode = useNodeId();
+  const { getNodes, setNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
+  const node = getNode(idNode);
 
-  const node = getNodes().find((item) => item.id === idNode);
-
-  const itemVariables = () =>
-    node && node.data.variables.find((item: { id: string }) => item.id === id);
+  const itemFromVariables = useMemo(
+    () =>
+      node &&
+      node.data.variables.filter((item: { id: string }) => item.id === id)[0],
+    [node]
+  );
 
   const setItemVariables = (
-    keyy: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
+    idItem: string,
+    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
     value: any
   ) => {
-    itemVariables()[keyy] = value;
-
     setNodes(
       getNodes().map((item) => {
-        if (item.id === id) {
+        if (item.id === idNode) {
           return {
             ...item,
             data: {
               ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  itemVariables,
-                },
-              ],
+              variables:
+                node &&
+                node.data.variables.map(
+                  (elem: { [x: string]: any; id: string }) => {
+                    if (elem.id === idItem) {
+                      // eslint-disable-next-line no-param-reassign
+                      elem[key] = value;
+                    }
+                    return elem;
+                  }
+                ),
             },
           };
         }
@@ -44,8 +50,7 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
   };
 
   const setCondition = (value: any) => {
-    setItemVariables('condition', value);
-    setInput(!input);
+    setItemVariables(id, 'condition', value);
   };
 
   const content = useMemo(
@@ -56,14 +61,15 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
         }
         styled="bot-builder-default"
         placeholder="Условие"
-        value={itemVariables().condition}
+        value={itemFromVariables.condition}
+        minLength={0}
+        required={false}
       />
     ),
-    [node, input]
+    [node]
   );
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{content}</>;
+  return content;
 };
 
 export default HardMode;

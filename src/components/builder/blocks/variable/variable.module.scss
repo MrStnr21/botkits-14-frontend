@@ -4,7 +4,7 @@
 .container {
     padding: 12px 16px 16px;
 
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: $switching-width) {
       padding: 7px 9px 10px 9px;
     }
 }
@@ -14,7 +14,7 @@
   background-color: $secondary-cultured-hover;
   border-radius: $s-border-radius;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     @include size(150px, 25px);
   }
 }

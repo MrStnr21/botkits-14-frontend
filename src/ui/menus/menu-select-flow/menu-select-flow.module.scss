@@ -1,3 +1,6 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
 .overlay {
   display: none;
   position: fixed;
@@ -25,7 +28,7 @@
   position: relative;
   cursor: pointer;
   z-index: 999;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     height: 25px;
   }
 }
@@ -39,7 +42,7 @@
   background-color: white;
   border-radius: 10px;
   position: absolute;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     width: 135px;
   }
 }
@@ -53,7 +56,7 @@
   font-weight: 400;
   color: black;
   transition: color 0.3s linear;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 8px;
   }
 }
@@ -91,7 +94,7 @@
   border: none;
   cursor: pointer;
   z-index: 999;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     height: 24px;
   }
 }
@@ -111,7 +114,7 @@
   right: 10px;
   width: 16px;
   height: 16px;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     right: 5px;
     width: 12px;
     height: 12px;
@@ -122,7 +125,7 @@
   padding-left: 7px;
   width: 16px;
   height: 16px;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding-left: 4px;
     width: 12px;
     height: 12px;

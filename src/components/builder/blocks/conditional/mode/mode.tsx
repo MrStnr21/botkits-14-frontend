@@ -5,8 +5,8 @@ import LabeledInput from '../../../labeledInput/labeledInput';
 import EasyMode from './easy';
 import HardMode from './hard';
 import { messagesSuccessful } from '../../../utils/data';
-import MenumenuSelectFlow from '../../../../../ui/menus/menu-select-flow/menu-select-flow';
-import Menu from '../../../../../ui/menus/menu/menu';
+import Select from '../../../../../ui/select/select';
+import { getSelectItemByValue } from '../../../utils';
 
 export type TModeProps = {
   id: string;
@@ -14,13 +14,10 @@ export type TModeProps = {
 };
 
 const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
-  const { getNodes } = useReactFlow();
-  const idNode = useNodeId();
+  const { getNodes, getNode } = useReactFlow();
+  const idNode = useNodeId() || '';
   const nodes = getNodes();
-  const node = useMemo(
-    () => nodes.filter((el) => el.id === idNode)[0],
-    [nodes]
-  );
+  const node = getNode(idNode);
 
   const itemFromVariables: {
     id: string;
@@ -32,18 +29,10 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
     condition?: string;
     targetBlock: string;
   } = useMemo(
-    () => node.data.variables.filter((el: { id: string }) => el.id === id)[0],
+    () =>
+      node &&
+      node.data.variables.filter((el: { id: string }) => el.id === id)[0],
     [node]
-  );
-
-  const buttonsTargetBlock = messagesSuccessful.map((item) => item.value);
-  const options = messagesSuccessful.map((item) => {
-    return { label: item.value, value: item.nameValue };
-  });
-
-  const active = useMemo(
-    () => itemFromVariables.targetBlock !== '',
-    [itemFromVariables]
   );
 
   const getBlock = useMemo(() => {
@@ -66,15 +55,16 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
         {getBlock}
       </LabeledInput>
       <LabeledInput title="То перейти" extraClass={styles.extraClass}>
-        <MenumenuSelectFlow
-          buttons={buttonsTargetBlock}
-          nameMenu={itemFromVariables.targetBlock || 'Имя блока'}
-          onClick={(name: string) => {
-            setTargetBlock(name);
-          }}
-          active={active}
+        <Select
+          options={messagesSuccessful}
+          handleSelect={(option) => setTargetBlock(option.value)}
+          currentOption={getSelectItemByValue(
+            itemFromVariables.targetBlock,
+            messagesSuccessful
+          )}
+          elementToCloseListener="flow"
+          adaptive
         />
-        <Menu options={options} onItemClick={() => setTargetBlock} />
       </LabeledInput>
     </div>
   );

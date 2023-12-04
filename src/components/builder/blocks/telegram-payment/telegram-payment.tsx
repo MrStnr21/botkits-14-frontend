@@ -1,24 +1,22 @@
-import { FC, useState, useEffect, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
 import Input from '../../../../ui/inputs/input/input';
-import MenumenuSelectFlow from '../../../../ui/menus/menu-select-flow/menu-select-flow';
 
 import {
   TBlockProps,
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
 import { currencyAvailable, messagesSuccessful } from '../../utils/data';
-import { setFlowData } from '../../utils';
+import { getSelectItemByValue, setFlowData } from '../../utils';
 import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
+import Select from '../../../../ui/select/select';
+import { Option } from '../../../../utils/types';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
-  const [active, setActive] = useState(data.onSuccess !== '');
-  useEffect(() => setActive(data.onSuccess !== ''), [data.onSuccess]);
-
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
 
@@ -49,16 +47,16 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
 
   const image = useMemo(() => !!data.image, [data.image]);
 
-  const setCurrency = (name: string) =>
+  const setCurrency = (option: Option) =>
     setFlowDataButton({
       selectors: ['currency'],
-      value: name,
+      value: option.value,
     });
 
-  const setOnSuccess = (value: string) =>
+  const setOnSuccess = (option: Option) =>
     setFlowDataButton({
       selectors: ['onSuccess'],
-      value,
+      value: option.value,
     });
 
   const setGoodsName = setFlowData({
@@ -77,8 +75,6 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
     selectors: ['providerToken'],
   });
   const placeholder = 'Введите название';
-  const buttonsCurrency = currencyAvailable.map((item) => item.nameValue);
-  const buttonsOnSuccess = messagesSuccessful.map((item) => item.nameValue);
 
   const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNodes(
@@ -155,11 +151,15 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
               type="number"
             />
             <div className={styles.wrapperCurrency}>
-              <MenumenuSelectFlow
-                buttons={buttonsCurrency}
-                nameMenu={data.currency || buttonsCurrency[0]}
-                onClick={(name: string) => setCurrency(name)}
-                active
+              <Select
+                options={currencyAvailable}
+                handleSelect={setCurrency}
+                currentOption={getSelectItemByValue(
+                  data.currency,
+                  currencyAvailable
+                )}
+                elementToCloseListener="flow"
+                adaptive
               />
             </div>
           </div>
@@ -174,11 +174,15 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
           />
         </LabeledInput>
         <LabeledInput title="После успешной оплаты вернуть">
-          <MenumenuSelectFlow
-            buttons={buttonsOnSuccess}
-            nameMenu={data.onSuccess || 'Введите название'}
-            onClick={(name: string) => setOnSuccess(name)}
-            active={active}
+          <Select
+            options={messagesSuccessful}
+            handleSelect={setOnSuccess}
+            currentOption={getSelectItemByValue(
+              data.onSuccess,
+              messagesSuccessful
+            )}
+            elementToCloseListener="flow"
+            adaptive
           />
         </LabeledInput>
       </div>

@@ -11,7 +11,7 @@
   border-radius: $l-border-radius;
   background-color: $secondary-cultured-default;
 
-  @media screen and (max-width: 520px) { //заменить на нужное
+  @media screen and (max-width: $switching-width) { //заменить на нужное
     font-size: 7.41px;
     padding: 9px 7px;
     gap: 8px;

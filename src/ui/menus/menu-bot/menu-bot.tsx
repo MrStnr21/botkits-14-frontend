@@ -14,6 +14,7 @@ export interface IMenuBot {
   isActive?: boolean;
   editFunction: Function;
   removeFunction?: () => void;
+  copyFuntion?: () => void;
   top?: number;
   left?: number;
 }
@@ -25,6 +26,7 @@ const MenuBot: FC<IMenuBot> = ({
   top = 0,
   left = 0,
   removeFunction,
+  copyFuntion,
 }): JSX.Element => {
   const [open, setOpen] = useState(false);
   const [settings, setSettings] = useState({
@@ -105,7 +107,7 @@ const MenuBot: FC<IMenuBot> = ({
         <button
           type="button"
           className={stylesMenuBot.button}
-          onClick={copyHandler}
+          onClick={copyFuntion}
         >
           <img src={copyIcon} alt="Иконка" className={stylesMenuBot.icon} />
           <Typography tag="span" className={stylesMenuBot.text}>

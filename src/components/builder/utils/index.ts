@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useReactFlow, useNodeId } from 'reactflow';
+import { Option } from '../../../utils/types';
 
 export const getTimeDHMS = (time: number) => {
   const s = Math.floor(time % 60);
@@ -24,6 +25,10 @@ export const getTimeMS = (s: number) => {
   const seconds = String(Math.floor(s % 60));
   return `${minutes}:${seconds.length === 2 ? seconds : `0${seconds}`}`;
 };
+
+export const getSelectItemByValue = (value: string, arr: Option[]) => {
+  return arr.find(item => item.value === value)
+}
 
 export const setFlowData = ({
   selectors,

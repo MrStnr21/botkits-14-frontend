@@ -1,6 +1,6 @@
 import { FC } from 'react';
+import { useReactFlow, useNodeId } from 'reactflow';
 import styles from './deep-link.module.scss';
-import MenumenuSelectFlow from '../../../../ui/menus/menu-select-flow/menu-select-flow';
 import Input from '../../../../ui/inputs/input/input';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -9,21 +9,38 @@ import {
   TDeepLinkBlock,
 } from '../../../../services/types/builder';
 import { selectValuesType } from '../../utils/data';
-import { setFlowData } from '../../utils';
+import { getSelectItemByValue, setFlowData } from '../../utils';
+import Select from '../../../../ui/select/select';
+import { Option } from '../../../../utils/types';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
+  const { getNodes, setNodes } = useReactFlow();
+  const id = useNodeId();
+
+  const setSelected = (fieldName: string) => (option: Option) => {
+    setNodes(
+      getNodes().map((node) => {
+        if (node.id === id) {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              [fieldName]: option.value,
+            },
+          };
+        }
+        return node;
+      })
+    );
+  };
+
   const setParam = setFlowData({
     selectors: ['param'],
   });
-  const setType = (value: any) =>
-    setFlowData({
-      selectors: ['type'],
-      value,
-    });
+
   const setSignsAmount = setFlowData({
     selectors: ['signsAmount'],
   });
-  // const signsAmountIsNaN = Number.isNaN(data.signsAmount);
 
   const setAdditionValue = setFlowData({
     selectors: ['additionValue'],
@@ -31,8 +48,6 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
   const setAdditionLink = setFlowData({
     selectors: ['additionLink'],
   });
-
-  const buttons = selectValuesType.map((item) => item.nameValue);
 
   return (
     <ControlLayout type="Deep Link">
@@ -48,12 +63,12 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
         </LabeledInput>
         <LabeledInput title="Тип значения">
           <div style={{ zIndex: 10 }}>
-            <MenumenuSelectFlow
-              buttons={buttons}
-              width="240"
-              nameMenu={data.type}
-              onClick={() => setType}
-              active
+            <Select
+              options={selectValuesType}
+              handleSelect={setSelected('type')}
+              currentOption={getSelectItemByValue(data.type, selectValuesType)}
+              elementToCloseListener="flow"
+              adaptive
             />
           </div>
         </LabeledInput>

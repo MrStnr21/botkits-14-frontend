@@ -48,6 +48,7 @@ export type TVariable = {
 };
 
 export type TTrigger = {
+  id: string;
   tag: string;
   type: 'block' | 'text'; // Тип цели триггера
   name?: string; // Имя одного из блоков

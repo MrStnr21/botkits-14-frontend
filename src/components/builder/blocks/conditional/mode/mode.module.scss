@@ -6,7 +6,7 @@
   background-color: $secondary-cultured-default;
   border-radius: $l-border-radius;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     border-radius: 5.7px;
   }
 }
@@ -14,7 +14,7 @@
 .extraClass:first-of-type {
   padding: 12px 12px 8px !important;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 9px 9px 6px !important;
   }
 }
@@ -22,7 +22,7 @@
 .extraClass:last-of-type {
   padding: 8px 12px 12px !important;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     padding: 6px 9px 9px !important;
   }
 }
@@ -30,7 +30,7 @@
 .labeled-content {
   @include flex(column, false, false, 4px);
   box-sizing: border-box;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     max-width: 196px;
   }
 }
@@ -39,7 +39,7 @@
   @include flex(row, false, false, 4px);
   width: 52px;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     :nth-child(1) {
       max-width: 96px;
     }
@@ -51,14 +51,22 @@
 }
 .selectsIcon {
   min-width: 52px;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     min-width: 34px;
   }
 }
 
 .selectsVariable {
   min-width: 184px;
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     min-width: 93px;
   }
+}
+
+div.selectLayout.selectLayout {
+  width: 304px;
+}
+
+div.selectItem {
+  text-align: start;
 }

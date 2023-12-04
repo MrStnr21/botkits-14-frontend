@@ -13,7 +13,7 @@
   border-radius: $l-border-radius;
   box-sizing: border-box;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
     padding: 6px 7px 5.32px 7px;
   }
@@ -31,7 +31,7 @@
 .button svg {
   transition: stroke 0.1s linear;
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: $switching-width) {
     height: 13.68px;
     width: 13.68px;
   }
