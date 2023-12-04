@@ -144,6 +144,11 @@ const LayoutFlow: FC = () => {
           </div>
         </div>
         <NavigationPanel />
+        <div className={cx('saveButton')}>
+          <Button color="green" variant="default">
+            Сохранить
+          </Button>
+        </div>
         <div className={cx('addBlock')}>
           {!isMobile && menuOpened && (
             <div className={cx('addBlock__menu')}>

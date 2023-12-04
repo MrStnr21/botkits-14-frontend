@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
-import { useReactFlow, useNodeId } from 'reactflow';
+import { useReactFlow, useNodeId, Node } from 'reactflow';
 import { Option } from '../../../utils/types';
 import { TVariable } from '../../../services/types/builder';
 
@@ -48,6 +48,13 @@ export const saveVariable = (variables: TVariable[], name: string, id: string) =
       name,
     };
   }
+}
+
+export const filterNodes = (nodes: Node[]) => {
+  return nodes.map(item => {
+    const {dragging, positionAbsolute, selected, height, width, ...rest} = item
+    return rest
+  })
 }
 
 export const setFlowData = ({
