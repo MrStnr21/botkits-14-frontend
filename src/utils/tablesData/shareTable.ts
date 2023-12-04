@@ -1,6 +1,7 @@
 import {
   baseCell,
   checkBoxCell,
+  menuCell,
 } from '../../components/table-cells/table-cells';
 
 export const shareHeadStyle = {
@@ -151,5 +152,11 @@ export const shareCols = [
     label: 'Статистика',
     colStyle: { ...shareHeadStyle, width: '10%' },
     cellComponent: checkBoxCell,
+  },
+  {
+    key: 'menu',
+    label: '',
+    colStyle: { ...shareHeadStyle, width: '10%' },
+    cellComponent: menuCell,
   },
 ];

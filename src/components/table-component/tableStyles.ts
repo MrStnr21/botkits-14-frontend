@@ -5,6 +5,7 @@ export const paperStyles = {
   borderRadius: '30px',
   padding: '32px',
 };
+
 export const paginationStyles = {
   width: '100%',
   position: 'relative',
@@ -35,10 +36,12 @@ export const paginationStyles = {
     borderRadius: '5px',
   },
 };
-export const checkBoxStyles = {
+
+export const headCheckBoxStyles = {
   root: {
     backgroundColor: '#ECEFFF',
     width: '100%',
+    height: '100%',
     borderRadius: '10px 0 0 10px',
   },
   checked: {
@@ -46,4 +49,11 @@ export const checkBoxStyles = {
     width: '100%',
     borderRadius: '10px 0 0 10px',
   },
+};
+
+export const checkBoxStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '20px',
+  transform: 'translate(-50%, -50%)',
 };

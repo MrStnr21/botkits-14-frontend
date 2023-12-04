@@ -119,7 +119,7 @@ export const statusPromoCell = (status: boolean) => (
   </Typography>
 );
 
-export const promocodesMenuCell = () => {
+export const menuCell = () => {
   return (
     <button className={style.button} type="button">
       <MoreIcon />

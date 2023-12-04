@@ -14,7 +14,12 @@ import { Box, Checkbox } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
-import { checkBoxStyles, paginationStyles, paperStyles } from './tableStyles';
+import {
+  headCheckBoxStyles,
+  paginationStyles,
+  paperStyles,
+  checkBoxStyle,
+} from './tableStyles';
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './table-component.module.scss';
 
@@ -92,8 +97,8 @@ const TableComponent: FC<Props> = ({
                 {check && (
                   <Checkbox
                     sx={{
-                      '&.MuiCheckbox-root': checkBoxStyles.root,
-                      '&.Mui-checked': checkBoxStyles.checked,
+                      '&.MuiCheckbox-root': headCheckBoxStyles.root,
+                      '&.Mui-checked': headCheckBoxStyles.checked,
                     }}
                     indeterminate={
                       selected.length > 0 && selected.length < tableData.length
@@ -121,9 +126,16 @@ const TableComponent: FC<Props> = ({
             </TableHead>
             <TableBody>
               {paginatedData?.map((row, index) => (
-                <TableRow key={uuidv4()} sx={props.rowStyle}>
+                <TableRow
+                  key={uuidv4()}
+                  sx={{
+                    position: 'relative', // временно для выравнивания чекбокса
+                    ...props.rowStyle,
+                  }}
+                >
                   {check && (
                     <Checkbox
+                      sx={checkBoxStyle}
                       checked={isSelected(index)}
                       inputProps={{
                         'aria-labelledby': `enhanced-table-checkbox-${index}`,
