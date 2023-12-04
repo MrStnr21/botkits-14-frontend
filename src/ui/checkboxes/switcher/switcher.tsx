@@ -8,7 +8,8 @@ interface IProps {
 const Switcher: FC<IProps> = ({ status }) => {
   const [chosen, setChosen] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+    event.stopPropagation();
     setChosen(!chosen);
   };
 
