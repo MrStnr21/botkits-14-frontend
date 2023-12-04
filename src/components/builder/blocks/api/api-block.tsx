@@ -1,7 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
-import { v4 as uuid } from 'uuid';
 
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
@@ -12,13 +11,13 @@ import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
-import { setFlowData } from '../../utils';
+import { saveVariable, setFlowData } from '../../utils';
 // eslint-disable-next-line import/no-cycle
 import { storOfVariables } from '../../flow/layoutFlow';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
   const nodes = getNodes();
 
   const setUrl = setFlowData({ selectors: ['url'] });
@@ -78,20 +77,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   };
 
   const setVariable = (finalValue: string) => {
-    const idVariable = uuid();
-
-    if (storOfVariables.length === 1 && storOfVariables[0].id === '') {
-      storOfVariables.splice(0, 1, {
-        id: idVariable,
-        name: finalValue,
-        value: '',
-      });
-    }
-    storOfVariables.push({
-      id: idVariable,
-      name: finalValue,
-      value: '',
-    });
+    saveVariable(storOfVariables, finalValue, id);
 
     return setNodes(
       nodes.map((item) => {
@@ -102,7 +88,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
               ...item.data,
               saveAnswer: {
                 ...item.data.saveAnswer,
-                value: { id: idVariable, name: finalValue, value: '' },
+                value: { id, name: finalValue, value: '' },
               },
             },
           };

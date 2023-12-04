@@ -18,7 +18,7 @@ import {
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
-import { setFlowData } from '../../utils';
+import { saveVariable, setFlowData } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 // eslint-disable-next-line import/no-cycle
 import { storOfVariables } from '../../flow/layoutFlow';
@@ -118,13 +118,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   );
 
   const setVariable = (finalValue: string) => {
-    const idVariable = uuid();
-
-    storOfVariables.push({
-      id: idVariable,
-      name: finalValue,
-      value: '',
-    });
+    saveVariable(storOfVariables, finalValue, id);
 
     return setNodes(
       nodes.map((item) => {
@@ -135,7 +129,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               ...item.data,
               saveAnswer: {
                 ...item.data.saveAnswer,
-                value: { id: idVariable, name: finalValue, value: '' },
+                value: { id, name: finalValue, value: '' },
               },
             },
           };
