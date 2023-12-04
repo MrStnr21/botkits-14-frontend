@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import cn from 'classnames';
+import { ChangeEvent, FC, useState } from 'react';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
-import Checkbox from '../../ui/checkboxes/checkbox';
 import Switcher from '../../ui/checkboxes/switcher/switcher';
+import MoreIcon from '../icons/More/MoreIcon';
+import Input from '../../ui/inputs/input/input';
+import InputDialogsues from '../../ui/inputs/input-dialogues/input-dialogues';
 
 /* Общее */
 export const dateCell = (date: string) => (
@@ -67,8 +70,59 @@ export const paymentStatusCell = (status: boolean) => (
     {status ? 'Оплачено' : 'В обработке'}
   </Typography>
 );
+// Общий доступ
+export const checkBoxCell = (status: boolean) => <Switcher status={status} />;
+// Промокоды
+interface IProps {
+  value: string;
+  onChange?: any;
+}
+const EditablePromoCell: FC<IProps> = ({ value, onChange }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [inpValue, setValue] = useState('промокод');
 
-export const checkBoxCell = (data: string) => (
-  <Switcher />
-  // <Checkbox label="" checked onChange={() => {}} name="Имя" value="" />
+  const handleDoubleClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    return null;
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+    setValue(e.target.value);
+  };
+
+  return isEditing ? (
+    <InputDialogsues onChange={handleChange} value={value} />
+  ) : (
+    <span onClick={handleDoubleClick}>{value}</span>
+  );
+};
+export default EditablePromoCell;
+
+export const inputCell = (value: string) => {
+  return <EditablePromoCell value={value} />;
+};
+
+export const statusPromoCell = (status: boolean) => (
+  <Typography
+    tag="p"
+    className={cn(
+      style.text,
+      status ? style.text_succsess : style.text_failure
+    )}
+  >
+    {status ? 'Активен' : 'Неактивен'}
+  </Typography>
 );
+
+export const promocodesMenuCell = () => {
+  return (
+    <button className={style.button} type="button">
+      <MoreIcon />
+    </button>
+  );
+};

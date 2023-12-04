@@ -1,1 +1,25 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
 
+.share {
+  @include indents(0, 32px 40px 0 0);
+  @include flex(column);
+
+  &__header {
+    @include flex(row, space-between, center);
+  }
+
+  &__buttonWrapper {
+    @include size(104px, 46px);
+  }
+}
+
+
+.promocodeTable {
+  @include flex(column, $align-items: center, $gap: 26px);
+  @include size(836px, unset);
+  background-color: $off-white;
+  border-radius: $xxl-border-radius;
+  box-sizing: border-box;
+  box-shadow: $m-box-shadow;
+}

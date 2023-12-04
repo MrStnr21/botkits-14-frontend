@@ -1,12 +1,24 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './switcher.module.scss';
 
-const Switcher: FC = () => {
+interface IProps {
+  status: boolean;
+}
+
+const Switcher: FC<IProps> = ({ status }) => {
   const [chosen, setChosen] = useState(false);
 
   const handleClick = () => {
     setChosen(!chosen);
   };
+
+  useEffect(() => {
+    if (status === true) {
+      setChosen(true);
+    } else {
+      setChosen(false);
+    }
+  }, []);
 
   return (
     <div className={styles.switcher} onClick={handleClick}>

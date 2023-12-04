@@ -10,9 +10,11 @@ import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import { Box, Checkbox } from '@mui/material';
+import { Box, Checkbox, makeStyles } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
+import EnhancedTableHeader from '../table-header/talbe-header';
+import styles from './pgst.module.scss';
 
 type Columns = {
   key: string;
@@ -35,13 +37,23 @@ type Props = {
   pagination?: boolean;
   check?: boolean;
   toolbar?: boolean;
+  shadow?: number;
+  header?: boolean;
 };
 
 const paperStyles = {
+  boxSizing: 'border-box',
   backgroundColor: 'inherit',
+  borderRadius: '30px',
+  padding: '32px',
 };
 const paginationStyles = {
   width: '100%',
+  borderTop: '1px solid #ddd',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '8px',
 };
 const checkBoxStyles = {
   root: {
@@ -62,6 +74,8 @@ const TableComponent: FC<Props> = ({
   pagination,
   check,
   toolbar,
+  shadow = 0,
+  header,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -94,7 +108,8 @@ const TableComponent: FC<Props> = ({
   return (
     <Box sx={{ width: '100%' }}>
       {toolbar && <TableToolbar needFilter />}
-      <Paper elevation={0} sx={paperStyles}>
+      <Paper elevation={shadow} sx={paperStyles}>
+        {header && <EnhancedTableHeader title="Созданные промокоды" />}
         <TableContainer>
           <Table>
             <TableHead>
@@ -114,7 +129,7 @@ const TableComponent: FC<Props> = ({
                     }
                     onChange={handleSelectAllClick}
                     inputProps={{
-                      'aria-label': 'select all desserts',
+                      'aria-label': 'select all',
                     }}
                   />
                 )}
@@ -164,7 +179,8 @@ const TableComponent: FC<Props> = ({
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          sx={paginationStyles}
+          classes={styles}
+          labelRowsPerPage="Отображать по строкам"
         />
       )}
     </Box>

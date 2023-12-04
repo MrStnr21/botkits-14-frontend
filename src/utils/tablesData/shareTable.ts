@@ -1,4 +1,7 @@
-import { baseCell, checkBoxCell } from '../components/table-cells/table-cells';
+import {
+  baseCell,
+  checkBoxCell,
+} from '../../components/table-cells/table-cells';
 
 export const shareHeadStyle = {
   border: 'none',

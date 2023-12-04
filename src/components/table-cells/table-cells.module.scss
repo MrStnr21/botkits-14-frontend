@@ -12,3 +12,7 @@
     color: $error-default;
   }
 }
+
+.button {
+  @include button-style-reset();
+}

@@ -4,7 +4,7 @@ import {
   refStatusCell,
   moneyCell,
   paymentStatusCell,
-} from '../components/table-cells/table-cells';
+} from '../../components/table-cells/table-cells';
 
 export const colStyle = {
   border: 'none',

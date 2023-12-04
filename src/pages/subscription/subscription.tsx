@@ -17,7 +17,7 @@ import {
   cellStyle,
   rowStyle,
   subscriptionStatus,
-} from '../../utils/paymenTable';
+} from '../../utils/tablesData/paymenTable';
 import { sapHeadCell } from '../../components/table-cells/table-cells';
 
 const Subscription: FC = (): JSX.Element => {
