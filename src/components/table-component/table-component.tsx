@@ -10,11 +10,13 @@ import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import { Box, Checkbox, makeStyles } from '@mui/material';
+import { Box, Checkbox } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
-import EnhancedTableHeader from '../table-header/talbe-header';
-import styles from './pgst.module.scss';
+import EnhancedTableHeader from '../table-header/table-header';
+import { checkBoxStyles, paginationStyles, paperStyles } from './tableStyles';
+import CustomPagination from './custom-pagination/custom-pagination';
+import styles from './table-component.module.scss';
 
 type Columns = {
   key: string;
@@ -39,33 +41,6 @@ type Props = {
   toolbar?: boolean;
   shadow?: number;
   header?: boolean;
-};
-
-const paperStyles = {
-  boxSizing: 'border-box',
-  backgroundColor: 'inherit',
-  borderRadius: '30px',
-  padding: '32px',
-};
-const paginationStyles = {
-  width: '100%',
-  borderTop: '1px solid #ddd',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '8px',
-};
-const checkBoxStyles = {
-  root: {
-    backgroundColor: '#ECEFFF',
-    width: '100%',
-    borderRadius: '10px 0 0 10px',
-  },
-  checked: {
-    backgroundColor: '#ECEFFF',
-    width: '100%',
-    borderRadius: '10px 0 0 10px',
-  },
 };
 
 const TableComponent: FC<Props> = ({
@@ -171,17 +146,25 @@ const TableComponent: FC<Props> = ({
         </TableContainer>
       </Paper>
       {pagination && (
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={tableData.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          classes={styles}
-          labelRowsPerPage="Отображать по строкам"
-        />
+        <div className={styles.pagination}>
+          <CustomPagination
+            page={page}
+            rowsPerPage={rowsPerPage}
+            onChange={handleChangePage}
+            count={tableData.length}
+          />
+          <TablePagination
+            sx={paginationStyles}
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={tableData.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage="Отображать по строкам"
+          />
+        </div>
       )}
     </Box>
   );
