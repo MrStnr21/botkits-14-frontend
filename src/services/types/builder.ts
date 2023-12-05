@@ -129,7 +129,7 @@ export type TApiBlock = {
     name: string;
     variable: string;
   }[];
-  variable?: TVariable;
+  variables: TVariable[];
 };
 
 export type TButtonBlock = {
