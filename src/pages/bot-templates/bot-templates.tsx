@@ -8,12 +8,30 @@ import { mockBotTemplates } from '../../utils/mockBotTemplates';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import CreateBotTemplatesPopup from '../../components/popups/create-bot-template-popup/create-bot-template-popup';
 
+import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
+import { getTemplatesBotsSel, getBotsSel } from '../../utils/selectorData';
+import { getTemplatesBotsAction } from '../../services/actions/bots/getTemplatesBots';
+import { getAccessToken } from '../../auth/authService';
+
 const BotTemplates: FC = () => {
-  const [arrCard, setArrCard] = useState(mockBotTemplates);
+  const { templatesBots } = useAppSelector(getTemplatesBotsSel);
+  const [arrCard, setArrCard] = useState(templatesBots);
   const [isVisiblePopup, setVisiblePopup] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const token = getAccessToken();
+
+  useEffect(() => {
+    dispatch(getTemplatesBotsAction(token));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setArrCard(templatesBots);
+  }, [templatesBots]);
 
   const onDeleteCard = (id: string) => {
-    setArrCard(arrCard.filter((pr) => pr.id !== id));
+    // eslint-disable-next-line no-underscore-dangle
+    setArrCard(arrCard.filter((pr) => pr._id !== id));
   };
 
   const onClickButton = () => {
@@ -46,12 +64,14 @@ const BotTemplates: FC = () => {
           arrCard.map((templateBot) => (
             <BotTemplatesCard
               image={templateBot.icon}
-              id={templateBot.id}
+              // eslint-disable-next-line no-underscore-dangle
+              id={templateBot._id}
               title={templateBot.title}
               description={templateBot.description}
               isToPublish={templateBot.isToPublish}
               deleteCard={onDeleteCard}
-              key={templateBot.id}
+              // eslint-disable-next-line no-underscore-dangle
+              key={templateBot._id}
             />
           ))}
       </ul>

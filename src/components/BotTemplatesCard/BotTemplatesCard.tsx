@@ -82,7 +82,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     toggleMenu(false);
     if (e === 'setupBuilder') {
       const path = routesUrl.botBuilder;
-      navigate(`/${path}`);
+      navigate(`/${path}?id=${id}&type=template`);
     }
     if (e === 'delete') {
       deleteCard(id);

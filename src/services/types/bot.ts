@@ -30,6 +30,7 @@ export type TTemplateBot = {
   profile: null;
   features: [];
   commands: Array<string>;
+  isToPublish: boolean;
 };
 
 export interface IAddBotResponse extends TBot {}
