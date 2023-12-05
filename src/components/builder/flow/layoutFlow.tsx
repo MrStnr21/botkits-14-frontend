@@ -1,4 +1,5 @@
 import { FC, useCallback, useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 
 import ReactFlow, {
@@ -29,6 +30,8 @@ import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
 import { TVariable } from '../../../services/types/builder';
+import { getAccessToken } from '../../../auth/authService';
+import { filterNodes, getUrlPath } from '../utils';
 
 const cx = cn.bind(styles);
 
@@ -44,8 +47,57 @@ const LayoutFlow: FC = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [triggerOpened, toggleTrigger] = useState(false);
   const [menuOpened, toggleMenu] = useState(false);
+  const [searchParams] = useSearchParams();
 
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
+
+  useEffect(() => {
+    const token = getAccessToken();
+    const id = searchParams.get('id');
+    const path = getUrlPath(searchParams.get('type'));
+    if (!id || !path) {
+      return;
+    }
+    fetch(`https://botkits.nomoreparties.co/dev/api/${path}/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.features && data.features.nodes) {
+          setNodes(data.features.nodes);
+        }
+        if (data.features && data.features.edges) {
+          setEdges(data.features.edges);
+        }
+      });
+  }, []);
+
+  const saveBot = () => {
+    const id = searchParams.get('id');
+    const path = getUrlPath(searchParams.get('type'));
+    if (!id || !path) {
+      return;
+    }
+    const fetchingNodes = filterNodes(nodes);
+    const fetchingEdges = edges;
+
+    const builder = {
+      features: { nodes: fetchingNodes, edges: fetchingEdges },
+    };
+
+    fetch(`https://botkits.nomoreparties.co/dev/api/${path}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        authorization: `Bearer ${getAccessToken()}`,
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(builder),
+    });
+  };
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     if (connection.source === connection.target) {
@@ -145,7 +197,7 @@ const LayoutFlow: FC = () => {
         </div>
         <NavigationPanel />
         <div className={cx('saveButton')}>
-          <Button color="green" variant="default">
+          <Button color="green" variant="default" onClick={saveBot}>
             Сохранить
           </Button>
         </div>

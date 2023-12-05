@@ -57,6 +57,20 @@ export const filterNodes = (nodes: Node[]) => {
   })
 }
 
+export const getUrlPath = (type: string|null) => {
+  switch(type){
+    case 'custom': {
+      return 'bots'
+    }
+    case 'template': {
+      return 'bots/templates'
+    }
+    default: {
+      return ''
+    }
+  }
+}
+
 export const setFlowData = ({
   selectors,
   value,
