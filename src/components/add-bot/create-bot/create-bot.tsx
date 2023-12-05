@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import stylesCreateBot from './create-bot.module.scss';
 import { addBotAction } from '../../../services/actions/bots/addBot';
 
-import { useAppDispatch } from '../../../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -26,6 +26,7 @@ import Input from '../../../ui/inputs/input/input';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
 import Typography from '../../../ui/typography/typography';
+import { getTemplatesBotsSel } from '../../../utils/selectorData';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -34,6 +35,7 @@ interface ImageMap {
 interface ICreateBot {
   botName: string;
   pages: boolean;
+  templateId: string | null;
   botURI?: boolean;
 }
 
@@ -51,7 +53,20 @@ const img: ImageMap = {
   'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
 };
 
-const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
+const CreateBot: FC<ICreateBot> = ({
+  botName,
+  pages,
+  templateId,
+  botURI,
+}): JSX.Element => {
+  const { templatesBots } = useAppSelector(getTemplatesBotsSel);
+  console.log(templateId);
+  const templateName = templatesBots.find(
+    // eslint-disable-next-line no-underscore-dangle
+    (template) => template._id === templateId
+  )?.title;
+  console.log(templateName);
+
   const [arrPages, setArrPages] = useState<string[]>([]);
 
   const { values, handleChange, setValues } = useForm({
@@ -126,18 +141,20 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
             >
               {botName}
             </Typography>
-            <Typography
-              tag="span"
-              className={stylesCreateBot.create_main_bot_name_text}
-            >
-              Бот будет создан на основе{' '}
+            {templateName && (
               <Typography
                 tag="span"
-                className={stylesCreateBot.create_main_bot_name_span}
+                className={stylesCreateBot.create_main_bot_name_text}
               >
-                BotName
+                Бот будет создан на основе{' '}
+                <Typography
+                  tag="span"
+                  className={stylesCreateBot.create_main_bot_name_span}
+                >
+                  {templateName}
+                </Typography>
               </Typography>
-            </Typography>
+            )}
           </div>
           <form
             onSubmit={handleSubmit}

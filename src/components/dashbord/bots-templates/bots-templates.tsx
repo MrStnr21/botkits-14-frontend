@@ -3,7 +3,7 @@ import { useDraggable } from 'react-use-draggable-scroll';
 import stylesTemplates from './bots-templates.module.scss';
 
 import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
-import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
+import BotTemplatePopup from '../../popups/bot-template-popup/bot-template-popup';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import useModal from '../../../services/hooks/use-modal';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
@@ -12,11 +12,12 @@ import { getAccessToken } from '../../../auth/authService';
 import { getTemplatesBotsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 
-const Template: FC<{ name: string; description: string; fileName: string }> = ({
-  name,
-  description,
-  fileName,
-}): JSX.Element => {
+const Template: FC<{
+  name: string;
+  description: string;
+  fileName: string;
+  id: string;
+}> = ({ name, description, fileName, id }): JSX.Element => {
   const importImage = async () => {
     try {
       const imageModule = await import(
@@ -44,9 +45,10 @@ const Template: FC<{ name: string; description: string; fileName: string }> = ({
       </ButtonAddSampleBot>
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
-          <BotTemplate
+          <BotTemplatePopup
             title={name}
             description={description}
+            id={id}
             onClick={closeModal}
           />
         </ModalPopup>
@@ -110,12 +112,15 @@ const Templates: FC = (): JSX.Element => {
         {...events}
         ref={ref}
       >
-        {templatesBots.map((templateBot, index) => (
+        {templatesBots.map((templateBot) => (
           <Template
-            key={templateBot.title + +index}
+            // eslint-disable-next-line no-underscore-dangle
+            key={templateBot._id}
             name={templateBot.title}
             description={templateBot.description}
             fileName={templateBot.icon}
+            // eslint-disable-next-line no-underscore-dangle
+            id={templateBot._id}
           />
         ))}
       </ul>

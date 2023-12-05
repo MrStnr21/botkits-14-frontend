@@ -23,6 +23,7 @@ import Typography from '../../../ui/typography/typography';
 interface IBotTemplate {
   title: string;
   description: string;
+  id: string;
   onClick?: () => void;
 }
 
@@ -68,6 +69,7 @@ const image: IImage = {
 const BotTemplatePopup: FC<IBotTemplate> = ({
   title,
   description,
+  id,
   onClick,
 }): JSX.Element | null => {
   const data = [
@@ -77,9 +79,9 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
     'Что настроено в шаблоне',
   ];
   const history = useNavigate();
-  const addBot = () => {
+  const addBot = (templateId: string) => {
     // добавить подключение к редаксу
-    history(routesUrl.addBot);
+    history(`/${routesUrl.addBot}?template=${templateId}`);
   };
 
   return (
@@ -126,7 +128,7 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
 
         <div className={stylesBotTemplate.bot_template_add_button}>
           <Button
-            onClick={addBot}
+            onClick={() => addBot(id)}
             size="large"
             variant="default"
             color="green"

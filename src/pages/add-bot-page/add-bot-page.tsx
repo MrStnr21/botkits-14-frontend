@@ -8,6 +8,9 @@ import AddBot from '../../components/add-bot/add-bot/add-bot';
 import { IBot } from '../../utils/types';
 
 const AddBotPage: FC = (): JSX.Element => {
+  const currentUrl = new URL(window.location.href);
+  const template = currentUrl.searchParams.get('template');
+
   const [bot, setBot] = useState<IBot>({
     name: '',
     pages: false,
@@ -26,7 +29,12 @@ const AddBotPage: FC = (): JSX.Element => {
     <div className={stylesAddBotPage.add_bot_page}>
       <AddBot bot={bot} onClick={onClick} />
       <div className={stylesAddBotPage.add_bot_page_container}>
-        <CreateBot botName={bot.name} pages={bot.pages} botURI={bot?.botURI} />
+        <CreateBot
+          botName={bot.name}
+          pages={bot.pages}
+          botURI={bot?.botURI}
+          templateId={template}
+        />
         {bot && (
           <div className={stylesAddBotPage.add_bot_page_works}>
             <HowItWorks />
