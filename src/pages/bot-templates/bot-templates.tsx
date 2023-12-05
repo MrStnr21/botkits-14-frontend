@@ -5,12 +5,19 @@ import stylesBotTemplates from './bot-templates.module.scss';
 import Typography from '../../ui/typography/typography';
 import Button from '../../ui/buttons/button/button';
 import { mockBotTemplates } from '../../utils/mockBotTemplates';
+import ModalPopup from '../../components/popups/modal-popup/modal-popup';
+import CreateBotTemplatesPopup from '../../components/popups/create-bot-template-popup/create-bot-template-popup';
 
 const BotTemplates: FC = () => {
   const [arrCard, setArrCard] = useState(mockBotTemplates);
+  const [isVisiblePopup, setVisiblePopup] = useState(false);
 
   const onDeleteCard = (id: string) => {
     setArrCard(arrCard.filter((pr) => pr.id !== id));
+  };
+
+  const onClickButton = () => {
+    setVisiblePopup(!isVisiblePopup);
   };
 
   return (
@@ -25,6 +32,7 @@ const BotTemplates: FC = () => {
             size="small"
             color="green"
             buttonHtmlType="submit"
+            onClick={onClickButton}
           >
             Добавить шаблон
           </Button>
@@ -47,6 +55,12 @@ const BotTemplates: FC = () => {
             />
           ))}
       </ul>
+      {/* {isVisiblePopup && } */}
+      {isVisiblePopup && (
+        <ModalPopup onClick={() => setVisiblePopup(false)}>
+          <CreateBotTemplatesPopup closeModal={onClickButton} />
+        </ModalPopup>
+      )}
     </div>
   );
 };
