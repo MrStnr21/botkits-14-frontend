@@ -7,6 +7,7 @@ const data = {
   url: '',
   headers: [],
   params: [],
+  variables: [],
 };
 
 const meta: Meta<typeof ApiBlockNode> = {

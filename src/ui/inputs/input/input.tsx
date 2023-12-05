@@ -22,6 +22,7 @@ interface IInput {
   textColor?: 'default' | 'blue';
   min?: string;
   max?: string;
+  id?: string;
 }
 
 const classNames = {
@@ -49,6 +50,7 @@ const Input: FC<IInput> = ({
   textColor = 'default',
   min,
   max,
+  id,
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -134,6 +136,7 @@ const Input: FC<IInput> = ({
         minLength={minLength}
         maxLength={maxLength}
         required={required}
+        id={id}
         // step="0.01"
         // lang="en"
       />

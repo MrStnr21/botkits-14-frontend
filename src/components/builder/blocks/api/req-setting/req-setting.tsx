@@ -8,6 +8,7 @@ type RequestSettingsProps = {
   constFields: React.ReactNode[];
   addFieldVariable: () => void;
   addFieldConst: () => void;
+  title: string;
 };
 
 const RequestSettings: FC<RequestSettingsProps> = ({
@@ -15,9 +16,10 @@ const RequestSettings: FC<RequestSettingsProps> = ({
   constFields,
   addFieldVariable,
   addFieldConst,
+  title,
 }) => {
   return (
-    <LabeledInput title="Заголовок">
+    <LabeledInput title={title}>
       <div className={styles.field_blocks}>
         <div className={styles.fields}>
           {variableFields}

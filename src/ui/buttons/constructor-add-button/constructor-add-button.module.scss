@@ -12,6 +12,7 @@
   transition: all 0.1s linear;
   border-radius: $l-border-radius;
   box-sizing: border-box;
+  background-color: #f2f4f8 !important;
 
   @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
