@@ -56,9 +56,10 @@ function addTemplatesBotsApi(botTemplates: TTemplateBot, token: string | null) {
   });
 }
 
+// запрос удаления шаблона
 function deleteTemplatesBotsApi(id: string, token: string | null) {
   return request<TTemplateBotRes>(`bots/template/${id}`, {
-    method: 'POST',
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       authorization: `Bearer ${token}`,
