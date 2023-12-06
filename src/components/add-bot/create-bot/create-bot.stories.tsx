@@ -46,6 +46,7 @@ export const CreateBotFacebook: Story = {
     pages: true,
     botURI: false,
     templateId: null,
+    templateTitle: null,
   },
 };
 
@@ -55,6 +56,7 @@ export const CreateBotTelegram: Story = {
     pages: false,
     botURI: false,
     templateId: null,
+    templateTitle: null,
   },
 };
 
@@ -64,5 +66,6 @@ export const CreateBotViber: Story = {
     pages: false,
     botURI: true,
     templateId: null,
+    templateTitle: null,
   },
 };

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import stylesCreateBot from './create-bot.module.scss';
 import { addBotAction } from '../../../services/actions/bots/addBot';
 
-import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
+import { useAppDispatch } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -26,7 +26,6 @@ import Input from '../../../ui/inputs/input/input';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
 import Typography from '../../../ui/typography/typography';
-import { getTemplatesBotsSel } from '../../../utils/selectorData';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -35,7 +34,8 @@ interface ImageMap {
 interface ICreateBot {
   botName: string;
   pages: boolean;
-  templateId: string | null;
+  templateId?: string | null;
+  templateTitle: string | null;
   botURI?: boolean;
 }
 
@@ -56,17 +56,12 @@ const img: ImageMap = {
 const CreateBot: FC<ICreateBot> = ({
   botName,
   pages,
+  // TODO: использовать при запросе на сервер
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   templateId,
+  templateTitle,
   botURI,
 }): JSX.Element => {
-  const { templatesBots } = useAppSelector(getTemplatesBotsSel);
-  console.log(templateId);
-  const templateName = templatesBots.find(
-    // eslint-disable-next-line no-underscore-dangle
-    (template) => template._id === templateId
-  )?.title;
-  console.log(templateName);
-
   const [arrPages, setArrPages] = useState<string[]>([]);
 
   const { values, handleChange, setValues } = useForm({
@@ -141,18 +136,15 @@ const CreateBot: FC<ICreateBot> = ({
             >
               {botName}
             </Typography>
-            {templateName && (
+            {templateTitle && (
               <Typography
                 tag="span"
                 className={stylesCreateBot.create_main_bot_name_text}
               >
-                Бот будет создан на основе{' '}
-                <Typography
-                  tag="span"
-                  className={stylesCreateBot.create_main_bot_name_span}
-                >
-                  {templateName}
-                </Typography>
+                Бот будет создан на основе шаблона{' '}
+                <span className={stylesCreateBot.create_main_bot_name_span}>
+                  {templateTitle}
+                </span>
               </Typography>
             )}
           </div>

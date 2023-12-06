@@ -13,11 +13,11 @@ import { getTemplatesBotsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 
 const Template: FC<{
-  name: string;
+  title: string;
   description: string;
   fileName: string;
   id: string;
-}> = ({ name, description, fileName, id }): JSX.Element => {
+}> = ({ title, description, fileName, id }): JSX.Element => {
   const importImage = async () => {
     try {
       const imageModule = await import(
@@ -41,12 +41,12 @@ const Template: FC<{
   return (
     <li className={stylesTemplates.item}>
       <ButtonAddSampleBot onClick={openModal} icon={image}>
-        {name}
+        {title}
       </ButtonAddSampleBot>
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
           <BotTemplatePopup
-            title={name}
+            title={title}
             description={description}
             id={id}
             onClick={closeModal}
@@ -116,7 +116,7 @@ const Templates: FC = (): JSX.Element => {
           <Template
             // eslint-disable-next-line no-underscore-dangle
             key={templateBot._id}
-            name={templateBot.title}
+            title={templateBot.title}
             description={templateBot.description}
             fileName={templateBot.icon}
             // eslint-disable-next-line no-underscore-dangle
