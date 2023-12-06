@@ -1,4 +1,4 @@
-import { FC, useState, FormEvent } from 'react';
+import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router';
 import Typography from '../../../ui/typography/typography';
 import stylesPopup from './create-bot-template-popup.module.scss';
@@ -14,7 +14,7 @@ import { BUTTON_NAME } from '../../../utils/constants';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
-import useForm from '../../../services/hooks/use-form';
+// import useForm from '../../../services/hooks/use-form';
 
 interface IPopupCreateBotTemplates {
   closeModal: () => void;
@@ -25,13 +25,13 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
 }) => {
   const [imageEdit, setImageEdit] = useState<string>();
   const [crm, setCrm] = useState(true);
-  // const [nameBot, setNameBot] = useState<string>('');
-  // const [aboutBot, setAboutBot] = useState<string>('');
+  const [nameBot, setNameBot] = useState<string>('');
+  const [aboutBot, setAboutBot] = useState<string>('');
 
-  const { values, handleChange, setValues } = useForm({
-    nameBot: { value: '', valueValid: false },
-    aboutBot: { value: '', valueValid: false },
-  });
+  // const { values, handleChange, setValues } = useForm({
+  //   nameBot: { value: '', valueValid: false },
+  //   aboutBot: { value: '', valueValid: false },
+  // });
 
   const history = useNavigate();
 
@@ -48,12 +48,12 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   };
 
   const clearInputs = () => {
-    // setNameBot('');
-    // setAboutBot('');
-    setValues({
-      nameBot: { value: '', valueValid: false },
-      aboutBot: { value: '', valueValid: false },
-    });
+    setNameBot('');
+    setAboutBot('');
+    // setValues({
+    //   nameBot: { value: '', valueValid: false },
+    //   aboutBot: { value: '', valueValid: false },
+    // });
     closeModal();
   };
 
@@ -62,9 +62,13 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
 
     const dataBotTemplates = {
       type: 'template',
-      title: values?.nameBot.value,
-      description: values?.aboutBot.value,
+      title: nameBot,
+      description: aboutBot,
       icon: imageEdit!,
+      features: [{}],
+      settings: {},
+      messengers: [{}],
+      isToPublish: crm,
     };
 
     //   _id: string;
@@ -89,10 +93,13 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
       console.log(err);
     }
 
-    setValues({
-      nameBot: { value: '', valueValid: false },
-      aboutBot: { value: '', valueValid: false },
-    });
+    setNameBot('');
+    setAboutBot('');
+
+    // setValues({
+    //   nameBot: { value: '', valueValid: false },
+    //   aboutBot: { value: '', valueValid: false },
+    // });
   };
 
   return (
@@ -131,22 +138,22 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
             </div>
           </div>
           <InputTemplate
-            // onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-            //   setNameBot(e.target.value)
-            // }
-            onChange={handleChange}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+              setNameBot(e.target.value)
+            }
+            // onChange={handleChange}
             size="small"
             placeholder="Название бота"
-            value={values?.nameBot.value}
+            value={nameBot}
           />
           <InputTemplate
-            // onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-            //   setAboutBot(e.target.value)
-            // }
-            onChange={handleChange}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+              setAboutBot(e.target.value)
+            }
+            // onChange={handleChange}
             size="big"
             placeholder="Описание бота..."
-            value={values?.aboutBot.value}
+            value={aboutBot}
           />
           <CheckboxWithText
             label="Опубликовать"

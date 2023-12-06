@@ -40,6 +40,10 @@ export type TTemplateBot = {
   title: string;
   description: string;
   icon?: string;
+  features?: Array<Object>;
+  settings?: Object;
+  messengers?: Array<Object>;
+  isToPublish?: boolean;
 };
 
 export interface IAddBotResponse extends TBot {}
