@@ -183,3 +183,7 @@ export type TFileData = {
   type: MessageDataTypes.file;
   file: File;
 };
+
+export interface IGetBotResponse extends TBuilderData {}
+
+export interface ISaveBotResponse extends TBuilderData {}
