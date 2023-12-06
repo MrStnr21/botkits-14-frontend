@@ -44,7 +44,7 @@ function getTemplatesBotsApi(token: string) {
 
 // запрос добавления шаблона
 function addTemplatesBotsApi(botTemplates: TTemplateBot, token: string | null) {
-  return request<IGetTemplatesBotsResponse>('bots/templates', {
+  return request<IGetTemplatesBotsResponse>('bots/template', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
