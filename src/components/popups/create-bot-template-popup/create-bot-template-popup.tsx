@@ -13,7 +13,7 @@ import { BUTTON_NAME } from '../../../utils/constants';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
-import { addBotTemplatesAction } from '../../../services/actions/bots/addTemplatesBot';
+import { addBotTemplatesAction } from '../../../services/actions/bots/templatesBot';
 // import useForm from '../../../services/hooks/use-form';
 
 interface IPopupCreateBotTemplates {

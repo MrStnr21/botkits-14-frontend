@@ -4,18 +4,21 @@ import {
   ADDBOTTEMPLATES_SUCCESS,
   ADDBOTTEMPLATES_ERROR,
   TAddTemplatesBotActions,
-} from '../../actions/bots/addTemplatesBot';
+  DELETEBOTTEMPLATES_REQUEST,
+  DELETEBOTTEMPLATES_SUCCESS,
+  DELETEBOTTEMPLATES_ERROR,
+} from '../../actions/bots/templatesBot';
 
 import { TTemplateBotRes } from '../../types/bot';
 
 export type TAddTemplatesBotState = {
-  templatesBot: TTemplateBotRes | null;
+  templatesBot: Array<TTemplateBotRes> | null;
   isLoading: boolean;
   hasError: boolean;
 
-  getTemplatesBotsRequest: boolean;
-  getTemplatesBotsSuccess: boolean;
-  getTemplatesBotsError: boolean;
+  templatesBotsRequest: boolean;
+  templatesBotsSuccess: boolean;
+  templatesBotsError: boolean;
 };
 
 const addTemplatesBotsInitialState: TAddTemplatesBotState = {
@@ -23,9 +26,9 @@ const addTemplatesBotsInitialState: TAddTemplatesBotState = {
   isLoading: false,
   hasError: false,
 
-  getTemplatesBotsRequest: false,
-  getTemplatesBotsSuccess: false,
-  getTemplatesBotsError: false,
+  templatesBotsRequest: false,
+  templatesBotsSuccess: false,
+  templatesBotsError: false,
 };
 
 function addTemplatesBotReducer(
@@ -51,6 +54,33 @@ function addTemplatesBotReducer(
       };
     }
     case ADDBOTTEMPLATES_ERROR: {
+      return {
+        ...state,
+        getBotsRequest: false,
+        getBotsError: true,
+      };
+    }
+
+    // экшены удаления шаблонов
+    case DELETEBOTTEMPLATES_REQUEST: {
+      return {
+        ...state,
+        getBotsRequest: true,
+        getBotsError: false,
+      };
+    }
+    case DELETEBOTTEMPLATES_SUCCESS: {
+      return {
+        ...state,
+        botTemplates: state.templatesBot?.filter(
+          // eslint-disable-next-line no-underscore-dangle
+          (template) => template._id !== action.botTemplates._id
+        ),
+        getBotsSuccess: true,
+        getBotsRequest: false,
+      };
+    }
+    case DELETEBOTTEMPLATES_ERROR: {
       return {
         ...state,
         getBotsRequest: false,

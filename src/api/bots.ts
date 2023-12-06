@@ -5,9 +5,9 @@ import {
   IGetBotsResponse,
   IGetTemplatesBotsResponse,
   IAddTemplatesBotsResponse,
-  IDeleteTemplatesBotsResponse,
   TBot,
   TTemplateBot,
+  TTemplateBotRes,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -57,7 +57,7 @@ function addTemplatesBotsApi(botTemplates: TTemplateBot, token: string | null) {
 }
 
 function deleteTemplatesBotsApi(id: string, token: string | null) {
-  return request<IDeleteTemplatesBotsResponse>(`bots/template/${id}`, {
+  return request<TTemplateBotRes>(`bots/template/${id}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
