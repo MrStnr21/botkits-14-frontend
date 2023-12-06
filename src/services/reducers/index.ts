@@ -14,6 +14,7 @@ import { addBotReducer } from './bots/addBot';
 
 import { getTemplatesBotsReducer } from './bots/getTemplatesBots';
 import { addTemplatesBotReducer } from './bots/addTemplatesBot';
+import { deleteTemplatesBotReducer } from './bots/deleteTemplatesBot';
 
 import { getPlatformsReducer } from './platforms/getPlatforms';
 import { socketReducer } from './socket/socketReducer';
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   addBot: addBotReducer,
   getTemplatesBots: getTemplatesBotsReducer,
   addTemplatesBot: addTemplatesBotReducer,
+  deleteTemplatesBot: deleteTemplatesBotReducer,
   getPlatforms: getPlatformsReducer,
   websocket: socketReducer,
   toggleMessengersPopup: toggleMesPopup,

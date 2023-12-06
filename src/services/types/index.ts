@@ -23,6 +23,9 @@ import { TAddBotActions } from '../actions/bots/addBot';
 import { TAddTemplatesBotState } from '../reducers/bots/addTemplatesBot';
 import { TAddTemplatesBotActions } from '../actions/bots/addTemplatesBot';
 
+import { TDeleteTemplatesBotState } from '../reducers/bots/deleteTemplatesBot';
+import { TDeleteTemplatesBotActions } from '../actions/bots/deleteTemplatesBot';
+
 import { TGetTemplatesBotsState } from '../reducers/bots/getTemplatesBots';
 import { TGetTemplatesBotsActions } from '../actions/bots/getTemplatesBots';
 
@@ -44,6 +47,7 @@ export type TStore = {
   addBot: TAddBotState;
   getTemplatesBots: TGetTemplatesBotsState;
   addTemplatesBot: TAddTemplatesBotState;
+  deleteTemplatesBot: TDeleteTemplatesBotState;
   getPlatforms: TGetPlatformsState;
 };
 
@@ -58,6 +62,7 @@ export type TApplicationActions =
   | TGetBotsActions
   | TAddBotActions
   | TAddTemplatesBotActions
+  | TDeleteTemplatesBotActions
   | TGetTemplatesBotsActions
   | TGetPlatformsActions;
 

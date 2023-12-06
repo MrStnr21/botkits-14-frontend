@@ -63,7 +63,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
     const dataBotTemplates = {
       title: nameBot,
       description: aboutBot,
-      icon: imageEdit!,
+      icon: imageEdit,
       isToPublish: crm,
     };
 

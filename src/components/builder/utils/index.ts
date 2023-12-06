@@ -63,7 +63,7 @@ export const getUrlPath = (type: string|null) => {
       return 'bots'
     }
     case 'template': {
-      return 'bots/templates'
+      return 'bots/template'
     }
     default: {
       return ''
