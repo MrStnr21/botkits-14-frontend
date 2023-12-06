@@ -3,9 +3,6 @@ import { FC, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import stylesCreateBot from './create-bot.module.scss';
-import { addBotAction } from '../../../services/actions/bots/addBot';
-
-import { useAppDispatch } from '../../../services/hooks/hooks';
 
 import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
 import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
@@ -26,6 +23,8 @@ import Input from '../../../ui/inputs/input/input';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
 import Typography from '../../../ui/typography/typography';
+import { addBotApi } from '../../../api';
+import { TCreateBot } from '../../../services/types/bot';
 
 interface ImageMap {
   [key: string]: JSX.Element;
@@ -34,7 +33,7 @@ interface ImageMap {
 interface ICreateBot {
   botName: string;
   pages: boolean;
-  templateId?: string | null;
+  templateId: string | null;
   templateTitle: string | null;
   botURI?: boolean;
 }
@@ -56,8 +55,6 @@ const img: ImageMap = {
 const CreateBot: FC<ICreateBot> = ({
   botName,
   pages,
-  // TODO: использовать при запросе на сервер
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   templateId,
   templateTitle,
   botURI,
@@ -71,8 +68,6 @@ const CreateBot: FC<ICreateBot> = ({
   });
 
   const history = useNavigate();
-
-  const dispatch = useAppDispatch();
 
   const token = getAccessToken();
 
@@ -92,11 +87,10 @@ const CreateBot: FC<ICreateBot> = ({
     ? !disabledDefault
     : !disabledPages;
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const dataBot = {
-      type: 'custom',
+    const dataBot: TCreateBot = {
       title: values?.botName.value,
       messengers: [
         {
@@ -106,12 +100,13 @@ const CreateBot: FC<ICreateBot> = ({
           url: values?.uri.value,
         },
       ],
-      settings: {},
     };
 
     try {
-      dispatch(addBotAction(dataBot, token));
-      history(`/${routesUrl.botBuilder}`);
+      const bot = await addBotApi(dataBot, token, templateId);
+      // eslint-disable-next-line no-underscore-dangle
+      const botId = bot._id;
+      history(`/${routesUrl.botBuilder}?id=${botId}&type=custom`);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);

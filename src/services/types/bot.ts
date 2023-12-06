@@ -1,3 +1,15 @@
+export type TMessenger = {
+  name: string;
+  pages: Array<string>;
+  accessKey: string;
+  url: string;
+};
+
+export type TCreateBot = {
+  title: string;
+  messengers?: Array<TMessenger>;
+};
+
 // Типизация данных бота
 export type TBot = {
   type: string;
@@ -6,12 +18,7 @@ export type TBot = {
   description: string;
   features: Array<Object>;
   profile: string;
-  messengers: Array<{
-    name: string;
-    page: string;
-    accessKey: string;
-    url: string;
-  }>;
+  messengers: Array<TMessenger>;
   commands: Array<string>;
   content: Array<Object>;
   isToPublish: boolean;

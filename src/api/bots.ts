@@ -4,7 +4,7 @@ import {
   IAddBotResponse,
   IGetBotsResponse,
   IGetTemplatesBotsResponse,
-  TBot,
+  TCreateBot,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -19,8 +19,13 @@ function getBotsApi(token: string) {
 }
 
 // запрос добавления бота
-function addBotApi(bot: TBot, token: string) {
-  return request<IAddBotResponse>('bots', {
+function addBotApi(
+  bot: TCreateBot,
+  token: string | null,
+  templateId: string | null
+) {
+  const url = `bots/${templateId || ''}`;
+  return request<IAddBotResponse>(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
