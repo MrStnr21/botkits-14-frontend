@@ -6,10 +6,10 @@ import {
   TAddTemplatesBotActions,
 } from '../../actions/bots/addTemplatesBot';
 
-import { TTemplateBot } from '../../types/bot';
+import { TTemplateBotRes } from '../../types/bot';
 
 export type TAddTemplatesBotState = {
-  templatesBot: TTemplateBot | null;
+  templatesBot: TTemplateBotRes | null;
   isLoading: boolean;
   hasError: boolean;
 

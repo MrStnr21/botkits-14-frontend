@@ -43,7 +43,7 @@ function getTemplatesBotsApi(token: string) {
 }
 
 // запрос добавления шаблона
-function addTemplatesBotsApi(botTemplates: TTemplateBot, token: string) {
+function addTemplatesBotsApi(botTemplates: TTemplateBot, token: string | null) {
   return request<IGetTemplatesBotsResponse>('bots/templates', {
     method: 'POST',
     headers: {

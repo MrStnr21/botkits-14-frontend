@@ -1,7 +1,7 @@
 import { getTemplatesBotsApi } from '../../../api/bots';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
-import { TTemplateBot } from '../../types/bot';
+import { TTemplateBotRes } from '../../types/bot';
 
 const GET_TEMPLATES_BOTS_REQUEST = 'GET_TEMPLATES_BOTS_REQUEST';
 const GET_TEMPLATES_BOTS_SUCCESS = 'GET_TEMPLATES_BOTS_SUCCESS';
@@ -13,7 +13,7 @@ export interface IGetTemplatesBotsRequestAction {
 
 export interface IGetTemplatesBotsSuccessAction {
   readonly type: typeof GET_TEMPLATES_BOTS_SUCCESS;
-  templatesBots: Array<TTemplateBot>;
+  templatesBots: Array<TTemplateBotRes>;
 }
 
 export interface IGetTemplatesBotsErrorAction {
@@ -32,7 +32,7 @@ const getTemplatesBotsAction: AppThunk = (token: string) => {
       type: GET_TEMPLATES_BOTS_REQUEST,
     });
     getTemplatesBotsApi(token)
-      .then((res: Array<TTemplateBot>) => {
+      .then((res: Array<TTemplateBotRes>) => {
         if (res) {
           dispatch({
             type: GET_TEMPLATES_BOTS_SUCCESS,

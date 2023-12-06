@@ -2,7 +2,7 @@ import { addTemplatesBotsApi } from '../../../api/bots';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
-import { TTemplateBot } from '../../types/bot';
+import { TTemplateBotRes } from '../../types/bot';
 
 const ADDBOTTEMPLATES_REQUEST = 'ADDBOTTEMPLATES_REQUSET';
 const ADDBOTTEMPLATES_SUCCESS = 'ADDBOTTEMPLATES_SUCCESS';
@@ -14,7 +14,7 @@ export interface IAddBotTemplatesRequestAction {
 
 export interface IAddBotTemplatesSuccessAction {
   readonly type: typeof ADDBOTTEMPLATES_SUCCESS;
-  botTemplates: TTemplateBot[];
+  botTemplates: TTemplateBotRes[];
 }
 
 export interface IAddBotTemplatesErrorAction {
@@ -28,7 +28,7 @@ export type TAddTemplatesBotActions =
 
 // экшн добавления бота
 const addBotTemplatesAction: AppThunk = (
-  botinfo: TTemplateBot,
+  botinfo: TTemplateBotRes,
   token: string
 ) => {
   return (dispatch: AppDispatch) => {

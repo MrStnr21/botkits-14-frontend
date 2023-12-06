@@ -19,8 +19,8 @@ export type TBot = {
   success: boolean;
 };
 
-// Типизация данных шаблона
-export type TTemplateBot = {
+// Типизация данных шаблона - ToDo Это Типизация Res TemplateBot - Не корректное название
+export type TTemplateBotRes = {
   _id: string;
   type: 'template';
   title: string;
@@ -35,8 +35,15 @@ export type TTemplateBot = {
   success: boolean;
 };
 
+export type TTemplateBot = {
+  type: string;
+  title: string;
+  description: string;
+  icon?: string;
+};
+
 export interface IAddBotResponse extends TBot {}
 
 export interface IGetBotsResponse extends Array<TBot> {}
 
-export interface IGetTemplatesBotsResponse extends Array<TTemplateBot> {}
+export interface IGetTemplatesBotsResponse extends Array<TTemplateBotRes> {}

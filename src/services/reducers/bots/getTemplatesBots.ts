@@ -6,10 +6,10 @@ import {
   TGetTemplatesBotsActions,
 } from '../../actions/bots/getTemplatesBots';
 
-import { TTemplateBot } from '../../types/bot';
+import { TTemplateBotRes } from '../../types/bot';
 
 export type TGetTemplatesBotsState = {
-  templatesBots: TTemplateBot[] | [];
+  templatesBots: TTemplateBotRes[] | [];
   isLoading: boolean;
   hasError: boolean;
 
