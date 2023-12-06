@@ -29,7 +29,6 @@ import BotName from '../../../ui/bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
-import { TVariable } from '../../../services/types/builder';
 import { getAccessToken } from '../../../auth/authService';
 import { filterNodes, getUrlPath } from '../utils';
 
@@ -37,8 +36,6 @@ const cx = cn.bind(styles);
 
 // eslint-disable-next-line import/no-mutable-exports
 export let namesOfBlocks: string[] = [];
-
-export const storOfVariables: TVariable[] = [];
 
 const LayoutFlow: FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
