@@ -7,13 +7,13 @@ import CheckboxWithText from '../../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../../ui/avatar/avatar';
 import imageAvatar from '../../../images/icon/side bar/logo.svg';
 import EditButton from '../../../ui/buttons/button-edit/button-edit';
-import { addTemplatesBotsApi } from '../../../api/bots';
 
 import { BUTTON_NAME } from '../../../utils/constants';
 
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
+import { addBotTemplatesAction } from '../../../services/actions/bots/addTemplatesBot';
 // import useForm from '../../../services/hooks/use-form';
 
 interface IPopupCreateBotTemplates {
@@ -61,13 +61,9 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
     e.preventDefault();
 
     const dataBotTemplates = {
-      type: 'template',
       title: nameBot,
       description: aboutBot,
       icon: imageEdit!,
-      features: [{}],
-      settings: {},
-      messengers: [{}],
       isToPublish: crm,
     };
 
@@ -86,7 +82,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
     // success: boolean;
 
     try {
-      dispatch(addTemplatesBotsApi(dataBotTemplates, token));
+      dispatch(addBotTemplatesAction(dataBotTemplates, token));
       history(`/${routesUrl.botBuilder}`);
     } catch (err) {
       // eslint-disable-next-line no-console
