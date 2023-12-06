@@ -5,6 +5,7 @@ import {
   IGetBotsResponse,
   IGetTemplatesBotsResponse,
   TBot,
+  TTemplateBot,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -41,4 +42,16 @@ function getTemplatesBotsApi(token: string) {
   });
 }
 
-export { getBotsApi, addBotApi, getTemplatesBotsApi };
+// запрос добавления шаблона
+function addTemplatesBotsApi(botTemplates: TTemplateBot, token: string) {
+  return request<IGetTemplatesBotsResponse>('bots/templates', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(botTemplates),
+  });
+}
+
+export { getBotsApi, addBotApi, getTemplatesBotsApi, addTemplatesBotsApi };

@@ -3,7 +3,9 @@ import { ChangeEvent, useState } from 'react';
 function useForm(inputValues: any) {
   const [values, setValues] = useState(inputValues);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value, name } = event.target;
     setValues({
       ...values,

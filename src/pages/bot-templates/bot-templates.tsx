@@ -68,7 +68,7 @@ const BotTemplates: FC = () => {
               id={templateBot._id}
               title={templateBot.title}
               description={templateBot.description}
-              isToPublish={templateBot.isToPublish}
+              isToPublish={templateBot.isToPublish!}
               deleteCard={onDeleteCard}
               // eslint-disable-next-line no-underscore-dangle
               key={templateBot._id}

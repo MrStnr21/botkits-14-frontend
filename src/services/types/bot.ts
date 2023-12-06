@@ -26,11 +26,13 @@ export type TTemplateBot = {
   title: string;
   description: string;
   icon: string;
-  messengers: [];
+  messengers?: [];
   profile: null;
-  features: [];
-  commands: Array<string>;
-  isToPublish: boolean;
+  features?: Array<Object>;
+  commands?: Array<string>;
+  content?: Array<Object>;
+  isToPublish?: boolean;
+  success: boolean;
 };
 
 export interface IAddBotResponse extends TBot {}

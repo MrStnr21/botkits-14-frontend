@@ -20,6 +20,9 @@ import { TGetBotsActions } from '../actions/bots/getBot';
 import { TAddBotState } from '../reducers/bots/addBot';
 import { TAddBotActions } from '../actions/bots/addBot';
 
+import { TAddTemplatesBotState } from '../reducers/bots/addTemplatesBot';
+import { TAddTemplatesBotActions } from '../actions/bots/addTemplatesBot';
+
 import { TGetTemplatesBotsState } from '../reducers/bots/getTemplatesBots';
 import { TGetTemplatesBotsActions } from '../actions/bots/getTemplatesBots';
 
@@ -40,6 +43,7 @@ export type TStore = {
   getBots: TGetBotsState;
   addBot: TAddBotState;
   getTemplatesBots: TGetTemplatesBotsState;
+  addTemplatesBot: TAddTemplatesBotState;
   getPlatforms: TGetPlatformsState;
 };
 
@@ -53,6 +57,7 @@ export type TApplicationActions =
   | TLogoutActions
   | TGetBotsActions
   | TAddBotActions
+  | TAddTemplatesBotActions
   | TGetTemplatesBotsActions
   | TGetPlatformsActions;
 
