@@ -4,9 +4,6 @@ import {
   ADDBOTTEMPLATES_SUCCESS,
   ADDBOTTEMPLATES_ERROR,
   TAddTemplatesBotActions,
-  DELETEBOTTEMPLATES_REQUEST,
-  DELETEBOTTEMPLATES_SUCCESS,
-  DELETEBOTTEMPLATES_ERROR,
 } from '../../actions/bots/templatesBot';
 
 import { TTemplateBotRes } from '../../types/bot';
@@ -37,7 +34,7 @@ function addTemplatesBotReducer(
   action: TAddTemplatesBotActions
 ) {
   switch (action.type) {
-    // экшены получения шаблонов
+    // экшены добавления шаблона
     case ADDBOTTEMPLATES_REQUEST: {
       return {
         ...state,
@@ -54,33 +51,6 @@ function addTemplatesBotReducer(
       };
     }
     case ADDBOTTEMPLATES_ERROR: {
-      return {
-        ...state,
-        getBotsRequest: false,
-        getBotsError: true,
-      };
-    }
-
-    // экшены удаления шаблонов
-    case DELETEBOTTEMPLATES_REQUEST: {
-      return {
-        ...state,
-        getBotsRequest: true,
-        getBotsError: false,
-      };
-    }
-    case DELETEBOTTEMPLATES_SUCCESS: {
-      return {
-        ...state,
-        botTemplates: state.templatesBot?.filter(
-          // eslint-disable-next-line no-underscore-dangle
-          (template) => template._id !== action.botTemplates._id
-        ),
-        getBotsSuccess: true,
-        getBotsRequest: false,
-      };
-    }
-    case DELETEBOTTEMPLATES_ERROR: {
       return {
         ...state,
         getBotsRequest: false,

@@ -20,10 +20,10 @@ import { TGetBotsActions } from '../actions/bots/getBot';
 import { TAddBotState } from '../reducers/bots/addBot';
 import { TAddBotActions } from '../actions/bots/addBot';
 
-import { TAddTemplatesBotState } from '../reducers/bots/templatesBot';
+import { TAddTemplatesBotState } from '../reducers/bots/addTemplatesBot';
 import { TAddTemplatesBotActions } from '../actions/bots/templatesBot';
 
-import { TGetTemplatesBotsState } from '../reducers/bots/getTemplatesBots';
+import { TGetTemplatesBotsState } from '../reducers/bots/templatesBots';
 import { TGetTemplatesBotsActions } from '../actions/bots/getTemplatesBots';
 
 import { TUserResetPasswordActions } from '../actions/auth/reset-password';

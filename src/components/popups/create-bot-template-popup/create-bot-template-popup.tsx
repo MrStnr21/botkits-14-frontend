@@ -10,10 +10,11 @@ import EditButton from '../../../ui/buttons/button-edit/button-edit';
 
 import { BUTTON_NAME } from '../../../utils/constants';
 
-import { useAppDispatch } from '../../../services/hooks/hooks';
+// import { useAppDispatch } from '../../../services/hooks/hooks';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
-import { addBotTemplatesAction } from '../../../services/actions/bots/templatesBot';
+// import { addBotTemplatesAction } from '../../../services/actions/bots/templatesBot';
+import { addTemplatesBotsApi } from '../../../api/bots';
 // import useForm from '../../../services/hooks/use-form';
 
 interface IPopupCreateBotTemplates {
@@ -35,7 +36,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
 
   const history = useNavigate();
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const token = getAccessToken();
 
@@ -57,7 +58,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
     closeModal();
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const dataBotTemplates = {
@@ -67,23 +68,14 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
       isToPublish: crm,
     };
 
-    //   _id: string;
-    // type: 'template';
-    // title: string;
-    // description: string;
-    // icon: string;
-    // messengers: [];
-    // // profile: null;
-    // profile: string;
-    // features: Array<Object>;
-    // commands: Array<string>;
-    // content: Array<Object>;
-    // isToPublish: boolean;
-    // success: boolean;
+    const path = routesUrl.botBuilder;
 
     try {
-      dispatch(addBotTemplatesAction(dataBotTemplates, token));
-      history(`/${routesUrl.botBuilder}`);
+      // dispatch(addBotTemplatesAction(dataBotTemplates, token));
+      const template = await addTemplatesBotsApi(dataBotTemplates, token);
+      // eslint-disable-next-line no-underscore-dangle
+      const id = template._id;
+      history(`/${path}?id=${id}&type=template`);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);

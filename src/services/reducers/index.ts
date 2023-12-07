@@ -12,8 +12,8 @@ import logoutReducer from './logout/logout';
 import { getBotsReducer } from './bots/getBots';
 import { addBotReducer } from './bots/addBot';
 
-import { getTemplatesBotsReducer } from './bots/getTemplatesBots';
-import { addTemplatesBotReducer } from './bots/templatesBot';
+import { getTemplatesBotsReducer } from './bots/templatesBots';
+import { addTemplatesBotReducer } from './bots/addTemplatesBot';
 
 import { getPlatformsReducer } from './platforms/getPlatforms';
 import { socketReducer } from './socket/socketReducer';

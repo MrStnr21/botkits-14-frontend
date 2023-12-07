@@ -31,7 +31,7 @@ const BotTemplates: FC = () => {
 
   const onDeleteCard = (id: string) => {
     // eslint-disable-next-line no-underscore-dangle
-    setArrCard(arrCard.filter((pr) => pr._id !== id));
+    setArrCard(arrCard!.filter((pr) => pr._id !== id));
   };
 
   const onClickButton = () => {

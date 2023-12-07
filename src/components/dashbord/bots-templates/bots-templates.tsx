@@ -110,14 +110,15 @@ const Templates: FC = (): JSX.Element => {
         {...events}
         ref={ref}
       >
-        {templatesBots.map((templateBot, index) => (
-          <Template
-            key={templateBot.title + +index}
-            name={templateBot.title}
-            description={templateBot.description}
-            fileName={templateBot.icon}
-          />
-        ))}
+        {templatesBots !== null &&
+          templatesBots.map((templateBot, index) => (
+            <Template
+              key={templateBot.title + +index}
+              name={templateBot.title}
+              description={templateBot.description}
+              fileName={templateBot.icon}
+            />
+          ))}
       </ul>
     </div>
   );
