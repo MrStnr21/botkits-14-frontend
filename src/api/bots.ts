@@ -57,14 +57,13 @@ function addTemplatesBotsApi(botTemplates: TTemplateBot, token: string | null) {
 }
 
 // запрос удаления шаблона
-function deleteTemplatesBotsApi(id: string, token: string | null) {
+function deleteTemplatesBotsApi(id: string, token: string) {
   return request<TTemplateBotRes>(`bots/template/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(id),
   });
 }
 

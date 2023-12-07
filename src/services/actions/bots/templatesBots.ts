@@ -81,12 +81,10 @@ const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
     deleteTemplatesBotsApi(idCard, token)
       .then((res) => {
         console.log(res);
-        if (res) {
-          dispatch({
-            type: DELETEBOTTEMPLATES_SUCCESS,
-            botTemplates: res,
-          });
-        }
+        dispatch({
+          type: DELETEBOTTEMPLATES_SUCCESS,
+          botTemplates: res,
+        });
       })
       .catch((err) => {
         // eslint-disable-next-line no-console

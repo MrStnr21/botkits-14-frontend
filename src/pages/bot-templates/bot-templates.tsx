@@ -10,7 +10,10 @@ import CreateBotTemplatesPopup from '../../components/popups/create-bot-template
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { getTemplatesBotsSel, getBotsSel } from '../../utils/selectorData';
-import { getTemplatesBotsAction } from '../../services/actions/bots/templatesBots';
+import {
+  getTemplatesBotsAction,
+  deleteBotTemplatesAction,
+} from '../../services/actions/bots/templatesBots';
 import { getAccessToken } from '../../auth/authService';
 
 const BotTemplates: FC = () => {
@@ -23,7 +26,7 @@ const BotTemplates: FC = () => {
 
   useEffect(() => {
     dispatch(getTemplatesBotsAction(token));
-  }, [dispatch]);
+  }, [dispatch, templatesBots]);
 
   useEffect(() => {
     setArrCard(templatesBots);
@@ -31,7 +34,8 @@ const BotTemplates: FC = () => {
 
   const onDeleteCard = (id: string) => {
     // eslint-disable-next-line no-underscore-dangle
-    setArrCard(arrCard!.filter((pr) => pr._id !== id));
+    // setArrCard(arrCard!.filter((pr) => pr._id !== id));
+    dispatch(deleteBotTemplatesAction(id, token));
   };
 
   const onClickButton = () => {
