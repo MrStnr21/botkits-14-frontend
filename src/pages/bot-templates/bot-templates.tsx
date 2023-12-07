@@ -40,6 +40,7 @@ const BotTemplates: FC = () => {
 
   const onClickButton = () => {
     setVisiblePopup(!isVisiblePopup);
+    console.log(arrCard);
   };
 
   return (
@@ -73,6 +74,7 @@ const BotTemplates: FC = () => {
               title={templateBot.title}
               description={templateBot.description}
               isToPublish={templateBot.isToPublish!}
+              disabled={templateBot.features ? undefined : true}
               deleteCard={onDeleteCard}
               // eslint-disable-next-line no-underscore-dangle
               key={templateBot._id}

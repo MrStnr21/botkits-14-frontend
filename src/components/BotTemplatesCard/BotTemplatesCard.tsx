@@ -20,6 +20,7 @@ interface IBotTemplatesCard {
   title?: string;
   description?: string;
   isToPublish: boolean;
+  disabled?: boolean;
   deleteCard: (id: string) => void;
 }
 
@@ -29,6 +30,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   title,
   description,
   isToPublish,
+  disabled,
   deleteCard,
 }) => {
   const [crm, setCrm] = useState(isToPublish);
@@ -169,6 +171,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
           value="crm"
           onChange={onCrmChange}
           checked={crm}
+          disabled={disabled}
         />
       </div>
       <div className={stylesCard.buttons}>
