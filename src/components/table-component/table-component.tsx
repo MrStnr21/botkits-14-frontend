@@ -46,6 +46,7 @@ type Props = {
   toolbar?: boolean;
   shadow?: number;
   header?: boolean;
+  onFilterChange?: (value: string) => void;
 };
 
 const TableComponent: FC<Props> = ({
@@ -56,6 +57,7 @@ const TableComponent: FC<Props> = ({
   toolbar,
   shadow = 0,
   header,
+  onFilterChange,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -108,10 +110,22 @@ const TableComponent: FC<Props> = ({
   const paginatedData = tableData.slice(startIdx, endIdx);
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box
+      sx={{
+        width: '100%',
+        maxWidth: '1268px',
+        overflow: 'visible',
+        zIndex: '1',
+      }}
+    >
       {toolbar && <TableToolbar needFilter />}
       <Paper elevation={shadow} sx={paperStyles}>
-        {header && <EnhancedTableHeader title="Созданные промокоды" />}
+        {header && (
+          <EnhancedTableHeader
+            title="Созданные промокоды"
+            onFilterChange={onFilterChange}
+          />
+        )}
         <TableContainer>
           <Table>
             <TableHead>

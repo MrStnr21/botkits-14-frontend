@@ -1,4 +1,5 @@
 import {
+  baseCell,
   inputCell,
   selectCell,
 } from '../../components/table-cells/table-cells';
@@ -51,6 +52,9 @@ export const tariffsRows = [
     followers: 600,
     duration: '7D',
     start: false,
+    tel: '111223333',
+    one: 'one',
+    two: 'two',
   },
   {
     name: 'Акция',
@@ -251,37 +255,55 @@ export const tariffsCols = [
   {
     key: 'name',
     label: 'Название тарифа',
-    colStyle: { ...headStyle, minWidth: '15%' },
+    colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     key: 'price',
     label: 'Цена',
-    colStyle: { ...headStyle, minWidth: '15%' },
+    colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     key: 'bots',
     label: 'Кол-во ботов',
-    colStyle: { ...headStyle, minWidth: '15%' },
+    colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     key: 'followers',
     label: 'Кол-во подписчиков',
-    colStyle: { ...headStyle, minWidth: '15%' },
+    colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     key: 'duration',
     label: 'Длительность',
-    colStyle: { ...headStyle, minWidth: '15%' },
+    colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     key: 'start',
     label: 'Стартовый тариф',
-    colStyle: { ...headStyle },
+    colStyle: { ...headStyle, width: '15%' },
     cellComponent: selectCell,
+  },
+  {
+    key: 'tel',
+    label: 'Телефон',
+    colStyle: { ...headStyle, width: '10%' },
+    cellComponent: baseCell,
+  },
+  {
+    key: 'one',
+    label: 'Раз',
+    colStyle: { ...headStyle, minWidth: '10%' },
+    cellComponent: baseCell,
+  },
+  {
+    key: 'two',
+    label: 'Два',
+    colStyle: { ...headStyle, minWidth: '10%' },
+    cellComponent: baseCell,
   },
 ];

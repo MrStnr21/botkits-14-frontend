@@ -4,6 +4,7 @@ export const paperStyles = {
   backgroundColor: 'inherit',
   borderRadius: '30px',
   padding: '32px',
+  overflowX: 'scroll',
 };
 
 export const paginationStyles = {

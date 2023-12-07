@@ -2,6 +2,7 @@
 @use '../../stylesheets/variables' as *;
 
 .div {
+  @include position(relative);
   @include indents(0, 0 0 20px 0);
   @include flex(row, space-between, center);
 }
@@ -13,4 +14,9 @@
   line-height: $xl-line-height;
   letter-spacing: $m-letter-space;
   text-align: right;
+}
+
+div.dropdown {
+  @include position(absolute, 56px, 0);
+  z-index: 2;
 }

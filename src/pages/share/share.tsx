@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import stylesShare from './share.module.scss';
 import TableComponent from '../../components/table-component/table-component';
@@ -20,6 +20,24 @@ import {
 import { tariffsCols, tariffsRows } from '../../utils/tablesData/tariffTable';
 
 const Share: FC = (): JSX.Element => {
+  const [filterValue, setFilterValue] = useState<string>('all');
+  console.log(filterValue);
+  const handleFilterChange = (value: string) => {
+    setFilterValue(value);
+  };
+
+  const renderFilteredRows = () => {
+    switch (filterValue) {
+      case 'all':
+        return promoRows;
+      case 'inactive':
+        return promoRows.filter((row) => row.status === false);
+      case 'active':
+        return promoRows.filter((row) => row.status === true);
+      default:
+        return promoRows;
+    }
+  };
   return (
     <div className={stylesShare.share}>
       <div className={stylesShare.share__header}>
@@ -65,10 +83,11 @@ const Share: FC = (): JSX.Element => {
             header
             columns={promoColumns}
             headComponent={ppHeadCell}
-            tableData={promoRows}
+            tableData={renderFilteredRows()}
             rowStyle={promoRowStyleRef}
             cellStyle={promoCellStyle}
             shadow={0}
+            onFilterChange={handleFilterChange}
           />
         </div>
       </div>

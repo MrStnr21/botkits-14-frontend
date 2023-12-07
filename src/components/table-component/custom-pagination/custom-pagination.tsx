@@ -27,13 +27,13 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
       setActiveIndex(newPage);
     }
   };
-
+  console.log(page);
   return (
     <div className={styles.pagination}>
       {Array.from({ length: pageCount }).map((_, index) => (
         <button
           className={
-            activeIndex + 1 === index
+            activeIndex === index
               ? `${styles.activePage}`
               : `${styles.pagination__button}`
           }
@@ -44,7 +44,7 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
           <Typography
             tag="p"
             className={
-              activeIndex + 1 === index
+              activeIndex === index
                 ? `${styles.activeNumber}`
                 : `${styles.pagination__number}`
             }
