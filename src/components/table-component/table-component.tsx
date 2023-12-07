@@ -68,7 +68,7 @@ const TableComponent: FC<Props> = ({
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
-
+  console.log(page);
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };

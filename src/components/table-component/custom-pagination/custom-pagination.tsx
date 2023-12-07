@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './custom-pagination.module.scss';
 import Typography from '../../../ui/typography/typography';
@@ -21,13 +21,21 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
   const pageCount = Math.ceil(count / rowsPerPage);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  useEffect(() => {
+    setActiveIndex(page);
+  }, []);
+
+  useEffect(() => {
+    setActiveIndex(page);
+  }, [page]);
+
   const handleButtonClick = (newPage: number) => {
     if (newPage >= 0 && newPage < pageCount && newPage !== page) {
       onChange(null as any, newPage);
       setActiveIndex(newPage);
     }
   };
-  console.log(page);
+  console.log(activeIndex);
   return (
     <div className={styles.pagination}>
       {Array.from({ length: pageCount }).map((_, index) => (
