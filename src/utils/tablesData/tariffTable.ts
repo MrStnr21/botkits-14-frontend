@@ -8,17 +8,17 @@ export const headStyle = {
   border: 'none',
   backgroundColor: '#ECEFFF',
   padding: '12px 0',
-  ':first-of-type': {
-    paddingLeft: '40px',
-  },
-  ':last-of-type': {
-    paddingRight: '40px',
-  },
+  // ':first-of-type': {
+  //   paddingLeft: '40px',
+  // },
+  // ':last-of-type': {
+  //   paddingRight: '40px',
+  // },
   borderRadius: '0',
-  ':first-child': {
-    borderRadius: '10px 0 0 10px',
-  },
-  ':last-child': {
+  // ':first-of-type': {
+  //   borderRadius: '10px 0 0 10px',
+  // },
+  ':last-of-type': {
     borderRadius: '0 10px 10px 0',
   },
 };
@@ -36,12 +36,12 @@ export const cellStyle = {
   border: 'none',
   padding: '0',
   boxSizing: 'border-box',
-  ':first-of-type': {
-    paddingLeft: '40px',
-  },
-  ':last-of-type': {
-    paddingRight: '40px',
-  },
+  // ':first-of-type': {
+  //   paddingLeft: '40px',
+  // },
+  // ':last-of-type': {
+  //   paddingRight: '40px',
+  // },
 };
 
 export const tariffsRows = [

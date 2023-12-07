@@ -21,7 +21,6 @@ import { tariffsCols, tariffsRows } from '../../utils/tablesData/tariffTable';
 
 const Share: FC = (): JSX.Element => {
   const [filterValue, setFilterValue] = useState<string>('all');
-  console.log(filterValue);
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
   };
@@ -97,6 +96,7 @@ const Share: FC = (): JSX.Element => {
         </div>
         <TableComponent
           check
+          minTableWidth="1410px"
           columns={tariffsCols}
           headComponent={ppHeadCell}
           tableData={tariffsRows}

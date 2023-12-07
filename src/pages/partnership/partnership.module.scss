@@ -88,7 +88,7 @@
 
   &__titleContainer {
     @include flex(row, space-between, center);
-    padding: 0 40px;
+    padding: 0 32px;
     box-sizing: border-box;
     width: 100%;
   }

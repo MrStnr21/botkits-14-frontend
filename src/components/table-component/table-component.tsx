@@ -19,6 +19,8 @@ import {
   paginationStyles,
   paperStyles,
   checkBoxStyle,
+  boxStyle,
+  tableContainerStyles,
 } from './tableStyles';
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './table-component.module.scss';
@@ -47,6 +49,7 @@ type Props = {
   shadow?: number;
   header?: boolean;
   onFilterChange?: (value: string) => void;
+  minTableWidth?: string;
 };
 
 const TableComponent: FC<Props> = ({
@@ -58,15 +61,22 @@ const TableComponent: FC<Props> = ({
   shadow = 0,
   header,
   onFilterChange,
+  minTableWidth,
   ...props
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<number[]>([]);
+  const [rows, setRows] = useState(tableData);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
+
+  // const handleRemoveRow = (indexToRemove: any) => {
+  //   const updatedRows = rows.filter((_, index) => index !== indexToRemove);
+  //   setRows(updatedRows);
+  // };
 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -110,14 +120,7 @@ const TableComponent: FC<Props> = ({
   const paginatedData = tableData.slice(startIdx, endIdx);
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        maxWidth: '1268px',
-        overflow: 'visible',
-        zIndex: '1',
-      }}
-    >
+    <Box sx={boxStyle}>
       {toolbar && <TableToolbar needFilter />}
       <Paper elevation={shadow} sx={paperStyles}>
         {header && (
@@ -126,8 +129,8 @@ const TableComponent: FC<Props> = ({
             onFilterChange={onFilterChange}
           />
         )}
-        <TableContainer>
-          <Table>
+        <TableContainer sx={tableContainerStyles}>
+          <Table sx={{ minWidth: minTableWidth }}>
             <TableHead>
               <TableRow>
                 {check && (

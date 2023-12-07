@@ -1,9 +1,17 @@
+export const boxStyle = {
+  width: '100%',
+  boxSizing: 'border-box',
+};
+
 export const paperStyles = {
   width: '100%',
   boxSizing: 'border-box',
   backgroundColor: 'inherit',
   borderRadius: '30px',
   padding: '32px',
+};
+
+export const tableContainerStyles = {
   overflowX: 'scroll',
 };
 

@@ -8,17 +8,8 @@ export const shareHeadStyle = {
   border: 'none',
   backgroundColor: '#ECEFFF',
   padding: '12px 0',
-  ':first-of-type': {
-    paddingLeft: '40px',
-  },
-  ':last-of-type': {
-    paddingRight: '40px',
-  },
   borderRadius: '0',
-  ':first-child': {
-    borderRadius: '10px 0 0 10px',
-  },
-  ':last-child': {
+  ':last-of-type': {
     borderRadius: '0 10px 10px 0',
   },
 };
@@ -36,12 +27,6 @@ export const cellStyle = {
   border: 'none',
   padding: '0',
   boxSizing: 'border-box',
-  ':first-of-type': {
-    paddingLeft: '40px',
-  },
-  ':last-of-type': {
-    paddingRight: '40px',
-  },
 };
 
 export const shareRows = [
@@ -114,49 +99,49 @@ export const shareCols = [
   {
     key: 'name',
     label: 'Имя',
-    colStyle: { ...shareHeadStyle, width: '25%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: baseCell,
   },
   {
     key: 'mail',
     label: 'Email',
-    colStyle: { ...shareHeadStyle, width: '25%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: baseCell,
   },
   {
     key: 'adm',
     label: 'Управление',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'shared',
     label: 'Общий доступ',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'mailing',
     label: 'Рассылка',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'hands',
     label: 'Ручное упр.',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'stats',
     label: 'Статистика',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'menu',
     label: '',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '12,5%' },
     cellComponent: menuCell,
   },
 ];

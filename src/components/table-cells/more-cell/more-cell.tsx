@@ -2,8 +2,13 @@ import { FC, useRef, useState } from 'react';
 import style from './more-cell.module.scss';
 import MoreIcon from '../../icons/More/MoreIcon';
 import Menu from '../../../ui/menus/menu/menu';
+import { Option } from '../../../utils/types';
 
-const MoreCell: FC = () => {
+interface IProps {
+  onRemove?: () => void;
+}
+
+const MoreCell: FC<IProps> = ({ onRemove }) => {
   const mockData = [
     { label: 'Удалить', value: 'del' },
     { label: 'Дополнительно', value: 'adv' },
@@ -17,6 +22,13 @@ const MoreCell: FC = () => {
     setOpen(!isOpen);
   };
 
+  const onItemClick = (option: Option) => {
+    setOpen(false);
+    if (option.value === 'del' && onRemove) {
+      onRemove();
+    }
+  };
+
   return (
     <>
       <button className={style.button} type="button" onClick={handleClick}>
@@ -26,7 +38,7 @@ const MoreCell: FC = () => {
         <Menu
           ref={menuRef}
           options={mockData}
-          onItemClick={() => setOpen(!isOpen)}
+          onItemClick={onItemClick}
           layoutClassName={style.dropdown}
         />
       )}

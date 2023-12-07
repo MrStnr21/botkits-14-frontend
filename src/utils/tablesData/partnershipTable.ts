@@ -9,11 +9,8 @@ import {
 export const colStyle = {
   border: 'none',
   padding: '0 0 12px',
-  ':first-of-type': {
-    paddingLeft: '40px',
-  },
   ':last-of-type': {
-    paddingRight: '40px',
+    textAlign: 'right',
   },
 };
 
@@ -21,11 +18,8 @@ export const cellStyle = {
   border: 'none',
   boxSizing: 'border-box',
   padding: '14px 0',
-  ':first-of-type': {
-    paddingLeft: '40px',
-  },
   ':last-of-type': {
-    paddingRight: '40px',
+    textAlign: 'right',
   },
 };
 
