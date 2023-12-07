@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './custom-pagination.module.scss';
 import Typography from '../../../ui/typography/typography';
@@ -19,10 +19,12 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
   onChange,
 }) => {
   const pageCount = Math.ceil(count / rowsPerPage);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleButtonClick = (newPage: number) => {
     if (newPage >= 0 && newPage < pageCount && newPage !== page) {
       onChange(null as any, newPage);
+      setActiveIndex(newPage);
     }
   };
 
@@ -30,12 +32,23 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
     <div className={styles.pagination}>
       {Array.from({ length: pageCount }).map((_, index) => (
         <button
-          className={styles.pagination__button}
+          className={
+            activeIndex + 1 === index
+              ? `${styles.activePage}`
+              : `${styles.pagination__button}`
+          }
           type="button"
           key={uuidv4()}
           onClick={() => handleButtonClick(index)}
         >
-          <Typography tag="p" className={styles.pagination__number}>
+          <Typography
+            tag="p"
+            className={
+              activeIndex + 1 === index
+                ? `${styles.activeNumber}`
+                : `${styles.pagination__number}`
+            }
+          >
             {index + 1}
           </Typography>
         </button>

@@ -22,3 +22,15 @@
     }
   }
 }
+
+.activePage {
+  @include button-style-reset();
+  @include size(20px, 20px);
+  border-radius: $s-border-radius;
+  background-color: $primary-persian-blue-default;
+  color: $off-white;
+}
+
+.activeNumber {
+  color: $off-white;
+}

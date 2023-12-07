@@ -1,6 +1,12 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
+.wrapper {
+  @include position(relative);
+  @include flex(column, center, space-between, 4px);
+  @include indents();
+}
+
 .message {
   @include flex(row, center, center);
   @include position(relative);
@@ -27,6 +33,7 @@
   line-height: 20px;
   letter-spacing: $m-letter-space;
   box-sizing: border-box;
+  text-indent: 3px;
 
   &::placeholder {
     color: $grey-4;
@@ -38,4 +45,29 @@
     background: none;
     display: none;
   }
+}
+
+.incorrect {
+  @include flex(row, center, center);
+  @include position(relative);
+  @include indents(10px, 0 20px 0 0);
+  @include min-size(unset, 40px);
+  background-color: $off-white;
+  border-radius: $l-border-radius;
+  box-sizing: border-box;
+  border: 1px $grey-4 solid;
+
+  &:focus-within {
+    border: 1.5px solid $error-default;
+  }
+}
+
+.incorrect_text {
+  @include position(absolute, unset, 0, -16px);
+  @include incorrect-text(left);
+}
+
+.disabled {
+  color: $secondary-cultured-focus;
+  opacity: 0.5;
 }
