@@ -54,3 +54,5 @@ export interface IGetTemplatesBotsResponse extends Array<TTemplateBotRes> {}
 export interface IAddTemplatesBotsResponse extends TTemplateBotRes {}
 
 export interface IDeleteTemplatesBotsResponse extends TTemplateBotRes {}
+
+export interface IUpdateTemplatesBotsResponse extends TTemplateBotRes {}

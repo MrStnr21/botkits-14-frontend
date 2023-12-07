@@ -1,4 +1,8 @@
-import { deleteTemplatesBotsApi, getTemplatesBotsApi } from '../../../api/bots';
+import {
+  deleteTemplatesBotsApi,
+  getTemplatesBotsApi,
+  updateTemplatesBotsApi,
+} from '../../../api/bots';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TTemplateBotRes } from '../../types/bot';
@@ -10,6 +14,10 @@ const GET_TEMPLATES_BOTS_ERROR = 'GET_TEMPLATES_BOTS_ERROR';
 const DELETEBOTTEMPLATES_REQUEST = 'DELETEBOTTEMPLATES_REQUSET';
 const DELETEBOTTEMPLATES_SUCCESS = 'DELETEBOTTEMPLATES_SUCCESS';
 const DELETEBOTTEMPLATES_ERROR = 'DELETEBOTTTEMPLATES_ERROR';
+
+const UPDATEBOTTEMPLATES_REQUEST = 'UPDATEBOTTEMPLATES_REQUSET';
+const UPDATEBOTTEMPLATES_SUCCESS = 'UPDATEBOTTEMPLATES_SUCCESS';
+const UPDATEBOTTEMPLATES_ERROR = 'UPDATEBOTTTEMPLATES_ERROR';
 
 export interface IGetTemplatesBotsRequestAction {
   readonly type: typeof GET_TEMPLATES_BOTS_REQUEST;
@@ -37,13 +45,29 @@ export interface IDeleteBotTemplatesErrorAction {
   readonly type: typeof DELETEBOTTEMPLATES_ERROR;
 }
 
+export interface IUpdateBotTemplatesRequestAction {
+  readonly type: typeof UPDATEBOTTEMPLATES_REQUEST;
+}
+
+export interface IUpdateBotTemplatesSuccessAction {
+  readonly type: typeof UPDATEBOTTEMPLATES_SUCCESS;
+  botTemplates: TTemplateBotRes;
+}
+
+export interface IUpdateBotTemplatesErrorAction {
+  readonly type: typeof UPDATEBOTTEMPLATES_ERROR;
+}
+
 export type TGetTemplatesBotsActions =
   | IGetTemplatesBotsRequestAction
   | IGetTemplatesBotsSuccessAction
   | IGetTemplatesBotsErrorAction
   | IDeleteBotTemplatesRequestAction
   | IDeleteBotTemplatesSuccessAction
-  | IDeleteBotTemplatesErrorAction;
+  | IDeleteBotTemplatesErrorAction
+  | IUpdateBotTemplatesRequestAction
+  | IUpdateBotTemplatesSuccessAction
+  | IUpdateBotTemplatesErrorAction;
 
 // экшн получения шаблонов
 const getTemplatesBotsAction: AppThunk = (token: string) => {
@@ -96,6 +120,33 @@ const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
   };
 };
 
+const updateBotTemplatesAction: AppThunk = (
+  botTemplates: TTemplateBotRes,
+  token: string
+) => {
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: UPDATEBOTTEMPLATES_REQUEST,
+    });
+    console.log(botTemplates);
+    updateTemplatesBotsApi(botTemplates, token)
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: UPDATEBOTTEMPLATES_SUCCESS,
+          botTemplates: res,
+        });
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+        dispatch({
+          type: UPDATEBOTTEMPLATES_ERROR,
+        });
+      });
+  };
+};
+
 export {
   GET_TEMPLATES_BOTS_REQUEST,
   GET_TEMPLATES_BOTS_SUCCESS,
@@ -103,6 +154,10 @@ export {
   DELETEBOTTEMPLATES_REQUEST,
   DELETEBOTTEMPLATES_SUCCESS,
   DELETEBOTTEMPLATES_ERROR,
+  UPDATEBOTTEMPLATES_REQUEST,
+  UPDATEBOTTEMPLATES_SUCCESS,
+  UPDATEBOTTEMPLATES_ERROR,
   deleteBotTemplatesAction,
   getTemplatesBotsAction,
+  updateBotTemplatesAction,
 };

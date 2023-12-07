@@ -6,6 +6,9 @@ import {
   DELETEBOTTEMPLATES_REQUEST,
   DELETEBOTTEMPLATES_SUCCESS,
   DELETEBOTTEMPLATES_ERROR,
+  UPDATEBOTTEMPLATES_REQUEST,
+  UPDATEBOTTEMPLATES_SUCCESS,
+  UPDATEBOTTEMPLATES_ERROR,
   TGetTemplatesBotsActions,
 } from '../../actions/bots/templatesBots';
 
@@ -13,6 +16,7 @@ import { TTemplateBotRes } from '../../types/bot';
 
 export type TGetTemplatesBotsState = {
   templatesBots: Array<TTemplateBotRes> | null;
+  templatesBot: TTemplateBotRes | null;
   isLoading: boolean;
   hasError: boolean;
 
@@ -23,6 +27,7 @@ export type TGetTemplatesBotsState = {
 
 const getTemplatesBotsInitialState: TGetTemplatesBotsState = {
   templatesBots: null,
+  templatesBot: null,
   isLoading: false,
   hasError: false,
 
@@ -81,6 +86,38 @@ function getTemplatesBotsReducer(
       };
     }
     case DELETEBOTTEMPLATES_ERROR: {
+      return {
+        ...state,
+        getBotsRequest: false,
+        getBotsError: true,
+      };
+    }
+
+    // экшены изменения шаблонов
+    case UPDATEBOTTEMPLATES_REQUEST: {
+      return {
+        ...state,
+        getBotsRequest: true,
+        getBotsError: false,
+      };
+    }
+    case UPDATEBOTTEMPLATES_SUCCESS: {
+      return {
+        ...state,
+        // botTemplates: state.templatesBots?.filter(
+        //   // eslint-disable-next-line no-underscore-dangle
+        //   (template) => template._id !== action.botTemplates._id
+        // ),
+        botTemplates: {
+          ...state.templatesBot,
+          title: action.botTemplates.title,
+          description: action.botTemplates.description,
+        },
+        getBotsSuccess: true,
+        getBotsRequest: false,
+      };
+    }
+    case UPDATEBOTTEMPLATES_ERROR: {
       return {
         ...state,
         getBotsRequest: false,

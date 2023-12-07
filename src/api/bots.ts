@@ -67,10 +67,24 @@ function deleteTemplatesBotsApi(id: string, token: string) {
   });
 }
 
+// запрос изменения шаблона
+function updateTemplatesBotsApi(botTemplates: TTemplateBotRes, token: string) {
+  // eslint-disable-next-line no-underscore-dangle
+  return request<TTemplateBotRes>(`bots/template/${botTemplates._id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(botTemplates),
+  });
+}
+
 export {
   getBotsApi,
   addBotApi,
   getTemplatesBotsApi,
   addTemplatesBotsApi,
   deleteTemplatesBotsApi,
+  updateTemplatesBotsApi,
 };

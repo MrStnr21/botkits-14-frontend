@@ -69,6 +69,7 @@ const BotTemplates: FC = () => {
           arrCard.map((templateBot) => (
             <BotTemplatesCard
               image={templateBot.icon}
+              card={templateBot}
               // eslint-disable-next-line no-underscore-dangle
               id={templateBot._id}
               title={templateBot.title}

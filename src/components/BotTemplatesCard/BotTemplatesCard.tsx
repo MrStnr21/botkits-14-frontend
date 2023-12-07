@@ -1,5 +1,7 @@
 import { FC, useState, useRef, useEffect, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAccessToken } from '../../auth/authService';
+import { useAppDispatch } from '../../services/hooks/hooks';
 import stylesCard from './BotTemplatesCard.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
@@ -9,12 +11,15 @@ import Menu from '../../ui/menus/menu/menu';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
 import InputTemplate from '../../ui/inputs/input-template/input-template';
+import { updateBotTemplatesAction } from '../../services/actions/bots/templatesBots';
+import { TTemplateBotRes } from '../../services/types/bot';
 
 import routesUrl from '../../utils/routesData';
 
 import { BUTTON_NAME } from '../../utils/constants';
 
 interface IBotTemplatesCard {
+  card: TTemplateBotRes;
   id: string;
   image?: string;
   title?: string;
@@ -25,6 +30,7 @@ interface IBotTemplatesCard {
 }
 
 const BotTemplatesCard: FC<IBotTemplatesCard> = ({
+  card,
   image,
   id,
   title,
@@ -42,6 +48,8 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const token = getAccessToken();
 
   const importImage = async () => {
     try {
@@ -95,6 +103,16 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     { label: 'Настроить воронку', value: 'setupBuilder' },
     { label: 'Удалить', value: 'delete' },
   ];
+
+  const updateInputs = () => {
+    const upCard = {
+      icon: card.icon,
+      title: nameBot,
+      description: aboutBot,
+      features: card.features,
+    };
+    dispatch(updateBotTemplatesAction(upCard, token));
+  };
 
   const clearInputs = () => {
     setNameBot('');
@@ -182,7 +200,11 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
         >
           Отменить
         </ButtonBotTemplate>
-        <ButtonBotTemplate buttonHtmlType="button" color="blue">
+        <ButtonBotTemplate
+          onClick={updateInputs}
+          buttonHtmlType="button"
+          color="blue"
+        >
           Сохранить изменения
         </ButtonBotTemplate>
       </div>
