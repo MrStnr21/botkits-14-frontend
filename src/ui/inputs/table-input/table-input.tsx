@@ -5,10 +5,17 @@ interface IProps {
   placeholder?: string;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  inputRef?: React.RefObject<HTMLInputElement>; // Добавлен новый пропс inputRef
+  inputRef?: React.RefObject<HTMLInputElement>;
+  handleBlur?: () => void;
 }
 
-const TableInput: FC<IProps> = ({ value, placeholder, onChange, inputRef }) => {
+const TableInput: FC<IProps> = ({
+  value,
+  placeholder,
+  onChange,
+  inputRef,
+  handleBlur,
+}) => {
   return (
     <div className={styles.message}>
       <input
@@ -18,6 +25,7 @@ const TableInput: FC<IProps> = ({ value, placeholder, onChange, inputRef }) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={handleBlur}
       />
     </div>
   );

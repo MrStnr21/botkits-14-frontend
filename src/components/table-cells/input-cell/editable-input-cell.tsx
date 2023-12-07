@@ -5,11 +5,10 @@ import TableInput from '../../../ui/inputs/table-input/table-input';
 
 interface IProps {
   value: string;
-  onChange?: any;
 }
-const EditableInputCell: FC<IProps> = ({ value, onChange }) => {
+const EditableInputCell: FC<IProps> = ({ value }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [inpValue, setValue] = useState('промокод');
+  const [inpValue, setInpValue] = useState(value);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -30,16 +29,20 @@ const EditableInputCell: FC<IProps> = ({ value, onChange }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    onChange(e.target.value);
-    setValue(e.target.value);
+    setInpValue(e.target.value);
   };
 
   return (
     <div className={styles.inputCell}>
       {isEditing ? (
-        <TableInput onChange={handleChange} value={value} inputRef={inputRef} />
+        <TableInput
+          onChange={handleChange}
+          value={inpValue}
+          inputRef={inputRef}
+          handleBlur={handleBlur}
+        />
       ) : (
-        <span onClick={handleClick}>{value}</span>
+        <span onClick={handleClick}>{inpValue}</span>
       )}
     </div>
   );
