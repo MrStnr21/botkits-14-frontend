@@ -3,7 +3,7 @@
 
 .switcher {
   @include flex($align-items: center, $gap: 22px);
-  z-index: 666;
+  z-index: 3;
 
   &__on {
     @include size(44px, 24px);

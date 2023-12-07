@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import Select from '../../../ui/select/select';
 import { Option } from '../../../utils/types';
+import style from './select-cell.module.scss';
 
 const SelectCell: FC = () => {
   const [selectedValue, setSelectedValue] = useState<Option | string>(
@@ -14,7 +15,7 @@ const SelectCell: FC = () => {
   };
 
   return (
-    <div onClick={stopPropagation}>
+    <div onClick={stopPropagation} className={style.select}>
       <Select
         options={inpValues}
         currentOption={selectedValue}

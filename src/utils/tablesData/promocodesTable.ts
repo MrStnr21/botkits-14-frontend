@@ -1,7 +1,6 @@
 import {
   baseCell,
   inputCell,
-  menuCell,
   statusPromoCell,
 } from '../../components/table-cells/table-cells';
 
@@ -80,13 +79,13 @@ export const promoColumns = [
   {
     key: 'status',
     label: 'Статус',
-    colStyle: { ...headStyle, width: '20%' },
+    colStyle: { ...headStyle, width: '25%' },
     cellComponent: statusPromoCell,
   },
-  {
-    key: 'menu',
-    label: '',
-    colStyle: { ...headStyle, width: '5%' },
-    cellComponent: menuCell,
-  },
+  // {
+  //   key: 'menu',
+  //   label: '',
+  //   colStyle: { ...headStyle, width: '5%' },
+  //   cellComponent: menuCell,
+  // },
 ];

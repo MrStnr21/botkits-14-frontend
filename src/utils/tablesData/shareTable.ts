@@ -1,7 +1,7 @@
 import {
   baseCell,
   checkBoxCell,
-  menuCell,
+  // menuCell,
 } from '../../components/table-cells/table-cells';
 
 export const shareHeadStyle = {
@@ -99,49 +99,43 @@ export const shareCols = [
   {
     key: 'name',
     label: 'Имя',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
+    colStyle: { ...shareHeadStyle, width: '15%' },
     cellComponent: baseCell,
   },
   {
     key: 'mail',
     label: 'Email',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
+    colStyle: { ...shareHeadStyle, width: '15%' },
     cellComponent: baseCell,
   },
   {
     key: 'adm',
     label: 'Управление',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
+    colStyle: { ...shareHeadStyle, width: '15%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'shared',
     label: 'Общий доступ',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
+    colStyle: { ...shareHeadStyle, width: '15%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'mailing',
     label: 'Рассылка',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
+    colStyle: { ...shareHeadStyle, width: '15%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'hands',
     label: 'Ручное упр.',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
+    colStyle: { ...shareHeadStyle, width: '15%' },
     cellComponent: checkBoxCell,
   },
   {
     key: 'stats',
     label: 'Статистика',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
+    colStyle: { ...shareHeadStyle, width: '10%' },
     cellComponent: checkBoxCell,
-  },
-  {
-    key: 'menu',
-    label: '',
-    colStyle: { ...shareHeadStyle, width: '12,5%' },
-    cellComponent: menuCell,
   },
 ];

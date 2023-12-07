@@ -1,11 +1,16 @@
 @use '../../../stylesheets/mixins' as *;
 
+.cell {
+  @include position(absolute, $right: 0, $top: 50%);
+  transform: translate(-50%, -50%);
+  z-index: 101;
+}
+
 .button {
   @include button-style-reset();
-  z-index: 0;
+  z-index: 1;
 }
 
 div.dropdown {
-  @include position(absolute, 56px, 0);
-  z-index: 2;
+  @include position(absolute, 24px, 0);
 }

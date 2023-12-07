@@ -24,6 +24,7 @@ import {
 } from './tableStyles';
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './table-component.module.scss';
+import MoreCell from '../table-cells/more-cell/more-cell';
 
 type Columns = {
   key: string;
@@ -48,6 +49,7 @@ type Props = {
   toolbar?: boolean;
   shadow?: number;
   header?: boolean;
+  dropdown?: boolean;
   onFilterChange?: (value: string) => void;
   minTableWidth?: string;
 };
@@ -60,6 +62,7 @@ const TableComponent: FC<Props> = ({
   toolbar,
   shadow = 0,
   header,
+  dropdown,
   onFilterChange,
   minTableWidth,
   ...props
@@ -68,7 +71,7 @@ const TableComponent: FC<Props> = ({
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
-  console.log(page);
+
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -191,6 +194,7 @@ const TableComponent: FC<Props> = ({
                       )}
                     </TableCell>
                   ))}
+                  {dropdown && <MoreCell />}
                 </TableRow>
               ))}
             </TableBody>

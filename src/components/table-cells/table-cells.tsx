@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import cn from 'classnames';
-import { ChangeEvent, FC, useState } from 'react';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
 import Switcher from '../../ui/checkboxes/switcher/switcher';
-import InputDialogsues from '../../ui/inputs/input-dialogues/input-dialogues';
-import MoreCell from './more-cell/more-cell';
 import EditableInputCell from './input-cell/editable-input-cell';
 import SelectCell from './select-cell/select-cell';
 
@@ -89,7 +86,5 @@ export const statusPromoCell = (status: boolean) => (
     {status ? 'Активен' : 'Неактивен'}
   </Typography>
 );
-// Ячейка таблицы с функцией открытия модального окна
-export const menuCell = () => <MoreCell />;
-
+// ячейка-выпадающий список
 export const selectCell = (start: boolean) => <SelectCell />;

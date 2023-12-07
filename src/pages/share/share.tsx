@@ -64,6 +64,7 @@ const Share: FC = (): JSX.Element => {
         pagination
         check
         toolbar
+        dropdown
         columns={shareCols}
         headComponent={ppHeadCell}
         tableData={shareRows}
@@ -80,6 +81,7 @@ const Share: FC = (): JSX.Element => {
           <TableComponent
             check
             header
+            dropdown
             columns={promoColumns}
             headComponent={ppHeadCell}
             tableData={renderFilteredRows()}
@@ -96,7 +98,8 @@ const Share: FC = (): JSX.Element => {
         </div>
         <TableComponent
           check
-          minTableWidth="1410px"
+          dropdown
+          // minTableWidth="1410px"
           columns={tariffsCols}
           headComponent={ppHeadCell}
           tableData={tariffsRows}

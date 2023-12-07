@@ -13,6 +13,7 @@ export const paperStyles = {
 
 export const tableContainerStyles = {
   overflowX: 'scroll',
+  borderRadius: '10px',
 };
 
 export const paginationStyles = {

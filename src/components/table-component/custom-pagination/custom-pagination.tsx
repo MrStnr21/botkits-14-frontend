@@ -35,7 +35,7 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
       setActiveIndex(newPage);
     }
   };
-  console.log(activeIndex);
+
   return (
     <div className={styles.pagination}>
       {Array.from({ length: pageCount }).map((_, index) => (

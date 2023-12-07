@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   baseCell,
   inputCell,
@@ -8,16 +9,7 @@ export const headStyle = {
   border: 'none',
   backgroundColor: '#ECEFFF',
   padding: '12px 0',
-  // ':first-of-type': {
-  //   paddingLeft: '40px',
-  // },
-  // ':last-of-type': {
-  //   paddingRight: '40px',
-  // },
   borderRadius: '0',
-  // ':first-of-type': {
-  //   borderRadius: '10px 0 0 10px',
-  // },
   ':last-of-type': {
     borderRadius: '0 10px 10px 0',
   },
@@ -36,12 +28,6 @@ export const cellStyle = {
   border: 'none',
   padding: '0',
   boxSizing: 'border-box',
-  // ':first-of-type': {
-  //   paddingLeft: '40px',
-  // },
-  // ':last-of-type': {
-  //   paddingRight: '40px',
-  // },
 };
 
 export const tariffsRows = [
@@ -279,31 +265,31 @@ export const tariffsCols = [
   {
     key: 'duration',
     label: 'Длительность',
-    colStyle: { ...headStyle, width: '15%' },
+    colStyle: { ...headStyle, width: '20%' },
     cellComponent: inputCell,
   },
   {
     key: 'start',
     label: 'Стартовый тариф',
-    colStyle: { ...headStyle, width: '15%' },
+    colStyle: { ...headStyle, width: '20%' },
     cellComponent: selectCell,
   },
-  {
-    key: 'tel',
-    label: 'Телефон',
-    colStyle: { ...headStyle, width: '10%' },
-    cellComponent: baseCell,
-  },
-  {
-    key: 'one',
-    label: 'Раз',
-    colStyle: { ...headStyle, minWidth: '10%' },
-    cellComponent: baseCell,
-  },
-  {
-    key: 'two',
-    label: 'Два',
-    colStyle: { ...headStyle, minWidth: '10%' },
-    cellComponent: baseCell,
-  },
+  // {
+  //   key: 'tel',
+  //   label: 'Телефон',
+  //   colStyle: { ...headStyle, width: '10%' },
+  //   cellComponent: baseCell,
+  // },
+  // {
+  //   key: 'one',
+  //   label: 'Раз',
+  //   colStyle: { ...headStyle, minWidth: '10%' },
+  //   cellComponent: baseCell,
+  // },
+  // {
+  //   key: 'two',
+  //   label: 'Два',
+  //   colStyle: { ...headStyle, minWidth: '10%' },
+  //   cellComponent: baseCell,
+  // },
 ];
