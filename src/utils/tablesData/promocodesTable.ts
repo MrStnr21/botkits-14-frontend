@@ -7,7 +7,7 @@ import {
 export const headStyle = {
   border: 'none',
   backgroundColor: '#ECEFFF',
-  padding: '12px 0',
+  padding: '0',
   borderRadius: '0',
   ':last-of-type': {
     borderRadius: '0 10px 10px 0',
@@ -82,10 +82,4 @@ export const promoColumns = [
     colStyle: { ...headStyle, width: '25%' },
     cellComponent: statusPromoCell,
   },
-  // {
-  //   key: 'menu',
-  //   label: '',
-  //   colStyle: { ...headStyle, width: '5%' },
-  //   cellComponent: menuCell,
-  // },
 ];

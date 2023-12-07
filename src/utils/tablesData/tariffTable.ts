@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  baseCell,
   inputCell,
   selectCell,
 } from '../../components/table-cells/table-cells';
@@ -8,7 +6,7 @@ import {
 export const headStyle = {
   border: 'none',
   backgroundColor: '#ECEFFF',
-  padding: '12px 0',
+  padding: '0',
   borderRadius: '0',
   ':last-of-type': {
     borderRadius: '0 10px 10px 0',

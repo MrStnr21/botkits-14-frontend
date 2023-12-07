@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, ReactNode, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -75,11 +74,10 @@ const TableComponent: FC<Props> = ({
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-
-  // const handleRemoveRow = (indexToRemove: any) => {
-  //   const updatedRows = rows.filter((_, index) => index !== indexToRemove);
-  //   setRows(updatedRows);
-  // };
+  const handleRemoveRow = (indexToRemove: any) => {
+    const updatedRows = rows.filter((_, index) => index !== indexToRemove);
+    setRows(updatedRows);
+  };
 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -120,7 +118,7 @@ const TableComponent: FC<Props> = ({
 
   const startIdx = page * rowsPerPage;
   const endIdx = startIdx + rowsPerPage;
-  const paginatedData = tableData.slice(startIdx, endIdx);
+  const paginatedData = rows.slice(startIdx, endIdx);
 
   return (
     <Box sx={boxStyle}>
@@ -171,7 +169,7 @@ const TableComponent: FC<Props> = ({
                 <TableRow
                   key={uuidv4()}
                   sx={{
-                    position: 'relative', // временно для выравнивания чекбокса
+                    position: 'relative',
                     ...props.rowStyle,
                   }}
                   onClick={(event) => handleClick(event, index)}
@@ -194,7 +192,9 @@ const TableComponent: FC<Props> = ({
                       )}
                     </TableCell>
                   ))}
-                  {dropdown && <MoreCell />}
+                  {dropdown && (
+                    <MoreCell onRemove={() => handleRemoveRow(index)} />
+                  )}
                 </TableRow>
               ))}
             </TableBody>

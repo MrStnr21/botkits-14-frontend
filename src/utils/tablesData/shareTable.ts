@@ -1,13 +1,12 @@
 import {
   baseCell,
   checkBoxCell,
-  // menuCell,
 } from '../../components/table-cells/table-cells';
 
 export const shareHeadStyle = {
   border: 'none',
   backgroundColor: '#ECEFFF',
-  padding: '12px 0',
+  padding: '0',
   borderRadius: '0',
   ':last-of-type': {
     borderRadius: '0 10px 10px 0',
