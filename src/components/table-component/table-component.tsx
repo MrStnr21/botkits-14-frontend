@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, ReactNode, useState } from 'react';
+import { ChangeEvent, FC, ReactNode, useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -70,6 +70,10 @@ const TableComponent: FC<Props> = ({
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
+
+  useEffect(() => {
+    setRows(tableData);
+  }, [onFilterChange]);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
