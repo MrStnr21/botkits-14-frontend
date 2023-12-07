@@ -10,9 +10,6 @@ export type TBlockProps<T> = {
 };
 
 export type TBuilderData = {
-  id: string; // id Бота
-  name: string; // Название бота
-  type: string; // Тип бота(VK/TG/OK и т.д.), можно задать варианты перечислением через |
   variables: TVariable[]; // Пока не ясно что это, некие переменные
   nodes: TReactFlowNode[]; // Коллекция всех нод
   edges: TReactFlowEdge[]; // Коллекция связей
@@ -184,6 +181,6 @@ export type TFileData = {
   file: File;
 };
 
-export interface IGetBotResponse extends TBuilderData {}
-
-export interface ISaveBotResponse extends TBuilderData {}
+export type TBuilder = {
+  features: TBuilderData;
+};

@@ -2,7 +2,16 @@
 /* eslint-disable no-param-reassign */
 import { useReactFlow, useNodeId, Node } from 'reactflow';
 import { Option } from '../../../utils/types';
-import { TVariable } from '../../../services/types/builder';
+import { TVariable, TTrigger } from '../../../services/types/builder';
+import fb from '../../../images/icon/40x40/facebook/hover.svg';
+import tg from '../../../images/icon/40x40/telegram/hover.svg';
+import vb from '../../../images/icon/40x40/viber/hover.svg';
+import vk from '../../../images/icon/40x40/vk/hover.svg';
+import ok from '../../../images/icon/40x40/odnoklassniki/hover.svg';
+import al from '../../../images/icon/40x40/alisa/hover.svg';
+import wh from '../../../images/icon/40x40/whatsapp/hover.svg';
+import ig from '../../../images/icon/40x40/insta/hover.svg';
+import ws from '../../../images/icon/40x40/web/hover.svg';
 
 export const getTimeDHMS = (time: number) => {
   const s = Math.floor(time % 60);
@@ -29,13 +38,15 @@ export const getTimeMS = (s: number) => {
 };
 
 export const getSelectItemByValue = (value: string, arr: Option[]) => {
-  return arr.find(item => item.value === value)
-}
+  return arr.find((item) => item.value === value);
+};
 
-export const saveVariable = (variables: TVariable[], name: string, id: string) => {
-  const variableIndex = variables.findIndex(
-    (item) => item.id === id
-  );
+export const saveVariable = (
+  variables: TVariable[],
+  name: string,
+  id: string
+) => {
+  const variableIndex = variables.findIndex((item) => item.id === id);
   if (variableIndex === -1) {
     variables.push({
       id,
@@ -48,28 +59,57 @@ export const saveVariable = (variables: TVariable[], name: string, id: string) =
       name,
     };
   }
-}
+};
+
+export const saveTrigger = (
+  triggers: TTrigger[],
+  id: string,
+  tag: string,
+  type: 'block' | 'text',
+  name?: string,
+  text?: string
+) => {
+  const triggerIndex = triggers.findIndex((item) => item.id === id);
+  if (triggerIndex === -1) {
+    triggers.push({
+      id,
+      tag,
+      type,
+      name,
+      text,
+    });
+  } else {
+    triggers[triggerIndex] = {
+      ...triggers[triggerIndex],
+      tag,
+      type,
+      name,
+      text,
+    };
+  }
+};
 
 export const filterNodes = (nodes: Node[]) => {
-  return nodes.map(item => {
-    const {dragging, positionAbsolute, selected, height, width, ...rest} = item
-    return rest
-  })
-}
+  return nodes.map((item) => {
+    const { dragging, positionAbsolute, selected, height, width, ...rest } =
+      item;
+    return rest;
+  });
+};
 
-export const getUrlPath = (type: string|null) => {
-  switch(type){
+export const getUrlPath = (type: string | null) => {
+  switch (type) {
     case 'custom': {
-      return 'bots'
+      return 'bots';
     }
     case 'template': {
-      return 'bots/templates'
+      return 'bots/template';
     }
     default: {
-      return ''
+      return '';
     }
   }
-}
+};
 
 export const setFlowData = ({
   selectors,
@@ -88,8 +128,8 @@ export const setFlowData = ({
       value !== undefined
         ? value
         : callback
-          ? callback(e?.target.value)
-          : e?.target.value;
+        ? callback(e?.target.value)
+        : e?.target.value;
     switch (selectors.length) {
       case 1: {
         return setNodes(
@@ -154,5 +194,23 @@ export const setFlowData = ({
     }
   };
 };
+
+export const iconOfPlatform: {
+  [key: string]: string;
+} = {
+  Facebook: fb,
+  Telegram: tg,
+  Viber: vb,
+  VK: vk,
+  Odnoklassniki: ok,
+  Алиса: al,
+  Whatsapp: wh,
+  Instagram: ig,
+  'Веб-сайт': ws,
+};
+// eslint-disable-next-line no-plusplus
+export const resetVar = (elemetnts: any[]) => { for (let i = 0; i < elemetnts.length; i++) {
+  elemetnts.splice(0, 1);
+}}
 
 export default {};

@@ -118,7 +118,15 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
 
   const setVariable = (finalValue: string) => {
     const idVariable = `${id}|||saveResultVariable`;
-    saveVariable(storOfVariables, finalValue, idVariable);
+    if (finalValue === '') {
+      const variableIndex = storOfVariables.findIndex(
+        (item) => item.id === idVariable
+      );
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      variableIndex !== -1 && storOfVariables.splice(variableIndex, 1);
+    } else {
+      saveVariable(storOfVariables, finalValue, idVariable);
+    }
 
     return setNodes(
       nodes.map((item) => {
@@ -362,7 +370,9 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         >
           <Input
             minLength={0}
-            placeholder="Введите переменную"
+            placeholder={
+              !data.saveAnswer.value.name ? 'Введите переменную' : ''
+            }
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               setVariable(event.target.value)
             }
