@@ -37,42 +37,48 @@ const TableInput: FC<IProps> = ({
   });
 
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
-    const validityState = input.currentTarget.validity;
-    if (validityState.valueMissing) {
+    const inputValue = input.target.value.trim();
+
+    if (!inputValue) {
       setError({ error: true, textError: 'Это поле обязательно' });
-    } else if (validityState.patternMismatch) {
-      setError({ error: true, textError: errorMessage });
-    } else if (validityState.tooLong) {
-      setError({
-        error: true,
-        textError: `Максимум ${maxLength} символов`,
-      });
-    } else if (validityState.tooShort) {
-      setError({
-        error: true,
-        textError: `Минимум ${minLength} символа`,
-      });
-    } else if (validityState.typeMismatch) {
-      setError({
-        error: true,
-        textError: 'Error text',
-      });
-    } else if (isInvalid) {
-      setError({
-        error: true,
-        textError: errorMessage,
-      });
     } else {
-      setError({ error: false, textError: '' });
-    }
-    if (min && Number(input.target.value) < Number(min)) {
-      input.target.value = min;
-      if (input.target.value === '0') {
-        input.target.value = '';
+      const validityState = input.currentTarget.validity;
+      if (validityState.valueMissing) {
+        setError({ error: true, textError: 'Это поле обязательно' });
+      } else if (validityState.patternMismatch) {
+        setError({ error: true, textError: errorMessage });
+      } else if (validityState.tooLong) {
+        setError({
+          error: true,
+          textError: `Максимум ${maxLength} символов`,
+        });
+      } else if (validityState.tooShort) {
+        setError({
+          error: true,
+          textError: `Минимум ${minLength} символа`,
+        });
+      } else if (validityState.typeMismatch) {
+        setError({
+          error: true,
+          textError: 'Error text',
+        });
+      } else if (isInvalid) {
+        setError({
+          error: true,
+          textError: errorMessage,
+        });
+      } else {
+        setError({ error: false, textError: '' });
       }
-    }
-    if (max && Number(input.target.value) > Number(max)) {
-      input.target.value = max;
+      if (min && Number(input.target.value) < Number(min)) {
+        input.target.value = min;
+        if (input.target.value === '0') {
+          input.target.value = '';
+        }
+      }
+      if (max && Number(input.target.value) > Number(max)) {
+        input.target.value = max;
+      }
     }
     onChange(input);
   };
