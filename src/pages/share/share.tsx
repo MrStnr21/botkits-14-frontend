@@ -98,7 +98,7 @@ const Share: FC = (): JSX.Element => {
         </div>
         <TableComponent
           check
-          dropdown
+          // dropdown
           // minTableWidth="1410px"
           columns={tariffsCols}
           headComponent={ppHeadCell}

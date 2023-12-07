@@ -18,5 +18,5 @@
 
 div.dropdown {
   @include position(absolute, 56px, 0);
-  z-index: 2;
+  z-index: 105;
 }

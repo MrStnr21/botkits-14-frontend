@@ -3,14 +3,14 @@
 .cell {
   @include position(absolute, $right: 0, $top: 50%);
   transform: translate(-50%, -50%);
-  z-index: 101;
+  z-index: 102;
 }
 
 .button {
   @include button-style-reset();
-  z-index: 1;
 }
 
 div.dropdown {
-  @include position(absolute, 24px, 0);
+  @include position(absolute, 24px, 24px);
+  z-index: 105;
 }

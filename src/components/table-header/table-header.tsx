@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useRef, useState } from 'react';
 import Typography from '../../ui/typography/typography';
 import styles from './table-header.module.scss';
@@ -38,7 +39,12 @@ const EnhancedTableHeader: FC<IProps> = ({ title, onFilterChange }) => {
       <Typography tag="h3">{title}</Typography>
       <button type="button" className={styles.button}>
         {selectedValue.label}
-        <ChevronIcon color="#8392AB" width={26} height={26} />
+        <ChevronIcon
+          color="#8392AB"
+          width={26}
+          height={26}
+          position={isOpen ? 'up' : 'down'}
+        />
       </button>
       {isOpen && (
         <Menu
