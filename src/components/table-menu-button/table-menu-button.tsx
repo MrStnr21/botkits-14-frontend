@@ -1,14 +1,14 @@
 import { FC, useRef, useState } from 'react';
-import style from './more-cell.module.scss';
-import MoreIcon from '../../icons/More/MoreIcon';
-import Menu from '../../../ui/menus/menu/menu';
-import { Option } from '../../../utils/types';
+import MoreIcon from '../icons/More/MoreIcon';
+import Menu from '../../ui/menus/menu/menu';
+import { Option } from '../../utils/types';
+import style from './table-menu-button.module.scss';
 
 interface IProps {
   onRemove?: () => void;
 }
 
-const MoreCell: FC<IProps> = ({ onRemove }) => {
+const TableMenuButton: FC<IProps> = ({ onRemove }) => {
   const mockData = [
     { label: 'Удалить', value: 'del' },
     { label: 'Дополнительно', value: 'adv' },
@@ -46,4 +46,4 @@ const MoreCell: FC<IProps> = ({ onRemove }) => {
   );
 };
 
-export default MoreCell;
+export default TableMenuButton;

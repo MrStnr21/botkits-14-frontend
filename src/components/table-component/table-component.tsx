@@ -23,7 +23,7 @@ import {
 } from './tableStyles';
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './table-component.module.scss';
-import MoreCell from '../table-cells/more-cell/more-cell';
+import TableMenuButton from '../table-menu-button/table-menu-button';
 
 type Columns = {
   key: string;
@@ -198,7 +198,7 @@ const TableComponent: FC<Props> = ({
                     </TableCell>
                   ))}
                   {dropdown && (
-                    <MoreCell onRemove={() => handleRemoveRow(index)} />
+                    <TableMenuButton onRemove={() => handleRemoveRow(index)} />
                   )}
                 </TableRow>
               ))}

@@ -4,7 +4,7 @@ import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
 import Switcher from '../../ui/checkboxes/switcher/switcher';
-import EditableInputCell from './input-cell/editable-input-cell';
+import TableInputCell from './table-input-cell/table-input-cell';
 import SelectCell from './select-cell/select-cell';
 
 /* Общее */
@@ -69,10 +69,11 @@ export const paymentStatusCell = (status: boolean) => (
   </Typography>
 );
 // Промокоды, общий доступ, пользователи:
+
 export const checkBoxCell = (status: boolean) => <Switcher status={status} />;
 
 export const inputCell = (value: string) => {
-  return <EditableInputCell value={value} />;
+  return <TableInputCell value={value} />;
 };
 
 export const statusPromoCell = (status: boolean) => (
@@ -86,5 +87,5 @@ export const statusPromoCell = (status: boolean) => (
     {status ? 'Активен' : 'Неактивен'}
   </Typography>
 );
-// ячейка-выпадающий список
+
 export const selectCell = (start: boolean) => <SelectCell />;

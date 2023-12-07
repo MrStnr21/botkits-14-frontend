@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useRef, useState } from 'react';
-import styles from './editable-input-cell.module.scss';
+import style from './table-input-cell.module.scss';
 import TableInput from '../../../ui/inputs/table-input/table-input';
 
 interface IProps {
   value: string;
 }
-const EditableInputCell: FC<IProps> = ({ value }) => {
+const TableInputCell: FC<IProps> = ({ value }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inpValue, setInpValue] = useState(value);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,7 +32,7 @@ const EditableInputCell: FC<IProps> = ({ value }) => {
   };
 
   return (
-    <div className={styles.inputCell}>
+    <div className={style.inputCell}>
       {isEditing ? (
         <TableInput
           onChange={handleChange}
@@ -47,4 +46,4 @@ const EditableInputCell: FC<IProps> = ({ value }) => {
     </div>
   );
 };
-export default EditableInputCell;
+export default TableInputCell;
