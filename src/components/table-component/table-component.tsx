@@ -78,6 +78,7 @@ const TableComponent: FC<Props> = ({
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
+
   const handleRemoveRow = (indexToRemove: any) => {
     const updatedRows = rows.filter((_, index) => index !== indexToRemove);
     setRows(updatedRows);

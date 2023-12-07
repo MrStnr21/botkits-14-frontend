@@ -68,7 +68,7 @@
 
   &__payments {
     @include flex(column, $align-items: center);
-    padding: 40px 0;
+    padding: 32px 0 0 0;
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -79,7 +79,7 @@
   &__referrals {
     @include flex(column, $align-items: center, $gap: 26px);
     width: 100%;
-    padding: 40px 0;
+    padding: 32px 0 0 0;
     background-color: $off-white;
     border-radius: $xxl-border-radius;
     box-sizing: border-box;
