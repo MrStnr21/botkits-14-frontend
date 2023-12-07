@@ -30,7 +30,7 @@ const TableMenuButton: FC<IProps> = ({ onRemove }) => {
   };
 
   return (
-    <div className={style.cell}>
+    <td className={style.cell}>
       <button className={style.button} type="button" onClick={handleClick}>
         <MoreIcon />
       </button>
@@ -42,7 +42,7 @@ const TableMenuButton: FC<IProps> = ({ onRemove }) => {
           layoutClassName={style.dropdown}
         />
       )}
-    </div>
+    </td>
   );
 };
 

@@ -2,6 +2,7 @@
 @use '../../../stylesheets/mixins' as *;
 
 .button {
+  @include position(relative);
   @include button-style-reset;
   @include flex(row, center, center, 12px);
   box-sizing: border-box;
@@ -53,4 +54,9 @@
       transition: transform 0.3s ease;
     }
   }
+}
+
+div.dropdown {
+  @include position(absolute, 42px, 0);
+  z-index: 105;
 }

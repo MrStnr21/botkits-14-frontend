@@ -9,3 +9,8 @@
     @include flex(row, unset, center, 16px);
   }
 }
+
+div.dropdown {
+  @include position(absolute, 24px, 24px);
+  z-index: 105;
+}
