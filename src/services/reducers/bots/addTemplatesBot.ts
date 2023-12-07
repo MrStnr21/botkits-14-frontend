@@ -4,7 +4,7 @@ import {
   ADDBOTTEMPLATES_SUCCESS,
   ADDBOTTEMPLATES_ERROR,
   TAddTemplatesBotActions,
-} from '../../actions/bots/templatesBot';
+} from '../../actions/bots/addTemplatesBot';
 
 import { TTemplateBotRes } from '../../types/bot';
 

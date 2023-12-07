@@ -10,10 +10,8 @@ import EditButton from '../../../ui/buttons/button-edit/button-edit';
 
 import { BUTTON_NAME } from '../../../utils/constants';
 
-// import { useAppDispatch } from '../../../services/hooks/hooks';
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
-// import { addBotTemplatesAction } from '../../../services/actions/bots/templatesBot';
 import { addTemplatesBotsApi } from '../../../api/bots';
 // import useForm from '../../../services/hooks/use-form';
 
@@ -35,8 +33,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   // });
 
   const history = useNavigate();
-
-  // const dispatch = useAppDispatch();
 
   const token = getAccessToken();
 
@@ -71,7 +67,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
     const path = routesUrl.botBuilder;
 
     try {
-      // dispatch(addBotTemplatesAction(dataBotTemplates, token));
       const template = await addTemplatesBotsApi(dataBotTemplates, token);
       // eslint-disable-next-line no-underscore-dangle
       const id = template._id;

@@ -10,7 +10,7 @@ import CreateBotTemplatesPopup from '../../components/popups/create-bot-template
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { getTemplatesBotsSel, getBotsSel } from '../../utils/selectorData';
-import { getTemplatesBotsAction } from '../../services/actions/bots/getTemplatesBots';
+import { getTemplatesBotsAction } from '../../services/actions/bots/templatesBots';
 import { getAccessToken } from '../../auth/authService';
 
 const BotTemplates: FC = () => {

@@ -70,7 +70,7 @@ const getTemplatesBotsAction: AppThunk = (token: string) => {
   };
 };
 
-// экшн удаления шаблона
+// экшн удаления шаблонов
 
 const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
   return (dispatch: AppDispatch) => {

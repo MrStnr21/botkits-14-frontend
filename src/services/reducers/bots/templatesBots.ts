@@ -7,7 +7,7 @@ import {
   DELETEBOTTEMPLATES_SUCCESS,
   DELETEBOTTEMPLATES_ERROR,
   TGetTemplatesBotsActions,
-} from '../../actions/bots/getTemplatesBots';
+} from '../../actions/bots/templatesBots';
 
 import { TTemplateBotRes } from '../../types/bot';
 

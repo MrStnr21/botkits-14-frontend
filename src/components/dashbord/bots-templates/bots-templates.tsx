@@ -7,7 +7,7 @@ import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import useModal from '../../../services/hooks/use-modal';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
-import { getTemplatesBotsAction } from '../../../services/actions/bots/getTemplatesBots';
+import { getTemplatesBotsAction } from '../../../services/actions/bots/templatesBots';
 import { getAccessToken } from '../../../auth/authService';
 import { getTemplatesBotsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
