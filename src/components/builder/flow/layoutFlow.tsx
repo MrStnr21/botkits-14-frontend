@@ -36,6 +36,7 @@ import {
   iconOfPlatform,
   saveVariable,
   saveTrigger,
+  // resetVar,
 } from '../utils';
 import { storOfVariables } from '../utils/stor';
 import { TVariable, TTrigger } from '../../../services/types/builder';
@@ -62,8 +63,6 @@ const LayoutFlow: FC = () => {
     const token = getAccessToken() || '';
     const id = searchParams.get('id');
     const path = getUrlPath(searchParams.get('type'));
-    // const url = `https://botkits.nomoreparties.co/dev/api/${path}/${id}`;
-    // const url = `https://botkits.nomoreparties.co/dev/api/bots/65719526ea584e7aac68ecf5`;
 
     if (!id || !path) {
       // return;
@@ -141,6 +140,10 @@ const LayoutFlow: FC = () => {
       body: JSON.stringify(builder),
     });
   };
+
+  // Ручная очистка любого массива с отправкой на бэк, например, битого блока с файлом
+  /* resetVar(nodes[1].data.data);
+  saveBot(); */
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     if (connection.source === connection.target) {
