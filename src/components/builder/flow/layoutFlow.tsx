@@ -14,7 +14,6 @@ import ReactFlow, {
 import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
-// eslint-disable-next-line import/no-cycle
 import { initialNodes, nodeTypes } from './initial-nodes';
 import { initialEdges, edgeOptions } from './initial-edges';
 
@@ -40,7 +39,7 @@ import {
 } from '../utils';
 import { storOfVariables } from '../utils/stor';
 import { TVariable, TTrigger } from '../../../services/types/builder';
-import { getBuilderApi } from '../../../api';
+import { getBuilderApi, saveBuilderApi } from '../../../api';
 
 const cx = cn.bind(styles);
 
@@ -109,11 +108,9 @@ const LayoutFlow: FC = () => {
   }, []);
 
   const saveBot = () => {
+    const token = getAccessToken() || '';
     const id = searchParams.get('id');
     const path = getUrlPath(searchParams.get('type'));
-    // const url = `https://botkits.nomoreparties.co/dev/api/${path}/${id}`;
-    const url = `https://botkits.nomoreparties.co/dev/api/bots/65719526ea584e7aac68ecf5`;
-
     if (!id || !path) {
       // eslint-disable-next-line no-console
       console.log('нету');
@@ -121,7 +118,6 @@ const LayoutFlow: FC = () => {
 
     const fetchingNodes = filterNodes(nodes);
     const fetchingEdges = edges;
-
     const builder = {
       features: {
         nodes: fetchingNodes,
@@ -131,14 +127,12 @@ const LayoutFlow: FC = () => {
       },
     };
 
-    fetch(url, {
-      method: 'PATCH',
-      headers: {
-        authorization: `Bearer ${getAccessToken()}`,
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(builder),
-    });
+    saveBuilderApi(builder, token, 'bots', '65719526ea584e7aac68ecf5').catch(
+      (err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    );
   };
 
   // Ручная очистка любого массива с отправкой на бэк, например, битого блока с файлом

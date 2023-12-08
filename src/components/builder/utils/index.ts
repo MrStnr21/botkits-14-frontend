@@ -208,9 +208,12 @@ export const iconOfPlatform: {
   Instagram: ig,
   'Веб-сайт': ws,
 };
-// eslint-disable-next-line no-plusplus
-export const resetVar = (elemetnts: any[]) => { for (let i = 0; i < elemetnts.length; i++) {
-  elemetnts.splice(0, 1);
-}}
+
+export const resetVar = (elemetnts: any[]) => {
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < elemetnts.length; i++) {
+    elemetnts.splice(0, 1);
+  }
+};
 
 export default {};
