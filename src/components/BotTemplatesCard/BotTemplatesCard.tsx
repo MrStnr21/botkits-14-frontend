@@ -112,7 +112,9 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const updateInputs = () => {
     console.log(card);
     const upCard = {
-      icon: card.icon,
+      // eslint-disable-next-line no-underscore-dangle
+      _id: card._id,
+      icon: imageEdit,
       title: nameBot,
       description: aboutBot,
       features: card.features,
