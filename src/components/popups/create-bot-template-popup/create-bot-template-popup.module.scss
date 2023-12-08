@@ -24,7 +24,7 @@
 }
 
 .popup {
-  @include size(464px, 502px);
+  @include size(464px, 452px);
   @include position(relative);
   @include flex(column, center, flex-start, 34px);
   @include indents(40px, 0);
@@ -49,6 +49,7 @@
   &__buttons {
     @include flex(row, center, center, 0);
     align-self: flex-end;
+    padding-top: 20px;
 
     @media screen and (max-width: 620px) {
       flex-direction: column;

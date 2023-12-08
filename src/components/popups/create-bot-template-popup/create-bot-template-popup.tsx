@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router';
 import Typography from '../../../ui/typography/typography';
 import stylesPopup from './create-bot-template-popup.module.scss';
 import InputTemplate from '../../../ui/inputs/input-template/input-template';
-import CheckboxWithText from '../../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../../ui/avatar/avatar';
 import imageAvatar from '../../../images/icon/side bar/logo.svg';
 import EditButton from '../../../ui/buttons/button-edit/button-edit';
@@ -24,7 +23,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   closeModal,
 }) => {
   const [imageEdit, setImageEdit] = useState<string>('');
-  const [crm, setCrm] = useState(true);
   const [nameBot, setNameBot] = useState<string>('');
   const [aboutBot, setAboutBot] = useState<string>('');
   const [isOpen, setOpenPupup] = useState(false);
@@ -38,10 +36,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   //   document.getElementById('upload-file')!.click();
   // };
 
-  const onCrmChange = () => {
-    setCrm(!crm);
-  };
-
   const clearInputs = () => {
     setNameBot('');
     setAboutBot('');
@@ -54,7 +48,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
       title: nameBot,
       description: aboutBot,
       icon: imageEdit,
-      isToPublish: crm,
     };
     console.log(dataBotTemplates);
     const path = routesUrl.botBuilder;
@@ -128,13 +121,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
             size="big"
             placeholder="Описание бота..."
             value={aboutBot}
-          />
-          <CheckboxWithText
-            label="Опубликовать"
-            name="crm"
-            value="crm"
-            onChange={onCrmChange}
-            checked={crm}
           />
         </div>
         <div className={stylesPopup.popup__buttons}>
