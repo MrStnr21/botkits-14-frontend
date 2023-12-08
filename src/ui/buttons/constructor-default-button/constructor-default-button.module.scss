@@ -40,7 +40,7 @@
 }
 
 
-.button_adaptive {
+.button_unadaptive {
   @include button($secondary-xiketic-default, $secondary-cultured-focus);
 
   @media screen and (max-width: $switching-width) {

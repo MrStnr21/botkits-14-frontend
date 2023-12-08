@@ -81,7 +81,7 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
             />
           );
         })}
-        <ConstructorAddButton onClick={addTrigger} adaptive>
+        <ConstructorAddButton onClick={addTrigger} unadaptive>
           Добавить тэг
         </ConstructorAddButton>
       </div>

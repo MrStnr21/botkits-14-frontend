@@ -8,7 +8,7 @@ export interface IConstructorDefaultButton {
   disabled?: boolean;
   children: React.ReactNode;
   isActive?: boolean;
-  adaptive?: boolean;
+  unadaptive?: boolean;
 }
 
 const ConstructorDefaultButton: FC<IConstructorDefaultButton> = ({
@@ -17,14 +17,16 @@ const ConstructorDefaultButton: FC<IConstructorDefaultButton> = ({
   disabled,
   children,
   isActive,
-  adaptive,
+  unadaptive,
 }): JSX.Element => {
   return (
     <button
       className={`${
         stylesConstructorDefaultButton[isActive ? 'button_active' : 'button']
       }
-        ${stylesConstructorDefaultButton[adaptive ? 'button_adaptive' : '']}`}
+        ${
+          stylesConstructorDefaultButton[unadaptive ? 'button_unadaptive' : '']
+        }`}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}

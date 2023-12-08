@@ -137,7 +137,7 @@
   }
 }
 
-.inputBuilderDefault_adaptive {
+.inputBuilderDefault_unadaptive {
   @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
 
   @media screen and (max-width: $switching-width) {

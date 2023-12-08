@@ -23,7 +23,7 @@ interface IInput {
   min?: string;
   max?: string;
   id?: string;
-  adaptive?: boolean;
+  unadaptive?: boolean;
 }
 
 const classNames = {
@@ -52,7 +52,7 @@ const Input: FC<IInput> = ({
   min,
   max,
   id,
-  adaptive,
+  unadaptive,
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -122,8 +122,8 @@ const Input: FC<IInput> = ({
     <div className={stylesInput.wrapper}>
       <input
         className={
-          adaptive
-            ? stylesInput.inputBuilderDefault_adaptive
+          unadaptive
+            ? stylesInput.inputBuilderDefault_unadaptive
             : ` ${className} ${
                 error.error || isInvalid ? stylesInput.incorrect : ''
               } ${

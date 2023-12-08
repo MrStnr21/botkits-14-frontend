@@ -96,7 +96,7 @@ const Trigger: FC<ITriggerProps> = ({
           placeholder="Введите тэг"
           value={`${myTag}`}
           onChange={handleChangeState('tag')}
-          adaptive
+          unadaptive
         />
       </div>
       <div className={styles.block}>
@@ -105,14 +105,14 @@ const Trigger: FC<ITriggerProps> = ({
           <ConstructorDefaultButton
             onClick={handleChangeState('answer type', 'block')}
             isActive={answerType === 'block'}
-            adaptive
+            unadaptive
           >
             Блоком
           </ConstructorDefaultButton>
           <ConstructorDefaultButton
             onClick={handleChangeState('answer type', 'text')}
             isActive={answerType === 'text'}
-            adaptive
+            unadaptive
           >
             Текстом
           </ConstructorDefaultButton>
