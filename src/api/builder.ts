@@ -5,19 +5,16 @@ import { TBuilder } from '../services/types/builder';
 // запрос получения билдера
 function getBuilderApi(
   token: string,
-  path: '' | 'bots' | 'bots/templates',
+  path: '' | 'bots' | 'bots/template',
   id: string | null
 ) {
-  return request<IGetBotsResponse>(
-    `https://botkits.nomoreparties.co/dev/api/${path}/${id}`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return request<IGetBotsResponse>(`${path}/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
+    },
+  });
 }
 
 // запрос сохранения билдера

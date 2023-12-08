@@ -39,6 +39,7 @@ import {
 } from '../utils';
 import { storOfVariables } from '../utils/stor';
 import { TVariable, TTrigger } from '../../../services/types/builder';
+import { getBuilderApi } from '../../../api';
 
 const cx = cn.bind(styles);
 
@@ -58,11 +59,11 @@ const LayoutFlow: FC = () => {
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
 
   useEffect(() => {
-    const token = getAccessToken();
+    const token = getAccessToken() || '';
     const id = searchParams.get('id');
     const path = getUrlPath(searchParams.get('type'));
     // const url = `https://botkits.nomoreparties.co/dev/api/${path}/${id}`;
-    const url = `https://botkits.nomoreparties.co/dev/api/bots/65719526ea584e7aac68ecf5`;
+    // const url = `https://botkits.nomoreparties.co/dev/api/bots/65719526ea584e7aac68ecf5`;
 
     if (!id || !path) {
       // return;
@@ -70,14 +71,7 @@ const LayoutFlow: FC = () => {
       console.log('нету');
     }
 
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
+    getBuilderApi(token, 'bots', '65719526ea584e7aac68ecf5')
       .then((data) => {
         if (data.features && data.features.nodes) {
           setNodes(data.features.nodes);
@@ -108,6 +102,10 @@ const LayoutFlow: FC = () => {
         }
         // eslint-disable-next-line no-console
         console.log(data);
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
       });
   }, []);
 

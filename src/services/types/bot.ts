@@ -34,6 +34,10 @@ export type TTemplateBot = {
 
 export interface IAddBotResponse extends TBot {}
 
-export interface IGetBotsResponse extends Array<TBot> {}
+export interface IGetBotsResponse extends Array<TBot> {
+  messengers: any;
+  title: string;
+  features: any;
+}
 
 export interface IGetTemplatesBotsResponse extends Array<TTemplateBot> {}
