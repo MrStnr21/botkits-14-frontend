@@ -6,7 +6,7 @@ import Input from '../../../../../ui/inputs/input/input';
 import { selectValues } from '../../../utils/data';
 import Select from '../../../../../ui/select/select';
 import { Option } from '../../../../../utils/types';
-import { getSelectItemByValue } from '../../../utils';
+import { getSelectItemByValue } from '../../../utils/index';
 
 export type TValueProps = {
   idNum: string;

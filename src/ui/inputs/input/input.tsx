@@ -23,6 +23,7 @@ interface IInput {
   min?: string;
   max?: string;
   id?: string;
+  adaptive?: boolean;
 }
 
 const classNames = {
@@ -51,6 +52,7 @@ const Input: FC<IInput> = ({
   min,
   max,
   id,
+  adaptive,
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -119,13 +121,17 @@ const Input: FC<IInput> = ({
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={` ${className} ${
-          error.error || isInvalid ? stylesInput.incorrect : ''
-        } ${
-          (error.error || isInvalid) && styled === 'secondary'
-            ? stylesInput.inputSecondaryIncorrect
-            : ''
-        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
+        className={
+          adaptive
+            ? stylesInput.inputBuilderDefault_adaptive
+            : ` ${className} ${
+                error.error || isInvalid ? stylesInput.incorrect : ''
+              } ${
+                (error.error || isInvalid) && styled === 'secondary'
+                  ? stylesInput.inputSecondaryIncorrect
+                  : ''
+              } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`
+        }
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}

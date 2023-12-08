@@ -23,6 +23,7 @@ export interface IConstructorAddButton {
   icon?: string;
   picture?: React.ReactNode;
   maxWidth?: string;
+  adaptive?: boolean;
 }
 
 const ConstructorAddButton: FC<IConstructorAddButton> = ({
@@ -33,6 +34,7 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
   icon = 'add',
   picture,
   maxWidth,
+  adaptive,
 }) => {
   const getIcon = () => {
     switch (icon) {
@@ -56,7 +58,7 @@ const ConstructorAddButton: FC<IConstructorAddButton> = ({
 
   return (
     <button
-      className={styles.button}
+      className={adaptive ? styles.button_adaptive : styles.button}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}
