@@ -13,10 +13,13 @@ import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-t
 import InputTemplate from '../../ui/inputs/input-template/input-template';
 import { updateBotTemplatesAction } from '../../services/actions/bots/templatesBots';
 import { TTemplateBotRes } from '../../services/types/bot';
+import ModalPopup from '../popups/modal-popup/modal-popup';
+// import Typography from '../../ui/typography/typography';
+import EditImagePopup from '../popups/edit-image-popup/edit-image-popup';
 
 import routesUrl from '../../utils/routesData';
 
-import { BUTTON_NAME } from '../../utils/constants';
+// import { BUTTON_NAME } from '../../utils/constants';
 
 interface IBotTemplatesCard {
   card: TTemplateBotRes;
@@ -41,9 +44,10 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
 }) => {
   const [crm, setCrm] = useState(isToPublish);
   const [menu, toggleMenu] = useState(false);
-  const [imageEdit, setImageEdit] = useState<string>();
+  const [imageEdit, setImageEdit] = useState<string>('');
   const [nameBot, setNameBot] = useState<string>(title || '');
   const [aboutBot, setAboutBot] = useState<string>(description || '');
+  const [isOpen, setOpenPupup] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -84,9 +88,10 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     toggleMenu(!menu);
   };
 
-  const onClickEditAvatar = () => {
-    document.getElementById(`upload-file${id}`)!.click();
-  };
+  // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
+  // const onClickEditAvatar = () => {
+  //   document.getElementById(`upload-file${id}`)!.click();
+  // };
 
   const handleOptionClick = (e: string) => {
     toggleMenu(false);
@@ -105,6 +110,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   ];
 
   const updateInputs = () => {
+    console.log(card);
     const upCard = {
       icon: card.icon,
       title: nameBot,
@@ -117,6 +123,10 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const clearInputs = () => {
     setNameBot('');
     setAboutBot('');
+  };
+
+  const openPopup = () => {
+    setOpenPupup(!isOpen);
   };
 
   return (
@@ -132,7 +142,9 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
               pic={imageEdit || imageAvatar}
             />
             <div className={stylesCard.editButton}>
-              <input
+              <EditButton onClick={openPopup} />
+              {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
+                <input
                 type="file"
                 id={`upload-file${id}`}
                 hidden
@@ -144,8 +156,8 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
                 }}
               />
               <label htmlFor={BUTTON_NAME.IMAGE}>
-                <EditButton onClick={onClickEditAvatar} />
-              </label>
+              <EditButton onClick={onClickEditAvatar} />
+              </label> */}
             </div>
           </div>
           <div className={stylesCard.more}>
@@ -208,6 +220,11 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
           Сохранить изменения
         </ButtonBotTemplate>
       </div>
+      {isOpen && (
+        <ModalPopup onClick={() => setOpenPupup(false)}>
+          <EditImagePopup closeModal={openPopup} editImage={setImageEdit} />
+        </ModalPopup>
+      )}
     </div>
   );
 };

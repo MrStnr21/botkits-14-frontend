@@ -8,12 +8,13 @@ import Avatar from '../../../ui/avatar/avatar';
 import imageAvatar from '../../../images/icon/side bar/logo.svg';
 import EditButton from '../../../ui/buttons/button-edit/button-edit';
 
-import { BUTTON_NAME } from '../../../utils/constants';
+// import { BUTTON_NAME } from '../../../utils/constants';
 
 import routesUrl from '../../../utils/routesData';
 import { getAccessToken } from '../../../auth/authService';
 import { addTemplatesBotsApi } from '../../../api/bots';
-// import useForm from '../../../services/hooks/use-form';
+import ModalPopup from '../modal-popup/modal-popup';
+import EditImagePopup from '../edit-image-popup/edit-image-popup';
 
 interface IPopupCreateBotTemplates {
   closeModal: () => void;
@@ -22,23 +23,20 @@ interface IPopupCreateBotTemplates {
 const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   closeModal,
 }) => {
-  const [imageEdit, setImageEdit] = useState<string>();
+  const [imageEdit, setImageEdit] = useState<string>('');
   const [crm, setCrm] = useState(true);
   const [nameBot, setNameBot] = useState<string>('');
   const [aboutBot, setAboutBot] = useState<string>('');
-
-  // const { values, handleChange, setValues } = useForm({
-  //   nameBot: { value: '', valueValid: false },
-  //   aboutBot: { value: '', valueValid: false },
-  // });
+  const [isOpen, setOpenPupup] = useState(false);
 
   const history = useNavigate();
 
   const token = getAccessToken();
 
-  const onClickEditAvatar = () => {
-    document.getElementById('upload-file')!.click();
-  };
+  // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
+  // const onClickEditAvatar = () => {
+  //   document.getElementById('upload-file')!.click();
+  // };
 
   const onCrmChange = () => {
     setCrm(!crm);
@@ -47,23 +45,18 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   const clearInputs = () => {
     setNameBot('');
     setAboutBot('');
-    // setValues({
-    //   nameBot: { value: '', valueValid: false },
-    //   aboutBot: { value: '', valueValid: false },
-    // });
     closeModal();
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const dataBotTemplates = {
       title: nameBot,
       description: aboutBot,
       icon: imageEdit,
       isToPublish: crm,
     };
-
+    console.log(dataBotTemplates);
     const path = routesUrl.botBuilder;
 
     try {
@@ -78,11 +71,10 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
 
     setNameBot('');
     setAboutBot('');
+  };
 
-    // setValues({
-    //   nameBot: { value: '', valueValid: false },
-    //   aboutBot: { value: '', valueValid: false },
-    // });
+  const openPopup = () => {
+    setOpenPupup(!isOpen);
   };
 
   return (
@@ -92,9 +84,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
           <Typography tag="h3" className={stylesPopup.popup__heading}>
             Добавить Шаблон
           </Typography>
-          {/* <Typography tag="p" className={styles.popup__text}>
-          Все данные в этом чате будут безвозвратно удалены.
-        </Typography> */}
           <div className={stylesPopup.avatar}>
             <Avatar
               isBot="no"
@@ -104,6 +93,8 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
               pic={imageEdit || imageAvatar}
             />
             <div className={stylesPopup.editButton}>
+              <EditButton onClick={openPopup} />
+              {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
               <input
                 type="file"
                 id="upload-file"
@@ -117,7 +108,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
               />
               <label htmlFor={BUTTON_NAME.IMAGE}>
                 <EditButton onClick={onClickEditAvatar} />
-              </label>
+              </label> */}
             </div>
           </div>
           <InputTemplate
@@ -163,6 +154,11 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
           </button>
         </div>
       </form>
+      {isOpen && (
+        <ModalPopup onClick={() => setOpenPupup(false)}>
+          <EditImagePopup closeModal={openPopup} editImage={setImageEdit} />
+        </ModalPopup>
+      )}
     </div>
   );
 };
