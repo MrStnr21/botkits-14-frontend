@@ -9,6 +9,10 @@ import ReactFlow, {
   useEdgesState,
   Connection,
   Edge,
+  getIncomers,
+  getOutgoers,
+  getConnectedEdges,
+  Node,
 } from 'reactflow';
 
 import { useMediaQuery } from '@mui/material';
@@ -118,6 +122,7 @@ const LayoutFlow: FC = () => {
 
     const fetchingNodes = filterNodes(nodes);
     const fetchingEdges = edges;
+    console.log(edges);
     const builder = {
       features: {
         nodes: fetchingNodes,
@@ -153,6 +158,33 @@ const LayoutFlow: FC = () => {
       (edge) => edge.source === source && edge.target === target
     );
   };
+
+  const onNodesDelete = useCallback(
+    (deleted: Node[]) => {
+      setEdges(
+        deleted.reduce((acc, node) => {
+          const incomers = getIncomers(node, nodes, edges);
+          const outgoers = getOutgoers(node, nodes, edges);
+          const connectedEdges = getConnectedEdges([node], edges);
+
+          const remainingEdges = acc.filter(
+            (edge) => !connectedEdges.includes(edge)
+          );
+
+          const createdEdges = incomers.flatMap(({ id: source }) =>
+            outgoers.map(({ id: target }) => ({
+              id: `${source}->${target}`,
+              source,
+              target,
+            }))
+          );
+
+          return [...remainingEdges, ...createdEdges];
+        }, edges)
+      );
+    },
+    [nodes, edges]
+  );
 
   const menuCloseHandler = () => {
     toggleMenu(false);
@@ -214,6 +246,7 @@ const LayoutFlow: FC = () => {
         fitView
         defaultEdgeOptions={edgeOptions}
         isValidConnection={isValidConnection}
+        onNodesDelete={onNodesDelete}
       >
         <Background />
         <div className={styles['bot-name']}>
