@@ -4,7 +4,6 @@ import styles from './trigger.module.scss';
 
 import Input from '../../../ui/inputs/input/input';
 import ConstructorDefaultButton from '../../../ui/buttons/constructor-default-button/constructor-default-button';
-import TrashIcon from '../../icons/Trash/TrashIcon';
 import { TTrigger } from '../../../services/types/builder';
 import { messagesSuccessful } from '../utils/data';
 import Select from '../../../ui/select/select';
@@ -89,7 +88,7 @@ const Trigger: FC<ITriggerProps> = ({
         <div className={styles.header}>
           <h3 className={styles.title}>Тэг</h3>
           <div onClick={() => handleTriggerData('delete', { id })}>
-            <TrashIcon />
+            <div className={styles.trashIcon} />
           </div>
         </div>
         <Input
@@ -97,6 +96,7 @@ const Trigger: FC<ITriggerProps> = ({
           placeholder="Введите тэг"
           value={`${myTag}`}
           onChange={handleChangeState('tag')}
+          unadaptive
         />
       </div>
       <div className={styles.block}>
@@ -105,12 +105,14 @@ const Trigger: FC<ITriggerProps> = ({
           <ConstructorDefaultButton
             onClick={handleChangeState('answer type', 'block')}
             isActive={answerType === 'block'}
+            unadaptive
           >
             Блоком
           </ConstructorDefaultButton>
           <ConstructorDefaultButton
             onClick={handleChangeState('answer type', 'text')}
             isActive={answerType === 'text'}
+            unadaptive
           >
             Текстом
           </ConstructorDefaultButton>

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './triggerBlock.module.scss';
 import CloseIcon from '../../icons/Close/CloseIcon';
@@ -60,7 +60,10 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
       className={`${styles.wrap} ${isOpened ? styles.opened : styles.closed}`}
     >
       <div className={styles.header}>
-        <h2 className={styles.title}>Триггеры</h2>
+        <div className={styles.box}>
+          <div className={styles.img} />
+          <h2 className={styles.title}>Триггеры</h2>
+        </div>
         <div onClick={close} className={styles.close}>
           <CloseIcon color="#A6B3C9" />
         </div>
@@ -78,7 +81,7 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
             />
           );
         })}
-        <ConstructorAddButton onClick={addTrigger}>
+        <ConstructorAddButton onClick={addTrigger} unadaptive>
           Добавить тэг
         </ConstructorAddButton>
       </div>
