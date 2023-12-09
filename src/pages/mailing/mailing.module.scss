@@ -1,0 +1,38 @@
+@use '../../stylesheets/mixins' as *;
+@use '../../stylesheets/variables' as *;
+
+.mailing {
+  @include flex(column, unset, center);
+  /* @include max-size(1268px, unset); */
+  @include indents(0, 40px 40px 0 0);
+
+  &__header {
+    @include flex(row, space-between);
+    @include size(100%, unset);
+    @include indents(0 0 40px 0, 0);
+
+    @media screen and (max-width: 620px) {
+      @include indents(0 0 26px 0, 0);
+    }
+  }
+
+  &__buttonWrapper {
+    @include size(188px, unset);
+  }
+
+  &__content {
+    @include size(100%, unset);
+    @include flex(column, $gap: 32px);
+    background-color: $secondary-cultured-hover;
+    border-radius: $xxl-border-radius;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media screen and (max-width: $switching-width) {
+    margin: 24px 20px;
+  }
+}

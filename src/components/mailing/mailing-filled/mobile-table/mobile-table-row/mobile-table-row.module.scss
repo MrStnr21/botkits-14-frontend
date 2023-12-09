@@ -1,0 +1,74 @@
+@use '../../../../../stylesheets/mixins' as *;
+@use '../../../../../stylesheets/variables' as *;
+
+.row {
+  @include flex(column, $gap: 16px);
+}
+
+.content {
+  @include flex(row, $gap: 12px);
+}
+
+.icon {
+  @include size(32px, 32px);
+  position: relative;
+  flex-basis: 32px;
+
+  svg {
+    @include size(32px !important, 32px !important);
+  }
+}
+
+.percent {
+  @include size(16px, 16px);
+  @include position(absolute, -6px, $left: -6px);
+  @include font('Open Sans', 5px, $bold, $primary-persian-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  @include flex(row, center, center);
+  border-radius: $border-radius-circle;
+  background-color: $blue-disabled;
+}
+
+.data {
+  flex-grow: 1
+}
+
+.header {
+  @include flex(row, start, center, 8px);
+  margin: 0;
+}
+
+.title {
+  @include font('Open Sans', $xs-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+}
+
+.id {
+  @include font('Open Sans', $xxxs-font-size, $normal, $grey-3);
+  @include line-sizes($xl-line-height, $m-letter-space);
+}
+
+.messages {
+  @include font('Open Sans', $xxxs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
+}
+
+.line {
+  @include indents(0, 0);
+  border: 0;
+  outline: 0;
+  height: 1px;
+  background-color: $secondary-cultured-hover;
+}
+
+.true {
+  @extend .title;
+  align-self: center;
+  color: $success-default;
+}
+
+.false {
+  @extend .title;
+  align-self: center;
+  color: $primary-persian-blue-default;
+}

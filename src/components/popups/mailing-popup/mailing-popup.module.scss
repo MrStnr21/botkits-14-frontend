@@ -1,0 +1,49 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.modal {
+  @include position(relative);
+  @include flex(row, space-between, center);
+  @include min-size(264px, 40px);
+  @include indents(10px 8px, 0);
+  background-color: $secondary-cultured-default;
+  box-sizing: border-box;
+  border-radius: $s-border-radius;
+  cursor: $cursor;
+
+  &__wrapper {
+    @include size(100%, unset);
+    @include flex(row, space-between, center, 8px);
+  }
+
+  &__caption {
+    white-space: nowrap;
+    color: $grey-2;
+  }
+
+  &__selected {
+    color: $primary-oxford-blue-default;
+  }
+}
+
+
+.content {
+  @include min-size(135px, 135px);
+  @include size(100%, 100%);
+  @include position(absolute, 40px, 0, unset, 0);
+  @include flex(column, center, flex-start, 16px);
+  @include indents(10px, 0);
+  border-radius: $l-border-radius;
+  background-color: $off-white;
+  box-shadow: 0px 6px 16px 0px #15123314;
+  z-index: 125;
+
+  &__button {
+    @include button-style-reset();
+  }
+
+  &__element {
+    @include size(100%, unset);
+    @include flex(row, space-between, center);
+  }
+}

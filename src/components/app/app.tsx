@@ -22,6 +22,8 @@ import Statistics from '../../pages/statistics/statistics';
 import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
+import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
+import MailingConditions from '../mailing/mailing-conditions/mailing-conditions';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
 
 const App: FC = (): JSX.Element => {
@@ -125,10 +127,10 @@ const App: FC = (): JSX.Element => {
             </ProtectedRoute>
           }
         >
-          {/* <Route path="" element={<First... />} />
-              <Route path="start" element={<My... />} />
-              <Route path="add" element={<Create... />} />
-              <Route path="conditions" element={<Conditions.. />} /> */}
+          <Route path="create" element={<CreateMailing />}>
+            <Route path="conditions" element={<MailingConditions />} />
+          </Route>
+          {/* <Route path="conditions" element={<MailingConditions />} /> */}
         </Route>
         <Route
           path={routesUrl.partnership}

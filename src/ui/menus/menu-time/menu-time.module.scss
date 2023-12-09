@@ -3,16 +3,12 @@
 
 .box {
   @include size(264px, 478px);
-  display: none;
+  @include max-size(264px, 80vh);
+  display: flex;
   flex-direction: column;
   box-shadow: $m-box-shadow;
   background-color: white;
   border-radius: $l-border-radius;
-  position: absolute;
-}
-
-.active {
-  display: flex;
 }
 
 .button {
@@ -36,6 +32,7 @@
 
 .numbers_box {
   @include size(132px, 422px);
+  @include max-size(132px, calc(80vh - 56px));
   @include flex(column, start);
   overflow-y: scroll;
 }
@@ -55,9 +52,21 @@
 }
 
 .number_unit {
-  padding: 24px 0;
+  @include button-style-reset;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.number_unit_active {
+  background-color: $blue-disabled;
+  color: $primary-persian-blue-default;
 }
 
 .number_unit:hover {
   background-color: $secondary-cultured-default;
+}
+
+.number_unit_active:hover {
+  background-color: $blue-disabled;
+  color: $primary-persian-blue-default;
 }

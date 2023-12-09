@@ -1,0 +1,9 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.container{
+  @include flex(row, flex-start, flex-start, 32px);
+  row-gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}

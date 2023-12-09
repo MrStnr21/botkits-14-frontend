@@ -1,0 +1,49 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.howIt {
+  @include max-size(100%, unset);
+  @include flex(column, unset, unset, 20px);
+  @include indents(0 40px 10px, 0);
+  position: relative;
+  background-color: $secondary-cultured-hover;
+  border-radius: $xxl-border-radius;
+
+  &__buttons {
+    @include flex(row, flex-start, flex-start, 32px);
+    row-gap: 16px;
+    transition: all .3s linear;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    button {
+      flex-basis: 300px;
+      flex-grow: 1;
+    }
+
+    &_visible {
+      @media screen and (max-width: 860px) {
+        height: calc(76px*2 + 50px);
+      }
+    }
+
+    &_hidden {
+      @media screen and (max-width: 860px) {
+        height: 0;
+      }
+    }
+  }
+
+  &__hide {
+    @include indents(0, 0);
+    @include position(absolute, 0, 24px);
+    border: 0;
+    background: 0;
+    transition: transform .2s;
+    cursor: $cursor;
+
+    &_closed {
+      transform: rotate(180deg);
+    }
+  }
+}

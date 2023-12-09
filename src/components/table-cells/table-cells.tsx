@@ -65,3 +65,17 @@ export const paymentStatusCell = (status: boolean) => (
     {status ? 'Оплачено' : 'В обработке'}
   </Typography>
 );
+
+/* Mailing */
+
+export const mailStatusCell = (status: boolean) => (
+  <Typography
+    tag="p"
+    className={cn(
+      style.text,
+      status ? style.text_succsess : style.text_failure
+    )}
+  >
+    {status ? 'Запущено' : 'Отклонено'}
+  </Typography>
+);

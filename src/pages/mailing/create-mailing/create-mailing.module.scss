@@ -1,0 +1,36 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.create {
+  @include position(relative);
+  @include flex(row, flex-start, unset, 48px);
+  @include size(100%, unset);
+
+  &__sideButton {
+    @include position(absolute, -60px, 0, unset, unset);
+    @include button-style-reset();
+    @include flex($justify-content: center, $align-items: center);
+    @include size(40px, 40px);
+    border-radius: 50%;
+    box-shadow: -2px 4px 10px 0px #2222220D;
+  }
+
+  &__blue {
+    @include position(absolute, 178px, 0, unset, unset);
+    @include size(100px, 80px);
+    @include flex($justify-content: center, $align-items: center);
+    background-color: $primary-persian-blue-default;
+    border-radius: 64px 0 0 64px;
+
+    @media screen and (max-width: 860px) {
+      @include button-style-reset;
+      @include position(fixed, unset, 20px, 40px, unset);
+      background: none;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
+}
