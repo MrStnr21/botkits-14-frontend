@@ -9,18 +9,59 @@ import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
 type ElementListener = 'document' | 'flow';
 
 export interface IMailingSelect {
+  /**
+   * текущая выбранная опция. Принимает объект Option или string
+   */
   currentOption?: Option | string | null;
+  /**
+   * * Набор полей меню, массив объектов формата `{label: string; value: string; icon?: string;}`
+   */
   options: Option[] | string[];
+  /**
+   * callback при клике на элемент select
+   */
   handleSelect?: (option: Option) => void;
   placeholder?: string;
+  /**
+   * `style` проп для кнопки открытия выпадающего списка
+   */
   buttonStyle?: React.CSSProperties;
+  /**
+   * строка, описывающая элемент, на который вешаеся слушатель закрытия select по клику. На текущий момент принимает `'document' | 'flow'`
+   */
   elementToCloseListener?: ElementListener;
+  /**
+   * должен ли элемент быть адаптивным
+   */
   adaptive?: boolean;
+  /**
+   * className для контейнера выпадающего меню
+   */
   layoutClassName?: string;
+  /**
+   * className для элемента выпадающего меню
+   */
   itemClassName?: string;
+  /**
+   * включить/выключить прокрутку в меню
+   */
   isScroll?: boolean;
 }
 
+/**
+ * Более-менее универсальный компонент для задания селекта
+ * @example
+ * <Select
+    options={selectValues}
+    handleSelect={(option) => setVariable(option.value)}
+    currentOption={getSelectItemByValue(
+     itemFromVariables.variable,
+       selectValues
+      )}
+    elementToCloseListener="flow"
+    adaptive
+   />
+ */
 const Select: FC<IMailingSelect> = ({
   currentOption,
   options,

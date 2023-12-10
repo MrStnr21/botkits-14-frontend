@@ -21,13 +21,32 @@ export interface IMenu {
   /** Чтобы перезаписать свойства MenuItem, в scss файле родителя повысьте селективность,
    * например: ```div.item { height: 30px;}``` */
   itemClassName?: string;
+  /**
+   * включить/выключить прокрутку в меню
+   */
   isScroll?: boolean;
+  /**
+   * мультивыбор элементов меню
+   */
   isMultiple?: boolean;
+  /**
+   * массив выбранных элементов
+   */
   selectedValues?: string[];
 }
 
 type Ref = HTMLDivElement;
 
+/**
+ * Компонент для создания меню
+ * @example
+ * <Menu
+ *   ref={menuRef}
+ *   options={options}
+ *   onItemClick={(e) => handleOptionClick(e.value)}
+ *   layoutClassName={stylesCard.dropdown}
+ *  />
+ */
 const Menu = forwardRef<Ref, IMenu>(
   (
     {

@@ -129,9 +129,9 @@ export const getUrlPath = (type: string|null) => {
 /**
  * сохранение данных input в стор ReactFlow
  * @param {Object} obj
- * @param {string[]} obj.selectors массив строк, последовательность полей объекта, по которым можно получить значение input
- * @param {any} obj.value необязательный параметр. Если передан - value записывается в value инпута
- * @param {Function} obj.callback необязательный параметр. Коллбэк, если передан - будет вызван применен к value перед записью в data-объект
+ * @param {string[]} obj.selectors массив строк, последовательность полей объекта, по которым можно получить значение `input`
+ * @param {any} obj.value необязательный параметр. Если передан - `value` записывается в `value` инпута
+ * @param {Function} obj.callback необязательный параметр. Коллбэк, если передан - будет вызван применен к value перед записью в `store`
  */
 export const setFlowData = ({
   selectors,

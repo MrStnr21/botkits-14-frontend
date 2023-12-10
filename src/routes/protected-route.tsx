@@ -15,8 +15,12 @@ type TProtectedRoute = {
 };
 
 /**
- * Обёртка для роутов. Проверяет наличие токена в localStorage
+ * Компонент-обёртка для роутов. Проверяет наличие токена в localStorage
  * @param {boolean} notAuth нужна ли аутентификация для посещения страницы
+ * @example
+ * <ProtectedRoute notAuth>
+ *  <ChildComponent/>
+ * </ProtectedRoute>
  */
 const ProtectedRoute: FC<TProtectedRoute> = ({
   children,
