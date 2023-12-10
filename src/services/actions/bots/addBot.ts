@@ -26,31 +26,6 @@ export type TAddBotActions =
   | IAddBotSuccessAction
   | IAddBotErrorAction;
 
-// экшн добавления бота - не используется
-// const addBotAction: AppThunk = (botinfo: TBot, token: string | null, templateId: string | null) => {
-//   return (dispatch: AppDispatch) => {
-//     dispatch({
-//       type: ADDBOT_REQUEST,
-//     });
-//     console.log(botinfo);
-//     addBotApi(botinfo, token)
-//       .then((res) => {
-//         console.log(res);
-//         if (res) {
-//           dispatch({
-//             type: ADDBOT_SUCCESS,
-//             bot: res,
-//           });
-//         }
-//       })
-//       .catch((err) => {
-//         // eslint-disable-next-line no-console
-//         console.log(err);
-//         dispatch({
-//           type: ADDBOT_ERROR,
-//         });
-//       });
-//   };
-// };
+// экшн добавления бота - не используется, код в коммите 08ebaab
 
 export { ADDBOT_REQUEST, ADDBOT_SUCCESS, ADDBOT_ERROR };

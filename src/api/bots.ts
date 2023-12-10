@@ -6,6 +6,7 @@ import {
   IGetTemplatesBotsResponse,
   TCreateBot,
 } from '../services/types/bot';
+import { getAccessToken } from '../auth/authService';
 
 // запрос получения ботов
 function getBotsApi(token: string) {
@@ -19,12 +20,9 @@ function getBotsApi(token: string) {
 }
 
 // запрос добавления бота
-function addBotApi(
-  bot: TCreateBot,
-  token: string | null,
-  templateId: string | null
-) {
+function addBotApi(bot: TCreateBot, templateId: string | null) {
   const url = `bots/${templateId || ''}`;
+  const token = getAccessToken();
   return request<IAddBotResponse>(url, {
     method: 'POST',
     headers: {

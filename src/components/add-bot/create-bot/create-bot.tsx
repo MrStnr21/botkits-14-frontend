@@ -21,15 +21,13 @@ import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 
 import routesUrl from '../../../utils/routesData';
-import { getAccessToken } from '../../../auth/authService';
 import Typography from '../../../ui/typography/typography';
 import { addBotApi } from '../../../api';
-import { TCreateBot } from '../../../services/types/bot';
+import type { TCreateBot } from '../../../services/types/bot';
 
 interface ImageMap {
   [key: string]: JSX.Element;
 }
-
 interface ICreateBot {
   botName: string;
   pages: boolean;
@@ -58,7 +56,7 @@ const CreateBot: FC<ICreateBot> = ({
   templateId,
   templateTitle,
   botURI,
-}): JSX.Element => {
+}) => {
   const [arrPages, setArrPages] = useState<string[]>([]);
 
   const { values, handleChange, setValues } = useForm({
@@ -68,8 +66,6 @@ const CreateBot: FC<ICreateBot> = ({
   });
 
   const history = useNavigate();
-
-  const token = getAccessToken();
 
   const disabledDefault =
     values.accessKey.value.length > 1 && values.botName.value.length > 1;
@@ -87,6 +83,17 @@ const CreateBot: FC<ICreateBot> = ({
     ? !disabledDefault
     : !disabledPages;
 
+  const addBot = async (bot: TCreateBot, template: string | null) => {
+    try {
+      const addedBot = await addBotApi(bot, template);
+      // eslint-disable-next-line no-underscore-dangle
+      history(`/${routesUrl.botBuilder}?id=${addedBot._id}&type=custom`);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -102,15 +109,7 @@ const CreateBot: FC<ICreateBot> = ({
       ],
     };
 
-    try {
-      const bot = await addBotApi(dataBot, token, templateId);
-      // eslint-disable-next-line no-underscore-dangle
-      const botId = bot._id;
-      history(`/${routesUrl.botBuilder}?id=${botId}&type=custom`);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
-    }
+    addBot(dataBot, templateId);
 
     setValues({
       botName: { value: '', valueValid: false },

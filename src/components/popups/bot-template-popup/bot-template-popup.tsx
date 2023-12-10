@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 
-import stylesBotTemplate from './bot-template-popup.module.scss';
+import styles from './bot-template-popup.module.scss';
 
 import { ReactComponent as ImageAnswer } from '../../../images/icon/template/answering machine.svg';
 import { ReactComponent as ImageEntertain } from '../../../images/icon/template/entertainment.svg';
@@ -19,11 +19,10 @@ import { ReactComponent as ImagePoll } from '../../../images/icon/template/poll.
 import Button from '../../../ui/buttons/button/button';
 import routesUrl from '../../../utils/routesData';
 import Typography from '../../../ui/typography/typography';
+import { TTemplateBot } from '../../../services/types/bot';
 
-interface IBotTemplate {
-  title: string;
-  description: string;
-  id: string;
+interface ITemplatePopup {
+  template: TTemplateBot;
   onClick?: () => void;
 }
 
@@ -32,46 +31,25 @@ interface IImage {
 }
 
 const image: IImage = {
-  'Бот автоответчик': (
-    <ImageAnswer className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Доставка еды': (
-    <ImageFood className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Демо бот': <ImageDemo className={stylesBotTemplate.bot_template_image} />,
-  Опрос: <ImagePoll className={stylesBotTemplate.bot_template_image} />,
-  'Лидогенерация/HR ререререре...': (
-    <ImageLead className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Онлайн школа/Вебинар': (
-    <ImageLearn className={stylesBotTemplate.bot_template_image} />
-  ),
+  'Бот автоответчик': <ImageAnswer className={styles.bot_template_image} />,
+  'Доставка еды': <ImageFood className={styles.bot_template_image} />,
+  'Демо бот': <ImageDemo className={styles.bot_template_image} />,
+  Опрос: <ImagePoll className={styles.bot_template_image} />,
+  'Лидогенерация/HR': <ImageLead className={styles.bot_template_image} />,
+  'Онлайн школа/Вебинар': <ImageLearn className={styles.bot_template_image} />,
   'Закрытый клуб по под...': (
-    <ImagePrivate className={stylesBotTemplate.bot_template_image} />
+    <ImagePrivate className={styles.bot_template_image} />
   ),
   'Агентство по недвижимости': (
-    <ImageReal className={stylesBotTemplate.bot_template_image} />
+    <ImageReal className={styles.bot_template_image} />
   ),
-  Развлечения: (
-    <ImageEntertain className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Салон красоты': (
-    <ImageBeauty className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Онлайн-покупки': (
-    <ImageCom className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Вопрос/ответ': (
-    <ImageQuest className={stylesBotTemplate.bot_template_image} />
-  ),
+  Развлечения: <ImageEntertain className={styles.bot_template_image} />,
+  'Салон красоты': <ImageBeauty className={styles.bot_template_image} />,
+  'Онлайн-покупки': <ImageCom className={styles.bot_template_image} />,
+  'Вопрос/ответ': <ImageQuest className={styles.bot_template_image} />,
 };
 
-const BotTemplatePopup: FC<IBotTemplate> = ({
-  title,
-  description,
-  id,
-  onClick,
-}): JSX.Element | null => {
+const BotTemplatePopup: FC<ITemplatePopup> = ({ template, onClick }) => {
   const data = [
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
@@ -86,27 +64,24 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
   };
 
   return (
-    <div className={stylesBotTemplate.bot_template}>
+    <div className={styles.bot_template}>
       <div>
-        {image[title]}
-        <div className={stylesBotTemplate.bot_template_description}>
+        {image[template.title]}
+        <div className={styles.bot_template_description}>
           <Typography
             tag="h2"
             fontFamily="secondary"
-            className={stylesBotTemplate.bot_template_title}
+            className={styles.bot_template_title}
           >
-            {title}
+            {template.title}
           </Typography>
-          <Typography tag="p">{description}</Typography>
-          <ul className={stylesBotTemplate.bot_template_list}>
+          <Typography tag="p">{template.description}</Typography>
+          <ul className={styles.bot_template_list}>
             {data.map((item, index) => (
-              <li
-                key={item + +index}
-                className={stylesBotTemplate.bot_template_item}
-              >
+              <li key={item + +index} className={styles.bot_template_item}>
                 <Typography
                   tag="span"
-                  className={stylesBotTemplate.bot_template_item_index}
+                  className={styles.bot_template_item_index}
                 >
                   {index + 1}
                   {'>'}
@@ -118,18 +93,19 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
         </div>
       </div>
 
-      <div className={stylesBotTemplate.bot_template_buttons}>
+      <div className={styles.bot_template_buttons}>
         <button
-          className={stylesBotTemplate.bot_template_cancel}
+          className={styles.bot_template_cancel}
           onClick={onClick}
           type="button"
         >
           Отмена
         </button>
 
-        <div className={stylesBotTemplate.bot_template_add_button}>
+        <div className={styles.bot_template_add_button}>
           <Button
-            onClick={() => addBot(id, title)}
+            // eslint-disable-next-line no-underscore-dangle
+            onClick={() => addBot(template._id, template.title)}
             size="large"
             variant="default"
             color="green"

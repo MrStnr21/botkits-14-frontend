@@ -34,7 +34,6 @@ const getBotsAction: AppThunk = (token: string) => {
     });
     getBotsApi(token)
       .then((res) => {
-        console.log(res);
         if (res) {
           dispatch({
             type: GETBOTS_SUCCESS,
