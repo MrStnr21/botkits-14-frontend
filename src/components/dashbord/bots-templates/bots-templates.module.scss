@@ -68,12 +68,6 @@
   }
 }
 
-.item {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(134px, 188px));
-  align-items: flex-start;
-}
-
 .accordion_wrapper {
   @include flex(row);
 }
@@ -109,25 +103,4 @@
   @media (max-width: $switching-width) {
     display: none;
   }
-}
-
-.modal_overlay {
-  @include size(100%, 100%);
-  @include position(fixed, 0, $left: 0);
-  display: flex;
-  z-index: 2;
-  cursor: $cursor;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.modal {
-  @include flex(row, center, center);
-  @include size(100%, 100%);
-  @include position(fixed, 0, $left: 0);
-  z-index: 100;
-}
-
-.content {
-  position: absolute;
-  z-index: 2;
 }
