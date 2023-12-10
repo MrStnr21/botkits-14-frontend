@@ -14,6 +14,10 @@ type TProtectedRoute = {
   notAuth?: boolean;
 };
 
+/**
+ * Обёртка для роутов. Проверяет наличие токена в localStorage
+ * @param {boolean} notAuth нужна ли аутентификация для посещения страницы
+ */
 const ProtectedRoute: FC<TProtectedRoute> = ({
   children,
   notAuth = false,

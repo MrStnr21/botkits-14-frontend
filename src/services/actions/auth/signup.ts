@@ -31,7 +31,15 @@ export type TSignupActions =
   | ISignupErrorAction
   | ILogoutAction;
 
-// экшн регистрации
+/**
+ * экшн регистрации
+ * @param userInfo объект формата `{
+ * password: string;
+ * email: string;
+ * phone: string;
+ * username: string;
+ * }`
+ */
 const signupAction: AppThunk = (userInfo: IUserSignupState) => {
   return (dispatch: AppDispatch) => {
     dispatch({

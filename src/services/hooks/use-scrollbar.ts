@@ -26,6 +26,11 @@ const config: Options = {
   },
 };
 
+/**
+ * хук для кастомизации sidebar
+ * @param root `ref` элемента
+ * @param hasScroll  нужно ли отображать sidebar
+ */
 const useScrollbar = (
   root: React.RefObject<HTMLDivElement>,
   hasScroll: boolean

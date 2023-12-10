@@ -6,9 +6,16 @@ import MenuItem from '../../menu-item/menu-item';
 import type { Option } from '../../../utils/types';
 
 export interface IMenu {
+  /**
+   * Набор полей меню, массив объектов формата `{label: string; value: string; icon?: string;}`
+   */
   options: Option[];
+  /**
+   * callback при клике на элемент меню
+   */
   onItemClick: (option: Option) => void;
-  /** Чтобы перезаписать свойства Menu, в scss файле родителя повысьте селективность,
+  /**
+   * Чтобы перезаписать свойства Menu, в scss файле родителя повысьте селективность,
    * например: ```div.dropdown { padding: 10px 0;}``` */
   layoutClassName?: string;
   /** Чтобы перезаписать свойства MenuItem, в scss файле родителя повысьте селективность,

@@ -26,7 +26,10 @@ export type TGetBotsActions =
   | IGetBotsSuccessAction
   | IGetBotsErrorAction;
 
-// экшн получения ботов
+/**
+ * экшн получения ботов
+ * @param token access token
+ */
 const getBotsAction: AppThunk = (token: string) => {
   return (dispatch: AppDispatch) => {
     dispatch({

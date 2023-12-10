@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 
+/**
+ * кастомный худ для добавления drag-поведения
+ * @param onDrop React.DragEventHandler<Element>
+ * @returns
+ */
 const useDrag = (onDrop: React.DragEventHandler<Element>) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
