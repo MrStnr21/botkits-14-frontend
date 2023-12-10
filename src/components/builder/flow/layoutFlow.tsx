@@ -65,7 +65,9 @@ const LayoutFlow: FC = () => {
   useEffect(() => {
     const token = getAccessToken() || '';
     const id = searchParams.get('id');
-    const path = getUrlPath(searchParams.get('type'));
+    const path = searchParams.get('type')
+      ? getUrlPath[searchParams.get('type')!]
+      : '';
 
     if (!id || !path) {
       // return;
@@ -114,7 +116,9 @@ const LayoutFlow: FC = () => {
   const saveBot = () => {
     const token = getAccessToken() || '';
     const id = searchParams.get('id');
-    const path = getUrlPath(searchParams.get('type'));
+    const path = searchParams.get('type')
+      ? getUrlPath[searchParams.get('type')!]
+      : '';
     if (!id || !path) {
       // eslint-disable-next-line no-console
       console.log('нету');

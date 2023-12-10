@@ -99,19 +99,12 @@ export const filterNodes = (nodes: Node[]) => {
   });
 };
 
-export const getUrlPath = (type: string | null) => {
-  switch (type) {
-    case 'custom': {
-      return 'bots';
-    }
-    case 'template': {
-      return 'bots/template';
-    }
-    default: {
-      return '';
-    }
-  }
-};
+export const getUrlPath: {
+  [key: string]: string;
+} = {
+  custom: 'bots',
+  template: 'bots/template',
+  };
 
 export const setFlowData = ({
   selectors,
