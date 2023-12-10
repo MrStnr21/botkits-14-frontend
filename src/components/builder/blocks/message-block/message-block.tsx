@@ -20,7 +20,7 @@ import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
 import { saveVariable, setFlowData } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
-import { storOfVariables } from '../../utils/stor';
+import { storeOfVariables } from '../../utils/store';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
@@ -119,13 +119,13 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const setVariable = (finalValue: string) => {
     const idVariable = `${id}|||saveResultVariable`;
     if (finalValue === '') {
-      const variableIndex = storOfVariables.findIndex(
+      const variableIndex = storeOfVariables.findIndex(
         (item) => item.id === idVariable
       );
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      variableIndex !== -1 && storOfVariables.splice(variableIndex, 1);
+      variableIndex !== -1 && storeOfVariables.splice(variableIndex, 1);
     } else {
-      saveVariable(storOfVariables, finalValue, idVariable);
+      saveVariable(storeOfVariables, finalValue, idVariable);
     }
 
     return setNodes(

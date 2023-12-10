@@ -41,7 +41,7 @@ import {
   saveTrigger,
   // resetVar,
 } from '../utils';
-import { storOfVariables } from '../utils/stor';
+import { storeOfVariables } from '../utils/store';
 import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
 
@@ -83,7 +83,7 @@ const LayoutFlow: FC = () => {
         }
         if (data.features && data.features.variables) {
           data.features.variables.map((el: TVariable) =>
-            saveVariable(storOfVariables, el.name, el.id)
+            saveVariable(storeOfVariables, el.name, el.id)
           );
         }
         if (data.features && data.features.triggers) {
@@ -126,7 +126,7 @@ const LayoutFlow: FC = () => {
       features: {
         nodes: fetchingNodes,
         edges: fetchingEdges,
-        variables: storOfVariables,
+        variables: storeOfVariables,
         triggers,
       },
     };

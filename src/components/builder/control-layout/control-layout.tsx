@@ -6,7 +6,7 @@ import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
 import CustomHandle from '../flow/custom-handle/custom-handle';
 import { setFlowData } from '../utils';
-import { storOfVariables } from '../utils/stor';
+import { storeOfVariables } from '../utils/store';
 
 type TControlLayoutProps = {
   children?: ReactElement | ReactElement[];
@@ -45,14 +45,14 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
     setEdges(updatedEdges);
 
     const indexes: number[] = [];
-    storOfVariables.forEach((el, ind) => {
+    storeOfVariables.forEach((el, ind) => {
       if (el.id.split('|||')[0] === id) {
         indexes.push(ind);
       }
     });
 
     indexes.forEach((ind, i) => {
-      storOfVariables.splice(ind - i, 1);
+      storeOfVariables.splice(ind - i, 1);
     });
   };
 

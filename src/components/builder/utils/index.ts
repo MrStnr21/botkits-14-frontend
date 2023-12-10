@@ -3,6 +3,8 @@
 import { useReactFlow, useNodeId, Node } from 'reactflow';
 import { Option } from '../../../utils/types';
 import { TVariable, TTrigger } from '../../../services/types/builder';
+
+// svg-иконки для вставки в nameBot, в зависимости от платформы (соцсети) бота, выбранной пользователем
 import fb from '../../../images/icon/40x40/facebook/hover.svg';
 import tg from '../../../images/icon/40x40/telegram/hover.svg';
 import vb from '../../../images/icon/40x40/viber/hover.svg';
@@ -209,10 +211,10 @@ export const iconOfPlatform: {
   'Веб-сайт': ws,
 };
 
-export const resetVar = (elemetnts: any[]) => {
+export const resetVar = (elements: any[]) => {
   // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < elemetnts.length; i++) {
-    elemetnts.splice(0, 1);
+  for (let i = 0; i < elements.length; i++) {
+    elements.splice(0, 1);
   }
 };
 

@@ -12,7 +12,7 @@ import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
 import { saveVariable, setFlowData } from '../../utils';
-import { storOfVariables } from '../../utils/stor';
+import { storeOfVariables } from '../../utils/store';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
@@ -29,7 +29,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
       const idVariable = `${id}|||saveResultVariable-${
         data.variables.length + 1
       }`;
-      saveVariable(storOfVariables, '', idVariable);
+      saveVariable(storeOfVariables, '', idVariable);
 
       setNodes(
         nodes.map((item) => {
@@ -85,7 +85,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   };
 
   const setVariable = (currentTarget: EventTarget & HTMLInputElement) => {
-    saveVariable(storOfVariables, currentTarget.value, currentTarget.id);
+    saveVariable(storeOfVariables, currentTarget.value, currentTarget.id);
     return setNodes(
       nodes.map((item) => {
         if (item.id === id) {
