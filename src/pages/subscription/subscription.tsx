@@ -5,7 +5,7 @@ import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
 import icon from '../../images/icon/20x20/chevron/down.svg';
-import TableComponent from '../../components/table-component/table-component';
+import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
@@ -145,7 +145,7 @@ const Subscription: FC = (): JSX.Element => {
               />
             </div>
           </div>
-          <TableComponent
+          <EnhancedTable
             cellStyle={cellStyle}
             rowStyle={rowStyle}
             columns={columns}

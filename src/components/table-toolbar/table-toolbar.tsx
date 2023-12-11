@@ -4,28 +4,28 @@ import style from './table-toolbar.module.scss';
 import DropdownSelectorButton from '../../ui/buttons/dropdown-selector/dropdown-selector';
 
 interface IProps {
-  needFilter: boolean;
+  filters?: boolean;
 }
 
-const TableToolbar: FC<IProps> = ({ needFilter }) => {
+const TableToolbar: FC<IProps> = ({ filters = false }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <div className={style.toolbar}>
-      <div className={style.toolbar__leftSide}>
-        {needFilter && (
+      {filters && (
+        <div className={style.toolbar__leftSide}>
           <DropdownSelectorButton
             filterIcon
             text="Фильтры"
             onClick={() => setOpen(!open)}
           />
-        )}
-        <DropdownSelectorButton
-          text="Сортировать по"
-          onClick={() => setOpen(!open)}
-          chevronIcon
-        />
-      </div>
+          <DropdownSelectorButton
+            text="Сортировать по"
+            onClick={() => setOpen(!open)}
+            chevronIcon
+          />
+        </div>
+      )}
       <div>
         <DropdownSelectorButton
           text="Выгрузить"

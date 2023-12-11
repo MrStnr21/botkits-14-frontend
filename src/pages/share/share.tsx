@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 
 import stylesShare from './share.module.scss';
-import TableComponent from '../../components/table-component/table-component';
+import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import {
   shareRows,
   shareCols,
@@ -68,10 +68,11 @@ const Share: FC = (): JSX.Element => {
           </Button>
         </div>
       </div>
-      <TableComponent
+      <EnhancedTable
         pagination
         check
         toolbar
+        toolbarFilters
         dropdown
         columns={shareCols}
         headComponent={ppHeadCell}
@@ -87,7 +88,7 @@ const Share: FC = (): JSX.Element => {
           <Typography tag="h2">Созданные промокоды</Typography>
         </div>
         <div className={stylesShare.promocodeTable}>
-          <TableComponent
+          <EnhancedTable
             check
             header
             dropdown
@@ -108,7 +109,7 @@ const Share: FC = (): JSX.Element => {
         <div>
           <Typography tag="h2">Тарифы</Typography>
         </div>
-        <TableComponent
+        <EnhancedTable
           check
           // dropdown
           // minTableWidth="1410px"

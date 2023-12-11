@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useEffect, useState } from 'react';
 import styles from './switcher.module.scss';
 
@@ -6,20 +7,12 @@ interface IProps {
 }
 
 const Switcher: FC<IProps> = ({ status }) => {
-  const [chosen, setChosen] = useState(false);
+  const [chosen, setChosen] = useState(status);
 
   const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.stopPropagation();
     setChosen(!chosen);
   };
-
-  useEffect(() => {
-    if (status === true) {
-      setChosen(true);
-    } else {
-      setChosen(false);
-    }
-  }, []);
 
   return (
     <div className={styles.switcher} onClick={handleClick}>

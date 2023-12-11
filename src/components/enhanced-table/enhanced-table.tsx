@@ -22,7 +22,7 @@ import {
   tableContainerStyles,
 } from './tableStyles';
 import CustomPagination from './custom-pagination/custom-pagination';
-import styles from './table-component.module.scss';
+import styles from './enhanced-table.module.scss';
 import TableMenuButton from '../table-menu-button/table-menu-button';
 
 type Columns = {
@@ -54,9 +54,10 @@ type Props = {
   menuOptions?: { label: string; value: string }[];
   headerOptions?: { label: string; value: string }[];
   tableHeaderTitle?: string;
+  toolbarFilters?: boolean;
 };
 
-const TableComponent: FC<Props> = ({
+const EnhancedTable: FC<Props> = ({
   columns,
   tableData,
   pagination,
@@ -70,6 +71,7 @@ const TableComponent: FC<Props> = ({
   menuOptions,
   headerOptions,
   tableHeaderTitle,
+  toolbarFilters,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -133,7 +135,7 @@ const TableComponent: FC<Props> = ({
 
   return (
     <Box sx={boxStyle}>
-      {toolbar && <TableToolbar needFilter />}
+      {toolbar && <TableToolbar filters={toolbarFilters} />}
       <Paper elevation={shadow} sx={paperStyles}>
         {header && (
           <EnhancedTableHeader
@@ -241,4 +243,4 @@ const TableComponent: FC<Props> = ({
   );
 };
 
-export default TableComponent;
+export default EnhancedTable;

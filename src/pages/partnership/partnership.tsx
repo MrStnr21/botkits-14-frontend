@@ -8,7 +8,7 @@ import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
 import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
-import TableComponent from '../../components/table-component/table-component';
+import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import Typography from '../../ui/typography/typography';
 import {
   paymentRows,
@@ -112,7 +112,7 @@ const Partnership: FC = (): JSX.Element => {
                   />
                 </button>
               )} */}
-            <TableComponent
+            <EnhancedTable
               columns={refCols}
               headComponent={ppHeadCell}
               tableData={refRows}
@@ -165,7 +165,7 @@ const Partnership: FC = (): JSX.Element => {
               </button>
             </div>
             {isPaymentsTableVisible && (
-              <TableComponent
+              <EnhancedTable
                 columns={paymentCols}
                 headComponent={ppHeadCell}
                 tableData={paymentRows}
