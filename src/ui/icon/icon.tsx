@@ -1,4 +1,4 @@
-import { FC, useEffect, useId, useState } from 'react';
+import { FC, useEffect, useId, useRef, useState } from 'react';
 import IconMapping, { IconName } from './icon-mapping';
 
 export interface IIcon {
@@ -17,6 +17,9 @@ export interface IIcon {
 const Icon: FC<IIcon> = ({ icon, size, color, extraClass }) => {
   const filterId = useId();
   const [iconSrc, setIconSrc] = useState<string | null>(null);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [iconColor, setIconColor] = useState<string | undefined>(color);
+  const iconRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
     const fetchIcon = async () => {
@@ -32,17 +35,32 @@ const Icon: FC<IIcon> = ({ icon, size, color, extraClass }) => {
     fetchIcon();
   }, [icon]);
 
-  // Если не задан цвет - используется оригинальный цвет иконки
-  const filter = color ? (
-    <filter id={filterId}>
-      <feFlood floodColor={color} />
-      <feComposite in2="SourceAlpha" operator="in" />
-    </filter>
-  ) : null;
+  const applyHoverColor = () => {
+    if (iconRef.current && isHovered) {
+      const hoverColor = getComputedStyle(iconRef.current).getPropertyValue(
+        'color'
+      );
+      setIconColor(hoverColor);
+    } else setIconColor(color);
+  };
+
+  useEffect(applyHoverColor, [isHovered]);
 
   return (
-    <svg width={size} height={size} className={extraClass}>
-      {filter}
+    <svg
+      width={size}
+      height={size}
+      className={`${extraClass} ${isHovered ? 'hovered' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      ref={iconRef}
+    >
+      {iconColor && (
+        <filter id={filterId}>
+          <feFlood in="SourceGraphic" floodColor={iconColor} />
+          <feComposite in2="SourceAlpha" operator="in" />
+        </filter>
+      )}
       {iconSrc && (
         <image
           href={iconSrc}
