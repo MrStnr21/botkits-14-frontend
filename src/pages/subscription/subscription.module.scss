@@ -83,7 +83,7 @@
 .payment {
   @include flex(column);
   width: 100%;
-  padding: 32px 0 0 0;
+  // padding: 32px 0 0 0;
   box-sizing: border-box;
   background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;

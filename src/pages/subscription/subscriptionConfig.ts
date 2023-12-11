@@ -192,3 +192,9 @@ export const tableData = [
     note: 'Возврат средств',
   },
 ];
+
+export const subscriptionDropdownValues = [
+  { label: 'Все', value: 'all' },
+  { label: 'Поступления', value: 'income' },
+  { label: 'Списания', value: 'withdrawals' },
+];
