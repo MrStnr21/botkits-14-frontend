@@ -20,7 +20,6 @@ const SelectCell: FC = () => {
         options={inpValues}
         currentOption={selectedValue}
         handleSelect={(value) => setSelectedValue(value)}
-        placeholder="Список рассылки"
       />
     </div>
   );

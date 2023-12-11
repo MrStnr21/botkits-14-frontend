@@ -6,14 +6,10 @@ import style from './table-menu-button.module.scss';
 
 interface IProps {
   onRemove?: () => void;
+  options?: { label: string; value: string }[];
 }
 
-const TableMenuButton: FC<IProps> = ({ onRemove }) => {
-  const mockData = [
-    { label: 'Удалить', value: 'del' },
-    { label: 'Дополнительно', value: 'adv' },
-  ];
-
+const TableMenuButton: FC<IProps> = ({ onRemove, options = [] }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [isOpen, setOpen] = useState(false);
 
@@ -37,7 +33,7 @@ const TableMenuButton: FC<IProps> = ({ onRemove }) => {
       {isOpen && (
         <Menu
           ref={menuRef}
-          options={mockData}
+          options={options}
           onItemClick={onItemClick}
           layoutClassName={style.dropdown}
         />

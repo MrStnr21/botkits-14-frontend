@@ -18,13 +18,20 @@ import {
   promoRows,
 } from '../../utils/tablesData/promocodesTable';
 import { tariffsCols, tariffsRows } from '../../utils/tablesData/tariffTable';
+import {
+  shareTableModalButtons,
+  promoTableModalButtons,
+  promoDropdownValues,
+  promoHeaderTitle,
+} from './shareConfig';
 
 const Share: FC = (): JSX.Element => {
+  // логика для фильтрации отображаемых строк в таблице с промокодами,
+  // при создании страницы promocodes вынести в компонент страницы
   const [filterValue, setFilterValue] = useState<string>('all');
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
   };
-
   const renderFilteredRows = () => {
     switch (filterValue) {
       case 'all':
@@ -37,6 +44,7 @@ const Share: FC = (): JSX.Element => {
         return promoRows;
     }
   };
+
   return (
     <div className={stylesShare.share}>
       <div className={stylesShare.share__header}>
@@ -71,8 +79,9 @@ const Share: FC = (): JSX.Element => {
         rowStyle={rowStyleRef}
         cellStyle={cellStyle}
         shadow={1}
+        menuOptions={shareTableModalButtons}
       />
-      {/* Удалить перед мёрджем весь код ниже */}
+      {/* Примеры использования таблиц в разных вариациях */}
       <div>
         <div>
           <Typography tag="h2">Созданные промокоды</Typography>
@@ -89,6 +98,9 @@ const Share: FC = (): JSX.Element => {
             cellStyle={promoCellStyle}
             shadow={0}
             onFilterChange={handleFilterChange}
+            menuOptions={promoTableModalButtons}
+            tableHeaderTitle={promoHeaderTitle}
+            headerOptions={promoDropdownValues}
           />
         </div>
       </div>

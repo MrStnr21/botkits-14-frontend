@@ -51,6 +51,9 @@ type Props = {
   dropdown?: boolean;
   onFilterChange?: (value: string) => void;
   minTableWidth?: string;
+  menuOptions?: { label: string; value: string }[];
+  headerOptions?: { label: string; value: string }[];
+  tableHeaderTitle?: string;
 };
 
 const TableComponent: FC<Props> = ({
@@ -64,6 +67,9 @@ const TableComponent: FC<Props> = ({
   dropdown,
   onFilterChange,
   minTableWidth,
+  menuOptions,
+  headerOptions,
+  tableHeaderTitle,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -131,8 +137,9 @@ const TableComponent: FC<Props> = ({
       <Paper elevation={shadow} sx={paperStyles}>
         {header && (
           <EnhancedTableHeader
-            title="Созданные промокоды"
+            title={tableHeaderTitle}
             onFilterChange={onFilterChange}
+            options={headerOptions}
           />
         )}
         <TableContainer sx={tableContainerStyles}>
@@ -198,7 +205,10 @@ const TableComponent: FC<Props> = ({
                     </TableCell>
                   ))}
                   {dropdown && (
-                    <TableMenuButton onRemove={() => handleRemoveRow(index)} />
+                    <TableMenuButton
+                      onRemove={() => handleRemoveRow(index)}
+                      options={menuOptions}
+                    />
                   )}
                 </TableRow>
               ))}

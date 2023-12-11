@@ -7,22 +7,20 @@ import Menu from '../../ui/menus/menu/menu';
 import { Option } from '../../utils/types';
 
 interface IProps {
-  title: string;
+  title?: string;
   onFilterChange?: (value: string) => void;
+  options?: { label: string; value: string }[];
 }
 
-const mockData = [
-  { label: 'Все', value: 'all' },
-  { label: 'Активные', value: 'active' },
-  { label: 'Неактивные', value: 'inactive' },
-];
-
-const EnhancedTableHeader: FC<IProps> = ({ title, onFilterChange }) => {
+const EnhancedTableHeader: FC<IProps> = ({
+  title,
+  onFilterChange,
+  options = [],
+}) => {
   const [isOpen, setOpen] = useState<boolean>(false);
-  const [selectedValue, setSelectedValue] = useState<Option>({
-    label: 'Все',
-    value: 'all',
-  });
+  const [selectedValue, setSelectedValue] = useState<Option>(
+    options[0] || { label: 'Все', value: 'all' }
+  );
   const menuRef = useRef<HTMLDivElement>(null);
 
   const onItemClick = (option: Option) => {
@@ -49,7 +47,7 @@ const EnhancedTableHeader: FC<IProps> = ({ title, onFilterChange }) => {
       {isOpen && (
         <Menu
           ref={menuRef}
-          options={mockData}
+          options={options}
           onItemClick={onItemClick}
           layoutClassName={styles.dropdown}
         />

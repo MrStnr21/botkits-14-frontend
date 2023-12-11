@@ -5,6 +5,7 @@ import TableInput from '../../../ui/inputs/table-input/table-input';
 interface IProps {
   value: string;
 }
+
 const TableInputCell: FC<IProps> = ({ value }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inpValue, setInpValue] = useState(value);
