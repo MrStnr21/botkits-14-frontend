@@ -81,7 +81,7 @@
 }
 
 .payment {
-  @include flex(column, $gap: 32px);
+  @include flex(column);
   width: 100%;
   padding: 32px 0 0 0;
   box-sizing: border-box;
