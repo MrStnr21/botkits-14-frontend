@@ -21,7 +21,7 @@ interface IVideoElement {
   /**
    * prewiew src
    */
-  prewiew: string; // заставка
+  prewiew: string;
   /**
    * размер элемента-превью
    * @option s: `172px/96px`
