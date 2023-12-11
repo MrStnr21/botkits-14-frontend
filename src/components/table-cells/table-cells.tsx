@@ -3,7 +3,7 @@ import cn from 'classnames';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
-import Switcher from '../../ui/checkboxes/switcher/switcher';
+import Switcher from './switcher/switcher';
 import TableInputCell from './table-input-cell/table-input-cell';
 import SelectCell from './select-cell/select-cell';
 
