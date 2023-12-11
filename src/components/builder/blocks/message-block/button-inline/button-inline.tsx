@@ -92,6 +92,9 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
             };
           }
         }
+        if (item.id === node?.parentNode) {
+          return { ...item, data: { ...item.data } };
+        }
         return item;
       }),
     ]);
@@ -142,6 +145,9 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
                   : closedButtonSizeMobile),
             },
           };
+        }
+        if (item.id === node?.parentNode) {
+          return { ...item, data: { ...item.data } };
         }
         return item;
       })

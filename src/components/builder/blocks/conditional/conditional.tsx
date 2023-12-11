@@ -57,7 +57,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
                 {
                   id: `easy-${uuidv4()}`,
                   type: 'easy',
-                  variable: { key: '' },
+                  variable: { id: '', name: '', value: '' },
                   sign: '',
                   condition: '',
                   targetBlock: '',

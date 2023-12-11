@@ -44,7 +44,9 @@ export type TReactFlowEdge = {
 };
 
 export type TVariable = {
-  [key: string]: any; // Пока не понятная структура переменных
+  id: string;
+  name: string;
+  value: any; // Пока не понятная структура переменных
 };
 
 export type TTrigger = {
@@ -127,7 +129,7 @@ export type TApiBlock = {
     name: string;
     variable: string;
   }[];
-  variable?: TVariable;
+  variables: TVariable[];
 };
 
 export type TButtonBlock = {
@@ -146,7 +148,7 @@ export type TMessageBlock = {
   data: TMessageBlockData[];
   saveAnswer: {
     show: boolean;
-    value: string;
+    value: TVariable;
   };
   showTime: {
     show: boolean;

@@ -160,6 +160,7 @@ export const defaultBlocks = {
     reqType: '',
     headers: [],
     params: [],
+    variables: [],
   },
   conditional: {
     name: 'Conditional',

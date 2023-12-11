@@ -21,3 +21,19 @@
     gap: 2px;
   }
 }
+
+.field_blocks {
+  @include flex(column, $gap: 12px);
+
+  @media screen and (max-width: $switching-width) {
+    gap: 8px;
+  }
+}
+
+.fields {
+  @include flex(column, $gap: 8px);
+
+  @media screen and (max-width: $switching-width) {
+    gap: 4px;
+  }
+}
