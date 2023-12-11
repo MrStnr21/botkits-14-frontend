@@ -1,29 +1,26 @@
 import { FC, useState } from 'react';
-
-import stylesShare from './share.module.scss';
-import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import {
+  shareTableModalButtons,
   shareRows,
   shareCols,
   cellStyle,
   rowStyleRef,
-} from '../../utils/tablesData/shareTable';
+} from './shareConfig';
+import stylesShare from './share.module.scss';
+import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import { ppHeadCell } from '../../components/table-cells/table-cells';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import {
   promoCellStyle,
   promoColumns,
-  promoRowStyleRef,
-  promoRows,
-} from '../../utils/tablesData/promocodesTable';
-import { tariffsCols, tariffsRows } from '../../utils/tablesData/tariffTable';
-import {
-  shareTableModalButtons,
-  promoTableModalButtons,
   promoDropdownValues,
   promoHeaderTitle,
-} from './shareConfig';
+  promoRowStyleRef,
+  promoRows,
+  promoTableModalButtons,
+} from './promocodesConfig';
+import { tariffsCols, tariffsRows } from './tariffsConfig';
 
 const Share: FC = (): JSX.Element => {
   // логика для фильтрации отображаемых строк в таблице с промокодами,

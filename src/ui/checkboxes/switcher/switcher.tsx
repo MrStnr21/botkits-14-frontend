@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './switcher.module.scss';
 
 interface IProps {

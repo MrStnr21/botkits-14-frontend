@@ -18,7 +18,7 @@ import {
   cellStyle,
   rowStyleRef,
   rowStylePayment,
-} from '../../utils/tablesData/partnershipTable';
+} from './partnershipConfig';
 import { ppHeadCell } from '../../components/table-cells/table-cells';
 import { NUMBER_PARTNERSHIP } from '../../utils/config';
 

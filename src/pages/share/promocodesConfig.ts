@@ -4,7 +4,17 @@ import {
   statusPromoCell,
 } from '../../components/table-cells/table-cells';
 
-export const headStyle = {
+export const promoTableModalButtons = [{ label: 'Удалить', value: 'del' }];
+
+export const promoDropdownValues = [
+  { label: 'Все', value: 'all' },
+  { label: 'Активные', value: 'active' },
+  { label: 'Неактивные', value: 'inactive' },
+];
+
+export const promoHeaderTitle = 'Созданные промокоды';
+
+export const promoHeadStyle = {
   border: 'none',
   backgroundColor: '#ECEFFF',
   padding: '0',
@@ -61,25 +71,25 @@ export const promoColumns = [
   {
     key: 'date',
     label: 'Дата',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: baseCell,
   },
   {
     key: 'promo',
     label: 'Промокод',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: inputCell,
   },
   {
     key: 'price',
     label: 'Стоимость',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: inputCell,
   },
   {
     key: 'status',
     label: 'Статус',
-    colStyle: { ...headStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: statusPromoCell,
   },
 ];
