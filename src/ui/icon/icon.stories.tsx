@@ -14,30 +14,50 @@ const meta: Meta<IIcon> = {
         type: 'select',
       },
     },
-    extraClass: {
-      type: 'string',
-      description: 'Стилизация иконки: размеры, цвет, анимация и т.д.',
-      control: false,
-    },
-    notColored: {
+    isColored: {
       type: 'boolean',
       description:
-        'Можно ли управлять цветом иконки через css. Например, для многоцветных иконок',
+        'Можно ли управлять цветом иконки через css. False для многоцветных иконок',
       control: {
         type: 'boolean',
         default: false,
       },
+    },
+    extraClass: {
+      type: 'string',
+      description: 'Стилизация иконки: размеры, цвет, анимация и т.д.',
+      control: false,
     },
   },
   parameters: {
     layout: 'centered',
     docs: {
       description: {
-        component: `Компонент для отображения монохромных иконок.
-          через пропс style позволяет управлять размером, цветом, добавлять дополнительную стилизацию.
-          Заданный цвет применяется к иконке с помощью SVG-фильтра.
-          В случае многоцветной иконки необходимо указать notColored, чтобы фильтр не применялся.
-          Компонент написан с учётом того, что иконки не хранятся по внешнему URL-адресу, а включены непосредственно в проект и загружаются во время сборки.
+        component: `Компонент для отображения иконок.
+
+Заданный цвет применяется к иконке с помощью SVG-фильтра.
+Компонент написан с учётом того, что иконки не хранятся по внешнему URL-адресу, а включены непосредственно в проект и загружаются во время сборки.
+
+- icon - строка для идентификации иконки. Полный список - icon-mapping.ts
+- isColored - boolean, можно ли управлять цветом иконки из css. Позволяет использовать в компоненте многоцветные иконки.
+- extraClass - устанавливает цвет и размер иконки, добавляет дополнительную стилизацию, например, анимацию.
+
+          Пример применения для монохромных иконок:
+
+          <Icon icon="chevron" isColored extraClass={styles.icon}>
+          .icon {
+            width: 24px;
+            height: 24px;
+            color: $secondary-cultured-press;
+          }
+
+          Пример применения для многоцветных иконок:
+
+          <Icon icon="chevron" isColored={false} extraClass={styles.icon}>
+          .icon {
+            width: 24px;
+            height: 24px;
+          }
           `,
       },
     },
@@ -62,7 +82,7 @@ const Template: StoryFn<IIcon> = (args) => (
 export const IconComponent = {
   args: {
     icon: 'syncDone',
-    notColored: false,
+    isColored: false,
   },
   render: Template,
 };
