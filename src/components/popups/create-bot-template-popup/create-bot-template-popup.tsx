@@ -6,6 +6,7 @@ import InputTemplate from '../../../ui/inputs/input-template/input-template';
 import Avatar from '../../../ui/avatar/avatar';
 import imageAvatar from '../../../images/icon/side bar/logo.svg';
 import EditButton from '../../../ui/buttons/button-edit/button-edit';
+import { createUrlBuilder } from '../../../utils/utils';
 
 // import { BUTTON_NAME } from '../../../utils/constants';
 
@@ -49,14 +50,13 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
       description: aboutBot,
       icon: imageEdit,
     };
-    console.log(dataBotTemplates);
     const path = routesUrl.botBuilder;
 
     try {
       const template = await addTemplatesBotsApi(dataBotTemplates, token);
       // eslint-disable-next-line no-underscore-dangle
       const id = template._id;
-      history(`/${path}?id=${id}&type=template`);
+      history(createUrlBuilder(path, id));
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);

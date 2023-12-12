@@ -16,6 +16,7 @@ import { TTemplateBotRes } from '../../services/types/bot';
 import ModalPopup from '../popups/modal-popup/modal-popup';
 // import Typography from '../../ui/typography/typography';
 import EditImagePopup from '../popups/edit-image-popup/edit-image-popup';
+import { createUrlBuilder } from '../../utils/utils';
 
 import routesUrl from '../../utils/routesData';
 
@@ -100,7 +101,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     toggleMenu(false);
     if (e === 'setupBuilder') {
       const path = routesUrl.botBuilder;
-      navigate(`/${path}?id=${id}&type=template`);
+      navigate(createUrlBuilder(path, id));
     }
     if (e === 'delete') {
       deleteCard(id);
