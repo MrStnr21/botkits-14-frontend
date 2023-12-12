@@ -6,13 +6,13 @@ export interface IIcon {
    * то её имя будет `plus` либо `screenNavigationPlus`
    */
   icon: IconName;
-  /** Размер в пикселях */
-  size: number;
-  /** Дополнительная стилизация иконки */
+  /** Cтилизация иконки: цвет, размер, дополнительные анимации */
   extraClass?: string;
+  /** Можно ли управлять цветом иконки через css. Например, для многоцветных иконок */
+  notColored?: boolean;
 }
 
-const Icon: FC<IIcon> = ({ icon, size, extraClass }) => {
+const Icon: FC<IIcon> = ({ icon, extraClass, notColored = false }) => {
   const filterId = useId();
   const [iconSrc, setIconSrc] = useState<string | null>(null);
 
@@ -31,11 +31,13 @@ const Icon: FC<IIcon> = ({ icon, size, extraClass }) => {
   }, [icon]);
 
   return (
-    <svg width={size} height={size} className={extraClass}>
-      <filter id={filterId}>
-        <feFlood in="SourceGraphic" floodColor="currentColor" />
-        <feComposite in2="SourceAlpha" operator="in" />
-      </filter>
+    <svg className={extraClass} width="100%" height="100%">
+      {!notColored && (
+        <filter id={filterId}>
+          <feFlood in="SourceGraphic" floodColor="currentColor" />
+          <feComposite in2="SourceAlpha" operator="in" />
+        </filter>
+      )}
       {iconSrc && (
         <image
           href={iconSrc}

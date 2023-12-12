@@ -6,17 +6,9 @@ const meta: Meta<IIcon> = {
   component: Icon,
   title: 'UI/Icon',
   argTypes: {
-    size: {
-      type: 'number',
-      description: 'Размер иконки (высота и ширина) в пикселях',
-      control: {
-        type: 'number',
-      },
-    },
     icon: {
       type: 'string',
-      description:
-        'Имя иконки. Все доступные имена хранятся в IconMapping. На текущий момент отрендерятся не все иконки, т.к. не для всех проверены источники',
+      description: 'Имя иконки. Все доступные имена хранятся в IconMapping.',
       options: Object.keys(IconMapping),
       control: {
         type: 'select',
@@ -24,7 +16,17 @@ const meta: Meta<IIcon> = {
     },
     extraClass: {
       type: 'string',
-      description: 'Дополнительная стилизация иконки, например - для анимации',
+      description: 'Стилизация иконки: размеры, цвет, анимация и т.д.',
+      control: false,
+    },
+    notColored: {
+      type: 'boolean',
+      description:
+        'Можно ли управлять цветом иконки через css. Например, для многоцветных иконок',
+      control: {
+        type: 'boolean',
+        default: false,
+      },
     },
   },
   parameters: {
@@ -32,9 +34,9 @@ const meta: Meta<IIcon> = {
     docs: {
       description: {
         component: `Компонент для отображения монохромных иконок.
-          Позволяет управлять размером, добавлять дополнительную стилизацию.
-          Цвет задаётся в css с помощью свойства '--flood-color'.
-          Заданный цвет применяется к иконке с помощью SVG-фильтра. В случае, если цвет не задан, иконка сохраняет свой оригинальный цвет.
+          через пропс style позволяет управлять размером, цветом, добавлять дополнительную стилизацию.
+          Заданный цвет применяется к иконке с помощью SVG-фильтра.
+          В случае многоцветной иконки необходимо указать notColored, чтобы фильтр не применялся.
           Компонент написан с учётом того, что иконки не хранятся по внешнему URL-адресу, а включены непосредственно в проект и загружаются во время сборки.
           `,
       },
@@ -45,12 +47,22 @@ const meta: Meta<IIcon> = {
 
 export default meta;
 
-const Template: StoryFn<IIcon> = (args) => <Icon {...args} />;
+const styleIcon = {
+  width: '24px',
+  height: '24px',
+  color: 'black',
+};
+
+const Template: StoryFn<IIcon> = (args) => (
+  <div style={styleIcon}>
+    <Icon {...args} />
+  </div>
+);
 
 export const IconComponent = {
   args: {
     icon: 'syncDone',
-    size: 24,
+    notColored: false,
   },
   render: Template,
 };
