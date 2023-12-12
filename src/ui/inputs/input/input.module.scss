@@ -73,6 +73,7 @@
   margin: 0;
   outline: 0;
 
+  // это ограничение уменьшает инпут в тригер блоке неправильно
   @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
   }
@@ -133,6 +134,14 @@
 
   @media screen and (max-width: $switching-width) {
     padding: 6.5px 5.82px;
+  }
+}
+
+.inputBuilderDefault_unadaptive {
+  @include input-builder(10px 8px, $secondary-cultured-hover, $normal, $grey-2, $grey-2);
+
+  @media screen and (max-width: $switching-width) {
+    font-size: 13px;
   }
 }
 
