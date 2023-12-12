@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 
 /**
  * хук для добавления отслеживания состояния формы
- * @param inputValues объект с полями формата: `name: { value: string, isVaid: boolean }`, где name это атрибут tag инпута
+ * @param inputValues объект с полями формата: `name: { value: string, isValid: boolean }`, где name это атрибут tag инпута
  */
 function useForm(inputValues: any) {
   const [values, setValues] = useState(inputValues);
