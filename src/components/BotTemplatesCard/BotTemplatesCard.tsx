@@ -57,9 +57,12 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
 
   const importImage = async () => {
     try {
-      const imageModule = await import(
-        `../../images/icon/template/${image}.svg`
-      );
+      let imageModule;
+      if (image?.includes('http')) {
+        imageModule = image;
+        return imageModule;
+      }
+      imageModule = await import(`../../images/icon/template/${image}.svg`);
       return imageModule.default;
     } catch (error) {
       return 'null';
