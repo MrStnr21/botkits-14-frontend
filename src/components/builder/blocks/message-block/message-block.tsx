@@ -370,9 +370,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         >
           <Input
             minLength={0}
-            placeholder={
-              !data.saveAnswer.value.name ? 'Введите переменную' : ''
-            }
+            placeholder="Введите переменную"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               setVariable(event.target.value)
             }
