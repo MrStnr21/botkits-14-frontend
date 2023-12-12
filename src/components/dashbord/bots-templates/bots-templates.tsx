@@ -12,15 +12,17 @@ import { getAccessToken } from '../../../auth/authService';
 import { getTemplatesBotsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 
-const Template: FC<{ name: string; description: string; fileName: string }> = ({
-  name,
-  description,
-  fileName,
-}): JSX.Element => {
+interface TBot {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const Template: FC<{ bot: TBot }> = ({ bot }): JSX.Element => {
   const importImage = async () => {
     try {
       const imageModule = await import(
-        `../../../images/icon/template/${fileName}.svg`
+        `../../../images/icon/template/${bot.icon}.svg`
       );
       return imageModule.default;
     } catch (error) {
@@ -35,18 +37,18 @@ const Template: FC<{ name: string; description: string; fileName: string }> = ({
     importImage().then((importedImage) => {
       setImage(importedImage);
     });
-  }, [fileName]);
+  }, [bot.icon]);
 
   return (
     <li className={stylesTemplates.item}>
       <ButtonAddSampleBot onClick={openModal} icon={image}>
-        {name}
+        {bot.title}
       </ButtonAddSampleBot>
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
           <BotTemplate
-            title={name}
-            description={description}
+            title={bot.title}
+            description={bot.description}
             onClick={closeModal}
           />
         </ModalPopup>
@@ -111,12 +113,11 @@ const Templates: FC = (): JSX.Element => {
         ref={ref}
       >
         {templatesBots !== null &&
-          templatesBots.map((templateBot, index) => (
+          templatesBots.map((templateBot) => (
             <Template
-              key={templateBot.title + +index}
-              name={templateBot.title}
-              description={templateBot.description}
-              fileName={templateBot.icon}
+              // eslint-disable-next-line no-underscore-dangle
+              key={templateBot._id}
+              bot={templateBot}
             />
           ))}
       </ul>

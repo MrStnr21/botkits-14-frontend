@@ -45,14 +45,17 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const dataBotTemplates = {
-      title: nameBot,
-      description: aboutBot,
-      icon: imageEdit,
-    };
-    const path = routesUrl.botBuilder;
-
     try {
+      const imageModule = await import(
+        `../../../images/icon/side bar/logo.svg`
+      );
+      const dataBotTemplates = {
+        title: nameBot,
+        description: aboutBot,
+        icon: imageEdit || imageModule.default,
+      };
+      const path = routesUrl.botBuilder;
+      console.log(dataBotTemplates);
       const template = await addTemplatesBotsApi(dataBotTemplates, token);
       // eslint-disable-next-line no-underscore-dangle
       const id = template._id;

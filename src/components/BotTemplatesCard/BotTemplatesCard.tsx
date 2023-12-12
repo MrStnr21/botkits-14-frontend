@@ -24,30 +24,20 @@ import routesUrl from '../../utils/routesData';
 
 interface IBotTemplatesCard {
   card: TTemplateBotRes;
-  id: string;
-  image?: string;
-  title?: string;
-  description?: string;
-  isToPublish: boolean;
   disabled?: boolean;
   deleteCard: (id: string) => void;
 }
 
 const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   card,
-  image,
-  id,
-  title,
-  description,
-  isToPublish,
   disabled,
   deleteCard,
 }) => {
-  const [crm, setCrm] = useState(isToPublish);
+  const [crm, setCrm] = useState(card.isToPublish!);
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>('');
-  const [nameBot, setNameBot] = useState<string>(title || '');
-  const [aboutBot, setAboutBot] = useState<string>(description || '');
+  const [nameBot, setNameBot] = useState<string>(card.title || '');
+  const [aboutBot, setAboutBot] = useState<string>(card.description || '');
   const [isOpen, setOpenPupup] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -59,11 +49,11 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const importImage = async () => {
     try {
       let imageModule;
-      if (image?.includes('http')) {
-        imageModule = image;
+      if (card.icon?.includes('http')) {
+        imageModule = card.icon;
         return imageModule;
       }
-      imageModule = await import(`../../images/icon/template/${image}.svg`);
+      imageModule = await import(`../../images/icon/template/${card.icon}.svg`);
       return imageModule.default;
     } catch (error) {
       return 'null';
@@ -74,7 +64,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     importImage().then((importedImage) => {
       setImageEdit(importedImage);
     });
-  }, [image]);
+  }, [card.icon]);
 
   useOutsideClickAndEscape(
     menuRef,
@@ -101,10 +91,12 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     toggleMenu(false);
     if (e === 'setupBuilder') {
       const path = routesUrl.botBuilder;
-      navigate(createUrlBuilder(path, id));
+      // eslint-disable-next-line no-underscore-dangle
+      navigate(createUrlBuilder(path, card._id));
     }
     if (e === 'delete') {
-      deleteCard(id);
+      // eslint-disable-next-line no-underscore-dangle
+      deleteCard(card._id);
     }
   };
 
@@ -114,7 +106,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   ];
 
   const updateInputs = () => {
-    console.log(card);
+    console.debug(card);
     const upCard = {
       // eslint-disable-next-line no-underscore-dangle
       _id: card._id,
