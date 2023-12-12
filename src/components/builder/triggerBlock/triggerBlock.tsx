@@ -25,25 +25,20 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
     }
   ) => {
     if (typeOfAction === 'add' && optional.trigger) {
-      const newTriggersData = [...triggersData, optional.trigger];
-      setTriggersData(newTriggersData);
-      triggers = newTriggersData;
+      triggers = [...triggersData, optional.trigger];
+      setTriggersData(triggers);
     } else if (typeOfAction === 'delete' && optional.id) {
-      const newTriggersData = triggersData.filter(
-        (item) => item.id !== optional.id
-      );
-      setTriggersData(newTriggersData);
-      triggers = newTriggersData;
+      triggers = triggersData.filter((item) => item.id !== optional.id);
+      setTriggersData(triggers);
     } else if (typeOfAction === 'update' && optional.trigger) {
-      const newTriggersData = triggersData.map((item) => {
+      triggers = triggersData.map((item) => {
         if (item.id === optional.trigger?.id) {
           // eslint-disable-next-line no-param-reassign
           item = optional.trigger!;
         }
         return item;
       });
-      setTriggersData(newTriggersData);
-      triggers = newTriggersData;
+      setTriggersData(triggers);
     }
   };
 

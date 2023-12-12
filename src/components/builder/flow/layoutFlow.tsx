@@ -75,7 +75,7 @@ const LayoutFlow: FC = () => {
       console.log('нету');
     }
 
-    getBuilderApi(token, 'bots', '65719526ea584e7aac68ecf5')
+    getBuilderApi(token, 'bots', '65787f7c535d28c64444e329')
       .then((data) => {
         if (data.features && data.features.nodes) {
           setNodes(data.features.nodes);
@@ -135,7 +135,7 @@ const LayoutFlow: FC = () => {
       },
     };
 
-    saveBuilderApi(builder, token, 'bots', '65719526ea584e7aac68ecf5').catch(
+    saveBuilderApi(builder, token, 'bots', '65787f7c535d28c64444e329').catch(
       (err) => {
         // eslint-disable-next-line no-console
         console.log(err);
