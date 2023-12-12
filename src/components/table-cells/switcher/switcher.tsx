@@ -1,16 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import styles from './switcher.module.scss';
 
 interface IProps {
   status: boolean;
+  id: string;
 }
 
-const Switcher: FC<IProps> = ({ status }) => {
+const Switcher: FC<IProps> = ({ status, id }) => {
   const [chosen, setChosen] = useState(status);
 
   const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.stopPropagation();
     setChosen(!chosen);
+    console.log(`Switcher ${id} clicked`);
   };
 
   return (

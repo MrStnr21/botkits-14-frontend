@@ -70,7 +70,9 @@ export const paymentStatusCell = (status: boolean) => (
 );
 // Промокоды, общий доступ, пользователи:
 
-export const checkBoxCell = (status: boolean) => <Switcher status={status} />;
+export const checkBoxCell = (status: boolean, id: string) => (
+  <Switcher status={status} id={id} />
+);
 
 export const inputCell = (value: string) => {
   return <TableInputCell value={value} />;

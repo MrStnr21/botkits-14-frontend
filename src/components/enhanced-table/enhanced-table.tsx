@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, ReactNode, useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -29,11 +30,11 @@ type Columns = {
   key: string;
   label: ReactNode;
   colStyle?: SxProps;
-  cellComponent?: (data: any) => ReactNode;
+  cellComponent?: (data: any, id: string) => ReactNode;
 };
 
 type TableData = {
-  [key: string]: ReactNode;
+  [key: string]: any;
 };
 
 type Props = {
@@ -89,6 +90,7 @@ const EnhancedTable: FC<Props> = ({
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
+
   // исп. для обновления строк в зависимости от фильтра в хидере
   useEffect(() => {
     setRows(tableData);
@@ -211,7 +213,7 @@ const EnhancedTable: FC<Props> = ({
                   {columns?.map(({ key, cellComponent }) => (
                     <TableCell key={uuidv4()} sx={props.cellStyle}>
                       {cellComponent ? (
-                        cellComponent(row[key])
+                        cellComponent(row[key], uuidv4())
                       ) : (
                         <Typography tag="p">{row[key]}</Typography>
                       )}
