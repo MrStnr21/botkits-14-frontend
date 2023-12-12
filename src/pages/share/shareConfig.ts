@@ -1,6 +1,6 @@
 import {
   baseCell,
-  checkBoxCell,
+  switcherCell,
 } from '../../components/table-cells/table-cells';
 
 export const shareHeadStyle = {
@@ -139,49 +139,49 @@ export const shareCols = [
     key: 'adm',
     label: 'Управление',
     colStyle: { ...shareHeadStyle, width: '10%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
   {
     key: 'shared',
     label: 'Общий доступ',
     colStyle: { ...shareHeadStyle, width: '10%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
   {
     key: 'mailing',
     label: 'Рассылка',
     colStyle: { ...shareHeadStyle, width: '10%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
   {
     key: 'hands',
     label: 'Ручное упр.',
     colStyle: { ...shareHeadStyle, width: '10%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
   {
     key: 'stats',
     label: 'Статистика',
     colStyle: { ...shareHeadStyle, width: '10%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
   {
     key: 'dialogs',
     label: 'Диалоги',
     colStyle: { ...shareHeadStyle, width: '10%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
   {
     key: 'crm',
     label: 'CRM',
     colStyle: { ...shareHeadStyle, width: '6%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
   {
     key: 'minilanding',
     label: 'Минилендинг',
     colStyle: { ...shareHeadStyle, width: '10%' },
-    cellComponent: checkBoxCell,
+    cellComponent: switcherCell,
   },
 ];
 
