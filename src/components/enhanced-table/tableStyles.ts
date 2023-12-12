@@ -12,7 +12,7 @@ export const paperStyles = {
 };
 
 export const tableContainerStyles = {
-  overflowX: 'scroll',
+  overflowX: 'auto',
   borderRadius: '10px',
 };
 
@@ -46,6 +46,14 @@ export const paginationStyles = {
     borderRadius: '5px',
   },
 };
+
+// export const defaultCellStyles = {
+//   maxWidth: '168px',
+//   textOverflow: 'ellipsis',
+//   whiteSpace: 'nowrap',
+//   overflow: 'hidden',
+//   padding: '0',
+// };
 
 export const headCheckBoxStyles = {
   root: {

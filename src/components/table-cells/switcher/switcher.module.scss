@@ -2,7 +2,7 @@
 @use '../../../stylesheets/variables' as *;
 
 .switcher {
-  @include flex($align-items: center, $gap: 22px);
+  @include flex(row, unset, center);
   z-index: 3;
 
   &__on {

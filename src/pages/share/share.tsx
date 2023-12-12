@@ -66,6 +66,8 @@ const Share: FC = (): JSX.Element => {
         </div>
       </div>
       <EnhancedTable
+        // при переполнении таблицы колонками задаём минимальную ширину таблицы и получаем горизонтальный скролл внутри box
+        minTableWidth="1480px"
         pagination
         check
         toolbar
@@ -108,8 +110,6 @@ const Share: FC = (): JSX.Element => {
         </div>
         <EnhancedTable
           check
-          // dropdown
-          // minTableWidth="1410px"
           columns={tariffsCols}
           headComponent={ppHeadCell}
           tableData={tariffsRows}
