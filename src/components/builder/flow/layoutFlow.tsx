@@ -125,11 +125,10 @@ const LayoutFlow: FC = () => {
     }
 
     const fetchingNodes = filterNodes(nodes);
-    const fetchingEdges = edges;
     const builder = {
       features: {
         nodes: fetchingNodes,
-        edges: fetchingEdges,
+        edges,
         variables: storeOfVariables,
         triggers,
       },
