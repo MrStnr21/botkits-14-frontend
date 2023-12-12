@@ -1,4 +1,4 @@
-import { FC, useEffect, useId, useRef, useState } from 'react';
+import { FC, useEffect, useId, useState } from 'react';
 import IconMapping, { IconName } from './icon-mapping';
 
 export interface IIcon {
@@ -15,7 +15,6 @@ export interface IIcon {
 const Icon: FC<IIcon> = ({ icon, size, extraClass }) => {
   const filterId = useId();
   const [iconSrc, setIconSrc] = useState<string | null>(null);
-  const iconRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
     const fetchIcon = async () => {
@@ -32,14 +31,11 @@ const Icon: FC<IIcon> = ({ icon, size, extraClass }) => {
   }, [icon]);
 
   return (
-    <svg width={size} height={size} className={extraClass} ref={iconRef}>
-      {extraClass && (
-        <filter id={filterId}>
-          <feFlood in="SourceGraphic" floodColor="var(--flood-color)" />
-          <feComposite in2="SourceAlpha" operator="in" />
-        </filter>
-      )}
-
+    <svg width={size} height={size} className={extraClass}>
+      <filter id={filterId}>
+        <feFlood in="SourceGraphic" floodColor="currentColor" />
+        <feComposite in2="SourceAlpha" operator="in" />
+      </filter>
       {iconSrc && (
         <image
           href={iconSrc}
