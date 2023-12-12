@@ -43,17 +43,28 @@ type Props = {
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
+  // нужна ли пагинация в таблице
   pagination?: boolean;
+  // подключены ли чекбоксы к строке
   check?: boolean;
+  // наличие нопок фильтров и выгрузки над таблицей
   toolbar?: boolean;
+  // стандартный box-shadow контейнеру таблицы (откл. по умолчанию)
   shadow?: number;
+  // хидер с названием и фильтром строк
   header?: boolean;
+  // кнопка с выпадающим списком
   dropdown?: boolean;
   onFilterChange?: (value: string) => void;
+  // минимальная ширина таблицы(исп. для вкл-я горизонтального скролла)
   minTableWidth?: string;
+  // значения, прокидываемые в выпадающий список кнопки
   menuOptions?: { label: string; value: string }[];
+  // значения, прокидываемые в выпадающий список фильтра в хидере
   headerOptions?: { label: string; value: string }[];
+  // название таблицы в хидере
   tableHeaderTitle?: string;
+  // необходимость отображения кнопок фильтров в тулбаре
   toolbarFilters?: boolean;
 };
 
@@ -78,25 +89,25 @@ const EnhancedTable: FC<Props> = ({
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
-
+  // исп. для обновления строк в зависимости от фильтра в хидере
   useEffect(() => {
     setRows(tableData);
   }, [onFilterChange]);
-
+  // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-
+  // удаление строки таблицы
   const handleRemoveRow = (indexToRemove: any) => {
     const updatedRows = rows.filter((_, index) => index !== indexToRemove);
     setRows(updatedRows);
   };
-
+  // изменение кол-ва страниц в зависимости от количества строк на одной странице
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  // функция выделения всех строк таблицы по клику на чекбокс в шапке
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelected = Array.from(
@@ -108,7 +119,7 @@ const EnhancedTable: FC<Props> = ({
       setSelected([]);
     }
   };
-
+  // функция выделения отдельной строки таблицы
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected: any[] = [];
@@ -128,7 +139,7 @@ const EnhancedTable: FC<Props> = ({
     setSelected(newSelected);
   };
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
-
+  // подсчет количества страницы таблицы
   const startIdx = page * rowsPerPage;
   const endIdx = startIdx + rowsPerPage;
   const paginatedData = rows.slice(startIdx, endIdx);
