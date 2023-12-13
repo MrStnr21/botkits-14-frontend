@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Устаревший хук, скорее всего будет заменен
+ */
 function useClick(func: () => void, id: string | null) {
   const closeOnClick = (e: MouseEvent) => {
     if (e) {

@@ -10,9 +10,15 @@ import { storeOfVariables } from '../utils/store';
 
 type TControlLayoutProps = {
   children?: ReactElement | ReactElement[];
+  /**
+   * отображаемый тип блока
+   */
   type: string;
 };
 
+/**
+ * Общий layout для блоков билдера
+ */
 const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
@@ -26,6 +32,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
     toggleMenu(!menu);
   };
 
+  // метод для удаления ноды из store
   const removeNode = () => {
     const nodes = getNodes().filter((item) => {
       return item.id !== id && item.parentNode !== id;
@@ -56,6 +63,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
     });
   };
 
+  // копирование ноды с данными исходной и дочерними нодами
   const copyNode = () => {
     const newNode = {
       id: uuid(),

@@ -6,16 +6,56 @@ import Typography from '../../ui/typography/typography';
 
 interface IVideoElement {
   title: string;
-  src: string; // ссылка на ютуб
+  /**
+   * ссылка на видео/изображение
+   */
+  src: string;
+  /**
+   * тип превью изображение/видео
+   */
   previewType?: 'image' | 'video';
+  /**
+   * тип открываемого контента при клике по превью
+   */
   contentType?: 'image' | 'video';
-  prewiew: string; // заставка
-  size?: 's' | 'm' | 'x' | 'sx'; // размер окна заставки и видео
-  hiddenRemoveButton?: boolean; // скрыть кнопку удаления компонента с видео
-  hover?: boolean; // отобразить кнопку play
+  /**
+   * prewiew src
+   */
+  prewiew: string;
+  /**
+   * размер элемента-превью
+   * @option s: `172px/96px`
+   * @option m: `264px/132px`
+   * @option x: `130px/72px`
+   * @option sx: `150px/83px`
+   */
+  size?: 's' | 'm' | 'x' | 'sx';
+  /**
+   * скрыть кнопку удаления компонента с видео
+   */
+  hiddenRemoveButton?: boolean;
+  /**
+   * отобразить кнопку play
+   */
+  hover?: boolean;
+  /**
+   * функция будет вызвана при клике по кнопке удаления
+   */
   onRemove?: () => void;
 }
 
+/**
+ * Компонент для создания медиа-карточек с видео или изображением
+ * @example
+ * <VideoCard
+      contentType="image"
+      title="title"
+      size={isMobile ? 'sx' : 'm'}
+      prewiew={src}
+      src={src}
+      onRemove={onRemove}
+    />
+ */
 const VideoCard: FC<IVideoElement> = ({
   src,
   title,

@@ -32,7 +32,10 @@ export type TSigninActions =
   | ISigninErrorAction
   | ILogoutAction;
 
-// экшн авторизации
+/**
+ * экшн авторизации
+ * @param userInfo объект формата `{password: string, email: string}`
+ */
 const signinAction: AppThunk = (userInfo: IUserSigninState) => {
   return (dispatch: AppDispatch) => {
     dispatch({
@@ -66,6 +69,12 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
   };
 };
 
+/**
+ * экшн для авторизации через социальную сеть
+ * @param code строка
+ * @param social строка
+ * @param cookieData строка
+ */
 const socialAuthAction: AppThunk = (
   code: string,
   social: string,

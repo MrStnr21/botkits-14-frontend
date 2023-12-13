@@ -4,6 +4,13 @@ import ReactTimeAgo from 'react-time-ago';
 
 TimeAgo.addDefaultLocale(ru);
 
+/**
+ * функция для создания компонента, отображающего время прошедшее с последнего посещения пользователя
+ * @param date дата последнего посещения
+ * @param style `twitter` | `custom`
+ * @returns `<ReactTimeAgo .../>`
+ * @see https://www.npmjs.com/package/react-time-ago
+ */
 export default function getTimeAgo(date: Date, style?: string) {
   if (style === 'twitter') {
     return <ReactTimeAgo timeStyle="twitter" date={date} locale="ru-RU" />;

@@ -8,6 +8,9 @@ type THiddenBlockProps = {
   toggle: () => void;
 };
 
+/**
+ * компонент для отрисовки скрываемых подблоков в MessageBlock
+ */
 const HiddenBlock: FC<THiddenBlockProps> = ({
   name,
   children,

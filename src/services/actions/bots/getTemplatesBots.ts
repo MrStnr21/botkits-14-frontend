@@ -25,7 +25,10 @@ export type TGetTemplatesBotsActions =
   | IGetTemplatesBotsSuccessAction
   | IGetTemplatesBotsErrorAction;
 
-// экшн получения шаблонов
+/**
+ * экшн получения шаблонов
+ * @param token access token
+ */
 const getTemplatesBotsAction: AppThunk = (token: string) => {
   return (dispatch: AppDispatch) => {
     dispatch({

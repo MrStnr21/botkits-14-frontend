@@ -106,7 +106,8 @@
     "eject": "react-scripts eject",
     "sb": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "docs": "jsdoc -c jsdoc.conf.json"
   },
   "eslintConfig": {
     "extends": [

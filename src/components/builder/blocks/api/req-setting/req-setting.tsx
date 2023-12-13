@@ -11,6 +11,9 @@ type RequestSettingsProps = {
   title: string;
 };
 
+/**
+ * компонент-подблок для задания `headers` и url-параметров запроса
+ */
 const RequestSettings: FC<RequestSettingsProps> = ({
   variableFields,
   constFields,
