@@ -27,12 +27,12 @@ export type TGetBotsActions =
   | IGetBotsErrorAction;
 
 // экшн получения ботов
-const getBotsAction: AppThunk = (token: string) => {
+const getBotsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GETBOTS_REQUEST,
     });
-    getBotsApi(token)
+    getBotsApi()
       .then((res) => {
         if (res) {
           dispatch({

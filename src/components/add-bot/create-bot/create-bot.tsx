@@ -65,7 +65,7 @@ const CreateBot: FC<ICreateBot> = ({
     uri: { value: '', valueValid: false },
   });
 
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const disabledDefault =
     values.accessKey.value.length > 1 && values.botName.value.length > 1;
@@ -87,7 +87,7 @@ const CreateBot: FC<ICreateBot> = ({
     try {
       const addedBot = await addBotApi(bot, template);
       // eslint-disable-next-line no-underscore-dangle
-      history(`/${routesUrl.botBuilder}?id=${addedBot._id}&type=custom`);
+      navigate(`/${routesUrl.botBuilder}?id=${addedBot._id}&type=custom`);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);

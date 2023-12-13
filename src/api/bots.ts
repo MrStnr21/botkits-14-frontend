@@ -9,7 +9,8 @@ import {
 import { getAccessToken } from '../auth/authService';
 
 // запрос получения ботов
-function getBotsApi(token: string) {
+function getBotsApi() {
+  const token = getAccessToken();
   return request<IGetBotsResponse>('bots', {
     method: 'GET',
     headers: {

@@ -1,43 +1,39 @@
 import { FC, useState } from 'react';
 
-import stylesBotCard from './bot-card.module.scss';
+import styles from './bot-card.module.scss';
 
 import tg from '../../images/icon/40x40/telegram/default.svg';
 
 import MoreMybotPopup from '../popups/more-mybot/more-mybot';
 import Typography from '../../ui/typography/typography';
+import { TBot } from '../../services/types/bot';
 
 export interface IBotCard {
+  bot: TBot;
   platform_icon: string;
-  bot_name: string;
-  bot_id?: string;
+  // onClick: (id: string) => void;
 }
 
-const BotCard: FC<IBotCard> = ({
-  platform_icon = tg,
-  bot_name = 'Название бота',
-  bot_id = '980809809',
-}): JSX.Element => {
+const BotCard: FC<IBotCard> = ({ platform_icon = tg, bot }): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className={stylesBotCard.card}>
-      <img className={stylesBotCard.icon} src={platform_icon} alt="иконка" />
+    <div className={styles.card}>
+      <img className={styles.icon} src={platform_icon} alt="иконка" />
       <div
-        className={stylesBotCard.more_button}
+        className={styles.more_button}
         onClick={() => setIsActive(!isActive)}
         aria-label="Меню настроек бота"
       />
-      <div className={stylesBotCard.name_box}>
-        <Typography
-          tag="p"
-          fontFamily="secondary"
-          className={stylesBotCard.name}
-        >
-          {bot_name}
+      <div className={styles.name_box}>
+        <Typography tag="p" fontFamily="secondary" className={styles.name}>
+          {bot.title}
         </Typography>
       </div>
-      {isActive && <MoreMybotPopup setIsOpen={setIsActive} idMyBot={bot_id} />}
+      {
+        // eslint-disable-next-line no-underscore-dangle
+        isActive && <MoreMybotPopup setIsOpen={setIsActive} idMyBot={bot._id} />
+      }
     </div>
   );
 };
