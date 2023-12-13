@@ -12,7 +12,11 @@ import styles from './navigation-panel.module.scss';
 import NavigationButton from '../../../ui/buttons/builder-navigation-button/builder-navigation-button';
 import Typography from '../../../ui/typography/typography';
 
+/**
+ * навигационная панель в builder
+ */
 const NavigationPanel: FC = () => {
+  // базовое масштабирование flow === 1. minScale - минимальное, maxScale - максимальное
   const minScale = 0.1;
   const maxScale = 3;
   const [map, toggleMap] = useState(false);
@@ -20,20 +24,23 @@ const NavigationPanel: FC = () => {
   const flow = useReactFlow();
   const zoomLevel = useStore((store) => store.transform[2]);
 
+  // увеличение масштабирования
   const onPlus = () => {
     flow.zoomTo(zoomLevel + 0.2);
-    // setTimeout(() => setScale(flow.getZoom()), 1);
   };
+
+  // уменьшение масштабирования
   const onMinus = () => {
     flow.zoomTo(zoomLevel - 0.2);
-    // setTimeout(() => setScale(flow.getZoom()), 1);
   };
+
+  // возвращение к исходному состоянию
   const onFit = () => {
     flow.zoomTo(1);
-    // fitView() placeholder
   };
   const onFullscreen = () => {};
 
+  // переключение состояния карты
   const onPage = () => {
     toggleMap(!map);
   };

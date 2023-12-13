@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import styles from './menu-item.module.scss';
 import checkIcon from '../../images/icon/24x24/common/check.svg';
+import { Option } from '../../utils/types';
 
 export interface IMenuItem {
-  option: {
-    value: string;
-    label: string;
-    icon?: string;
-  };
+  option: Option;
   onClick: (value: string) => void;
+  /**
+   * выбран ли элемент при включенном мультивыборе
+   */
   isChecked?: boolean;
   /** Чтобы перезаписать свойства MenuItem, в scss файле родителя повысьте селективность,
    * например: ```div.item { height: 30px;}``` */

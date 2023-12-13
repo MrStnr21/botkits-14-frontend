@@ -19,6 +19,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
 
+  // добавление условия в сложном режиме
   const addHard = () => {
     setNodes(
       getNodes().map((item) => {
@@ -44,6 +45,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
     );
   };
 
+  // добавление условия в простом режиме
   const addEasy = () => {
     setNodes(
       getNodes().map((item) => {
@@ -71,6 +73,7 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
     );
   };
 
+  // ???
   const setItemVariables = (
     idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
@@ -102,9 +105,11 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
     );
   };
 
+  // ???
   const setTargetBlock = (idItem: string, name: string) =>
     setItemVariables(idItem, 'targetBlock', name);
 
+  // получение набора подблоков по типу ('easy' или 'hard')
   const content = useMemo(
     () =>
       data.variables.map((item, index) => {

@@ -11,6 +11,11 @@ import { Option } from '../../../utils/types';
 import { getSelectItemByValue } from '../utils';
 
 export interface ITriggerProps {
+  /**
+   * функция для обновления состояния триггера
+   * @param typeOfAction тип действия с триггером
+   * @param optional объект настройки с 2-мя необязательными полями: `trigger` с новым состоянием триггера или `id` нового триггера
+   */
   handleTriggerData: (
     typeOfAction: 'add' | 'delete' | 'update',
     optional: {

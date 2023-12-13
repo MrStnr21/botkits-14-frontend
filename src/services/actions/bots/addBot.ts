@@ -26,7 +26,11 @@ export type TAddBotActions =
   | IAddBotSuccessAction
   | IAddBotErrorAction;
 
-// экшн добавления бота
+/**
+ * экшн добавления бота
+ * @param botinfo объект с типом TBot
+ * @param token access token
+ */
 const addBotAction: AppThunk = (botinfo: TBot, token: string) => {
   return (dispatch: AppDispatch) => {
     dispatch({

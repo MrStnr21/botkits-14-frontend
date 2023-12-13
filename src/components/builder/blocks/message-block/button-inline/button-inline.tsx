@@ -15,6 +15,9 @@ import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
+/**
+ * компонент-нода. кнопка/ответ, добавляем(ый/ая) в MessageBlock
+ */
 const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const [hidden, setHidden] = useState(true);
   const { getNodes, setNodes, getNode } = useReactFlow();
@@ -43,12 +46,14 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const setName = setFlowData({ selectors: ['name'] });
   const setAdditionalString = setFlowData({ selectors: ['str'] });
 
+  // ReactFlow стандартно поддерживает удаление nodes по клику на заданную кнопку. Данная функция для отмены такого поведения
   const preventButtonRemove = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Backspace') {
       e.stopPropagation();
     }
   };
 
+  // Добавление/удаление 2-ой строки в кнопке/ответе. При добавлении/удалении нужно пересчитывать положение прочих элементов
   const toggleString = () => {
     const node = getNode(id);
     setNodes([
@@ -112,6 +117,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
     );
   };
 
+  // функция удаления кнопки/ответа. При удалении требуется пересчитывать расположение прочих кнопок/ответов
   const deleteOnClick = () => {
     const node = getNode(id);
     const nodes = getNodes().filter((item) => item.id !== id);

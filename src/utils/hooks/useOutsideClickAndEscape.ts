@@ -2,6 +2,9 @@ import { RefObject } from 'react';
 import useEscapeKey from './useEscapeKey';
 import useOutsideClick from './useOutsideClick';
 
+/**
+ * Объекдинение хуков `useOutsideClick` и `useEscapeKey`
+ */
 const useOutsideClickAndEscape = (
   ref: RefObject<HTMLDivElement>,
   element: Document | Element,

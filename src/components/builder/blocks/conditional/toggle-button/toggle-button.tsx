@@ -7,6 +7,9 @@ type TToggleButtonProps = {
   text: string;
 };
 
+/**
+ * компонент-кнопка для переключения типа добавляемого подблока в ConditionalBlock
+ */
 const ToggleButton: FC<TToggleButtonProps> = ({ text, onClick, isActive }) => {
   const additionalClass = isActive ? styles.active : styles['none-active'];
   return (
