@@ -16,9 +16,6 @@ export type TBlockProps<T> = {
  * объект данных для инициализации билдера
  */
 export type TBuilderData = {
-  id: string; // id Бота
-  name: string; // Название бота
-  type: string; // Тип бота(VK/TG/OK и т.д.), можно задать варианты перечислением через |
   /**
    * коллекция переменных для билдера
    */
@@ -277,4 +274,8 @@ export type TAnswersData = {
 export type TFileData = {
   type: MessageDataTypes.file;
   file: File;
+};
+
+export type TBuilder = {
+  features: TBuilderData;
 };

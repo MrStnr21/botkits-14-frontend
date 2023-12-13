@@ -9,19 +9,20 @@ import ReactFlow, {
   useEdgesState,
   Connection,
   Edge,
+  getConnectedEdges,
+  Node,
 } from 'reactflow';
 
 import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
-// eslint-disable-next-line import/no-cycle
 import { initialNodes, nodeTypes } from './initial-nodes';
 import { initialEdges, edgeOptions } from './initial-edges';
 
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
 import NavigationPanel from '../navigation-panel/navigation-panel';
-import TriggerBlock from '../triggerBlock/triggerBlock';
+import TriggerBlock, { triggers } from '../triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
@@ -30,7 +31,17 @@ import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
 import { getAccessToken } from '../../../auth/authService';
-import { filterNodes, getUrlPath } from '../utils';
+import {
+  filterNodes,
+  getUrlPath,
+  iconOfPlatform,
+  saveVariable,
+  saveTrigger,
+  // resetVar,
+} from '../utils';
+import { storeOfVariables } from '../utils/store';
+import { TVariable, TTrigger } from '../../../services/types/builder';
+import { getBuilderApi, saveBuilderApi } from '../../../api';
 
 const cx = cn.bind(styles);
 
@@ -38,31 +49,31 @@ const cx = cn.bind(styles);
 export let namesOfBlocks: string[] = [];
 
 const LayoutFlow: FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isMobile = useMediaQuery('(max-width: 620px)');
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [triggerOpened, toggleTrigger] = useState(false);
   const [menuOpened, toggleMenu] = useState(false);
   const [searchParams] = useSearchParams();
+  const [title, setTitle] = useState('Название бота');
+  const [platformIcon, setPlatformIcon] = useState(iconOfPlatform.Facebook);
 
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
 
   useEffect(() => {
-    const token = getAccessToken();
+    const token = getAccessToken() || '';
     const id = searchParams.get('id');
-    const path = getUrlPath(searchParams.get('type'));
+    const path = searchParams.get('type')
+      ? getUrlPath[searchParams.get('type')!]
+      : '';
+
     if (!id || !path) {
-      return;
+      // return;
+      // eslint-disable-next-line no-console
+      console.log('нету');
     }
-    fetch(`https://botkits.nomoreparties.co/dev/api/${path}/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
+
+    getBuilderApi(token, 'bots', '6579c2d2535d28c64447303c')
       .then((data) => {
         if (data.features && data.features.nodes) {
           setNodes(data.features.nodes);
@@ -70,31 +81,68 @@ const LayoutFlow: FC = () => {
         if (data.features && data.features.edges) {
           setEdges(data.features.edges);
         }
+        if (data.features && data.features.variables) {
+          data.features.variables.map((el: TVariable) =>
+            saveVariable(storeOfVariables, el.name, el.id)
+          );
+        }
+        if (data.features && data.features.triggers) {
+          data.features.triggers.map((el: TTrigger) =>
+            saveTrigger(triggers, el.id, el.tag, el.type, el.name, el.text)
+          );
+        }
+
+        if (data.title) {
+          setTitle(data.title);
+        }
+        if (data.messengers && data.messengers[0].name) {
+          setPlatformIcon(
+            data.messengers.map(
+              (el: { name: string }) => iconOfPlatform[el.name]
+            )[0]
+          );
+        }
+        // eslint-disable-next-line no-console
+        console.log(data);
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
       });
   }, []);
 
   const saveBot = () => {
+    const token = getAccessToken() || '';
     const id = searchParams.get('id');
-    const path = getUrlPath(searchParams.get('type'));
+    const path = searchParams.get('type')
+      ? getUrlPath[searchParams.get('type')!]
+      : '';
     if (!id || !path) {
-      return;
+      // eslint-disable-next-line no-console
+      console.log('нету');
     }
-    const fetchingNodes = filterNodes(nodes);
-    const fetchingEdges = edges;
 
+    const fetchingNodes = filterNodes(nodes);
     const builder = {
-      features: { nodes: fetchingNodes, edges: fetchingEdges },
+      features: {
+        nodes: fetchingNodes,
+        edges,
+        variables: storeOfVariables,
+        triggers,
+      },
     };
 
-    fetch(`https://botkits.nomoreparties.co/dev/api/${path}/${id}`, {
-      method: 'PATCH',
-      headers: {
-        authorization: `Bearer ${getAccessToken()}`,
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(builder),
-    });
+    saveBuilderApi(builder, token, 'bots', '6579c2d2535d28c64447303c').catch(
+      (err) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    );
   };
+
+  // Ручная очистка любого массива с отправкой на бэк, например, битого блока с файлом
+  /* resetVar(nodes[1].data.data);
+  saveBot(); */
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     if (connection.source === connection.target) {
@@ -110,6 +158,23 @@ const LayoutFlow: FC = () => {
       (edge) => edge.source === source && edge.target === target
     );
   };
+
+  const onNodesDelete = useCallback(
+    (deleted: Node[]) => {
+      setEdges(
+        deleted.reduce((acc, node) => {
+          const connectedEdges = getConnectedEdges([node], edges);
+
+          const remainingEdges = acc.filter(
+            (edge) => !connectedEdges.includes(edge)
+          );
+
+          return remainingEdges;
+        }, edges)
+      );
+    },
+    [nodes, edges]
+  );
 
   const menuCloseHandler = () => {
     toggleMenu(false);
@@ -171,10 +236,15 @@ const LayoutFlow: FC = () => {
         fitView
         defaultEdgeOptions={edgeOptions}
         isValidConnection={isValidConnection}
+        onNodesDelete={onNodesDelete}
       >
         <Background />
         <div className={styles['bot-name']}>
-          <BotName isUpdating={false} />
+          <BotName
+            isUpdating={false}
+            platform_icon={platformIcon}
+            title={title}
+          />
         </div>
         <div className={styles['trigger-button']}>
           <TriggerButton onClick={() => toggleTrigger(true)} />

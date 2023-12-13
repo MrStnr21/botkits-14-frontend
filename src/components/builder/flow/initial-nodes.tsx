@@ -50,7 +50,9 @@ export const initialNodes: Node[] = [
       },
       saveAnswer: {
         show: true,
-        value: '',
+        value: {
+          name: '',
+        },
       },
     },
     position: { x: 130, y: 0 },

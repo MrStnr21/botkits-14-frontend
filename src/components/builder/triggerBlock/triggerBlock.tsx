@@ -15,7 +15,7 @@ type TTriggerBlockProps = {
 export let triggers: TTrigger[] = [];
 
 const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
-  const [triggersData, setTriggersData] = useState<TTrigger[]>([]);
+  const [triggersData, setTriggersData] = useState<TTrigger[]>(triggers);
 
   const handleTriggerData = (
     typeOfAction: 'add' | 'delete' | 'update',
@@ -25,22 +25,20 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
     }
   ) => {
     if (typeOfAction === 'add' && optional.trigger) {
-      setTriggersData([...triggersData, optional.trigger]);
-      triggers = triggersData;
+      triggers = [...triggersData, optional.trigger];
+      setTriggersData(triggers);
     } else if (typeOfAction === 'delete' && optional.id) {
-      setTriggersData(triggersData.filter((item) => item.id !== optional.id));
-      triggers = triggersData;
+      triggers = triggersData.filter((item) => item.id !== optional.id);
+      setTriggersData(triggers);
     } else if (typeOfAction === 'update' && optional.trigger) {
-      setTriggersData(
-        triggersData.map((item) => {
-          if (item.id === optional.trigger?.id) {
-            // eslint-disable-next-line no-param-reassign
-            item = optional.trigger!;
-          }
-          return item;
-        })
-      );
-      triggers = triggersData;
+      triggers = triggersData.map((item) => {
+        if (item.id === optional.trigger?.id) {
+          // eslint-disable-next-line no-param-reassign
+          item = optional.trigger!;
+        }
+        return item;
+      });
+      setTriggersData(triggers);
     }
   };
 
@@ -78,6 +76,7 @@ const TriggerBlock: FC<TTriggerBlockProps> = ({ isOpened, close }) => {
               myTag={item.tag}
               type={item.type}
               name={item.name}
+              text={item.text}
             />
           );
         })}
