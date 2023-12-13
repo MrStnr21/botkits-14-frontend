@@ -59,7 +59,6 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
@@ -92,8 +91,6 @@
     "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.13",
-    "jsdoc": "^4.0.2",
-    "jsdoc-babel": "^0.5.0",
     "prettier": "^3.0.0",
     "prop-types": "^15.8.1",
     "storybook": "7.1.1",
