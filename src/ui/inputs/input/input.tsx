@@ -12,15 +12,30 @@ interface IInput {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   name?: string;
+  /**
+   * минимальное кол-во символов инпута
+   */
   minLength?: number;
+  /**
+   * максимальное кол-во символов инпута
+   */
   maxLength?: number;
   type?: string;
   required?: boolean;
+  /**
+   * стилизация инпута
+   */
   styled?: 'main' | 'secondary' | 'bot-builder-default' | 'bot-builder-num';
   pattern?: string;
   password?: boolean;
   textColor?: 'default' | 'blue';
+  /**
+   * минимальное числовое значение инпута
+   */
   min?: string;
+  /**
+   * максимальное числовое значение инпута
+   */
   max?: string;
   id?: string;
   unadaptive?: boolean;

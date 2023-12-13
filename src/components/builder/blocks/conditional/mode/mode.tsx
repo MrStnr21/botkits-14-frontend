@@ -13,6 +13,9 @@ export type TModeProps = {
   setTargetBlock: Function;
 };
 
+/**
+ * компонент-подблок для  взаимодействия с переменной
+ */
 const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
   const { getNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';

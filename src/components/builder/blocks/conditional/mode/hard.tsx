@@ -6,6 +6,9 @@ export type THardBlockProps = {
   id: string;
 };
 
+/**
+ * компонент-подблок для  взаимодействия с переменной, уникальная для сложного режима часть
+ */
 const HardMode: FC<THardBlockProps> = ({ id }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';
@@ -18,6 +21,7 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
     [node]
   );
 
+  // todo - данная функция уже задана в ConditionalBlock, вынести её в utils
   const setItemVariables = (
     idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',

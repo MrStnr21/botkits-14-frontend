@@ -2,6 +2,10 @@ export interface DateType extends Date {
   toDateString(): string;
 }
 
+/**
+ * @param date Date
+ * @returns форматированная дата
+ */
 export function formatDate(date: DateType): string {
   const now = new Date();
   const yesterday = new Date(now);
@@ -17,6 +21,9 @@ export function formatDate(date: DateType): string {
   return date.toLocaleDateString('ru-RU', options);
 }
 
+/**
+ * @returns случайная дата между '2023-08-05' и текущим моментом
+ */
 export const randomDate = (): Date => {
   const startTimestamp = new Date('2023-08-05').getTime();
   const endTimestamp = new Date().getTime();

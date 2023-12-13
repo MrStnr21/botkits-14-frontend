@@ -1,4 +1,9 @@
 /* eslint-disable import/prefer-default-export */
+/**
+ * функция для форматирования даты
+ * @param time строка, передаваемая в new Date(time)
+ * @returns строку формата `день.месяц.год часы:минуты`
+ */
 export const convertTimeFormat = (time: string): string => {
   const date = new Date(time);
 

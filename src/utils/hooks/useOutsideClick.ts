@@ -12,6 +12,13 @@ export interface IProps {
   handlerRef?: RefObject<HTMLDivElement> | RefObject<HTMLButtonElement>;
 }
 
+/**
+ * хук для перехвата кликов за пределами элемента
+ * @param elemRef `React.RefObject`
+ * @param element элемент, на который вешается слушатель клика
+ * @param callback функция, по `element`
+ * @param handlerRef необязательный параметр, React.RefObject элемента, при клике на который сработает `callback`
+ */
 const useOutsideClick = (
   elemRef: RefObject<HTMLDivElement> | null,
   element: Document | Element,
