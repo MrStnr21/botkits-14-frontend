@@ -67,6 +67,11 @@
     @include buttonStyle();
     @include size(165px, unset);
     background-color: $primary-persian-blue-default;
+
+    &:disabled{
+      background-color: $grey-4;
+      cursor: auto;
+    }
   }
 
   &__rejectText {

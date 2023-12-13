@@ -6,6 +6,7 @@
   @include flex();
   box-sizing: border-box;
   background-color: $secondary-cultured-default;
+  position: relative;
 
   &__big {
     @include size(362px, 70px);
@@ -49,5 +50,10 @@
     border: solid 5px $off-white;
   }
 
+  }
+
+  &__incorrect_text {
+    @include incorrect-text(left);
+    bottom: -15px;
   }
 }

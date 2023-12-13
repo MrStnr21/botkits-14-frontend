@@ -1,4 +1,4 @@
-import { FC, useState, FormEvent, ChangeEvent } from 'react';
+import { FC, useState, FormEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import Typography from '../../../ui/typography/typography';
 import stylesPopup from './create-bot-template-popup.module.scss';
@@ -15,6 +15,7 @@ import { getAccessToken } from '../../../auth/authService';
 import { addTemplatesBotsApi } from '../../../api/bots';
 import ModalPopup from '../modal-popup/modal-popup';
 import EditImagePopup from '../edit-image-popup/edit-image-popup';
+import useForm from '../../../services/hooks/use-form';
 
 interface IPopupCreateBotTemplates {
   closeModal: () => void;
@@ -24,9 +25,12 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   closeModal,
 }) => {
   const [imageEdit, setImageEdit] = useState<string>('');
-  const [nameBot, setNameBot] = useState<string>('');
-  const [aboutBot, setAboutBot] = useState<string>('');
   const [isOpen, setOpenPupup] = useState(false);
+  const { values, handleChange, setValues } = useForm({
+    nameBot: { value: '', valueValid: false },
+    aboutBot: { value: '', valueValid: false },
+  });
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   const history = useNavigate();
 
@@ -38,10 +42,18 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   // };
 
   const clearInputs = () => {
-    setNameBot('');
-    setAboutBot('');
+    setValues({
+      nameBot: { value: '', valueValid: false },
+      aboutBot: { value: '', valueValid: false },
+    });
     closeModal();
   };
+
+  useEffect(() => {
+    if (values.nameBot.valueValid && values.aboutBot.valueValid) {
+      setButtonDisabled(false);
+    } else setButtonDisabled(true);
+  }, [values]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,8 +62,8 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
         `../../../images/icon/side bar/logo.svg`
       );
       const dataBotTemplates = {
-        title: nameBot,
-        description: aboutBot,
+        title: values.nameBot.value,
+        description: values.aboutBot.value,
         icon: imageEdit || imageModule.default,
       };
       const path = routesUrl.botBuilder;
@@ -65,8 +77,10 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
       console.log(err);
     }
 
-    setNameBot('');
-    setAboutBot('');
+    setValues({
+      nameBot: { value: '', valueValid: false },
+      aboutBot: { value: '', valueValid: false },
+    });
   };
 
   const openPopup = () => {
@@ -108,22 +122,20 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
             </div>
           </div>
           <InputTemplate
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setNameBot(e.target.value)
-            }
-            // onChange={handleChange}
+            name="nameBot"
+            onChange={handleChange}
             size="small"
             placeholder="Название бота"
-            value={nameBot}
+            value={values.nameBot.value}
+            required
           />
           <InputTemplate
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setAboutBot(e.target.value)
-            }
-            // onChange={handleChange}
+            name="aboutBot"
+            onChange={handleChange}
             size="big"
             placeholder="Описание бота..."
-            value={aboutBot}
+            value={values.aboutBot.value}
+            required
           />
         </div>
         <div className={stylesPopup.popup__buttons}>
@@ -136,7 +148,11 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
               Отмена
             </Typography>
           </button>
-          <button type="submit" className={stylesPopup.popup__confirmBtn}>
+          <button
+            type="submit"
+            className={stylesPopup.popup__confirmBtn}
+            disabled={buttonDisabled}
+          >
             <Typography tag="p" className={stylesPopup.popup__confirmText}>
               Cоздать
             </Typography>

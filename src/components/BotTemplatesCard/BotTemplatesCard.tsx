@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect, ChangeEvent } from 'react';
+import { FC, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAccessToken } from '../../auth/authService';
 import { useAppDispatch } from '../../services/hooks/hooks';
@@ -17,6 +17,7 @@ import ModalPopup from '../popups/modal-popup/modal-popup';
 // import Typography from '../../ui/typography/typography';
 import EditImagePopup from '../popups/edit-image-popup/edit-image-popup';
 import { createUrlBuilder } from '../../utils/utils';
+import useForm from '../../services/hooks/use-form';
 
 import routesUrl from '../../utils/routesData';
 
@@ -36,9 +37,12 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const [crm, setCrm] = useState(card.isToPublish!);
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>('');
-  const [nameBot, setNameBot] = useState<string>(card.title || '');
-  const [aboutBot, setAboutBot] = useState<string>(card.description || '');
+  const { values, handleChange, setValues } = useForm({
+    nameBot: { value: card.title || '', valueValid: false },
+    aboutBot: { value: card.description || '', valueValid: false },
+  });
   const [isOpen, setOpenPupup] = useState(false);
+
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -111,16 +115,18 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
       // eslint-disable-next-line no-underscore-dangle
       _id: card._id,
       icon: imageEdit,
-      title: nameBot,
-      description: aboutBot,
+      title: values.nameBot.value,
+      description: values.aboutBot.value,
       features: card.features,
     };
     dispatch(updateBotTemplatesAction(upCard, token));
   };
 
   const clearInputs = () => {
-    setNameBot('');
-    setAboutBot('');
+    setValues({
+      nameBot: { value: '', valueValid: false },
+      aboutBot: { value: '', valueValid: false },
+    });
   };
 
   const openPopup = () => {
@@ -178,20 +184,18 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
           </div>
         </div>
         <InputTemplate
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-            setNameBot(e.target.value)
-          }
+          onChange={handleChange}
           size="small"
           placeholder="Название бота"
-          value={nameBot}
+          value={values.nameBot.value}
+          name="nameBot"
         />
         <InputTemplate
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-            setAboutBot(e.target.value)
-          }
+          onChange={handleChange}
           size="big"
           placeholder="Описание бота..."
-          value={aboutBot}
+          value={values.aboutBot.value}
+          name="aboutBot"
         />
         <CheckboxWithText
           label="Опубликовать"
