@@ -35,10 +35,8 @@ const addBotTemplatesAction: AppThunk = (
     dispatch({
       type: ADDBOTTEMPLATES_REQUEST,
     });
-    console.log(botinfo);
     addTemplatesBotsApi(botinfo, token)
       .then((res) => {
-        console.log(res);
         if (res) {
           dispatch({
             type: ADDBOTTEMPLATES_SUCCESS,
