@@ -9,8 +9,6 @@ import ReactFlow, {
   useEdgesState,
   Connection,
   Edge,
-  getIncomers,
-  getOutgoers,
   getConnectedEdges,
   Node,
 } from 'reactflow';
@@ -165,23 +163,13 @@ const LayoutFlow: FC = () => {
     (deleted: Node[]) => {
       setEdges(
         deleted.reduce((acc, node) => {
-          const incomers = getIncomers(node, nodes, edges);
-          const outgoers = getOutgoers(node, nodes, edges);
           const connectedEdges = getConnectedEdges([node], edges);
 
           const remainingEdges = acc.filter(
             (edge) => !connectedEdges.includes(edge)
           );
 
-          const createdEdges = incomers.flatMap(({ id: source }) =>
-            outgoers.map(({ id: target }) => ({
-              id: `${source}->${target}`,
-              source,
-              target,
-            }))
-          );
-
-          return [...remainingEdges, ...createdEdges];
+          return remainingEdges;
         }, edges)
       );
     },
