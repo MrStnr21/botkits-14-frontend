@@ -68,10 +68,14 @@ function deleteTemplatesBotsApi(id: string, token: string) {
 }
 
 // запрос изменения шаблона
-function updateTemplatesBotsApi(botTemplates: TTemplateBotRes, token: string) {
+function updateTemplatesBotsApi(
+  botTemplates: TTemplateBotRes,
+  id: string,
+  token: string
+) {
   console.log(botTemplates);
   // eslint-disable-next-line no-underscore-dangle
-  return request<TTemplateBotRes>(`bots/template/${botTemplates._id}`, {
+  return request<TTemplateBotRes>(`bots/template/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

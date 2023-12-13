@@ -65,6 +65,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
         title: values.nameBot.value,
         description: values.aboutBot.value,
         icon: imageEdit || imageModule.default,
+        isToPublish: false,
       };
       const path = routesUrl.botBuilder;
       console.log(dataBotTemplates);

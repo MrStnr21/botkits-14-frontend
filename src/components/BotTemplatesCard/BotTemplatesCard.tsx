@@ -110,16 +110,17 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   ];
 
   const updateInputs = () => {
-    console.debug(card);
+    console.log(card);
     const upCard = {
-      // eslint-disable-next-line no-underscore-dangle
-      _id: card._id,
       icon: imageEdit,
       title: values.nameBot.value,
       description: values.aboutBot.value,
       features: card.features,
+      isToPublish: crm,
+      settings: {},
     };
-    dispatch(updateBotTemplatesAction(upCard, token));
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(updateBotTemplatesAction(upCard, card._id, token));
   };
 
   const clearInputs = () => {

@@ -120,6 +120,7 @@ const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
 
 const updateBotTemplatesAction: AppThunk = (
   botTemplates: TTemplateBotRes,
+  id: string,
   token: string
 ) => {
   return (dispatch: AppDispatch) => {
@@ -127,7 +128,7 @@ const updateBotTemplatesAction: AppThunk = (
       type: UPDATEBOTTEMPLATES_REQUEST,
     });
     console.log(botTemplates);
-    updateTemplatesBotsApi(botTemplates, token)
+    updateTemplatesBotsApi(botTemplates, id, token)
       .then((res) => {
         dispatch({
           type: UPDATEBOTTEMPLATES_SUCCESS,
