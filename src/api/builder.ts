@@ -2,11 +2,7 @@ import request from './api';
 import { IGetBotsResponse, IAddBotResponse } from '../services/types/bot';
 
 // запрос получения билдера
-function getBuilderApi(
-  token: string,
-  path: '' | 'bots' | 'bots/template',
-  id: string | null
-) {
+function getBuilderApi(token: string, path: string, id: string | null) {
   return request<IGetBotsResponse>(`${path}/${id}`, {
     method: 'GET',
     headers: {
@@ -20,7 +16,7 @@ function getBuilderApi(
 function saveBuilderApi(
   builder: { features: any },
   token: string,
-  path: '' | 'bots' | 'bots/template',
+  path: string,
   id: string | null
 ) {
   return request<IAddBotResponse>(`${path}/${id}`, {

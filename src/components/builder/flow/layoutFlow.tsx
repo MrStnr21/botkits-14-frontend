@@ -73,7 +73,7 @@ const LayoutFlow: FC = () => {
       console.log('нету');
     }
 
-    getBuilderApi(token, 'bots', '6579c2d2535d28c64447303c')
+    getBuilderApi(token, path, id)
       .then((data) => {
         if (data.features && data.features.nodes) {
           setNodes(data.features.nodes);
@@ -132,12 +132,10 @@ const LayoutFlow: FC = () => {
       },
     };
 
-    saveBuilderApi(builder, token, 'bots', '6579c2d2535d28c64447303c').catch(
-      (err) => {
-        // eslint-disable-next-line no-console
-        console.log(err);
-      }
-    );
+    saveBuilderApi(builder, token, path, id).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    });
   };
 
   // Ручная очистка любого массива с отправкой на бэк, например, битого блока с файлом
