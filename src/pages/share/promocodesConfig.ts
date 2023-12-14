@@ -69,24 +69,28 @@ export const promoRows = [
 
 export const promoColumns = [
   {
+    id: 1,
     key: 'date',
     label: 'Дата',
     colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: baseCell,
   },
   {
+    id: 2,
     key: 'promo',
     label: 'Промокод',
     colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: inputCell,
   },
   {
+    id: 3,
     key: 'price',
     label: 'Стоимость',
     colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: inputCell,
   },
   {
+    id: 4,
     key: 'status',
     label: 'Статус',
     colStyle: { ...promoHeadStyle, width: '25%' },

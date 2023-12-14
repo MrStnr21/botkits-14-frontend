@@ -237,36 +237,42 @@ export const tariffsRows = [
 
 export const tariffsCols = [
   {
+    id: 1,
     key: 'name',
     label: 'Название тарифа',
     colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
+    id: 2,
     key: 'price',
     label: 'Цена',
     colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
+    id: 3,
     key: 'bots',
     label: 'Кол-во ботов',
     colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
+    id: 4,
     key: 'followers',
     label: 'Кол-во подписчиков',
     colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
+    id: 5,
     key: 'duration',
     label: 'Длительность',
     colStyle: { ...headStyle, width: '20%' },
     cellComponent: inputCell,
   },
   {
+    id: 6,
     key: 'start',
     label: 'Стартовый тариф',
     colStyle: { ...headStyle, width: '20%' },

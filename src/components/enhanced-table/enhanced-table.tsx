@@ -27,6 +27,7 @@ import styles from './enhanced-table.module.scss';
 import TableMenuButton from '../table-menu-button/table-menu-button';
 
 type Columns = {
+  id?: number;
   key: string;
   label: ReactNode;
   colStyle?: SxProps;
@@ -122,7 +123,7 @@ const EnhancedTable: FC<Props> = ({
     }
   };
   // функция выделения отдельной строки таблицы
-  const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+  const handleClick = (event: ChangeEvent<HTMLInputElement>, id: number) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected: any[] = [];
 
@@ -194,24 +195,24 @@ const EnhancedTable: FC<Props> = ({
             <TableBody>
               {paginatedData?.map((row, index) => (
                 <TableRow
-                  key={uuidv4()}
+                  key={row.id}
                   sx={{
                     position: 'relative',
                     ...props.rowStyle,
                   }}
-                  onClick={(event) => handleClick(event, index)}
                 >
                   {check && (
                     <Checkbox
                       sx={checkBoxStyle}
                       checked={isSelected(index)}
+                      onChange={(event) => handleClick(event, index)}
                       inputProps={{
                         'aria-labelledby': `enhanced-table-checkbox-${index}`,
                       }}
                     />
                   )}
-                  {columns?.map(({ key, cellComponent }) => (
-                    <TableCell key={uuidv4()} sx={props.cellStyle}>
+                  {columns?.map(({ key, cellComponent, id }) => (
+                    <TableCell key={id} sx={props.cellStyle}>
                       {cellComponent ? (
                         cellComponent(row[key], uuidv4())
                       ) : (
