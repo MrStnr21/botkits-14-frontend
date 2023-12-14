@@ -36,7 +36,7 @@
         align-self: center;
         background-image: url("../../../images/icon/24x24/common/tag.svg");
         width: 20px;
-        height: 19px;
+        height: 20px;
         background-size: contain;
         margin-right: 16px;
       }
@@ -47,29 +47,30 @@
       flex-direction: row;
     }
 
-    svg {
-      cursor: $cursor;
-
-      @media screen and (max-width: $switching-width) {
-        position: absolute;
-        top: 20px;
-        right: 17px;
-        // цвет поменять на черный
-      }
+    @media screen and (max-width: $switching-width) {
+      margin: 0 20px;
     }
   }
 
   .triggers {
     @include flex(column, false, false, 8px);
     @include content;
+
+    @media screen and (max-width: $switching-width) {
+      margin: 0 20px;
+    }
   }
 
   @media screen and (max-width: $switching-width) {
     @include position(fixed, 0, 0);
     height: 100vh;
-    transition: none;
-    padding: 40px 20px 0;
+    padding: 40px 0;
   }
+}
+
+.close {
+  @include size(24px, 24px);
+  cursor: $cursor;
 }
 
 .opened {
@@ -82,5 +83,4 @@
 
 .closed {
   width: 0;
-  padding: 0;
 }
