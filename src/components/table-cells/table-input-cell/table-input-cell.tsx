@@ -33,7 +33,7 @@ const TableInputCell: FC<IProps> = ({ value }) => {
   };
 
   return (
-    <div className={style.inputCell}>
+    <div className={style.inputCell} onClick={() => setIsEditing(!isEditing)}>
       {isEditing ? (
         <TableInput
           onChange={handleChange}

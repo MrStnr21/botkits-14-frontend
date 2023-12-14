@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
-import styles from './switcher.module.scss';
+import styles from './table-switcher.module.scss';
 
 interface IProps {
   status: boolean;
   id: string;
 }
 
-const Switcher: FC<IProps> = ({ status, id }) => {
+const TableSwitcher: FC<IProps> = ({ status, id }) => {
   const [chosen, setChosen] = useState(status);
 
   const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
@@ -23,4 +23,4 @@ const Switcher: FC<IProps> = ({ status, id }) => {
   );
 };
 
-export default Switcher;
+export default TableSwitcher;

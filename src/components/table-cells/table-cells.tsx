@@ -3,9 +3,9 @@ import cn from 'classnames';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
-import Switcher from './switcher/switcher';
+import TableSwitcher from './table-switcher/table-switcher';
 import TableInputCell from './table-input-cell/table-input-cell';
-import SelectCell from './select-cell/select-cell';
+import TableSelectCell from './table-select-cell/table-select-cell';
 
 /* Общее */
 export const dateCell = (date: string) => (
@@ -71,7 +71,7 @@ export const paymentStatusCell = (status: boolean) => (
 // Промокоды, общий доступ, пользователи:
 
 export const switcherCell = (status: boolean, id: string) => (
-  <Switcher status={status} id={id} />
+  <TableSwitcher status={status} id={id} />
 );
 
 export const inputCell = (value: string) => {
@@ -90,4 +90,4 @@ export const statusPromoCell = (status: boolean) => (
   </Typography>
 );
 
-export const selectCell = (start: boolean) => <SelectCell />;
+export const selectCell = (value: boolean) => <TableSelectCell />;
