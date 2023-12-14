@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 
+import { useNavigate } from 'react-router';
 import styles from './bot-card.module.scss';
 
 import tg from '../../images/icon/40x40/telegram/default.svg';
@@ -7,6 +8,7 @@ import tg from '../../images/icon/40x40/telegram/default.svg';
 import MoreMybotPopup from '../popups/more-mybot/more-mybot';
 import Typography from '../../ui/typography/typography';
 import { TBot } from '../../services/types/bot';
+import routesUrl from '../../utils/routesData';
 
 export interface IBotCard {
   bot: TBot;
@@ -16,19 +18,28 @@ export interface IBotCard {
 
 const BotCard: FC<IBotCard> = ({ platform_icon = tg, bot }): JSX.Element => {
   const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className={styles.card}>
-      <img className={styles.icon} src={platform_icon} alt="иконка" />
       <div
         className={styles.more_button}
         onClick={() => setIsActive(!isActive)}
         aria-label="Меню настроек бота"
       />
-      <div className={styles.name_box}>
-        <Typography tag="p" fontFamily="secondary" className={styles.name}>
-          {bot.title}
-        </Typography>
+      <div
+        className={styles.wrapper}
+        onClick={() => {
+          // eslint-disable-next-line no-underscore-dangle
+          navigate(`/${routesUrl.botBuilder}?id=${bot._id}`);
+        }}
+      >
+        <img className={styles.icon} src={platform_icon} alt="иконка" />
+        <div className={styles.name_box}>
+          <Typography tag="p" fontFamily="secondary" className={styles.name}>
+            {bot.title}
+          </Typography>
+        </div>
       </div>
       {
         // eslint-disable-next-line no-underscore-dangle

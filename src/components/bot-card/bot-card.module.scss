@@ -13,6 +13,11 @@
   }
 }
 
+.wrapper {
+  &:hover {
+    cursor: $cursor;
+  }
+}
 .icon {
   @include size(52px, 52px);
   margin: 24px 0 0 32px;
