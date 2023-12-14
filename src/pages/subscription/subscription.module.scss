@@ -83,42 +83,7 @@
 .payment {
   @include flex(column);
   width: 100%;
-  // padding: 32px 0 0 0;
   box-sizing: border-box;
   background-color: $secondary-cultured-hover;
   border-radius: $xxl-border-radius;
-
-  &__header {
-    @include flex($justify-content: space-between);
-    padding: 0 32px;
-  }
-}
-
-.dropdown {
-  position: relative;
-
-  &__button {
-    @include flex($align-items: center, $gap: 12px);
-    @include font('Open Sans', $s-font-size, $bold, $grey-4);
-    @include line-sizes($xl-line-height, $m-letter-space);
-    background-color: transparent;
-    border: none;
-    cursor: $cursor;
-  }
-
-  &__list {
-    top: 100% !important;
-
-    & ul {
-      @include flex(column, $gap: 4px);
-      padding: 8px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    & ul li button {
-      margin: 0 !important;
-    }
-  }
 }

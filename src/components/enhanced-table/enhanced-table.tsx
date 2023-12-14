@@ -68,6 +68,8 @@ type Props = {
   tableHeaderTitle?: string;
   // необходимость отображения кнопок фильтров в тулбаре
   toolbarFilters?: boolean;
+  // количество отображаемых на одной странице строк в начальном состоянии таблицы
+  rowsPerPageValue?: number;
 };
 
 const EnhancedTable: FC<Props> = ({
@@ -85,10 +87,11 @@ const EnhancedTable: FC<Props> = ({
   headerOptions,
   tableHeaderTitle,
   toolbarFilters,
+  rowsPerPageValue = 5,
   ...props
 }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
   // исп. для обновления строк в зависимости от фильтра в хидере
@@ -192,7 +195,7 @@ const EnhancedTable: FC<Props> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {paginatedData?.map((row, index) => (
+              {(pagination ? paginatedData : rows).map((row, index) => (
                 <TableRow
                   key={row.id}
                   sx={{

@@ -118,27 +118,6 @@ const Subscription: FC = (): JSX.Element => {
         </div>
 
         <div className={style.payment}>
-          {/* <div className={style.payment__header}>
-            <Typography tag="h4" fontFamily="secondary">
-              История платежей
-            </Typography>
-            <div className={style.dropdown}>
-              <button
-                type="button"
-                onClick={click}
-                className={style.dropdown__button}
-              >
-                {buttonName}
-                <ReactSVG src={icon} style={{ height: '20px' }} />
-              </button>
-              <MenuSimple
-                buttons={buttonList}
-                isActive={activeList}
-                onClick={setActiveFilter}
-                className={style.dropdown__list}
-              />
-            </div>
-          </div> */}
           <EnhancedTable
             header
             tableHeaderTitle="История платежей"
