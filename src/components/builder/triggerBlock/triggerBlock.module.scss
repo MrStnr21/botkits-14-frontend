@@ -24,7 +24,6 @@
   .header {
     @include flex(row, space-between, center);
     @include content;
-    margin: 0 28px;
     h2 {
       margin: 0;
       @media screen and (max-width: $switching-width) {
@@ -47,26 +46,18 @@
       display: flex;
       flex-direction: row;
     }
-
-    @media screen and (max-width: $switching-width) {
-      margin: 0 20px;
-    }
   }
 
   .triggers {
     @include flex(column, false, false, 8px);
     @include content;
-    margin: 0 28px;
-
-    @media screen and (max-width: $switching-width) {
-      margin: 0 20px;
-    }
   }
 
   @media screen and (max-width: $switching-width) {
     @include position(fixed, 0, 0);
     height: 100vh;
     padding: 40px 0;
+    transition: none;
   }
 }
 
@@ -79,7 +70,7 @@
   width: 364px;
 
   @media screen and (max-width: $switching-width) {
-    width: 340px;
+    width: 100vw;
   }
 }
 

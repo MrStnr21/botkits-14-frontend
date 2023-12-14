@@ -13,6 +13,10 @@
   border-radius: $l-border-radius;
   box-sizing: border-box;
   background-color: #f2f4f8 !important;
+}
+
+.button {
+  @include button;
 
   @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
@@ -20,16 +24,8 @@
   }
 }
 
-.button {
-  @include button;
-}
-
 .button_unadaptive {
   @include button;
-
-  @media screen and (max-width: $switching-width) {
-    font-size: 13px;
-  }
 }
 
 /* .wrapper {

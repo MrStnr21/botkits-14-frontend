@@ -41,8 +41,6 @@
 
 
 .button_unadaptive {
-  @include button($secondary-xiketic-default, $secondary-cultured-focus);
-
   @media screen and (max-width: $switching-width) {
     font-size: 13px;
     height: 35px;
