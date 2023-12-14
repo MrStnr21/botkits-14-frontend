@@ -91,7 +91,6 @@ const EnhancedTable: FC<Props> = ({
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
-
   // исп. для обновления строк в зависимости от фильтра в хидере
   useEffect(() => {
     setRows(tableData);
@@ -101,7 +100,7 @@ const EnhancedTable: FC<Props> = ({
     setPage(newPage);
   };
   // удаление строки таблицы
-  const handleRemoveRow = (indexToRemove: any) => {
+  const handleRemoveRow = (indexToRemove: number) => {
     const updatedRows = rows.filter((_, index) => index !== indexToRemove);
     setRows(updatedRows);
   };

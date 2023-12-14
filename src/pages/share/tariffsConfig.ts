@@ -30,6 +30,7 @@ export const cellStyle = {
 
 export const tariffsRows = [
   {
+    id: 1,
     name: 'Демо',
     price: '400',
     bots: 10,
@@ -41,6 +42,7 @@ export const tariffsRows = [
     two: 'two',
   },
   {
+    id: 2,
     name: 'Акция',
     price: '50',
     bots: 10,
@@ -49,6 +51,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 3,
     name: 'Бесплатный',
     price: '100',
     bots: 24,
@@ -57,6 +60,7 @@ export const tariffsRows = [
     start: true,
   },
   {
+    id: 4,
     name: 'Бизнес',
     price: '250',
     bots: 15,
@@ -65,6 +69,7 @@ export const tariffsRows = [
     start: true,
   },
   {
+    id: 5,
     name: 'Старт',
     price: '120',
     bots: 32,
@@ -73,6 +78,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 6,
     name: 'Elite',
     price: '33',
     bots: 11,
@@ -81,6 +87,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 7,
     name: 'Комфорт +',
     price: '900',
     bots: 10,
@@ -89,6 +96,7 @@ export const tariffsRows = [
     start: true,
   },
   {
+    id: 8,
     name: 'Старт',
     price: '120',
     bots: 32,
@@ -97,6 +105,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 9,
     name: 'Elite',
     price: '33',
     bots: 11,
@@ -105,6 +114,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 10,
     name: 'Комфорт +',
     price: '900',
     bots: 10,
@@ -113,6 +123,7 @@ export const tariffsRows = [
     start: true,
   },
   {
+    id: 11,
     name: 'Старт',
     price: '120',
     bots: 32,
@@ -121,6 +132,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 12,
     name: 'Elite',
     price: '33',
     bots: 11,
@@ -129,6 +141,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 13,
     name: 'Комфорт +',
     price: '900',
     bots: 10,
@@ -137,6 +150,7 @@ export const tariffsRows = [
     start: true,
   },
   {
+    id: 14,
     name: 'Старт',
     price: '120',
     bots: 32,
@@ -145,6 +159,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 15,
     name: 'Elite',
     price: '33',
     bots: 11,
@@ -153,6 +168,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 16,
     name: 'Комфорт +',
     price: '900',
     bots: 10,
@@ -162,6 +178,7 @@ export const tariffsRows = [
   },
 
   {
+    id: 17,
     name: 'Старт',
     price: '120',
     bots: 32,
@@ -170,6 +187,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 18,
     name: 'Elite',
     price: '33',
     bots: 11,
@@ -178,6 +196,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 19,
     name: 'Комфорт +',
     price: '900',
     bots: 10,
@@ -186,6 +205,7 @@ export const tariffsRows = [
     start: true,
   },
   {
+    id: 20,
     name: 'Старт',
     price: '120',
     bots: 32,
@@ -194,6 +214,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 21,
     name: 'Elite',
     price: '33',
     bots: 11,
@@ -202,6 +223,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 22,
     name: 'Комфорт +',
     price: '900',
     bots: 10,
@@ -210,6 +232,7 @@ export const tariffsRows = [
     start: true,
   },
   {
+    id: 23,
     name: 'Старт',
     price: '120',
     bots: 32,
@@ -218,6 +241,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 24,
     name: 'Elite',
     price: '33',
     bots: 11,
@@ -226,6 +250,7 @@ export const tariffsRows = [
     start: false,
   },
   {
+    id: 25,
     name: 'Комфорт +',
     price: '900',
     bots: 10,
