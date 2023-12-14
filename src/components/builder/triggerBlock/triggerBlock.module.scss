@@ -24,6 +24,7 @@
   .header {
     @include flex(row, space-between, center);
     @include content;
+    margin: 0 28px;
     h2 {
       margin: 0;
       @media screen and (max-width: $switching-width) {
@@ -55,6 +56,7 @@
   .triggers {
     @include flex(column, false, false, 8px);
     @include content;
+    margin: 0 28px;
 
     @media screen and (max-width: $switching-width) {
       margin: 0 20px;
