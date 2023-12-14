@@ -5,7 +5,7 @@
   @include flex(row, unset, center);
   z-index: 3;
 
-  &__on {
+  &__off {
     @include size(44px, 24px);
     @include indents();
     @include position(relative);
@@ -28,7 +28,7 @@
     }
   }
 
-  &__off {
+  &__on {
     display: inline-block;
     @include size(44px, 24px);
     @include indents();
