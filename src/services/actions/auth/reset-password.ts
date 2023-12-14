@@ -31,7 +31,10 @@ export type TUserResetPasswordActions =
   | IUserResetPasswordSuccessAction
   | IUserResetPasswordErrorAction;
 
-// экшн авторизации
+/**
+ * экшн авторизации
+ * @param userInfo объект с полем email
+ */
 const resetPasswordAction: AppThunk = (userInfo: IUserResetPasswordState) => {
   return (dispatch: AppDispatch) => {
     dispatch({

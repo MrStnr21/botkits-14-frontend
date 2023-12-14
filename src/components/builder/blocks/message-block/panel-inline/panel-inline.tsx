@@ -47,18 +47,22 @@ const PanelInline: FC<IPanelInline> = ({
   const isMobile = useMediaQuery('(max-width: 620px)');
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
 
+  // список *раскрытых* горизонтальных кнопок для вычисления общей высоты
   const openedHorizontal = horizontalButtons.filter(
     (item) => item.data.additionalData === true
   ).length;
 
+  // список *раскрытых* вертикальных кнопок для вычисления общей высоты
   const openedVertical = verticalButtons.filter(
     (item) => item.data.additionalData === true
   ).length;
 
+  // список *раскрытых* кнопок в прошлом подблоке для вычисления общей высоты
   const openedBefore = buttonsBefore.filter(
     (item) => item.data.additionalData === true
   ).length;
 
+  // набор констант для вычисления высоты блока и позиции новой добавляемой кнопки в блок
   const buttonHeight = buttonSizes.buttonHeight + buttonSizes.gap;
   const buttonHeightDesk = ButtonSizes.buttonHeight + ButtonSizes.gap;
   const buttonHeightMobile =

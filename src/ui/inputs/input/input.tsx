@@ -12,16 +12,33 @@ interface IInput {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   name?: string;
+  /**
+   * минимальное кол-во символов инпута
+   */
   minLength?: number;
+  /**
+   * максимальное кол-во символов инпута
+   */
   maxLength?: number;
   type?: string;
   required?: boolean;
+  /**
+   * стилизация инпута
+   */
   styled?: 'main' | 'secondary' | 'bot-builder-default' | 'bot-builder-num';
   pattern?: string;
   password?: boolean;
   textColor?: 'default' | 'blue';
+  /**
+   * минимальное числовое значение инпута
+   */
   min?: string;
+  /**
+   * максимальное числовое значение инпута
+   */
   max?: string;
+  id?: string;
+  unadaptive?: boolean;
 }
 
 const classNames = {
@@ -49,6 +66,8 @@ const Input: FC<IInput> = ({
   textColor = 'default',
   min,
   max,
+  id,
+  unadaptive,
 }): JSX.Element => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -117,13 +136,17 @@ const Input: FC<IInput> = ({
   return (
     <div className={stylesInput.wrapper}>
       <input
-        className={` ${className} ${
-          error.error || isInvalid ? stylesInput.incorrect : ''
-        } ${
-          (error.error || isInvalid) && styled === 'secondary'
-            ? stylesInput.inputSecondaryIncorrect
-            : ''
-        } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`}
+        className={
+          unadaptive
+            ? stylesInput.inputBuilderDefault_unadaptive
+            : ` ${className} ${
+                error.error || isInvalid ? stylesInput.incorrect : ''
+              } ${
+                (error.error || isInvalid) && styled === 'secondary'
+                  ? stylesInput.inputSecondaryIncorrect
+                  : ''
+              } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`
+        }
         type={typeValues || 'text'}
         placeholder={placeholder}
         value={value}
@@ -134,6 +157,7 @@ const Input: FC<IInput> = ({
         minLength={minLength}
         maxLength={maxLength}
         required={required}
+        id={id}
         // step="0.01"
         // lang="en"
       />

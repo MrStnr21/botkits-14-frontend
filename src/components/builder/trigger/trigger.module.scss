@@ -15,12 +15,24 @@
     svg {
       cursor: $cursor;
     }
+
+    .trashIcon {
+      background-image: url("../../../images/icon/24x24/constructor/delete.svg");
+      width: 18px;
+      height: 18px;
+      background-size: contain;
+    }
   }
 
   .title {
     margin: 0 0 12px 0;
     font-size: $s-font-size;
     width: 100%;
+
+    @media screen and (max-width: $switching-width) {
+      font-size: $xs-font-size;
+      font-weight: $bold;
+    }
   }
 
   .buttons {

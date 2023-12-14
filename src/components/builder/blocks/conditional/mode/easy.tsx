@@ -10,6 +10,10 @@ import { getSelectItemByValue } from '../../../utils';
 export type TEasyBlockProps = {
   id: string;
 };
+
+/**
+ * компонент-подблок для  взаимодействия с переменной, уникальная для простого режима часть
+ */
 const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';
@@ -22,6 +26,7 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     [node]
   );
 
+  // todo - данная функция уже задана в ConditionalBlock, вынести её в utils
   const setItemVariables = (
     idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',

@@ -20,8 +20,7 @@ import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
 import { saveVariable, setFlowData } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
-// eslint-disable-next-line import/no-cycle
-import { storOfVariables } from '../../flow/layoutFlow';
+import { storeOfVariables } from '../../utils/store';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
@@ -32,6 +31,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
 
+  // загружено ли пользователем изображение
   const image = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -42,6 +42,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       }),
     [data.data]
   );
+  // загружен ли пользователем документ
   const doc = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -52,6 +53,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       }),
     [data.data]
   );
+  // загружено ли пользователем видео
   const video = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -62,6 +64,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       }),
     [data.data]
   );
+  // загружено ли пользователем аудио
   const audio = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -73,6 +76,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [data.data]
   );
 
+  // список горизонтальных кнопок
   const horButtons = useMemo(
     () =>
       nodes.filter(
@@ -84,6 +88,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
+  // список вертикальных кнопок
   const verButtons = useMemo(
     () =>
       nodes.filter(
@@ -95,6 +100,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
+  // список горизонтальных ответов
   const horAnswers = useMemo(
     () =>
       nodes.filter(
@@ -106,6 +112,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
+  // список вертикальных ответов
   const verAnswers = useMemo(
     () =>
       nodes.filter(
@@ -118,7 +125,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   );
 
   const setVariable = (finalValue: string) => {
-    saveVariable(storOfVariables, finalValue, id);
+    const idVariable = `${id}|||saveResultVariable`;
+    if (finalValue === '') {
+      const variableIndex = storeOfVariables.findIndex(
+        (item) => item.id === idVariable
+      );
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      variableIndex !== -1 && storeOfVariables.splice(variableIndex, 1);
+    } else {
+      saveVariable(storeOfVariables, finalValue, idVariable);
+    }
 
     return setNodes(
       nodes.map((item) => {
@@ -129,7 +145,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
               ...item.data,
               saveAnswer: {
                 ...item.data.saveAnswer,
-                value: { id, name: finalValue, value: '' },
+                value: { id: idVariable, name: finalValue, value: '' },
               },
             },
           };
@@ -151,6 +167,14 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     value: !data.showTime.show,
   });
 
+  /**
+   * функция для добавления `node`- кнопки. Кнопкам необходимо задавать абсолютное позиционирование(механика nodes)
+   * @param blockType тип блока, в который добавляется кнопка(`answers` или `buttons`)
+   * @param direction вертикальная или горизонтальная кнопка
+   * @param blockOffset расстояние между верхней границей MessageBlock и блоком кнопок
+   * @param blockOffsetMob расстояние между верхней границей MessageBlock и блоком кнопок для мобильной версии
+   * @param blockOffsetDesk расстояние между верхней границей MessageBlock и блоком кнопок для настольной версии
+   */
   const addButton =
     (
       blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
@@ -160,9 +184,13 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       blockOffsetDesk: number
     ) =>
     ({
+      // расположение кнопки по оси x в px относительно MessageBlock
       x,
+      // расположение кнопки по оси y в px относительно MessageBlock
       y,
+      // расположение кнопки по оси y в px относительно MessageBlock для мобильной версии
       mobY,
+      // расположение кнопки по оси x в px относительно MessageBlock для настольной версии
       deskY,
     }: {
       x: number;
@@ -268,6 +296,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     );
   };
 
+  // подблоки MessageBlock, передаваемые при помощи массива в data.data с полем type
   const content = useMemo(
     () =>
       data.data.map((component, index) => {

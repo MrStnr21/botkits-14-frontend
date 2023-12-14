@@ -1,22 +1,29 @@
 import { FC, ReactElement, useState } from 'react';
-import { Position, useReactFlow, useNodeId } from 'reactflow';
+import { Position, useReactFlow, useNodeId, Edge } from 'reactflow';
 import { v4 as uuid } from 'uuid';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
 import CustomHandle from '../flow/custom-handle/custom-handle';
 import { setFlowData } from '../utils';
+import { storeOfVariables } from '../utils/store';
 
 type TControlLayoutProps = {
   children?: ReactElement | ReactElement[];
+  /**
+   * отображаемый тип блока
+   */
   type: string;
 };
 
+/**
+ * Общий layout для блоков билдера
+ */
 const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
   const id = useNodeId();
-  const { getNodes, setNodes, getNode } = useReactFlow();
+  const { getNodes, setNodes, getNode, getEdges, setEdges } = useReactFlow();
   const node = getNode(id!);
 
   const setName = setFlowData({ selectors: ['name'] });
@@ -25,13 +32,38 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
     toggleMenu(!menu);
   };
 
+  // метод для удаления ноды из store
   const removeNode = () => {
     const nodes = getNodes().filter((item) => {
       return item.id !== id && item.parentNode !== id;
     });
     setNodes(nodes);
+
+    const updatedEdges = getEdges().reduce(
+      (acc: Edge<any>[], edge: Edge<any>) => {
+        if (edge.source !== id && edge.target !== id) {
+          acc.push(edge);
+        }
+        return acc;
+      },
+      []
+    );
+
+    setEdges(updatedEdges);
+
+    const indexes: number[] = [];
+    storeOfVariables.forEach((el, ind) => {
+      if (el.id.split('|||')[0] === id) {
+        indexes.push(ind);
+      }
+    });
+
+    indexes.forEach((ind, i) => {
+      storeOfVariables.splice(ind - i, 1);
+    });
   };
 
+  // копирование ноды с данными исходной и дочерними нодами
   const copyNode = () => {
     const newNode = {
       id: uuid(),

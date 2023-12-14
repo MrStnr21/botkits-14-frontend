@@ -14,6 +14,9 @@ import sliders from '../../../images/icon/24x24/add block/sliders.svg';
 import table from '../../../images/icon/24x24/add block/table.svg';
 import { defaultBlocks } from '../utils/data';
 
+/**
+ * компонент для выбора добавляемого блока
+ */
 const AddBlockPanel: FC = () => {
   const { setNodes, getNodes, getViewport } = useReactFlow();
 

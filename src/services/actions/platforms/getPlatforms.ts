@@ -25,7 +25,10 @@ export type TGetPlatformsActions =
   | IGetPlatformsSuccessAction
   | IGetPlatformsErrorAction;
 
-// экшн получения шаблонов
+/**
+ * экшн получения шаблонов
+ * @param token access token
+ */
 const getPlatformsAction: AppThunk = (token: string) => {
   return (dispatch: AppDispatch) => {
     dispatch({

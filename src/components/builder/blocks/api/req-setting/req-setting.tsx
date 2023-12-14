@@ -8,16 +8,21 @@ type RequestSettingsProps = {
   constFields: React.ReactNode[];
   addFieldVariable: () => void;
   addFieldConst: () => void;
+  title: string;
 };
 
+/**
+ * компонент-подблок для задания `headers` и url-параметров запроса
+ */
 const RequestSettings: FC<RequestSettingsProps> = ({
   variableFields,
   constFields,
   addFieldVariable,
   addFieldConst,
+  title,
 }) => {
   return (
-    <LabeledInput title="Заголовок">
+    <LabeledInput title={title}>
       <div className={styles.field_blocks}>
         <div className={styles.fields}>
           {variableFields}

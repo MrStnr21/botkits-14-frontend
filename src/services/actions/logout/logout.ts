@@ -14,7 +14,11 @@ export interface ILogoutAction {
 
 export type TLogoutActions = ILogoutAction;
 
-// экшен разлогина
+/**
+ * экшен разлогина
+ * @param token access token
+ * @param navigate callback без аргументов
+ */
 const logoutAction: AppThunk = (token: string, navigate) => {
   return (dispatch: AppDispatch) => {
     logoutApi(token)
