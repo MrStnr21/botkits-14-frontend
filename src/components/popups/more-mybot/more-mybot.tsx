@@ -21,6 +21,9 @@ import routesUrl from '../../../utils/routesData';
 import SwitchBotMenuPopup from './switch-bot-menu-popup';
 import useModal from '../../../services/hooks/use-modal';
 import Typography from '../../../ui/typography/typography';
+import ModalOverlayPopup from '../modal-overlay-popup/modal-overlay-popup';
+import { deleteBotAction } from '../../../services/actions/bots/deleteBot';
+import { useAppDispatch } from '../../../services/hooks/hooks';
 
 interface IMoreMybotPopup {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -30,7 +33,8 @@ interface IMoreMybotPopup {
 const MoreMybotPopup: FC<IMoreMybotPopup> = ({
   setIsOpen,
   idMyBot = '2222222',
-}): JSX.Element => {
+}) => {
+  const dispatch = useAppDispatch();
   const matches = useMediaQuery('(max-width: 420px)');
   // м.б. отдавать наружу выбор пункта? хз хз..
   const [itemSelected, setItemSelected] = useState<POPUP_ITEM>(
@@ -45,21 +49,21 @@ const MoreMybotPopup: FC<IMoreMybotPopup> = ({
 
   const navigate = useNavigate();
   const copyBot = () => {
-    // eslint-disable-next-line no-console
-    console.log(`Перепиши id cebe на листочек ${idMyBot}`);
     navigate(routesUrl.addBot);
     setIsOpen(false); // выпадающее меню закрыли
   };
   const deleteBot = () => {
-    // eslint-disable-next-line no-console
-    console.log(
-      `Бот ${idMyBot} будет мстить! Удалять мы его конечно же не будем.. ахахаха`
-    );
+    dispatch(deleteBotAction(idMyBot));
     setIsOpen(false); // выпадающее меню закрыли
   };
 
   return (
     <>
+      <ModalOverlayPopup
+        onClick={() => {
+          console.log('click');
+        }}
+      />
       <div className={styles.container}>
         <ul className={styles.list}>
           <li onClick={copyBot} className={styles.item}>

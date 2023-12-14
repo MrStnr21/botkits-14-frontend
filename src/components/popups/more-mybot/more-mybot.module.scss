@@ -3,6 +3,12 @@
 
 $switching-width-menu: ($min-content-width + 100px);
 
+.layout {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   @include position(absolute, 60px, $left: 50%);
   width: 244px;

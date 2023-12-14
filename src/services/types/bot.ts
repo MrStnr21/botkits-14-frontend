@@ -40,6 +40,7 @@ export type TTemplateBot = {
 };
 
 export interface IAddBotResponse extends TBot {}
+export interface IDeleteBotResponse extends TBot {}
 
 export interface IGetBotsResponse extends Array<TBot> {}
 

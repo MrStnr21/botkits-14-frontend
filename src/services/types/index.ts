@@ -30,6 +30,7 @@ import { TGetPlatformsState } from '../reducers/platforms/getPlatforms';
 import { TGetPlatformsActions } from '../actions/platforms/getPlatforms';
 
 import store from '../store';
+import { TDeleteBotActions } from '../actions/bots/deleteBot';
 
 export type TStore = {
   signup: TSignupState;
@@ -54,7 +55,8 @@ export type TApplicationActions =
   | TGetBotsActions
   | TAddBotActions
   | TGetTemplatesBotsActions
-  | TGetPlatformsActions;
+  | TGetPlatformsActions
+  | TDeleteBotActions;
 
 export type AppThunk<TReturn = void> = ActionCreator<
   ThunkAction<TReturn, Action, RootState, TApplicationActions>

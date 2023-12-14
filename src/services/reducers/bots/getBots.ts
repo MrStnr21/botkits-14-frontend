@@ -6,6 +6,13 @@ import {
   TGetBotsActions,
 } from '../../actions/bots/getBot';
 
+import {
+  DELETE_BOT_REQUEST,
+  DELETE_BOT_SUCCESS,
+  DELETE_BOT_ERROR,
+  TDeleteBotActions,
+} from '../../actions/bots/deleteBot';
+
 import { TBot } from '../../types/bot';
 
 export type TGetBotsState = {
@@ -16,6 +23,10 @@ export type TGetBotsState = {
   getBotsRequest: boolean;
   getBotsSuccess: boolean;
   getBotsError: boolean;
+
+  deleteBotRequest: boolean;
+  deleteBotSuccess: boolean;
+  deleteBotError: boolean;
 };
 
 const getBotsInitialState: TGetBotsState = {
@@ -26,12 +37,16 @@ const getBotsInitialState: TGetBotsState = {
   getBotsRequest: false,
   getBotsSuccess: false,
   getBotsError: false,
+
+  deleteBotRequest: false,
+  deleteBotSuccess: false,
+  deleteBotError: false,
 };
 
 function getBotsReducer(
   // eslint-disable-next-line @typescript-eslint/default-param-last
   state = getBotsInitialState,
-  action: TGetBotsActions
+  action: TGetBotsActions | TDeleteBotActions
 ) {
   switch (action.type) {
     // экшены получения ботов
@@ -55,6 +70,27 @@ function getBotsReducer(
         ...state,
         getBotsRequest: false,
         getBotsError: true,
+      };
+    }
+    case DELETE_BOT_REQUEST: {
+      return {
+        ...state,
+        deleteBotRequest: true,
+        deleteBotError: false,
+      };
+    }
+    case DELETE_BOT_SUCCESS: {
+      return {
+        ...state,
+        // eslint-disable-next-line no-underscore-dangle
+        bots: [...state.bots].filter((bot) => bot._id !== action.id),
+      };
+    }
+    case DELETE_BOT_ERROR: {
+      return {
+        ...state,
+        deleteBotRequest: false,
+        deleteBotError: true,
       };
     }
     default: {

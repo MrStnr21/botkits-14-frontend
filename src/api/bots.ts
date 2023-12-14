@@ -2,6 +2,7 @@ import request from './api';
 
 import {
   IAddBotResponse,
+  IDeleteBotResponse,
   IGetBotsResponse,
   IGetTemplatesBotsResponse,
   TCreateBot,
@@ -34,6 +35,18 @@ function addBotApi(bot: TCreateBot, templateId: string | null) {
   });
 }
 
+function deleteBotApi(id: string) {
+  const url = `bots/${id || ''}`;
+  const token = getAccessToken();
+  return request<IDeleteBotResponse>(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
 // запрос получения шаблонов
 function getTemplatesBotsApi(token: string) {
   return request<IGetTemplatesBotsResponse>('bots/templates', {
@@ -45,4 +58,4 @@ function getTemplatesBotsApi(token: string) {
   });
 }
 
-export { getBotsApi, addBotApi, getTemplatesBotsApi };
+export { getBotsApi, addBotApi, deleteBotApi, getTemplatesBotsApi };
