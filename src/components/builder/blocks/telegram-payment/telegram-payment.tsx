@@ -10,7 +10,11 @@ import {
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
 import { currencyAvailable, messagesSuccessful } from '../../utils/data';
-import { getSelectItemByValue, setFlowData } from '../../utils';
+import {
+  getSelectItemByValue,
+  setFlowData,
+  setFlowDataButton,
+} from '../../utils';
 import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
 import Select from '../../../../ui/select/select';
@@ -20,7 +24,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId();
 
-  const setFlowDataButton = ({
+  /* const setFlowDataButton = ({
     selectors,
     value,
   }: {
@@ -43,7 +47,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         return item;
       })
     );
-  };
+  }; */
 
   const image = useMemo(() => !!data.image, [data.image]);
 
