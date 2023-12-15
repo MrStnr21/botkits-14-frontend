@@ -21,6 +21,12 @@ export type TFlowSetter<T> = {
   data: T;
 };
 
+export type TFlowNodes = {
+  setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
+  id: string;
+};
+
 /**
  * объект данных для инициализации билдера
  */

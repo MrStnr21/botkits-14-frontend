@@ -6,46 +6,15 @@ import ControlLayout from '../../control-layout/control-layout';
 import Checkbox from '../../../../ui/checkboxes/checkbox';
 import { TBlockProps, TCRMBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
+import { onCrmChangeFlow, onSaveChangeFlow } from './flow';
 
 const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
 
-  const onCrmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          const newItem = {
-            ...item,
-            data: {
-              ...item.data,
-              chosenCrm: e.target.value,
-            },
-          };
-          return newItem;
-        }
-        return item;
-      })
-    );
-  };
+  const onCrmChange = onCrmChangeFlow({ getNodes, setNodes, id });
 
-  const onSaveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          const newItem = {
-            ...item,
-            data: {
-              ...item.data,
-              save: e.target.value,
-            },
-          };
-          return newItem;
-        }
-        return item;
-      })
-    );
-  };
+  const onSaveChange = onSaveChangeFlow({ getNodes, setNodes, id });
 
   return (
     <div>
@@ -60,7 +29,9 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
                     name="saveCRM"
                     label={item.nameValue}
                     value={item.value}
-                    onChange={onCrmChange}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                      onCrmChange(event)
+                    }
                     checked={item.value === data.chosenCrm}
                   />
                 );
@@ -76,7 +47,9 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
                     name="saveAs"
                     label={item.nameValue}
                     value={item.value}
-                    onChange={onSaveChange}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                      onSaveChange(event)
+                    }
                     checked={item.value === data.save}
                   />
                 );
