@@ -11,28 +11,13 @@ import {
 import { selectValuesType } from '../../utils/data';
 import { getSelectItemByValue, setFlowData } from '../../utils';
 import Select from '../../../../ui/select/select';
-import { Option } from '../../../../utils/types';
+import { setSelectedFlow } from './flow';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
 
-  const setSelected = (fieldName: string) => (option: Option) => {
-    setNodes(
-      getNodes().map((node) => {
-        if (node.id === id) {
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              [fieldName]: option.value,
-            },
-          };
-        }
-        return node;
-      })
-    );
-  };
+  const setSelected = setSelectedFlow({ getNodes, setNodes, id });
 
   const setParam = setFlowData({
     selectors: ['param'],
