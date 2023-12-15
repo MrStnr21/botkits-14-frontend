@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
 import styles from './val-field.module.scss';
+import { setValueFlow } from '../flow';
 
 type TValField = {
   name: string;
@@ -12,29 +13,9 @@ type TValField = {
 
 const ValField: FC<TValField> = ({ name, value, index, field }) => {
   const { setNodes, getNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
 
-  const setValue =
-    (type: 'name' | 'variable') => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNodes(
-        getNodes().map((item) => {
-          if (item.id === id) {
-            return {
-              ...item,
-              data: {
-                ...item.data,
-                [field]: [
-                  ...item.data[field].slice(0, index),
-                  { ...item.data[field][index], [type]: e.target.value },
-                  ...item.data[field].slice(index + 1),
-                ],
-              },
-            };
-          }
-          return item;
-        })
-      );
-    };
+  const setValue = setValueFlow({ setNodes, getNodes, id, index, field });
   return (
     <form className={styles.form}>
       <Input

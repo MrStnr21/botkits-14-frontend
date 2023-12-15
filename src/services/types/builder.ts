@@ -1,3 +1,5 @@
+import { Instance } from 'reactflow';
+
 /**
  * типы контент-блока в MessageBlock
  */
@@ -9,6 +11,13 @@ export enum MessageDataTypes {
 }
 
 export type TBlockProps<T> = {
+  data: T;
+};
+
+export type TFlowSetter<T> = {
+  setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
+  id: string;
   data: T;
 };
 

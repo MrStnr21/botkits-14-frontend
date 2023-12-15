@@ -11,46 +11,19 @@ import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
-import { saveVariable, setFlowData } from '../../utils';
-import { storeOfVariables } from '../../utils/store';
+import { setFlowData } from '../../utils';
+import { addFieldFlow, setVariableFlow } from './flow';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
   const id = useNodeId() || '';
-  const nodes = getNodes();
 
   const setUrl = setFlowData({ selectors: ['url'] });
   const setGetType = setFlowData({ selectors: ['reqType'], value: 'get' });
   const setPostType = setFlowData({ selectors: ['reqType'], value: 'post' });
 
-  const addField =
-    (field: 'headers' | 'params' | 'variables', type: 'variable' | 'const') =>
-    () => {
-      const idVariable = `${id}|||saveResultVariable-${
-        data.variables.length + 1
-      }`;
-      saveVariable(storeOfVariables, '', idVariable);
-
-      setNodes(
-        nodes.map((item) => {
-          if (item.id === id) {
-            return {
-              ...item,
-              data: {
-                ...item.data,
-                [field]: [
-                  ...item.data[field],
-                  field === 'variables'
-                    ? { id: idVariable, name: '', value: '' }
-                    : { type, name: '', variable: '' },
-                ],
-              },
-            };
-          }
-          return item;
-        })
-      );
-    };
+  const addField = addFieldFlow({ getNodes, setNodes, id, data });
+  const setVariable = setVariableFlow({ getNodes, setNodes, id, data });
 
   const getHeaderFields = (type: 'variable' | 'const') => {
     return data.headers.map((item, index) => {
@@ -82,33 +55,6 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
         )
       );
     });
-  };
-
-  const setVariable = (currentTarget: EventTarget & HTMLInputElement) => {
-    saveVariable(storeOfVariables, currentTarget.value, currentTarget.id);
-    return setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: data.variables.map((el) => {
-                if (el.id === currentTarget.id) {
-                  return {
-                    id: currentTarget.id,
-                    name: currentTarget.value,
-                    value: '',
-                  };
-                }
-                return el;
-              }),
-            },
-          };
-        }
-        return item;
-      })
-    );
   };
 
   const getVariableFields = () => {
@@ -179,13 +125,6 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
           title="Параметр"
         />
         <LabeledInput title="Сохранить результат">
-          {/* <ConstructorAddButton
-            buttonHtmlType="button"
-            disabled={false}
-            onClick={() => setVariable}
-          >
-            Переменная
-          </ConstructorAddButton> */}
           <div className={styles.field_blocks}>
             <div className={styles.fields}>
               {getVariableFields()}

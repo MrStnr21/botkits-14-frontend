@@ -1,6 +1,5 @@
 import { FC, useState, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
-import { v4 as uuidv4 } from 'uuid';
 
 import styles from './conditional.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -11,99 +10,28 @@ import {
 } from '../../../../services/types/builder';
 import Mode from './mode/mode';
 import ToggleButton from './toggle-button/toggle-button';
+import { addEasyFlow, addHardFlow, setItemVariablesFlow } from './flow';
 
 const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
 
   const { getNodes, setNodes, getNode } = useReactFlow();
-  const idNode = useNodeId() || '';
-  const node = getNode(idNode);
+  const id = useNodeId() || '';
+  const node = getNode(id);
 
   // добавление условия в сложном режиме
-  const addHard = () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  id: `hard-${uuidv4()}`,
-                  type: 'hard',
-                  condition: '',
-                  targetBlock: '',
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const addHard = addHardFlow({ getNodes, setNodes, id });
 
   // добавление условия в простом режиме
-  const addEasy = () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  id: `easy-${uuidv4()}`,
-                  type: 'easy',
-                  variable: { id: '', name: '', value: '' },
-                  sign: '',
-                  condition: '',
-                  targetBlock: '',
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const addEasy = addEasyFlow({ getNodes, setNodes, id });
 
   // ???
-  const setItemVariables = (
-    idItem: string,
-    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
-    value: any
-  ) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables:
-                node &&
-                node.data.variables.map(
-                  (elem: { [x: string]: any; id: string }) => {
-                    if (elem.id === idItem) {
-                      // eslint-disable-next-line no-param-reassign
-                      elem[key] = value;
-                    }
-                    return elem;
-                  }
-                ),
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setItemVariables = setItemVariablesFlow({
+    getNodes,
+    setNodes,
+    id,
+    node,
+  });
 
   // ???
   const setTargetBlock = (idItem: string, name: string) =>

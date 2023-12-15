@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
+import { setItemVariablesFlow } from '../flow';
 
 export type THardBlockProps = {
   id: string;
@@ -21,37 +22,12 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
     [node]
   );
 
-  // todo - данная функция уже задана в ConditionalBlock, вынести её в utils
-  const setItemVariables = (
-    idItem: string,
-    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
-    value: any
-  ) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables:
-                node &&
-                node.data.variables.map(
-                  (elem: { [x: string]: any; id: string }) => {
-                    if (elem.id === idItem) {
-                      // eslint-disable-next-line no-param-reassign
-                      elem[key] = value;
-                    }
-                    return elem;
-                  }
-                ),
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setItemVariables = setItemVariablesFlow({
+    getNodes,
+    setNodes,
+    id: idNode,
+    node,
+  });
 
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);

@@ -6,6 +6,7 @@ import { selectValues, signSelectValues } from '../../../utils/data';
 import Input from '../../../../../ui/inputs/input/input';
 import Select from '../../../../../ui/select/select';
 import { getSelectItemByValue } from '../../../utils';
+import { setItemVariablesFlow } from '../flow';
 
 export type TEasyBlockProps = {
   id: string;
@@ -26,37 +27,12 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     [node]
   );
 
-  // todo - данная функция уже задана в ConditionalBlock, вынести её в utils
-  const setItemVariables = (
-    idItem: string,
-    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
-    value: any
-  ) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables:
-                node &&
-                node.data.variables.map(
-                  (elem: { [x: string]: any; id: string }) => {
-                    if (elem.id === idItem) {
-                      // eslint-disable-next-line no-param-reassign
-                      elem[key] = value;
-                    }
-                    return elem;
-                  }
-                ),
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setItemVariables = setItemVariablesFlow({
+    getNodes,
+    setNodes,
+    id: idNode,
+    node,
+  });
 
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);
