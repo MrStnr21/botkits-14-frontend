@@ -21,7 +21,12 @@ interface TBot {
 const Template: FC<{ bot: TBot }> = ({ bot }): JSX.Element => {
   const importImage = async () => {
     try {
-      const imageModule = await import(
+      let imageModule;
+      if (bot.icon.includes('http')) {
+        imageModule = bot.icon;
+        return imageModule;
+      }
+      imageModule = await import(
         `../../../images/icon/template/${bot.icon}.svg`
       );
       return imageModule.default;
