@@ -4,10 +4,7 @@ import UploadedVideo from './uploaded-video/uploaded-video';
 import UploadedPicture from './uploaded-pick/uploaded-pick';
 import UploadedDock from './uploaded-doc/uploaded-doc';
 import UploadedAudio from './uploaded-audio/uploaded-audio';
-import {
-  MessageDataTypes,
-  TMessageBlockData,
-} from '../../../../../services/types/builder';
+import { removeFileFlow } from '../flow';
 
 type TdataProps = {
   data: File;
@@ -15,28 +12,9 @@ type TdataProps = {
 
 const File: FC<TdataProps> = ({ data }) => {
   const { setNodes, getNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
   const src = useMemo(() => URL.createObjectURL(data), [data]);
-  const removeFile = () =>
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: item.data.data.filter((media: TMessageBlockData) => {
-                return (
-                  media.type !== MessageDataTypes.file ||
-                  media.file.name !== data.name
-                );
-              }),
-            },
-          };
-        }
-        return item;
-      })
-    );
+  const removeFile = removeFileFlow({ setNodes, getNodes, id, data });
   return (
     <>
       {data && data.type.includes('video') && (

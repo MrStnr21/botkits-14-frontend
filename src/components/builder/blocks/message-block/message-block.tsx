@@ -1,8 +1,7 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
 import { FC, useMemo, useState } from 'react';
-import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
+import { Position, useReactFlow, useNodeId } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
-import { v4 as uuid } from 'uuid';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -13,14 +12,18 @@ import {
   MessageDataTypes,
   TBlockProps,
   TMessageBlock,
-  TMessageBlockData,
 } from '../../../../services/types/builder';
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
-import { saveVariable, setFlowData } from '../../utils';
+import { setFlowData } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
-import { storeOfVariables } from '../../utils/store';
+import {
+  addButtonFlow,
+  addFileFlow,
+  setTextFlow,
+  setVariableFlow,
+} from './flow';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
@@ -124,36 +127,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
-  const setVariable = (finalValue: string) => {
-    const idVariable = `${id}|||saveResultVariable`;
-    if (finalValue === '') {
-      const variableIndex = storeOfVariables.findIndex(
-        (item) => item.id === idVariable
-      );
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      variableIndex !== -1 && storeOfVariables.splice(variableIndex, 1);
-    } else {
-      saveVariable(storeOfVariables, finalValue, idVariable);
-    }
-
-    return setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              saveAnswer: {
-                ...item.data.saveAnswer,
-                value: { id: idVariable, name: finalValue, value: '' },
-              },
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setVariable = setVariableFlow({ getNodes, setNodes, id });
 
   const toggleVariableBlock = setFlowData({
     selectors: ['saveAnswer', 'show'],
@@ -175,126 +149,11 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
    * @param blockOffsetMob расстояние между верхней границей MessageBlock и блоком кнопок для мобильной версии
    * @param blockOffsetDesk расстояние между верхней границей MessageBlock и блоком кнопок для настольной версии
    */
-  const addButton =
-    (
-      blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
-      direction: 'horizontal' | 'vertical',
-      blockOffset: number,
-      blockOffsetMob: number,
-      blockOffsetDesk: number
-    ) =>
-    ({
-      // расположение кнопки по оси x в px относительно MessageBlock
-      x,
-      // расположение кнопки по оси y в px относительно MessageBlock
-      y,
-      // расположение кнопки по оси y в px относительно MessageBlock для мобильной версии
-      mobY,
-      // расположение кнопки по оси x в px относительно MessageBlock для настольной версии
-      deskY,
-    }: {
-      x: number;
-      y: number;
-      mobY: number;
-      deskY: number;
-    }) =>
-    () => {
-      const node: Node = {
-        type: 'button',
-        id: uuid(),
-        position: { x, y: y + blockOffset },
-        data: {
-          type: blockType.slice(0, 6),
-          direction,
-          name: 'имя',
-          color: '',
-          str: '',
-          deskY: deskY + blockOffsetDesk,
-          mobY: mobY + blockOffsetMob,
-        },
-        expandParent: true,
-        parentNode: id,
-        draggable: false,
-      };
+  const addButton = addButtonFlow({ getNodes, setNodes, id, buttonSizes });
 
-      setNodes([
-        ...getNodes().map((item) => {
-          if (
-            item.position.y > node.position.y &&
-            node.parentNode === item.parentNode
-          ) {
-            return {
-              ...item,
-              position: {
-                ...item.position,
-                y: item.position.y + buttonSizes.buttonHeight + buttonSizes.gap,
-              },
-              data: {
-                ...item.data,
-                deskY:
-                  item.data.deskY + ButtonSizes.buttonHeight + ButtonSizes.gap,
-                mobY:
-                  item.data.mobY +
-                  ButtonSizesMobile.buttonHeight +
-                  ButtonSizesMobile.gap,
-              },
-            };
-          }
-          return item;
-        }),
-        node,
-      ]);
-    };
+  const addFile = addFileFlow({ getNodes, setNodes, id });
 
-  const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: [
-                ...item.data.data,
-                {
-                  type: MessageDataTypes.file,
-                  file: e.target.files && e.target.files[0],
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-  const setText = (value: string) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: [
-                ...item.data.data.map((content: TMessageBlockData) => {
-                  if (content.type === MessageDataTypes.message) {
-                    return {
-                      ...content,
-                      value,
-                    };
-                  }
-                  return content;
-                }),
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setText = setTextFlow({ getNodes, setNodes, id });
 
   // подблоки MessageBlock, передаваемые при помощи массива в data.data с полем type
   const content = useMemo(

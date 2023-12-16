@@ -12,6 +12,7 @@ import {
 } from '../../../../../services/types/builder';
 import { setFlowData } from '../../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
+import { deleteOnClickFlow, setColorFlow, toggleStringFlow } from '../flow';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
@@ -26,21 +27,6 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
 
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
 
-  const closedButtonSizeDesk = ButtonSizes.buttonHeight + ButtonSizes.gap;
-  const openedButtonSizeDesk = closedButtonSizeDesk + ButtonSizes.addString;
-
-  const closedButtonSizeMobile =
-    ButtonSizesMobile.buttonHeight + ButtonSizesMobile.gap;
-  const openedButtonSizeMobile =
-    closedButtonSizeMobile + ButtonSizesMobile.addString;
-
-  const closedButtonSize = isMobile
-    ? closedButtonSizeMobile
-    : closedButtonSizeDesk;
-  const openedButtonSize = isMobile
-    ? openedButtonSizeMobile
-    : openedButtonSizeDesk;
-
   const [menu, toggleMenu] = useState<boolean>(false);
 
   const setName = setFlowData({ selectors: ['name'] });
@@ -54,111 +40,25 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   };
 
   // Добавление/удаление 2-ой строки в кнопке/ответе. При добавлении/удалении нужно пересчитывать положение прочих элементов
-  const toggleString = () => {
-    const node = getNode(id);
-    setNodes([
-      ...getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: { ...item.data, additionalData: !data.additionalData },
-          };
-        }
-        if (
-          item.position.y > node!.position.y &&
-          node?.parentNode === item.parentNode
-        ) {
-          if (node && node.data.additionalData) {
-            return {
-              ...item,
-              position: {
-                ...item.position,
-                y: item.position.y - buttonSizes.addString,
-              },
-              data: {
-                ...item.data,
-                deskY: item.data.deskY - ButtonSizes.addString,
-                mobY: item.data.mobY - ButtonSizesMobile.addString,
-              },
-            };
-          }
-          if (node && !node.data.additionalData) {
-            return {
-              ...item,
-              position: {
-                ...item.position,
-                y: item.position.y + buttonSizes.addString,
-              },
-              data: {
-                ...item.data,
-                deskY: item.data.deskY + ButtonSizes.addString,
-                mobY: item.data.mobY + ButtonSizesMobile.addString,
-              },
-            };
-          }
-        }
-        if (item.id === node?.parentNode) {
-          return { ...item, data: { ...item.data } };
-        }
-        return item;
-      }),
-    ]);
-  };
+  const toggleString = toggleStringFlow({
+    getNodes,
+    setNodes,
+    id,
+    getNode,
+    data,
+    buttonSizes,
+  });
 
-  const setColor = (color: string) => {
-    const nodes = getNodes();
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return { ...item, data: { ...item.data, color } };
-        }
-        return item;
-      })
-    );
-  };
+  const setColor = setColorFlow({ getNodes, setNodes, id });
 
   // функция удаления кнопки/ответа. При удалении требуется пересчитывать расположение прочих кнопок/ответов
-  const deleteOnClick = () => {
-    const node = getNode(id);
-    const nodes = getNodes().filter((item) => item.id !== id);
-    setNodes(
-      nodes.map((item) => {
-        if (
-          item.position.y > node!.position.y &&
-          node?.parentNode === item.parentNode
-        ) {
-          return {
-            ...item,
-            position: {
-              ...item.position,
-              y:
-                item.position.y -
-                (node!.data.additionalData
-                  ? openedButtonSize
-                  : closedButtonSize),
-            },
-            data: {
-              ...item.data,
-              deskY:
-                item.data.deskY -
-                (node!.data.additionalData
-                  ? openedButtonSizeDesk
-                  : closedButtonSizeDesk),
-              mobX:
-                item.data.mobY -
-                (node!.data.additionalData
-                  ? openedButtonSizeMobile
-                  : closedButtonSizeMobile),
-            },
-          };
-        }
-        if (item.id === node?.parentNode) {
-          return { ...item, data: { ...item.data } };
-        }
-        return item;
-      })
-    );
-  };
+  const deleteOnClick = deleteOnClickFlow({
+    getNode,
+    getNodes,
+    id,
+    isMobile,
+    setNodes,
+  });
 
   const getIcon = () => {
     switch (data.type) {
