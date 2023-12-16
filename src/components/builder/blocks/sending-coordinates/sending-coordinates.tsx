@@ -8,7 +8,7 @@ import {
   TBlockProps,
   TCoordinateBlock,
 } from '../../../../services/types/builder';
-import validateAndSaveFlow from './flow';
+import { validateAndSaveFlow } from './flow';
 
 const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
   data,

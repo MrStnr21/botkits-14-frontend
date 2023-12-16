@@ -1,6 +1,5 @@
 import { FC, ReactElement, useState } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
-import { v4 as uuid } from 'uuid';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
@@ -25,7 +24,6 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const id = useNodeId() || '';
   const { getNodes, setNodes, getNode, getEdges, setEdges } = useReactFlow();
   const node = getNode(id!);
-  const idVariable = uuid();
 
   const setName = setFlowData({ selectors: ['name'] });
 
@@ -43,7 +41,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   });
 
   // копирование ноды с данными исходной и дочерними нодами
-  const copyNode = copyNodeFlow({ getNodes, setNodes, node, id, idVariable });
+  const copyNode = copyNodeFlow({ getNodes, setNodes, node, id });
 
   return (
     <article className={styles.container}>

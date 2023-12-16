@@ -1,4 +1,5 @@
 import { Edge, Node } from 'reactflow';
+import { v4 as uuid } from 'uuid';
 import { TFlowNodesEdges, TFlowNodes } from '../../../services/types/builder';
 import { storeOfVariables } from '../utils/store';
 
@@ -36,14 +37,13 @@ export const removeNodeFlow =
 
 type TcopyNodeFlow = TFlowNodes & {
   node: Node<any> | undefined;
-  idVariable: string;
 };
 
 export const copyNodeFlow =
-  ({ getNodes, setNodes, node, id, idVariable }: TcopyNodeFlow) =>
+  ({ getNodes, setNodes, node, id }: TcopyNodeFlow) =>
   () => {
     const newNode = {
-      id: idVariable,
+      id: uuid(),
       type: node!.type,
       position: { x: node!.position.x + 300, y: node!.position.y },
       data: node!.data,
@@ -52,7 +52,7 @@ export const copyNodeFlow =
       .filter((item) => item.parentNode === id)
       .map((item) => {
         return {
-          id: idVariable,
+          id: uuid(),
           position: item.position,
           type: item.type,
           data: item.data,

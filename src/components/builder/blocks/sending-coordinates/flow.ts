@@ -1,7 +1,8 @@
+/* eslint-disable import/prefer-default-export */
 import { TFlowNodes } from '../../../../services/types/builder';
 import { rangeForCoordinates } from '../../utils/data';
 
-const validateAndSaveFlow =
+export const validateAndSaveFlow =
   ({ getNodes, setNodes, id }: TFlowNodes) =>
   (type: 'longitude' | 'latitude') =>
   (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,5 +61,3 @@ const validateAndSaveFlow =
       }
     }
   };
-
-export default validateAndSaveFlow;
