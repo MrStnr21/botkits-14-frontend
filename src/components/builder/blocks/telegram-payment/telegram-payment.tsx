@@ -15,46 +15,24 @@ import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
 import Select from '../../../../ui/select/select';
 import { Option } from '../../../../utils/types';
+import { setDataButtonFlow, addFileFlow, removeFileFlow } from './flow';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
 
-  const setFlowDataButton = ({
-    selectors,
-    value,
-  }: {
-    selectors: string[];
-    value: any;
-  }) => {
-    const nodes = getNodes();
-    const finalData = value;
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              [selectors[0]]: finalData,
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setDataButton = setDataButtonFlow({ getNodes, setNodes, id });
 
   const image = useMemo(() => !!data.image, [data.image]);
 
   const setCurrency = (option: Option) =>
-    setFlowDataButton({
+    setDataButton({
       selectors: ['currency'],
       value: option.value,
     });
 
   const setOnSuccess = (option: Option) =>
-    setFlowDataButton({
+    setDataButton({
       selectors: ['onSuccess'],
       value: option.value,
     });
@@ -76,40 +54,9 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   });
   const placeholder = 'Введите название';
 
-  const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              image: e.target.files && e.target.files[0],
-            },
-          };
-        }
-        return item;
-      })
-    );
-    e.target.value = '';
-  };
+  const addFile = addFileFlow({ getNodes, setNodes, id });
 
-  const removeFile = () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              image: '',
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const removeFile = removeFileFlow({ getNodes, setNodes, id });
 
   const content = useMemo(
     () => data.image && <File data={data.image} removeFile={removeFile} />,
