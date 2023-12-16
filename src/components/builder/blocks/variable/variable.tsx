@@ -9,6 +9,7 @@ import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/
 import ControlLayout from '../../control-layout/control-layout';
 import styleVariableBlock from './variable.module.scss';
 import Value from './value/value';
+import addFileFlow from './flow';
 
 const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   data,
@@ -16,31 +17,10 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   const content = data.variables;
 
   const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
+  const idVariable = uuidv4();
 
-  const addField = () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  id: uuidv4(),
-                  variable: '',
-                  value: '',
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const addField = addFileFlow({ getNodes, setNodes, id, idVariable });
 
   return (
     <ControlLayout type="Управление переменными">
