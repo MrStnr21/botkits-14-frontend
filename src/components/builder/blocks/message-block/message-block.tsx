@@ -141,14 +141,6 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     value: !data.showTime.show,
   });
 
-  /**
-   * функция для добавления `node`- кнопки. Кнопкам необходимо задавать абсолютное позиционирование(механика nodes)
-   * @param blockType тип блока, в который добавляется кнопка(`answers` или `buttons`)
-   * @param direction вертикальная или горизонтальная кнопка
-   * @param blockOffset расстояние между верхней границей MessageBlock и блоком кнопок
-   * @param blockOffsetMob расстояние между верхней границей MessageBlock и блоком кнопок для мобильной версии
-   * @param blockOffsetDesk расстояние между верхней границей MessageBlock и блоком кнопок для настольной версии
-   */
   const addButton = addButtonFlow({ getNodes, setNodes, id, buttonSizes });
 
   const addFile = addFileFlow({ getNodes, setNodes, id });

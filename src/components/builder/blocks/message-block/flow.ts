@@ -11,7 +11,6 @@ import { saveVariable } from '../../utils';
 import { storeOfVariables } from '../../utils/store';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 
-// eslint-disable-next-line import/prefer-default-export
 export const setVariableFlow =
   ({ getNodes, setNodes, id }: Omit<TFlowSetter<TMessageBlock>, 'data'>) =>
   (finalValue: string) => {
