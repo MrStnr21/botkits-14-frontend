@@ -10,7 +10,7 @@ import {
 } from '../../../../services/types/builder';
 import Mode from './mode/mode';
 import ToggleButton from './toggle-button/toggle-button';
-import { addEasyFlow, addHardFlow, setItemVariablesFlow } from './flow';
+import { addCompareBlockFlow, setItemVariablesFlow } from './flow';
 
 const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
@@ -20,10 +20,10 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const node = getNode(id);
 
   // добавление условия в сложном режиме
-  const addHard = addHardFlow({ getNodes, setNodes, id });
+  const addHard = addCompareBlockFlow({ getNodes, setNodes, id, type: 'hard' });
 
   // добавление условия в простом режиме
-  const addEasy = addEasyFlow({ getNodes, setNodes, id });
+  const addEasy = addCompareBlockFlow({ getNodes, setNodes, id, type: 'easy' });
 
   // ???
   const setItemVariables = setItemVariablesFlow({
