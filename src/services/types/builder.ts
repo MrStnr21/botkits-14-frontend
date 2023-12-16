@@ -27,6 +27,14 @@ export type TFlowNodes = {
   id: string;
 };
 
+export type TFlowNodesEdges = {
+  setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
+  setEdges: Instance.SetEdges<any>;
+  getEdges: Instance.GetEdges<any>;
+  id: string;
+};
+
 /**
  * объект данных для инициализации билдера
  */
