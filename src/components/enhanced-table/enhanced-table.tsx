@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, FC, ReactNode, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  FC,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -115,10 +122,7 @@ const EnhancedTable: FC<Props> = ({
   // функция выделения всех строк таблицы по клику на чекбокс в шапке
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = Array.from(
-        { length: tableData.length },
-        (_, index) => index
-      );
+      const newSelected = rows.map((row) => row.id);
       setSelected(newSelected);
     } else {
       setSelected([]);
@@ -145,9 +149,14 @@ const EnhancedTable: FC<Props> = ({
   };
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
   // подсчет количества страницы таблицы
-  const startIdx = page * rowsPerPage;
-  const endIdx = startIdx + rowsPerPage;
-  const paginatedData = rows.slice(startIdx, endIdx);
+  const paginatedData = useMemo(() => {
+    const startIdx = page * rowsPerPage;
+    const endIdx = startIdx + rowsPerPage;
+    return rows.slice(startIdx, endIdx);
+  }, [page, rowsPerPage, rows]);
+  // const startIdx = page * rowsPerPage;
+  // const endIdx = startIdx + rowsPerPage;
+  // const paginatedData = rows.slice(startIdx, endIdx);
 
   return (
     <Box sx={boxStyle}>
@@ -206,10 +215,10 @@ const EnhancedTable: FC<Props> = ({
                   {check && (
                     <Checkbox
                       sx={checkBoxStyle}
-                      checked={isSelected(index)}
-                      onChange={(event) => handleClick(event, index)}
+                      checked={isSelected(row.id)}
+                      onChange={(event) => handleClick(event, row.id)}
                       inputProps={{
-                        'aria-labelledby': `enhanced-table-checkbox-${index}`,
+                        'aria-labelledby': `enhanced-table-checkbox-${row.id}`,
                       }}
                     />
                   )}
