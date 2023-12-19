@@ -1,7 +1,7 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../services/hooks/hooks';
-import stylesCard from './BotTemplatesCard.module.scss';
+import stylesCard from './bot-templates-card.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
 import imageAvatar from '../../images/icon/template/answering machine.svg';

@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, useEffect } from 'react';
-import BotTemplatesCard from '../../components/BotTemplatesCard/BotTemplatesCard';
+import BotTemplatesCard from '../../components/bot-templates-card/bot-templates-card';
 import stylesBotTemplates from './bot-templates.module.scss';
 import Typography from '../../ui/typography/typography';
 import Button from '../../ui/buttons/button/button';
-import { mockBotTemplates } from '../../utils/mockBotTemplates';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import CreateBotTemplatesPopup from '../../components/popups/create-bot-template-popup/create-bot-template-popup';
 
