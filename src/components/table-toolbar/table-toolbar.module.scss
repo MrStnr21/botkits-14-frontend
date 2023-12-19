@@ -1,0 +1,16 @@
+@use '../../stylesheets/mixins' as *;
+@use '../../stylesheets/variables' as *;
+
+.toolbar {
+  @include flex(row, space-between, center);
+  @include indents(40px 0, 0);
+
+  &__leftSide {
+    @include flex(row, unset, center, 16px);
+  }
+}
+
+div.dropdown {
+  @include position(absolute, 24px, 24px);
+  z-index: 105;
+}

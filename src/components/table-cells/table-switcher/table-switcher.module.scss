@@ -1,0 +1,47 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+@mixin switcherStyles {
+  display: inline-block;
+  @include size(44px, 24px);
+  @include indents();
+  @include position(relative);
+  border-radius: 12px;
+  z-index: 0;
+  border: none;
+  transition-duration: 300ms;
+}
+
+@mixin afterStyles {
+  content: "";
+  @include size(20px, 20px);
+  border-radius: 50%;
+  background: $off-white;
+  z-index: 1;
+  transition-duration: 300ms;
+}
+
+.switcher {
+  @include flex(row, unset, center);
+  z-index: 3;
+
+  &__off {
+    @include switcherStyles();
+    background: $grey-1;
+
+    &::after {
+      @include afterStyles();
+      @include position(absolute, $top: 2px, $left: 2px);
+    }
+  }
+
+  &__on {
+    @include switcherStyles();
+    background: $primary-persian-blue-default;
+
+    &::after {
+      @include afterStyles();
+      @include position(absolute, $top: 2px, $left: 22px);
+    }
+  }
+}

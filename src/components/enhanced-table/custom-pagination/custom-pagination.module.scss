@@ -1,0 +1,38 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin numberStyle {
+  @include button-style-reset();
+  @include size(20px, 20px);
+  border-radius: $s-border-radius;
+}
+
+.pagination {
+  @include flex(row, center, center, 8px);
+
+  &__button {
+    @include numberStyle();
+
+    &:hover{
+      background-color: $primary-persian-blue-default;
+    }
+  }
+
+  &__number {
+    color: $primary-oxford-blue-default;
+
+    &:hover {
+      color: $off-white;
+    }
+  }
+}
+
+.activePage {
+  @include numberStyle();
+  background-color: $primary-persian-blue-default;
+  color: $off-white;
+}
+
+.activeNumber {
+  color: $off-white;
+}
