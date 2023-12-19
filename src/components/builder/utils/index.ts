@@ -20,8 +20,7 @@ type TTimeObj = {
   m: number;
   h: number;
   d: number;
-}
-
+};
 
 /** перевод секунд в секунды/минуты/часы/дни
  * @param {number} time время в секундах
@@ -60,7 +59,6 @@ export const getSeconds = ({ s, m, h, d }: TTimeObj) => {
   return s + m * 60 + h * 60 * 60 + d * 60 * 60 * 24;
 };
 
-
 /**
  * форматирование времени
  * @param {number} s время в секундах
@@ -88,10 +86,12 @@ export const getSelectItemByValue = (value: string, arr: Option[]) => {
  * @param {string} name имя переменной
  * @param {string} id id переменной
  */
-export const saveVariable = (variables: TVariable[], name: string, id: string) => {
-  const variableIndex = variables.findIndex(
-    (item) => item.id === id
-  );
+export const saveVariable = (
+  variables: TVariable[],
+  name: string,
+  id: string
+) => {
+  const variableIndex = variables.findIndex((item) => item.id === id);
   if (variableIndex === -1) {
     variables.push({
       id,
@@ -155,7 +155,7 @@ export const getUrlPath: {
 } = {
   custom: 'bots',
   template: 'bots/template',
-  };
+};
 
 /**
  * сохранение данных input в стор ReactFlow

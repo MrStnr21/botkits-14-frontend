@@ -48,3 +48,8 @@ export const handlerAuthVkontakte = () => {
 export const handlerAuthGoogle = () => {
   window.location.href = AUTH_URL_G!;
 };
+
+export const createUrlBuilder = (path: string, id: string) => {
+  // Перенаправляем пользователя на страницу Builder по ID шаблона бота
+  return `/${path}?id=${id}&type=template`;
+};

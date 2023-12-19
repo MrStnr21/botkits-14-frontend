@@ -1,5 +1,7 @@
-import { FC, useState, useRef, useEffect, ChangeEvent } from 'react';
+import { FC, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAccessToken } from '../../auth/authService';
+import { useAppDispatch } from '../../services/hooks/hooks';
 import stylesCard from './BotTemplatesCard.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
@@ -9,43 +11,53 @@ import Menu from '../../ui/menus/menu/menu';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
 import InputTemplate from '../../ui/inputs/input-template/input-template';
+import { updateBotTemplatesAction } from '../../services/actions/bots/templatesBots';
+import { TTemplateBotRes } from '../../services/types/bot';
+import ModalPopup from '../popups/modal-popup/modal-popup';
+// import Typography from '../../ui/typography/typography';
+import EditImagePopup from '../popups/edit-image-popup/edit-image-popup';
+import { createUrlBuilder } from '../../utils/utils';
+import useForm from '../../services/hooks/use-form';
 
 import routesUrl from '../../utils/routesData';
 
-import { BUTTON_NAME } from '../../utils/constants';
+// import { BUTTON_NAME } from '../../utils/constants';
 
 interface IBotTemplatesCard {
-  id: string;
-  image?: string;
-  title?: string;
-  description?: string;
-  isToPublish: boolean;
+  card: TTemplateBotRes;
+  disabled?: boolean;
   deleteCard: (id: string) => void;
 }
 
 const BotTemplatesCard: FC<IBotTemplatesCard> = ({
-  image,
-  id,
-  title,
-  description,
-  isToPublish,
+  card,
+  disabled,
   deleteCard,
 }) => {
-  const [crm, setCrm] = useState(isToPublish);
+  const [crm, setCrm] = useState(card.isToPublish!);
   const [menu, toggleMenu] = useState(false);
-  const [imageEdit, setImageEdit] = useState<string>();
-  const [nameBot, setNameBot] = useState<string>(title || '');
-  const [aboutBot, setAboutBot] = useState<string>(description || '');
+  const [imageEdit, setImageEdit] = useState<string>('');
+  const { values, handleChange, setValues } = useForm({
+    nameBot: { value: card.title || '', valueValid: false },
+    aboutBot: { value: card.description || '', valueValid: false },
+  });
+  const [isOpen, setOpenPupup] = useState(false);
+
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const token = getAccessToken();
 
   const importImage = async () => {
     try {
-      const imageModule = await import(
-        `../../images/icon/template/${image}.svg`
-      );
+      let imageModule;
+      if (card.icon?.includes('http')) {
+        imageModule = card.icon;
+        return imageModule;
+      }
+      imageModule = await import(`../../images/icon/template/${card.icon}.svg`);
       return imageModule.default;
     } catch (error) {
       return 'null';
@@ -56,7 +68,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     importImage().then((importedImage) => {
       setImageEdit(importedImage);
     });
-  }, [image]);
+  }, [card.icon]);
 
   useOutsideClickAndEscape(
     menuRef,
@@ -74,18 +86,21 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     toggleMenu(!menu);
   };
 
-  const onClickEditAvatar = () => {
-    document.getElementById(`upload-file${id}`)!.click();
-  };
+  // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
+  // const onClickEditAvatar = () => {
+  //   document.getElementById(`upload-file${id}`)!.click();
+  // };
 
   const handleOptionClick = (e: string) => {
     toggleMenu(false);
     if (e === 'setupBuilder') {
       const path = routesUrl.botBuilder;
-      navigate(`/${path}`);
+      // eslint-disable-next-line no-underscore-dangle
+      navigate(createUrlBuilder(path, card._id));
     }
     if (e === 'delete') {
-      deleteCard(id);
+      // eslint-disable-next-line no-underscore-dangle
+      deleteCard(card._id);
     }
   };
 
@@ -94,9 +109,29 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     { label: 'Удалить', value: 'delete' },
   ];
 
+  const updateInputs = () => {
+    console.log(card);
+    const upCard = {
+      icon: imageEdit,
+      title: values.nameBot.value,
+      description: values.aboutBot.value,
+      features: card.features,
+      isToPublish: crm,
+      settings: {},
+    };
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(updateBotTemplatesAction(upCard, card._id, token));
+  };
+
   const clearInputs = () => {
-    setNameBot('');
-    setAboutBot('');
+    setValues({
+      nameBot: { value: '', valueValid: false },
+      aboutBot: { value: '', valueValid: false },
+    });
+  };
+
+  const openPopup = () => {
+    setOpenPupup(!isOpen);
   };
 
   return (
@@ -112,7 +147,9 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
               pic={imageEdit || imageAvatar}
             />
             <div className={stylesCard.editButton}>
-              <input
+              <EditButton onClick={openPopup} />
+              {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
+                <input
                 type="file"
                 id={`upload-file${id}`}
                 hidden
@@ -124,8 +161,8 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
                 }}
               />
               <label htmlFor={BUTTON_NAME.IMAGE}>
-                <EditButton onClick={onClickEditAvatar} />
-              </label>
+              <EditButton onClick={onClickEditAvatar} />
+              </label> */}
             </div>
           </div>
           <div className={stylesCard.more}>
@@ -148,20 +185,18 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
           </div>
         </div>
         <InputTemplate
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-            setNameBot(e.target.value)
-          }
+          onChange={handleChange}
           size="small"
           placeholder="Название бота"
-          value={nameBot}
+          value={values.nameBot.value}
+          name="nameBot"
         />
         <InputTemplate
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-            setAboutBot(e.target.value)
-          }
+          onChange={handleChange}
           size="big"
           placeholder="Описание бота..."
-          value={aboutBot}
+          value={values.aboutBot.value}
+          name="aboutBot"
         />
         <CheckboxWithText
           label="Опубликовать"
@@ -169,6 +204,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
           value="crm"
           onChange={onCrmChange}
           checked={crm}
+          disabled={disabled}
         />
       </div>
       <div className={stylesCard.buttons}>
@@ -179,10 +215,19 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
         >
           Отменить
         </ButtonBotTemplate>
-        <ButtonBotTemplate buttonHtmlType="button" color="blue">
+        <ButtonBotTemplate
+          onClick={updateInputs}
+          buttonHtmlType="button"
+          color="blue"
+        >
           Сохранить изменения
         </ButtonBotTemplate>
       </div>
+      {isOpen && (
+        <ModalPopup onClick={() => setOpenPupup(false)}>
+          <EditImagePopup closeModal={openPopup} editImage={setImageEdit} />
+        </ModalPopup>
+      )}
     </div>
   );
 };

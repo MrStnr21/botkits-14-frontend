@@ -1,5 +1,5 @@
 export interface ImockBotTemplates {
-  id: string;
+  _id: string;
   type: string;
   title: string;
   description: string;
@@ -15,7 +15,7 @@ export interface ImockBotTemplates {
 }
 export const mockBotTemplates = [
   {
-    id: '6552710c003b4c9083cc24ac',
+    _id: '6552710c003b4c9083cc24ac',
     type: 'template',
     title: 'Бот автоответчик',
     description:
@@ -38,7 +38,7 @@ export const mockBotTemplates = [
     isToPublish: true,
   },
   {
-    id: '7552710c003b4c9083cc24ac',
+    _id: '7552710c003b4c9083cc24ac',
     type: 'template',
     title: 'Демо бот',
     description: 'Бот для показа демо',
@@ -60,7 +60,7 @@ export const mockBotTemplates = [
     isToPublish: true,
   },
   {
-    id: '8552710c003b4c9083cc24ac',
+    _id: '8552710c003b4c9083cc24ac',
     type: 'template',
     title: 'Доставка еды',
     description: 'Бот поможет оформить заказ в ресторане',
@@ -82,7 +82,7 @@ export const mockBotTemplates = [
     isToPublish: true,
   },
   {
-    id: '9552710c003b4c9083cc24ac',
+    _id: '9552710c003b4c9083cc24ac',
     type: 'template',
     title: 'Опрос',
     description: 'Бот для проведения опросов',
@@ -104,7 +104,7 @@ export const mockBotTemplates = [
     isToPublish: true,
   },
   {
-    id: '1552710c003b4c9083cc24ac',
+    _id: '1552710c003b4c9083cc24ac',
     type: 'template',
     title: 'Лидогенерация/HR ререререре...',
     description: 'Бот для генерации лидов и HR задач',
@@ -126,7 +126,7 @@ export const mockBotTemplates = [
     isToPublish: false,
   },
   {
-    id: '2552710c003b4c9083cc24ac',
+    _id: '2552710c003b4c9083cc24ac',
     type: 'template',
     title: 'Онлайн школа/Вебинар',
     description: 'Бот для организации онлайн-школы или вебинаров',
