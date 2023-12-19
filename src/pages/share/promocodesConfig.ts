@@ -41,18 +41,21 @@ export const promoCellStyle = {
 
 export const promoRows = [
   {
+    id: 1,
     date: '15.12.2023 11:00',
     promo: 'GHBDTN5',
     price: '30р',
     status: true,
   },
   {
+    id: 2,
     date: '22.10.23 22:35',
     promo: 'HELLO10',
     price: '30р',
     status: true,
   },
   {
+    id: 3,
     date: '05.08.23 15:00',
     promo: 'uae009',
     price: '30р',
@@ -60,6 +63,7 @@ export const promoRows = [
     menu: true,
   },
   {
+    id: 4,
     date: '16.09.23 19:50',
     promo: 'darkza444',
     price: '30р',

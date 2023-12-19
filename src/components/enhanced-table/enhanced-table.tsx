@@ -119,6 +119,7 @@ const EnhancedTable: FC<Props> = ({
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  console.log(selected);
   // функция выделения всех строк таблицы по клику на чекбокс в шапке
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -154,9 +155,6 @@ const EnhancedTable: FC<Props> = ({
     const endIdx = startIdx + rowsPerPage;
     return rows.slice(startIdx, endIdx);
   }, [page, rowsPerPage, rows]);
-  // const startIdx = page * rowsPerPage;
-  // const endIdx = startIdx + rowsPerPage;
-  // const paginatedData = rows.slice(startIdx, endIdx);
 
   return (
     <Box sx={boxStyle}>

@@ -303,22 +303,4 @@ export const tariffsCols = [
     colStyle: { ...headStyle, width: '20%' },
     cellComponent: selectCell,
   },
-  // {
-  //   key: 'tel',
-  //   label: 'Телефон',
-  //   colStyle: { ...headStyle, width: '10%' },
-  //   cellComponent: baseCell,
-  // },
-  // {
-  //   key: 'one',
-  //   label: 'Раз',
-  //   colStyle: { ...headStyle, minWidth: '10%' },
-  //   cellComponent: baseCell,
-  // },
-  // {
-  //   key: 'two',
-  //   label: 'Два',
-  //   colStyle: { ...headStyle, minWidth: '10%' },
-  //   cellComponent: baseCell,
-  // },
 ];

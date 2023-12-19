@@ -9,15 +9,14 @@ interface IProps {
 
 const TableSwitcher: FC<IProps> = ({ status, id }) => {
   const [chosen, setChosen] = useState(status);
-  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     setChosen(!chosen);
-    console.log(`Switcher ${id} clicked, previous status - ${chosen}`);
   };
 
   return (
     <div className={styles.switcher} onClick={handleClick}>
-      <span className={chosen ? styles.switcher__on : styles.switcher__off} />
+      <div className={chosen ? styles.switcher__on : styles.switcher__off} />
     </div>
   );
 };

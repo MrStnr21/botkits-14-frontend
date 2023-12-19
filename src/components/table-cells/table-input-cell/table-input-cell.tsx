@@ -17,7 +17,7 @@ const TableInputCell: FC<IProps> = ({ value }) => {
     }
   }, [isEditing]);
 
-  const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     setIsEditing(!isEditing);
   };
@@ -42,7 +42,7 @@ const TableInputCell: FC<IProps> = ({ value }) => {
           handleBlur={handleBlur}
         />
       ) : (
-        <span onClick={handleClick}>{inpValue}</span>
+        <div onClick={handleClick}>{inpValue}</div>
       )}
     </div>
   );
