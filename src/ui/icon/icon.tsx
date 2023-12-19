@@ -12,6 +12,10 @@ export interface IIcon {
   extraClass?: string;
 }
 
+interface IconModule {
+  default: string | null;
+}
+
 const Icon: FC<IIcon> = ({ icon, isColored, extraClass }) => {
   const filterId = useId();
   const [iconSrc, setIconSrc] = useState<string | null>(null);
@@ -20,7 +24,9 @@ const Icon: FC<IIcon> = ({ icon, isColored, extraClass }) => {
     const fetchIcon = async () => {
       try {
         const iconPath = IconMapping[icon];
-        const iconModule = await import(`../../assets/icons/${iconPath}`);
+        const iconModule = (await import(
+          `../../assets/icons/${iconPath}`
+        )) as IconModule;
         setIconSrc(iconModule.default);
       } catch (error) {
         console.error('Ошибка при загрузке иконки:', error);

@@ -1,6 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 import { Meta, StoryFn } from '@storybook/react';
 import Icon, { IIcon } from './icon';
 import IconMapping from './icon-mapping';
+import iconsGroups from './utils';
 
 const meta: Meta<IIcon> = {
   component: Icon,
@@ -31,38 +33,7 @@ const meta: Meta<IIcon> = {
   },
   parameters: {
     layout: 'centered',
-    docs: {
-      description: {
-        component: `Компонент для отображения иконок.
-
-Заданный цвет применяется к иконке с помощью SVG-фильтра.
-Компонент написан с учётом того, что иконки не хранятся по внешнему URL-адресу, а включены непосредственно в проект и загружаются во время сборки.
-
-- icon - строка для идентификации иконки. Полный список - icon-mapping.ts
-- isColored - boolean, можно ли управлять цветом иконки из css. Позволяет использовать в компоненте многоцветные иконки.
-- extraClass - устанавливает цвет и размер иконки, добавляет дополнительную стилизацию, например, анимацию.
-
-          Пример применения для монохромных иконок:
-
-          <Icon icon="chevron" isColored extraClass={styles.icon}>
-          .icon {
-            width: 24px;
-            height: 24px;
-            color: $secondary-cultured-press;
-          }
-
-          Пример применения для многоцветных иконок:
-
-          <Icon icon="chevron" isColored={false} extraClass={styles.icon}>
-          .icon {
-            width: 24px;
-            height: 24px;
-          }
-          `,
-      },
-    },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;
@@ -86,3 +57,40 @@ export const IconComponent = {
   },
   render: Template,
 };
+
+const layoutStyle = {
+  maxWidth: `100%`,
+};
+const headerStyle = {
+  color: 'grey',
+  marginBottom: '10px',
+};
+
+const wrapperStyle = {
+  maxWidth: `100%`,
+  display: 'flex',
+  gap: '20px',
+  paddingBottom: '15px',
+  flexWrap: 'wrap' as const,
+};
+
+export const IconsList = () => (
+  <div style={layoutStyle}>
+    {Object.keys(iconsGroups).map((groupName, groupIndex) => (
+      <>
+        <div style={headerStyle}>{groupName}</div>
+        <div style={wrapperStyle} key={groupIndex}>
+          {iconsGroups[groupName].names.map((name, nameIndex) => (
+            <div
+              style={iconsGroups[groupName].style}
+              title={name}
+              key={nameIndex}
+            >
+              <Icon icon={name} isColored={false} />
+            </div>
+          ))}
+        </div>
+      </>
+    ))}
+  </div>
+);
