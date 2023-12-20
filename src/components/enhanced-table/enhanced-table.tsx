@@ -22,7 +22,6 @@ import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
 import {
   headCheckBoxStyles,
-  paginationStyles,
   paperStyles,
   checkBoxStyle,
   boxStyle,
