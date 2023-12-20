@@ -7,10 +7,11 @@
 
   &__header {
     @include flex(row, space-between, center);
+    @include indents(0 0 32px 0, 0);
   }
 
   &__buttonWrapper {
-    @include size(104px, 46px);
+    @include size(175px, 46px);
   }
 }
 
