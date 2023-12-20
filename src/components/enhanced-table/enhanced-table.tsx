@@ -250,17 +250,6 @@ const EnhancedTable: FC<Props> = ({
             onChange={handleChangePage}
             count={tableData.length}
           />
-          {/* <TablePagination
-            sx={paginationStyles}
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={tableData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Отображать по строкам"
-          /> */}
           <SelectPagination
             options={['5', '10', '25']}
             value={rowsPerPage.toString()}
