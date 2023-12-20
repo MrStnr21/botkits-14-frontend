@@ -158,7 +158,13 @@ const EnhancedTable: FC<Props> = ({
   return (
     <Box sx={boxStyle}>
       <Paper elevation={shadow} sx={paperStyles}>
-        {toolbar && <TableToolbar filters={toolbarFilters} />}
+        {toolbar && (
+          <TableToolbar
+            filters={toolbarFilters}
+            tableData={tableData}
+            selectedRows={selected}
+          />
+        )}
         {header && (
           <EnhancedTableHeader
             title={tableHeaderTitle}
