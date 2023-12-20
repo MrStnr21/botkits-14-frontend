@@ -1,6 +1,6 @@
 import {
   inputCell,
-  selectCell,
+  switcherCell,
 } from '../../components/table-cells/table-cells';
 
 export const headStyle = {
@@ -301,6 +301,6 @@ export const tariffsCols = [
     key: 'start',
     label: 'Стартовый тариф',
     colStyle: { ...headStyle, width: '20%' },
-    cellComponent: selectCell,
+    cellComponent: switcherCell,
   },
 ];
