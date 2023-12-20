@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useRef, useState } from 'react';
 import MoreIcon from '../icons/More/MoreIcon';
 import Menu from '../../ui/menus/menu/menu';

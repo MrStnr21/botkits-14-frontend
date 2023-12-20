@@ -1,7 +1,7 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
-.shareBotPopup {
+.popup {
   @include flex(column, center, unset, 20px);
   @include size(464px, unset);
   @include indents(40px, unset);
@@ -17,7 +17,7 @@
   }
 
   &__buttonsContainer {
-    @include flex(row, center, center);
+    @include flex(row, center, center, 16px);
   }
 }
 
