@@ -1,0 +1,40 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+
+import * as IconStories from './icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
++ **icon** - строка для идентификации иконки. Полный список - icon-mapping.ts
++ **isColored** - флаг, определяющий, можно ли управлять цветом иконки из CSS. Позволяет использовать в компоненте многоцветные иконки.
++ **extraClass** - устанавливает цвет и размер иконки, добавляет дополнительную стилизацию, например, анимацию.
+
+### Пример применения для монохромных иконок:
+```jsx
+<Icon icon="chevron" isColored extraClass={styles.icon} />
+```
+```css
+.icon {
+  width: 24px;
+  height: 24px;
+  color: $secondary-cultured-press;
+}
+```
+
+### Пример применения для многоцветных иконок:
+```jsx
+<Icon icon="chevron" isColored={false} extraClass={styles.icon} />
+```
+```css
+.icon {
+  width: 24px;
+  height: 24px;
+}
+```
+
+Заданный цвет применяется к иконке с помощью SVG-фильтра.  `<filter>` рисует квадрат цвета currentColor, а затем "вырезает" из него изображение иконки.
+Компонент написан с учётом того, что иконки не хранятся по внешнему URL-адресу, а включены непосредственно в проект и загружаются во время сборки.
+
+<Canvas of={IconStories.IconComponent} />
+<Controls />

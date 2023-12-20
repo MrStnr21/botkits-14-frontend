@@ -68,18 +68,15 @@
 
   &__payments {
     @include flex(column, $align-items: center);
-    padding: 40px 0;
+    padding: 32px 0;
     box-sizing: border-box;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
   }
 
   &__referrals {
-    @include flex(column, $align-items: center, $gap: 26px);
+    @include flex(column, $align-items: center);
     width: 100%;
-    padding: 40px 0;
+    padding: 32px 0 0 0;
     background-color: $off-white;
     border-radius: $xxl-border-radius;
     box-sizing: border-box;
@@ -88,7 +85,7 @@
 
   &__titleContainer {
     @include flex(row, space-between, center);
-    padding: 0 40px;
+    padding: 0 32px;
     box-sizing: border-box;
     width: 100%;
   }

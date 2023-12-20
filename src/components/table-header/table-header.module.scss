@@ -1,0 +1,22 @@
+@use '../../stylesheets/mixins' as *;
+@use '../../stylesheets/variables' as *;
+
+.div {
+  @include position(relative);
+  @include indents(0, 0 0 20px 0);
+  @include flex(row, space-between, center);
+}
+
+.button {
+  @include flex(row, center, center, 16px);
+  @include font('Open Sans', $m-font-size, $bold, $grey-4);
+  @include button-style-reset();
+  line-height: $xl-line-height;
+  letter-spacing: $m-letter-space;
+  text-align: right;
+}
+
+div.dropdown {
+  @include position(absolute, 56px, 0);
+  z-index: 105;
+}

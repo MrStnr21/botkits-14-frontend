@@ -3,29 +3,17 @@ import {
   baseCell,
   dateCell,
   statusCell,
-} from '../components/table-cells/table-cells';
+} from '../../components/table-cells/table-cells';
 
 export const colStyle = {
   border: 'none',
   padding: '0 0 12px',
-  ':first-of-type': {
-    paddingLeft: '32px',
-  },
-  ':last-of-type': {
-    paddingRight: '32px',
-  },
 };
 
 export const cellStyle = {
   border: 'none',
   boxSizing: 'border-box',
   padding: '14px 0',
-  ':first-of-type': {
-    paddingLeft: '32px',
-  },
-  ':last-of-type': {
-    paddingRight: '32px',
-  },
 };
 
 export const rowStyle = {
@@ -203,4 +191,10 @@ export const tableData = [
     operation: 'Поступления',
     note: 'Возврат средств',
   },
+];
+
+export const subscriptionDropdownValues = [
+  { label: 'Все', value: 'all' },
+  { label: 'Поступления', value: 'income' },
+  { label: 'Списания', value: 'withdrawals' },
 ];
