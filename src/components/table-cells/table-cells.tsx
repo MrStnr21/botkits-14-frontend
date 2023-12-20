@@ -15,7 +15,7 @@ export const dateCell = (date: string) => (
 );
 
 export const baseCell = (data: any) => (
-  <Typography className={style.text} tag="p">
+  <Typography className={style.text} tag="span">
     {data ?? '-'}
   </Typography>
 );
