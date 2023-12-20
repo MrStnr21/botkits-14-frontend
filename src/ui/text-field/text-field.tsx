@@ -100,7 +100,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
           codeHandler={() => CustomEditor.toggleCodeMark(editor)}
           isActive={showMenu}
           top={-60}
-          left={36}
+          left={60}
         />
         <button
           className={styles.textarea__font}
