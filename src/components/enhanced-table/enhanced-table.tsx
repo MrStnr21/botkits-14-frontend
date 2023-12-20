@@ -16,7 +16,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
-import TablePagination from '@mui/material/TablePagination';
 import { Box, Checkbox } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
@@ -32,6 +31,8 @@ import {
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './enhanced-table.module.scss';
 import TableMenuButton from '../table-menu-button/table-menu-button';
+import SelectPagination from './select-pagination/select-pagination';
+import { Option } from '../../utils/types';
 
 type Columns = {
   id?: number;
@@ -52,30 +53,30 @@ type Props = {
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
-  // нужна ли пагинация в таблице
+  /** нужна ли пагинация в таблице */
   pagination?: boolean;
-  // подключены ли чекбоксы к строке
+  /** подключены ли чекбоксы к строке */
   check?: boolean;
-  // наличие нопок фильтров и выгрузки над таблицей
+  /** наличие нопок фильтров и выгрузки над таблицей */
   toolbar?: boolean;
-  // стандартный box-shadow контейнеру таблицы (откл. по умолчанию)
+  /** стандартный box-shadow контейнеру таблицы (откл. по умолчанию) */
   shadow?: number;
-  // хидер с названием и фильтром строк
+  /** хидер с названием и фильтром строк */
   header?: boolean;
-  // кнопка с выпадающим списком
+  /** кнопка с выпадающим списком */
   dropdown?: boolean;
   onFilterChange?: (value: string) => void;
-  // минимальная ширина таблицы(исп. для вкл-я горизонтального скролла)
+  /** минимальная ширина таблицы(исп. для вкл-я горизонтального скролла) */
   minTableWidth?: string;
-  // значения, прокидываемые в выпадающий список кнопки
+  /** значения, прокидываемые в выпадающий список кнопки */
   menuOptions?: { label: string; value: string }[];
-  // значения, прокидываемые в выпадающий список фильтра в хидере
+  /** значения, прокидываемые в выпадающий список фильтра в хидере */
   headerOptions?: { label: string; value: string }[];
-  // название таблицы в хидере
+  /** название таблицы в хидере */
   tableHeaderTitle?: string;
-  // необходимость отображения кнопок фильтров в тулбаре
+  /** необходимость отображения кнопок фильтров в тулбаре */
   toolbarFilters?: boolean;
-  // количество отображаемых на одной странице строк в начальном состоянии таблицы
+  /** количество отображаемых на одной странице строк в начальном состоянии таблицы */
   rowsPerPageValue?: number;
 };
 
@@ -115,8 +116,8 @@ const EnhancedTable: FC<Props> = ({
     setRows(updatedRows);
   };
   // изменение кол-ва страниц в зависимости от количества строк на одной странице
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const handleChangeRowsPerPage = (option: Option) => {
+    setRowsPerPage(Number(option.value));
     setPage(0);
   };
   console.log(selected);
@@ -249,7 +250,7 @@ const EnhancedTable: FC<Props> = ({
             onChange={handleChangePage}
             count={tableData.length}
           />
-          <TablePagination
+          {/* <TablePagination
             sx={paginationStyles}
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
@@ -259,6 +260,12 @@ const EnhancedTable: FC<Props> = ({
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
             labelRowsPerPage="Отображать по строкам"
+          /> */}
+          <SelectPagination
+            options={['5', '10', '25']}
+            value={rowsPerPage.toString()}
+            handleSelect={handleChangeRowsPerPage}
+            title="Отображать по строкам: "
           />
         </div>
       )}
