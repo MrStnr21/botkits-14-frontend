@@ -12,24 +12,19 @@ export interface IMenuTextEditor {
   isActive?: boolean;
   top?: number;
   left?: number;
+  boldHandler?: () => void;
+  italicHandler?: () => void;
+  codeHandler?: () => void;
 }
 
 const MenuTextEditor: FC<IMenuTextEditor> = ({
   isActive = false,
   top = 0,
   left = 0,
+  boldHandler,
+  italicHandler,
+  codeHandler,
 }): JSX.Element => {
-  const boldHandler = () => {
-    console.log('bold');
-  };
-  const italicHandler = () => {
-    // eslint-disable-next-line no-console
-    console.log('italic');
-  };
-  const codeHandler = () => {
-    // eslint-disable-next-line no-console
-    console.log('code');
-  };
   const deleteHandler = () => {
     // eslint-disable-next-line no-console
     console.log('delete');
