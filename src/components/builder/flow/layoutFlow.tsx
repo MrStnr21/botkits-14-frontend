@@ -60,7 +60,7 @@ const LayoutFlow: FC = () => {
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
 
   useEffect(() => {
-    const id = searchParams.get('id');
+    const id = searchParams.get('id') || '';
     const path = searchParams.get('type')
       ? getUrlPath[searchParams.get('type')!]
       : '';
@@ -110,7 +110,7 @@ const LayoutFlow: FC = () => {
   }, []);
 
   const saveBot = () => {
-    const id = searchParams.get('id');
+    const id = searchParams.get('id') || '';
     const path = searchParams.get('type')
       ? getUrlPath[searchParams.get('type')!]
       : '';

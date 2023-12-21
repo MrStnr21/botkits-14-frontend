@@ -13,7 +13,7 @@ type TReq = {
   uri: string;
   auth?: boolean;
   data?: any;
-  id?: string | null;
+  id?: string;
   method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
 };
 
