@@ -24,7 +24,6 @@ import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 
 import routesUrl from '../../../utils/routesData';
-import { getAccessToken } from '../../../auth/authService';
 import Typography from '../../../ui/typography/typography';
 
 interface ImageMap {
@@ -64,8 +63,6 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  const token = getAccessToken();
-
   const disabledDefault =
     values.accessKey.value.length > 1 && values.botName.value.length > 1;
 
@@ -100,7 +97,7 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
     };
 
     try {
-      dispatch(addBotAction(dataBot, token));
+      dispatch(addBotAction(dataBot));
       history(`/${routesUrl.botBuilder}`);
     } catch (err) {
       // eslint-disable-next-line no-console

@@ -29,12 +29,12 @@ export type TGetPlatformsActions =
  * экшн получения шаблонов
  * @param token access token
  */
-const getPlatformsAction: AppThunk = (token: string) => {
+const getPlatformsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_PLATFORMS_REQUEST,
     });
-    getPlatformsApi(token)
+    getPlatformsApi()
       .then((res: Array<TPlatform>) => {
         if (res) {
           dispatch({

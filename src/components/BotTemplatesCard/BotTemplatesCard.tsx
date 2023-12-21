@@ -1,6 +1,5 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAccessToken } from '../../auth/authService';
 import { useAppDispatch } from '../../services/hooks/hooks';
 import stylesCard from './BotTemplatesCard.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
@@ -48,7 +47,6 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const token = getAccessToken();
 
   const importImage = async () => {
     try {
@@ -120,7 +118,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
       settings: {},
     };
     // eslint-disable-next-line no-underscore-dangle
-    dispatch(updateBotTemplatesAction(upCard, card._id, token));
+    dispatch(updateBotTemplatesAction(upCard, card._id));
   };
 
   const clearInputs = () => {

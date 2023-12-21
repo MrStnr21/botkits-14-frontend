@@ -34,12 +34,12 @@ export type TGetUserInfoActions =
  * Экшн получения данных пользователя
  * @param token access token
  */
-const getUserInfoAction: AppThunk = (token: string) => {
+const getUserInfoAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_USER_INFO_REQUEST,
     });
-    getUserInfoApi(token)
+    getUserInfoApi()
       .then((res: TUser) => {
         if (res) {
           dispatch({

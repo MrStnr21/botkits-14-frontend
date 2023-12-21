@@ -30,12 +30,12 @@ export type TGetBotsActions =
  * экшн получения ботов
  * @param token access token
  */
-const getBotsAction: AppThunk = (token: string) => {
+const getBotsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GETBOTS_REQUEST,
     });
-    getBotsApi(token)
+    getBotsApi()
       .then((res) => {
         console.log(res);
         if (res) {

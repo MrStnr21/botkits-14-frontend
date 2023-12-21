@@ -30,7 +30,6 @@ import BotName from '../../../ui/bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
-import { getAccessToken } from '../../../auth/authService';
 import {
   filterNodes,
   getUrlPath,
@@ -61,7 +60,6 @@ const LayoutFlow: FC = () => {
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
 
   useEffect(() => {
-    const token = getAccessToken() || '';
     const id = searchParams.get('id');
     const path = searchParams.get('type')
       ? getUrlPath[searchParams.get('type')!]
@@ -73,7 +71,7 @@ const LayoutFlow: FC = () => {
       console.log('нету');
     }
 
-    getBuilderApi(token, path, id)
+    getBuilderApi(path, id)
       .then((data) => {
         if (data.features && data.features.nodes) {
           setNodes(data.features.nodes);
@@ -112,7 +110,6 @@ const LayoutFlow: FC = () => {
   }, []);
 
   const saveBot = () => {
-    const token = getAccessToken() || '';
     const id = searchParams.get('id');
     const path = searchParams.get('type')
       ? getUrlPath[searchParams.get('type')!]
@@ -132,7 +129,7 @@ const LayoutFlow: FC = () => {
       },
     };
 
-    saveBuilderApi(builder, token, path, id).catch((err) => {
+    saveBuilderApi(builder, path, id).catch((err) => {
       // eslint-disable-next-line no-console
       console.log(err);
     });

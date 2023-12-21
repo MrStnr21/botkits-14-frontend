@@ -7,7 +7,6 @@ import stylesAddBot from './add-bot.module.scss';
 import ButtonAddSocial from '../../../ui/buttons/button-add-social/button-add-social';
 import { IBot } from '../../../utils/types';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
-import { getAccessToken } from '../../../auth/authService';
 import { getPlatformsAction } from '../../../services/actions/platforms/getPlatforms';
 import { getPlatformsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
@@ -22,10 +21,8 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  const token = getAccessToken();
-
   useEffect(() => {
-    dispatch(getPlatformsAction(token));
+    dispatch(getPlatformsAction());
   }, [dispatch]);
 
   const ref =

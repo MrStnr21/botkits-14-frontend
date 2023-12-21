@@ -19,9 +19,9 @@ export type TLogoutActions = ILogoutAction;
  * @param token access token
  * @param navigate callback без аргументов
  */
-const logoutAction: AppThunk = (token: string, navigate) => {
+const logoutAction: AppThunk = (navigate) => {
   return (dispatch: AppDispatch) => {
-    logoutApi(token)
+    logoutApi()
       .then((res) => {
         removeAccessToken();
         removeRefreshToken();

@@ -70,12 +70,12 @@ export type TGetTemplatesBotsActions =
   | IUpdateBotTemplatesErrorAction;
 
 // экшн получения шаблонов
-const getTemplatesBotsAction: AppThunk = (token: string) => {
+const getTemplatesBotsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_TEMPLATES_BOTS_REQUEST,
     });
-    getTemplatesBotsApi(token)
+    getTemplatesBotsApi()
       .then((res: Array<TTemplateBotRes>) => {
         if (res) {
           dispatch({
@@ -96,12 +96,12 @@ const getTemplatesBotsAction: AppThunk = (token: string) => {
 
 // экшн удаления шаблонов
 
-const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
+const deleteBotTemplatesAction: AppThunk = (idCard: string) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: DELETEBOTTEMPLATES_REQUEST,
     });
-    deleteTemplatesBotsApi(idCard, token)
+    deleteTemplatesBotsApi(idCard)
       .then((res) => {
         dispatch({
           type: DELETEBOTTEMPLATES_SUCCESS,
@@ -120,15 +120,14 @@ const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
 
 const updateBotTemplatesAction: AppThunk = (
   botTemplates: TTemplateBotRes,
-  id: string,
-  token: string
+  id: string
 ) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: UPDATEBOTTEMPLATES_REQUEST,
     });
     console.log(botTemplates);
-    updateTemplatesBotsApi(botTemplates, id, token)
+    updateTemplatesBotsApi(botTemplates, id)
       .then((res) => {
         dispatch({
           type: UPDATEBOTTEMPLATES_SUCCESS,

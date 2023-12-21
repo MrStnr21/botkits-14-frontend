@@ -27,15 +27,12 @@ export type TAddTemplatesBotActions =
   | IAddBotTemplatesErrorAction;
 
 // экшн добавления шаблона
-const addBotTemplatesAction: AppThunk = (
-  botinfo: TTemplateBotRes,
-  token: string
-) => {
+const addBotTemplatesAction: AppThunk = (botinfo: TTemplateBotRes) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: ADDBOTTEMPLATES_REQUEST,
     });
-    addTemplatesBotsApi(botinfo, token)
+    addTemplatesBotsApi(botinfo)
       .then((res) => {
         if (res) {
           dispatch({
