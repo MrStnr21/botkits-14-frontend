@@ -17,6 +17,20 @@ export type TUser = {
   _id: string;
 };
 
+export type TUserProfile = {
+  accounts: string[];
+  avatar: string;
+  balance: number;
+  partner_ref: string;
+  phone: string;
+  registration_ref: number;
+  sharedAccess: string;
+  success: true;
+  username: string;
+  visited_ref: number;
+  _id: string;
+};
+
 export interface IUserSignupState {
   password: string;
   email: string;
