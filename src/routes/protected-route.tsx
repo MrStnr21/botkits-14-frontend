@@ -32,8 +32,8 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
 
   useEffect(() => {
     if (token) {
-      dispatch(getUserInfoAction(token));
-      dispatch(getBotsAction(token));
+      dispatch(getUserInfoAction());
+      dispatch(getBotsAction());
     }
   }, [dispatch]);
 
