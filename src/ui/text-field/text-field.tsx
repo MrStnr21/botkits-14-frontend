@@ -1,6 +1,7 @@
 /* eslint-disable default-case */
 import { FC, useState, useCallback, useMemo } from 'react';
 import { createEditor, Descendant } from 'slate';
+import { withHistory } from 'slate-history';
 
 import { Slate, Editable, withReact, RenderLeafProps } from 'slate-react';
 
@@ -23,7 +24,7 @@ interface ITextField {
 const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
   const [counter, rerender] = useState(1);
   const [emojis, toggleEmojis] = useState(false);
-  const [editor] = useState(() => withReact(createEditor()));
+  const [editor] = useState(() => withReact(withHistory(createEditor())));
   const length = useMemo(() => {
     return text[0].children?.reduce((sum, item) => {
       return sum + item.text.length;
