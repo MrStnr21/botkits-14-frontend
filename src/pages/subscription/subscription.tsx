@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, MouseEvent } from 'react';
 import { ReactSVG } from 'react-svg';
 import cn from 'classnames';
@@ -5,7 +6,7 @@ import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
 import icon from '../../images/icon/20x20/chevron/down.svg';
-import TableComponent from '../../components/table-component/table-component';
+import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';
@@ -17,10 +18,12 @@ import {
   cellStyle,
   rowStyle,
   subscriptionStatus,
-} from '../../utils/paymenTable';
+  subscriptionDropdownValues,
+} from './subscriptionConfig';
 import { sapHeadCell } from '../../components/table-cells/table-cells';
 
 const Subscription: FC = (): JSX.Element => {
+  const [filterValue, setFilterValue] = useState<string>('all');
   const { isModalOpen, closeModal, openModal } = useModal();
   const [popupType, setPopupType] = useState<
     'activatePromoCode' | 'subscription' | null
@@ -35,29 +38,20 @@ const Subscription: FC = (): JSX.Element => {
     setPopupType(type);
   };
 
-  const buttonList = ['Все', 'Списания', 'Поступления'];
-  const [activeList, setActiveList] = useState(false);
-  const [buttonName, setButtonName] = useState('Все');
-  const [rowList, setRowList] = useState(tableData);
-
-  const click = () => {
-    setActiveList(!activeList);
+  const handleFilterChange = (value: string) => {
+    setFilterValue(value);
   };
-
-  const filteredRows = (filterName: string): void => {
-    setRowList(() => {
-      if (filterName === 'Все') {
+  const renderFilteredRows = () => {
+    switch (filterValue) {
+      case 'all':
         return tableData;
-      }
-      return tableData.filter((row) => row.operation === filterName);
-    });
-  };
-
-  const setActiveFilter = (e: MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
-    setButtonName(target.textContent as string);
-    filteredRows(target.textContent as string);
-    setActiveList(!activeList);
+      case 'income':
+        return tableData.filter((row) => row.operation === 'Поступления');
+      case 'withdrawals':
+        return tableData.filter((row) => row.operation === 'Списания');
+      default:
+        return tableData;
+    }
   };
 
   return (
@@ -124,32 +118,15 @@ const Subscription: FC = (): JSX.Element => {
         </div>
 
         <div className={style.payment}>
-          <div className={style.payment__header}>
-            <Typography tag="h4" fontFamily="secondary">
-              История платежей
-            </Typography>
-            <div className={style.dropdown}>
-              <button
-                type="button"
-                onClick={click}
-                className={style.dropdown__button}
-              >
-                {buttonName}
-                <ReactSVG src={icon} style={{ height: '20px' }} />
-              </button>
-              <MenuSimple
-                buttons={buttonList}
-                isActive={activeList}
-                onClick={setActiveFilter}
-                className={style.dropdown__list}
-              />
-            </div>
-          </div>
-          <TableComponent
+          <EnhancedTable
+            header
+            tableHeaderTitle="История платежей"
+            headerOptions={subscriptionDropdownValues}
+            onFilterChange={handleFilterChange}
             cellStyle={cellStyle}
             rowStyle={rowStyle}
             columns={columns}
-            tableData={rowList}
+            tableData={renderFilteredRows()}
             headComponent={sapHeadCell}
           />
         </div>

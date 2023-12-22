@@ -20,8 +20,11 @@ import { TGetBotsActions } from '../actions/bots/getBot';
 import { TAddBotState } from '../reducers/bots/addBot';
 import { TAddBotActions } from '../actions/bots/addBot';
 
-import { TGetTemplatesBotsState } from '../reducers/bots/getTemplatesBots';
-import { TGetTemplatesBotsActions } from '../actions/bots/getTemplatesBots';
+import { TAddTemplatesBotState } from '../reducers/bots/addTemplatesBot';
+import { TAddTemplatesBotActions } from '../actions/bots/addTemplatesBot';
+
+import { TGetTemplatesBotsState } from '../reducers/bots/templatesBots';
+import { TGetTemplatesBotsActions } from '../actions/bots/templatesBots';
 
 import { TUserResetPasswordActions } from '../actions/auth/reset-password';
 import { TResetPasswordState } from '../reducers/auth/reset-password';
@@ -40,6 +43,7 @@ export type TStore = {
   getBots: TGetBotsState;
   addBot: TAddBotState;
   getTemplatesBots: TGetTemplatesBotsState;
+  addTemplatesBot: TAddTemplatesBotState;
   getPlatforms: TGetPlatformsState;
 };
 
@@ -53,6 +57,7 @@ export type TApplicationActions =
   | TLogoutActions
   | TGetBotsActions
   | TAddBotActions
+  | TAddTemplatesBotActions
   | TGetTemplatesBotsActions
   | TGetPlatformsActions;
 
