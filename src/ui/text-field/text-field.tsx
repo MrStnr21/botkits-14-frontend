@@ -73,12 +73,11 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
           renderLeaf={renderLeaf}
           placeholder="Введите текст"
           onKeyDown={(event) => {
+            if (length === 0) {
+              CustomEditor.setDefaultMark(editor);
+            }
             switch (event.key) {
               case ' ': {
-                CustomEditor.setDefaultMark(editor);
-                break;
-              }
-              case 'Backspace': {
                 CustomEditor.setDefaultMark(editor);
                 break;
               }
