@@ -3,6 +3,7 @@ import { FC, useMemo, useState } from 'react';
 import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import { Descendant } from 'slate';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -269,7 +270,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     );
   };
 
-  const setText = (value: string) => {
+  const setText = (value: Descendant[]) => {
     setNodes(
       getNodes().map((item) => {
         if (item.id === id) {
