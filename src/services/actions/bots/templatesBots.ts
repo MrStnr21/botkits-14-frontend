@@ -6,6 +6,7 @@ import {
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TTemplateBotRes } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
 const GET_TEMPLATES_BOTS_REQUEST = 'GET_TEMPLATES_BOTS_REQUEST';
 const GET_TEMPLATES_BOTS_SUCCESS = 'GET_TEMPLATES_BOTS_SUCCESS';
@@ -84,9 +85,9 @@ const getTemplatesBotsAction: AppThunk = () => {
           });
         }
       })
-      .catch((err: { message: string }) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err[0]);
         dispatch({
           type: GET_TEMPLATES_BOTS_ERROR,
         });
@@ -108,7 +109,7 @@ const deleteBotTemplatesAction: AppThunk = (idCard: string) => {
           botTemplates: res,
         });
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({
@@ -134,7 +135,7 @@ const updateBotTemplatesAction: AppThunk = (
           botTemplates: res,
         });
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({

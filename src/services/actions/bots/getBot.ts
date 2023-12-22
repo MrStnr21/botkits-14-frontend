@@ -3,6 +3,7 @@ import { getBotsApi } from '../../../api';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TBot } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
 const GETBOTS_REQUEST = 'GETBOT_REQUSET';
 const GETBOTS_SUCCESS = 'GETBOT_SUCCESS';
@@ -45,7 +46,7 @@ const getBotsAction: AppThunk = () => {
           });
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({

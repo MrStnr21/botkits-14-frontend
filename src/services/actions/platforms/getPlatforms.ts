@@ -2,6 +2,7 @@ import getPlatformsApi from '../../../api/platforms';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TPlatform } from '../../types/platform';
+import { TResponseError } from '../../types/response';
 
 const GET_PLATFORMS_REQUEST = 'GET_PLATFORMS_REQUEST';
 const GET_PLATFORMS_SUCCESS = 'GET_PLATFORMS_SUCCESS';
@@ -43,9 +44,9 @@ const getPlatformsAction: AppThunk = () => {
           });
         }
       })
-      .catch((err: { message: string }) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err[0]);
         dispatch({
           type: GET_PLATFORMS_ERROR,
         });

@@ -3,6 +3,7 @@ import { addBotApi } from '../../../api';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TBot } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
 const ADDBOT_REQUEST = 'ADDBOT_REQUSET';
 const ADDBOT_SUCCESS = 'ADDBOT_SUCCESS';
@@ -47,7 +48,7 @@ const addBotAction: AppThunk = (botinfo: TBot) => {
           });
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({

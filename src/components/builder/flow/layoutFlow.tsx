@@ -41,6 +41,7 @@ import {
 import { storeOfVariables } from '../utils/store';
 import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
+import { TResponseError } from '../../../services/types/response';
 
 const cx = cn.bind(styles);
 
@@ -103,7 +104,7 @@ const LayoutFlow: FC = () => {
         // eslint-disable-next-line no-console
         console.log(data);
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
       });

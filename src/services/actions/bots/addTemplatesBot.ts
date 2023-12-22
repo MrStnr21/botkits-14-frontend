@@ -3,6 +3,7 @@ import { addTemplatesBotsApi } from '../../../api/bots';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TTemplateBotRes } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
 const ADDBOTTEMPLATES_REQUEST = 'ADDBOTTEMPLATES_REQUSET';
 const ADDBOTTEMPLATES_SUCCESS = 'ADDBOTTEMPLATES_SUCCESS';
@@ -41,7 +42,7 @@ const addBotTemplatesAction: AppThunk = (botinfo: TTemplateBotRes) => {
           });
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({

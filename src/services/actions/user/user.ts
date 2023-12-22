@@ -6,6 +6,7 @@ import {
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
+import { TResponseError } from '../../types/response';
 import { TUser } from '../../types/user';
 
 const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
@@ -48,7 +49,7 @@ const getUserInfoAction: AppThunk = () => {
           });
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         if (err[0] === 'Ошибка 401') {
