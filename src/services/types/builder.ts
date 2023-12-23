@@ -14,8 +14,25 @@ export type TBlockProps<T> = {
   data: T;
 };
 
+export type TNode<T> = {
+  id: string;
+  type: string;
+  data: T;
+  position: {
+    y: number;
+    x: number;
+  };
+  parentNode?: string | undefined;
+};
+
 export type TFlowSetter<T> = {
   setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
+  id: string;
+  data: T;
+};
+
+export type TFlowSetterNodes<T> = {
   getNodes: Instance.GetNodes<any>;
   id: string;
   data: T;

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
@@ -15,15 +15,16 @@ import { setFlowData } from '../../utils';
 import { addFieldFlow, setVariableFlow } from './flow';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
-  const { getNodes, setNodes } = useReactFlow();
+  const [amount, render] = useState(0);
+  const { getNodes } = useReactFlow();
   const id = useNodeId() || '';
 
   const setUrl = setFlowData({ selectors: ['url'] });
   const setGetType = setFlowData({ selectors: ['reqType'], value: 'get' });
   const setPostType = setFlowData({ selectors: ['reqType'], value: 'post' });
 
-  const addField = addFieldFlow({ getNodes, setNodes, id, data });
-  const setVariable = setVariableFlow({ getNodes, setNodes, id, data });
+  const addField = addFieldFlow({ getNodes, id, data });
+  const setVariable = setVariableFlow({ getNodes, id, data });
 
   const getHeaderFields = (type: 'variable' | 'const') => {
     return data.headers.map((item, index) => {
@@ -62,9 +63,10 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
       return (
         <Input
           styled="bot-builder-default"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setVariable(event.target)
-          }
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setVariable(event.target);
+            render(amount + 1);
+          }}
           placeholder="Переменная"
           value={item.name || ''}
           minLength={0}
@@ -77,7 +79,10 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
 
   return (
     <ControlLayout type="API">
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        onClick={() => setTimeout(() => render(amount + 1))}
+      >
         <LabeledInput title="URL стороннего сервиса">
           <Input
             placeholder="Введите URL"

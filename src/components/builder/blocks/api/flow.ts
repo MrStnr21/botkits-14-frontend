@@ -1,9 +1,14 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import _ from 'lodash';
 import { saveVariable } from '../../utils';
 import { storeOfVariables } from '../../utils/store';
-import { TApiBlock, TFlowSetter } from '../../../../services/types/builder';
+import {
+  TApiBlock,
+  TFlowSetterNodes,
+} from '../../../../services/types/builder';
 
 export const addFieldFlow =
-  ({ getNodes, setNodes, id, data }: TFlowSetter<TApiBlock>) =>
+  ({ getNodes, id, data }: TFlowSetterNodes<TApiBlock>) =>
   (field: 'headers' | 'params' | 'variables', type: 'variable' | 'const') =>
   () => {
     const idVariable = `${id}|||saveResultVariable-${
@@ -11,81 +16,50 @@ export const addFieldFlow =
     }`;
     saveVariable(storeOfVariables, '', idVariable);
 
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              [field]: [
-                ...item.data[field],
-                field === 'variables'
-                  ? { id: idVariable, name: '', value: '' }
-                  : { type, name: '', variable: '' },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
+    const node = getNodes().filter((item) => item.id === id)[0];
+    const ChangedElement =
+      field === 'variables'
+        ? { id: idVariable, name: '', value: '' }
+        : { type, name: '', variable: '' };
+
+    _.set(node, ['data', field], [...data[field], ChangedElement]);
   };
 
 export const setVariableFlow =
-  ({ getNodes, setNodes, id, data }: TFlowSetter<TApiBlock>) =>
+  ({ getNodes, id, data }: TFlowSetterNodes<TApiBlock>) =>
   (currentTarget: EventTarget & HTMLInputElement) => {
     saveVariable(storeOfVariables, currentTarget.value, currentTarget.id);
-    return setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
+
+    const node = getNodes().filter((item) => item.id === id)[0];
+
+    _.set(
+      node,
+      ['data', 'variables'],
+      data.variables.map((el) => {
+        if (el.id === currentTarget.id) {
           return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: data.variables.map((el) => {
-                if (el.id === currentTarget.id) {
-                  return {
-                    id: currentTarget.id,
-                    name: currentTarget.value,
-                    value: '',
-                  };
-                }
-                return el;
-              }),
-            },
+            id: currentTarget.id,
+            name: currentTarget.value,
+            value: '',
           };
         }
-        return item;
+        return el;
       })
     );
   };
 
-type TSetValueFlowParams = Omit<TFlowSetter<TApiBlock>, 'data'> & {
+type TSetValueFlowParams = Omit<TFlowSetterNodes<TApiBlock>, 'data'> & {
   field: string;
   index: number;
 };
 
 export const setValueFlow =
-  ({ getNodes, setNodes, id, field, index }: TSetValueFlowParams) =>
-  (type: 'name' | 'variable') =>
-  (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              [field]: [
-                ...item.data[field].slice(0, index),
-                { ...item.data[field][index], [type]: e.target.value },
-                ...item.data[field].slice(index + 1),
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
+  ({ getNodes, id, field, index }: TSetValueFlowParams) =>
+  (type: 'name' | 'variable', e: React.ChangeEvent<HTMLInputElement>) => {
+    const node = getNodes().filter((item) => item.id === id)[0];
+
+    _.set(node, ['data', field, index], {
+      ...node.data[field][index],
+      [type]: e.target.value,
+    });
   };
