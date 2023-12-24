@@ -50,7 +50,7 @@ const img: ImageMap = {
   'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
 };
 
-const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }): JSX.Element => {
+const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }) => {
   const [arrPages, setArrPages] = useState<string[]>([]);
 
   const { values, handleChange, setValues } = useForm({

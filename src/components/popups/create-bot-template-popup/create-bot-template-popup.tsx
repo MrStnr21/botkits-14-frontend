@@ -65,7 +65,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
         isToPublish: false,
       };
       const path = routesUrl.botBuilder;
-      console.log(dataBotTemplates);
       const template = await addTemplatesBotsApi(dataBotTemplates);
       // eslint-disable-next-line no-underscore-dangle
       const id = template._id;

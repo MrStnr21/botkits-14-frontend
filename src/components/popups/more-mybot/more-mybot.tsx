@@ -21,16 +21,14 @@ import routesUrl from '../../../utils/routesData';
 import SwitchBotMenuPopup from './switch-bot-menu-popup';
 import useModal from '../../../services/hooks/use-modal';
 import Typography from '../../../ui/typography/typography';
+import { TBot } from '../../../services/types/bot';
 
 interface IMoreMybotPopup {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  idMyBot?: string;
+  bot: TBot;
 }
 
-const MoreMybotPopup: FC<IMoreMybotPopup> = ({
-  setIsOpen,
-  idMyBot = '2222222',
-}): JSX.Element => {
+const MoreMybotPopup: FC<IMoreMybotPopup> = ({ setIsOpen, bot }) => {
   const matches = useMediaQuery('(max-width: 420px)');
   // м.б. отдавать наружу выбор пункта? хз хз..
   const [itemSelected, setItemSelected] = useState<POPUP_ITEM>(
@@ -45,16 +43,10 @@ const MoreMybotPopup: FC<IMoreMybotPopup> = ({
 
   const navigate = useNavigate();
   const copyBot = () => {
-    // eslint-disable-next-line no-console
-    console.log(`Перепиши id cebe на листочек ${idMyBot}`);
     navigate(routesUrl.addBot);
     setIsOpen(false); // выпадающее меню закрыли
   };
   const deleteBot = () => {
-    // eslint-disable-next-line no-console
-    console.log(
-      `Бот ${idMyBot} будет мстить! Удалять мы его конечно же не будем.. ахахаха`
-    );
     setIsOpen(false); // выпадающее меню закрыли
   };
 
@@ -117,7 +109,7 @@ const MoreMybotPopup: FC<IMoreMybotPopup> = ({
         <SwitchBotMenuPopup
           itemSelected={itemSelected}
           setIsPopupItemOpen={closeModal}
-          idMyBot={idMyBot}
+          bot={bot}
         />
       )}
     </>

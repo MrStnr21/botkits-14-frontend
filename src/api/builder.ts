@@ -1,9 +1,9 @@
 import { getReq } from './api';
-import { IGetBotsResponse, IAddBotResponse } from '../services/types/bot';
+import { IGetBotResponse, IAddBotResponse } from '../services/types/bot';
 
 // запрос получения билдера
 function getBuilderApi(path: string, id: string) {
-  return getReq<IGetBotsResponse>({ uri: path, id, auth: true });
+  return getReq<IGetBotResponse>({ uri: path, id, auth: true });
 }
 
 // запрос сохранения билдера

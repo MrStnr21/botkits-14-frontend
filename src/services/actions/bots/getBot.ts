@@ -27,10 +27,6 @@ export type TGetBotsActions =
   | IGetBotsSuccessAction
   | IGetBotsErrorAction;
 
-/**
- * экшн получения ботов
- * @param token access token
- */
 const getBotsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
@@ -38,7 +34,6 @@ const getBotsAction: AppThunk = () => {
     });
     getBotsApi()
       .then((res) => {
-        console.log(res);
         if (res) {
           dispatch({
             type: GETBOTS_SUCCESS,

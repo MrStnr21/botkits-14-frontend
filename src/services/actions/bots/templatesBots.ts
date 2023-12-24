@@ -127,7 +127,6 @@ const updateBotTemplatesAction: AppThunk = (
     dispatch({
       type: UPDATEBOTTEMPLATES_REQUEST,
     });
-    console.log(botTemplates);
     updateTemplatesBotsApi(botTemplates, id)
       .then((res) => {
         dispatch({

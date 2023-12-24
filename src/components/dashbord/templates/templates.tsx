@@ -4,7 +4,6 @@ import styles from './templates.module.scss';
 
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 import { getTemplatesBotsAction } from '../../../services/actions/bots/templatesBots';
-import { getAccessToken } from '../../../auth/authService';
 import { getTemplatesBotsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 import Template from '../template/template';
@@ -14,10 +13,8 @@ const Templates: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const token = getAccessToken();
-
   useEffect(() => {
-    dispatch(getTemplatesBotsAction(token));
+    dispatch(getTemplatesBotsAction());
   }, [dispatch]);
 
   const [isExpanded, setIsExpanded] = useState(false);
