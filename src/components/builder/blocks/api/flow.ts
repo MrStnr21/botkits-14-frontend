@@ -31,21 +31,18 @@ export const setVariableFlow =
     saveVariable(storeOfVariables, currentTarget.value, currentTarget.id);
 
     const node = getNodes().filter((item) => item.id === id)[0];
+    const ChangedElement = data.variables.map((el) => {
+      if (el.id === currentTarget.id) {
+        return {
+          id: currentTarget.id,
+          name: currentTarget.value,
+          value: '',
+        };
+      }
+      return el;
+    });
 
-    _.set(
-      node,
-      ['data', 'variables'],
-      data.variables.map((el) => {
-        if (el.id === currentTarget.id) {
-          return {
-            id: currentTarget.id,
-            name: currentTarget.value,
-            value: '',
-          };
-        }
-        return el;
-      })
-    );
+    _.set(node, ['data', 'variables'], ChangedElement);
   };
 
 type TSetValueFlowParams = Omit<TFlowSetterNodes<TApiBlock>, 'data'> & {
@@ -57,9 +54,10 @@ export const setValueFlow =
   ({ getNodes, id, field, index }: TSetValueFlowParams) =>
   (type: 'name' | 'variable', e: React.ChangeEvent<HTMLInputElement>) => {
     const node = getNodes().filter((item) => item.id === id)[0];
-
-    _.set(node, ['data', field, index], {
+    const ChangedElement = {
       ...node.data[field][index],
       [type]: e.target.value,
-    });
+    };
+
+    _.set(node, ['data', field, index], ChangedElement);
   };
