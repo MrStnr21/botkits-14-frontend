@@ -41,8 +41,6 @@ const getUserInfoAction: AppThunk = (token: string) => {
     });
     getUserInfoApi(token)
       .then((res: TUser) => {
-        console.log(res);
-        console.log(token);
         if (res) {
           dispatch({
             type: GET_USER_INFO_SUCCESS,
