@@ -16,16 +16,14 @@ import {
 
 const BotTemplates: FC = () => {
   const { templatesBots } = useAppSelector(getTemplatesBotsSel);
-  const [arrCard, setArrCard] = useState(templatesBots);
+  const [templates, setTemplates] = useState(templatesBots);
   const [isVisiblePopup, setVisiblePopup] = useState(false);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTemplatesBotsAction());
-  }, [dispatch, templatesBots]);
-
-  useEffect(() => {
-    setArrCard(templatesBots);
+    if (templatesBots) {
+      setTemplates(templatesBots);
+    } else dispatch(getTemplatesBotsAction());
   }, [templatesBots]);
 
   const onDeleteCard = (id: string) => {
@@ -36,7 +34,6 @@ const BotTemplates: FC = () => {
 
   const onClickButton = () => {
     setVisiblePopup(!isVisiblePopup);
-    console.log(arrCard);
   };
 
   return (
@@ -61,8 +58,8 @@ const BotTemplates: FC = () => {
         className={`
           ${stylesBotTemplates.list} `}
       >
-        {arrCard &&
-          arrCard.map((templateBot) => (
+        {templates &&
+          templates.map((templateBot) => (
             <BotTemplatesCard
               card={templateBot}
               disabled={templateBot.features ? undefined : true}
