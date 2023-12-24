@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
-import { useReactFlow, useNodeId, Node } from 'reactflow';
+import { useReactFlow, useNodeId, Node, Instance } from 'reactflow';
+import _ from 'lodash';
 import { Option } from '../../../utils/types';
 import { TVariable, TTrigger } from '../../../services/types/builder';
 
@@ -20,6 +21,15 @@ type TTimeObj = {
   m: number;
   h: number;
   d: number;
+};
+
+type TSaveNode<T> = {
+  node: Node<any>;
+  value: T;
+  path: string[] | string;
+  id: string;
+  setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
 };
 
 /** перевод секунд в секунды/минуты/часы/дни
@@ -268,5 +278,29 @@ export const resetVar = (elements: any[]) => {
     elements.splice(0, 1);
   }
 };
+
+export function saveNode<T>({
+  node,
+  value,
+  path,
+  id,
+  setNodes,
+  getNodes,
+}: TSaveNode<T>) {
+  const cloneNode = _.cloneDeep(node);
+
+  _.set(cloneNode, path, value);
+
+  setNodes(
+    getNodes().map((item: Node<any>) => {
+      if (item.id === id) {
+        return cloneNode;
+      }
+      return item;
+    })
+  );
+}
+
+
 
 export default {};

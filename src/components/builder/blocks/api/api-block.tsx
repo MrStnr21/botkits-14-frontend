@@ -1,6 +1,5 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
@@ -15,15 +14,12 @@ import { setFlowData } from '../../utils';
 import { addFieldFlow, setVariableFlow } from './flow';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId() || '';
-
   const setUrl = setFlowData({ selectors: ['url'] });
   const setGetType = setFlowData({ selectors: ['reqType'], value: 'get' });
   const setPostType = setFlowData({ selectors: ['reqType'], value: 'post' });
 
-  const addField = addFieldFlow({ getNodes, setNodes, id, data });
-  const setVariable = setVariableFlow({ getNodes, setNodes, id, data });
+  const addField = addFieldFlow();
+  const setVariable = setVariableFlow();
 
   const getHeaderFields = (type: 'variable' | 'const') => {
     return data.headers.map((item, index) => {

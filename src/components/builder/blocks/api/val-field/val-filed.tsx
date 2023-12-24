@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
 import styles from './val-field.module.scss';
 import { setValueFlow } from '../flow';
@@ -12,22 +11,19 @@ type TValField = {
 };
 
 const ValField: FC<TValField> = ({ name, value, index, field }) => {
-  const { setNodes, getNodes } = useReactFlow();
-  const id = useNodeId() || '';
-
-  const setValue = setValueFlow({ setNodes, getNodes, id, index, field });
+  const setValue = setValueFlow();
   return (
     <form className={styles.form}>
       <Input
         styled="bot-builder-default"
-        onChange={setValue('name')}
+        onChange={setValue(field, index, 'name')}
         placeholder="Название"
         value={name}
         minLength={0}
       />
       <Input
         styled="bot-builder-default"
-        onChange={setValue('variable')}
+        onChange={setValue(field, index, 'variable')}
         placeholder="Переменная"
         value={value}
         minLength={0}
