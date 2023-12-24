@@ -22,7 +22,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
   const id = useNodeId() || '';
-  const { getNodes, setNodes, getNode, getEdges, setEdges } = useReactFlow();
+  const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
   const setName = setFlowData({ selectors: ['name'] });
@@ -32,13 +32,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   };
 
   // метод для удаления ноды из store
-  const removeNode = removeNodeFlow({
-    getNodes,
-    setNodes,
-    getEdges,
-    setEdges,
-    id,
-  });
+  const removeNode = removeNodeFlow();
 
   // копирование ноды с данными исходной и дочерними нодами
   const copyNode = copyNodeFlow({ getNodes, setNodes, node, id });

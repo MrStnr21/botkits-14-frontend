@@ -1,11 +1,12 @@
 import { Edge, Node } from 'reactflow';
 import { v4 as uuid } from 'uuid';
-import { TFlowNodesEdges, TFlowNodes } from '../../../services/types/builder';
+import { TFlowNodes } from '../../../services/types/builder';
 import { storeOfVariables } from '../utils/store';
+import useFlow from '../use-flow';
 
-export const removeNodeFlow =
-  ({ getNodes, setNodes, getEdges, setEdges, id }: TFlowNodesEdges) =>
-  () => {
+export const removeNodeFlow = () => {
+  const { getNodes, setNodes, id, getEdges, setEdges } = useFlow();
+  return () => {
     const nodes = getNodes().filter((item) => {
       return item.id !== id && item.parentNode !== id;
     });
@@ -34,6 +35,7 @@ export const removeNodeFlow =
       storeOfVariables.splice(ind - i, 1);
     });
   };
+};
 
 type TcopyNodeFlow = TFlowNodes & {
   node: Node<any> | undefined;
