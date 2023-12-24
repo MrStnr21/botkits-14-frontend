@@ -33,7 +33,7 @@ const Partnership: FC = (): JSX.Element => {
   const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
   const [paymentsChevronActive, setPaymentsChevronActive] = useState(false);
   const [refChevronActive, setRefChevronActive] = useState(false);
-  const number: string = NUMBER_PARTNERSHIP_DEV! + user!.partner_ref;
+  let number = '';
   const [inputValue, setInputValue] = useState<string>(number);
 
   const token = getAccessToken();
@@ -42,11 +42,11 @@ const Partnership: FC = (): JSX.Element => {
   useEffect(() => {
     dispatch(getUserInfoAction(token));
   }, [dispatch]);
-  console.log(user);
-  // useEffect(() => {
-  //   number = NUMBER_PARTNERSHIP! + user!.partner_ref;
-  //   setInputValue(number);
-  // }, [user]);
+
+  useEffect(() => {
+    if (user) number = NUMBER_PARTNERSHIP_DEV! + user.partner_ref;
+    setInputValue(number);
+  }, [user]);
 
   const toggleReferralsTable = () => {
     setReferralsTableVisible(!isReferralsTableVisible);
