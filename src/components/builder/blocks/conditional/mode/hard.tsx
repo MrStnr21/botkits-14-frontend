@@ -11,7 +11,7 @@ export type THardBlockProps = {
  * компонент-подблок для  взаимодействия с переменной, уникальная для сложного режима часть
  */
 const HardMode: FC<THardBlockProps> = ({ id }) => {
-  const { getNodes, setNodes, getNode } = useReactFlow();
+  const { getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
 
@@ -22,12 +22,7 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
     [node]
   );
 
-  const setItemVariables = setItemVariablesFlow({
-    getNodes,
-    setNodes,
-    id: idNode,
-    node,
-  });
+  const setItemVariables = setItemVariablesFlow();
 
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);

@@ -15,23 +15,18 @@ import { addCompareBlockFlow, setItemVariablesFlow } from './flow';
 const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
 
-  const { getNodes, setNodes, getNode } = useReactFlow();
+  const { getNode } = useReactFlow();
   const id = useNodeId() || '';
   const node = getNode(id);
 
   // добавление условия в сложном режиме
-  const addHard = addCompareBlockFlow({ getNodes, setNodes, id, type: 'hard' });
+  const addHard = addCompareBlockFlow();
 
   // добавление условия в простом режиме
-  const addEasy = addCompareBlockFlow({ getNodes, setNodes, id, type: 'easy' });
+  const addEasy = addCompareBlockFlow();
 
   // ???
-  const setItemVariables = setItemVariablesFlow({
-    getNodes,
-    setNodes,
-    id,
-    node,
-  });
+  const setItemVariables = setItemVariablesFlow();
 
   // ???
   const setTargetBlock = (idItem: string, name: string) =>
@@ -94,7 +89,9 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
       </div>
       <div className={styles.content}>
         {content}
-        <ConstructorAddButton onClick={mode === 'easy' ? addEasy : addHard}>
+        <ConstructorAddButton
+          onClick={() => (mode === 'easy' ? addEasy('easy') : addHard('hard'))}
+        >
           Добавить условие
         </ConstructorAddButton>
       </div>

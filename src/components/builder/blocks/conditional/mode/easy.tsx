@@ -16,7 +16,7 @@ export type TEasyBlockProps = {
  * компонент-подблок для  взаимодействия с переменной, уникальная для простого режима часть
  */
 const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
-  const { getNodes, setNodes, getNode } = useReactFlow();
+  const { getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
 
@@ -27,12 +27,7 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     [node]
   );
 
-  const setItemVariables = setItemVariablesFlow({
-    getNodes,
-    setNodes,
-    id: idNode,
-    node,
-  });
+  const setItemVariables = setItemVariablesFlow();
 
   const setCondition = (value: any) => {
     setItemVariables(id, 'condition', value);

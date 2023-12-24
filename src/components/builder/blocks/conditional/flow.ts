@@ -1,9 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Node } from 'reactflow';
-import {
-  TConditionalBlock,
-  TFlowSetter,
-} from '../../../../services/types/builder';
+import useFlow from '../../use-flow';
+import { saveNode } from '../../utils';
 
 const newBlockData = {
   easy: () => ({
@@ -22,62 +19,45 @@ const newBlockData = {
   }),
 };
 
-type TAddBlockParams = Omit<TFlowSetter<TConditionalBlock>, 'data'> & {
-  type: 'easy' | 'hard';
-};
-
-export const addCompareBlockFlow =
-  ({ getNodes, setNodes, id, type }: TAddBlockParams) =>
-  () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: [...item.data.variables, newBlockData[type]()],
-            },
-          };
-        }
-        return item;
-      })
-    );
+export const addCompareBlockFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (type: 'easy' | 'hard') => {
+    const node = getNode(id)!;
+    saveNode({
+      setNodes,
+      getNodes,
+      node,
+      id,
+      path: ['data', 'variables'],
+      value: [...node.data.variables, newBlockData[type]()],
+    });
   };
-
-type TSetVariablesParams = Omit<TFlowSetter<TConditionalBlock>, 'data'> & {
-  node?: Node<any>;
 };
 
-export const setItemVariablesFlow =
-  ({ getNodes, setNodes, id, node }: TSetVariablesParams) =>
-  (
+export const setItemVariablesFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (
     idItem: string,
     key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
-    value: any
+    val: any
   ) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables:
-                node &&
-                node.data.variables.map(
-                  (elem: { [x: string]: any; id: string }) => {
-                    if (elem.id === idItem) {
-                      // eslint-disable-next-line no-param-reassign
-                      elem[key] = value;
-                    }
-                    return elem;
-                  }
-                ),
-            },
-          };
+    const node = getNode(id)!;
+    const value = node.data.variables.map(
+      (elem: { [x: string]: any; id: string }) => {
+        if (elem.id === idItem) {
+          // eslint-disable-next-line no-param-reassign
+          elem[key] = val;
         }
-        return item;
-      })
+        return elem;
+      }
     );
+    saveNode({
+      setNodes,
+      getNodes,
+      node,
+      id,
+      path: ['data', 'variables'],
+      value,
+    });
   };
+};
