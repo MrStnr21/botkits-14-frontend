@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import {
   TBlockProps,
   TVariablesControlBlock,
@@ -7,14 +8,27 @@ import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/
 import ControlLayout from '../../control-layout/control-layout';
 import styleVariableBlock from './variable.module.scss';
 import Value from './value/value';
-import { addFieldFlow } from './flow';
+import { setFlowDataInit } from '../../utils';
 
 const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
   data,
 }) => {
   const content = data.variables;
 
-  const addField = addFieldFlow();
+  const addField = setFlowDataInit();
+
+  const onClick = () =>
+    addField({
+      path: ['data', 'variables'],
+      value: [
+        ...data.variables,
+        {
+          id: uuidv4(),
+          variable: '',
+          value: '',
+        },
+      ],
+    });
 
   return (
     <ControlLayout type="Управление переменными">
@@ -26,7 +40,7 @@ const VariableBlockNode: FC<TBlockProps<TVariablesControlBlock>> = ({
           <ConstructorAddButton
             buttonHtmlType="button"
             disabled={false}
-            onClick={addField}
+            onClick={onClick}
           >
             Добавить переменную
           </ConstructorAddButton>

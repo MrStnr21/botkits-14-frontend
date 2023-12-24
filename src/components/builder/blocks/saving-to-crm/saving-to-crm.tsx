@@ -5,11 +5,11 @@ import ControlLayout from '../../control-layout/control-layout';
 import Checkbox from '../../../../ui/checkboxes/checkbox';
 import { TBlockProps, TCRMBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
-import { setFlowData } from '../../utils';
+import { setFlowDataInit } from '../../utils';
 
 const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
-  const onCrmChange = setFlowData({ selectors: ['chosenCrm'] });
-  const onSaveChange = setFlowData({ selectors: ['save'] });
+  const onCrmChange = setFlowDataInit({ selectors: ['chosenCrm'] });
+  const onSaveChange = setFlowDataInit({ selectors: ['save'] });
 
   return (
     <div>

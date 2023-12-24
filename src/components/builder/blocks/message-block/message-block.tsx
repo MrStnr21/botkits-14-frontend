@@ -16,7 +16,7 @@ import {
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
-import { setFlowData } from '../../utils';
+import { setFlowDataInit } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 import {
   addButtonFlow,
@@ -129,14 +129,14 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
 
   const setVariable = setVariableFlow();
 
-  const toggleVariableBlock = setFlowData({
+  const toggleVariableBlock = setFlowDataInit({
     selectors: ['saveAnswer', 'show'],
     value: !data.saveAnswer.show,
   });
 
   const setTime = (type: string) =>
-    setFlowData({ selectors: ['showTime', type] });
-  const toggleTimeBlock = setFlowData({
+    setFlowDataInit({ selectors: ['showTime', type] });
+  const toggleTimeBlock = setFlowDataInit({
     selectors: ['showTime', 'show'],
     value: !data.showTime.show,
   });

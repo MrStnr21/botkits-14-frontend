@@ -10,13 +10,13 @@ import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
-import { setFlowData } from '../../utils';
+import { setFlowDataInit } from '../../utils';
 import { addFieldFlow, setVariableFlow } from './flow';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
-  const setUrl = setFlowData({ selectors: ['url'] });
-  const setGetType = setFlowData({ selectors: ['reqType'], value: 'get' });
-  const setPostType = setFlowData({ selectors: ['reqType'], value: 'post' });
+  const setUrl = setFlowDataInit({ selectors: ['url'] });
+  const setGetType = setFlowDataInit({ selectors: ['reqType'], value: 'get' });
+  const setPostType = setFlowDataInit({ selectors: ['reqType'], value: 'post' });
 
   const addField = addFieldFlow();
   const setVariable = setVariableFlow();

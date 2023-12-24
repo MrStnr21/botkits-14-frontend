@@ -4,7 +4,7 @@ import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
 import CustomHandle from '../flow/custom-handle/custom-handle';
-import { setFlowData } from '../utils';
+import { setFlowDataInit } from '../utils';
 import { removeNodeFlow, copyNodeFlow } from './flow';
 
 type TControlLayoutProps = {
@@ -25,7 +25,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
-  const setName = setFlowData({ selectors: ['name'] });
+  const setName = setFlowDataInit({ selectors: ['name'] });
 
   const onClick = () => {
     toggleMenu(!menu);

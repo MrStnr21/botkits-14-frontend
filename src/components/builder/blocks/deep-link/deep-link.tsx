@@ -8,25 +8,25 @@ import {
   TDeepLinkBlock,
 } from '../../../../services/types/builder';
 import { selectValuesType } from '../../utils/data';
-import { getSelectItemByValue, setFlowData } from '../../utils';
+import { getSelectItemByValue, setFlowDataInit } from '../../utils';
 import Select from '../../../../ui/select/select';
 import { setSelectedFlow } from './flow';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
   const setSelected = setSelectedFlow();
 
-  const setParam = setFlowData({
+  const setParam = setFlowDataInit({
     selectors: ['param'],
   });
 
-  const setSignsAmount = setFlowData({
+  const setSignsAmount = setFlowDataInit({
     selectors: ['signsAmount'],
   });
 
-  const setAdditionValue = setFlowData({
+  const setAdditionValue = setFlowDataInit({
     selectors: ['additionValue'],
   });
-  const setAdditionLink = setFlowData({
+  const setAdditionLink = setFlowDataInit({
     selectors: ['additionLink'],
   });
 

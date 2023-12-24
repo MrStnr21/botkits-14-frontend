@@ -9,7 +9,7 @@ import {
   TBlockProps,
   TButtonBlock,
 } from '../../../../../services/types/builder';
-import { setFlowData } from '../../../utils';
+import { setFlowDataInit } from '../../../utils';
 import { deleteOnClickFlow, setColorFlow, toggleStringFlow } from '../flow';
 import { ButtonSizes } from '../../../utils/data';
 
@@ -23,8 +23,8 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
 
   const [menu, toggleMenu] = useState<boolean>(false);
 
-  const setName = setFlowData({ selectors: ['name'] });
-  const setAdditionalString = setFlowData({ selectors: ['str'] });
+  const setName = setFlowDataInit({ selectors: ['name'] });
+  const setAdditionalString = setFlowDataInit({ selectors: ['str'] });
 
   // ReactFlow стандартно поддерживает удаление nodes по клику на заданную кнопку. Данная функция для отмены такого поведения
   const preventButtonRemove = (e: React.KeyboardEvent<HTMLDivElement>) => {

@@ -9,50 +9,68 @@ import {
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
 import { currencyAvailable, messagesSuccessful } from '../../utils/data';
-import { getSelectItemByValue, setFlowData } from '../../utils';
+import { getSelectItemByValue, setFlowDataInit } from '../../utils';
 import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
 import Select from '../../../../ui/select/select';
 import { Option } from '../../../../utils/types';
-import { setDataButtonFlow, addFileFlow, removeFileFlow } from './flow';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
-  const setDataButton = setDataButtonFlow();
+  const setFlowData = setFlowDataInit();
 
   const image = useMemo(() => !!data.image, [data.image]);
 
   const setCurrency = (option: Option) =>
-    setDataButton({
-      selector: 'currency',
+    setFlowData({
+      path: ['data', 'currency'],
       value: option.value,
     });
 
   const setOnSuccess = (option: Option) =>
-    setDataButton({
-      selector: 'onSuccess',
+    setFlowData({
+      path: ['data', 'onSuccess'],
       value: option.value,
     });
 
-  const setGoodsName = setFlowData({
-    selectors: ['goodsName'],
-  });
+  const setGoodsName = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'goodsName'],
+      value: e.target.value,
+    });
 
-  const setDescription = setFlowData({
-    selectors: ['description'],
-  });
+  const setDescription = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'description'],
+      value: e.target.value,
+    });
 
-  const setPayment = setFlowData({
-    selectors: ['payment'],
-  });
+  const setPayment = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'payment'],
+      value: e.target.value,
+    });
 
-  const setProviderToken = setFlowData({
-    selectors: ['providerToken'],
-  });
+  const setProviderToken = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'providerToken'],
+      value: e.target.value,
+    });
   const placeholder = 'Введите название';
 
-  const addFile = addFileFlow();
+  const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFlowData({
+      path: ['data', 'image'],
+      value: e.target.files && e.target.files[0],
+    });
+    e.target.value = '';
+  };
 
-  const removeFile = removeFileFlow();
+  const removeFile = () => {
+    setFlowData({
+      path: ['data', 'image'],
+      value: '',
+    });
+  };
 
   const content = useMemo(
     () => data.image && <File data={data.image} removeFile={removeFile} />,

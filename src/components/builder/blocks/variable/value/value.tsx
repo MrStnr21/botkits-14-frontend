@@ -5,8 +5,7 @@ import Input from '../../../../../ui/inputs/input/input';
 import { selectValues } from '../../../utils/data';
 import Select from '../../../../../ui/select/select';
 import { Option } from '../../../../../utils/types';
-import { getSelectItemByValue } from '../../../utils/index';
-import { setItemValuesFlow } from '../flow';
+import { getSelectItemByValue, setFlowDataInit } from '../../../utils/index';
 
 export type TValueProps = {
   idNum: string;
@@ -18,12 +17,19 @@ export type TValueProps = {
 };
 
 const Value: FC<TValueProps> = ({ idNum, item }) => {
-  const setItemValues = setItemValuesFlow();
+  const setItemValues = setFlowDataInit();
 
-  const setVar = (value: any) => setItemValues('variable', value, idNum);
+  const setVar = (value: any) =>
+    setItemValues({
+      path: ['data', 'variables', idNum, 'variable'],
+      value,
+    });
 
   const setVal = (option: Option) =>
-    setItemValues('value', option.value, idNum);
+    setItemValues({
+      path: ['data', 'variables', idNum, 'value'],
+      value: option.value,
+    });
 
   return (
     <div className={styles.overlay}>

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
-import { useReactFlow, useNodeId, Node, Instance } from 'reactflow';
+import { Node, Instance } from 'reactflow';
 import _ from 'lodash';
 import { Option } from '../../../utils/types';
 import { TVariable, TTrigger } from '../../../services/types/builder';
@@ -15,6 +15,7 @@ import al from '../../../images/icon/40x40/alisa/hover.svg';
 import wh from '../../../images/icon/40x40/whatsapp/hover.svg';
 import ig from '../../../images/icon/40x40/insta/hover.svg';
 import ws from '../../../images/icon/40x40/web/hover.svg';
+import useFlow from '../use-flow';
 
 type TTimeObj = {
   s: number;
@@ -167,94 +168,43 @@ export const getUrlPath: {
   template: 'bots/template',
 };
 
+export function saveNode<T>({
+  node,
+  value,
+  path,
+  id,
+  setNodes,
+  getNodes,
+}: TSaveNode<T>) {
+  const cloneNode = _.cloneDeep(node);
+
+  _.set(cloneNode, path, value);
+
+  setNodes(
+    getNodes().map((item: Node<any>) => {
+      if (item.id === id) {
+        return cloneNode;
+      }
+      return item;
+    })
+  );
+}
+
 /**
  * сохранение данных input в стор ReactFlow
- * @param {Object} obj
- * @param {string[]} obj.selectors массив строк, последовательность полей объекта, по которым можно получить значение `input`
- * @param {any} obj.value необязательный параметр. Если передан - `value` записывается в `value` инпута
- * @param {Function} obj.callback необязательный параметр. Коллбэк, если передан - будет вызван применен к value перед записью в `store`
  */
-export const setFlowData = ({
-  selectors,
-  value,
-  callback,
-}: {
-  selectors: string[];
-  value?: any;
-  callback?: Function;
-}) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
-  return (e?: React.ChangeEvent<HTMLInputElement>) => {
-    const nodes = getNodes();
-    const finalData =
-      value !== undefined
-        ? value
-        : callback
-        ? callback(e?.target.value)
-        : e?.target.value;
-    switch (selectors.length) {
-      case 1: {
-        return setNodes(
-          nodes.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                data: {
-                  ...item.data,
-                  [selectors[0]]: finalData,
-                },
-              };
-            }
-            return item;
-          })
-        );
-      }
-      case 2: {
-        return setNodes(
-          nodes.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                data: {
-                  ...item.data,
-                  [selectors[0]]: {
-                    ...item.data[selectors[0]],
-                    [selectors[1]]: finalData,
-                  },
-                },
-              };
-            }
-            return item;
-          })
-        );
-      }
-      case 3: {
-        return setNodes(
-          nodes.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                data: {
-                  ...item.data,
-                  [selectors[0]]: {
-                    ...item.data[selectors[0]],
-                    [selectors[1]]: {
-                      ...item.data[selectors[0]][selectors[1]],
-                      [selectors[2]]: finalData,
-                    },
-                  },
-                },
-              };
-            }
-            return item;
-          })
-        );
-      }
-      default: {
-        return nodes;
-      }
-    }
+export const setFlowDataInit = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return ({path, value}: {path: string | string[], value: unknown}) => {
+    const node = getNode(id)!;
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path,
+      value
+    })
   };
 };
 
@@ -278,28 +228,6 @@ export const resetVar = (elements: any[]) => {
     elements.splice(0, 1);
   }
 };
-
-export function saveNode<T>({
-  node,
-  value,
-  path,
-  id,
-  setNodes,
-  getNodes,
-}: TSaveNode<T>) {
-  const cloneNode = _.cloneDeep(node);
-
-  _.set(cloneNode, path, value);
-
-  setNodes(
-    getNodes().map((item: Node<any>) => {
-      if (item.id === id) {
-        return cloneNode;
-      }
-      return item;
-    })
-  );
-}
 
 
 
