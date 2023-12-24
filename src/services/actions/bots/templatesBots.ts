@@ -39,7 +39,7 @@ export interface IDeleteBotTemplatesRequestAction {
 
 export interface IDeleteBotTemplatesSuccessAction {
   readonly type: typeof DELETEBOTTEMPLATES_SUCCESS;
-  botTemplates: TTemplateBotRes;
+  id: TTemplateBotRes['_id'];
 }
 
 export interface IDeleteBotTemplatesErrorAction {
@@ -106,7 +106,8 @@ const deleteBotTemplatesAction: AppThunk = (idCard: string) => {
       .then((res) => {
         dispatch({
           type: DELETEBOTTEMPLATES_SUCCESS,
-          botTemplates: res,
+          // eslint-disable-next-line no-underscore-dangle
+          id: res._id,
         });
       })
       .catch((err: TResponseError) => {

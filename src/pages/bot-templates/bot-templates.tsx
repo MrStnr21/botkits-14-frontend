@@ -21,7 +21,7 @@ const BotTemplates: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (templatesBots) {
+    if (templatesBots.length !== 0) {
       setTemplates(templatesBots);
     } else dispatch(getTemplatesBotsAction());
   }, [templatesBots]);

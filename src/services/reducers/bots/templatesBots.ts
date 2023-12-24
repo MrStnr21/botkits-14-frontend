@@ -15,7 +15,7 @@ import {
 import { TTemplateBotRes } from '../../types/bot';
 
 export type TGetTemplatesBotsState = {
-  templatesBots: Array<TTemplateBotRes> | null;
+  templatesBots: Array<TTemplateBotRes> | [];
   templatesBot: TTemplateBotRes | null;
   isLoading: boolean;
   hasError: boolean;
@@ -26,7 +26,7 @@ export type TGetTemplatesBotsState = {
 };
 
 const getTemplatesBotsInitialState: TGetTemplatesBotsState = {
-  templatesBots: null,
+  templatesBots: [],
   templatesBot: null,
   isLoading: false,
   hasError: false,
@@ -77,9 +77,9 @@ function getTemplatesBotsReducer(
     case DELETEBOTTEMPLATES_SUCCESS: {
       return {
         ...state,
-        botTemplates: state.templatesBots?.filter(
+        templatesBots: [...state.templatesBots].filter(
           // eslint-disable-next-line no-underscore-dangle
-          (template) => template._id !== action.botTemplates._id
+          (template) => template._id !== action.id
         ),
         getBotsSuccess: true,
         getBotsRequest: false,
