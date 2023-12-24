@@ -1,5 +1,4 @@
 import { FC, useMemo } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -18,22 +17,19 @@ import { Option } from '../../../../utils/types';
 import { setDataButtonFlow, addFileFlow, removeFileFlow } from './flow';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId() || '';
-
-  const setDataButton = setDataButtonFlow({ getNodes, setNodes, id });
+  const setDataButton = setDataButtonFlow();
 
   const image = useMemo(() => !!data.image, [data.image]);
 
   const setCurrency = (option: Option) =>
     setDataButton({
-      selectors: ['currency'],
+      selector: 'currency',
       value: option.value,
     });
 
   const setOnSuccess = (option: Option) =>
     setDataButton({
-      selectors: ['onSuccess'],
+      selector: 'onSuccess',
       value: option.value,
     });
 
@@ -54,9 +50,9 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   });
   const placeholder = 'Введите название';
 
-  const addFile = addFileFlow({ getNodes, setNodes, id });
+  const addFile = addFileFlow();
 
-  const removeFile = removeFileFlow({ getNodes, setNodes, id });
+  const removeFile = removeFileFlow();
 
   const content = useMemo(
     () => data.image && <File data={data.image} removeFile={removeFile} />,

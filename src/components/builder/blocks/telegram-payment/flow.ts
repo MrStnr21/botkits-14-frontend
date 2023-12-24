@@ -1,61 +1,51 @@
-import { TFlowNodes } from '../../../../services/types/builder';
+import useFlow from '../../use-flow';
+import { saveNode } from '../../utils';
 
-export const setDataButtonFlow =
-  ({ getNodes, setNodes, id }: TFlowNodes) =>
-  ({ selectors, value }: { selectors: string[]; value: any }) => {
-    const nodes = getNodes();
-    const finalData = value;
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              [selectors[0]]: finalData,
-            },
-          };
-        }
-        return item;
-      })
-    );
+export const setDataButtonFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return ({ selector, value }: { selector: string; value: any }) => {
+    const node = getNode(id)!;
+
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', selector],
+      value,
+    });
   };
+};
 
-export const addFileFlow =
-  ({ getNodes, setNodes, id }: TFlowNodes) =>
-  (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              image: e.target.files && e.target.files[0],
-            },
-          };
-        }
-        return item;
-      })
-    );
+export const addFileFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (e: React.ChangeEvent<HTMLInputElement>) => {
+    const node = getNode(id)!;
+
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', 'image'],
+      value: e.target.files && e.target.files[0],
+    });
     e.target.value = '';
   };
+};
 
-export const removeFileFlow =
-  ({ getNodes, setNodes, id }: TFlowNodes) =>
-  () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              image: '',
-            },
-          };
-        }
-        return item;
-      })
-    );
+export const removeFileFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return () => {
+    const node = getNode(id)!;
+
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', 'image'],
+      value: '',
+    });
   };
+};
