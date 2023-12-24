@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 import styles from './deep-link.module.scss';
 import Input from '../../../../ui/inputs/input/input';
 import ControlLayout from '../../control-layout/control-layout';
@@ -14,10 +13,7 @@ import Select from '../../../../ui/select/select';
 import { setSelectedFlow } from './flow';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId() || '';
-
-  const setSelected = setSelectedFlow({ getNodes, setNodes, id });
+  const setSelected = setSelectedFlow();
 
   const setParam = setFlowData({
     selectors: ['param'],

@@ -1,26 +1,21 @@
-import {
-  TDeepLinkBlock,
-  TFlowSetter,
-} from '../../../../services/types/builder';
 import { Option } from '../../../../utils/types';
+import useFlow from '../../use-flow';
+import { saveNode } from '../../utils';
 
-// eslint-disable-next-line import/prefer-default-export
-export const setSelectedFlow =
-  ({ getNodes, setNodes, id }: Omit<TFlowSetter<TDeepLinkBlock>, 'data'>) =>
-  (fieldName: string) =>
-  (option: Option) => {
-    setNodes(
-      getNodes().map((node) => {
-        if (node.id === id) {
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              [fieldName]: option.value,
-            },
-          };
-        }
-        return node;
-      })
-    );
+export const setSelectedFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (fieldName: string) => (option: Option) => {
+    const node = getNode(id)!;
+
+    saveNode({
+      setNodes,
+      getNodes,
+      node,
+      id,
+      path: ['data', fieldName],
+      value: option.value,
+    });
   };
+};
+
+export default {};
