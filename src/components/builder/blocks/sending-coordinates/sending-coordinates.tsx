@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useNodeId, useReactFlow } from 'reactflow';
 import styles from './sending-coordinates.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -13,10 +12,7 @@ import { validateAndSaveFlow } from './flow';
 const SendingCoordinatesBlock: FC<TBlockProps<TCoordinateBlock>> = ({
   data,
 }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId() || '';
-
-  const validateAndSave = validateAndSaveFlow({ getNodes, setNodes, id });
+  const validateAndSave = validateAndSaveFlow();
 
   return (
     <ControlLayout type="Отправка координат">
