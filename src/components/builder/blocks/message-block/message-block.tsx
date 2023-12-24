@@ -29,7 +29,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
   const [amount, render] = useState(0);
   const id = useNodeId() || '';
-  const { setNodes, getNodes } = useReactFlow();
+  const { getNodes } = useReactFlow();
   const isMobile = useMediaQuery('(max-width: 620px)');
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
@@ -127,7 +127,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
-  const setVariable = setVariableFlow({ getNodes, setNodes, id });
+  const setVariable = setVariableFlow();
 
   const toggleVariableBlock = setFlowData({
     selectors: ['saveAnswer', 'show'],
@@ -141,11 +141,11 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     value: !data.showTime.show,
   });
 
-  const addButton = addButtonFlow({ getNodes, setNodes, id, buttonSizes });
+  const addButton = addButtonFlow();
 
-  const addFile = addFileFlow({ getNodes, setNodes, id });
+  const addFile = addFileFlow();
 
-  const setText = setTextFlow({ getNodes, setNodes, id });
+  const setText = setTextFlow();
 
   // подблоки MessageBlock, передаваемые при помощи массива в data.data с полем type
   const content = useMemo(
@@ -160,14 +160,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                   'horizontal',
                   buttonSizes.secondY,
                   ButtonSizesMobile.secondY,
-                  ButtonSizes.secondY
+                  ButtonSizes.secondY,
+                  buttonSizes
                 )}
                 addVerticalButton={addButton(
                   MessageDataTypes.answers,
                   'vertical',
                   buttonSizes.secondY + buttonSizes.blockGap,
                   ButtonSizesMobile.secondY + ButtonSizesMobile.blockGap,
-                  ButtonSizes.secondY + ButtonSizes.blockGap
+                  ButtonSizes.secondY + ButtonSizes.blockGap,
+                  buttonSizes
                 )}
                 buttonsBefore={[...horButtons, ...verButtons]}
                 horizontalButtons={horAnswers}
@@ -185,14 +187,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                   'horizontal',
                   buttonSizes.firstY,
                   ButtonSizesMobile.firstY,
-                  ButtonSizes.firstY
+                  ButtonSizes.firstY,
+                  buttonSizes
                 )}
                 addVerticalButton={addButton(
                   MessageDataTypes.buttons,
                   'vertical',
                   buttonSizes.firstY + buttonSizes.blockGap,
                   ButtonSizesMobile.firstY + ButtonSizesMobile.blockGap,
-                  ButtonSizes.firstY + ButtonSizes.blockGap
+                  ButtonSizes.firstY + ButtonSizes.blockGap,
+                  buttonSizes
                 )}
                 buttonsBefore={[]}
                 horizontalButtons={horButtons}

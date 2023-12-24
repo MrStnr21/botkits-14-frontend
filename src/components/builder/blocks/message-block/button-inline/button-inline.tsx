@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Position, useReactFlow, useNodeId } from 'reactflow';
-import { useMediaQuery } from '@mui/material';
+import { Position } from 'reactflow';
 import styles from './button-inline.module.scss';
 import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
 import askPhoneIcon from '../../../../../images/icon/24x24/constructor/ask-phone.svg';
@@ -11,8 +10,8 @@ import {
   TButtonBlock,
 } from '../../../../../services/types/builder';
 import { setFlowData } from '../../../utils';
-import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
 import { deleteOnClickFlow, setColorFlow, toggleStringFlow } from '../flow';
+import { ButtonSizes } from '../../../utils/data';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
@@ -21,11 +20,6 @@ export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
  */
 const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   const [hidden, setHidden] = useState(true);
-  const { getNodes, setNodes, getNode } = useReactFlow();
-  const id = useNodeId() || '';
-  const isMobile = useMediaQuery('(max-width: 620px)');
-
-  const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
 
   const [menu, toggleMenu] = useState<boolean>(false);
 
@@ -40,25 +34,12 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   };
 
   // Добавление/удаление 2-ой строки в кнопке/ответе. При добавлении/удалении нужно пересчитывать положение прочих элементов
-  const toggleString = toggleStringFlow({
-    getNodes,
-    setNodes,
-    id,
-    getNode,
-    data,
-    buttonSizes,
-  });
+  const toggleString = toggleStringFlow();
 
-  const setColor = setColorFlow({ getNodes, setNodes, id });
+  const setColor = setColorFlow();
 
   // функция удаления кнопки/ответа. При удалении требуется пересчитывать расположение прочих кнопок/ответов
-  const deleteOnClick = deleteOnClickFlow({
-    getNode,
-    getNodes,
-    id,
-    isMobile,
-    setNodes,
-  });
+  const deleteOnClick = deleteOnClickFlow();
 
   const getIcon = () => {
     switch (data.type) {
@@ -116,7 +97,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
         <div className={styles['absolute-wrapper']}>
           <ConstructorHelperButton
             isVisible={menu}
-            askOnClick={toggleString}
+            askOnClick={() => toggleString(ButtonSizes)}
             deleteOnClick={deleteOnClick}
             askIcon={getIcon()}
             color

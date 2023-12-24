@@ -1,19 +1,20 @@
 import { v4 as uuid } from 'uuid';
 import { Node } from 'reactflow';
+import { useMediaQuery } from '@mui/material';
 import {
   MessageDataTypes,
-  TButtonBlock,
-  TFlowSetter,
   TMessageBlock,
   TMessageBlockData,
 } from '../../../../services/types/builder';
-import { saveVariable } from '../../utils';
+import { saveNode, saveVariable } from '../../utils';
 import { storeOfVariables } from '../../utils/store';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
+import useFlow from '../../use-flow';
+import { switchingWidth } from '../../../../stylesheets/scss-variables';
 
-export const setVariableFlow =
-  ({ getNodes, setNodes, id }: Omit<TFlowSetter<TMessageBlock>, 'data'>) =>
-  (finalValue: string) => {
+export const setVariableFlow = () => {
+  const { getNodes, setNodes, getNode, id } = useFlow();
+  return (finalValue: string) => {
     const idVariable = `${id}|||saveResultVariable`;
     if (finalValue === '') {
       const variableIndex = storeOfVariables.findIndex(
@@ -25,31 +26,21 @@ export const setVariableFlow =
       saveVariable(storeOfVariables, finalValue, idVariable);
     }
 
-    return setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              saveAnswer: {
-                ...item.data.saveAnswer,
-                value: { id: idVariable, name: finalValue, value: '' },
-              },
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+    const node = getNode(id)!;
 
-type TAddButtonFlowParams = Omit<TFlowSetter<TMessageBlock>, 'data'> & {
-  buttonSizes: typeof ButtonSizes | typeof ButtonSizesMobile;
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', 'saveAnswer', 'value'],
+      value: { id: idVariable, name: finalValue, value: '' },
+    });
+  };
 };
 
-export const addButtonFlow =
-  ({ getNodes, setNodes, id, buttonSizes }: TAddButtonFlowParams) =>
+export const addButtonFlow = () => {
+  const { getNodes, setNodes, id } = useFlow();
   /**
    * функция для добавления `node`- кнопки. Кнопкам необходимо задавать абсолютное позиционирование(механика nodes)
    * @param blockType тип блока, в который добавляется кнопка(`answers` или `buttons`)
@@ -58,152 +49,137 @@ export const addButtonFlow =
    * @param blockOffsetMob расстояние между верхней границей MessageBlock и блоком кнопок для мобильной версии
    * @param blockOffsetDesk расстояние между верхней границей MessageBlock и блоком кнопок для настольной версии
    */
-  (
-    blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
-    direction: 'horizontal' | 'vertical',
-    blockOffset: number,
-    blockOffsetMob: number,
-    blockOffsetDesk: number
-  ) =>
-  ({
-    // расположение кнопки по оси x в px относительно MessageBlock
-    x,
-    // расположение кнопки по оси y в px относительно MessageBlock
-    y,
-    // расположение кнопки по оси y в px относительно MessageBlock для мобильной версии
-    mobY,
-    // расположение кнопки по оси x в px относительно MessageBlock для настольной версии
-    deskY,
-  }: {
-    x: number;
-    y: number;
-    mobY: number;
-    deskY: number;
-  }) =>
-  () => {
-    const node: Node = {
-      type: 'button',
-      id: uuid(),
-      position: { x, y: y + blockOffset },
-      data: {
-        type: blockType.slice(0, 6),
-        direction,
-        name: 'имя',
-        color: '',
-        str: '',
-        deskY: deskY + blockOffsetDesk,
-        mobY: mobY + blockOffsetMob,
-      },
-      expandParent: true,
-      parentNode: id,
-      draggable: false,
+  return (
+      blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
+      direction: 'horizontal' | 'vertical',
+      blockOffset: number,
+      blockOffsetMob: number,
+      blockOffsetDesk: number,
+      buttonSizes: typeof ButtonSizes | typeof ButtonSizesMobile
+    ) =>
+    ({
+      // расположение кнопки по оси x в px относительно MessageBlock
+      x,
+      // расположение кнопки по оси y в px относительно MessageBlock
+      y,
+      // расположение кнопки по оси y в px относительно MessageBlock для мобильной версии
+      mobY,
+      // расположение кнопки по оси x в px относительно MessageBlock для настольной версии
+      deskY,
+    }: {
+      x: number;
+      y: number;
+      mobY: number;
+      deskY: number;
+    }) =>
+    () => {
+      const node: Node = {
+        type: 'button',
+        id: uuid(),
+        position: { x, y: y + blockOffset },
+        data: {
+          type: blockType.slice(0, 6),
+          direction,
+          name: 'имя',
+          color: '',
+          str: '',
+          deskY: deskY + blockOffsetDesk,
+          mobY: mobY + blockOffsetMob,
+        },
+        expandParent: true,
+        parentNode: id,
+        draggable: false,
+      };
+
+      // Добавление новой ноды кнопки + перерасчет позиций старых
+      setNodes([
+        ...getNodes().map((item) => {
+          if (
+            item.position.y > node.position.y &&
+            node.parentNode === item.parentNode
+          ) {
+            return {
+              ...item,
+              position: {
+                ...item.position,
+                y: item.position.y + buttonSizes.buttonHeight + buttonSizes.gap,
+              },
+              data: {
+                ...item.data,
+                deskY:
+                  item.data.deskY + ButtonSizes.buttonHeight + ButtonSizes.gap,
+                mobY:
+                  item.data.mobY +
+                  ButtonSizesMobile.buttonHeight +
+                  ButtonSizesMobile.gap,
+              },
+            };
+          }
+          return item;
+        }),
+        node,
+      ]);
     };
-
-    setNodes([
-      ...getNodes().map((item) => {
-        if (
-          item.position.y > node.position.y &&
-          node.parentNode === item.parentNode
-        ) {
-          return {
-            ...item,
-            position: {
-              ...item.position,
-              y: item.position.y + buttonSizes.buttonHeight + buttonSizes.gap,
-            },
-            data: {
-              ...item.data,
-              deskY:
-                item.data.deskY + ButtonSizes.buttonHeight + ButtonSizes.gap,
-              mobY:
-                item.data.mobY +
-                ButtonSizesMobile.buttonHeight +
-                ButtonSizesMobile.gap,
-            },
-          };
-        }
-        return item;
-      }),
-      node,
-    ]);
-  };
-
-export const addFileFlow =
-  ({ getNodes, setNodes, id }: Omit<TFlowSetter<TMessageBlock>, 'data'>) =>
-  (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: [
-                ...item.data.data,
-                {
-                  type: MessageDataTypes.file,
-                  file: e.target.files && e.target.files[0],
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-export const setTextFlow =
-  ({ getNodes, setNodes, id }: Omit<TFlowSetter<TMessageBlock>, 'data'>) =>
-  (value: string) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: [
-                ...item.data.data.map((content: TMessageBlockData) => {
-                  if (content.type === MessageDataTypes.message) {
-                    return {
-                      ...content,
-                      value,
-                    };
-                  }
-                  return content;
-                }),
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-type TToggleStringParams = TFlowSetter<TButtonBlock> & {
-  getNode: (id: string) => Node<any> | undefined;
-  buttonSizes: typeof ButtonSizes | typeof ButtonSizesMobile;
 };
 
-export const toggleStringFlow =
-  ({
-    getNodes,
-    setNodes,
-    id,
-    getNode,
-    data,
-    buttonSizes,
-  }: TToggleStringParams) =>
-  () => {
-    const node = getNode(id);
+export const addFileFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (e: React.ChangeEvent<HTMLInputElement>) => {
+    const node: Node<TMessageBlock> = getNode(id)!;
+
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', 'data'],
+      value: [
+        ...node.data.data,
+        {
+          type: MessageDataTypes.file,
+          file: e.target.files && e.target.files[0],
+        },
+      ],
+    });
+  };
+};
+
+export const setTextFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (value: string) => {
+    const node = getNode(id)!;
+
+    const settedValue = node.data.data.map((content: TMessageBlockData) => {
+      if (content.type === MessageDataTypes.message) {
+        return {
+          ...content,
+          value,
+        };
+      }
+      return content;
+    });
+
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', 'data'],
+      value: settedValue,
+    });
+  };
+};
+
+export const toggleStringFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (buttonSizes: typeof ButtonSizes | typeof ButtonSizesMobile) => {
+    const node = getNode(id)!;
     setNodes([
       ...getNodes().map((item) => {
         if (item.id === id) {
           return {
             ...item,
-            data: { ...item.data, additionalData: !data.additionalData },
+            data: { ...item.data, additionalData: !node.data.additionalData },
           };
         }
         if (
@@ -246,33 +222,26 @@ export const toggleStringFlow =
       }),
     ]);
   };
-
-export const setColorFlow =
-  ({ getNodes, setNodes, id }: Omit<TFlowSetter<TButtonBlock>, 'data'>) =>
-  (color: string) => {
-    const nodes = getNodes();
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return { ...item, data: { ...item.data, color } };
-        }
-        return item;
-      })
-    );
-  };
-
-type TDeleteOnClickParams = Omit<TFlowSetter<TButtonBlock>, 'data'> & {
-  getNode: (id: string) => Node<any> | undefined;
-  isMobile: boolean;
 };
 
-export const deleteOnClickFlow = ({
-  getNodes,
-  setNodes,
-  id,
-  getNode,
-  isMobile,
-}: TDeleteOnClickParams) => {
+export const setColorFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (color: string) => {
+    const node = getNode(id)!;
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', 'color'],
+      value: color,
+    });
+  };
+};
+
+export const deleteOnClickFlow = () => {
+  const isMobile = useMediaQuery(`(max-width: ${switchingWidth})`);
+  const { getNodes, setNodes, id, getNode } = useFlow();
   const closedButtonSizeDesk = ButtonSizes.buttonHeight + ButtonSizes.gap;
   const openedButtonSizeDesk = closedButtonSizeDesk + ButtonSizes.addString;
 
@@ -330,29 +299,23 @@ export const deleteOnClickFlow = ({
   };
 };
 
-type TRemoveFileFlowParams = Omit<TFlowSetter<TButtonBlock>, 'data'> & {
-  data: File;
-};
+export const removeFileFlow = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return (data: File) => {
+    const node = getNode(id)!;
+    const value = node.data.data.filter((media: TMessageBlockData) => {
+      return (
+        media.type !== MessageDataTypes.file || media.file.name !== data.name
+      );
+    });
 
-export const removeFileFlow =
-  ({ getNodes, setNodes, id, data }: TRemoveFileFlowParams) =>
-  () =>
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: item.data.data.filter((media: TMessageBlockData) => {
-                return (
-                  media.type !== MessageDataTypes.file ||
-                  media.file.name !== data.name
-                );
-              }),
-            },
-          };
-        }
-        return item;
-      })
-    );
+    saveNode({
+      getNodes,
+      setNodes,
+      id,
+      node,
+      path: ['data', 'data'],
+      value,
+    });
+  };
+};
