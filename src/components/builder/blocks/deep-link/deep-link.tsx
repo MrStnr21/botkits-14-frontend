@@ -10,25 +10,36 @@ import {
 import { selectValuesType } from '../../utils/data';
 import { getSelectItemByValue, setFlowDataInit } from '../../utils';
 import Select from '../../../../ui/select/select';
-import { setSelectedFlow } from './flow';
+import { Option } from '../../../../utils/types';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
-  const setSelected = setSelectedFlow();
+  const setFlowData = setFlowDataInit();
 
-  const setParam = setFlowDataInit({
-    selectors: ['param'],
-  });
+  const setParam = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'param'],
+      value: e.target.value,
+    });
 
-  const setSignsAmount = setFlowDataInit({
-    selectors: ['signsAmount'],
-  });
+  const setSignsAmount = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'signsAmount'],
+      value: e.target.value,
+    });
 
-  const setAdditionValue = setFlowDataInit({
-    selectors: ['additionValue'],
-  });
-  const setAdditionLink = setFlowDataInit({
-    selectors: ['additionLink'],
-  });
+  const setAdditionValue = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'additionValue'],
+      value: e.target.value,
+    });
+  const setAdditionLink = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'additionLink'],
+      value: e.target.value,
+    });
+
+  const setTypeValue = (field: string) => (option: Option) =>
+    setFlowData({ path: ['data', field], value: option.value });
 
   return (
     <ControlLayout type="Deep Link">
@@ -46,7 +57,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
           <div style={{ zIndex: 10 }}>
             <Select
               options={selectValuesType}
-              handleSelect={setSelected('type')}
+              handleSelect={setTypeValue('type')}
               currentOption={getSelectItemByValue(data.type, selectValuesType)}
               elementToCloseListener="flow"
               adaptive
