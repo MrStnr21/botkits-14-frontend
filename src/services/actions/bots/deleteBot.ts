@@ -21,7 +21,10 @@ export interface IDeleteBotErrorAction {
   readonly type: typeof DELETE_BOT_ERROR;
 }
 
-// экшн получения шаблонов
+/**
+ * экшн удаления бота
+ * @param id id удялемого бота
+ */
 const deleteBotAction: AppThunk = (id: string) => {
   return (dispatch: AppDispatch) => {
     dispatch({

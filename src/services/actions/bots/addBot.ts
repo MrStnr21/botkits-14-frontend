@@ -30,6 +30,8 @@ export type TAddBotActions =
 /**
  * экшн добавления бота
  * @param botinfo объект с типом TBot
+ * @param templateId id шаблона, на основе которого создаётся бот
+ * @param callback функция, которая вызывается после добавления бота в стор
  */
 const addBotAction: AppThunk = (
   bot: TBot,
