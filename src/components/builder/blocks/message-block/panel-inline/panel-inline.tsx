@@ -122,8 +122,10 @@ const PanelInline: FC<IPanelInline> = ({
               Горизонтальный инлайн
             </ConstructorAddButton>
           </div>
-          <hr className={styles['split-line']} />
-          <div className={styles.buttons} style={{ height: verticalHeight }} />
+          <div
+            className={styles['split-line']}
+            style={{ height: verticalHeight }}
+          />
           <div className={styles.wrapperButton}>
             <ConstructorAddButton
               onClick={
@@ -135,19 +137,22 @@ const PanelInline: FC<IPanelInline> = ({
                     buttonsBefore.length * buttonHeight +
                     horizontalButtons.length * buttonHeight +
                     openedHorizontal * buttonSizes.addString +
-                    openedBefore * buttonSizes.addString,
+                    openedBefore * buttonSizes.addString +
+                    buttonSizes.gap / 3,
                   deskY:
                     verticalHeightDesk +
                     buttonsBefore.length * buttonHeightDesk +
                     horizontalButtons.length * buttonHeightDesk +
                     openedHorizontal * ButtonSizes.addString +
-                    openedBefore * ButtonSizes.addString,
+                    openedBefore * ButtonSizes.addString +
+                    ButtonSizes.gap / 3,
                   mobY:
                     verticalHeightMobile +
                     buttonsBefore.length * buttonHeightMobile +
                     horizontalButtons.length * buttonHeightMobile +
                     openedHorizontal * ButtonSizesMobile.addString +
-                    openedBefore * ButtonSizesMobile.addString,
+                    openedBefore * ButtonSizesMobile.addString +
+                    ButtonSizesMobile.gap / 3,
                 })
               }
               icon="vertical inline"
