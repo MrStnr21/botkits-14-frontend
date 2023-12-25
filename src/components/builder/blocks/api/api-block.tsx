@@ -11,14 +11,27 @@ import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
 import { setFlowDataInit } from '../../utils';
-import { addFieldFlow, setVariableFlow } from './flow';
+import { addVariableFlow, setVariableFlow } from './flow';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
-  const setUrl = setFlowDataInit({ selectors: ['url'] });
-  const setGetType = setFlowDataInit({ selectors: ['reqType'], value: 'get' });
-  const setPostType = setFlowDataInit({ selectors: ['reqType'], value: 'post' });
+  const setFlowData = setFlowDataInit();
+  const setUrl = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'url'], value: e.target.value });
+  const setGetType = () =>
+    setFlowData({ path: ['data', 'reqType'], value: 'get' });
+  const setPostType = () =>
+    setFlowData({ path: ['data', 'reqType'], value: 'post' });
 
-  const addField = addFieldFlow();
+  const addVariableField = addVariableFlow();
+  const addHeadersAndParamsField = (
+    field: 'headers' | 'params',
+    type: 'variable' | 'const'
+  ) => {
+    setFlowData({
+      path: ['data', field],
+      value: [...data[field], { type, name: '', variable: '' }],
+    });
+  };
   const setVariable = setVariableFlow();
 
   const getHeaderFields = (type: 'variable' | 'const') => {
@@ -109,15 +122,19 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
         <RequestSettings
           variableFields={getHeaderFields('variable')}
           constFields={getHeaderFields('const')}
-          addFieldVariable={addField('headers', 'variable')}
-          addFieldConst={addField('headers', 'const')}
+          addFieldVariable={() =>
+            addHeadersAndParamsField('headers', 'variable')
+          }
+          addFieldConst={() => addHeadersAndParamsField('headers', 'const')}
           title="Заголовок"
         />
         <RequestSettings
           variableFields={getParamFields('variable')}
           constFields={getParamFields('const')}
-          addFieldVariable={addField('params', 'variable')}
-          addFieldConst={addField('params', 'const')}
+          addFieldVariable={() =>
+            addHeadersAndParamsField('params', 'variable')
+          }
+          addFieldConst={() => addHeadersAndParamsField('params', 'const')}
           title="Параметр"
         />
         <LabeledInput title="Сохранить результат">
@@ -127,7 +144,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
               <ConstructorAddButton
                 buttonHtmlType="button"
                 disabled={false}
-                onClick={addField('variables', 'variable')}
+                onClick={addVariableField}
               >
                 Переменная
               </ConstructorAddButton>

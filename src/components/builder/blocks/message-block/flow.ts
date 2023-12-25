@@ -3,7 +3,6 @@ import { Node } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
 import {
   MessageDataTypes,
-  TMessageBlock,
   TMessageBlockData,
 } from '../../../../services/types/builder';
 import { saveNode, saveVariable } from '../../utils';
@@ -31,7 +30,6 @@ export const setVariableFlow = () => {
     saveNode({
       getNodes,
       setNodes,
-      id,
       node,
       path: ['data', 'saveAnswer', 'value'],
       value: { id: idVariable, name: finalValue, value: '' },
@@ -122,28 +120,6 @@ export const addButtonFlow = () => {
     };
 };
 
-export const addFileFlow = () => {
-  const { getNodes, setNodes, id, getNode } = useFlow();
-  return (e: React.ChangeEvent<HTMLInputElement>) => {
-    const node: Node<TMessageBlock> = getNode(id)!;
-
-    saveNode({
-      getNodes,
-      setNodes,
-      id,
-      node,
-      path: ['data', 'data'],
-      value: [
-        ...node.data.data,
-        {
-          type: MessageDataTypes.file,
-          file: e.target.files && e.target.files[0],
-        },
-      ],
-    });
-  };
-};
-
 export const setTextFlow = () => {
   const { getNodes, setNodes, id, getNode } = useFlow();
   return (value: string) => {
@@ -162,7 +138,6 @@ export const setTextFlow = () => {
     saveNode({
       getNodes,
       setNodes,
-      id,
       node,
       path: ['data', 'data'],
       value: settedValue,
@@ -221,21 +196,6 @@ export const toggleStringFlow = () => {
         return item;
       }),
     ]);
-  };
-};
-
-export const setColorFlow = () => {
-  const { getNodes, setNodes, id, getNode } = useFlow();
-  return (color: string) => {
-    const node = getNode(id)!;
-    saveNode({
-      getNodes,
-      setNodes,
-      id,
-      node,
-      path: ['data', 'color'],
-      value: color,
-    });
   };
 };
 
@@ -312,7 +272,6 @@ export const removeFileFlow = () => {
     saveNode({
       getNodes,
       setNodes,
-      id,
       node,
       path: ['data', 'data'],
       value,

@@ -10,7 +10,7 @@ import {
   TButtonBlock,
 } from '../../../../../services/types/builder';
 import { setFlowDataInit } from '../../../utils';
-import { deleteOnClickFlow, setColorFlow, toggleStringFlow } from '../flow';
+import { deleteOnClickFlow, toggleStringFlow } from '../flow';
 import { ButtonSizes } from '../../../utils/data';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
@@ -19,12 +19,15 @@ export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
  * компонент-нода. кнопка/ответ, добавляем(ый/ая) в MessageBlock
  */
 const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
+  const setFlowData = setFlowDataInit();
   const [hidden, setHidden] = useState(true);
 
   const [menu, toggleMenu] = useState<boolean>(false);
 
-  const setName = setFlowDataInit({ selectors: ['name'] });
-  const setAdditionalString = setFlowDataInit({ selectors: ['str'] });
+  const setName = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'name'], value: e.target.value });
+  const setAdditionalString = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'str'], value: e.target.value });
 
   // ReactFlow стандартно поддерживает удаление nodes по клику на заданную кнопку. Данная функция для отмены такого поведения
   const preventButtonRemove = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -36,7 +39,8 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   // Добавление/удаление 2-ой строки в кнопке/ответе. При добавлении/удалении нужно пересчитывать положение прочих элементов
   const toggleString = toggleStringFlow();
 
-  const setColor = setColorFlow();
+  const setColor = (color: string) =>
+    setFlowData({ path: ['data', 'color'], value: color });
 
   // функция удаления кнопки/ответа. При удалении требуется пересчитывать расположение прочих кнопок/ответов
   const deleteOnClick = deleteOnClickFlow();

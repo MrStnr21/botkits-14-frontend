@@ -18,14 +18,10 @@ import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
 import { setFlowDataInit } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
-import {
-  addButtonFlow,
-  addFileFlow,
-  setTextFlow,
-  setVariableFlow,
-} from './flow';
+import { addButtonFlow, setTextFlow, setVariableFlow } from './flow';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
+  const setFlowData = setFlowDataInit();
   const { seconds, minutes, hours, days } = data.showTime;
   const [amount, render] = useState(0);
   const id = useNodeId() || '';
@@ -129,21 +125,33 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
 
   const setVariable = setVariableFlow();
 
-  const toggleVariableBlock = setFlowDataInit({
-    selectors: ['saveAnswer', 'show'],
-    value: !data.saveAnswer.show,
-  });
+  const toggleVariableBlock = () =>
+    setFlowData({
+      path: ['data', 'saveAnswer', 'show'],
+      value: !data.saveAnswer.show,
+    });
 
-  const setTime = (type: string) =>
-    setFlowDataInit({ selectors: ['showTime', type] });
-  const toggleTimeBlock = setFlowDataInit({
-    selectors: ['showTime', 'show'],
-    value: !data.showTime.show,
-  });
+  const setTime = (type: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'showTime', type], value: e.target.value });
+  const toggleTimeBlock = () =>
+    setFlowData({
+      path: ['data', 'showTime', 'show'],
+      value: !data.showTime.show,
+    });
 
   const addButton = addButtonFlow();
 
-  const addFile = addFileFlow();
+  const addFile = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'data'],
+      value: [
+        ...data.data,
+        {
+          type: MessageDataTypes.file,
+          file: e.target.files && e.target.files[0],
+        },
+      ],
+    });
 
   const setText = setTextFlow();
 

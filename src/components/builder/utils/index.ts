@@ -28,7 +28,6 @@ type TSaveNode<T> = {
   node: Node<any>;
   value: T;
   path: string[] | string;
-  id: string;
   setNodes: Instance.SetNodes<any>;
   getNodes: Instance.GetNodes<any>;
 };
@@ -172,7 +171,6 @@ export function saveNode<T>({
   node,
   value,
   path,
-  id,
   setNodes,
   getNodes,
 }: TSaveNode<T>) {
@@ -182,7 +180,7 @@ export function saveNode<T>({
 
   setNodes(
     getNodes().map((item: Node<any>) => {
-      if (item.id === id) {
+      if (item.id === node.id) {
         return cloneNode;
       }
       return item;
@@ -200,7 +198,6 @@ export const setFlowDataInit = () => {
     saveNode({
       getNodes,
       setNodes,
-      id,
       node,
       path,
       value

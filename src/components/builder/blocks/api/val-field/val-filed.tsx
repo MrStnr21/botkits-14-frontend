@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Input from '../../../../../ui/inputs/input/input';
 import styles from './val-field.module.scss';
-import { setValueFlow } from '../flow';
+import { setFlowDataInit } from '../../../utils';
 
 type TValField = {
   name: string;
@@ -11,19 +11,26 @@ type TValField = {
 };
 
 const ValField: FC<TValField> = ({ name, value, index, field }) => {
-  const setValue = setValueFlow();
+  const setFlowData = setFlowDataInit();
+  const setValue =
+    (type: 'name' | 'variable') => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFlowData({
+        path: ['data', field, index.toString(), type],
+        value: e.target.value,
+      });
+    };
   return (
     <form className={styles.form}>
       <Input
         styled="bot-builder-default"
-        onChange={setValue(field, index, 'name')}
+        onChange={setValue('name')}
         placeholder="Название"
         value={name}
         minLength={0}
       />
       <Input
         styled="bot-builder-default"
-        onChange={setValue(field, index, 'variable')}
+        onChange={setValue('variable')}
         placeholder="Переменная"
         value={value}
         minLength={0}
