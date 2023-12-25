@@ -29,7 +29,7 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock, index }) => {
     variable?: {
       id: string;
       name: string;
-      value: any;
+      value: string;
     };
     sign?: string;
     condition?: string;

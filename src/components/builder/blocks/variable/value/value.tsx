@@ -19,7 +19,7 @@ export type TValueProps = {
 const Value: FC<TValueProps> = ({ idNum, item }) => {
   const setItemValues = setFlowDataInit();
 
-  const setVar = (value: any) =>
+  const setVar = (value: string) =>
     setItemValues({
       path: ['data', 'variables', idNum, 'variable'],
       value,

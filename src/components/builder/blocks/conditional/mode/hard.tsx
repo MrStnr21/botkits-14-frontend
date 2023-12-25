@@ -24,7 +24,7 @@ const HardMode: FC<THardBlockProps> = ({ id, index }) => {
     [node]
   );
 
-  const setCondition = (value: any) => {
+  const setCondition = (value: string) => {
     setFlowData({
       path: ['data', 'variables', index.toString(), 'condition'],
       value,

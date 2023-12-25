@@ -102,7 +102,7 @@ export type TReactFlowEdge = {
 export type TVariable = {
   id: string;
   name: string;
-  value: any;
+  value: unknown;
 };
 
 export type TTrigger = {

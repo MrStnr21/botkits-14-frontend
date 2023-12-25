@@ -16,8 +16,6 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
   const setFlowData = setFlowDataInit();
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
 
-  console.log(data);
-
   const { getNode } = useReactFlow();
   const id = useNodeId() || '';
   const node = getNode(id);
