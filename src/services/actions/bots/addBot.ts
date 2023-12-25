@@ -31,7 +31,11 @@ export type TAddBotActions =
  * экшн добавления бота
  * @param botinfo объект с типом TBot
  */
-const addBotAction: AppThunk = (bot: TBot, templateId: string | null) => {
+const addBotAction: AppThunk = (
+  bot: TBot,
+  templateId: string | null,
+  callback: (id: string) => void
+) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: ADD_BOT_REQUEST,
@@ -43,6 +47,8 @@ const addBotAction: AppThunk = (bot: TBot, templateId: string | null) => {
             type: ADD_BOT_SUCCESS,
             bot: res,
           });
+          // eslint-disable-next-line no-underscore-dangle
+          callback(res._id);
         }
       })
       .catch((err: TResponseError) => {

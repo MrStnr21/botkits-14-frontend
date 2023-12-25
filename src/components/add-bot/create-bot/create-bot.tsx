@@ -2,7 +2,7 @@ import { FC, FormEvent, useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
-import stylesCreateBot from './create-bot.module.scss';
+import styles from './create-bot.module.scss';
 import { addBotAction } from '../../../services/actions/bots/addBot';
 
 import { useAppDispatch } from '../../../services/hooks/hooks';
@@ -33,24 +33,30 @@ interface ImageMap {
 interface ICreateBot {
   botName: string;
   pages: boolean;
+  templateId: string | null;
+  templateTitle: string | null;
   botURI?: boolean;
 }
 
 const img: ImageMap = {
-  Facebook: <Facebook className={stylesCreateBot.create_main_bot_name_img} />,
-  Telegram: <Telegram className={stylesCreateBot.create_main_bot_name_img} />,
-  Viber: <Viber className={stylesCreateBot.create_main_bot_name_img} />,
-  VK: <VK className={stylesCreateBot.create_main_bot_name_img} />,
-  Odnoklassniki: (
-    <Odnoklassniki className={stylesCreateBot.create_main_bot_name_img} />
-  ),
-  Алиса: <Alisa className={stylesCreateBot.create_main_bot_name_img} />,
-  Whatsapp: <Whatsapp className={stylesCreateBot.create_main_bot_name_img} />,
-  Instagram: <Instagram className={stylesCreateBot.create_main_bot_name_img} />,
-  'Веб-сайт': <WebSite className={stylesCreateBot.create_main_bot_name_img} />,
+  Facebook: <Facebook className={styles.create_main_bot_name_img} />,
+  Telegram: <Telegram className={styles.create_main_bot_name_img} />,
+  Viber: <Viber className={styles.create_main_bot_name_img} />,
+  VK: <VK className={styles.create_main_bot_name_img} />,
+  Odnoklassniki: <Odnoklassniki className={styles.create_main_bot_name_img} />,
+  Алиса: <Alisa className={styles.create_main_bot_name_img} />,
+  Whatsapp: <Whatsapp className={styles.create_main_bot_name_img} />,
+  Instagram: <Instagram className={styles.create_main_bot_name_img} />,
+  'Веб-сайт': <WebSite className={styles.create_main_bot_name_img} />,
 };
 
-const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }) => {
+const CreateBot: FC<ICreateBot> = ({
+  botName,
+  pages,
+  templateId,
+  templateTitle,
+  botURI,
+}) => {
   const [arrPages, setArrPages] = useState<string[]>([]);
 
   const { values, handleChange, setValues } = useForm({
@@ -59,8 +65,7 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }) => {
     uri: { value: '', valueValid: false },
   });
 
-  const history = useNavigate();
-
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const disabledDefault =
@@ -97,8 +102,11 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }) => {
     };
 
     try {
-      dispatch(addBotAction(dataBot));
-      history(`/${routesUrl.botBuilder}`);
+      dispatch(
+        addBotAction(dataBot, templateId, (newBotId: string) =>
+          navigate(`/${routesUrl.botBuilder}?id=${newBotId}&type=custom`)
+        )
+      );
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);
@@ -111,36 +119,32 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }) => {
     });
   };
   return (
-    <div className={stylesCreateBot.create}>
+    <div className={styles.create}>
       {botName ? (
-        <div className={stylesCreateBot.create_main}>
-          <div className={stylesCreateBot.create_main_bot_name}>
+        <div className={styles.create_main}>
+          <div className={styles.create_main_bot_name}>
             {img[botName]}
             <Typography
               tag="h3"
               fontFamily="secondary"
-              className={stylesCreateBot.create_main_bot_name_title}
+              className={styles.create_main_bot_name_title}
             >
               {botName}
             </Typography>
-            <Typography
-              tag="span"
-              className={stylesCreateBot.create_main_bot_name_text}
-            >
-              Бот будет создан на основе{' '}
+            {templateTitle && (
               <Typography
                 tag="span"
-                className={stylesCreateBot.create_main_bot_name_span}
+                className={styles.create_main_bot_name_text}
               >
-                BotName
+                Бот будет создан на основе шаблона{' '}
+                <span className={styles.create_main_bot_name_span}>
+                  {templateTitle}
+                </span>
               </Typography>
-            </Typography>
+            )}
           </div>
-          <form
-            onSubmit={handleSubmit}
-            className={stylesCreateBot.create_main_form}
-          >
-            <div className={stylesCreateBot.create_main_fill_bot}>
+          <form onSubmit={handleSubmit} className={styles.create_main_form}>
+            <div className={styles.create_main_fill_bot}>
               {!pages ? (
                 <StepperFillBot step="1" text="Ключ доступа">
                   <Input
@@ -190,8 +194,8 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }) => {
               )}
             </div>
 
-            <div className={stylesCreateBot.create_main_button_container}>
-              <div className={stylesCreateBot.create_main_button}>
+            <div className={styles.create_main_button_container}>
+              <div className={styles.create_main_button}>
                 <Button
                   size="large"
                   variant="default"
@@ -206,15 +210,15 @@ const CreateBot: FC<ICreateBot> = ({ botName, pages, botURI }) => {
           </form>
         </div>
       ) : (
-        <div className={stylesCreateBot.create_message}>
+        <div className={styles.create_message}>
           <Typography
             tag="h3"
             fontFamily="secondary"
-            className={stylesCreateBot.create_message_title}
+            className={styles.create_message_title}
           >
             К какому мессенджеру подключим бота?
           </Typography>
-          <Typography tag="p" className={stylesCreateBot.create_message_text}>
+          <Typography tag="p" className={styles.create_message_text}>
             Выберите из предложенного списка
           </Typography>
         </div>

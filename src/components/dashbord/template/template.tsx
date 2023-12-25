@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
-import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
+import BotTemplatePopup from '../../popups/bot-template-popup/bot-template-popup';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import useModal from '../../../services/hooks/use-modal';
 import styles from './template.module.scss';
@@ -39,7 +39,7 @@ const Template: FC<{ template: TBotTemplate }> = ({ template }) => {
       </ButtonAddSampleBot>
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
-          <BotTemplate template={template} onClick={closeModal} />
+          <BotTemplatePopup template={template} onClick={closeModal} />
         </ModalPopup>
       )}
     </li>
