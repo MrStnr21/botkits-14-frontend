@@ -11,12 +11,13 @@ import { getSelectItemByValue } from '../../../utils';
 export type TModeProps = {
   id: string;
   setTargetBlock: Function;
+  index: number;
 };
 
 /**
  * компонент-подблок для  взаимодействия с переменной
  */
-const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
+const Mode: FC<TModeProps> = ({ id, setTargetBlock, index }) => {
   const { getNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const nodes = getNodes();
@@ -43,10 +44,10 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
   const getBlock = useMemo(() => {
     switch (itemFromVariables.type) {
       case 'easy': {
-        return <EasyMode id={id} />;
+        return <EasyMode index={index} id={id} />;
       }
       case 'hard': {
-        return <HardMode id={id} />;
+        return <HardMode index={index} id={id} />;
       }
       default: {
         return null;

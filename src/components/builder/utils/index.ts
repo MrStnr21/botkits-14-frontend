@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
 import { Node, Instance } from 'reactflow';
+import { v4 as uuid } from 'uuid';
 import _ from 'lodash';
 import { Option } from '../../../utils/types';
 import { TVariable, TTrigger } from '../../../services/types/builder';
@@ -30,6 +31,23 @@ type TSaveNode<T> = {
   path: string[] | string;
   setNodes: Instance.SetNodes<any>;
   getNodes: Instance.GetNodes<any>;
+};
+
+export const newBlockData = {
+  easy: () => ({
+    id: `easy-${uuid()}`,
+    type: 'easy',
+    variable: { id: '', name: '', value: '' },
+    sign: '',
+    condition: '',
+    targetBlock: '',
+  }),
+  hard: () => ({
+    id: `hard-${uuid()}`,
+    type: 'hard',
+    condition: '',
+    targetBlock: '',
+  }),
 };
 
 /** перевод секунд в секунды/минуты/часы/дни

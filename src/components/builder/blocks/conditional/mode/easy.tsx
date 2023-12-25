@@ -5,17 +5,18 @@ import styles from './mode.module.scss';
 import { selectValues, signSelectValues } from '../../../utils/data';
 import Input from '../../../../../ui/inputs/input/input';
 import Select from '../../../../../ui/select/select';
-import { getSelectItemByValue } from '../../../utils';
-import { setItemVariablesFlow } from '../flow';
+import { getSelectItemByValue, setFlowDataInit } from '../../../utils';
 
 export type TEasyBlockProps = {
   id: string;
+  index: number;
 };
 
 /**
  * компонент-подблок для  взаимодействия с переменной, уникальная для простого режима часть
  */
-const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
+const EasyMode: FC<TEasyBlockProps> = ({ id, index }) => {
+  const setFlowData = setFlowDataInit();
   const { getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
@@ -27,15 +28,24 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     [node]
   );
 
-  const setItemVariables = setItemVariablesFlow();
-
   const setCondition = (value: any) => {
-    setItemVariables(id, 'condition', value);
+    setFlowData({
+      path: ['data', 'variables', index.toString(), 'condition'],
+      value,
+    });
   };
 
-  const setVariable = (value: any) => setItemVariables(id, 'variable', value);
+  const setVariable = (value: any) =>
+    setFlowData({
+      path: ['data', 'variables', index.toString(), 'variable'],
+      value,
+    });
 
-  const setSign = (value: any) => setItemVariables(id, 'sign', value);
+  const setSign = (value: any) =>
+    setFlowData({
+      path: ['data', 'variables', index.toString(), 'sign'],
+      value,
+    });
 
   const content = useMemo(
     () => (

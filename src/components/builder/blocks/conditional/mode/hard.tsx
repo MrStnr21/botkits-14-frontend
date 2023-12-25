@@ -1,16 +1,18 @@
 import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 import Input from '../../../../../ui/inputs/input/input';
-import { setItemVariablesFlow } from '../flow';
+import { setFlowDataInit } from '../../../utils';
 
 export type THardBlockProps = {
   id: string;
+  index: number;
 };
 
 /**
  * компонент-подблок для  взаимодействия с переменной, уникальная для сложного режима часть
  */
-const HardMode: FC<THardBlockProps> = ({ id }) => {
+const HardMode: FC<THardBlockProps> = ({ id, index }) => {
+  const setFlowData = setFlowDataInit();
   const { getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
@@ -22,10 +24,11 @@ const HardMode: FC<THardBlockProps> = ({ id }) => {
     [node]
   );
 
-  const setItemVariables = setItemVariablesFlow();
-
   const setCondition = (value: any) => {
-    setItemVariables(id, 'condition', value);
+    setFlowData({
+      path: ['data', 'variables', index.toString(), 'condition'],
+      value,
+    });
   };
 
   const content = useMemo(

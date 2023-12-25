@@ -10,27 +10,24 @@ import {
 } from '../../../../services/types/builder';
 import Mode from './mode/mode';
 import ToggleButton from './toggle-button/toggle-button';
-import { addCompareBlockFlow, setItemVariablesFlow } from './flow';
+import { setFlowDataInit, newBlockData } from '../../utils';
 
 const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
+  const setFlowData = setFlowDataInit();
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
+
+  console.log(data);
 
   const { getNode } = useReactFlow();
   const id = useNodeId() || '';
   const node = getNode(id);
 
   // добавление условия в сложном режиме
-  const addHard = addCompareBlockFlow();
-
-  // добавление условия в простом режиме
-  const addEasy = addCompareBlockFlow();
-
-  // ???
-  const setItemVariables = setItemVariablesFlow();
-
-  // ???
-  const setTargetBlock = (idItem: string, name: string) =>
-    setItemVariables(idItem, 'targetBlock', name);
+  const addBlock = (type: 'easy' | 'hard') =>
+    setFlowData({
+      path: ['data', 'variables'],
+      value: [...data.variables, newBlockData[type]()],
+    });
 
   // получение набора подблоков по типу ('easy' или 'hard')
   const content = useMemo(
@@ -44,8 +41,17 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
                   id={item.id}
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
+                  index={index}
                   setTargetBlock={(name: string) =>
-                    setTargetBlock(item.id, name)
+                    setFlowData({
+                      path: [
+                        'data',
+                        'variables',
+                        index.toString(),
+                        'targetBlock',
+                      ],
+                      value: name,
+                    })
                   }
                 />
               )
@@ -58,8 +64,17 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
                   id={item.id}
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
+                  index={index}
                   setTargetBlock={(name: string) =>
-                    setTargetBlock(item.id, name)
+                    setFlowData({
+                      path: [
+                        'data',
+                        'variables',
+                        index.toString(),
+                        'targetBlock',
+                      ],
+                      value: name,
+                    })
                   }
                 />
               )
@@ -90,7 +105,9 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
       <div className={styles.content}>
         {content}
         <ConstructorAddButton
-          onClick={() => (mode === 'easy' ? addEasy('easy') : addHard('hard'))}
+          onClick={() =>
+            mode === 'easy' ? addBlock('easy') : addBlock('hard')
+          }
         >
           Добавить условие
         </ConstructorAddButton>
