@@ -14,10 +14,9 @@ import { TGetUserInfoActions } from '../actions/user/user';
 import { TLogoutState } from '../reducers/logout/logout';
 import { TLogoutActions } from '../actions/logout/logout';
 
-import { TGetBotsState } from '../reducers/bots/getBots';
+import { TBotsState } from '../reducers/bots/bots';
 import { TGetBotsActions } from '../actions/bots/getBot';
 
-import { TAddBotState } from '../reducers/bots/addBot';
 import { TAddBotActions } from '../actions/bots/addBot';
 
 import { TGetTemplatesBotsState } from '../reducers/bots/templatesBots';
@@ -30,6 +29,7 @@ import { TGetPlatformsState } from '../reducers/platforms/getPlatforms';
 import { TGetPlatformsActions } from '../actions/platforms/getPlatforms';
 
 import store from '../store';
+import { TDeleteBotActions } from '../actions/bots/deleteBot';
 
 export type TStore = {
   signup: TSignupState;
@@ -37,8 +37,7 @@ export type TStore = {
   resetPassword: TResetPasswordState;
   getUserInfo: TGetUserInfoState;
   logout: TLogoutState;
-  getBots: TGetBotsState;
-  addBot: TAddBotState;
+  bots: TBotsState;
   getTemplatesBots: TGetTemplatesBotsState;
   getPlatforms: TGetPlatformsState;
 };
@@ -53,6 +52,7 @@ export type TApplicationActions =
   | TLogoutActions
   | TGetBotsActions
   | TAddBotActions
+  | TDeleteBotActions
   | TGetTemplatesBotsActions
   | TGetPlatformsActions;
 

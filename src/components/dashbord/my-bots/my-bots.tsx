@@ -14,13 +14,13 @@ import { getBotsAction } from '../../../services/actions/bots/getBot';
 
 import routesUrl from '../../../utils/routesData';
 
-import { getBotsSel } from '../../../utils/selectorData';
+import { botsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 
 const MyBots: FC = (): JSX.Element => {
   const [isHidden, setIsHidden] = useState(false);
 
-  const { bots } = useAppSelector(getBotsSel);
+  const { bots } = useAppSelector(botsSel);
 
   const dispatch = useAppDispatch();
 

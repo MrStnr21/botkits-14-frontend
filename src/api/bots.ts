@@ -9,6 +9,7 @@ import {
   IAddBotTemplateResponse,
   IDeleteBotTemplateResponse,
   IUpdateBotTemplateResponse,
+  IDeleteBotResponse,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -17,8 +18,20 @@ function getBotsApi() {
 }
 
 // запрос добавления бота
-function addBotApi(bot: TBot) {
-  return postReq<IAddBotResponse>({ uri: 'bots', auth: true, data: bot });
+function addBotApi(bot: TBot, templateId: string | null) {
+  return postReq<IAddBotResponse>({
+    uri: templateId ? `bots/${templateId}` : 'bots',
+    auth: true,
+    data: bot,
+  });
+}
+
+function deleteBotApi(id: string) {
+  return deleteReq<IDeleteBotResponse>({
+    uri: `bots/${id}`,
+    id,
+    auth: true,
+  });
 }
 
 // запрос получения шаблонов
@@ -60,6 +73,7 @@ function updateBotTemplateApi(botTemplate: TBotTemplateReq, id: string) {
 export {
   getBotsApi,
   addBotApi,
+  deleteBotApi,
   getBotTemplatesApi,
   addBotTemplateApi,
   deleteBotTemplateApi,

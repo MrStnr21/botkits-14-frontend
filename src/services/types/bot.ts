@@ -62,6 +62,8 @@ export interface IAddBotResponse extends TBot {}
 
 export interface IGetBotResponse extends TBot {}
 
+export interface IDeleteBotResponse extends TBot {}
+
 export interface IGetBotsResponse extends Array<TBot> {}
 
 export interface IGetBotTemplatesResponse extends Array<TBotTemplate> {}
