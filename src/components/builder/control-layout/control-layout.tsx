@@ -19,13 +19,15 @@ type TControlLayoutProps = {
  * Общий layout для блоков билдера
  */
 const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
+  const setFlowData = setFlowDataInit();
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
   const id = useNodeId() || '';
   const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
-  const setName = setFlowDataInit({ selectors: ['name'] });
+  const setName = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'name'], value: e.target.value });
 
   const onClick = () => {
     toggleMenu(!menu);
