@@ -22,6 +22,8 @@ import SwitchBotMenuPopup from './switch-bot-menu-popup';
 import useModal from '../../../services/hooks/use-modal';
 import Typography from '../../../ui/typography/typography';
 import { TBot } from '../../../services/types/bot';
+import { useAppDispatch } from '../../../services/hooks/hooks';
+import { deleteBotAction } from '../../../services/actions/bots/deleteBot';
 
 interface IMoreMybotPopup {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -30,7 +32,9 @@ interface IMoreMybotPopup {
 
 const MoreMybotPopup: FC<IMoreMybotPopup> = ({ setIsOpen, bot }) => {
   const matches = useMediaQuery('(max-width: 420px)');
-  // м.б. отдавать наружу выбор пункта? хз хз..
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [itemSelected, setItemSelected] = useState<POPUP_ITEM>(
     POPUP_ITEM.DEFAULT
   );
@@ -38,16 +42,17 @@ const MoreMybotPopup: FC<IMoreMybotPopup> = ({ setIsOpen, bot }) => {
 
   const selectItem = (item: POPUP_ITEM) => {
     setItemSelected(item); // записали текущий выбор
-    openModal(); // открыли попап
+    openModal();
   };
 
-  const navigate = useNavigate();
   const copyBot = () => {
     navigate(routesUrl.addBot);
-    setIsOpen(false); // выпадающее меню закрыли
+    setIsOpen(false);
   };
   const deleteBot = () => {
-    setIsOpen(false); // выпадающее меню закрыли
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(deleteBotAction(bot._id));
+    setIsOpen(false);
   };
 
   return (

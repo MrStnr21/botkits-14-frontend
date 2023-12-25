@@ -26,9 +26,10 @@ function addBotApi(bot: TBot, templateId: string | null) {
   });
 }
 
+// запрос удаления бота
 function deleteBotApi(id: string) {
   return deleteReq<IDeleteBotResponse>({
-    uri: `bots/${id}`,
+    uri: `bots`,
     id,
     auth: true,
   });
