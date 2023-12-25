@@ -275,6 +275,10 @@ export const resetVar = (elements: any[]) => {
   }
 };
 
+export const connectStrings = (strings: string[], separator: string) => {
+  return strings.join(separator)
+}
+
 
 
 export default {};

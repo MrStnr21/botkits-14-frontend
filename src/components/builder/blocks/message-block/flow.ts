@@ -6,7 +6,7 @@ import {
   MessageDataTypes,
   TMessageBlockData,
 } from '../../../../services/types/builder';
-import { saveNode, saveVariable } from '../../utils';
+import { connectStrings, saveNode, saveVariable } from '../../utils';
 import { storeOfVariables } from '../../utils/store';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 import useFlow from '../../use-flow';
@@ -15,7 +15,7 @@ import { switchingWidth } from '../../../../stylesheets/scss-variables';
 export const setVariableFlow = () => {
   const { getNodes, setNodes, getNode, id } = useFlow();
   return (finalValue: string) => {
-    const idVariable = `${id}|||saveResultVariable`;
+    const idVariable = connectStrings([id, 'saveResultVariable'], '|||');
     if (finalValue === '') {
       const variableIndex = storeOfVariables.findIndex(
         (item) => item.id === idVariable

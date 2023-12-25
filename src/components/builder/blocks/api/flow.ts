@@ -1,4 +1,4 @@
-import { saveNode, saveVariable } from '../../utils';
+import { connectStrings, saveNode, saveVariable } from '../../utils';
 import { storeOfVariables } from '../../utils/store';
 import { TVariable } from '../../../../services/types/builder';
 import useFlow from '../../use-flow';
@@ -7,9 +7,10 @@ export const addVariableFlow = () => {
   const { getNodes, setNodes, id, getNode } = useFlow();
   return () => {
     const node = getNode(id)!;
-    const idVariable = `${id}|||saveResultVariable-${
-      node.data.variables.length + 1
-    }`;
+    const idVariable = connectStrings(
+      [id, `saveResultVariable-${node.data.variables.length + 1}`],
+      '|||'
+    );
     saveVariable(storeOfVariables, '', idVariable);
 
     const value = { id: idVariable, name: '', value: '' };
