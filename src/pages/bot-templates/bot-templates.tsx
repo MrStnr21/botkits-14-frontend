@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, useEffect } from 'react';
 import BotTemplatesCard from '../../components/bot-templates-card/bot-templates-card';
 import stylesBotTemplates from './bot-templates.module.scss';
@@ -8,23 +7,23 @@ import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import CreateBotTemplatesPopup from '../../components/popups/create-bot-template-popup/create-bot-template-popup';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { getTemplatesBotsSel, getBotsSel } from '../../utils/selectorData';
+import { getTemplatesBotsSel } from '../../utils/selectorData';
 import {
   getTemplatesBotsAction,
   deleteBotTemplatesAction,
 } from '../../services/actions/bots/templatesBots';
 
 const BotTemplates: FC = () => {
-  const { templatesBots } = useAppSelector(getTemplatesBotsSel);
-  const [templates, setTemplates] = useState(templatesBots);
+  const { botTemplates } = useAppSelector(getTemplatesBotsSel);
+  const [templates, setTemplates] = useState(botTemplates);
   const [isVisiblePopup, setVisiblePopup] = useState(false);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (templatesBots.length !== 0) {
-      setTemplates(templatesBots);
+    if (botTemplates.length !== 0) {
+      setTemplates(botTemplates);
     } else dispatch(getTemplatesBotsAction());
-  }, [templatesBots]);
+  }, [botTemplates]);
 
   const onDeleteCard = (id: string) => {
     // eslint-disable-next-line no-underscore-dangle

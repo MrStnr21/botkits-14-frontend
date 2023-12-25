@@ -9,7 +9,7 @@ import Typography from '../../../ui/typography/typography';
 import Template from '../template/template';
 
 const Templates: FC = () => {
-  const { templatesBots } = useAppSelector(getTemplatesBotsSel);
+  const { botTemplates } = useAppSelector(getTemplatesBotsSel);
 
   const dispatch = useAppDispatch();
 
@@ -61,12 +61,12 @@ const Templates: FC = () => {
         {...events}
         ref={ref}
       >
-        {templatesBots !== null &&
-          templatesBots.map((templateBot) => (
+        {botTemplates !== null &&
+          botTemplates.map((templateBot) => (
             <Template
               // eslint-disable-next-line no-underscore-dangle
               key={templateBot._id}
-              bot={templateBot}
+              template={templateBot}
             />
           ))}
       </ul>

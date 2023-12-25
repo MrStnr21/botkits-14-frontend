@@ -1,13 +1,14 @@
 import { deleteReq, getReq, patchReq, postReq } from './api';
 
 import {
+  TBot,
   IAddBotResponse,
   IGetBotsResponse,
-  IGetTemplatesBotsResponse,
-  IAddTemplatesBotsResponse,
-  TBot,
-  TTemplateBot,
-  TTemplateBotRes,
+  TBotTemplateReq,
+  IGetBotTemplatesResponse,
+  IAddBotTemplateResponse,
+  IDeleteBotTemplateResponse,
+  IUpdateBotTemplateResponse,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -21,42 +22,46 @@ function addBotApi(bot: TBot) {
 }
 
 // запрос получения шаблонов
-function getTemplatesBotsApi() {
-  return getReq<IGetTemplatesBotsResponse>({
+function getBotTemplatesApi() {
+  return getReq<IGetBotTemplatesResponse>({
     uri: 'bots/templates',
     auth: true,
   });
 }
 
 // запрос добавления шаблона
-function addTemplatesBotsApi(botTemplates: TTemplateBot) {
-  return postReq<IAddTemplatesBotsResponse>({
+function addBotTemplateApi(botTemplate: TBotTemplateReq) {
+  return postReq<IAddBotTemplateResponse>({
     uri: 'bots/template',
     auth: true,
-    data: botTemplates,
+    data: botTemplate,
   });
 }
 
 // запрос удаления шаблона
-function deleteTemplatesBotsApi(id: string) {
-  return deleteReq<TTemplateBotRes>({ uri: 'bots/template', id, auth: true });
-}
-
-// запрос изменения шаблона
-function updateTemplatesBotsApi(botTemplates: TTemplateBotRes, id: string) {
-  return patchReq<TTemplateBotRes>({
+function deleteBotTemplateApi(id: string) {
+  return deleteReq<IDeleteBotTemplateResponse>({
     uri: 'bots/template',
     id,
     auth: true,
-    data: botTemplates,
+  });
+}
+
+// запрос изменения шаблона
+function updateBotTemplateApi(botTemplate: TBotTemplateReq, id: string) {
+  return patchReq<IUpdateBotTemplateResponse>({
+    uri: 'bots/template',
+    id,
+    auth: true,
+    data: botTemplate,
   });
 }
 
 export {
   getBotsApi,
   addBotApi,
-  getTemplatesBotsApi,
-  addTemplatesBotsApi,
-  deleteTemplatesBotsApi,
-  updateTemplatesBotsApi,
+  getBotTemplatesApi,
+  addBotTemplateApi,
+  deleteBotTemplateApi,
+  updateBotTemplateApi,
 };

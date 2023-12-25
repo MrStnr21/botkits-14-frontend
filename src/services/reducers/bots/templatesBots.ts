@@ -9,14 +9,15 @@ import {
   UPDATEBOTTEMPLATES_REQUEST,
   UPDATEBOTTEMPLATES_SUCCESS,
   UPDATEBOTTEMPLATES_ERROR,
+  ADD_BOT_TEMPLATE_REQUEST,
+  ADD_BOT_TEMPLATE_SUCCESS,
+  ADD_BOT_TEMPLATE_ERROR,
   TGetTemplatesBotsActions,
 } from '../../actions/bots/templatesBots';
-
-import { TTemplateBotRes } from '../../types/bot';
+import { TBotTemplate } from '../../types/bot';
 
 export type TGetTemplatesBotsState = {
-  templatesBots: Array<TTemplateBotRes> | [];
-  templatesBot: TTemplateBotRes | null;
+  botTemplates: Array<TBotTemplate> | [];
   isLoading: boolean;
   hasError: boolean;
 
@@ -26,8 +27,7 @@ export type TGetTemplatesBotsState = {
 };
 
 const getTemplatesBotsInitialState: TGetTemplatesBotsState = {
-  templatesBots: [],
-  templatesBot: null,
+  botTemplates: [],
   isLoading: false,
   hasError: false,
 
@@ -46,23 +46,23 @@ function getTemplatesBotsReducer(
     case GET_TEMPLATES_BOTS_REQUEST: {
       return {
         ...state,
-        getBotsRequest: true,
-        getBotsError: false,
+        getTemplatesBotsRequest: true,
+        getTemplatesBotsError: false,
       };
     }
     case GET_TEMPLATES_BOTS_SUCCESS: {
       return {
         ...state,
-        templatesBots: action.templatesBots,
-        getBotsSuccess: true,
-        getBotsRequest: false,
+        botTemplates: action.botTemplates,
+        getTemplatesBotsSuccess: true,
+        getTemplatesBotsRequest: false,
       };
     }
     case GET_TEMPLATES_BOTS_ERROR: {
       return {
         ...state,
-        getBotsRequest: false,
-        getBotsError: true,
+        getTemplatesBotsRequest: false,
+        getTemplatesBotsError: true,
       };
     }
 
@@ -70,26 +70,26 @@ function getTemplatesBotsReducer(
     case DELETEBOTTEMPLATES_REQUEST: {
       return {
         ...state,
-        getBotsRequest: true,
-        getBotsError: false,
+        getTemplatesBotsRequest: true,
+        getTemplatesBotsError: false,
       };
     }
     case DELETEBOTTEMPLATES_SUCCESS: {
       return {
         ...state,
-        templatesBots: [...state.templatesBots].filter(
+        botTemplates: [...state.botTemplates].filter(
           // eslint-disable-next-line no-underscore-dangle
           (template) => template._id !== action.id
         ),
-        getBotsSuccess: true,
-        getBotsRequest: false,
+        getTemplatesBotsSuccess: true,
+        getTemplatesBotsRequest: false,
       };
     }
     case DELETEBOTTEMPLATES_ERROR: {
       return {
         ...state,
-        getBotsRequest: false,
-        getBotsError: true,
+        getTemplatesBotsRequest: false,
+        getTemplatesBotsError: true,
       };
     }
 
@@ -97,31 +97,50 @@ function getTemplatesBotsReducer(
     case UPDATEBOTTEMPLATES_REQUEST: {
       return {
         ...state,
-        getBotsRequest: true,
-        getBotsError: false,
+        getTemplatesBotsRequest: true,
+        getTemplatesBotsError: false,
       };
     }
     case UPDATEBOTTEMPLATES_SUCCESS: {
       return {
         ...state,
-        // botTemplates: state.templatesBots?.filter(
-        //   // eslint-disable-next-line no-underscore-dangle
-        //   (template) => template._id !== action.botTemplates._id
-        // ),
-        botTemplates: {
-          ...state.templatesBot,
-          title: action.botTemplates.title,
-          description: action.botTemplates.description,
-        },
-        getBotsSuccess: true,
-        getBotsRequest: false,
+        botTemplates: state.botTemplates.map((template) =>
+          // eslint-disable-next-line no-underscore-dangle
+          template._id === action.template._id
+            ? { ...template, ...action.template }
+            : template
+        ),
+        getTemplatesBotsSuccess: true,
+        getTemplatesBotsRequest: false,
       };
     }
     case UPDATEBOTTEMPLATES_ERROR: {
       return {
         ...state,
-        getBotsRequest: false,
-        getBotsError: true,
+        getTemplatesBotsRequest: false,
+        getTemplatesBotsError: true,
+      };
+    }
+    case ADD_BOT_TEMPLATE_REQUEST: {
+      return {
+        ...state,
+        getTemplatesBotsRequest: true,
+        getTemplatesBotsError: false,
+      };
+    }
+    case ADD_BOT_TEMPLATE_SUCCESS: {
+      return {
+        ...state,
+        botTemplates: [...state.botTemplates, action.template],
+        getTemplatesBotsSuccess: true,
+        getTemplatesBotsRequest: false,
+      };
+    }
+    case ADD_BOT_TEMPLATE_ERROR: {
+      return {
+        ...state,
+        getTemplatesBotsRequest: false,
+        getTemplatesBotsError: true,
       };
     }
     default: {

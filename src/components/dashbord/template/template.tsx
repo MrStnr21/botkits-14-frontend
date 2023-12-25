@@ -4,23 +4,18 @@ import BotTemplate from '../../popups/bot-template-popup/bot-template-popup';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import useModal from '../../../services/hooks/use-modal';
 import styles from './template.module.scss';
+import { TBotTemplate } from '../../../services/types/bot';
 
-interface TBot {
-  icon: string;
-  title: string;
-  description: string;
-}
-
-const Template: FC<{ bot: TBot }> = ({ bot }) => {
+const Template: FC<{ template: TBotTemplate }> = ({ template }) => {
   const importImage = async () => {
     try {
       let imageModule;
-      if (bot.icon.includes('http')) {
-        imageModule = bot.icon;
+      if (template.icon.includes('http')) {
+        imageModule = template.icon;
         return imageModule;
       }
       imageModule = await import(
-        `../../../images/icon/template/${bot.icon}.svg`
+        `../../../images/icon/template/${template.icon}.svg`
       );
       return imageModule.default;
     } catch (error) {
@@ -35,20 +30,16 @@ const Template: FC<{ bot: TBot }> = ({ bot }) => {
     importImage().then((importedImage) => {
       setImage(importedImage);
     });
-  }, [bot.icon]);
+  }, [template.icon]);
 
   return (
     <li className={styles.item}>
       <ButtonAddSampleBot onClick={openModal} icon={image}>
-        {bot.title}
+        {template.title}
       </ButtonAddSampleBot>
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
-          <BotTemplate
-            title={bot.title}
-            description={bot.description}
-            onClick={closeModal}
-          />
+          <BotTemplate template={template} onClick={closeModal} />
         </ModalPopup>
       )}
     </li>

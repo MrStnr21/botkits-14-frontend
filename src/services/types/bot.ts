@@ -19,7 +19,7 @@ enum TypeCommands {
 }
 */
 
-// Типизация данных бота
+// Типизация данных бота. Закомментированы не используемые сейчас поля
 export type TBot = {
   _id: string;
   icon?: string;
@@ -33,29 +33,28 @@ export type TBot = {
   // isToPublish?: boolean;
 };
 
-// Типизация данных шаблона - ToDo Это Типизация Res TemplateBot - Не корректное название
-export type TTemplateBotRes = {
+// Типизация данных шаблона. Закомментированы не используемые сейчас поля
+export type TBotTemplate = {
   _id: string;
-  type: string;
+  icon: string;
   title: string;
   description: string;
-  icon: string;
-  messengers?: [];
-  profile: null;
-  features?: Array<Object>;
-  commands?: Array<string>;
-  content?: Array<Object>;
+  features?: TBuilderData;
   isToPublish?: boolean;
-  success: boolean;
+  // profile?: Profile;
+  // settings?: object;
+  // messengers?: Array<Messenger>;
+  // commands?: Array<TypeCommands>;
 };
 
-export type TTemplateBot = {
+// Типизация данных для создания шаблона. Закомментированы не используемые сейчас поля
+export type TBotTemplateReq = {
   title: string;
   description: string;
   icon?: string;
-  features?: Array<Object>;
+  features?: TBuilderData;
   settings?: Object;
-  messengers?: Array<Object>;
+  messengers?: Array<TMessenger>;
   isToPublish?: boolean;
 };
 
@@ -65,10 +64,10 @@ export interface IGetBotResponse extends TBot {}
 
 export interface IGetBotsResponse extends Array<TBot> {}
 
-export interface IGetTemplatesBotsResponse extends Array<TTemplateBotRes> {}
+export interface IGetBotTemplatesResponse extends Array<TBotTemplate> {}
 
-export interface IAddTemplatesBotsResponse extends TTemplateBotRes {}
+export interface IAddBotTemplateResponse extends TBotTemplate {}
 
-export interface IDeleteTemplatesBotsResponse extends TTemplateBotRes {}
+export interface IDeleteBotTemplateResponse extends TBotTemplate {}
 
-export interface IUpdateTemplatesBotsResponse extends TTemplateBotRes {}
+export interface IUpdateBotTemplateResponse extends TBotTemplate {}

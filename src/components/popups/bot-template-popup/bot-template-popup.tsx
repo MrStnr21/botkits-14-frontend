@@ -16,13 +16,14 @@ import { ReactComponent as ImageDemo } from '../../../images/icon/template/demo 
 import { ReactComponent as ImageBeauty } from '../../../images/icon/template/beauty.svg';
 import { ReactComponent as ImagePoll } from '../../../images/icon/template/poll.svg';
 
+import { TBotTemplate } from '../../../services/types/bot';
+
 import Button from '../../../ui/buttons/button/button';
 import routesUrl from '../../../utils/routesData';
 import Typography from '../../../ui/typography/typography';
 
 interface IBotTemplate {
-  title: string;
-  description: string;
+  template: TBotTemplate;
   onClick?: () => void;
 }
 
@@ -65,11 +66,7 @@ const image: IImage = {
   ),
 };
 
-const BotTemplatePopup: FC<IBotTemplate> = ({
-  title,
-  description,
-  onClick,
-}): JSX.Element | null => {
+const BotTemplatePopup: FC<IBotTemplate> = ({ template, onClick }) => {
   const data = [
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
@@ -85,16 +82,16 @@ const BotTemplatePopup: FC<IBotTemplate> = ({
   return (
     <div className={stylesBotTemplate.bot_template}>
       <div>
-        {image[title]}
+        {image[template.title]}
         <div className={stylesBotTemplate.bot_template_description}>
           <Typography
             tag="h2"
             fontFamily="secondary"
             className={stylesBotTemplate.bot_template_title}
           >
-            {title}
+            {template.title}
           </Typography>
-          <Typography tag="p">{description}</Typography>
+          <Typography tag="p">{template.description}</Typography>
           <ul className={stylesBotTemplate.bot_template_list}>
             {data.map((item, index) => (
               <li
