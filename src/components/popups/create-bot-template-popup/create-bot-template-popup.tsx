@@ -11,7 +11,6 @@ import { createUrlBuilder } from '../../../utils/utils';
 // import { BUTTON_NAME } from '../../../utils/constants';
 
 import routesUrl from '../../../utils/routesData';
-import { getAccessToken } from '../../../auth/authService';
 import { addTemplatesBotsApi } from '../../../api/bots';
 import ModalPopup from '../modal-popup/modal-popup';
 import EditImagePopup from '../edit-image-popup/edit-image-popup';
@@ -33,8 +32,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   const history = useNavigate();
-
-  const token = getAccessToken();
 
   // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
   // const onClickEditAvatar = () => {
@@ -69,7 +66,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
       };
       const path = routesUrl.botBuilder;
       console.log(dataBotTemplates);
-      const template = await addTemplatesBotsApi(dataBotTemplates, token);
+      const template = await addTemplatesBotsApi(dataBotTemplates);
       // eslint-disable-next-line no-underscore-dangle
       const id = template._id;
       history(createUrlBuilder(path, id));

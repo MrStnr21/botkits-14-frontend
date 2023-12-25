@@ -3,6 +3,7 @@ import { addBotApi } from '../../../api';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TBot } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
 const ADDBOT_REQUEST = 'ADDBOT_REQUSET';
 const ADDBOT_SUCCESS = 'ADDBOT_SUCCESS';
@@ -31,13 +32,13 @@ export type TAddBotActions =
  * @param botinfo объект с типом TBot
  * @param token access token
  */
-const addBotAction: AppThunk = (botinfo: TBot, token: string) => {
+const addBotAction: AppThunk = (botinfo: TBot) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: ADDBOT_REQUEST,
     });
     console.log(botinfo);
-    addBotApi(botinfo, token)
+    addBotApi(botinfo)
       .then((res) => {
         console.log(res);
         if (res) {
@@ -47,7 +48,7 @@ const addBotAction: AppThunk = (botinfo: TBot, token: string) => {
           });
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({

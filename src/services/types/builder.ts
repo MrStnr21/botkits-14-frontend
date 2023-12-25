@@ -1,4 +1,5 @@
 import { Instance } from 'reactflow';
+import { Descendant } from 'slate';
 
 /**
  * типы контент-блока в MessageBlock
@@ -282,7 +283,7 @@ export type TMessageBlockData =
 
 export type TMessageData = {
   type: MessageDataTypes.message;
-  value: string;
+  value: Descendant[];
   emoji?: string;
 };
 

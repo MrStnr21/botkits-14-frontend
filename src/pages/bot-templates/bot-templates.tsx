@@ -14,7 +14,6 @@ import {
   getTemplatesBotsAction,
   deleteBotTemplatesAction,
 } from '../../services/actions/bots/templatesBots';
-import { getAccessToken } from '../../auth/authService';
 
 const BotTemplates: FC = () => {
   const { templatesBots } = useAppSelector(getTemplatesBotsSel);
@@ -22,10 +21,8 @@ const BotTemplates: FC = () => {
   const [isVisiblePopup, setVisiblePopup] = useState(false);
   const dispatch = useAppDispatch();
 
-  const token = getAccessToken();
-
   useEffect(() => {
-    dispatch(getTemplatesBotsAction(token));
+    dispatch(getTemplatesBotsAction());
   }, [dispatch, templatesBots]);
 
   useEffect(() => {
@@ -35,7 +32,7 @@ const BotTemplates: FC = () => {
   const onDeleteCard = (id: string) => {
     // eslint-disable-next-line no-underscore-dangle
     // setArrCard(arrCard!.filter((pr) => pr._id !== id));
-    dispatch(deleteBotTemplatesAction(id, token));
+    dispatch(deleteBotTemplatesAction(id));
   };
 
   const onClickButton = () => {

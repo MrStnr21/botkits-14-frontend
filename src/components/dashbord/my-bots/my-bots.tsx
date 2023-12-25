@@ -12,8 +12,6 @@ import BotCard from '../../bot-card/bot-card';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 import { getBotsAction } from '../../../services/actions/bots/getBot';
 
-import { getAccessToken } from '../../../auth/authService';
-
 import routesUrl from '../../../utils/routesData';
 
 import Odnokassniki from '../../../images/icon/40x40/odnoklassniki/hover.svg';
@@ -53,8 +51,6 @@ const MyBots: FC = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const token = getAccessToken();
-
   const matches = useMediaQuery('(max-width: 1410px)');
 
   const addBot = () => {
@@ -62,7 +58,7 @@ const MyBots: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    dispatch(getBotsAction(token));
+    dispatch(getBotsAction());
   }, [dispatch]);
 
   return (

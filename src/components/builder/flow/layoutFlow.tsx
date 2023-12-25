@@ -30,7 +30,6 @@ import BotName from '../../../ui/bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
-import { getAccessToken } from '../../../auth/authService';
 import {
   filterNodes,
   getUrlPath,
@@ -42,6 +41,7 @@ import {
 import { storeOfVariables } from '../utils/store';
 import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
+import { TResponseError } from '../../../services/types/response';
 
 const cx = cn.bind(styles);
 
@@ -61,8 +61,7 @@ const LayoutFlow: FC = () => {
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
 
   useEffect(() => {
-    const token = getAccessToken() || '';
-    const id = searchParams.get('id');
+    const id = searchParams.get('id') || '';
     const path = searchParams.get('type')
       ? getUrlPath[searchParams.get('type')!]
       : '';
@@ -73,7 +72,7 @@ const LayoutFlow: FC = () => {
       console.log('нету');
     }
 
-    getBuilderApi(token, 'bots', '65868d4cd287d31a3d1f7f6c')
+    getBuilderApi(path, id)
       .then((data) => {
         if (data.features && data.features.nodes) {
           setNodes(data.features.nodes);
@@ -105,15 +104,14 @@ const LayoutFlow: FC = () => {
         // eslint-disable-next-line no-console
         console.log(data);
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
       });
   }, []);
 
   const saveBot = () => {
-    const token = getAccessToken() || '';
-    const id = searchParams.get('id');
+    const id = searchParams.get('id') || '';
     const path = searchParams.get('type')
       ? getUrlPath[searchParams.get('type')!]
       : '';
@@ -132,15 +130,10 @@ const LayoutFlow: FC = () => {
       },
     };
 
-    saveBuilderApi(builder, token, 'bots', '65868d4cd287d31a3d1f7f6c')
-      /* .then((res) => {
-        // eslint-disable-next-line no-console
-        console.log(res);
-      }) */
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log(err);
-      });
+    saveBuilderApi(builder, path, id).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    });
   };
 
   // Ручная очистка любого массива с отправкой на бэк, например, битого блока с файлом
