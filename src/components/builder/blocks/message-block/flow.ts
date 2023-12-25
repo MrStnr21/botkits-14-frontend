@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { Node } from 'reactflow';
+import { Descendant } from 'slate';
 import { useMediaQuery } from '@mui/material';
 import {
   MessageDataTypes,
@@ -122,7 +123,7 @@ export const addButtonFlow = () => {
 
 export const setTextFlow = () => {
   const { getNodes, setNodes, id, getNode } = useFlow();
-  return (value: string) => {
+  return (value: Descendant[]) => {
     const node = getNode(id)!;
 
     const settedValue = node.data.data.map((content: TMessageBlockData) => {

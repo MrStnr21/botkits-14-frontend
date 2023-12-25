@@ -10,6 +10,7 @@ import moreImage from '../../../images/icon/24x24/variables/more.svg';
 import notInLineWithoutCaseImage from '../../../images/icon/24x24/variables/not in line without case.svg';
 import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg';
 import { MessageDataTypes } from '../../../services/types/builder';
+import { baseSlateData } from '../../../utils/constants';
 
 export enum ButtonSizes {
   startX = 32,
@@ -141,7 +142,7 @@ export const defaultBlocks = {
   message: {
     name: 'message',
     data: [
-      { type: MessageDataTypes.message, value: '' },
+      { type: MessageDataTypes.message, value: baseSlateData },
       { type: MessageDataTypes.buttons, verButtons: [], horButtons: [] },
       { type: MessageDataTypes.answers, verButtons: [], horButtons: [] },
     ],
