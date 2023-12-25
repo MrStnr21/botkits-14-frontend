@@ -11,7 +11,6 @@ import {
 } from '../../../../../services/types/builder';
 import { setFlowDataInit } from '../../../utils';
 import { deleteOnClickFlow, toggleStringFlow } from '../flow';
-import { ButtonSizes } from '../../../utils/data';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
@@ -101,7 +100,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
         <div className={styles['absolute-wrapper']}>
           <ConstructorHelperButton
             isVisible={menu}
-            askOnClick={() => toggleString(ButtonSizes)}
+            askOnClick={toggleString}
             deleteOnClick={deleteOnClick}
             askIcon={getIcon()}
             color

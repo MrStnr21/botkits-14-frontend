@@ -148,8 +148,10 @@ export const setTextFlow = () => {
 
 export const toggleStringFlow = () => {
   const { getNodes, setNodes, id, getNode } = useFlow();
-  return (buttonSizes: typeof ButtonSizes | typeof ButtonSizesMobile) => {
+  const isMobile = useMediaQuery(`(max-width: ${switchingWidth})`);
+  return () => {
     const node = getNode(id)!;
+    const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
     setNodes([
       ...getNodes().map((item) => {
         if (item.id === id) {
