@@ -15,13 +15,6 @@ export type TBlockProps<T> = {
   data: T;
 };
 
-export type TFlowSetter<T> = {
-  setNodes: Instance.SetNodes<any>;
-  getNodes: Instance.GetNodes<any>;
-  id: string;
-  data: T;
-};
-
 export type TFlowNodes = {
   setNodes: Instance.SetNodes<any>;
   getNodes: Instance.GetNodes<any>;
