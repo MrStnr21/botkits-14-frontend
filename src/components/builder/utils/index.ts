@@ -17,6 +17,7 @@ import wh from '../../../images/icon/40x40/whatsapp/hover.svg';
 import ig from '../../../images/icon/40x40/insta/hover.svg';
 import ws from '../../../images/icon/40x40/web/hover.svg';
 import useFlow from '../use-flow';
+import { rangeForCoordinates } from './data';
 
 type TTimeObj = {
   s: number;
@@ -48,6 +49,36 @@ export const newBlockData = {
     condition: '',
     targetBlock: '',
   }),
+};
+
+/** Проверка корректности значения введенной координаты
+ * @param newValue проверяемое значение
+ * @param type тип координаты
+ * @returns true в случае корректности | false в случае некорректности
+ */
+export const validateCoordinateRange = (newValue: string, type: 'longitude' | 'latitude') => {
+  const valueArr = newValue.split('.');
+  const int = Number(valueArr[0]);
+  const fractialPart = valueArr[1];
+  if (
+    (type === 'longitude' &&
+      (int < rangeForCoordinates.longitude.min ||
+        int > rangeForCoordinates.longitude.max))
+  ) {
+    return false;
+  }
+  if (
+    (
+      type === 'latitude' &&
+      (int < rangeForCoordinates.latitude.min ||
+        int > rangeForCoordinates.latitude.max))
+  ) {
+    return false;
+  }
+  if(fractialPart && fractialPart.length > 5) {
+    return false
+  }
+  return true;
 };
 
 /** перевод секунд в секунды/минуты/часы/дни

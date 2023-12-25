@@ -204,6 +204,8 @@ export const defaultBlocks = {
   },
 };
 
+export const coordinateRegExp = /^-?\d*[.,]?\d*$/;
+
 export default {};
 
 /* export const messagesSuccessfulPayment = [

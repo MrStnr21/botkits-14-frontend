@@ -8,9 +8,11 @@ import LabeledInput from '../../labeledInput/labeledInput';
 import { setFlowDataInit } from '../../utils';
 
 const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
-  const onCrmChange = setFlowDataInit({ selectors: ['chosenCrm'] });
-  const onSaveChange = setFlowDataInit({ selectors: ['save'] });
-
+  const setFlowData = setFlowDataInit();
+  const onCrmChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'chosenCrm'], value: e.target.value });
+  const onSaveChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'save'], value: e.target.value });
   return (
     <div>
       <ControlLayout type="Сохранение в CRM">
@@ -24,9 +26,7 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
                     name="saveCRM"
                     label={item.nameValue}
                     value={item.value}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                      onCrmChange(event)
-                    }
+                    onChange={onCrmChange}
                     checked={item.value === data.chosenCrm}
                   />
                 );
@@ -42,9 +42,7 @@ const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
                     name="saveAs"
                     label={item.nameValue}
                     value={item.value}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                      onSaveChange(event)
-                    }
+                    onChange={onSaveChange}
                     checked={item.value === data.save}
                   />
                 );
