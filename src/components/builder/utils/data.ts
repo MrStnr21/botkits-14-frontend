@@ -15,7 +15,7 @@ import { baseSlateData } from '../../../utils/constants';
 export enum ButtonSizes {
   startX = 32,
   firstY = 244,
-  secondY = 440,
+  secondY = 446,
   blockGap = 74,
   addString = 16,
   buttonHeight = 40,
@@ -25,7 +25,7 @@ export enum ButtonSizes {
 export enum ButtonSizesMobile {
   startX = ButtonSizes.startX * 0.5,
   firstY = 155,
-  secondY = 283,
+  secondY = 289,
   blockGap = 43,
   addString = 8,
   buttonHeight = 27,

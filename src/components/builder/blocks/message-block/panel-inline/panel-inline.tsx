@@ -70,21 +70,24 @@ const PanelInline: FC<IPanelInline> = ({
 
   const verticalHeight =
     buttonHeight * verticalButtons.length +
-    openedVertical * buttonSizes.addString;
+    openedVertical * buttonSizes.addString +
+    buttonSizes.gap / 2;
   const horizontalHeight =
     buttonHeight * horizontalButtons.length +
     openedHorizontal * buttonSizes.addString;
 
   const verticalHeightDesk =
     buttonHeightDesk * verticalButtons.length +
-    openedVertical * ButtonSizes.addString;
+    openedVertical * ButtonSizes.addString +
+    buttonSizes.gap / 2;
   const horizontalHeightDesk =
     buttonHeightDesk * horizontalButtons.length +
     openedHorizontal * ButtonSizes.addString;
 
   const verticalHeightMobile =
     buttonHeightMobile * verticalButtons.length +
-    openedVertical * ButtonSizesMobile.addString;
+    openedVertical * ButtonSizesMobile.addString +
+    buttonSizes.gap / 2;
   const horizontalHeightMobile =
     buttonHeightMobile * horizontalButtons.length +
     openedHorizontal * ButtonSizesMobile.addString;
@@ -137,22 +140,19 @@ const PanelInline: FC<IPanelInline> = ({
                     buttonsBefore.length * buttonHeight +
                     horizontalButtons.length * buttonHeight +
                     openedHorizontal * buttonSizes.addString +
-                    openedBefore * buttonSizes.addString +
-                    buttonSizes.gap / 3,
+                    openedBefore * buttonSizes.addString,
                   deskY:
                     verticalHeightDesk +
                     buttonsBefore.length * buttonHeightDesk +
                     horizontalButtons.length * buttonHeightDesk +
                     openedHorizontal * ButtonSizes.addString +
-                    openedBefore * ButtonSizes.addString +
-                    ButtonSizes.gap / 3,
+                    openedBefore * ButtonSizes.addString,
                   mobY:
                     verticalHeightMobile +
                     buttonsBefore.length * buttonHeightMobile +
                     horizontalButtons.length * buttonHeightMobile +
                     openedHorizontal * ButtonSizesMobile.addString +
-                    openedBefore * ButtonSizesMobile.addString +
-                    ButtonSizesMobile.gap / 3,
+                    openedBefore * ButtonSizesMobile.addString,
                 })
               }
               icon="vertical inline"
