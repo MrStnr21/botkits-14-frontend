@@ -58,6 +58,7 @@ export type TBotTemplateReq = {
   isToPublish?: boolean;
 };
 
+// Возможно нужно заменить на универсальный IBotResponse extends TBot {}
 export interface IAddBotResponse extends TBot {}
 
 export interface IGetBotResponse extends TBot {}
@@ -65,6 +66,8 @@ export interface IGetBotResponse extends TBot {}
 export interface IDeleteBotResponse extends TBot {}
 
 export interface ICopyBotResponse extends TBot {}
+
+export interface IRenameBotResponse extends TBot {}
 
 export interface IGetBotsResponse extends Array<TBot> {}
 

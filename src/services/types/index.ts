@@ -30,6 +30,7 @@ import { TGetPlatformsActions } from '../actions/platforms/getPlatforms';
 
 import store from '../store';
 import { TDeleteBotActions } from '../actions/bots/deleteBot';
+import { TRenameBotActions } from '../actions/bots/renameBot';
 
 export type TStore = {
   signup: TSignupState;
@@ -53,6 +54,7 @@ export type TApplicationActions =
   | TGetBotsActions
   | TAddBotActions
   | TDeleteBotActions
+  | TRenameBotActions
   | TGetTemplatesBotsActions
   | TGetPlatformsActions;
 

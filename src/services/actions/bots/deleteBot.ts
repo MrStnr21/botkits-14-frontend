@@ -23,7 +23,7 @@ export interface IDeleteBotErrorAction {
 
 /**
  * экшн удаления бота
- * @param id id удялемого бота
+ * @param id id удаляемого бота
  */
 const deleteBotAction: AppThunk = (id: string) => {
   return (dispatch: AppDispatch) => {

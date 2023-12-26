@@ -1,5 +1,4 @@
 /* eslint-disable import/no-cycle */
-// eslint-disable-next-line import/no-cycle
 import {
   GETBOTS_REQUEST,
   GETBOTS_SUCCESS,
@@ -18,6 +17,12 @@ import {
   DELETE_BOT_ERROR,
   TDeleteBotActions,
 } from '../../actions/bots/deleteBot';
+import {
+  RENAME_BOT_REQUEST,
+  RENAME_BOT_SUCCESS,
+  RENAME_BOT_ERROR,
+  TRenameBotActions,
+} from '../../actions/bots/renameBot';
 
 import { TBot } from '../../types/bot';
 
@@ -40,7 +45,11 @@ const botsInitialState: TBotsState = {
 function botsReducer(
   // eslint-disable-next-line @typescript-eslint/default-param-last
   state = botsInitialState,
-  action: TGetBotsActions | TAddBotActions | TDeleteBotActions
+  action:
+    | TGetBotsActions
+    | TAddBotActions
+    | TDeleteBotActions
+    | TRenameBotActions
 ) {
   switch (action.type) {
     // экшены получения ботов
@@ -105,6 +114,31 @@ function botsReducer(
       };
     }
     case DELETE_BOT_ERROR: {
+      return {
+        ...state,
+        botRequest: false,
+        botError: true,
+      };
+    }
+    case RENAME_BOT_REQUEST: {
+      return {
+        ...state,
+        botRequest: true,
+        botError: false,
+      };
+    }
+    case RENAME_BOT_SUCCESS: {
+      return {
+        ...state,
+        bots: state.bots.map((bot) =>
+          // eslint-disable-next-line no-underscore-dangle
+          bot._id === action.id ? { ...bot, name: action.title } : bot
+        ),
+        botSuccess: true,
+        botRequest: false,
+      };
+    }
+    case RENAME_BOT_ERROR: {
       return {
         ...state,
         botRequest: false,

@@ -11,6 +11,7 @@ import {
   IUpdateBotTemplateResponse,
   IDeleteBotResponse,
   ICopyBotResponse,
+  IRenameBotResponse,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -37,10 +38,21 @@ function deleteBotApi(id: string) {
 }
 
 // запрос копирования бота
-function copyBotApi(botId: string) {
+function copyBotApi(id: string) {
   return postReq<ICopyBotResponse>({
-    uri: `bots/copy/${botId}`,
+    uri: `bots/copy`,
+    id,
     auth: true,
+  });
+}
+
+// запрос переименования бота
+function renameBotApi(id: string, title: string) {
+  return patchReq<IRenameBotResponse>({
+    uri: `bots`,
+    id,
+    auth: true,
+    data: title,
   });
 }
 
@@ -85,6 +97,7 @@ export {
   addBotApi,
   deleteBotApi,
   copyBotApi,
+  renameBotApi,
   getBotTemplatesApi,
   addBotTemplateApi,
   deleteBotTemplateApi,
