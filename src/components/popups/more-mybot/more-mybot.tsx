@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import { useNavigate } from 'react-router';
 
 import { useMediaQuery } from '@mui/material';
 
@@ -16,7 +15,6 @@ import LinkIcon from '../../icons/link';
 import InfoIcon from '../../icons/info';
 
 import { POPUP_ITEM } from '../../../utils/constants';
-import routesUrl from '../../../utils/routesData';
 
 import SwitchBotMenuPopup from './switch-bot-menu-popup';
 import useModal from '../../../services/hooks/use-modal';
@@ -24,6 +22,7 @@ import Typography from '../../../ui/typography/typography';
 import { TBot } from '../../../services/types/bot';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { deleteBotAction } from '../../../services/actions/bots/deleteBot';
+import { copyBotAction } from '../../../services/actions/bots/addBot';
 
 interface IMoreMybotPopup {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -32,7 +31,6 @@ interface IMoreMybotPopup {
 
 const MoreMybotPopup: FC<IMoreMybotPopup> = ({ setIsOpen, bot }) => {
   const matches = useMediaQuery('(max-width: 420px)');
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [itemSelected, setItemSelected] = useState<POPUP_ITEM>(
@@ -46,7 +44,8 @@ const MoreMybotPopup: FC<IMoreMybotPopup> = ({ setIsOpen, bot }) => {
   };
 
   const copyBot = () => {
-    navigate(routesUrl.addBot);
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(copyBotAction(bot._id));
     setIsOpen(false);
   };
   const deleteBot = () => {

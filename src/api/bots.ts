@@ -10,6 +10,7 @@ import {
   IDeleteBotTemplateResponse,
   IUpdateBotTemplateResponse,
   IDeleteBotResponse,
+  ICopyBotResponse,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -31,6 +32,14 @@ function deleteBotApi(id: string) {
   return deleteReq<IDeleteBotResponse>({
     uri: `bots`,
     id,
+    auth: true,
+  });
+}
+
+// запрос копирования бота
+function copyBotApi(botId: string) {
+  return postReq<ICopyBotResponse>({
+    uri: `bots/copy/${botId}`,
     auth: true,
   });
 }
@@ -75,6 +84,7 @@ export {
   getBotsApi,
   addBotApi,
   deleteBotApi,
+  copyBotApi,
   getBotTemplatesApi,
   addBotTemplateApi,
   deleteBotTemplateApi,
