@@ -1,7 +1,7 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
 
-.add_bot_title {
+.title {
   @include indents(0, 0 0 32px 0);
   text-align: left;
 
@@ -10,7 +10,7 @@
   }
 }
 
-.add_bot_list {
+.list {
   @include indents(0 0 16px);
   @include flex($gap: 19px);
   list-style: none;

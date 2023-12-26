@@ -2,10 +2,10 @@ import { useState, FC } from 'react';
 
 import styles from './add-bot-page.module.scss';
 
-import HowItWorks from '../../components/add-bot/how-it-works/how-it-works';
-import CreateBot from '../../components/add-bot/create-bot/create-bot';
-import AddBot from '../../components/add-bot/add-bot/add-bot';
+import HowItWorks from '../../components/platforms/how-it-works/how-it-works';
+import CreateBot from '../../components/platforms/create-bot/create-bot';
 import { IBot } from '../../utils/types';
+import Platforms from '../../components/platforms/platforms/platforms';
 
 const AddBotPage: FC = () => {
   const currentUrl = new URL(window.location.href);
@@ -28,7 +28,7 @@ const AddBotPage: FC = () => {
 
   return (
     <div className={styles.add_bot_page}>
-      <AddBot bot={bot} onClick={onClick} />
+      <Platforms bot={bot} onClick={onClick} />
       <div className={styles.add_bot_page_container}>
         <CreateBot
           botName={bot.name}
