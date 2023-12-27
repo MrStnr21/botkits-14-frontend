@@ -216,11 +216,6 @@ const LayoutFlow: FC = () => {
   return (
     <div className={cx('flow')}>
       <ReactFlow
-        defaultViewport={{
-          zoom: 1,
-          x: 0,
-          y: 0,
-        }}
         maxZoom={3}
         minZoom={0.1}
         nodes={nodes}
@@ -230,6 +225,10 @@ const LayoutFlow: FC = () => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
+        fitViewOptions={{
+          maxZoom: 1,
+          minZoom: 0.1,
+        }}
         defaultEdgeOptions={edgeOptions}
         isValidConnection={isValidConnection}
         onNodesDelete={onNodesDelete}
