@@ -1,4 +1,5 @@
 import { Node, NodeTypes } from 'reactflow';
+import { v4 as uuid } from 'uuid';
 
 import ButtonStart from '../blocks/button-start/button-start';
 import InlineButton from '../blocks/message-block/button-inline/button-inline';
@@ -12,6 +13,7 @@ import DeepLink from '../blocks/deep-link/deep-link';
 import SavingToCrmBlock from '../blocks/saving-to-crm/saving-to-crm';
 import TransferToOperatorBlock from '../blocks/transfer-to-operator/transfer-to-operator';
 import VariableBlockNode from '../blocks/variable/variable';
+import { baseSlateData } from '../../../utils/constants';
 
 export const nodeTypes: NodeTypes = {
   button: InlineButton,
@@ -33,5 +35,31 @@ export const initialNodes: Node[] = [
     type: 'buttonStart',
     data: { type: 'start' },
     position: { x: 0, y: 0 },
+  },
+  {
+    id: uuid(),
+    type: 'message',
+    data: {
+      name: 'message',
+      data: [
+        {
+          type: 'message',
+          value: baseSlateData,
+        },
+        { type: 'buttons', verButtons: [], horButtons: [] },
+        { type: 'answers', verButtons: [], horButtons: [] },
+      ],
+      showTime: {
+        show: true,
+        value: 0,
+      },
+      saveAnswer: {
+        show: true,
+        value: {
+          name: '',
+        },
+      },
+    },
+    position: { x: 130, y: 0 },
   },
 ];
