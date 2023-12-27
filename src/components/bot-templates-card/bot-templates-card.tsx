@@ -1,7 +1,7 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../services/hooks/hooks';
-import stylesCard from './BotTemplatesCard.module.scss';
+import stylesCard from './bot-templates-card.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
 import imageAvatar from '../../images/icon/template/answering machine.svg';
@@ -11,7 +11,7 @@ import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
 import InputTemplate from '../../ui/inputs/input-template/input-template';
 import { updateBotTemplatesAction } from '../../services/actions/bots/templatesBots';
-import { TTemplateBotRes } from '../../services/types/bot';
+import { TBotTemplate } from '../../services/types/bot';
 import ModalPopup from '../popups/modal-popup/modal-popup';
 // import Typography from '../../ui/typography/typography';
 import EditImagePopup from '../popups/edit-image-popup/edit-image-popup';
@@ -23,7 +23,7 @@ import routesUrl from '../../utils/routesData';
 // import { BUTTON_NAME } from '../../utils/constants';
 
 interface IBotTemplatesCard {
-  card: TTemplateBotRes;
+  card: TBotTemplate;
   disabled?: boolean;
   deleteCard: (id: string) => void;
 }
@@ -108,7 +108,6 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   ];
 
   const updateInputs = () => {
-    console.log(card);
     const upCard = {
       icon: imageEdit,
       title: values.nameBot.value,

@@ -11,10 +11,13 @@ import { createUrlBuilder } from '../../../utils/utils';
 // import { BUTTON_NAME } from '../../../utils/constants';
 
 import routesUrl from '../../../utils/routesData';
-import { addTemplatesBotsApi } from '../../../api/bots';
 import ModalPopup from '../modal-popup/modal-popup';
 import EditImagePopup from '../edit-image-popup/edit-image-popup';
 import useForm from '../../../services/hooks/use-form';
+import { TBotTemplateReq } from '../../../services/types/bot';
+import { addBotTemplateAction } from '../../../services/actions/bots/templatesBots';
+import { useAppDispatch } from '../../../services/hooks/hooks';
+// import { TTemplateBotRes } from '../../../services/types/bot';
 
 interface IPopupCreateBotTemplates {
   closeModal: () => void;
@@ -32,6 +35,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
   const history = useNavigate();
+  const dispatch = useAppDispatch();
 
   // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
   // const onClickEditAvatar = () => {
@@ -58,18 +62,17 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
       const imageModule = await import(
         `../../../images/icon/side bar/logo.svg`
       );
-      const dataBotTemplates = {
+      const dataBotTemplates: TBotTemplateReq = {
         title: values.nameBot.value,
         description: values.aboutBot.value,
         icon: imageEdit || imageModule.default,
         isToPublish: false,
       };
-      const path = routesUrl.botBuilder;
-      console.log(dataBotTemplates);
-      const template = await addTemplatesBotsApi(dataBotTemplates);
-      // eslint-disable-next-line no-underscore-dangle
-      const id = template._id;
-      history(createUrlBuilder(path, id));
+      dispatch(
+        addBotTemplateAction(dataBotTemplates, (templateId: string) =>
+          history(createUrlBuilder(routesUrl.botBuilder, templateId))
+        )
+      );
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err);
