@@ -17,21 +17,18 @@ export type TLogoutActions = ILogoutAction;
 
 /**
  * экшен разлогина
- * @param token access token
  * @param navigate callback без аргументов
  */
 const logoutAction: AppThunk = (navigate) => {
   return (dispatch: AppDispatch) => {
     logoutApi()
-      .then((res) => {
+      .then(() => {
         removeAccessToken();
         removeRefreshToken();
         dispatch({
           type: LOGOUT,
         });
         navigate();
-        // eslint-disable-next-line no-console
-        console.log(res.message);
       })
       .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console

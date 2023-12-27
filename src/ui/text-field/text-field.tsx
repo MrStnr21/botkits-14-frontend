@@ -26,7 +26,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
   const [emojis, toggleEmojis] = useState(false);
   const [editor] = useState(() => withReact(withHistory(createEditor())));
   const length = useMemo(() => {
-    return text[0].children?.reduce((sum, item) => {
+    return text[0]?.children?.reduce((sum, item) => {
       return sum + item.text.length;
     }, 0);
   }, [text]);
