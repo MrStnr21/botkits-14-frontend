@@ -5,10 +5,10 @@ import styles from './trigger.module.scss';
 import Input from '../../../ui/inputs/input/input';
 import ConstructorDefaultButton from '../../../ui/buttons/constructor-default-button/constructor-default-button';
 import { TTrigger } from '../../../services/types/builder';
-import { messagesSuccessful } from '../utils/store';
+import { namesOfBlocks } from '../utils/store';
 import Select from '../../../ui/select/select';
 import { Option } from '../../../utils/types';
-import { getSelectItemByValue } from '../utils';
+import { getSelectItemByValue, getSelectLabel } from '../utils';
 
 export interface ITriggerProps {
   /**
@@ -124,13 +124,16 @@ const Trigger: FC<ITriggerProps> = ({
         </div>
         {answerType === 'block' ? (
           <Select
-            options={messagesSuccessful}
+            options={getSelectLabel(namesOfBlocks)}
             handleSelect={(option: Option) =>
               handleTriggerData('update', {
                 trigger: { id, type: 'block', tag: myTag, name: option.value },
               })
             }
-            currentOption={getSelectItemByValue(name!, messagesSuccessful)}
+            currentOption={getSelectItemByValue(
+              name!,
+              getSelectLabel(namesOfBlocks)
+            )}
             elementToCloseListener="flow"
           />
         ) : (

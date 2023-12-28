@@ -4,7 +4,6 @@ import styles from './mode.module.scss';
 import LabeledInput from '../../../labeledInput/labeledInput';
 import EasyMode from './easy';
 import HardMode from './hard';
-// import { messagesSuccessful } from '../../../utils/data';
 import Select from '../../../../../ui/select/select';
 import { getSelectItemByValue, getSelectLabel } from '../../../utils';
 import { namesOfBlocks } from '../../../utils/store';

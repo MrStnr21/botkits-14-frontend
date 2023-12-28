@@ -2,10 +2,14 @@ import React, { FC } from 'react';
 import styles from './value.module.scss';
 import Equal from '../../../../icons/Equal/Equal';
 import Input from '../../../../../ui/inputs/input/input';
-import { selectValues } from '../../../utils/store';
+import { storeOfVariables } from '../../../utils/store';
 import Select from '../../../../../ui/select/select';
 import { Option } from '../../../../../utils/types';
-import { getSelectItemByValue, setFlowDataInit } from '../../../utils/index';
+import {
+  getSelectItemByValue,
+  setFlowDataInit,
+  getSelectLabel,
+} from '../../../utils/index';
 
 export type TValueProps = {
   idNum: string;
@@ -51,8 +55,11 @@ const Value: FC<TValueProps> = ({ idNum, item }) => {
       </div>
       <div className={styles.v}>
         <Select
-          options={selectValues}
-          currentOption={getSelectItemByValue(item.value, selectValues)}
+          options={getSelectLabel(storeOfVariables)}
+          currentOption={getSelectItemByValue(
+            item.value,
+            getSelectLabel(storeOfVariables)
+          )}
           handleSelect={setVal}
           placeholder="переменная"
           elementToCloseListener="flow"

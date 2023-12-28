@@ -8,20 +8,6 @@ export const storeOfVariables: TVariable[] = [
   },
 ];
 
-export const selectValues = [
-  {
-    value: `1`,
-    label: 'mock',
-  },
-];
-
 export const namesOfBlocks: TName[] = [];
-
-export const messagesSuccessful = [
-  {
-    value: `1`,
-    label: 'start',
-  },
-];
 
 export default {};

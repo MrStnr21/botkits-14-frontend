@@ -9,8 +9,12 @@ import {
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
 import { currencyAvailable } from '../../utils/data';
-import { messagesSuccessful } from '../../utils/store';
-import { getSelectItemByValue, setFlowDataInit } from '../../utils';
+import { namesOfBlocks } from '../../utils/store';
+import {
+  getSelectItemByValue,
+  setFlowDataInit,
+  getSelectLabel,
+} from '../../utils';
 import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
 import Select from '../../../../ui/select/select';
@@ -137,11 +141,11 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         </LabeledInput>
         <LabeledInput title="После успешной оплаты вернуть">
           <Select
-            options={messagesSuccessful}
+            options={getSelectLabel(namesOfBlocks)}
             handleSelect={setOnSuccess}
             currentOption={getSelectItemByValue(
               data.onSuccess,
-              messagesSuccessful
+              getSelectLabel(namesOfBlocks)
             )}
             elementToCloseListener="flow"
             adaptive
