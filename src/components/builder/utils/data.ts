@@ -48,12 +48,6 @@ export const saveOptions = [
   { value: 'suppl', nameValue: 'Дополнить запись' },
 ];
 
-export const selectValues = [
-  { value: '1', label: '1' },
-  { value: '2', label: '2' },
-  { value: '3', label: '3' },
-];
-
 export const selectValuesType = [
   { value: 'random', label: 'Случайное' },
   { value: 'static', label: 'Статичное' },
@@ -126,7 +120,7 @@ export const currencyAvailable = [
   { value: 'Доллары США', label: 'USD' },
 ];
 
-export const messagesSuccessful = [
+export const blocks = [
   { value: 'message', label: 'Блок сообщений' },
   { value: 'api', label: 'API' },
   { value: 'conditional', label: 'Условный блок' },

@@ -25,7 +25,6 @@ export const setVariableFlow = () => {
     } else {
       saveVariable(storeOfVariables, finalValue, idVariable);
     }
-
     const node = getNode(id)!;
 
     saveNode({

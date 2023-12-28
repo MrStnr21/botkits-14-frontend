@@ -4,7 +4,7 @@ import { Node, Instance } from 'reactflow';
 import { v4 as uuid } from 'uuid';
 import _ from 'lodash';
 import { Option } from '../../../utils/types';
-import { TVariable, TTrigger } from '../../../services/types/builder';
+import { TVariable, TName, TTrigger } from '../../../services/types/builder';
 
 // svg-иконки для вставки в nameBot, в зависимости от платформы (соцсети) бота, выбранной пользователем
 import fb from '../../../images/icon/40x40/facebook/hover.svg';
@@ -56,27 +56,29 @@ export const newBlockData = {
  * @param type тип координаты
  * @returns true в случае корректности | false в случае некорректности
  */
-export const validateCoordinateRange = (newValue: string, type: 'longitude' | 'latitude') => {
+export const validateCoordinateRange = (
+  newValue: string,
+  type: 'longitude' | 'latitude'
+) => {
   const valueArr = newValue.split('.');
   const int = Number(valueArr[0]);
   const fractialPart = valueArr[1];
   if (
-    (type === 'longitude' &&
-      (int < rangeForCoordinates.longitude.min ||
-        int > rangeForCoordinates.longitude.max))
+    type === 'longitude' &&
+    (int < rangeForCoordinates.longitude.min ||
+      int > rangeForCoordinates.longitude.max)
   ) {
     return false;
   }
   if (
-    (
-      type === 'latitude' &&
-      (int < rangeForCoordinates.latitude.min ||
-        int > rangeForCoordinates.latitude.max))
+    type === 'latitude' &&
+    (int < rangeForCoordinates.latitude.min ||
+      int > rangeForCoordinates.latitude.max)
   ) {
     return false;
   }
-  if(fractialPart && fractialPart.length > 5) {
-    return false
+  if (fractialPart && fractialPart.length > 5) {
+    return false;
   }
   return true;
 };
@@ -165,6 +167,27 @@ export const saveVariable = (
   }
 };
 
+export const saveName = (
+  names: TName[],
+  name: string,
+  id: string,
+  type: string | undefined
+) => {
+  const nameIndex = names.findIndex((item) => item.id === id);
+  if (nameIndex === -1) {
+    names.push({
+      id,
+      name,
+      type: type || '',
+    });
+  } else {
+    names[nameIndex] = {
+      ...names[nameIndex],
+      name,
+    };
+  }
+};
+
 export const saveTrigger = (
   triggers: TTrigger[],
   id: string,
@@ -224,7 +247,7 @@ export function saveNode<T>({
   getNodes,
 }: TSaveNode<T>) {
   // копирование для перезаписи поля data
-  const cloneNode = {...node, data: {...node.data}};
+  const cloneNode = { ...node, data: { ...node.data } };
 
   _.set(cloneNode, path, value);
 
@@ -243,15 +266,15 @@ export function saveNode<T>({
  */
 export const setFlowDataInit = () => {
   const { getNodes, setNodes, id, getNode } = useFlow();
-  return ({path, value}: {path: string | string[], value: unknown}) => {
+  return ({ path, value }: { path: string | string[]; value: unknown }) => {
     const node = getNode(id)!;
     saveNode({
       getNodes,
       setNodes,
       node,
       path,
-      value
-    })
+      value,
+    });
   };
 };
 
@@ -277,9 +300,14 @@ export const resetVar = (elements: any[]) => {
 };
 
 export const connectStrings = (strings: string[], separator: string) => {
-  return strings.join(separator)
-}
+  return strings.join(separator);
+};
 
-
+export const getSelectLabel = (
+  store: { name: string }[]
+) => store.map((elem, ind) => ({
+    value: `${ind + 1}`,
+    label: elem.name,
+  }));
 
 export default {};

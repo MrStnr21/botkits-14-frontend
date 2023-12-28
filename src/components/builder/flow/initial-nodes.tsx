@@ -29,15 +29,17 @@ export const nodeTypes: NodeTypes = {
   variable: VariableBlockNode,
 };
 
+export const unicId = uuid();
+
 export const initialNodes: Node[] = [
   {
     id: 'node-1',
     type: 'buttonStart',
-    data: { type: 'start' },
+    data: { type: 'start', name: 'start' },
     position: { x: 0, y: 0 },
   },
   {
-    id: uuid(),
+    id: unicId,
     type: 'message',
     data: {
       name: 'message',

@@ -1,4 +1,4 @@
-import { FC, useCallback, useState, useEffect, useMemo } from 'react';
+import { FC, useCallback, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 
@@ -35,18 +35,15 @@ import {
   getUrlPath,
   iconOfPlatform,
   saveVariable,
+  saveName,
   saveTrigger,
-  // resetVar,
 } from '../utils';
-import { storeOfVariables } from '../utils/store';
+import { storeOfVariables, namesOfBlocks } from '../utils/store';
 import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
 import { TResponseError } from '../../../services/types/response';
 
 const cx = cn.bind(styles);
-
-// eslint-disable-next-line import/no-mutable-exports
-export let namesOfBlocks: string[] = [];
 
 const LayoutFlow: FC = () => {
   const isMobile = useMediaQuery('(max-width: 620px)');
@@ -57,8 +54,6 @@ const LayoutFlow: FC = () => {
   const [searchParams] = useSearchParams();
   const [title, setTitle] = useState('Название бота');
   const [platformIcon, setPlatformIcon] = useState(iconOfPlatform.Facebook);
-
-  namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
 
   useEffect(() => {
     const id = searchParams.get('id') || '';
@@ -83,6 +78,11 @@ const LayoutFlow: FC = () => {
         if (data.features && data.features.variables) {
           data.features.variables.map((el: TVariable) =>
             saveVariable(storeOfVariables, el.name, el.id)
+          );
+        }
+        if (data.features && data.features.nodes) {
+          data.features.nodes.map((el) =>
+            saveName(namesOfBlocks, el.data.name, el.id, el.type)
           );
         }
         if (data.features && data.features.triggers) {
@@ -216,6 +216,11 @@ const LayoutFlow: FC = () => {
   return (
     <div className={cx('flow')}>
       <ReactFlow
+        defaultViewport={{
+          zoom: 1,
+          x: 0,
+          y: 0,
+        }}
         maxZoom={3}
         minZoom={0.1}
         nodes={nodes}
@@ -225,10 +230,6 @@ const LayoutFlow: FC = () => {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
-        fitViewOptions={{
-          maxZoom: 1,
-          minZoom: 0.1,
-        }}
         defaultEdgeOptions={edgeOptions}
         isValidConnection={isValidConnection}
         onNodesDelete={onNodesDelete}

@@ -105,6 +105,12 @@ export type TVariable = {
   value: unknown;
 };
 
+export type TName = {
+  id: string;
+  type: string;
+  name: string;
+};
+
 export type TTrigger = {
   id: string;
   tag: string;

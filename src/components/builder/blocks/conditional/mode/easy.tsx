@@ -2,10 +2,15 @@ import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 
 import styles from './mode.module.scss';
-import { selectValues, signSelectValues } from '../../../utils/data';
+import { signSelectValues } from '../../../utils/data';
+import { storeOfVariables } from '../../../utils/store';
 import Input from '../../../../../ui/inputs/input/input';
 import Select from '../../../../../ui/select/select';
-import { getSelectItemByValue, setFlowDataInit } from '../../../utils';
+import {
+  getSelectItemByValue,
+  setFlowDataInit,
+  getSelectLabel,
+} from '../../../utils';
 
 export type TEasyBlockProps = {
   id: string;
@@ -53,11 +58,11 @@ const EasyMode: FC<TEasyBlockProps> = ({ id, index }) => {
         <div className={styles['selects-string']}>
           <div className={styles.selectsVariable}>
             <Select
-              options={selectValues}
+              options={getSelectLabel(storeOfVariables)}
               handleSelect={(option) => setVariable(option.value)}
               currentOption={getSelectItemByValue(
                 itemFromVariables.variable,
-                selectValues
+                getSelectLabel(storeOfVariables)
               )}
               elementToCloseListener="flow"
               adaptive

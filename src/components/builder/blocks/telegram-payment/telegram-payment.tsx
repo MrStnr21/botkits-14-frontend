@@ -8,7 +8,8 @@ import {
   TBlockProps,
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
-import { currencyAvailable, messagesSuccessful } from '../../utils/data';
+import { currencyAvailable } from '../../utils/data';
+import { messagesSuccessful } from '../../utils/store';
 import { getSelectItemByValue, setFlowDataInit } from '../../utils';
 import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
