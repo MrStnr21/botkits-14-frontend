@@ -167,6 +167,20 @@ export const saveVariable = (
   }
 };
 
+export const checkVariables = (variables: TVariable[], nodes: Node[]) => {
+
+  const indexesVariables: number[] = [];
+  variables.forEach((el, ind) => {
+    if (nodes.findIndex((item: { id: string }) => item.id === el.id.split('|||')[0]) === -1) {
+      indexesVariables.push(ind);
+    }
+  });
+
+  indexesVariables.forEach((ind, i) => {
+    variables.splice(ind - i, 1);
+  });
+};
+
 export const saveName = (
   names: TName[],
   name: string,
@@ -186,6 +200,20 @@ export const saveName = (
       name,
     };
   }
+};
+
+export const checkNames = (names: TName[], nodes: Node[]) => {
+
+  const indexesNames: number[] = [];
+  names.forEach((el, ind) => {
+    if (nodes.findIndex((item: { id: string }) => item.id === el.id) === -1) {
+      indexesNames.push(ind);
+    }
+  });
+
+  indexesNames.forEach((ind, i) => {
+    names.splice(ind - i, 1);
+  });
 };
 
 export const saveTrigger = (
@@ -303,9 +331,8 @@ export const connectStrings = (strings: string[], separator: string) => {
   return strings.join(separator);
 };
 
-export const getSelectLabel = (
-  store: { name: string }[]
-) => store.map((elem, ind) => ({
+export const getSelectLabel = (store: { name: string }[]) =>
+  store.map((elem, ind) => ({
     value: `${ind + 1}`,
     label: elem.name,
   }));

@@ -1,10 +1,17 @@
-import { FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, useState, useEffect } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
 import CustomHandle from '../flow/custom-handle/custom-handle';
-import { setFlowDataInit } from '../utils';
+import {
+  setFlowDataInit,
+  saveName,
+  checkNames,
+  checkVariables,
+} from '../utils';
+import { namesOfBlocks, storeOfVariables } from '../utils/store';
+
 import { removeNodeFlow, copyNodeFlow } from './flow';
 
 type TControlLayoutProps = {
@@ -26,8 +33,16 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
-  const setName = (e: React.ChangeEvent<HTMLInputElement>) =>
+  useEffect(() => {
+    saveName(namesOfBlocks, node!.data.name, id, node!.type);
+    checkNames(namesOfBlocks, getNodes());
+    checkVariables(storeOfVariables, getNodes());
+  }, [getNodes()]);
+
+  const setName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    saveName(namesOfBlocks, e.target.value, id, node!.type);
     setFlowData({ path: ['data', 'name'], value: e.target.value });
+  };
 
   const onClick = () => {
     toggleMenu(!menu);

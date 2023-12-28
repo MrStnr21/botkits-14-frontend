@@ -1,7 +1,7 @@
 import { Edge, Node } from 'reactflow';
 import { v4 as uuid } from 'uuid';
 import { TFlowNodes } from '../../../services/types/builder';
-import { storeOfVariables } from '../utils/store';
+import { storeOfVariables, namesOfBlocks } from '../utils/store';
 import useFlow from '../use-flow';
 
 export const removeNodeFlow = () => {
@@ -24,16 +24,19 @@ export const removeNodeFlow = () => {
 
     setEdges(updatedEdges);
 
-    const indexes: number[] = [];
+    const indexesVariables: number[] = [];
     storeOfVariables.forEach((el, ind) => {
       if (el.id.split('|||')[0] === id) {
-        indexes.push(ind);
+        indexesVariables.push(ind);
       }
     });
 
-    indexes.forEach((ind, i) => {
+    indexesVariables.forEach((ind, i) => {
       storeOfVariables.splice(ind - i, 1);
     });
+
+    const indexName = namesOfBlocks.findIndex((item) => item.id === id);
+    namesOfBlocks.splice(indexName, 1);
   };
 };
 
