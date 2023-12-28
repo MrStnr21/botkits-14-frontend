@@ -1,4 +1,5 @@
 import { Edge, MarkerType } from 'reactflow';
+import { unicId } from './initial-nodes';
 
 export const edgeOptions = {
   type: 'smoothstep',
@@ -11,7 +12,7 @@ export const initialEdges: Edge[] = [
   {
     id: '1-2',
     source: 'node-1',
-    target: 'node-2',
+    target: unicId,
     targetHandle: 'l',
   },
 ];

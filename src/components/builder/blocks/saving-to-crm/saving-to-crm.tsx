@@ -1,52 +1,18 @@
 import React, { FC } from 'react';
-import { useNodeId, useReactFlow } from 'reactflow';
 import styles from './saving-to-crm.module.scss';
 import { crmList, saveOptions } from '../../utils/data';
 import ControlLayout from '../../control-layout/control-layout';
 import Checkbox from '../../../../ui/checkboxes/checkbox';
 import { TBlockProps, TCRMBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
+import { setFlowDataInit } from '../../utils';
 
 const SavingToCrmBlock: FC<TBlockProps<TCRMBlock>> = ({ data }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
-
-  const onCrmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          const newItem = {
-            ...item,
-            data: {
-              ...item.data,
-              chosenCrm: e.target.value,
-            },
-          };
-          return newItem;
-        }
-        return item;
-      })
-    );
-  };
-
-  const onSaveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          const newItem = {
-            ...item,
-            data: {
-              ...item.data,
-              save: e.target.value,
-            },
-          };
-          return newItem;
-        }
-        return item;
-      })
-    );
-  };
-
+  const setFlowData = setFlowDataInit();
+  const onCrmChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'chosenCrm'], value: e.target.value });
+  const onSaveChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'save'], value: e.target.value });
   return (
     <div>
       <ControlLayout type="Сохранение в CRM">

@@ -1,8 +1,10 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
-import { useReactFlow, useNodeId, Node } from 'reactflow';
+import { Node, Instance } from 'reactflow';
+import { v4 as uuid } from 'uuid';
+import _ from 'lodash';
 import { Option } from '../../../utils/types';
-import { TVariable, TTrigger } from '../../../services/types/builder';
+import { TVariable, TName, TTrigger } from '../../../services/types/builder';
 
 // svg-иконки для вставки в nameBot, в зависимости от платформы (соцсети) бота, выбранной пользователем
 import fb from '../../../images/icon/40x40/facebook/hover.svg';
@@ -14,12 +16,71 @@ import al from '../../../images/icon/40x40/alisa/hover.svg';
 import wh from '../../../images/icon/40x40/whatsapp/hover.svg';
 import ig from '../../../images/icon/40x40/insta/hover.svg';
 import ws from '../../../images/icon/40x40/web/hover.svg';
+import useFlow from '../use-flow';
+import { rangeForCoordinates } from './data';
 
 type TTimeObj = {
   s: number;
   m: number;
   h: number;
   d: number;
+};
+
+type TSaveNode<T> = {
+  node: Node<any>;
+  value: T;
+  path: string[] | string;
+  setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
+};
+
+export const newBlockData = {
+  easy: () => ({
+    id: `easy-${uuid()}`,
+    type: 'easy',
+    variable: { id: '', name: '', value: '' },
+    sign: '',
+    condition: '',
+    targetBlock: '',
+  }),
+  hard: () => ({
+    id: `hard-${uuid()}`,
+    type: 'hard',
+    condition: '',
+    targetBlock: '',
+  }),
+};
+
+/** Проверка корректности значения введенной координаты
+ * @param newValue проверяемое значение
+ * @param type тип координаты
+ * @returns true в случае корректности | false в случае некорректности
+ */
+export const validateCoordinateRange = (
+  newValue: string,
+  type: 'longitude' | 'latitude'
+) => {
+  const valueArr = newValue.split('.');
+  const int = Number(valueArr[0]);
+  const fractialPart = valueArr[1];
+  if (
+    type === 'longitude' &&
+    (int < rangeForCoordinates.longitude.min ||
+      int > rangeForCoordinates.longitude.max)
+  ) {
+    return false;
+  }
+  if (
+    type === 'latitude' &&
+    (int < rangeForCoordinates.latitude.min ||
+      int > rangeForCoordinates.latitude.max)
+  ) {
+    return false;
+  }
+  if (fractialPart && fractialPart.length > 5) {
+    return false;
+  }
+  return true;
 };
 
 /** перевод секунд в секунды/минуты/часы/дни
@@ -106,6 +167,55 @@ export const saveVariable = (
   }
 };
 
+export const checkVariables = (variables: TVariable[], nodes: Node[]) => {
+
+  const indexesVariables: number[] = [];
+  variables.forEach((el, ind) => {
+    if (nodes.findIndex((item: { id: string }) => item.id === el.id.split('|||')[0]) === -1) {
+      indexesVariables.push(ind);
+    }
+  });
+
+  indexesVariables.forEach((ind, i) => {
+    variables.splice(ind - i, 1);
+  });
+};
+
+export const saveName = (
+  names: TName[],
+  name: string,
+  id: string,
+  type: string | undefined
+) => {
+  const nameIndex = names.findIndex((item) => item.id === id);
+  if (nameIndex === -1) {
+    names.push({
+      id,
+      name,
+      type: type || '',
+    });
+  } else {
+    names[nameIndex] = {
+      ...names[nameIndex],
+      name,
+    };
+  }
+};
+
+export const checkNames = (names: TName[], nodes: Node[]) => {
+
+  const indexesNames: number[] = [];
+  names.forEach((el, ind) => {
+    if (nodes.findIndex((item: { id: string }) => item.id === el.id) === -1) {
+      indexesNames.push(ind);
+    }
+  });
+
+  indexesNames.forEach((ind, i) => {
+    names.splice(ind - i, 1);
+  });
+};
+
 export const saveTrigger = (
   triggers: TTrigger[],
   id: string,
@@ -157,94 +267,42 @@ export const getUrlPath: {
   template: 'bots/template',
 };
 
+export function saveNode<T>({
+  node,
+  value,
+  path,
+  setNodes,
+  getNodes,
+}: TSaveNode<T>) {
+  // копирование для перезаписи поля data
+  const cloneNode = { ...node, data: { ...node.data } };
+
+  _.set(cloneNode, path, value);
+
+  setNodes(
+    getNodes().map((item: Node<any>) => {
+      if (item.id === node.id) {
+        return cloneNode;
+      }
+      return item;
+    })
+  );
+}
+
 /**
  * сохранение данных input в стор ReactFlow
- * @param {Object} obj
- * @param {string[]} obj.selectors массив строк, последовательность полей объекта, по которым можно получить значение `input`
- * @param {any} obj.value необязательный параметр. Если передан - `value` записывается в `value` инпута
- * @param {Function} obj.callback необязательный параметр. Коллбэк, если передан - будет вызван применен к value перед записью в `store`
  */
-export const setFlowData = ({
-  selectors,
-  value,
-  callback,
-}: {
-  selectors: string[];
-  value?: any;
-  callback?: Function;
-}) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
-  return (e?: React.ChangeEvent<HTMLInputElement>) => {
-    const nodes = getNodes();
-    const finalData =
-      value !== undefined
-        ? value
-        : callback
-        ? callback(e?.target.value)
-        : e?.target.value;
-    switch (selectors.length) {
-      case 1: {
-        return setNodes(
-          nodes.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                data: {
-                  ...item.data,
-                  [selectors[0]]: finalData,
-                },
-              };
-            }
-            return item;
-          })
-        );
-      }
-      case 2: {
-        return setNodes(
-          nodes.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                data: {
-                  ...item.data,
-                  [selectors[0]]: {
-                    ...item.data[selectors[0]],
-                    [selectors[1]]: finalData,
-                  },
-                },
-              };
-            }
-            return item;
-          })
-        );
-      }
-      case 3: {
-        return setNodes(
-          nodes.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                data: {
-                  ...item.data,
-                  [selectors[0]]: {
-                    ...item.data[selectors[0]],
-                    [selectors[1]]: {
-                      ...item.data[selectors[0]][selectors[1]],
-                      [selectors[2]]: finalData,
-                    },
-                  },
-                },
-              };
-            }
-            return item;
-          })
-        );
-      }
-      default: {
-        return nodes;
-      }
-    }
+export const setFlowDataInit = () => {
+  const { getNodes, setNodes, id, getNode } = useFlow();
+  return ({ path, value }: { path: string | string[]; value: unknown }) => {
+    const node = getNode(id)!;
+    saveNode({
+      getNodes,
+      setNodes,
+      node,
+      path,
+      value,
+    });
   };
 };
 
@@ -268,5 +326,15 @@ export const resetVar = (elements: any[]) => {
     elements.splice(0, 1);
   }
 };
+
+export const connectStrings = (strings: string[], separator: string) => {
+  return strings.join(separator);
+};
+
+export const getSelectLabel = (store: { name: string }[]) =>
+  store.map((elem, ind) => ({
+    value: `${ind + 1}`,
+    label: elem.name,
+  }));
 
 export default {};

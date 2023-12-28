@@ -1,3 +1,4 @@
+import { Instance } from 'reactflow';
 import { Descendant } from 'slate';
 
 /**
@@ -12,6 +13,20 @@ export enum MessageDataTypes {
 
 export type TBlockProps<T> = {
   data: T;
+};
+
+export type TFlowNodes = {
+  setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
+  id: string;
+};
+
+export type TFlowNodesEdges = {
+  setNodes: Instance.SetNodes<any>;
+  getNodes: Instance.GetNodes<any>;
+  setEdges: Instance.SetEdges<any>;
+  getEdges: Instance.GetEdges<any>;
+  id: string;
 };
 
 /**
@@ -87,7 +102,13 @@ export type TReactFlowEdge = {
 export type TVariable = {
   id: string;
   name: string;
-  value: any;
+  value: unknown;
+};
+
+export type TName = {
+  id: string;
+  type: string;
+  name: string;
 };
 
 export type TTrigger = {

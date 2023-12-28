@@ -1,6 +1,5 @@
 import { FC, useState, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
-import { v4 as uuidv4 } from 'uuid';
 
 import styles from './conditional.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
@@ -11,103 +10,22 @@ import {
 } from '../../../../services/types/builder';
 import Mode from './mode/mode';
 import ToggleButton from './toggle-button/toggle-button';
+import { setFlowDataInit, newBlockData } from '../../utils';
 
 const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
+  const setFlowData = setFlowDataInit();
   const [mode, setMode] = useState<'easy' | 'hard'>('easy');
 
-  const { getNodes, setNodes, getNode } = useReactFlow();
-  const idNode = useNodeId() || '';
-  const node = getNode(idNode);
+  const { getNode } = useReactFlow();
+  const id = useNodeId() || '';
+  const node = getNode(id);
 
   // добавление условия в сложном режиме
-  const addHard = () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  id: `hard-${uuidv4()}`,
-                  type: 'hard',
-                  condition: '',
-                  targetBlock: '',
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-  // добавление условия в простом режиме
-  const addEasy = () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables: [
-                ...item.data.variables,
-                {
-                  id: `easy-${uuidv4()}`,
-                  type: 'easy',
-                  variable: { id: '', name: '', value: '' },
-                  sign: '',
-                  condition: '',
-                  targetBlock: '',
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-  // ???
-  const setItemVariables = (
-    idItem: string,
-    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
-    value: any
-  ) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables:
-                node &&
-                node.data.variables.map(
-                  (elem: { [x: string]: any; id: string }) => {
-                    if (elem.id === idItem) {
-                      // eslint-disable-next-line no-param-reassign
-                      elem[key] = value;
-                    }
-                    return elem;
-                  }
-                ),
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-  // ???
-  const setTargetBlock = (idItem: string, name: string) =>
-    setItemVariables(idItem, 'targetBlock', name);
+  const addBlock = (type: 'easy' | 'hard') =>
+    setFlowData({
+      path: ['data', 'variables'],
+      value: [...data.variables, newBlockData[type]()],
+    });
 
   // получение набора подблоков по типу ('easy' или 'hard')
   const content = useMemo(
@@ -121,8 +39,17 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
                   id={item.id}
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
+                  index={index}
                   setTargetBlock={(name: string) =>
-                    setTargetBlock(item.id, name)
+                    setFlowData({
+                      path: [
+                        'data',
+                        'variables',
+                        index.toString(),
+                        'targetBlock',
+                      ],
+                      value: name,
+                    })
                   }
                 />
               )
@@ -135,8 +62,17 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
                   id={item.id}
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
+                  index={index}
                   setTargetBlock={(name: string) =>
-                    setTargetBlock(item.id, name)
+                    setFlowData({
+                      path: [
+                        'data',
+                        'variables',
+                        index.toString(),
+                        'targetBlock',
+                      ],
+                      value: name,
+                    })
                   }
                 />
               )
@@ -166,7 +102,11 @@ const ConditionalBlock: FC<TBlockProps<TConditionalBlock>> = ({ data }) => {
       </div>
       <div className={styles.content}>
         {content}
-        <ConstructorAddButton onClick={mode === 'easy' ? addEasy : addHard}>
+        <ConstructorAddButton
+          onClick={() =>
+            mode === 'easy' ? addBlock('easy') : addBlock('hard')
+          }
+        >
           Добавить условие
         </ConstructorAddButton>
       </div>

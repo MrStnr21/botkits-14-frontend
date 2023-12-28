@@ -1,5 +1,4 @@
 import { FC, useMemo } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -9,106 +8,73 @@ import {
   TBlockProps,
   TTelegramPayBlock,
 } from '../../../../services/types/builder';
-import { currencyAvailable, messagesSuccessful } from '../../utils/data';
-import { getSelectItemByValue, setFlowData } from '../../utils';
+import { currencyAvailable } from '../../utils/data';
+import { namesOfBlocks } from '../../utils/store';
+import {
+  getSelectItemByValue,
+  setFlowDataInit,
+  getSelectLabel,
+} from '../../utils';
 import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
 import Select from '../../../../ui/select/select';
 import { Option } from '../../../../utils/types';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
-
-  const setFlowDataButton = ({
-    selectors,
-    value,
-  }: {
-    selectors: string[];
-    value: any;
-  }) => {
-    const nodes = getNodes();
-    const finalData = value;
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              [selectors[0]]: finalData,
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setFlowData = setFlowDataInit();
 
   const image = useMemo(() => !!data.image, [data.image]);
 
   const setCurrency = (option: Option) =>
-    setFlowDataButton({
-      selectors: ['currency'],
+    setFlowData({
+      path: ['data', 'currency'],
       value: option.value,
     });
 
   const setOnSuccess = (option: Option) =>
-    setFlowDataButton({
-      selectors: ['onSuccess'],
+    setFlowData({
+      path: ['data', 'onSuccess'],
       value: option.value,
     });
 
-  const setGoodsName = setFlowData({
-    selectors: ['goodsName'],
-  });
+  const setGoodsName = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'goodsName'],
+      value: e.target.value,
+    });
 
-  const setDescription = setFlowData({
-    selectors: ['description'],
-  });
+  const setDescription = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'description'],
+      value: e.target.value,
+    });
 
-  const setPayment = setFlowData({
-    selectors: ['payment'],
-  });
+  const setPayment = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'payment'],
+      value: e.target.value,
+    });
 
-  const setProviderToken = setFlowData({
-    selectors: ['providerToken'],
-  });
+  const setProviderToken = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'providerToken'],
+      value: e.target.value,
+    });
   const placeholder = 'Введите название';
 
   const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              image: e.target.files && e.target.files[0],
-            },
-          };
-        }
-        return item;
-      })
-    );
+    setFlowData({
+      path: ['data', 'image'],
+      value: e.target.files && e.target.files[0],
+    });
     e.target.value = '';
   };
 
   const removeFile = () => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              image: '',
-            },
-          };
-        }
-        return item;
-      })
-    );
+    setFlowData({
+      path: ['data', 'image'],
+      value: '',
+    });
   };
 
   const content = useMemo(
@@ -175,11 +141,11 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         </LabeledInput>
         <LabeledInput title="После успешной оплаты вернуть">
           <Select
-            options={messagesSuccessful}
+            options={getSelectLabel(namesOfBlocks)}
             handleSelect={setOnSuccess}
             currentOption={getSelectItemByValue(
               data.onSuccess,
-              messagesSuccessful
+              getSelectLabel(namesOfBlocks)
             )}
             elementToCloseListener="flow"
             adaptive

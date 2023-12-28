@@ -8,20 +8,7 @@ type TdataProps = {
 };
 
 const File: FC<TdataProps> = ({ data, removeFile }) => {
-  // const { setNodes, getNodes } = useReactFlow();
-  // const id = useNodeId();
   const src = useMemo(() => URL.createObjectURL(data), [data]);
-  /* const removeFile = () =>
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          // eslint-disable-next-line no-param-reassign
-          delete item.data.image;
-          return item;
-        }
-        return item;
-      })
-    ); */
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
