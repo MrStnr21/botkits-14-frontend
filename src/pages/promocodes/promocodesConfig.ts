@@ -69,3 +69,8 @@ export const promoColumns = [
     cellComponent: statusPromoCell,
   },
 ];
+
+const hours = new Date().getHours().toString().padStart(2, '0');
+const minutes = new Date().getMinutes().toString().padStart(2, '0');
+export const now = `${new Date().toLocaleDateString('ru-RU')} 
+${hours}:${minutes}`;

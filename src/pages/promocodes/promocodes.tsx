@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import stylesPromocodes from './promocodes.module.scss';
 import Typography from '../../ui/typography/typography';
@@ -11,40 +11,27 @@ import {
   promoHeaderTitle,
   promoRowStyleRef,
   promoTableModalButtons,
+  now,
 } from './promocodesConfig';
 import Input from '../../ui/inputs/input/input';
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
-
-type TPromocodes = {
-  id: string;
-  date: string;
-  promo: string;
-  price: string;
-  status: boolean;
-  menu: boolean;
-};
+import { TPromocodes } from '../../utils/types';
 
 const Promocodes: FC = (): JSX.Element => {
+  const [data, setData] = useState<TPromocodes[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
-  const [promocodes, setPromocodes] = useState<TPromocodes[]>([]);
-
   // логика для фильтрации отображаемых строк в таблице с промокодами,
   // при создании страницы promocodes вынести в компонент страницы
   const [filterValue, setFilterValue] = useState<string>('all');
 
-  const handleFilterChange = (value: string) => {
-    setFilterValue(value);
-  };
-
-  const hours = new Date().getHours().toString().padStart(2, '0');
-  const minutes = new Date().getMinutes().toString().padStart(2, '0');
-  const now = `${new Date().toLocaleDateString('ru-RU')} 
-  ${hours}:${minutes}`;
+  // загрузка данных таблицы с сервера и запись в data стэйт
+  // useEffect(() => {
+  //   app.get('url')
+  //   .then(res => setData(res.data))
+  //   .catch(err => console.log(err))
+  // }, [])
 
   const createPromocode = (value: string) => {
-    const getInput = document.getElementById('input') as HTMLInputElement;
-    getInput.value = '';
-
     const obj = [
       {
         id: uuidv4(),
@@ -58,20 +45,46 @@ const Promocodes: FC = (): JSX.Element => {
     return obj;
   };
 
-  const handleGeneratePromocode = () => {
-    setPromocodes(createPromocode(inputValue));
+  const handleGeneratePromocode = (
+    evt: FormEvent<HTMLFormElement>,
+    value: string
+  ) => {
+    const getInput = document.getElementById('input') as HTMLInputElement;
+    getInput.value = '';
+
+    evt.preventDefault();
+
+    // обновление тестовое
+    setData(createPromocode(value)); // удалить при отправке на сервер
+
+    // отправка на сервер
+    // api.post('url',
+    // {
+    //   id: uuidv4(),
+    //   date: now,
+    //   promo: inputValue,
+    //   price: '30р',
+    //   status: true,
+    //   menu: true,
+    // })
+    // .then(res => console.log(res))
+    // .catch(err => console.log(err))
+  };
+
+  const handleFilterChange = (value: string) => {
+    setFilterValue(value);
   };
 
   const renderFilteredRows = () => {
     switch (filterValue) {
       case 'all':
-        return promocodes;
+        return data;
       case 'inactive':
-        return promocodes!.filter((row) => row.status === false);
+        return data!.filter((row) => row.status === false);
       case 'active':
-        return promocodes!.filter((row) => row.status === true);
+        return data!.filter((row) => row.status === true);
       default:
-        return promocodes;
+        return data;
     }
   };
 
@@ -85,7 +98,10 @@ const Promocodes: FC = (): JSX.Element => {
         Промокоды
       </Typography>
       <div className={stylesPromocodes.container}>
-        <div className={stylesPromocodes.menue}>
+        <form
+          onSubmit={(evt) => handleGeneratePromocode(evt, inputValue)}
+          className={stylesPromocodes.menue}
+        >
           <Typography
             tag="h4"
             fontFamily="secondary"
@@ -105,17 +121,11 @@ const Promocodes: FC = (): JSX.Element => {
             />
           </div>
           <div className={stylesPromocodes.button}>
-            <ButtonBotTemplate
-              buttonHtmlType="submit"
-              onClick={() => {
-                handleGeneratePromocode();
-              }}
-              color="blue"
-            >
+            <ButtonBotTemplate buttonHtmlType="submit" color="blue">
               СГЕНЕРИРОВАТЬ ПРОМОКОД
             </ButtonBotTemplate>
           </div>
-        </div>
+        </form>
         <div>
           <div className={stylesPromocodes.promocodeTable}>
             <EnhancedTable
