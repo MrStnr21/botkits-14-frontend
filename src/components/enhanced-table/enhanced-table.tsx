@@ -119,7 +119,7 @@ const EnhancedTable: FC<Props> = ({
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  console.log(selected);
+
   // функция выделения всех строк таблицы по клику на чекбокс в шапке
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
