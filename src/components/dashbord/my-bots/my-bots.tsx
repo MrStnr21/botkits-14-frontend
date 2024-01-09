@@ -60,8 +60,9 @@ const MyBots: FC = (): JSX.Element => {
         <li className={styles.item}>
           <ButtonAddBot onClick={addBot}>Добавить бота</ButtonAddBot>
         </li>
-        {bots.map((bot, index) => (
-          <li key={bot.title + +index} className={styles.item}>
+        {bots.map((bot) => (
+          // eslint-disable-next-line no-underscore-dangle
+          <li key={bot._id} className={styles.item}>
             <BotCard bot={bot} />
           </li>
         ))}
