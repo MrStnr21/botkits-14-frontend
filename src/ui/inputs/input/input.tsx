@@ -28,7 +28,7 @@ interface IInput {
   styled?: 'main' | 'secondary' | 'bot-builder-default' | 'bot-builder-num';
   pattern?: string;
   password?: boolean;
-  textColor?: 'default' | 'blue';
+  textColor?: 'default' | 'blue' | 'black';
   /**
    * минимальное числовое значение инпута
    */
@@ -46,6 +46,12 @@ const classNames = {
   secondary: stylesInput.inputSecondary,
   'bot-builder-default': stylesInput.inputBuilderDefault,
   'bot-builder-num': stylesInput.inputBuilderNum,
+};
+
+const textColorMap = {
+  blue: stylesInput.colorBlue,
+  black: stylesInput.colorBlack,
+  default: '',
 };
 
 const Input: FC<IInput> = ({
@@ -92,6 +98,8 @@ const Input: FC<IInput> = ({
   };
 
   const className = classNames[styled];
+
+  const colorClass = textColorMap[textColor];
 
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
     const validityState = input.currentTarget.validity;
@@ -145,7 +153,7 @@ const Input: FC<IInput> = ({
                 (error.error || isInvalid) && styled === 'secondary'
                   ? stylesInput.inputSecondaryIncorrect
                   : ''
-              } ${textColor === 'blue' ? stylesInput.colorBlue : ''}`
+              } ${colorClass}`
         }
         type={typeValues || 'text'}
         placeholder={placeholder}
