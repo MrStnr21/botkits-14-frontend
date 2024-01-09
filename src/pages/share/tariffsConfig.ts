@@ -293,14 +293,21 @@ export const tariffsCols = [
     id: 5,
     key: 'duration',
     label: 'Длительность',
-    colStyle: { ...headStyle, width: '20%' },
+    colStyle: { ...headStyle, width: '10%' },
     cellComponent: inputCell,
   },
   {
     id: 6,
+    key: 'status',
+    label: 'Опубликован',
+    colStyle: { ...headStyle, width: '15%' },
+    cellComponent: switcherCell,
+  },
+  {
+    id: 7,
     key: 'start',
     label: 'Стартовый тариф',
-    colStyle: { ...headStyle, width: '20%' },
+    colStyle: { ...headStyle, width: '15%' },
     cellComponent: switcherCell,
   },
 ];
