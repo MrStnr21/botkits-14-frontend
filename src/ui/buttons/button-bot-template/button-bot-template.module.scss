@@ -4,11 +4,11 @@
 .button{
     @include button-style-reset;
     @include indents((0 12px 0 12px), 0);
-    height:32px;
+    height: 100%;
+    width: 100%;
     @include line-sizes(21px, 1px);
     border-radius: $xs-border-radius;
     transition: all 0.1s linear;
-    letter-spacing: $l-letter-space;
   }
 
 .blue{

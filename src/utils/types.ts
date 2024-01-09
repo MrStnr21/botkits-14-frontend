@@ -22,3 +22,12 @@ export type Option = {
   value: string;
   icon?: string;
 };
+
+export type TPromocodes = {
+  id: string;
+  date: string;
+  promo: string;
+  price: string;
+  status: boolean;
+  menu: boolean;
+};

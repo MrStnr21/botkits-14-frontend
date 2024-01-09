@@ -23,6 +23,7 @@ import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
+import Promocodes from '../../pages/promocodes/promocodes';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
@@ -151,6 +152,14 @@ const App: FC = (): JSX.Element => {
           element={
             <ProtectedRoute>
               <Share />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routesUrl.promocodes}
+          element={
+            <ProtectedRoute>
+              <Promocodes />
             </ProtectedRoute>
           }
         />
