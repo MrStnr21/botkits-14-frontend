@@ -1,32 +1,14 @@
-import request from './api';
-import { IGetBotsResponse, IAddBotResponse } from '../services/types/bot';
+import { getReq } from './api';
+import { IGetBotResponse, IAddBotResponse } from '../services/types/bot';
 
 // запрос получения билдера
-function getBuilderApi(token: string, path: string, id: string | null) {
-  return request<IGetBotsResponse>(`${path}/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      authorization: `Bearer ${token}`,
-    },
-  });
+function getBuilderApi(path: string, id: string) {
+  return getReq<IGetBotResponse>({ uri: path, id, auth: true });
 }
 
 // запрос сохранения билдера
-function saveBuilderApi(
-  builder: { features: any },
-  token: string,
-  path: string,
-  id: string | null
-) {
-  return request<IAddBotResponse>(`${path}/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(builder),
-  });
+function saveBuilderApi(builder: { features: any }, path: string, id: string) {
+  return getReq<IAddBotResponse>({ uri: path, id, auth: true, data: builder });
 }
 
 export { getBuilderApi, saveBuilderApi };

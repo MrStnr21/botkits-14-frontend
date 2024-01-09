@@ -1,37 +1,20 @@
 import { FC } from 'react';
 
 import BotMenuPopup from '../bot-menu-popup/bot-menu-popup';
-
-import { useAppSelector } from '../../../services/hooks/hooks';
-
 import { POPUP_ITEM } from '../../../utils/constants';
-import { getBotsSel } from '../../../utils/selectorData';
+import { TBot } from '../../../services/types/bot';
 
 interface IPopupMoreMyBot {
   itemSelected: POPUP_ITEM | undefined;
   setIsPopupItemOpen: () => void;
-  idMyBot: string;
+  bot: TBot;
 }
 
 const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
   itemSelected,
   setIsPopupItemOpen,
-  idMyBot,
-}): JSX.Element => {
-  // eslint-disable-next-line no-console
-  console.log(`Берем данные для бота по id ${idMyBot}`);
-
-  // const bots: Array<TBot> | undefined = useAppSelector(
-  //   (store) => store.getBot.bot
-  // );
-
-  const { bots } = useAppSelector(getBotsSel);
-
-  // if (Array.isArray(bots) && bots.length > 0) {
-  //   // eslint-disable-next-line no-underscore-dangle
-  //   currentBot = bots.find((bot) => bot._id === idMyBot);
-  // }
-
+  bot,
+}) => {
   let child: React.ReactNode;
 
   switch (itemSelected) {
@@ -68,7 +51,7 @@ const SwitchBotMenuPopup: FC<IPopupMoreMyBot> = ({
           title="Переименуйте файл"
           placeholder="Переименуйте файл"
           buttonText="Переименовать"
-          value={bots ? bots[0].title : 'Псевдоним'}
+          value={bot.title}
           onClose={setIsPopupItemOpen}
           // onClick={() => console.log('переименовывайся')}
         />

@@ -1,16 +1,16 @@
 import type { StoryObj } from '@storybook/react';
-import AddBot from './add-bot';
+import Platforms from './platforms';
 
 const meta = {
-  title: 'COMPONENTS/AddBot/AddBot',
-  component: AddBot,
+  title: 'COMPONENTS/Platforms/Platforms',
+  component: Platforms,
   tags: ['autodocs'],
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const AddBotDefault: Story = {
+export const PlatformsDefault: Story = {
   args: {
     onClick: () => console.log(1),
     bot: {
@@ -20,7 +20,7 @@ export const AddBotDefault: Story = {
   },
 };
 
-export const AddBotSelectedFacebook: Story = {
+export const PlatformsSelectedFacebook: Story = {
   args: {
     onClick: () => console.log(1),
     bot: {

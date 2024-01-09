@@ -1,16 +1,10 @@
-import request from './api';
+import { getReq } from './api';
 
 import { IGetPlatformsResponse } from '../services/types/platform';
 
 // запрос получения платформ
-function getPlatformsApi(token: string) {
-  return request<IGetPlatformsResponse>('platforms', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      authorization: `Bearer ${token}`,
-    },
-  });
+function getPlatformsApi() {
+  return getReq<IGetPlatformsResponse>({ uri: 'platforms', auth: true });
 }
 
 export default getPlatformsApi;
