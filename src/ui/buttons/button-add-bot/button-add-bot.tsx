@@ -3,7 +3,7 @@ import { ReactSVG } from 'react-svg';
 
 import PlusIcon from '../../../images/icon/24x24/add_bot/plus.svg';
 
-import stylesButtonAddBot from './button-add-bot.module.scss';
+import styles from './button-add-bot.module.scss';
 import Typography from '../../typography/typography';
 
 export interface IButtonAddBot {
@@ -21,18 +21,14 @@ const ButtonAddBot: FC<IButtonAddBot> = ({
 }): JSX.Element => {
   return (
     <button
-      className={stylesButtonAddBot.button}
+      className={styles.button}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}
       disabled={disabled}
     >
-      <ReactSVG className={stylesButtonAddBot.icon} src={PlusIcon} />
-      <Typography
-        tag="p"
-        fontFamily="secondary"
-        className={stylesButtonAddBot.text}
-      >
+      <ReactSVG className={styles.icon} src={PlusIcon} />
+      <Typography tag="p" fontFamily="secondary" className={styles.text}>
         {children}
       </Typography>
     </button>

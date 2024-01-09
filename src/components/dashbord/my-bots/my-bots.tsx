@@ -57,7 +57,7 @@ const MyBots: FC = (): JSX.Element => {
         )}
       </div>
       <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
-        <li className={styles.buttonAddbot}>
+        <li className={styles.item}>
           <ButtonAddBot onClick={addBot}>Добавить бота</ButtonAddBot>
         </li>
         {bots.map((bot, index) => (
