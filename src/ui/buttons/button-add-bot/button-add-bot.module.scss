@@ -6,9 +6,15 @@
   @include flex(column, center, center, 14px);
   @include font('IBM Plex Mono', $m-font-size, $bold);
   @include line-sizes($m-line-height, $l-letter-space);
-  @include size(100%, 172px);
+  @include size(296px, 172px);
+  max-height: 195px;
   transition: all 0.1s linear;
   border-radius: $xxl-border-radius;
+
+  @media (max-width: $switching-width) {
+    @include size(235px, 177px);
+  }
+
 }
 
 .icon {

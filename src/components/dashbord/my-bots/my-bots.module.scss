@@ -48,13 +48,5 @@
 }
 
 .item {
-  min-height: 195px;
   position: relative;
-}
-
-.buttonAddbot {
-  @include size(296px, 172px);
-  @media (max-width: $switching-width) {
-    @include size(296px, 172px);
-  }
 }
