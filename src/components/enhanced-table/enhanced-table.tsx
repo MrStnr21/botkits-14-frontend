@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   ChangeEvent,
@@ -41,7 +42,7 @@ type Columns = {
   cellComponent?: (data: any, id: string) => ReactNode;
 };
 
-type TableData = {
+export type TableData = {
   [key: string]: any;
 };
 
@@ -104,7 +105,7 @@ const EnhancedTable: FC<Props> = ({
   // исп. для обновления строк в зависимости от фильтра в хидере
   useEffect(() => {
     setRows(tableData);
-  }, [onFilterChange]);
+  }, [onFilterChange, tableData]);
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);

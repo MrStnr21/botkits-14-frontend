@@ -23,10 +23,6 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
 
   useEffect(() => {
     setActiveIndex(page);
-  }, []);
-
-  useEffect(() => {
-    setActiveIndex(page);
   }, [page]);
 
   const handleButtonClick = (newPage: number) => {

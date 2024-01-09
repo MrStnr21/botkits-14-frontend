@@ -277,14 +277,14 @@ export const tariffsCols = [
   },
   {
     id: 3,
-    key: 'bots',
+    key: 'botsCount',
     label: 'Кол-во ботов',
     colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     id: 4,
-    key: 'followers',
+    key: 'subscribersCount',
     label: 'Кол-во подписчиков',
     colStyle: { ...headStyle, width: '15%' },
     cellComponent: inputCell,
