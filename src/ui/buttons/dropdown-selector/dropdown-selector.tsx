@@ -13,6 +13,7 @@ export interface IProps {
   exportIcon?: boolean;
   chevronIcon?: boolean;
   filterIcon?: boolean;
+  dropdown?: boolean;
 }
 
 const mockData = [
@@ -28,6 +29,7 @@ const DropdownSelectorButton: FC<IProps> = ({
   exportIcon,
   chevronIcon,
   filterIcon,
+  dropdown,
 }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -49,7 +51,7 @@ const DropdownSelectorButton: FC<IProps> = ({
         {chevronIcon && <DoubleChevronIcon width={24} height={24} />}
         {filterIcon && <NewFilterIcon width={24} height={24} />}
       </div>
-      {isMenuOpen && (
+      {isMenuOpen && dropdown && (
         <Menu
           ref={menuRef}
           options={mockData}
