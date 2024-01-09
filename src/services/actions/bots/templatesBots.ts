@@ -1,11 +1,13 @@
 import {
-  deleteTemplatesBotsApi,
-  getTemplatesBotsApi,
-  updateTemplatesBotsApi,
+  addBotTemplateApi,
+  deleteBotTemplateApi,
+  getBotTemplatesApi,
+  updateBotTemplateApi,
 } from '../../../api/bots';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
-import { TTemplateBotRes } from '../../types/bot';
+import { TBotTemplate, TBotTemplateReq } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
 const GET_TEMPLATES_BOTS_REQUEST = 'GET_TEMPLATES_BOTS_REQUEST';
 const GET_TEMPLATES_BOTS_SUCCESS = 'GET_TEMPLATES_BOTS_SUCCESS';
@@ -19,13 +21,17 @@ const UPDATEBOTTEMPLATES_REQUEST = 'UPDATEBOTTEMPLATES_REQUSET';
 const UPDATEBOTTEMPLATES_SUCCESS = 'UPDATEBOTTEMPLATES_SUCCESS';
 const UPDATEBOTTEMPLATES_ERROR = 'UPDATEBOTTTEMPLATES_ERROR';
 
+const ADD_BOT_TEMPLATE_REQUEST = 'ADD_BOT_TEMPLATE_REQUSET';
+const ADD_BOT_TEMPLATE_SUCCESS = 'ADD_BOT_TEMPLATE_SUCCESS';
+const ADD_BOT_TEMPLATE_ERROR = 'ADD_BOT_TEMPLATE_ERROR';
+
 export interface IGetTemplatesBotsRequestAction {
   readonly type: typeof GET_TEMPLATES_BOTS_REQUEST;
 }
 
 export interface IGetTemplatesBotsSuccessAction {
   readonly type: typeof GET_TEMPLATES_BOTS_SUCCESS;
-  templatesBots: Array<TTemplateBotRes>;
+  botTemplates: Array<TBotTemplate>;
 }
 
 export interface IGetTemplatesBotsErrorAction {
@@ -38,7 +44,7 @@ export interface IDeleteBotTemplatesRequestAction {
 
 export interface IDeleteBotTemplatesSuccessAction {
   readonly type: typeof DELETEBOTTEMPLATES_SUCCESS;
-  botTemplates: TTemplateBotRes;
+  id: TBotTemplate['_id'];
 }
 
 export interface IDeleteBotTemplatesErrorAction {
@@ -51,11 +57,23 @@ export interface IUpdateBotTemplatesRequestAction {
 
 export interface IUpdateBotTemplatesSuccessAction {
   readonly type: typeof UPDATEBOTTEMPLATES_SUCCESS;
-  botTemplates: TTemplateBotRes;
+  template: TBotTemplate;
 }
 
 export interface IUpdateBotTemplatesErrorAction {
   readonly type: typeof UPDATEBOTTEMPLATES_ERROR;
+}
+export interface IABotTemplatesErrorAction {
+  readonly type: typeof ADD_BOT_TEMPLATE_ERROR;
+}
+
+export interface IAddBotTemplatesRequestAction {
+  readonly type: typeof ADD_BOT_TEMPLATE_REQUEST;
+}
+
+export interface IAddBotTemplatesSuccessAction {
+  readonly type: typeof ADD_BOT_TEMPLATE_SUCCESS;
+  template: TBotTemplate;
 }
 
 export type TGetTemplatesBotsActions =
@@ -67,26 +85,29 @@ export type TGetTemplatesBotsActions =
   | IDeleteBotTemplatesErrorAction
   | IUpdateBotTemplatesRequestAction
   | IUpdateBotTemplatesSuccessAction
-  | IUpdateBotTemplatesErrorAction;
+  | IUpdateBotTemplatesErrorAction
+  | IABotTemplatesErrorAction
+  | IAddBotTemplatesRequestAction
+  | IAddBotTemplatesSuccessAction;
 
 // экшн получения шаблонов
-const getTemplatesBotsAction: AppThunk = (token: string) => {
+const getTemplatesBotsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_TEMPLATES_BOTS_REQUEST,
     });
-    getTemplatesBotsApi(token)
-      .then((res: Array<TTemplateBotRes>) => {
+    getBotTemplatesApi()
+      .then((res) => {
         if (res) {
           dispatch({
             type: GET_TEMPLATES_BOTS_SUCCESS,
-            templatesBots: res,
+            botTemplates: res,
           });
         }
       })
-      .catch((err: { message: string }) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err[0]);
         dispatch({
           type: GET_TEMPLATES_BOTS_ERROR,
         });
@@ -96,19 +117,20 @@ const getTemplatesBotsAction: AppThunk = (token: string) => {
 
 // экшн удаления шаблонов
 
-const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
+const deleteBotTemplatesAction: AppThunk = (idCard: string) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: DELETEBOTTEMPLATES_REQUEST,
     });
-    deleteTemplatesBotsApi(idCard, token)
+    deleteBotTemplateApi(idCard)
       .then((res) => {
         dispatch({
           type: DELETEBOTTEMPLATES_SUCCESS,
-          botTemplates: res,
+          // eslint-disable-next-line no-underscore-dangle
+          id: res._id,
         });
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({
@@ -119,27 +141,54 @@ const deleteBotTemplatesAction: AppThunk = (idCard: string, token: string) => {
 };
 
 const updateBotTemplatesAction: AppThunk = (
-  botTemplates: TTemplateBotRes,
-  id: string,
-  token: string
+  botTemplates: TBotTemplateReq,
+  id: string
 ) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: UPDATEBOTTEMPLATES_REQUEST,
     });
-    console.log(botTemplates);
-    updateTemplatesBotsApi(botTemplates, id, token)
+    updateBotTemplateApi(botTemplates, id)
       .then((res) => {
         dispatch({
           type: UPDATEBOTTEMPLATES_SUCCESS,
-          botTemplates: res,
+          template: res,
         });
+      })
+      .catch((err: TResponseError) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+        dispatch({
+          type: UPDATEBOTTEMPLATES_ERROR,
+        });
+      });
+  };
+};
+
+const addBotTemplateAction: AppThunk = (
+  template: TBotTemplateReq,
+  callback: (id: string) => void
+) => {
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: ADD_BOT_TEMPLATE_REQUEST,
+    });
+    addBotTemplateApi(template)
+      .then((res) => {
+        if (res) {
+          dispatch({
+            type: ADD_BOT_TEMPLATE_SUCCESS,
+            template: res,
+          });
+          // eslint-disable-next-line no-underscore-dangle
+          callback(res._id);
+        }
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({
-          type: UPDATEBOTTEMPLATES_ERROR,
+          type: ADD_BOT_TEMPLATE_ERROR,
         });
       });
   };
@@ -155,7 +204,11 @@ export {
   UPDATEBOTTEMPLATES_REQUEST,
   UPDATEBOTTEMPLATES_SUCCESS,
   UPDATEBOTTEMPLATES_ERROR,
+  ADD_BOT_TEMPLATE_REQUEST,
+  ADD_BOT_TEMPLATE_SUCCESS,
+  ADD_BOT_TEMPLATE_ERROR,
   deleteBotTemplatesAction,
   getTemplatesBotsAction,
   updateBotTemplatesAction,
+  addBotTemplateAction,
 };
