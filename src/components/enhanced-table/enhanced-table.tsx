@@ -17,7 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import { Box, Checkbox } from '@mui/material';
+import { Box, Checkbox, Tab } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
@@ -28,6 +28,7 @@ import {
   checkBoxStyle,
   boxStyle,
   tableContainerStyles,
+  checkboxTableCellStyle,
 } from './tableStyles';
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './enhanced-table.module.scss';
@@ -177,23 +178,30 @@ const EnhancedTable: FC<Props> = ({
             <TableHead>
               <TableRow>
                 {check && (
-                  <Checkbox
+                  <TableCell
                     sx={{
-                      '&.MuiCheckbox-root': headCheckBoxStyles.root,
-                      '&.Mui-checked': headCheckBoxStyles.checked,
+                      '&.MuiTableCell-root': checkboxTableCellStyle,
                     }}
-                    indeterminate={
-                      selected.length > 0 && selected.length < tableData.length
-                    }
-                    checked={
-                      tableData.length > 0 &&
-                      selected.length === tableData.length
-                    }
-                    onChange={handleSelectAllClick}
-                    inputProps={{
-                      'aria-label': 'select all',
-                    }}
-                  />
+                  >
+                    <Checkbox
+                      sx={{
+                        '&.MuiCheckbox-root': headCheckBoxStyles.root,
+                        '&.Mui-checked': headCheckBoxStyles.checked,
+                      }}
+                      indeterminate={
+                        selected.length > 0 &&
+                        selected.length < tableData.length
+                      }
+                      checked={
+                        tableData.length > 0 &&
+                        selected.length === tableData.length
+                      }
+                      onChange={handleSelectAllClick}
+                      inputProps={{
+                        'aria-label': 'select all',
+                      }}
+                    />
+                  </TableCell>
                 )}
                 {columns?.map(({ label, colStyle }) => (
                   <TableCell key={uuidv4()} sx={colStyle}>
@@ -216,14 +224,20 @@ const EnhancedTable: FC<Props> = ({
                   }}
                 >
                   {check && (
-                    <Checkbox
-                      sx={checkBoxStyle}
-                      checked={isSelected(row.id)}
-                      onChange={(event) => handleClick(event, row.id)}
-                      inputProps={{
-                        'aria-labelledby': `enhanced-table-checkbox-${row.id}`,
+                    <TableCell
+                      sx={{
+                        '&.MuiTableCell-root': checkboxTableCellStyle,
                       }}
-                    />
+                    >
+                      <Checkbox
+                        sx={checkBoxStyle}
+                        checked={isSelected(row.id)}
+                        onChange={(event) => handleClick(event, row.id)}
+                        inputProps={{
+                          'aria-labelledby': `enhanced-table-checkbox-${row.id}`,
+                        }}
+                      />
+                    </TableCell>
                   )}
                   {columns?.map(({ key, cellComponent, id }) => (
                     <TableCell key={id} sx={props.cellStyle}>

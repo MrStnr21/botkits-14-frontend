@@ -47,16 +47,9 @@ export const paginationStyles = {
   },
 };
 
-// export const defaultCellStyles = {
-//   maxWidth: '168px',
-//   textOverflow: 'ellipsis',
-//   whiteSpace: 'nowrap',
-//   overflow: 'hidden',
-//   padding: '0',
-// };
-
 export const headCheckBoxStyles = {
   root: {
+    color: '#BFC9D9',
     backgroundColor: '#ECEFFF',
     width: '100%',
     height: '100%',
@@ -70,8 +63,14 @@ export const headCheckBoxStyles = {
 };
 
 export const checkBoxStyle = {
+  color: '#BFC9D9',
   position: 'absolute',
   top: '50%',
   left: '20px',
   transform: 'translate(-50%, -50%)',
+};
+
+export const checkboxTableCellStyle = {
+  padding: '0',
+  border: 'none',
 };
