@@ -50,7 +50,7 @@
     "redux-thunk": "^2.4.2",
     "redux-ts": "^4.3.0",
     "sass": "^1.67.0",
-    "slate": "^0.101.4",
+    "slate": "^0.101.5",
     "slate-history": "^0.100.0",
     "slate-react": "^0.101.3",
     "socket.io-client": "^4.7.2",
