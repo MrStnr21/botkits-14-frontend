@@ -1,3 +1,5 @@
+import { Descendant } from 'slate';
+import { baseSlateData } from '../../utils/constants';
 import TextField from './text-field';
 
 export default {
@@ -15,8 +17,8 @@ export default {
 
 export const Default = () => (
   <TextField
-    text="Какой-то текст"
-    setText={(text: string) => {
+    text={baseSlateData}
+    setText={(text: Descendant[]) => {
       console.log(text);
     }}
   />

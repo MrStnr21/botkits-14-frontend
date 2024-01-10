@@ -2,7 +2,7 @@
 @use '../../../stylesheets/mixins' as *;
 
 .box {
-  @include size(192px, 40px);
+  @include size(144px, 40px);
   display: none;
   flex-direction: row;
   box-shadow: $l-box-shadow;

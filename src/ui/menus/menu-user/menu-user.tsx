@@ -15,7 +15,6 @@ import { useAppDispatch } from '../../../services/hooks/hooks';
 
 import routesUrl from '../../../utils/routesData';
 
-import { getAccessToken } from '../../../auth/authService';
 import Typography from '../../typography/typography';
 
 export interface IMenuUser {
@@ -35,7 +34,6 @@ const MenuUser: FC<IMenuUser> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const token = getAccessToken();
   const navigate = useNavigate();
   let boxClassName = stylesMenuUser.box;
 
@@ -46,10 +44,8 @@ const MenuUser: FC<IMenuUser> = ({
     boxClassName = stylesMenuUser.box;
   }
 
-  const onLogout = (accessToken: string): void => {
-    dispatch(
-      logoutAction(accessToken, () => navigate('signup', { replace: true }))
-    );
+  const onLogout = (): void => {
+    dispatch(logoutAction(() => navigate('signup', { replace: true })));
   };
 
   return (
@@ -88,7 +84,7 @@ const MenuUser: FC<IMenuUser> = ({
       <NavLink
         to="/"
         className={stylesMenuUser.button}
-        onClick={() => onLogout(token!)}
+        onClick={() => onLogout()}
       >
         <img src={exitIcon} alt="Иконка" />
         <Typography tag="p" className={stylesMenuUser.text}>

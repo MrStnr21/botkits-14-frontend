@@ -16,6 +16,7 @@
 }
 
 .list {
+  list-style-type: none;
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(0, 125px));
   grid-template-columns: repeat(auto-fit, minmax(134px, 188px));
@@ -34,7 +35,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #d7deea;
+    background: $secondary-cultured-press;
     border-radius: 17px;
   }
 
@@ -66,12 +67,6 @@
       @include size(0, 0);
     }
   }
-}
-
-.item {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(134px, 188px));
-  align-items: flex-start;
 }
 
 .accordion_wrapper {

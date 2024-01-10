@@ -1,46 +1,38 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, useEffect } from 'react';
-import BotTemplatesCard from '../../components/BotTemplatesCard/BotTemplatesCard';
+import BotTemplatesCard from '../../components/bot-templates-card/bot-templates-card';
 import stylesBotTemplates from './bot-templates.module.scss';
 import Typography from '../../ui/typography/typography';
 import Button from '../../ui/buttons/button/button';
-import { mockBotTemplates } from '../../utils/mockBotTemplates';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import CreateBotTemplatesPopup from '../../components/popups/create-bot-template-popup/create-bot-template-popup';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { getTemplatesBotsSel, getBotsSel } from '../../utils/selectorData';
+import { getTemplatesBotsSel } from '../../utils/selectorData';
 import {
   getTemplatesBotsAction,
   deleteBotTemplatesAction,
 } from '../../services/actions/bots/templatesBots';
-import { getAccessToken } from '../../auth/authService';
 
 const BotTemplates: FC = () => {
-  const { templatesBots } = useAppSelector(getTemplatesBotsSel);
-  const [arrCard, setArrCard] = useState(templatesBots);
+  const { botTemplates } = useAppSelector(getTemplatesBotsSel);
+  const [templates, setTemplates] = useState(botTemplates);
   const [isVisiblePopup, setVisiblePopup] = useState(false);
   const dispatch = useAppDispatch();
 
-  const token = getAccessToken();
-
   useEffect(() => {
-    dispatch(getTemplatesBotsAction(token));
-  }, [dispatch, templatesBots]);
-
-  useEffect(() => {
-    setArrCard(templatesBots);
-  }, [templatesBots]);
+    if (botTemplates.length !== 0) {
+      setTemplates(botTemplates);
+    } else dispatch(getTemplatesBotsAction());
+  }, [botTemplates]);
 
   const onDeleteCard = (id: string) => {
     // eslint-disable-next-line no-underscore-dangle
     // setArrCard(arrCard!.filter((pr) => pr._id !== id));
-    dispatch(deleteBotTemplatesAction(id, token));
+    dispatch(deleteBotTemplatesAction(id));
   };
 
   const onClickButton = () => {
     setVisiblePopup(!isVisiblePopup);
-    console.log(arrCard);
   };
 
   return (
@@ -65,8 +57,8 @@ const BotTemplates: FC = () => {
         className={`
           ${stylesBotTemplates.list} `}
       >
-        {arrCard &&
-          arrCard.map((templateBot) => (
+        {templates &&
+          templates.map((templateBot) => (
             <BotTemplatesCard
               card={templateBot}
               disabled={templateBot.features ? undefined : true}
