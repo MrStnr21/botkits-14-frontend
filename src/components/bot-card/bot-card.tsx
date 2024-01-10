@@ -1,43 +1,52 @@
+/* eslint-disable no-underscore-dangle */
 import { FC, useState } from 'react';
 
-import stylesBotCard from './bot-card.module.scss';
-
-import tg from '../../images/icon/40x40/telegram/default.svg';
+import { useNavigate } from 'react-router';
+import styles from './bot-card.module.scss';
 
 import MoreMybotPopup from '../popups/more-mybot/more-mybot';
 import Typography from '../../ui/typography/typography';
+import { TBot } from '../../services/types/bot';
+import Icon from '../../ui/icon/icon';
+import messengerIcons from './utils';
+import routesUrl from '../../utils/routesData';
 
 export interface IBotCard {
-  platform_icon: string;
-  bot_name: string;
-  bot_id?: string;
+  bot: TBot;
 }
 
-const BotCard: FC<IBotCard> = ({
-  platform_icon = tg,
-  bot_name = 'Название бота',
-  bot_id = '980809809',
-}): JSX.Element => {
+const BotCard: FC<IBotCard> = ({ bot }) => {
   const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <div className={stylesBotCard.card}>
-      <img className={stylesBotCard.icon} src={platform_icon} alt="иконка" />
+    <div className={styles.card}>
       <div
-        className={stylesBotCard.more_button}
+        className={styles.more_button}
         onClick={() => setIsActive(!isActive)}
         aria-label="Меню настроек бота"
       />
-      <div className={stylesBotCard.name_box}>
-        <Typography
-          tag="p"
-          fontFamily="secondary"
-          className={stylesBotCard.name}
-        >
-          {bot_name}
-        </Typography>
+      <div
+        className={styles.wrapper}
+        onClick={() => {
+          // eslint-disable-next-line no-underscore-dangle
+          navigate(`/${routesUrl.botBuilder}?id=${bot._id}&type=custom`);
+        }}
+      >
+        {bot.messengers[0] && (
+          <Icon
+            extraClass={styles.icon}
+            icon={messengerIcons[bot.messengers[0].name]}
+            isColored={false}
+          />
+        )}
+        <div className={styles.name_box}>
+          <Typography tag="p" fontFamily="secondary" className={styles.name}>
+            {bot.title}
+          </Typography>
+        </div>
       </div>
-      {isActive && <MoreMybotPopup setIsOpen={setIsActive} idMyBot={bot_id} />}
+      {isActive && <MoreMybotPopup setIsOpen={setIsActive} bot={bot} />}
     </div>
   );
 };

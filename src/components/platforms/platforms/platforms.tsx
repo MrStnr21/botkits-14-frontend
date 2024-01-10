@@ -2,30 +2,27 @@ import { FC, useEffect, useRef } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useDraggable } from 'react-use-draggable-scroll';
 
-import stylesAddBot from './add-bot.module.scss';
+import styles from './platforms.module.scss';
 
 import ButtonAddSocial from '../../../ui/buttons/button-add-social/button-add-social';
 import { IBot } from '../../../utils/types';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
-import { getAccessToken } from '../../../auth/authService';
 import { getPlatformsAction } from '../../../services/actions/platforms/getPlatforms';
 import { getPlatformsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 
-interface IAddBot {
+interface IPlatforms {
   onClick: (name: string, pages: boolean, botURI: boolean) => void;
   bot: IBot;
 }
 
-const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
+const Platforms: FC<IPlatforms> = ({ onClick, bot }) => {
   const { platforms } = useAppSelector(getPlatformsSel);
 
   const dispatch = useAppDispatch();
 
-  const token = getAccessToken();
-
   useEffect(() => {
-    dispatch(getPlatformsAction(token));
+    dispatch(getPlatformsAction());
   }, [dispatch]);
 
   const ref =
@@ -33,17 +30,13 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
   const { events } = useDraggable(ref);
 
   return (
-    <div className={stylesAddBot.add_bot}>
-      <Typography
-        tag="h2"
-        fontFamily="secondary"
-        className={stylesAddBot.add_bot_title}
-      >
+    <div>
+      <Typography tag="h2" fontFamily="secondary" className={styles.title}>
         Добавить бота
       </Typography>
-      <ul className={stylesAddBot.add_bot_list} {...events} ref={ref}>
+      <ul className={styles.list} {...events} ref={ref}>
         {platforms?.map((platform) => (
-          <li key={platform.title} className={stylesAddBot.add_bot_item}>
+          <li key={platform.title} className={styles.item}>
             <ButtonAddSocial
               social={platform.icon}
               onClick={() =>
@@ -71,4 +64,4 @@ const AddBot: FC<IAddBot> = ({ onClick, bot }): JSX.Element => {
   );
 };
 
-export default AddBot;
+export default Platforms;

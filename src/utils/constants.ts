@@ -73,3 +73,10 @@ export enum POPUP_ITEM {
   LINK = 'Получить ссылку',
   DEFAULT = '',
 }
+
+export const baseSlateData = [
+  {
+    type: 'paragraph',
+    children: [{ text: '' }],
+  },
+];

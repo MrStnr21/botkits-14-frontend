@@ -27,9 +27,9 @@
   background-color: inherit;
   padding: 0;
   z-index: 1;
-  resize: none;
-  border: none;
   text-align: left;
+  overflow-y: scroll;
+  cursor: text;
 
   @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
