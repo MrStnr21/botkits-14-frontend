@@ -4,12 +4,12 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router';
 import styles from './bot-card.module.scss';
 
-import MoreMybotPopup from '../popups/more-mybot/more-mybot';
 import Typography from '../../ui/typography/typography';
 import { TBot } from '../../services/types/bot';
 import Icon from '../../ui/icon/icon';
-import messengerIcons from './utils';
+import { messengerIcons } from './utils';
 import routesUrl from '../../utils/routesData';
+import BotActions from './popups/bot-actions/bot-actions';
 
 export interface IBotCard {
   bot: TBot;
@@ -46,7 +46,7 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
           </Typography>
         </div>
       </div>
-      {isActive && <MoreMybotPopup setIsOpen={setIsActive} bot={bot} />}
+      {isActive && <BotActions setIsOpen={setIsActive} bot={bot} />}
     </div>
   );
 };

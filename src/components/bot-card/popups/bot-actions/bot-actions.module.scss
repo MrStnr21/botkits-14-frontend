@@ -1,0 +1,22 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+div.layout {
+  @include position(absolute, 60px, $left: 50%);
+  width: 244px;
+  box-shadow: $l-box-shadow;
+  z-index: 4;
+}
+
+.item:first-child {
+  padding-bottom: 15px;
+  border-bottom: 1px solid $secondary-cultured-press;
+}
+
+.item:last-child {
+  padding-top: 15px;
+  border-top: 1px solid $secondary-cultured-press;
+}
+.icon {
+  color: $grey-3;
+}
