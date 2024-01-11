@@ -1,5 +1,5 @@
 import { MessageDataTypes } from '../../../services/types/builder';
-import { IconName } from '../../../ui/icon/utils';
+import { Option } from '../../../utils/types';
 
 export enum ButtonSizes {
   startX = 32,
@@ -51,12 +51,7 @@ export const selectValuesType = [
   { value: 'CRM', label: 'CRM' },
 ];
 
-type SignSelectValue = {
-  icon: IconName;
-  value: string;
-  label: string;
-};
-export const signSelectValues: SignSelectValue[] = [
+export const signSelectValues: Option[] = [
   {
     icon: 'equal',
     value: 'eq',
