@@ -52,7 +52,7 @@ function renameBotApi(id: string, title: string) {
     uri: `bots`,
     id,
     auth: true,
-    data: title,
+    data: { title },
   });
 }
 

@@ -27,7 +27,7 @@ import {
 import { TBot } from '../../types/bot';
 
 export type TBotsState = {
-  bots: TBot[] | [];
+  bots: TBot[];
 
   botsRequest: boolean;
   botsSuccess: boolean;
@@ -130,9 +130,9 @@ function botsReducer(
     case RENAME_BOT_SUCCESS: {
       return {
         ...state,
-        bots: state.bots.map((bot) =>
+        bots: [...state.bots].map((bot) =>
           // eslint-disable-next-line no-underscore-dangle
-          bot._id === action.id ? { ...bot, name: action.title } : bot
+          bot._id === action.id ? { ...bot, title: action.title } : bot
         ),
         botSuccess: true,
         botRequest: false,
