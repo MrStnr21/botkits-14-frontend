@@ -27,9 +27,9 @@ const InfoPopup: FC<IInfoPopup> = ({ title, info, successCopyText }) => {
     if (isSuccess) {
       setStatus('success');
     } else setStatus('error');
-    // setTimeout(() => {
-    //   setCopied(false);
-    // }, 2000);
+    setTimeout(() => {
+      setStatus('notRequested');
+    }, 2000);
   };
 
   return (
