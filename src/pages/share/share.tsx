@@ -16,9 +16,13 @@ import useModal from '../../services/hooks/use-modal';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
 
+type TableData = {
+  [key: string]: any;
+};
+
 const Share: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
-  const [tableData, setTableData] = useState(shareRows);
+  const [tableData, setTableData] = useState<TableData[]>(shareRows);
   console.log(tableData);
   const onCellUpdate = (rowId: number, colName: string, updatedValue?: any) => {
     const updatedData = [...tableData];

@@ -17,7 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
-import { Box, Checkbox, Tab } from '@mui/material';
+import { Box, Checkbox } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
@@ -39,7 +39,7 @@ type Columns = {
   key: string;
   label: ReactNode;
   colStyle?: SxProps;
-  cellComponent?: (data: any, id: string, onCellUpdate?: any) => ReactNode;
+  cellComponent?: (data: any, onCellUpdate?: any) => ReactNode;
 };
 
 type TableData = {
@@ -78,7 +78,9 @@ type Props = {
   toolbarFilters?: boolean;
   // количество отображаемых на одной странице строк в начальном состоянии таблицы
   rowsPerPageValue?: number;
+  // функция обновления данных в ячейке
   onCellUpdate?: (rowId: number, colName: string, newValue: any) => void;
+  // функция обновления строк в таблице
   onRowsUpdate?: (updatedData: any) => void;
 };
 
@@ -106,7 +108,6 @@ const EnhancedTable: FC<Props> = ({
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
-  const [updatedCells, setUpdatedCells] = useState<{ [key: string]: any }>({});
   // исп. для обновления строк в зависимости от фильтра в хидере
   useEffect(() => {
     setRows(tableData);
@@ -134,11 +135,6 @@ const EnhancedTable: FC<Props> = ({
     );
     console.log('Значение изменено:', rowId, colName, updatedValue);
     setRows(updatedTableData);
-    const cellKey = `${rowId}_${colName}`;
-    setUpdatedCells((prevCells) => ({
-      ...prevCells,
-      [cellKey]: updatedValue,
-    }));
     if (onCellUpdate) {
       onCellUpdate(rowId, colName, updatedValue);
     }
@@ -267,14 +263,11 @@ const EnhancedTable: FC<Props> = ({
                       />
                     </TableCell>
                   )}
-                  {columns?.map(({ key, cellComponent, id }) => (
+                  {columns?.map(({ key, cellComponent }) => (
                     <TableCell key={`${row.id}_${key}`} sx={props.cellStyle}>
                       {cellComponent ? (
-                        cellComponent(
-                          row[key],
-                          `${row.id}_${key}`,
-                          (newValue: any) =>
-                            handleCellUpdate(row.id, key, newValue)
+                        cellComponent(row[key], (newValue: any) =>
+                          handleCellUpdate(row.id, key, newValue)
                         )
                       ) : (
                         <Typography tag="p">{row[key]}</Typography>
