@@ -33,13 +33,15 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
           navigate(`/${routesUrl.botBuilder}?id=${bot._id}&type=custom`);
         }}
       >
-        {bot.messengers[0] && (
-          <Icon
-            extraClass={styles.icon}
-            icon={messengerIcons[bot.messengers[0].name]}
-            isColored={false}
-          />
-        )}
+        <Icon
+          extraClass={styles.icon}
+          icon={
+            bot.messengers[0]
+              ? messengerIcons[bot.messengers[0]!.name]
+              : 'xCircle'
+          }
+          isColored={false}
+        />
         <div className={styles.name_box}>
           <Typography tag="p" fontFamily="secondary" className={styles.name}>
             {bot.title}
