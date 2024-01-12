@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 
-import styles from './bot-actions.module.scss';
+import styles from './bot-actions-menu.module.scss';
 
 import { TBot } from '../../../../services/types/bot';
 import useModal from '../../../../services/hooks/use-modal';
@@ -9,15 +8,20 @@ import { copyBotAction } from '../../../../services/actions/bots/addBot';
 import { deleteBotAction } from '../../../../services/actions/bots/deleteBot';
 import { useAppDispatch } from '../../../../services/hooks/hooks';
 import Menu from '../../../../ui/menus/menu/menu';
-import { BotActionValues, BotActionsOption, botActions } from '../../utils';
 import PopupRouter from '../popup-router';
+import { BotActionValues, BotActionsOption, botActions } from '../utils';
+import useEscapeKey from '../../../../utils/hooks/useEscapeKey';
 
-interface IBotActions {
+interface IBotActionsMenu {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   bot: TBot;
 }
 
-const BotActions: FC<IBotActions> = ({ setIsOpen, bot }) => {
+const BotActionsMenu: FC<IBotActionsMenu> = ({ setIsOpen, bot }) => {
+  useEscapeKey(() => {
+    setIsOpen(false);
+  });
+
   const dispatch = useAppDispatch();
   const [action, setAction] = useState<BotActionValues>();
   const { isModalOpen, closeModal, openModal } = useModal();
@@ -72,4 +76,4 @@ const BotActions: FC<IBotActions> = ({ setIsOpen, bot }) => {
   );
 };
 
-export default BotActions;
+export default BotActionsMenu;

@@ -2,7 +2,7 @@
 @use '../../../../stylesheets/mixins' as *;
 
 div.layout {
-  @include position(absolute, 60px, $left: 50%);
+  @include position(absolute, 60px, 0);
   width: 244px;
   box-shadow: $l-box-shadow;
   z-index: 4;
