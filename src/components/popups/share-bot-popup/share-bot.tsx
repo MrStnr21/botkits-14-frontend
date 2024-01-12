@@ -7,10 +7,14 @@ import Typography from '../../../ui/typography/typography';
 
 interface IProps {
   onCancelClick?: () => void;
-  onSubmitClick?: () => void;
+  onSubmitClick: (inputValue: string) => void;
 }
 const ShareBotPopup: FC<IProps> = ({ onCancelClick, onSubmitClick }) => {
   const [inputValue, setInputValue] = useState('');
+
+  const handleAddClick = () => {
+    onSubmitClick(inputValue);
+  };
   return (
     <div className={styles.shareBotPopup}>
       <Typography tag="h3" fontFamily="secondary">
@@ -32,7 +36,7 @@ const ShareBotPopup: FC<IProps> = ({ onCancelClick, onSubmitClick }) => {
           Отмена
         </Button>
         <Button
-          onClick={onSubmitClick}
+          onClick={handleAddClick}
           size="large"
           variant="default"
           color="blue"

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import {
   shareTableModalButtons,
   shareRows,
@@ -31,6 +32,22 @@ const Share: FC = (): JSX.Element => {
   };
   const onRowsUpdate = (updatedData: any) => {
     setTableData(updatedData);
+  };
+  function removeEmail(inputValue: string) {
+    const atIndex = inputValue.indexOf('@');
+    if (atIndex !== -1) {
+      return inputValue.substring(0, atIndex);
+    }
+    return inputValue;
+  }
+  const addTableData = (inputValue: string) => {
+    const newRow = {
+      id: uuidv4(),
+      mail: inputValue,
+      name: removeEmail(inputValue),
+    };
+    setTableData((prevData) => [...prevData, newRow]);
+    closeModal();
   };
 
   return (
@@ -77,7 +94,10 @@ const Share: FC = (): JSX.Element => {
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
-          <ShareBotPopup onCancelClick={closeModal} />
+          <ShareBotPopup
+            onCancelClick={closeModal}
+            onSubmitClick={addTableData}
+          />
         </ModalPopup>
       )}
     </div>
