@@ -1,4 +1,5 @@
-import { FC } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FC, useState } from 'react';
 import {
   shareTableModalButtons,
   shareRows,
@@ -17,6 +18,16 @@ import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
 
 const Share: FC = (): JSX.Element => {
   const { isModalOpen, closeModal, openModal } = useModal();
+  const [tableData, setTableData] = useState(shareRows);
+  console.log(tableData);
+  const onCellUpdate = (rowId: number, colName: string, updatedValue?: any) => {
+    const updatedData = [...tableData];
+    updatedData[rowId] = { ...updatedData[rowId], [colName]: updatedValue };
+    setTableData(updatedData);
+  };
+  const onRowsUpdate = (updatedData: any) => {
+    setTableData(updatedData);
+  };
 
   return (
     <div className={stylesShare.share}>
@@ -52,11 +63,13 @@ const Share: FC = (): JSX.Element => {
         dropdown
         columns={shareCols}
         headComponent={ppHeadCell}
-        tableData={shareRows}
+        tableData={tableData}
         rowStyle={rowStyleRef}
         cellStyle={cellStyle}
         shadow={1}
         menuOptions={shareTableModalButtons}
+        onCellUpdate={onCellUpdate}
+        onRowsUpdate={onRowsUpdate}
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>

@@ -39,7 +39,7 @@ type Columns = {
   key: string;
   label: ReactNode;
   colStyle?: SxProps;
-  cellComponent?: (data: any, id: string) => ReactNode;
+  cellComponent?: (data: any, id: string, onCellUpdate?: any) => ReactNode;
 };
 
 type TableData = {
@@ -78,6 +78,8 @@ type Props = {
   toolbarFilters?: boolean;
   // количество отображаемых на одной странице строк в начальном состоянии таблицы
   rowsPerPageValue?: number;
+  onCellUpdate?: (rowId: number, colName: string, newValue: any) => void;
+  onRowsUpdate?: (updatedData: any) => void;
 };
 
 const EnhancedTable: FC<Props> = ({
@@ -96,12 +98,15 @@ const EnhancedTable: FC<Props> = ({
   tableHeaderTitle,
   toolbarFilters,
   rowsPerPageValue = 5,
+  onCellUpdate,
+  onRowsUpdate,
   ...props
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
   const [rows, setRows] = useState(tableData);
+  const [updatedCells, setUpdatedCells] = useState<{ [key: string]: any }>({});
   // исп. для обновления строк в зависимости от фильтра в хидере
   useEffect(() => {
     setRows(tableData);
@@ -114,6 +119,29 @@ const EnhancedTable: FC<Props> = ({
   const handleRemoveRow = (indexToRemove: number) => {
     const updatedRows = rows.filter((_, index) => index !== indexToRemove);
     setRows(updatedRows);
+    if (onRowsUpdate) {
+      onRowsUpdate(updatedRows);
+    }
+  };
+  // функция обновления состояния табличной ячейки
+  const handleCellUpdate = (
+    rowId: number,
+    colName: string,
+    updatedValue?: any
+  ) => {
+    const updatedTableData = tableData.map((row) =>
+      row.id === rowId ? { ...row, [colName]: updatedValue } : row
+    );
+    console.log('Значение изменено:', rowId, colName, updatedValue);
+    setRows(updatedTableData);
+    const cellKey = `${rowId}_${colName}`;
+    setUpdatedCells((prevCells) => ({
+      ...prevCells,
+      [cellKey]: updatedValue,
+    }));
+    if (onCellUpdate) {
+      onCellUpdate(rowId, colName, updatedValue);
+    }
   };
   // изменение кол-ва страниц в зависимости от количества строк на одной странице
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -240,9 +268,14 @@ const EnhancedTable: FC<Props> = ({
                     </TableCell>
                   )}
                   {columns?.map(({ key, cellComponent, id }) => (
-                    <TableCell key={id} sx={props.cellStyle}>
+                    <TableCell key={`${row.id}_${key}`} sx={props.cellStyle}>
                       {cellComponent ? (
-                        cellComponent(row[key], uuidv4())
+                        cellComponent(
+                          row[key],
+                          `${row.id}_${key}`,
+                          (newValue: any) =>
+                            handleCellUpdate(row.id, key, newValue)
+                        )
                       ) : (
                         <Typography tag="p">{row[key]}</Typography>
                       )}

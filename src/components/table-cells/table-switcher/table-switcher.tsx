@@ -4,14 +4,18 @@ import styles from './table-switcher.module.scss';
 
 interface IProps {
   status: boolean;
-  id: string;
+  cellKey: string;
+  onCellUpdate: (newValue: any) => void;
 }
 
-const TableSwitcher: FC<IProps> = ({ status, id }) => {
+const TableSwitcher: FC<IProps> = ({ status, cellKey, onCellUpdate }) => {
   const [chosen, setChosen] = useState(status);
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    setChosen(!chosen);
+    const newStatus = !chosen;
+    console.log('New Status:', newStatus);
+    setChosen(newStatus);
+    onCellUpdate(newStatus);
   };
 
   return (

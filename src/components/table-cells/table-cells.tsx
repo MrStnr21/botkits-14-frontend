@@ -70,8 +70,16 @@ export const paymentStatusCell = (status: boolean) => (
 );
 // Промокоды, общий доступ, пользователи:
 
-export const switcherCell = (status: boolean, id: string) => (
-  <TableSwitcher status={status} id={id} />
+export const switcherCell = (
+  status: boolean,
+  cellKey: string,
+  onCellUpdate: any
+) => (
+  <TableSwitcher
+    status={status}
+    cellKey={cellKey}
+    onCellUpdate={onCellUpdate}
+  />
 );
 
 export const inputCell = (value: string) => {
