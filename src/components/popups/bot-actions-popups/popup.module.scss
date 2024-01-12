@@ -1,0 +1,101 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container {
+  @include flex(column, unset, unset, 20px);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 40px;
+  background-color: $off-white;
+  box-shadow: $l-box-shadow;
+  border-radius: $xxl-border-radius;
+  width: 464px;
+  position: relative;
+
+  @media screen and (max-width: $switching-width) {
+    max-width: 320px;
+    padding: 40px 24px;
+  }
+
+  &.wide {
+    width: 720px;
+
+    @media screen and (max-width: 860px) {
+      max-width: 464px;
+    }
+
+    @media screen and (max-width: $switching-width) {
+      max-width: 320px;
+    }
+  }
+}
+
+.buttons {
+  @include flex(row, flex-end, unset, 12px);
+}
+
+.cancel {
+  @include button-style-reset;
+  @include font('IBM Plex Mono', $s-font-size, $bold);
+  @include line-sizes($m-line-height, $xxl-letter-space);
+  border-radius: $l-border-radius;
+  text-transform: uppercase;
+  color: $grey-4;
+  padding: 13px 31px;
+
+  &:hover {
+    background-color: $secondary-cultured-focus;
+  }
+
+  &:active {
+    background-color: $blue-disabled;
+  }
+}
+
+.submit {
+  min-width: 222px;
+
+  @media screen and (max-width: 520px) {
+    min-width: 142px;
+  }
+}
+
+.copy_section {
+  @include flex(row, space-between, flex-end, 8px);
+  box-sizing: border-box;
+  width: 100%;
+
+  &:not(:last-of-type) {
+    padding-bottom: 20px;
+    border-bottom: 1px solid $secondary-cultured-focus;
+  }
+
+  .title {
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .value {
+    overflow-wrap: anywhere;
+  }
+
+  @media screen and (max-width: 860px) {
+    align-items: center;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+.copied {
+  @include indents(13px 20px, 0);
+  @include position(absolute, -60px, 30%);
+  color: $off-white;
+  box-sizing: border-box;
+  background-color: $secondary-xiketic-press;
+  border-radius: $l-border-radius;
+  animation: fadeOut 1s ease-out forwards;
+  animation-delay: 1s;
+}
