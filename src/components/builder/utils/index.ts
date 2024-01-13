@@ -167,6 +167,11 @@ export const saveVariable = (
   }
 };
 
+/**
+ * проверка variables, что все ноды с соответствующими id существуют 
+ * @param {TVariable[]} variables массив переменных
+ * @param {Node[]} nodes массив нод
+ */
 export const checkVariables = (variables: TVariable[], nodes: Node[]) => {
 
   const indexesVariables: number[] = [];
@@ -181,6 +186,13 @@ export const checkVariables = (variables: TVariable[], nodes: Node[]) => {
   });
 };
 
+/**
+ * сохранение name
+ * @param {TName[]} names массив имен блоков
+ * @param {string} name сохраняемое имя блока
+ * @param {string} id id имени (блока)
+ * @param {string} type тип блока (ноды)
+ */
 export const saveName = (
   names: TName[],
   name: string,
@@ -202,6 +214,11 @@ export const saveName = (
   }
 };
 
+/**
+ * проверка names, что все ноды с соответствующими id существуют 
+ * @param {TName[]} names массив имен
+ * @param {Node[]} nodes массив нод
+ */
 export const checkNames = (names: TName[], nodes: Node[]) => {
 
   const indexesNames: number[] = [];
@@ -216,6 +233,15 @@ export const checkNames = (names: TName[], nodes: Node[]) => {
   });
 };
 
+/**
+ * сохранение trigger
+ * @param {TTrigger[]} triggers массив триггеров
+ * @param {string} id id триггера
+ * @param {string} tag ключевое слово триггера
+ * @param {'block' | 'text'} type тип ответного действия бота
+ * @param {string} name имя блока в селекте
+ * @param {string} text текст ответа
+ */
 export const saveTrigger = (
   triggers: TTrigger[],
   id: string,
@@ -267,6 +293,9 @@ export const getUrlPath: {
   template: 'bots/template',
 };
 
+/**
+ * сохранение ноды в стор ReactFlow (дженерик по типу передаваемого value)
+ */
 export function saveNode<T>({
   node,
   value,
@@ -320,6 +349,10 @@ export const iconOfPlatform: {
   'Веб-сайт': ws,
 };
 
+/**
+ * очистка массива любых данных
+ * @param {any[]} elements массив любых значений
+ */
 export const resetVar = (elements: any[]) => {
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < elements.length; i++) {
@@ -327,10 +360,21 @@ export const resetVar = (elements: any[]) => {
   }
 };
 
+/**
+ * создание строки из любого числа строк, разделенных строкой-сепаратором
+ * @param {string[]} strings массив разделяемых строк
+ * @param {string} separator сепаратор
+ * @returns строка из строк, разделенных сепаратором
+ */
 export const connectStrings = (strings: string[], separator: string) => {
   return strings.join(separator);
 };
 
+/**
+ * создание массива объектов для передачи в селект из массива объектов с ключем name 
+ * @param {{ name: string }[]} store массив разделяемых строк
+ * @returns {{ value: string, label: string }[]} массива объектов с ключями value и label
+ */
 export const getSelectLabel = (store: { name: string }[]) =>
   store.map((elem, ind) => ({
     value: `${ind + 1}`,
