@@ -7,8 +7,8 @@ import CustomHandle from '../flow/custom-handle/custom-handle';
 import {
   setFlowDataInit,
   saveName,
-  checkNames,
-  checkVariables,
+  clearingNames,
+  clearingVariables,
 } from '../utils';
 import { namesOfBlocks, storeOfVariables } from '../utils/store';
 
@@ -35,8 +35,8 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
 
   useEffect(() => {
     saveName(namesOfBlocks, node!.data.name, id, node!.type);
-    checkNames(namesOfBlocks, getNodes());
-    checkVariables(storeOfVariables, getNodes());
+    clearingNames(namesOfBlocks, getNodes());
+    clearingVariables(storeOfVariables, getNodes());
   }, [getNodes()]);
 
   const setName = (e: React.ChangeEvent<HTMLInputElement>) => {

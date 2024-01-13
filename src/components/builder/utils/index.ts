@@ -168,11 +168,11 @@ export const saveVariable = (
 };
 
 /**
- * проверка variables, что все ноды с соответствующими id существуют 
+ * проверка variables, что все ноды с соответствующими id существуют, и очистка variables от "старых" переменных
  * @param {TVariable[]} variables массив переменных
  * @param {Node[]} nodes массив нод
  */
-export const checkVariables = (variables: TVariable[], nodes: Node[]) => {
+export const clearingVariables = (variables: TVariable[], nodes: Node[]) => {
 
   const indexesVariables: number[] = [];
   variables.forEach((el, ind) => {
@@ -215,11 +215,11 @@ export const saveName = (
 };
 
 /**
- * проверка names, что все ноды с соответствующими id существуют 
+ * проверка names, что все ноды с соответствующими id существуют, и очистка variables от "старых" имен
  * @param {TName[]} names массив имен
  * @param {Node[]} nodes массив нод
  */
-export const checkNames = (names: TName[], nodes: Node[]) => {
+export const clearingNames = (names: TName[], nodes: Node[]) => {
 
   const indexesNames: number[] = [];
   names.forEach((el, ind) => {
@@ -371,9 +371,9 @@ export const connectStrings = (strings: string[], separator: string) => {
 };
 
 /**
- * создание массива объектов для передачи в селект из массива объектов с ключем name 
+ * создание массива объектов для передачи в селект из массива объектов с ключом name 
  * @param {{ name: string }[]} store массив разделяемых строк
- * @returns {{ value: string, label: string }[]} массива объектов с ключями value и label
+ * @returns {{ value: string, label: string }[]} массива объектов с ключами value и label
  */
 export const getSelectLabel = (store: { name: string }[]) =>
   store.map((elem, ind) => ({
