@@ -23,10 +23,12 @@ import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
+import { useAppSelector } from '../../services/hooks/hooks';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
   const isMobile = useMediaQuery('(max-width: 860px)');
+  const { data } = useAppSelector((s) => s.errors);
 
   return (
     <Routes>

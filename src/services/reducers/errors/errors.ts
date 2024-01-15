@@ -4,8 +4,15 @@ import {
   TErrorActions,
 } from '../../actions/errors/errors';
 
-const errorsInitialState = {
-  amount: 3,
+type TErrorState = {
+  data: {
+    id: string;
+    message?: string;
+  }[];
+};
+
+const errorsInitialState: TErrorState = {
+  data: [],
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
@@ -14,13 +21,13 @@ function errorReducer(state = errorsInitialState, action: TErrorActions) {
     case ADD_ERROR: {
       return {
         ...state,
-        amount: state.amount + 1,
+        data: [...state.data, action.payload],
       };
     }
     case REMOVE_ERROR: {
       return {
         ...state,
-        amount: state.amount - 1,
+        data: state.data.filter((item) => item.id !== action.payload.id),
       };
     }
     default: {
