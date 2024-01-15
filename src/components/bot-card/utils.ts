@@ -1,4 +1,4 @@
-import { IconName } from '../../ui/icon/icon-mapping';
+import { IconName } from '../../ui/icon/utils';
 
 type ImageMap = {
   [key: string]: IconName;
