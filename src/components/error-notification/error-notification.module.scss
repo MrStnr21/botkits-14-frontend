@@ -1,8 +1,44 @@
 @use '../../stylesheets/variables' as *;
 @use '../../stylesheets/mixins' as *;
 
+@keyframes vanish {
+  0% {
+    opacity: .9;
+  }
+  50% {
+    opacity: .9;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+
 .container {
-  @include size(100px, 50px);
-  background-color: red;
+  @include flex(column, $align-items: center, $gap: 10px);
+  position: relative;
+  width: 300px;
+  padding: 20px 10px;
+  background-color: $error-default;
   border-radius: 30px;
+  opacity: .9;
+
+  &.animated {
+    animation: vanish 5s forwards;
+  }
+}
+
+.title {
+  color: $off-white;
+}
+
+.message {
+  color: $off-white;
+  text-align: center;
+}
+
+.remove {
+  @include button-style-reset;
+  @include size(20px, 20px);
+  @include position(absolute, 10px, 20px)
 }

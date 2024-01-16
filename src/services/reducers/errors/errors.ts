@@ -1,18 +1,19 @@
 import {
   ADD_ERROR,
   REMOVE_ERROR,
+  TError,
   TErrorActions,
 } from '../../actions/errors/errors';
 
 type TErrorState = {
-  data: {
-    id: string;
-    message?: string;
-  }[];
+  data: TError[];
 };
 
 const errorsInitialState: TErrorState = {
-  data: [],
+  data: [
+    { message: 'ошибка при отправке данных', id: '1' },
+    { message: 'еще ошибка', id: '2' },
+  ],
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
