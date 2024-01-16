@@ -6,7 +6,7 @@ import Input from '../../../ui/inputs/input/input';
 import Typography from '../../../ui/typography/typography';
 
 interface IProps {
-  onCancelClick?: () => void;
+  onCancelClick: () => void;
   onSubmitClick: (inputValue: string) => void;
 }
 const ShareBotPopup: FC<IProps> = ({ onCancelClick, onSubmitClick }) => {
@@ -15,6 +15,7 @@ const ShareBotPopup: FC<IProps> = ({ onCancelClick, onSubmitClick }) => {
   const handleAddClick = () => {
     onSubmitClick(inputValue);
   };
+
   return (
     <div className={styles.shareBotPopup}>
       <Typography tag="h3" fontFamily="secondary">

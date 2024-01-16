@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   shareTableModalButtons,
@@ -16,14 +16,25 @@ import Typography from '../../ui/typography/typography';
 import useModal from '../../services/hooks/use-modal';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
+import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
+import { getBotAccesses } from '../../services/actions/botAccesses/botAccesses';
+import { botAccessesSel } from '../../utils/selectorData';
 
 type TableData = {
   [key: string]: any;
 };
 
-const Share: FC = (): JSX.Element => {
+const Share: FC = () => {
+  const dispatch = useAppDispatch();
+  const { botAccesses } = useAppSelector(botAccessesSel);
+  console.log(botAccesses);
   const { isModalOpen, closeModal, openModal } = useModal();
   const [tableData, setTableData] = useState<TableData[]>(shareRows);
+
+  useEffect(() => {
+    dispatch(getBotAccesses());
+  }, [dispatch]);
+
   console.log(tableData);
   const onCellUpdate = (rowId: number, colName: string, updatedValue?: any) => {
     const updatedData = [...tableData];

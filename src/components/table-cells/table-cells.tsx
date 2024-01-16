@@ -74,8 +74,11 @@ export const switcherCell = (status: boolean, onCellUpdate: any) => (
   <TableSwitcher status={status} onCellUpdate={onCellUpdate} />
 );
 
-export const inputCell = (value: string) => {
-  return <TableInputCell value={value} />;
+export const inputCell = (
+  value: string,
+  onCellUpdate: (newValue: any) => void
+) => {
+  return <TableInputCell value={value} onCellUpdate={onCellUpdate} />;
 };
 
 export const statusPromoCell = (status: boolean) => (

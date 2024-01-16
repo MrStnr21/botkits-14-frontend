@@ -46,7 +46,7 @@ type TableData = {
   [key: string]: any;
 };
 
-type Props = {
+interface IProps {
   columns: Columns[];
   tableData: TableData[];
   headComponent: (data: any) => ReactNode;
@@ -57,7 +57,7 @@ type Props = {
   pagination?: boolean;
   // подключены ли чекбоксы к строке
   check?: boolean;
-  // наличие нопок фильтров и выгрузки над таблицей
+  // наличие кнопок фильтров и выгрузки над таблицей
   toolbar?: boolean;
   // стандартный box-shadow контейнеру таблицы (откл. по умолчанию)
   shadow?: number;
@@ -82,9 +82,9 @@ type Props = {
   onCellUpdate?: (rowId: number, colName: string, newValue: any) => void;
   // функция обновления строк в таблице
   onRowsUpdate?: (updatedData: any) => void;
-};
+}
 
-const EnhancedTable: FC<Props> = ({
+const EnhancedTable: FC<IProps> = ({
   columns,
   tableData,
   pagination,

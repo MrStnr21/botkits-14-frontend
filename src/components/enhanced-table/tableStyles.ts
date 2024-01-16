@@ -56,6 +56,7 @@ export const headCheckBoxStyles = {
     borderRadius: '10px 0 0 10px',
   },
   checked: {
+    color: 'inherit',
     backgroundColor: '#ECEFFF',
     width: '100%',
     borderRadius: '10px 0 0 10px',

@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useRef, useState } from 'react';
 import style from './table-input-cell.module.scss';
 import TableInput from '../../../ui/inputs/table-input/table-input';
 
 interface IProps {
   value: string;
+  onCellUpdate: (newValue: any) => void;
 }
 
-const TableInputCell: FC<IProps> = ({ value }) => {
+const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inpValue, setInpValue] = useState(value);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,9 +24,10 @@ const TableInputCell: FC<IProps> = ({ value }) => {
     setIsEditing(!isEditing);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsEditing(false);
-    return null;
+    onCellUpdate(e.target.value);
+    console.log(`New Value: ${e.target.value}`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
