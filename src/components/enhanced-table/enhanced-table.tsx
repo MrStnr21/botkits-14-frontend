@@ -82,6 +82,7 @@ interface IProps {
   onCellUpdate?: (rowId: number, colName: string, newValue: any) => void;
   // функция обновления строк в таблице
   onRowsUpdate?: (updatedData: any) => void;
+  addTableData?: any;
 }
 
 const EnhancedTable: FC<IProps> = ({
@@ -102,6 +103,7 @@ const EnhancedTable: FC<IProps> = ({
   rowsPerPageValue = 5,
   onCellUpdate,
   onRowsUpdate,
+  addTableData,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -111,7 +113,7 @@ const EnhancedTable: FC<IProps> = ({
   // исп. для обновления строк в зависимости от фильтра в хидере
   useEffect(() => {
     setRows(tableData);
-  }, [onFilterChange, tableData]);
+  }, [onFilterChange, addTableData]);
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -227,8 +229,8 @@ const EnhancedTable: FC<IProps> = ({
                     />
                   </TableCell>
                 )}
-                {columns?.map(({ label, colStyle }) => (
-                  <TableCell key={uuidv4()} sx={colStyle}>
+                {columns?.map(({ label, colStyle, key }) => (
+                  <TableCell key={key} sx={colStyle}>
                     {props.headComponent ? (
                       props.headComponent(label)
                     ) : (

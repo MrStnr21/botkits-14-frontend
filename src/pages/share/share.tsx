@@ -33,32 +33,36 @@ const Share: FC = () => {
 
   useEffect(() => {
     dispatch(getBotAccesses());
-  }, [dispatch]);
+  }, []);
 
   console.log(tableData);
   const onCellUpdate = (rowId: number, colName: string, updatedValue?: any) => {
     const updatedData = [...tableData];
-    updatedData[rowId] = { ...updatedData[rowId], [colName]: updatedValue };
-    setTableData(updatedData);
+    if (updatedData[rowId]) {
+      updatedData[rowId] = { ...updatedData[rowId], [colName]: updatedValue };
+      setTableData(updatedData);
+    }
   };
   const onRowsUpdate = (updatedData: any) => {
     setTableData(updatedData);
   };
-  function removeEmail(inputValue: string) {
+  const removeEmail = (inputValue: string) => {
     const atIndex = inputValue.indexOf('@');
     if (atIndex !== -1) {
       return inputValue.substring(0, atIndex);
     }
     return inputValue;
-  }
+  };
   const addTableData = (inputValue: string) => {
-    const newRow = {
-      id: uuidv4(),
-      mail: inputValue,
-      name: removeEmail(inputValue),
-    };
-    setTableData((prevData) => [...prevData, newRow]);
-    closeModal();
+    if (inputValue) {
+      const newRow = {
+        id: uuidv4(),
+        mail: inputValue,
+        name: removeEmail(inputValue),
+      };
+      setTableData((prevData) => [newRow, ...prevData]);
+      closeModal();
+    }
   };
 
   return (
@@ -102,6 +106,7 @@ const Share: FC = () => {
         menuOptions={shareTableModalButtons}
         onCellUpdate={onCellUpdate}
         onRowsUpdate={onRowsUpdate}
+        addTableData={addTableData}
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
