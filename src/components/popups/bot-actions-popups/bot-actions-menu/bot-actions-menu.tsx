@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, forwardRef, useState } from 'react';
 
 import styles from './bot-actions-menu.module.scss';
 
@@ -10,70 +10,70 @@ import { useAppDispatch } from '../../../../services/hooks/hooks';
 import Menu from '../../../../ui/menus/menu/menu';
 import PopupRouter from '../popup-router';
 import { BotActionValue, BotActionsOption, botActions } from '../utils';
-import useEscapeKey from '../../../../utils/hooks/useEscapeKey';
 
 interface IBotActionsMenu {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   bot: TBot;
 }
 
-const BotActionsMenu: FC<IBotActionsMenu> = ({ setIsOpen, bot }) => {
-  useEscapeKey(() => {
-    setIsOpen(false);
-  });
+type Ref = HTMLDivElement;
 
-  const dispatch = useAppDispatch();
-  const [action, setAction] = useState<BotActionValue>();
-  const { isModalOpen, closeModal, openModal } = useModal();
+const BotActionsMenu = forwardRef<Ref, IBotActionsMenu>(
+  ({ setIsOpen, bot }, ref) => {
+    const dispatch = useAppDispatch();
+    const [action, setAction] = useState<BotActionValue>();
+    const { isModalOpen, closeModal, openModal } = useModal();
 
-  const copyBot = (botId: TBot['_id']) => {
-    dispatch(copyBotAction(botId));
-  };
+    const copyBot = (botId: TBot['_id']) => {
+      dispatch(copyBotAction(botId));
+    };
 
-  const deleteBot = (botId: TBot['_id']) => {
-    dispatch(deleteBotAction(botId));
-  };
+    const deleteBot = (botId: TBot['_id']) => {
+      dispatch(deleteBotAction(botId));
+    };
 
-  const handleBotAction = (option: BotActionsOption) => {
-    const { value } = option;
-    switch (value) {
-      case 'copy':
-        // eslint-disable-next-line no-underscore-dangle
-        copyBot(bot._id);
-        setIsOpen(false);
-        break;
-      case 'delete':
-        // eslint-disable-next-line no-underscore-dangle
-        deleteBot(bot._id);
-        setIsOpen(false);
-        break;
-      case 'share':
-      case 'rename':
-      case 'getLink':
-      case 'getInfo':
-      case 'setNotifications':
-        setAction(value);
-        openModal();
-        break;
-      default:
-        setIsOpen(false);
-    }
-  };
+    const handleBotAction = (option: BotActionsOption) => {
+      const { value } = option;
+      switch (value) {
+        case 'copy':
+          // eslint-disable-next-line no-underscore-dangle
+          copyBot(bot._id);
+          setIsOpen(false);
+          break;
+        case 'delete':
+          // eslint-disable-next-line no-underscore-dangle
+          deleteBot(bot._id);
+          setIsOpen(false);
+          break;
+        case 'share':
+        case 'rename':
+        case 'getLink':
+        case 'getInfo':
+        case 'setNotifications':
+          setAction(value);
+          openModal();
+          break;
+        default:
+          setIsOpen(false);
+      }
+    };
 
-  return (
-    <>
-      <Menu
-        options={botActions}
-        onItemClick={(option) => handleBotAction(option as BotActionsOption)}
-        layoutClassName={styles.layout}
-        itemClassName={styles.item}
-        iconClassName={styles.icon}
-      />
-      {isModalOpen && action && (
-        <PopupRouter action={action} close={closeModal} bot={bot} />
-      )}
-    </>
-  );
-};
+    return (
+      <>
+        <Menu
+          options={botActions}
+          onItemClick={(option) => handleBotAction(option as BotActionsOption)}
+          layoutClassName={styles.layout}
+          itemClassName={styles.item}
+          iconClassName={styles.icon}
+          ref={ref}
+        />
+        {isModalOpen && action && (
+          <PopupRouter action={action} close={closeModal} bot={bot} />
+        )}
+      </>
+    );
+  }
+);
 
 export default BotActionsMenu;
