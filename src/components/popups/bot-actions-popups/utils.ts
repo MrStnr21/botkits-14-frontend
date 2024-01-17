@@ -1,6 +1,6 @@
 import type { Option } from '../../../utils/types';
 
-type BotActionValues =
+type BotActionValue =
   | 'copy'
   | 'share'
   | 'rename'
@@ -9,7 +9,7 @@ type BotActionValues =
   | 'setNotifications'
   | 'delete';
 
-type BotActionsOption = Omit<Option, 'value'> & { value: BotActionValues };
+type BotActionsOption = Omit<Option, 'value'> & { value: BotActionValue };
 
 const botActions: BotActionsOption[] = [
   {
@@ -49,5 +49,5 @@ const botActions: BotActionsOption[] = [
   },
 ];
 
-export type { BotActionValues, BotActionsOption };
+export type { BotActionValue, BotActionsOption };
 export { botActions };

@@ -130,7 +130,7 @@ function botsReducer(
     case RENAME_BOT_SUCCESS: {
       return {
         ...state,
-        bots: [...state.bots].map((bot) =>
+        bots: state.bots.map((bot) =>
           // eslint-disable-next-line no-underscore-dangle
           bot._id === action.id ? { ...bot, title: action.title } : bot
         ),

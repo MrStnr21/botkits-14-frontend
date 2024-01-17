@@ -4,12 +4,11 @@
 .container {
   @include flex(column, unset, unset, 20px);
   box-sizing: border-box;
-  width: 100%;
+  width: 464px;
   padding: 40px;
   background-color: $off-white;
   box-shadow: $l-box-shadow;
   border-radius: $xxl-border-radius;
-  width: 464px;
   position: relative;
 
   @media screen and (max-width: $switching-width) {

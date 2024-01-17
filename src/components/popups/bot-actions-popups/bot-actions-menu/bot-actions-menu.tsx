@@ -9,7 +9,7 @@ import { deleteBotAction } from '../../../../services/actions/bots/deleteBot';
 import { useAppDispatch } from '../../../../services/hooks/hooks';
 import Menu from '../../../../ui/menus/menu/menu';
 import PopupRouter from '../popup-router';
-import { BotActionValues, BotActionsOption, botActions } from '../utils';
+import { BotActionValue, BotActionsOption, botActions } from '../utils';
 import useEscapeKey from '../../../../utils/hooks/useEscapeKey';
 
 interface IBotActionsMenu {
@@ -23,7 +23,7 @@ const BotActionsMenu: FC<IBotActionsMenu> = ({ setIsOpen, bot }) => {
   });
 
   const dispatch = useAppDispatch();
-  const [action, setAction] = useState<BotActionValues>();
+  const [action, setAction] = useState<BotActionValue>();
   const { isModalOpen, closeModal, openModal } = useModal();
 
   const copyBot = (botId: TBot['_id']) => {

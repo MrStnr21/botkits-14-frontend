@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { TBot } from '../../../services/types/bot';
-import { BotActionValues } from './utils';
+import { BotActionValue } from './utils';
 import FormPopup from './form-popup';
 import InfoPopup from './info-popup';
 import LinkPopup from './link-popup';
@@ -18,7 +18,7 @@ import {
 } from '../../../utils/mockBotActionsValues';
 
 interface IPopupRouter {
-  action: BotActionValues;
+  action: BotActionValue;
   bot: TBot;
   close: () => void;
 }
