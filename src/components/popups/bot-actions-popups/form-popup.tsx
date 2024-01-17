@@ -13,6 +13,7 @@ export interface IFormPopup {
   value: string;
   onCancel: () => void;
   onConfirm: (value: string) => void;
+  inputType?: string;
 }
 
 const FormPopup: FC<IFormPopup> = ({
@@ -22,6 +23,7 @@ const FormPopup: FC<IFormPopup> = ({
   value = '',
   onCancel,
   onConfirm,
+  inputType,
 }) => {
   const [inputValue, setInputValue] = useState(value);
 
@@ -30,11 +32,13 @@ const FormPopup: FC<IFormPopup> = ({
       <Typography tag="h3" fontFamily="secondary">
         {title}
       </Typography>
+      {/* TODO валидация и disable кнопки подтверждения */}
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder={placeholder}
-        type="text"
+        type={inputType}
+        // required // раскомментировать после готовй валидации
       />
 
       <div className={styles.buttons}>

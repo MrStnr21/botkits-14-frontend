@@ -56,6 +56,15 @@ function renameBotApi(id: string, title: string) {
   });
 }
 
+// запрос выдачи доступа к боту по email
+function shareBotApi(id: string, email: string) {
+  return postReq<IRenameBotResponse>({
+    uri: `bots/${id}/share`,
+    auth: true,
+    data: { email },
+  });
+}
+
 // запрос получения шаблонов
 function getBotTemplatesApi() {
   return getReq<IGetBotTemplatesResponse>({
@@ -98,6 +107,7 @@ export {
   deleteBotApi,
   copyBotApi,
   renameBotApi,
+  shareBotApi,
   getBotTemplatesApi,
   addBotTemplateApi,
   deleteBotTemplateApi,

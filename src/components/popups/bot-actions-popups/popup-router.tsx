@@ -16,6 +16,7 @@ import {
   mockDisableNotufyLink,
   mockNotifyLink,
 } from '../../../utils/mockBotActionsValues';
+import { shareBotApi } from '../../../api/bots';
 
 interface IPopupRouter {
   action: BotActionValue;
@@ -33,9 +34,13 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
           <FormPopup
             title="Поделитесь доступом к боту"
             placeholder="Добавьте e-mail пользователя"
-            buttonText="поделиться"
-            value="string"
-            onConfirm={() => {}}
+            inputType="email"
+            buttonText="Поделиться"
+            value=""
+            onConfirm={(email: string) => {
+              // eslint-disable-next-line no-underscore-dangle
+              shareBotApi(bot._id, email);
+            }}
             onCancel={close}
           />
         );
