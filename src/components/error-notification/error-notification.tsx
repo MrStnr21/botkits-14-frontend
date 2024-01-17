@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './error-notification.module.scss';
 import Typography from '../../ui/typography/typography';
@@ -14,7 +14,6 @@ type TErrorNotificationProps = {
 const ErrorNotification: FC<TErrorNotificationProps> = ({ message, id }) => {
   const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement>(null);
-  const [cursorPosition, setPosition] = useState<string>('out');
 
   const removeNotification = () => {
     dispatch({
@@ -27,31 +26,28 @@ const ErrorNotification: FC<TErrorNotificationProps> = ({ message, id }) => {
 
   const onMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target instanceof Element) {
-      e.target.classList.remove(styles.animated);
-      setPosition('in');
+      e.target.classList.remove(styles.animated_vanish);
+      e.target.classList.remove(styles.animated_full);
     }
   };
   const onMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target instanceof Element) {
-      e.target.classList.add(styles.animated);
-      setPosition('out');
+      e.target.classList.add(styles.animated_vanish);
     }
   };
-  useEffect(() => {
-    if (cursorPosition === 'out') {
-      const timeout = setTimeout(() => removeNotification, 5000);
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-    return () => {};
-  }, [cursorPosition]);
+
+  /* useEffect(() => {
+    return () => {
+      ref.current?.classList.remove(styles.animated_full);
+      ref.current?.classList.add(styles.animated_vanish);
+    };
+  }, [ref, ref.current, dispatch]); */
   return createPortal(
     <div
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       ref={ref}
-      className={`${styles.container} ${styles.animated}`}
+      className={`${styles.container} ${styles.animated_full}`}
     >
       <button
         type="button"

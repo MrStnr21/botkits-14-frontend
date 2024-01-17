@@ -1,6 +1,15 @@
 @use '../../stylesheets/variables' as *;
 @use '../../stylesheets/mixins' as *;
 
+@keyframes appear {
+  from {
+    transform: translate(320px);
+  }
+  to {
+    transform: translate(0px);
+  }
+}
+
 @keyframes vanish {
   0% {
     opacity: .9;
@@ -23,9 +32,14 @@
   border-radius: 30px;
   opacity: .9;
 
-  &.animated {
+  &.animated_vanish {
     animation: vanish 5s forwards;
   }
+
+  &.animated_full {
+    animation: appear 1s forwards, vanish 5s forwards;
+  }
+
 }
 
 .title {
