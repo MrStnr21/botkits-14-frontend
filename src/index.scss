@@ -14,5 +14,4 @@ body {
 
 #errors {
   @include position(fixed, $right: 20px, $bottom: 50px);
-  @include flex(column, $gap: 10px);
 }

@@ -23,13 +23,11 @@ import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
-import { useAppSelector } from '../../services/hooks/hooks';
-import ErrorNotification from '../error-notification/error-notification';
+import ErrorNotificator from '../error-notificator/error-notificator';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
   const isMobile = useMediaQuery('(max-width: 860px)');
-  const { data } = useAppSelector((s) => s.errors);
 
   return (
     <>
@@ -182,9 +180,7 @@ const App: FC = (): JSX.Element => {
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
-      {data.map((item) => (
-        <ErrorNotification key={item.id} {...item} />
-      ))}
+      <ErrorNotificator />
     </>
   );
 };

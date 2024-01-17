@@ -1,0 +1,7 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.container {
+  @include flex(column, $gap: 10px);
+  transition: height 1s;
+}
