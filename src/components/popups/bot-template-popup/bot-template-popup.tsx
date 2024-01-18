@@ -32,28 +32,22 @@ interface IImage {
 }
 
 const image: IImage = {
-  'Бот автоответчик': <ImageAnswer className={styles.bot_template_image} />,
-  'Доставка еды': <ImageFood className={styles.bot_template_image} />,
-  'Демо бот': <ImageDemo className={styles.bot_template_image} />,
-  Опрос: <ImagePoll className={styles.bot_template_image} />,
-  'Лидогенерация/HR ререререре...': (
-    <ImageLead className={styles.bot_template_image} />
-  ),
-  'Онлайн школа/Вебинар': <ImageLearn className={styles.bot_template_image} />,
-  'Закрытый клуб по под...': (
-    <ImagePrivate className={styles.bot_template_image} />
-  ),
-  'Агентство по недвижимости': (
-    <ImageReal className={styles.bot_template_image} />
-  ),
-  Развлечения: <ImageEntertain className={styles.bot_template_image} />,
-  'Салон красоты': <ImageBeauty className={styles.bot_template_image} />,
-  'Онлайн-покупки': <ImageCom className={styles.bot_template_image} />,
-  'Вопрос/ответ': <ImageQuest className={styles.bot_template_image} />,
+  'Бот автоответчик': <ImageAnswer className={styles.image} />,
+  'Доставка еды': <ImageFood className={styles.image} />,
+  'Демо бот': <ImageDemo className={styles.image} />,
+  Опрос: <ImagePoll className={styles.image} />,
+  'Лидогенерация/HR ререререре...': <ImageLead className={styles.image} />,
+  'Онлайн школа/Вебинар': <ImageLearn className={styles.image} />,
+  'Закрытый клуб по под...': <ImagePrivate className={styles.image} />,
+  'Агентство по недвижимости': <ImageReal className={styles.image} />,
+  Развлечения: <ImageEntertain className={styles.image} />,
+  'Салон красоты': <ImageBeauty className={styles.image} />,
+  'Онлайн-покупки': <ImageCom className={styles.image} />,
+  'Вопрос/ответ': <ImageQuest className={styles.image} />,
 };
 
 const BotTemplatePopup: FC<IBotTemplate> = ({ template, onClick }) => {
-  const data = [
+  const descriptionList = [
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
@@ -70,42 +64,32 @@ const BotTemplatePopup: FC<IBotTemplate> = ({ template, onClick }) => {
     <div className={styles.bot_template}>
       <div>
         {image[template.title]}
-        <div className={styles.bot_template_description}>
-          <Typography
-            tag="h2"
-            fontFamily="secondary"
-            className={styles.bot_template_title}
-          >
+        <div className={styles.description}>
+          <Typography tag="h2" fontFamily="secondary" className={styles.title}>
             {template.title}
           </Typography>
           <Typography tag="p">{template.description}</Typography>
-          <ul className={styles.bot_template_list}>
-            {data.map((item, index) => (
-              <li key={item + +index} className={styles.bot_template_item}>
-                <Typography
-                  tag="span"
-                  className={styles.bot_template_item_index}
-                >
+          <ul className={styles.list}>
+            {descriptionList.map((description, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index} className={styles.item}>
+                <Typography tag="span" className={styles.item_index}>
                   {index + 1}
                   {'>'}
                 </Typography>
-                <Typography tag="span">{item}</Typography>
+                <Typography tag="span">{description}</Typography>
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      <div className={styles.bot_template_buttons}>
-        <button
-          className={styles.bot_template_cancel}
-          onClick={onClick}
-          type="button"
-        >
+      <div className={styles.buttons}>
+        <button className={styles.cancel} onClick={onClick} type="button">
           Отмена
         </button>
 
-        <div className={styles.bot_template_add_button}>
+        <div className={styles.add_button}>
           <Button
             // eslint-disable-next-line no-underscore-dangle
             onClick={() => addBot(template._id, template.title)}

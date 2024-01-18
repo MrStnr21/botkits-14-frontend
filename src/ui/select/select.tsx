@@ -1,14 +1,14 @@
+/* eslint-disable no-param-reassign */
 import React, { FC, useRef, useState, useMemo, useCallback } from 'react';
-import { useMediaQuery } from '@mui/material';
 import styles from './select.module.scss';
 import Menu from '../menus/menu/menu';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 import { Option } from '../../utils/types';
-import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
+import Icon from '../icon/icon';
 
 type ElementListener = 'document' | 'flow';
 
-export interface IMailingSelect {
+export interface ISelect {
   /**
    * текущая выбранная опция. Принимает объект Option или string
    */
@@ -43,6 +43,10 @@ export interface IMailingSelect {
    */
   itemClassName?: string;
   /**
+   * className для иконки элемента выпадающего меню
+   */
+  iconClassName?: string;
+  /**
    * включить/выключить прокрутку в меню
    */
   isScroll?: boolean;
@@ -62,7 +66,7 @@ export interface IMailingSelect {
     adaptive
    />
  */
-const Select: FC<IMailingSelect> = ({
+const Select: FC<ISelect> = ({
   currentOption,
   options,
   handleSelect,
@@ -73,6 +77,7 @@ const Select: FC<IMailingSelect> = ({
   isScroll,
   layoutClassName,
   itemClassName,
+  iconClassName,
 }) => {
   const formatedOptions = useMemo(
     () =>
@@ -89,7 +94,6 @@ const Select: FC<IMailingSelect> = ({
       ? { label: currentOption, value: currentOption }
       : currentOption;
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 620px)');
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -127,14 +131,22 @@ const Select: FC<IMailingSelect> = ({
       }
     : () => {};
 
+  const addChevronClassNames = (basicStyle: string) => {
+    if (isOpen) {
+      basicStyle += ` ${styles.is_opened}`;
+    }
+    if (currentOption) {
+      basicStyle += ` ${styles.colored}`;
+    }
+    return basicStyle;
+  };
+
   return (
     <button
       ref={buttonRef}
       onClick={toggleDropdown}
       type="button"
-      className={`${styles.container} ${
-        adaptive ? styles.container_adaptive : ''
-      }`}
+      className={`${styles.container} ${adaptive ? styles.adaptive : ''}`}
       style={buttonStyle}
     >
       {formatedOption && !formatedOption.icon && (
@@ -144,20 +156,17 @@ const Select: FC<IMailingSelect> = ({
         <span className={styles.placeholder}>{placeholder}</span>
       )}
       {formatedOption && formatedOption.icon && (
-        <img className={styles.icon} src={formatedOption.icon} alt="icon" />
-      )}
-      <span
-        className={`${styles.chevron} ${
-          isOpen ? styles.chevron_opened : styles.chevron_closed
-        }`}
-      >
-        <ChevronIcon
-          strokeWidth={1.5}
-          width={isMobile && adaptive ? 9 : 16}
-          height={isMobile && adaptive ? 9 : 16}
-          color={currentOption ? '#060C23' : '#BFC9D9'}
+        <Icon
+          icon={formatedOption.icon}
+          extraClass={`${styles.icon} ${iconClassName}`}
+          isColored
         />
-      </span>
+      )}
+      <Icon
+        icon="chevronDown"
+        extraClass={addChevronClassNames(styles.chevron)}
+        isColored
+      />
       {isOpen && formatedOptions && (
         <Menu
           ref={menuRef}
@@ -165,6 +174,7 @@ const Select: FC<IMailingSelect> = ({
           onItemClick={handleOptionClick}
           layoutClassName={`${styles.dropdown} ${layoutClassName || ''}`}
           itemClassName={itemClassName}
+          iconClassName={iconClassName}
           isScroll={isScroll}
         />
       )}

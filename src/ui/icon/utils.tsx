@@ -1,6 +1,6 @@
 import IconMapping from './icon-mapping';
 
-type IconNames = keyof typeof IconMapping;
+export type IconName = keyof typeof IconMapping;
 
 type IconStyle = {
   width: string;
@@ -8,7 +8,7 @@ type IconStyle = {
 };
 
 export type IconGroup = {
-  names: Partial<IconNames>[];
+  names: Partial<IconName>[];
   style: IconStyle;
 };
 
