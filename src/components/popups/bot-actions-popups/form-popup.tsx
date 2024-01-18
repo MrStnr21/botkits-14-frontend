@@ -38,7 +38,7 @@ const FormPopup: FC<IFormPopup> = ({
         onChange={(e) => setInputValue(e.target.value)}
         placeholder={placeholder}
         type={inputType}
-        // required // раскомментировать после готовй валидации
+        required
       />
 
       <div className={styles.buttons}>
