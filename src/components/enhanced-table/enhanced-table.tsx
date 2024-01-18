@@ -1,16 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  ChangeEvent,
-  FC,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { ChangeEvent, FC, ReactNode, useMemo, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import { v4 as uuidv4 } from 'uuid';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -62,23 +54,24 @@ interface IProps {
   check?: boolean;
   // наличие кнопок фильтров и выгрузки над таблицей
   toolbar?: boolean;
+  // необходимость отображения кнопок фильтров в тулбаре
+  toolbarFilters?: boolean;
   // стандартный box-shadow контейнеру таблицы (откл. по умолчанию)
   shadow?: number;
   // хидер с названием и фильтром строк
   header?: boolean;
+  // значения, прокидываемые в выпадающий список фильтра в хидере
+  headerOptions?: { label: string; value: string }[];
+  // название таблицы в хидере
+  tableHeaderTitle?: string;
   // кнопка с выпадающим списком
   dropdown?: boolean;
+  // функция обработки изменения фильтров из тулбара таблицы (при её наличии)
   onFilterChange?: (value: string) => void;
   // минимальная ширина таблицы(исп. для вкл-я горизонтального скролла)
   minTableWidth?: string;
   // значения, прокидываемые в выпадающий список кнопки
   menuOptions?: { label: string; value: string }[];
-  // значения, прокидываемые в выпадающий список фильтра в хидере
-  headerOptions?: { label: string; value: string }[];
-  // название таблицы в хидере
-  tableHeaderTitle?: string;
-  // необходимость отображения кнопок фильтров в тулбаре
-  toolbarFilters?: boolean;
   // количество отображаемых на одной странице строк в начальном состоянии таблицы
   rowsPerPageValue?: number;
   // функция обновления данных в ячейке

@@ -9,8 +9,11 @@ type TableData = {
 };
 
 interface IProps {
+  // необходимо ли отображние кнопок филтрации в тулбаре
   filters?: boolean;
+  // данные таблицы
   tableData?: TableData[];
+  // данные таблицы, которые выделены чекбоксом и будут сохранены в csv-файле
   selectedRows: number[];
 }
 

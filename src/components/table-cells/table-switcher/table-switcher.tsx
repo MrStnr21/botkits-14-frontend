@@ -12,7 +12,6 @@ const TableSwitcher: FC<IProps> = ({ status, onCellUpdate }) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     const newStatus = !switcher;
-    console.log('New Status:', newStatus);
     setSwitcher(newStatus);
     onCellUpdate(newStatus);
   };
