@@ -47,6 +47,7 @@ const BotActionsMenu = forwardRef<Ref, IBotActionsMenu>(
         case 'getLink':
         case 'getInfo':
         case 'setNotifications':
+          setIsOpen(false);
           handleActionSelect(value);
           break;
         default:
