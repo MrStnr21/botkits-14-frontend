@@ -1,5 +1,5 @@
-@use '../../../stylesheets/variables' as *;
-@use '../../../stylesheets/mixins' as *;
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
 
 .wrap {
   @include flex(column, $align-items: center, $gap: 20px);
@@ -17,7 +17,7 @@
     }
 
     .trashIcon {
-      background-image: url("../../../images/icon/24x24/constructor/delete.svg");
+      background-image: url("../../../../../images/icon/24x24/constructor/delete.svg");
       width: 18px;
       height: 18px;
       background-size: contain;

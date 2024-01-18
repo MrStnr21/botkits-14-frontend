@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Meta, StoryObj } from '@storybook/react';
 import Trigger, { ITriggerProps } from './trigger';
-import { TTrigger } from '../../../services/types/builder';
+import { TTrigger } from '../../../../../services/types/builder';
 
 const meta = {
   title: 'COMPONENTS/Builder/Triggers/Trigger',

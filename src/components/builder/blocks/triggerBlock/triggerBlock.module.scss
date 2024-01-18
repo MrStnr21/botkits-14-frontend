@@ -1,5 +1,5 @@
-@use '../../../stylesheets/variables' as *;
-@use '../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
 
 @mixin content {
   margin: 0 28px;
@@ -34,7 +34,7 @@
     .img {
       @media screen and (max-width: $switching-width) {
         align-self: center;
-        background-image: url("../../../images/icon/24x24/common/tag.svg");
+        background-image: url("../../../../images/icon/24x24/common/tag.svg");
         width: 20px;
         height: 20px;
         background-size: contain;

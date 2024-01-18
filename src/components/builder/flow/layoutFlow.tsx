@@ -22,7 +22,7 @@ import { initialEdges, edgeOptions } from './initial-edges';
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
 import NavigationPanel from '../navigation-panel/navigation-panel';
-import TriggerBlock, { triggers } from '../triggerBlock/triggerBlock';
+import TriggerBlock, { triggers } from '../blocks/triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
