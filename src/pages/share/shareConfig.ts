@@ -141,7 +141,7 @@ export const shareCols = [
     id: 2,
     key: 'mail',
     label: 'Email',
-    colStyle: { ...shareHeadStyle, width: '12%' },
+    colStyle: { ...shareHeadStyle, width: '10%' },
     cellComponent: baseCell,
   },
   {
@@ -155,14 +155,14 @@ export const shareCols = [
     id: 4,
     key: 'shared',
     label: 'Общий доступ',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '13%' },
     cellComponent: switcherCell,
   },
   {
     id: 5,
     key: 'mailing',
     label: 'Рассылка',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '9%' },
     cellComponent: switcherCell,
   },
   {
@@ -183,14 +183,14 @@ export const shareCols = [
     id: 8,
     key: 'dialogs',
     label: 'Диалоги',
-    colStyle: { ...shareHeadStyle, width: '10%' },
+    colStyle: { ...shareHeadStyle, width: '9%' },
     cellComponent: switcherCell,
   },
   {
     id: 9,
     key: 'crm',
     label: 'CRM',
-    colStyle: { ...shareHeadStyle, width: '6%' },
+    colStyle: { ...shareHeadStyle, width: '7%' },
     cellComponent: switcherCell,
   },
   {

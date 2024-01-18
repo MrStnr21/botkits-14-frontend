@@ -1,22 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './table-switcher.module.scss';
 
 interface IProps {
   status: boolean;
-  id: string;
+  onCellUpdate: (newValue: boolean) => void;
 }
 
-const TableSwitcher: FC<IProps> = ({ status, id }) => {
-  const [chosen, setChosen] = useState(status);
+const TableSwitcher: FC<IProps> = ({ status, onCellUpdate }) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    setChosen(!chosen);
+    const newStatus = !status;
+    onCellUpdate(newStatus);
   };
 
   return (
     <div className={styles.switcher} onClick={handleClick}>
-      <div className={chosen ? styles.switcher__on : styles.switcher__off} />
+      <div className={status ? styles.switcher__on : styles.switcher__off} />
     </div>
   );
 };
