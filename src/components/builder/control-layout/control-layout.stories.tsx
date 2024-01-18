@@ -24,30 +24,36 @@ export default meta;
 type Story = StoryObj<typeof ControlLayout>;
 
 // Вариант с рендером сразу двух блоков
-/* export const LayoutFilled: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-      <ControlLayout
-        name="Название блока"
-        type="Тип блока"
-        nameSetter={() => {}}
-      >
-        <div style={styleContainer}>
-          <div style={stylesInner} />
-          <div style={stylesInner} />
-          <div style={stylesInner} />
-        </div>
-      </ControlLayout>
-      <ControlLayout
-        name="Название блока"
-        type="Тип блока"
-        nameSetter={() => {}}
-      />
-    </div>
-  ),
-}; */
-
 export const LayoutFilled: Story = {
+  render: () => (
+    <ReactFlowProvider>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+        <ControlLayout type="Тип блока">
+          <div style={styleContainer}>
+            <div style={stylesInner} />
+            <div style={stylesInner} />
+            <div style={stylesInner} />
+          </div>
+        </ControlLayout>
+      </div>
+    </ReactFlowProvider>
+  ),
+};
+
+/* args: {
+    name: 'Название блока',
+    type: 'Тип блока',
+    nameSetter: () => {},
+    children: (
+      <div style={styleContainer}>
+        <div style={stylesInner} />
+        <div style={stylesInner} />
+        <div style={stylesInner} />
+      </div>
+    ),
+  }, */
+
+/* export const LayoutFilled: Story = {
   render: () => {
     return (
       <ReactFlowProvider>
@@ -60,17 +66,4 @@ export const LayoutFilled: Story = {
         </ControlLayout>
       </ReactFlowProvider>
     );
-  },
-  /* args: {
-    name: 'Название блока',
-    type: 'Тип блока',
-    nameSetter: () => {},
-    children: (
-      <div style={styleContainer}>
-        <div style={stylesInner} />
-        <div style={stylesInner} />
-        <div style={stylesInner} />
-      </div>
-    ),
   }, */
-};

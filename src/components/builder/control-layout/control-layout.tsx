@@ -34,7 +34,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   const node = getNode(id!);
 
   useEffect(() => {
-    saveName(namesOfBlocks, node!.data.name, id, node!.type);
+    saveName(namesOfBlocks, node?.data.name, id, node?.type);
     clearingNames(namesOfBlocks, getNodes());
     clearingVariables(storeOfVariables, getNodes());
   }, [getNodes()]);
