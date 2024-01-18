@@ -18,10 +18,23 @@ const LinkPopup: FC<ILinkPopup> = ({ title, placeholder, link = '' }) => {
   const [status, setStatus] = useState<'success' | 'notRequested' | 'error'>(
     'notRequested'
   );
+  const [copyTimeoutId, setCopyTimeoutId] = useState<NodeJS.Timeout | null>(
+    null
+  );
+  const [animationKey, setAnimationKey] = useState(0);
 
   const handleCopy = (_text: never, isSuccess: boolean) => {
+    setStatus('notRequested');
+    if (copyTimeoutId) {
+      clearTimeout(copyTimeoutId);
+    }
     if (isSuccess) {
       setStatus('success');
+      setAnimationKey((prevKey) => prevKey + 1);
+      const newTimeoutId = setTimeout(() => {
+        setStatus('notRequested');
+      }, 2000);
+      setCopyTimeoutId(newTimeoutId);
     } else setStatus('error');
   };
 
@@ -49,14 +62,11 @@ const LinkPopup: FC<ILinkPopup> = ({ title, placeholder, link = '' }) => {
           {status === 'success' ? 'Ссылка скопирована' : 'Скопировать ссылку'}
         </Button>
       </CopyToClipboard>
-      {status === 'success' && (
-        <Typography tag="p" className={styles.copied}>
-          Ссылка скопирована
-        </Typography>
-      )}
-      {status === 'error' && (
-        <Typography tag="p" className={styles.copied}>
-          Ошибка при копировании
+      {status !== 'notRequested' && (
+        <Typography tag="p" className={styles.copied} key={animationKey}>
+          {status === 'success'
+            ? 'Ссылка скопирована'
+            : 'Ошибка при копировании'}
         </Typography>
       )}
     </div>
