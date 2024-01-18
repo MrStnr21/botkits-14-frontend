@@ -11,13 +11,25 @@ import Icon from '../../ui/icon/icon';
 import messengerIcons from './utils';
 import routesUrl from '../../utils/routesData';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
+import { BotActionValue } from '../popups/bot-actions-popups/utils';
+import PopupRouter from '../popups/bot-actions-popups/popup-router';
+import useModal from '../../services/hooks/use-modal';
 
 export interface IBotCard {
   bot: TBot;
 }
 
 const BotCard: FC<IBotCard> = ({ bot }) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false);
+  const [botAction, setBotAction] = useState<BotActionValue | null>(null);
+  const { isModalOpen, closeModal, openModal } = useModal();
+
+  // для пунктов меню, требующих открытия отдельного попапа
+  const onExtendedActionSelect = (value: BotActionValue) => {
+    setBotAction(value);
+    openModal();
+  };
+
   const navigate = useNavigate();
 
   const menuRef = useRef<HTMLDivElement>(null);
@@ -26,7 +38,7 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
   useOutsideClickAndEscape(
     menuRef,
     document,
-    () => setIsActive(false),
+    () => setIsMenuActive(false),
     buttonRef
   );
 
@@ -57,12 +69,20 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
       <button
         type="button"
         className={styles.more_button}
-        onClick={() => setIsActive(!isActive)}
+        onClick={() => setIsMenuActive(!isMenuActive)}
         aria-label="Меню настроек бота"
         ref={buttonRef}
       />
-      {isActive && (
-        <BotActionsMenu setIsOpen={setIsActive} bot={bot} ref={menuRef} />
+      {isMenuActive && (
+        <BotActionsMenu
+          setIsOpen={setIsMenuActive}
+          bot={bot}
+          ref={menuRef}
+          handleActionSelect={onExtendedActionSelect}
+        />
+      )}
+      {isModalOpen && botAction && (
+        <PopupRouter action={botAction} close={closeModal} bot={bot} />
       )}
     </div>
   );
