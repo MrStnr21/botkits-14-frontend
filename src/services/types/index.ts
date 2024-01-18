@@ -32,9 +32,6 @@ import store from '../store';
 import { TDeleteBotActions } from '../actions/bots/deleteBot';
 import { TRenameBotActions } from '../actions/bots/renameBot';
 
-import { TGetBotAccessesActions } from '../actions/botAccesses/botAccesses';
-import { TBotAccessesState } from '../reducers/botAccesses/botAccesses';
-
 export type TStore = {
   signup: TSignupState;
   signin: TSigninState;
@@ -44,7 +41,6 @@ export type TStore = {
   bots: TBotsState;
   getTemplatesBots: TGetTemplatesBotsState;
   getPlatforms: TGetPlatformsState;
-  botAccesses: TBotAccessesState;
 };
 
 export type RootState = ReturnType<typeof store.getState>;
@@ -60,8 +56,7 @@ export type TApplicationActions =
   | TDeleteBotActions
   | TRenameBotActions
   | TGetTemplatesBotsActions
-  | TGetPlatformsActions
-  | TGetBotAccessesActions;
+  | TGetPlatformsActions;
 
 export type AppThunk<TReturn = void> = ActionCreator<
   ThunkAction<TReturn, Action, RootState, TApplicationActions>

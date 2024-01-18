@@ -4,7 +4,7 @@ import styles from './table-switcher.module.scss';
 
 interface IProps {
   status: boolean;
-  onCellUpdate: (newValue: any) => void;
+  onCellUpdate: (newValue: boolean) => void;
 }
 
 const TableSwitcher: FC<IProps> = ({ status, onCellUpdate }) => {

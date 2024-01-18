@@ -16,26 +16,29 @@ import Typography from '../../ui/typography/typography';
 import useModal from '../../services/hooks/use-modal';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
-import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { getBotAccesses } from '../../services/actions/botAccesses/botAccesses';
-import { botAccessesSel } from '../../utils/selectorData';
+import { getReq } from '../../api/api';
 
 type TableData = {
   [key: string]: any;
 };
 
 const Share: FC = () => {
-  const dispatch = useAppDispatch();
-  const { botAccesses } = useAppSelector(botAccessesSel);
-  console.log(botAccesses);
   const { isModalOpen, closeModal, openModal } = useModal();
   const [tableData, setTableData] = useState<TableData[]>(shareRows);
-
+  // временно
+  const [serverData, setServerData] = useState<any>([]);
+  console.log(serverData);
+  // ручка заработает, подключимся
   useEffect(() => {
-    dispatch(getBotAccesses());
+    getReq({ uri: 'tariffs' })
+      .then((responseData) => {
+        setServerData(responseData);
+      })
+      .catch((error) => {
+        console.log('Ошибка получения данных:', error);
+      });
   }, []);
 
-  console.log(tableData);
   const onCellUpdate = (rowId: number, colName: string, updatedValue?: any) => {
     const updatedData = [...tableData];
     if (updatedData[rowId]) {
@@ -106,7 +109,6 @@ const Share: FC = () => {
         menuOptions={shareTableModalButtons}
         onCellUpdate={onCellUpdate}
         onRowsUpdate={onRowsUpdate}
-        addTableData={addTableData}
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>

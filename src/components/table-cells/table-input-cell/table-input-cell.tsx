@@ -5,7 +5,7 @@ import TableInput from '../../../ui/inputs/table-input/table-input';
 
 interface IProps {
   value: string;
-  onCellUpdate: (newValue: any) => void;
+  onCellUpdate: (newValue: string) => void;
 }
 
 const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {

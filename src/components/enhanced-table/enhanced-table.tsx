@@ -39,7 +39,10 @@ type Columns = {
   key: string;
   label: ReactNode;
   colStyle?: SxProps;
-  cellComponent?: (data: any, onCellUpdate?: any) => ReactNode;
+  cellComponent?: (
+    data: any,
+    onCellUpdate: (newValue: string | boolean) => void
+  ) => ReactNode;
 };
 
 type TableData = {
@@ -82,7 +85,6 @@ interface IProps {
   onCellUpdate?: (rowId: number, colName: string, newValue: any) => void;
   // функция обновления строк в таблице
   onRowsUpdate?: (updatedData: any) => void;
-  addTableData?: any;
 }
 
 const EnhancedTable: FC<IProps> = ({
@@ -103,25 +105,18 @@ const EnhancedTable: FC<IProps> = ({
   rowsPerPageValue = 5,
   onCellUpdate,
   onRowsUpdate,
-  addTableData,
   ...props
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
-  const [rows, setRows] = useState(tableData);
-  // исп. для обновления строк в зависимости от фильтра в хидере
-  useEffect(() => {
-    setRows(tableData);
-  }, [onFilterChange, addTableData]);
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
   // удаление строки таблицы
   const handleRemoveRow = (indexToRemove: number) => {
-    const updatedRows = rows.filter((_, index) => index !== indexToRemove);
-    setRows(updatedRows);
+    const updatedRows = tableData.filter((_, index) => index !== indexToRemove);
     if (onRowsUpdate) {
       onRowsUpdate(updatedRows);
     }
@@ -132,11 +127,6 @@ const EnhancedTable: FC<IProps> = ({
     colName: string,
     updatedValue?: any
   ) => {
-    const updatedTableData = tableData.map((row) =>
-      row.id === rowId ? { ...row, [colName]: updatedValue } : row
-    );
-    console.log('Значение изменено:', rowId, colName, updatedValue);
-    setRows(updatedTableData);
     if (onCellUpdate) {
       onCellUpdate(rowId, colName, updatedValue);
     }
@@ -149,7 +139,7 @@ const EnhancedTable: FC<IProps> = ({
   // функция выделения всех строк таблицы по клику на чекбокс в шапке
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((row) => row.id);
+      const newSelected = tableData.map((row) => row.id);
       setSelected(newSelected);
     } else {
       setSelected([]);
@@ -179,8 +169,8 @@ const EnhancedTable: FC<IProps> = ({
   const paginatedData = useMemo(() => {
     const startIdx = page * rowsPerPage;
     const endIdx = startIdx + rowsPerPage;
-    return rows.slice(startIdx, endIdx);
-  }, [page, rowsPerPage, rows]);
+    return tableData.slice(startIdx, endIdx);
+  }, [page, rowsPerPage, tableData]);
 
   return (
     <Box sx={boxStyle}>
@@ -241,7 +231,7 @@ const EnhancedTable: FC<IProps> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {(pagination ? paginatedData : rows).map((row, index) => (
+              {(pagination ? paginatedData : tableData).map((row, index) => (
                 <TableRow
                   key={row.id}
                   sx={{

@@ -72,12 +72,12 @@ export const paymentStatusCell = (status: boolean) => (
 
 export const switcherCell = (
   status: boolean,
-  onCellUpdate: (newValue: any) => void
+  onCellUpdate: (newValue: boolean) => void
 ) => <TableSwitcher status={status} onCellUpdate={onCellUpdate} />;
 
 export const inputCell = (
   value: string,
-  onCellUpdate: (newValue: any) => void
+  onCellUpdate: (newValue: string) => void
 ) => {
   return <TableInputCell value={value} onCellUpdate={onCellUpdate} />;
 };
