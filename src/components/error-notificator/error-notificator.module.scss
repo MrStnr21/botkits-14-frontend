@@ -2,6 +2,5 @@
 @use '../../stylesheets/mixins' as *;
 
 .container {
-  @include flex(column, $gap: 10px);
-  transition: height 1s;
+  @include flex(column-reverse, $gap: 10px);
 }

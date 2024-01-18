@@ -13,6 +13,8 @@ const errorsInitialState: TErrorState = {
   data: [
     { message: 'ошибка при отправке данных', id: '1' },
     { message: 'еще ошибка', id: '2' },
+    { message: 'еще ошибка', id: '3' },
+    { message: 'еще ошибка', id: '4' },
   ],
 };
 
