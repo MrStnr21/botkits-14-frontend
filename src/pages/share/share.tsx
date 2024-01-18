@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -38,17 +37,6 @@ const Share: FC = () => {
         console.log('Ошибка получения данных:', error);
       });
   }, []);
-
-  const onCellUpdate = (rowId: number, colName: string, updatedValue?: any) => {
-    const updatedData = [...tableData];
-    if (updatedData[rowId]) {
-      updatedData[rowId] = { ...updatedData[rowId], [colName]: updatedValue };
-      setTableData(updatedData);
-    }
-  };
-  const onRowsUpdate = (updatedData: any) => {
-    setTableData(updatedData);
-  };
   const removeEmail = (inputValue: string) => {
     const atIndex = inputValue.indexOf('@');
     if (atIndex !== -1) {
@@ -107,8 +95,7 @@ const Share: FC = () => {
         cellStyle={cellStyle}
         shadow={1}
         menuOptions={shareTableModalButtons}
-        onCellUpdate={onCellUpdate}
-        onRowsUpdate={onRowsUpdate}
+        setTableData={setTableData}
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>

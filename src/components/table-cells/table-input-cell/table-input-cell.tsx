@@ -10,7 +10,6 @@ interface IProps {
 
 const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [inpValue, setInpValue] = useState(value);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -27,12 +26,11 @@ const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsEditing(false);
     onCellUpdate(e.target.value);
-    console.log(`New Value: ${e.target.value}`);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    setInpValue(e.target.value);
+    onCellUpdate(e.target.value);
   };
 
   return (
@@ -40,12 +38,12 @@ const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {
       {isEditing ? (
         <TableInput
           onChange={handleChange}
-          value={inpValue}
+          value={value}
           inputRef={inputRef}
           handleBlur={handleBlur}
         />
       ) : (
-        <div onClick={handleClick}>{inpValue}</div>
+        <div onClick={handleClick}>{value}</div>
       )}
     </div>
   );

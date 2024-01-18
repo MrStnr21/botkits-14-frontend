@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, ReactNode, useMemo, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -74,10 +73,8 @@ interface IProps {
   menuOptions?: { label: string; value: string }[];
   // количество отображаемых на одной странице строк в начальном состоянии таблицы
   rowsPerPageValue?: number;
-  // функция обновления данных в ячейке
-  onCellUpdate?: (rowId: number, colName: string, newValue: any) => void;
-  // функция обновления строк в таблице
-  onRowsUpdate?: (updatedData: any) => void;
+  // функция-сеттер для родительского компонента
+  setTableData?: (updatedData: TableData[]) => void;
 }
 
 const EnhancedTable: FC<IProps> = ({
@@ -96,8 +93,7 @@ const EnhancedTable: FC<IProps> = ({
   tableHeaderTitle,
   toolbarFilters,
   rowsPerPageValue = 5,
-  onCellUpdate,
-  onRowsUpdate,
+  setTableData,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -110,18 +106,25 @@ const EnhancedTable: FC<IProps> = ({
   // удаление строки таблицы
   const handleRemoveRow = (indexToRemove: number) => {
     const updatedRows = tableData.filter((_, index) => index !== indexToRemove);
-    if (onRowsUpdate) {
-      onRowsUpdate(updatedRows);
+    if (setTableData) {
+      setTableData(updatedRows);
     }
   };
   // функция обновления состояния табличной ячейки
   const handleCellUpdate = (
     rowId: number,
     colName: string,
-    updatedValue?: any
+    updatedValue?: string | boolean
   ) => {
-    if (onCellUpdate) {
-      onCellUpdate(rowId, colName, updatedValue);
+    const rowIndex = tableData.findIndex((row) => row.id === rowId);
+
+    if (setTableData && rowIndex !== -1) {
+      const updatedData = [...tableData];
+      updatedData[rowIndex] = {
+        ...updatedData[rowIndex],
+        [colName]: updatedValue,
+      };
+      setTableData(updatedData);
     }
   };
   // изменение кол-ва страниц в зависимости от количества строк на одной странице
