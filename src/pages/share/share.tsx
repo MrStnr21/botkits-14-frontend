@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -15,7 +16,7 @@ import Typography from '../../ui/typography/typography';
 import useModal from '../../services/hooks/use-modal';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
-import { getReq } from '../../api/api';
+import { getSharedAccesses } from '../../api/shared';
 
 type TableData = {
   [key: string]: any;
@@ -24,19 +25,20 @@ type TableData = {
 const Share: FC = () => {
   const { isModalOpen, closeModal, openModal } = useModal();
   const [tableData, setTableData] = useState<TableData[]>(shareRows);
-  // временно
-  const [serverData, setServerData] = useState<any>([]);
-  console.log(serverData);
-  // ручка заработает, подключимся
+
+  const [sharedAccesses, setSharedAccesses] = useState<any>([]);
+
   useEffect(() => {
-    getReq({ uri: 'tariffs' })
+    getSharedAccesses()
       .then((responseData) => {
-        setServerData(responseData);
+        console.log(responseData);
+        setSharedAccesses(responseData);
       })
       .catch((error) => {
         console.log('Ошибка получения данных:', error);
       });
   }, []);
+
   const removeEmail = (inputValue: string) => {
     const atIndex = inputValue.indexOf('@');
     if (atIndex !== -1) {
@@ -44,6 +46,7 @@ const Share: FC = () => {
     }
     return inputValue;
   };
+
   const addTableData = (inputValue: string) => {
     if (inputValue) {
       const newRow = {
@@ -90,7 +93,7 @@ const Share: FC = () => {
         dropdown
         columns={shareCols}
         headComponent={ppHeadCell}
-        tableData={tableData}
+        tableData={sharedAccesses}
         rowStyle={rowStyleRef}
         cellStyle={cellStyle}
         shadow={1}

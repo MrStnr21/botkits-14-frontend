@@ -36,7 +36,7 @@ type Columns = {
   ) => ReactNode;
 };
 
-type TableData = {
+export type TableData = {
   [key: string]: any;
 };
 
