@@ -9,7 +9,7 @@ import Typography from '../../ui/typography/typography';
 import { promoCellStyle, promoRowStyleRef } from '../share/promocodesConfig';
 import { tariffsCols } from '../share/tariffsConfig';
 import TariffPopup from '../../components/popups/tariff-popup/tariff-popup';
-import { getTariffs } from '../../api/tariffs';
+import { getTariffs, patchTariff } from '../../api/tariffs';
 
 function Tariffs() {
   const [popupOpened, togglePopup] = useState(false);
@@ -49,6 +49,8 @@ function Tariffs() {
           rowStyle={promoRowStyleRef}
           cellStyle={promoCellStyle}
           shadow={1}
+          setTableData={setTariffs}
+          onUpdate={patchTariff}
           pagination
         />
       </div>

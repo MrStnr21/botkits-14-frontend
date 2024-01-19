@@ -1,5 +1,5 @@
 import { TableData } from '../components/enhanced-table/enhanced-table';
-import { getReq, postReq } from './api';
+import { getReq, patchReq, postReq } from './api';
 
 function getTariffs() {
   return getReq<TableData[]>({ uri: 'tariffs', auth: true });
@@ -9,4 +9,20 @@ function postTariff(tariff: TableData) {
   return postReq({ uri: 'tariffs', data: tariff, auth: true });
 }
 
-export { getTariffs, postTariff };
+function patchTariff(tariff: TableData) {
+  const data = {
+    botsCount: tariff.botsCount,
+    duration: tariff.duration,
+    name: tariff.name,
+    price: Number(tariff.price),
+    start: tariff.start,
+    status: tariff.status,
+    subscribersCount: Number(tariff.subscribersCount),
+  };
+  return patchReq({
+    uri: `tariffs/${tariff.id}`,
+    data,
+  });
+}
+
+export { getTariffs, postTariff, patchTariff };
