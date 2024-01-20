@@ -39,31 +39,3 @@ export const LayoutFilled: Story = {
     </ReactFlowProvider>
   ),
 };
-
-/* args: {
-    name: 'Название блока',
-    type: 'Тип блока',
-    nameSetter: () => {},
-    children: (
-      <div style={styleContainer}>
-        <div style={stylesInner} />
-        <div style={stylesInner} />
-        <div style={stylesInner} />
-      </div>
-    ),
-  }, */
-
-/* export const LayoutFilled: Story = {
-  render: () => {
-    return (
-      <ReactFlowProvider>
-        <ControlLayout type="type">
-          <div style={styleContainer}>
-            <div style={stylesInner} />
-            <div style={stylesInner} />
-            <div style={stylesInner} />
-          </div>
-        </ControlLayout>
-      </ReactFlowProvider>
-    );
-  }, */
