@@ -3,7 +3,7 @@ import { ReactFlowProvider } from 'reactflow';
 import TransferToOperatorBlock from './transfer-to-operator';
 
 const meta: Meta<typeof TransferToOperatorBlock> = {
-  title: 'COMPONENTS/Builder/blocks',
+  title: 'COMPONENTS/Builder/blocks/transfer-to-operator',
   component: TransferToOperatorBlock,
 };
 
@@ -11,7 +11,7 @@ export default meta;
 
 type Story = StoryObj<typeof TransferToOperatorBlock>;
 
-export const BlockOperator: Story = {
+export const Block: Story = {
   render: () => (
     <ReactFlowProvider>
       <TransferToOperatorBlock data={{ name: 'test' }} />

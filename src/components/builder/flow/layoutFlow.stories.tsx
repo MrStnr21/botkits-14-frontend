@@ -6,7 +6,7 @@ import LayoutFlow from './layoutFlow';
 import store from '../../../services/store';
 
 const meta: Meta<typeof LayoutFlow> = {
-  title: 'COMPONENTS/Builder',
+  title: 'COMPONENTS/Builder/layout-flow',
   component: LayoutFlow,
   decorators: [withRouter],
 };

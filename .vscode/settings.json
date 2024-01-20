@@ -1,5 +1,12 @@
 {
   "svg.preview.background": "transparent",
-  "cSpell.words": ["reactflow", "билдера", "запроса", "рендером", "ссылке"],
+  "cSpell.words": [
+    "Funtion",
+    "reactflow",
+    "билдера",
+    "запроса",
+    "рендером",
+    "ссылке"
+  ],
   "cSpell.language": "en,ru,ru-RU"
 }

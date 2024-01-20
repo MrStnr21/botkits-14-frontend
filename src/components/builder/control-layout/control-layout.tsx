@@ -40,7 +40,7 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
   }, [getNodes()]);
 
   const setName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    saveName(namesOfBlocks, e.target.value, id, node!.type);
+    saveName(namesOfBlocks, e.target.value, id, node?.type);
     setFlowData({ path: ['data', 'name'], value: e.target.value });
   };
 

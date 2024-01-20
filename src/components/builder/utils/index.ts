@@ -304,7 +304,7 @@ export function saveNode<T>({
   getNodes,
 }: TSaveNode<T>) {
   // копирование для перезаписи поля data
-  const cloneNode = { ...node, data: { ...node.data } };
+  const cloneNode = { ...node, data: { ...node?.data } };
 
   _.set(cloneNode, path, value);
 

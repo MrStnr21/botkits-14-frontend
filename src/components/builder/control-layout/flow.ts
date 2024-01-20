@@ -49,9 +49,11 @@ export const copyNodeFlow =
   () => {
     const newNode = {
       id: uuid(),
-      type: node!.type,
-      position: { x: node!.position.x + 300, y: node!.position.y },
-      data: node!.data,
+      type: node?.type,
+      position: node
+        ? { x: node!.position.x + 300, y: node!.position.y }
+        : { x: 0, y: 0 },
+      data: node?.data,
     };
     const childNodes = getNodes()
       .filter((item) => item.parentNode === id)
