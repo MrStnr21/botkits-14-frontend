@@ -16,7 +16,7 @@ import Typography from '../../ui/typography/typography';
 import useModal from '../../services/hooks/use-modal';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
-import { getSharedAccesses } from '../../api/shared';
+import { getSharedAccesses, postSharedAccess } from '../../api/shared';
 
 type TableData = {
   [key: string]: any;
@@ -25,17 +25,24 @@ type TableData = {
 const Share: FC = () => {
   const { isModalOpen, closeModal, openModal } = useModal();
   const [tableData, setTableData] = useState<TableData[]>(shareRows);
-
+  const [loading, setLoading] = useState(false);
   const [sharedAccesses, setSharedAccesses] = useState<any>([]);
 
   useEffect(() => {
+    setLoading(true);
     getSharedAccesses()
       .then((responseData) => {
         console.log(responseData);
-        setSharedAccesses(responseData);
+        setSharedAccesses(
+          // eslint-disable-next-line no-underscore-dangle
+          responseData.map((item) => ({ ...item, id: item._id }))
+        );
       })
       .catch((error) => {
         console.log('Ошибка получения данных:', error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -50,11 +57,16 @@ const Share: FC = () => {
   const addTableData = (inputValue: string) => {
     if (inputValue) {
       const newRow = {
-        id: uuidv4(),
-        mail: inputValue,
-        name: removeEmail(inputValue),
+        email: inputValue,
       };
-      setTableData((prevData) => [newRow, ...prevData]);
+      postSharedAccess(newRow)
+        .then((response) => {
+          console.log('Доступ успешно добавлен', response);
+        })
+        .catch((error) => {
+          console.error('Ошибка при добавлении доступа:', error);
+        });
+
       closeModal();
     }
   };
@@ -84,9 +96,6 @@ const Share: FC = () => {
         </div>
       </div>
       <EnhancedTable
-        // при переполнении таблицы колонками задаём минимальную ширину таблицы больше минимальной
-        // ширины box и получаем горизонтальный скролл внутри box
-        // minTableWidth="1360px"
         pagination
         check
         toolbar
@@ -99,6 +108,7 @@ const Share: FC = () => {
         shadow={1}
         menuOptions={shareTableModalButtons}
         setTableData={setTableData}
+        loading={loading}
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>
