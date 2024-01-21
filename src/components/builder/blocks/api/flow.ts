@@ -8,7 +8,8 @@ export const addVariableFlow = () => {
   return () => {
     const node = getNode(id)!;
     const idVariable = connectStrings(
-      [id, `saveResultVariable-${node.data.variables.length + 1}`],
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      [id, `saveResultVariable-${node?.data.variables.length + 1}`],
       '|||'
     );
     saveVariable(storeOfVariables, '', idVariable);
@@ -18,7 +19,8 @@ export const addVariableFlow = () => {
     saveNode({
       getNodes,
       setNodes,
-      value: [...node.data.variables, value],
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      value: node ? [...node.data.variables, value] : [value],
       path: ['data', 'variables'],
       node,
     });

@@ -15,7 +15,7 @@ import {
 } from '../../../../services/types/builder';
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
-import FielsField from './files-field/fiels-field';
+import FilesField from './files-field/files-field';
 import { setFlowDataInit } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 import { addButtonFlow, setTextFlow, setVariableFlow } from './flow';
@@ -237,7 +237,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         onClick={() => setTimeout(() => render(amount + 1))}
       >
         {content}
-        <FielsField
+        <FilesField
           addFile={addFile}
           image={image}
           doc={doc}

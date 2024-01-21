@@ -125,7 +125,7 @@ export const setTextFlow = () => {
   return (value: Descendant[]) => {
     const node = getNode(id)!;
 
-    const settedValue = node.data.data.map((content: TMessageBlockData) => {
+    const settedValue = node?.data.data.map((content: TMessageBlockData) => {
       if (content.type === MessageDataTypes.message) {
         return {
           ...content,
