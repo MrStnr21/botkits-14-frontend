@@ -12,6 +12,7 @@ const data = {
 };
 
 const meta: Meta<typeof DeepLink> = {
+  title: 'COMPONENTS/Builder/other-components/blocks/deep-link',
   component: DeepLink,
 };
 

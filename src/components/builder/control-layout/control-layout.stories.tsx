@@ -3,7 +3,7 @@ import { ReactFlowProvider } from 'reactflow';
 import ControlLayout from './control-layout';
 
 const meta: Meta<typeof ControlLayout> = {
-  title: 'COMPONENTS/Builder/control-layout',
+  title: 'COMPONENTS/Builder/other-components/control-layout',
   component: ControlLayout,
 };
 
