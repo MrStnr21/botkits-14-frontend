@@ -10,11 +10,14 @@ type TErrorState = {
 };
 
 const errorsInitialState: TErrorState = {
+  // значения в комментарии для демонстрации работы
   data: [
-    { message: 'ошибка при отправке данных', id: '1' },
+    /*
+    { message: 'ошибка при отправке данных dfdfd df dfd f df dfdf dfd dfdd', id: '1' },
     { message: 'еще ошибка', id: '2' },
     { message: 'еще ошибка', id: '3' },
     { message: 'еще ошибка', id: '4' },
+   */
   ],
 };
 
