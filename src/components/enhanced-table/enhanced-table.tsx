@@ -36,7 +36,7 @@ type Columns = {
   ) => ReactNode;
 };
 
-type TableData = {
+export type TableData = {
   [key: string]: any;
 };
 
@@ -47,9 +47,9 @@ interface IProps {
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
-  // нужна ли пагинация в таблице
+  /** нужна ли пагинация в таблице */
   pagination?: boolean;
-  // подключены ли чекбоксы к строке
+  /** подключены ли чекбоксы к строке */
   check?: boolean;
   // наличие кнопок фильтров и выгрузки над таблицей
   toolbar?: boolean;
@@ -57,7 +57,7 @@ interface IProps {
   toolbarFilters?: boolean;
   // стандартный box-shadow контейнеру таблицы (откл. по умолчанию)
   shadow?: number;
-  // хидер с названием и фильтром строк
+  /** хидер с названием и фильтром строк */
   header?: boolean;
   // значения, прокидываемые в выпадающий список фильтра в хидере
   headerOptions?: { label: string; value: string }[];
@@ -67,14 +67,15 @@ interface IProps {
   dropdown?: boolean;
   // функция обработки изменения фильтров из тулбара таблицы (при её наличии)
   onFilterChange?: (value: string) => void;
-  // минимальная ширина таблицы(исп. для вкл-я горизонтального скролла)
+  /** минимальная ширина таблицы(исп. для вкл-я горизонтального скролла) */
   minTableWidth?: string;
-  // значения, прокидываемые в выпадающий список кнопки
+  /** значения, прокидываемые в выпадающий список кнопки */
   menuOptions?: { label: string; value: string }[];
   // количество отображаемых на одной странице строк в начальном состоянии таблицы
   rowsPerPageValue?: number;
   // функция-сеттер для родительского компонента
   setTableData?: (updatedData: TableData[]) => void;
+  onUpdate?: (updatedData: TableData) => Promise<unknown>;
 }
 
 const EnhancedTable: FC<IProps> = ({
@@ -94,6 +95,7 @@ const EnhancedTable: FC<IProps> = ({
   toolbarFilters,
   rowsPerPageValue = 5,
   setTableData,
+  onUpdate,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -119,12 +121,20 @@ const EnhancedTable: FC<IProps> = ({
     const rowIndex = tableData.findIndex((row) => row.id === rowId);
 
     if (setTableData && rowIndex !== -1) {
+      const unUpdatedData = [...tableData];
       const updatedData = [...tableData];
-      updatedData[rowIndex] = {
+      const updatedRow = {
         ...updatedData[rowIndex],
         [colName]: updatedValue,
       };
+      updatedData[rowIndex] = updatedRow;
       setTableData(updatedData);
+      if (onUpdate) {
+        onUpdate(updatedRow).catch((e) => {
+          setTableData(unUpdatedData);
+          console.log(e);
+        });
+      }
     }
   };
   // изменение кол-ва страниц в зависимости от количества строк на одной странице
