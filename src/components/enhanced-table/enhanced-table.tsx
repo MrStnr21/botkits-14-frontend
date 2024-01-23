@@ -75,7 +75,7 @@ interface IProps {
   rowsPerPageValue?: number;
   // функция-сеттер для родительского компонента
   setTableData?: (updatedData: TableData[]) => void;
-  onUpdate?: (updatedData: TableData) => void;
+  onUpdate?: (updatedData: TableData) => Promise<unknown>;
 }
 
 const EnhancedTable: FC<IProps> = ({
@@ -121,6 +121,7 @@ const EnhancedTable: FC<IProps> = ({
     const rowIndex = tableData.findIndex((row) => row.id === rowId);
 
     if (setTableData && rowIndex !== -1) {
+      const unUpdatedData = [...tableData];
       const updatedData = [...tableData];
       const updatedRow = {
         ...updatedData[rowIndex],
@@ -129,7 +130,10 @@ const EnhancedTable: FC<IProps> = ({
       updatedData[rowIndex] = updatedRow;
       setTableData(updatedData);
       if (onUpdate) {
-        onUpdate(updatedRow);
+        onUpdate(updatedRow).catch((e) => {
+          setTableData(unUpdatedData);
+          console.log(e);
+        });
       }
     }
   };

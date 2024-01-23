@@ -11,11 +11,11 @@ function postTariff(tariff: TableData) {
 
 function patchTariff(tariff: TableData) {
   const data = {
-    botsCount: tariff.botsCount,
+    botsCount: Number(tariff.botsCount),
     duration: tariff.duration,
     name: tariff.name,
     price: Number(tariff.price),
-    start: tariff.start,
+    isStarted: tariff.isStarted,
     status: tariff.status,
     subscribersCount: Number(tariff.subscribersCount),
   };

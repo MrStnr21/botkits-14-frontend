@@ -305,7 +305,7 @@ export const tariffsCols = [
   },
   {
     id: 7,
-    key: 'start',
+    key: 'isStarted',
     label: 'Стартовый тариф',
     colStyle: { ...headStyle, width: '15%' },
     cellComponent: switcherCell,

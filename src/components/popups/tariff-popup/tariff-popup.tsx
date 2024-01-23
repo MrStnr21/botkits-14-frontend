@@ -7,18 +7,20 @@ import Button from '../../../ui/buttons/button/button';
 import useForm from '../../../services/hooks/use-form';
 import { postTariff } from '../../../api/tariffs';
 
+const initialState = {
+  name: { value: '' },
+  cost: { value: '' },
+  botsAmount: { value: '' },
+  usersAmount: { value: '' },
+  duration: { value: '' },
+};
+
 type TTariffPopupProps = {
   closePopup: () => void;
 };
 
 const TariffPopup: FC<TTariffPopupProps> = ({ closePopup }) => {
-  const { values, handleChange } = useForm({
-    name: { value: '' },
-    cost: { value: '' },
-    botsAmount: { value: '' },
-    usersAmount: { value: '' },
-    duration: { value: '' },
-  });
+  const { values, handleChange, setValues } = useForm(initialState);
 
   const postData = () => {
     const data = {
@@ -28,11 +30,16 @@ const TariffPopup: FC<TTariffPopupProps> = ({ closePopup }) => {
       subscribersCount: Number(values.usersAmount.value) || 1,
       duration: values.duration.value || '1D',
       status: false,
+      isStarted: false,
     };
 
     postTariff(data).then(() => {
       closePopup();
     });
+  };
+
+  const cleanForm = () => {
+    setValues(initialState);
   };
 
   return (
@@ -107,7 +114,7 @@ const TariffPopup: FC<TTariffPopupProps> = ({ closePopup }) => {
           </div>
         </div>
         <div className={styles.buttons}>
-          <button className={styles.button} type="button">
+          <button onClick={cleanForm} className={styles.button} type="button">
             СТЕРЕТЬ ВСЕ
           </button>
           <Button variant="default" onClick={postData}>
