@@ -36,7 +36,7 @@ type Columns = {
   ) => ReactNode;
 };
 
-export export type TableData = {
+export type TableData = {
   [key: string]: any;
 };
 
@@ -126,6 +126,7 @@ const EnhancedTable: FC<IProps> = ({
 
     if (setTableData && rowIndex !== -1) {
       const unUpdatedData = [...tableData];
+      console.log(unUpdatedData);
       const updatedData = [...tableData];
       const updatedRow = {
         ...updatedData[rowIndex],

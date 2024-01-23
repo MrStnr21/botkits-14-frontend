@@ -15,11 +15,11 @@ import Typography from '../../ui/typography/typography';
 import useModal from '../../services/hooks/use-modal';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
-import { getSharedAccesses, postSharedAccess } from '../../api/shared';
-
-// type TableData = {
-//   [key: string]: any;
-// };
+import {
+  getSharedAccesses,
+  patchSharedAccess,
+  postSharedAccess,
+} from '../../api/shared';
 
 const Share: FC = () => {
   const { isModalOpen, closeModal, openModal } = useModal();
@@ -31,7 +31,6 @@ const Share: FC = () => {
     setLoading(true);
     getSharedAccesses()
       .then((responseData) => {
-        console.log(responseData);
         setSharedAccesses(
           // eslint-disable-next-line no-underscore-dangle
           responseData.map((item) => ({ ...item, id: uuidv4() }))
@@ -106,6 +105,7 @@ const Share: FC = () => {
         menuOptions={shareTableModalButtons}
         setTableData={setSharedAccesses}
         loading={loading}
+        onUpdate={patchSharedAccess}
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>

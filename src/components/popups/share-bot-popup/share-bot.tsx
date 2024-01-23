@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './share-bot.module.scss';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
@@ -11,9 +11,20 @@ interface IProps {
 }
 const ShareBotPopup: FC<IProps> = ({ onCancelClick, onSubmitClick }) => {
   const [inputValue, setInputValue] = useState('');
+  const [isInvalid, setIsInvalid] = useState(false);
+  // const [error, setError] = useState<{ error: boolean; textError: string }>({
+  //   error: false,
+  //   textError: '',
+  // });
 
   const handleAddClick = () => {
-    onSubmitClick(inputValue);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(inputValue)) {
+      setIsInvalid(false);
+      onSubmitClick(inputValue);
+    }
+    setIsInvalid(true);
+    setInputValue('');
   };
 
   return (
@@ -21,11 +32,19 @@ const ShareBotPopup: FC<IProps> = ({ onCancelClick, onSubmitClick }) => {
       <Typography tag="h3" fontFamily="secondary">
         Поделитесь доступом к боту
       </Typography>
-      <Input
-        placeholder="Добавьте e-mail пользователя"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
+      <div className={styles.shareBotPopup__inputContainer}>
+        <Input
+          placeholder="Добавьте e-mail пользователя"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          isInvalid={isInvalid}
+        />
+        {/* {error && (
+          <Typography tag="p" className={styles.shareBotPopup__incorrectText}>
+            {error.textError}
+          </Typography>
+        )} */}
+      </div>
       <div className={styles.shareBotPopup__buttonsContainer}>
         <Button
           onClick={onCancelClick}

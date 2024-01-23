@@ -16,8 +16,19 @@
     width: 320px;
   }
 
+  &__inputContainer {
+    @include flex(column, center, center);
+  }
+
+  &__incorrectText {
+    @include font('PT Sans', $xs-font-size, $normal, $error-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
+    text-align: left;
+  }
+
   &__buttonsContainer {
     @include flex(row, center, center);
   }
 }
+
 

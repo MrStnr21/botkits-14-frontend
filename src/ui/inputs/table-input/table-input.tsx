@@ -38,7 +38,7 @@ const TableInput: FC<IProps> = ({
 
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
     const inputValue = input.target.value.trim();
-
+    console.log(inputValue);
     if (!inputValue) {
       setError({ error: true, textError: 'Это поле обязательно' });
     } else {
