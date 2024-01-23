@@ -3,7 +3,6 @@ import { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   shareTableModalButtons,
-  shareRows,
   shareCols,
   cellStyle,
   rowStyleRef,
@@ -18,13 +17,13 @@ import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
 import { getSharedAccesses, postSharedAccess } from '../../api/shared';
 
-type TableData = {
-  [key: string]: any;
-};
+// type TableData = {
+//   [key: string]: any;
+// };
 
 const Share: FC = () => {
   const { isModalOpen, closeModal, openModal } = useModal();
-  const [tableData, setTableData] = useState<TableData[]>(shareRows);
+
   const [loading, setLoading] = useState(false);
   const [sharedAccesses, setSharedAccesses] = useState<any>([]);
 
@@ -35,24 +34,22 @@ const Share: FC = () => {
         console.log(responseData);
         setSharedAccesses(
           // eslint-disable-next-line no-underscore-dangle
-          responseData.map((item) => ({ ...item, id: item._id }))
+          responseData.map((item) => ({ ...item, id: uuidv4() }))
+          // уникальный, чтобы не ругалась консоль
         );
-      })
-      .catch((error) => {
-        console.log('Ошибка получения данных:', error);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [isModalOpen]);
 
-  const removeEmail = (inputValue: string) => {
-    const atIndex = inputValue.indexOf('@');
-    if (atIndex !== -1) {
-      return inputValue.substring(0, atIndex);
-    }
-    return inputValue;
-  };
+  // const removeEmail = (inputValue: string) => {
+  //   const atIndex = inputValue.indexOf('@');
+  //   if (atIndex !== -1) {
+  //     return inputValue.substring(0, atIndex);
+  //   }
+  //   return inputValue;
+  // };
 
   const addTableData = (inputValue: string) => {
     if (inputValue) {
@@ -107,7 +104,7 @@ const Share: FC = () => {
         cellStyle={cellStyle}
         shadow={1}
         menuOptions={shareTableModalButtons}
-        setTableData={setTableData}
+        setTableData={setSharedAccesses}
         loading={loading}
       />
       {isModalOpen && (

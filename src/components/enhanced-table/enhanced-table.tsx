@@ -97,7 +97,7 @@ const EnhancedTable: FC<IProps> = ({
   toolbarFilters,
   rowsPerPageValue = 5,
   setTableData,
-  loading = true,
+  loading,
   ...props
 }) => {
   const [page, setPage] = useState(0);
