@@ -1,0 +1,6 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.container {
+  @include flex(column-reverse, $gap: 10px);
+}
