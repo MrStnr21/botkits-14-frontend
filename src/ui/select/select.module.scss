@@ -8,25 +8,50 @@
 
 .container {
   @include button-style-reset;
-  @include flex(row, space-between, center);
+  @include flex(row, space-between, center, 4px);
   @include size(100%, 100%);
   @include indents(8px 10px, 0);
   box-sizing: border-box;
   position: relative;
   background-color: $secondary-cultured-hover;
   border-radius: 5px;
+
+  &.adaptive {
+    @media screen and (max-width: $switching-width) {
+      @include indents(4.5px 6.5px, 0);
+      border-radius: 2.85px;
+
+      & .label {
+        font-size: 7.41px;
+      }
+
+      & .placeholder {
+        font-size: 7.41px;
+      }
+
+      & .icon {
+        @include size(14px, 14px);
+      }
+
+      & .chevron {
+        @include size(9px, 9px);
+      }
+    }
+  }
 }
 
 .chevron {
-  transition: transform .2s;
-}
+  @include size(16px, 16px);
+  color: $grey-2;
+  transition: transform .3s ease;
 
-.chevron_opened {
-  transform: rotate(180deg);
-}
+  &.colored {
+    color: $primary-oxford-blue-default;
+  }
 
-.chevron_closed {
-  transform: rotate(0);
+  &.is_opened {
+    transform: rotate(180deg);
+  }
 }
 
 .icon {
@@ -52,21 +77,3 @@ div.dropdown {
   z-index: 900
 }
 
-.container_adaptive {
-  @media screen and (max-width: $switching-width) {
-    @include indents(4.5px 6.5px, 0);
-    border-radius: 2.85px;
-
-    & .label {
-      font-size: 7.41px;
-    }
-
-    & .placeholder {
-      font-size: 7.41px;
-    }
-
-    & .icon {
-      @include size(14px, 14px);
-    }
-  }
-}

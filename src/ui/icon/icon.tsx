@@ -1,5 +1,6 @@
 import { FC, useEffect, useId, useState } from 'react';
-import IconMapping, { IconName } from './icon-mapping';
+import IconMapping from './icon-mapping';
+import { IconName } from './utils';
 
 export interface IIcon {
   /** Имя иконки. Возможны два формата: если в макете иконка задана как `24x24/screen-navigation/plus.svg`,

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
 
-import stylesBotTemplate from './bot-template-popup.module.scss';
+import styles from './bot-template-popup.module.scss';
 
 import { ReactComponent as ImageAnswer } from '../../../images/icon/template/answering machine.svg';
 import { ReactComponent as ImageEntertain } from '../../../images/icon/template/entertainment.svg';
@@ -16,13 +16,14 @@ import { ReactComponent as ImageDemo } from '../../../images/icon/template/demo 
 import { ReactComponent as ImageBeauty } from '../../../images/icon/template/beauty.svg';
 import { ReactComponent as ImagePoll } from '../../../images/icon/template/poll.svg';
 
+import { TBotTemplate } from '../../../services/types/bot';
+
 import Button from '../../../ui/buttons/button/button';
 import routesUrl from '../../../utils/routesData';
 import Typography from '../../../ui/typography/typography';
 
 interface IBotTemplate {
-  title: string;
-  description: string;
+  template: TBotTemplate;
   onClick?: () => void;
 }
 
@@ -31,102 +32,67 @@ interface IImage {
 }
 
 const image: IImage = {
-  'Бот автоответчик': (
-    <ImageAnswer className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Доставка еды': (
-    <ImageFood className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Демо бот': <ImageDemo className={stylesBotTemplate.bot_template_image} />,
-  Опрос: <ImagePoll className={stylesBotTemplate.bot_template_image} />,
-  'Лидогенерация/HR ререререре...': (
-    <ImageLead className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Онлайн школа/Вебинар': (
-    <ImageLearn className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Закрытый клуб по под...': (
-    <ImagePrivate className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Агентство по недвижимости': (
-    <ImageReal className={stylesBotTemplate.bot_template_image} />
-  ),
-  Развлечения: (
-    <ImageEntertain className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Салон красоты': (
-    <ImageBeauty className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Онлайн-покупки': (
-    <ImageCom className={stylesBotTemplate.bot_template_image} />
-  ),
-  'Вопрос/ответ': (
-    <ImageQuest className={stylesBotTemplate.bot_template_image} />
-  ),
+  'Бот автоответчик': <ImageAnswer className={styles.image} />,
+  'Доставка еды': <ImageFood className={styles.image} />,
+  'Демо бот': <ImageDemo className={styles.image} />,
+  Опрос: <ImagePoll className={styles.image} />,
+  'Лидогенерация/HR ререререре...': <ImageLead className={styles.image} />,
+  'Онлайн школа/Вебинар': <ImageLearn className={styles.image} />,
+  'Закрытый клуб по под...': <ImagePrivate className={styles.image} />,
+  'Агентство по недвижимости': <ImageReal className={styles.image} />,
+  Развлечения: <ImageEntertain className={styles.image} />,
+  'Салон красоты': <ImageBeauty className={styles.image} />,
+  'Онлайн-покупки': <ImageCom className={styles.image} />,
+  'Вопрос/ответ': <ImageQuest className={styles.image} />,
 };
 
-const BotTemplatePopup: FC<IBotTemplate> = ({
-  title,
-  description,
-  onClick,
-}): JSX.Element | null => {
-  const data = [
+const BotTemplatePopup: FC<IBotTemplate> = ({ template, onClick }) => {
+  const descriptionList = [
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
     'Что настроено в шаблоне',
   ];
-  const history = useNavigate();
-  const addBot = () => {
-    // добавить подключение к редаксу
-    history(routesUrl.addBot);
+  const navigate = useNavigate();
+  const addBot = (templateId: string, templateTitle: string) => {
+    navigate(
+      `/${routesUrl.addBot}?template=${templateId}&title=${templateTitle}`
+    );
   };
 
   return (
-    <div className={stylesBotTemplate.bot_template}>
+    <div className={styles.bot_template}>
       <div>
-        {image[title]}
-        <div className={stylesBotTemplate.bot_template_description}>
-          <Typography
-            tag="h2"
-            fontFamily="secondary"
-            className={stylesBotTemplate.bot_template_title}
-          >
-            {title}
+        {image[template.title]}
+        <div className={styles.description}>
+          <Typography tag="h2" fontFamily="secondary" className={styles.title}>
+            {template.title}
           </Typography>
-          <Typography tag="p">{description}</Typography>
-          <ul className={stylesBotTemplate.bot_template_list}>
-            {data.map((item, index) => (
-              <li
-                key={item + +index}
-                className={stylesBotTemplate.bot_template_item}
-              >
-                <Typography
-                  tag="span"
-                  className={stylesBotTemplate.bot_template_item_index}
-                >
+          <Typography tag="p">{template.description}</Typography>
+          <ul className={styles.list}>
+            {descriptionList.map((description, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index} className={styles.item}>
+                <Typography tag="span" className={styles.item_index}>
                   {index + 1}
                   {'>'}
                 </Typography>
-                <Typography tag="span">{item}</Typography>
+                <Typography tag="span">{description}</Typography>
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      <div className={stylesBotTemplate.bot_template_buttons}>
-        <button
-          className={stylesBotTemplate.bot_template_cancel}
-          onClick={onClick}
-          type="button"
-        >
+      <div className={styles.buttons}>
+        <button className={styles.cancel} onClick={onClick} type="button">
           Отмена
         </button>
 
-        <div className={stylesBotTemplate.bot_template_add_button}>
+        <div className={styles.add_button}>
           <Button
-            onClick={addBot}
+            // eslint-disable-next-line no-underscore-dangle
+            onClick={() => addBot(template._id, template.title)}
             size="large"
             variant="default"
             color="green"

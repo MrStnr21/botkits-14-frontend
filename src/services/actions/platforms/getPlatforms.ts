@@ -2,6 +2,7 @@ import getPlatformsApi from '../../../api/platforms';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TPlatform } from '../../types/platform';
+import { TResponseError } from '../../types/response';
 
 const GET_PLATFORMS_REQUEST = 'GET_PLATFORMS_REQUEST';
 const GET_PLATFORMS_SUCCESS = 'GET_PLATFORMS_SUCCESS';
@@ -25,16 +26,12 @@ export type TGetPlatformsActions =
   | IGetPlatformsSuccessAction
   | IGetPlatformsErrorAction;
 
-/**
- * экшн получения шаблонов
- * @param token access token
- */
-const getPlatformsAction: AppThunk = (token: string) => {
+const getPlatformsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_PLATFORMS_REQUEST,
     });
-    getPlatformsApi(token)
+    getPlatformsApi()
       .then((res: Array<TPlatform>) => {
         if (res) {
           dispatch({
@@ -43,9 +40,9 @@ const getPlatformsAction: AppThunk = (token: string) => {
           });
         }
       })
-      .catch((err: { message: string }) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err[0]);
         dispatch({
           type: GET_PLATFORMS_ERROR,
         });

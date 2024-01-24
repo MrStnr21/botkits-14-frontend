@@ -9,16 +9,15 @@ import { getUserInfoReducer } from './user/user';
 
 import logoutReducer from './logout/logout';
 
-import { getBotsReducer } from './bots/getBots';
-import { addBotReducer } from './bots/addBot';
+import { botsReducer } from './bots/bots';
 
 import { getTemplatesBotsReducer } from './bots/templatesBots';
-import { addTemplatesBotReducer } from './bots/addTemplatesBot';
 
 import { getPlatformsReducer } from './platforms/getPlatforms';
 import { socketReducer } from './socket/socketReducer';
 
 import { toggleMesPopup } from './popups/messengers-popup';
+import errorReducer from './errors/errors';
 
 const rootReducer = combineReducers({
   signin: signinReducer,
@@ -26,13 +25,12 @@ const rootReducer = combineReducers({
   resetPassword: resetPasswordReducer,
   getUserInfo: getUserInfoReducer,
   logout: logoutReducer,
-  getBots: getBotsReducer,
-  addBot: addBotReducer,
+  bots: botsReducer,
   getTemplatesBots: getTemplatesBotsReducer,
-  addTemplatesBot: addTemplatesBotReducer,
   getPlatforms: getPlatformsReducer,
   websocket: socketReducer,
   toggleMessengersPopup: toggleMesPopup,
+  errors: errorReducer,
 });
 
 export default rootReducer;

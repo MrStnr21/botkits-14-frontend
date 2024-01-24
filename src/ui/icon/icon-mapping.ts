@@ -148,5 +148,3 @@ const IconMapping = {
 };
 
 export default IconMapping;
-
-export type IconName = keyof typeof IconMapping;

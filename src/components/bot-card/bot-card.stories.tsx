@@ -14,6 +14,7 @@ import web from '../../images/icon/40x40/web/default.svg';
 import whats from '../../images/icon/40x40/whatsapp/default.svg';
 import ya from '../../images/icon/40x40/yandex/default.svg';
 import yt from '../../images/icon/40x40/youtube/default.svg';
+import { TBot } from '../../services/types/bot';
 
 const icons = {
   fb,
@@ -77,7 +78,9 @@ export default {
   tags: ['autodocs'],
 } as Meta<IBotCard>;
 
-const Template: StoryFn<IBotCard> = (args) => <BotCard {...args} />;
+const Template: StoryFn<IBotCard> = (args: { bot: TBot }) => (
+  <BotCard {...args} />
+);
 
 export const Facebook = {
   args: {

@@ -1,24 +1,26 @@
 import { addBotApi } from '../../../api';
+import { copyBotApi } from '../../../api/bots';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TBot } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
-const ADDBOT_REQUEST = 'ADDBOT_REQUSET';
-const ADDBOT_SUCCESS = 'ADDBOT_SUCCESS';
-const ADDBOT_ERROR = 'ADDBOTT_ERROR';
+const ADD_BOT_REQUEST = 'ADD_BOT_REQUSET';
+const ADD_BOT_SUCCESS = 'ADD_BOT_SUCCESS';
+const ADD_BOT_ERROR = 'ADD_BOTT_ERROR';
 
 export interface IAddBotRequestAction {
-  readonly type: typeof ADDBOT_REQUEST;
+  readonly type: typeof ADD_BOT_REQUEST;
 }
 
 export interface IAddBotSuccessAction {
-  readonly type: typeof ADDBOT_SUCCESS;
+  readonly type: typeof ADD_BOT_SUCCESS;
   bot: TBot;
 }
 
 export interface IAddBotErrorAction {
-  readonly type: typeof ADDBOT_ERROR;
+  readonly type: typeof ADD_BOT_ERROR;
 }
 
 export type TAddBotActions =
@@ -29,32 +31,67 @@ export type TAddBotActions =
 /**
  * экшн добавления бота
  * @param botinfo объект с типом TBot
- * @param token access token
+ * @param templateId id шаблона, на основе которого создаётся бот
+ * @param callback функция, которая вызывается после добавления бота в стор
  */
-const addBotAction: AppThunk = (botinfo: TBot, token: string) => {
+const addBotAction: AppThunk = (
+  bot: TBot,
+  templateId: string | null,
+  callback: (id: string) => void
+) => {
   return (dispatch: AppDispatch) => {
     dispatch({
-      type: ADDBOT_REQUEST,
+      type: ADD_BOT_REQUEST,
     });
-    console.log(botinfo);
-    addBotApi(botinfo, token)
+    addBotApi(bot, templateId)
       .then((res) => {
-        console.log(res);
         if (res) {
           dispatch({
-            type: ADDBOT_SUCCESS,
+            type: ADD_BOT_SUCCESS,
             bot: res,
           });
+          // eslint-disable-next-line no-underscore-dangle
+          callback(res._id);
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({
-          type: ADDBOT_ERROR,
+          type: ADD_BOT_ERROR,
         });
       });
   };
 };
 
-export { ADDBOT_REQUEST, ADDBOT_SUCCESS, ADDBOT_ERROR, addBotAction };
+const copyBotAction: AppThunk = (id: string) => {
+  return (dispatch: AppDispatch) => {
+    dispatch({
+      type: ADD_BOT_REQUEST,
+    });
+    copyBotApi(id)
+      .then((res) => {
+        if (res) {
+          dispatch({
+            type: ADD_BOT_SUCCESS,
+            bot: res,
+          });
+        }
+      })
+      .catch((err: TResponseError) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+        dispatch({
+          type: ADD_BOT_ERROR,
+        });
+      });
+  };
+};
+
+export {
+  ADD_BOT_REQUEST,
+  ADD_BOT_SUCCESS,
+  ADD_BOT_ERROR,
+  addBotAction,
+  copyBotAction,
+};

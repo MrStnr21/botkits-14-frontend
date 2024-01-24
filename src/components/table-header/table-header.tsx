@@ -7,8 +7,11 @@ import Menu from '../../ui/menus/menu/menu';
 import { Option } from '../../utils/types';
 
 interface IProps {
+  // название таблицы в шапке
   title?: string;
+  // функция, принимающая значение для фильтрации строк в таблицы из её шапки
   onFilterChange?: (value: string) => void;
+  // массив опций, на основе которых будет происходит фильтрация строк
   options?: { label: string; value: string }[];
 }
 

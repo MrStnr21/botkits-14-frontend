@@ -35,38 +35,45 @@
   }
 }
 
-.selects-string {
+.selects {
   @include flex(row, false, false, 4px);
-  width: 52px;
-
-  @media screen and (max-width: $switching-width) {
-    :nth-child(1) {
-      max-width: 96px;
-    }
-
-    :nth-child(2) {
-      max-width: 96px;
-    }
-  }
-}
-.selectsIcon {
-  min-width: 52px;
-  @media screen and (max-width: $switching-width) {
-    min-width: 34px;
-  }
 }
 
-.selectsVariable {
+.variable {
   min-width: 184px;
   @media screen and (max-width: $switching-width) {
     min-width: 93px;
   }
 }
 
-div.selectLayout.selectLayout {
+.comparison {
+  box-sizing: border-box;
+  min-width: 52px;
+
+  & button {
+    padding: 8px 2px 8px 6px;
+  }
+  @media screen and (max-width: $switching-width) {
+    min-width: 37px;
+
+    & button {
+      padding: 6px 5px 5px 5px;
+    }
+  }
+
+  & .select_item__icon {
+    color: $primary-persian-blue-default;
+  }
+}
+
+div.select_layout {
   width: 304px;
 }
 
-div.selectItem {
+div.select_item {
   text-align: start;
+}
+
+div.select_item__icon {
+  color: $grey-3;
 }
