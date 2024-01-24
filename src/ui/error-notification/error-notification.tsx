@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import styles from './error-notification.module.scss';
-import Typography from '../../ui/typography/typography';
-import Icon from '../../ui/icon/icon';
+import Typography from '../typography/typography';
+import Icon from '../icon/icon';
 import { useAppDispatch } from '../../services/hooks/hooks';
 import { REMOVE_ERROR } from '../../services/actions/errors/errors';
 

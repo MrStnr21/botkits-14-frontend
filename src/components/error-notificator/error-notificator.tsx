@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useAppSelector } from '../../services/hooks/hooks';
-import ErrorNotification from '../error-notification/error-notification';
+import ErrorNotification from '../../ui/error-notification/error-notification';
 import styles from './error-notificator.module.scss';
 import { getErrorsSel } from '../../utils/selectorData';
 
