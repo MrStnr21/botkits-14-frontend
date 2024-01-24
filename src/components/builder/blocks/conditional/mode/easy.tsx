@@ -69,8 +69,8 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
   const content = useMemo(
     () => (
       <>
-        <div className={styles['selects-string']}>
-          <div className={styles.selectsVariable}>
+        <div className={styles.selects}>
+          <div className={styles.variable}>
             <Select
               options={selectValues}
               handleSelect={(option) => setVariable(option.value)}
@@ -82,7 +82,7 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
               adaptive
             />
           </div>
-          <div className={styles.selectsIcon}>
+          <div className={styles.comparison}>
             <Select
               options={signSelectValues}
               handleSelect={(option) => setSign(option.value)}
@@ -92,8 +92,9 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
                   signSelectValues
                 ) || signSelectValues[0]
               }
-              layoutClassName={styles.selectLayout}
-              itemClassName={styles.selectItem}
+              layoutClassName={styles.select_layout}
+              itemClassName={styles.select_item}
+              iconClassName={styles.select_item__icon}
               elementToCloseListener="flow"
               adaptive
             />

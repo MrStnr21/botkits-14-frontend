@@ -24,6 +24,7 @@ import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue'
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
 import ErrorNotificator from '../error-notificator/error-notificator';
+import Tariffs from '../../pages/tariffs/tariffs';
 
 const App: FC = (): JSX.Element => {
   const path = useLocation().pathname;
@@ -176,9 +177,16 @@ const App: FC = (): JSX.Element => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path={routesUrl.tariffs}
+            element={
+              <ProtectedRoute>
+                <Tariffs />
+              </ProtectedRoute>
+            }
+          />
           <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
-        <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
       <ErrorNotificator />
     </>

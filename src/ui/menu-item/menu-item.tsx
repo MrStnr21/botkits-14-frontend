@@ -2,6 +2,8 @@ import { FC } from 'react';
 import styles from './menu-item.module.scss';
 import checkIcon from '../../images/icon/24x24/common/check.svg';
 import { Option } from '../../utils/types';
+import Icon from '../icon/icon';
+import { IconName } from '../icon/utils';
 
 export interface IMenuItem {
   option: Option;
@@ -13,11 +15,14 @@ export interface IMenuItem {
   /** Чтобы перезаписать свойства MenuItem, в scss файле родителя повысьте селективность,
    * например: ```div.item { height: 30px;}``` */
   extraClass?: string;
+  iconClass?: string;
 }
 
-const renderIcon = (icon: string | undefined) => {
+const renderIcon = (icon: IconName | undefined, style: string) => {
   if (icon) {
-    return <img src={icon} alt="" className={styles.icon} />;
+    return (
+      <Icon icon={icon} extraClass={`${styles.icon} ${style}`} isColored />
+    );
   }
   return null;
 };
@@ -34,6 +39,7 @@ const MenuItem: FC<IMenuItem> = ({
   onClick,
   isChecked = false,
   extraClass = '',
+  iconClass = '',
 }) => {
   return (
     <div
@@ -42,7 +48,7 @@ const MenuItem: FC<IMenuItem> = ({
       className={`${styles.item} ${extraClass}`}
     >
       {' '}
-      {renderIcon(option.icon)}
+      {renderIcon(option.icon, iconClass)}
       {option.label}
       {renderCheck(isChecked)}
     </div>
