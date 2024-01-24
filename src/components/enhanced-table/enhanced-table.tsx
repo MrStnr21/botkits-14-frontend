@@ -24,6 +24,8 @@ import {
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './enhanced-table.module.scss';
 import TableMenuButton from '../table-menu-button/table-menu-button';
+import { useAppDispatch } from '../../services/hooks/hooks';
+import { createAddErrorAction } from '../../services/actions/errors/errors';
 
 type Columns = {
   id?: number;
@@ -101,6 +103,7 @@ const EnhancedTable: FC<IProps> = ({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
+  const dispatch = useAppDispatch();
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -132,6 +135,7 @@ const EnhancedTable: FC<IProps> = ({
       if (onUpdate) {
         onUpdate(updatedRow).catch((e) => {
           setTableData(unUpdatedData);
+          dispatch(createAddErrorAction('Ошибка при отправке данных'));
           console.log(e);
         });
       }
