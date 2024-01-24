@@ -1,10 +1,13 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, ChangeEvent, useState } from 'react';
+import { FC, ChangeEvent, useState, useMemo } from 'react';
 import styles from './table-input.module.scss';
 import Typography from '../../typography/typography';
+import { TableData } from '../../../components/enhanced-table/enhanced-table';
 
 interface IProps {
+  name?: string;
   placeholder?: string;
   value?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -16,9 +19,12 @@ interface IProps {
   minLength?: number;
   maxLength?: number;
   errorMessage?: string;
+  column?: string;
+  data?: any;
 }
 
 const TableInput: FC<IProps> = ({
+  name,
   value,
   placeholder,
   onChange,
@@ -28,8 +34,10 @@ const TableInput: FC<IProps> = ({
   max,
   isInvalid,
   minLength = 2,
-  maxLength = 32,
+  maxLength = 20,
   errorMessage = 'Error text',
+  column,
+  data,
 }) => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
@@ -38,9 +46,26 @@ const TableInput: FC<IProps> = ({
 
   const validate = (input: ChangeEvent<HTMLInputElement>) => {
     const inputValue = input.target.value.trim();
-    console.log(inputValue);
+    const isPositiveInteger =
+      /^\d+$/.test(inputValue) && parseInt(inputValue, 10) !== -1;
+    const isPositiveIntegerMoreThanOne =
+      /^\d+$/.test(inputValue) && parseInt(inputValue, 10) > 0;
     if (!inputValue) {
       setError({ error: true, textError: 'Это поле обязательно' });
+    } else if (column === 'price' && !isPositiveInteger) {
+      setError({ error: true, textError: 'Введите целое число > 0' });
+    } else if (
+      (column === 'botsCount' || column === 'subscribersCount') &&
+      !isPositiveIntegerMoreThanOne
+    ) {
+      setError({ error: true, textError: 'Введите целое число > 1' });
+    } else if (column === 'duration' && typeof inputValue !== 'string') {
+      setError({ error: true, textError: 'Введите текст' });
+    } else if (
+      column === 'name' &&
+      data.some((obj: any) => obj[column] === inputValue)
+    ) {
+      setError({ error: true, textError: 'Такой тариф существует' });
     } else {
       const validityState = input.currentTarget.validity;
       if (validityState.valueMissing) {
@@ -52,12 +77,14 @@ const TableInput: FC<IProps> = ({
           error: true,
           textError: `Максимум ${maxLength} символов`,
         });
-      } else if (validityState.tooShort) {
-        setError({
-          error: true,
-          textError: `Минимум ${minLength} символа`,
-        });
-      } else if (validityState.typeMismatch) {
+      }
+      //  else if (validityState.tooShort) {
+      //   setError({
+      //     error: true,
+      //     textError: `Минимум ${minLength} символа`,
+      //   });
+      // }
+      else if (validityState.typeMismatch) {
         setError({
           error: true,
           textError: 'Error text',
@@ -91,6 +118,7 @@ const TableInput: FC<IProps> = ({
         }`}
       >
         <input
+          name={name}
           ref={inputRef}
           className={styles.input}
           type="text"

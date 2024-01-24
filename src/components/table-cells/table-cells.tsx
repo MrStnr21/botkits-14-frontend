@@ -77,9 +77,18 @@ export const switcherCell = (
 
 export const inputCell = (
   value: string,
-  onCellUpdate: (newValue: string) => void
+  onCellUpdate: (newValue: string) => void,
+  column?: string,
+  TD?: any
 ) => {
-  return <TableInputCell value={value} onCellUpdate={onCellUpdate} />;
+  return (
+    <TableInputCell
+      value={value}
+      onCellUpdate={onCellUpdate}
+      column={column}
+      TData={TD}
+    />
+  );
 };
 
 export const statusPromoCell = (status: boolean) => (
@@ -93,5 +102,3 @@ export const statusPromoCell = (status: boolean) => (
     {status ? 'Активен' : 'Неактивен'}
   </Typography>
 );
-
-export const selectCell = (value: boolean) => <TableSelectCell />;

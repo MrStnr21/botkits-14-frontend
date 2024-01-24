@@ -32,7 +32,9 @@ type Columns = {
   colStyle?: SxProps;
   cellComponent?: (
     data: any,
-    onCellUpdate: (newValue: string | boolean) => void
+    onCellUpdate: (newValue: string | boolean) => void,
+    column?: string,
+    TD?: any
   ) => ReactNode;
 };
 
@@ -126,7 +128,6 @@ const EnhancedTable: FC<IProps> = ({
 
     if (setTableData && rowIndex !== -1) {
       const unUpdatedData = [...tableData];
-      console.log(unUpdatedData);
       const updatedData = [...tableData];
       const updatedRow = {
         ...updatedData[rowIndex],
@@ -272,8 +273,12 @@ const EnhancedTable: FC<IProps> = ({
                     {columns?.map(({ key, cellComponent }) => (
                       <TableCell key={`${row.id}_${key}`} sx={props.cellStyle}>
                         {cellComponent ? (
-                          cellComponent(row[key], (newValue: any) =>
-                            handleCellUpdate(row.id, key, newValue)
+                          cellComponent(
+                            row[key],
+                            (newValue: any) =>
+                              handleCellUpdate(row.id, key, newValue),
+                            key,
+                            tableData
                           )
                         ) : (
                           <Typography tag="p">{row[key]}</Typography>

@@ -67,7 +67,23 @@
   @include incorrect-text(left);
 }
 
-.disabled {
-  color: $secondary-cultured-focus;
-  opacity: 0.5;
+.inputSecondaryIncorrect {
+  border: 0;
+  border-bottom: 1px solid $error-default;
+
+  &::placeholder {
+    color: $error-default;
+  }
+
+  &:hover::placeholder {
+    color: $error-default;
+  }
+}
+
+.colorBlue {
+  color: $primary-persian-blue-default
+}
+
+.colorBlack {
+  color: $primary-oxford-blue-default
 }
