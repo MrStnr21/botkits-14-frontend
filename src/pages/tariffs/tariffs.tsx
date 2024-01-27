@@ -9,7 +9,7 @@ import Typography from '../../ui/typography/typography';
 import { promoCellStyle, promoRowStyleRef } from '../share/promocodesConfig';
 import { tariffsCols, tariffsTableModalButtons } from '../share/tariffsConfig';
 import TariffPopup from '../../components/popups/tariff-popup/tariff-popup';
-import { getTariffs, patchTariff } from '../../api/tariffs';
+import { deleteTariff, getTariffs, patchTariff } from '../../api/tariffs';
 
 function Tariffs() {
   const [popupOpened, togglePopup] = useState(false);
@@ -52,6 +52,7 @@ function Tariffs() {
           dropdown
           setTableData={setTariffs}
           onUpdate={patchTariff}
+          onDelete={deleteTariff}
           menuOptions={tariffsTableModalButtons}
           pagination
         />
