@@ -7,14 +7,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
-import TablePagination from '@mui/material/TablePagination';
 import { Box, Checkbox } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
 import {
   headCheckBoxStyles,
-  paginationStyles,
   paperStyles,
   checkBoxStyle,
   boxStyle,
@@ -24,6 +22,10 @@ import {
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './enhanced-table.module.scss';
 import TableMenuButton from '../table-menu-button/table-menu-button';
+import SelectPagination from './select-pagination/select-pagination';
+import { Option } from '../../utils/types';
+import { useAppDispatch } from '../../services/hooks/hooks';
+import { createAddErrorAction } from '../../services/actions/errors/errors';
 
 type Columns = {
   id?: number;
@@ -61,7 +63,7 @@ interface IProps {
   header?: boolean;
   // значения, прокидываемые в выпадающий список фильтра в хидере
   headerOptions?: { label: string; value: string }[];
-  // название таблицы в хидере
+  /** название таблицы в хидере */
   tableHeaderTitle?: string;
   // кнопка с выпадающим списком
   dropdown?: boolean;
@@ -101,6 +103,7 @@ const EnhancedTable: FC<IProps> = ({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
+  const dispatch = useAppDispatch();
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -132,14 +135,15 @@ const EnhancedTable: FC<IProps> = ({
       if (onUpdate) {
         onUpdate(updatedRow).catch((e) => {
           setTableData(unUpdatedData);
+          dispatch(createAddErrorAction('Ошибка при отправке данных'));
           console.log(e);
         });
       }
     }
   };
   // изменение кол-ва страниц в зависимости от количества строк на одной странице
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const handleChangeRowsPerPage = (option: Option) => {
+    setRowsPerPage(Number(option.value));
     setPage(0);
   };
   // функция выделения всех строк таблицы по клику на чекбокс в шапке
@@ -292,16 +296,11 @@ const EnhancedTable: FC<IProps> = ({
             onChange={handleChangePage}
             count={tableData.length}
           />
-          <TablePagination
-            sx={paginationStyles}
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={tableData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Отображать по строкам"
+          <SelectPagination
+            options={['5', '10', '25']}
+            value={rowsPerPage.toString()}
+            handleSelect={handleChangeRowsPerPage}
+            title="Отображать по строкам: "
           />
         </div>
       )}

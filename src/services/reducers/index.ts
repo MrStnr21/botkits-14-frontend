@@ -17,6 +17,7 @@ import { getPlatformsReducer } from './platforms/getPlatforms';
 import { socketReducer } from './socket/socketReducer';
 
 import { toggleMesPopup } from './popups/messengers-popup';
+import errorReducer from './errors/errors';
 
 const rootReducer = combineReducers({
   signin: signinReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   getPlatforms: getPlatformsReducer,
   websocket: socketReducer,
   toggleMessengersPopup: toggleMesPopup,
+  errors: errorReducer,
 });
 
 export default rootReducer;
