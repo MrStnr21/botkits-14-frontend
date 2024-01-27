@@ -311,3 +311,5 @@ export const tariffsCols = [
     cellComponent: switcherCell,
   },
 ];
+
+export const tariffsTableModalButtons = [{ label: 'Удалить', value: 'del' }];
