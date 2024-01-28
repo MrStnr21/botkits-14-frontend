@@ -131,7 +131,8 @@ const App: FC = (): JSX.Element => {
             />
           )}
           <Route
-            path={routesUrl.mailing}
+            // Поздравляю, вы увидели костыль, надо это поправить, но потом...
+            path={`${routesUrl.mailing}/*`}
             element={
               <ProtectedRoute>
                 <Mailing />

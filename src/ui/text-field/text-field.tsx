@@ -19,9 +19,15 @@ interface ITextField {
   maxTextLength?: number;
   text: Descendant[];
   setText: (value: Descendant[]) => void;
+  adaptive?: boolean;
 }
 
-const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
+const TextField: FC<ITextField> = ({
+  maxTextLength = 4096,
+  text,
+  setText,
+  adaptive,
+}) => {
   const [counter, rerender] = useState(1);
   const [emojis, toggleEmojis] = useState(false);
   const [editor] = useState(() => withReact(withHistory(createEditor())));
@@ -47,7 +53,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
 
   return (
     <div
-      className={styles.textarea}
+      className={adaptive ? styles.textarea_adaptive : styles.textarea}
       onClick={(e) => {
         e.stopPropagation();
         rerender(counter + 1);

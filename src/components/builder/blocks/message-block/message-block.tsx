@@ -357,7 +357,12 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           }
           case MessageDataTypes.message: {
             return (
-              <TextField text={component.value} setText={setText} key={index} />
+              <TextField
+                text={component.value}
+                setText={setText}
+                key={index}
+                adaptive
+              />
             );
           }
           default: {

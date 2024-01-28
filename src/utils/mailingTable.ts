@@ -1,5 +1,8 @@
 /* eslint-disable object-shorthand */
-import { baseCell } from '../components/table-cells/table-cells';
+import {
+  baseCell,
+  mailingStatusCell,
+} from '../components/table-cells/table-cells';
 
 export const colStyle = {
   border: 'none',
@@ -89,10 +92,10 @@ export const cols = [
     colStyle: { ...colStyle, width: '10%' },
     cellComponent: baseCell,
   },
-  /* {
+  {
     key: 'status',
     label: 'Статус заказа',
     colStyle: { ...colStyle, width: '10%' },
-    cellComponent: mailStatusCell,
-  }, */
+    cellComponent: mailingStatusCell,
+  },
 ];
