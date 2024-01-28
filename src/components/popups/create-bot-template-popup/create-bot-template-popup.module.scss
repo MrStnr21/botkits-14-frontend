@@ -1,0 +1,123 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+@mixin buttonText {
+  font-family: 'IBM Plex Mono', sans-serif;
+  font-size: $xs-font-size;
+  font-weight: $bold;
+  line-height: $xl-line-height;
+  letter-spacing: $xxl-letter-space;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@mixin buttonStyle {
+  @include button-style-reset();
+  @include flex(row, center, center);
+  @include indents(15px 60px, 0);
+  box-sizing: border-box;
+  border-radius: $l-border-radius;
+
+  @media screen and (max-width: 620px) {
+    @include indents(10px, 0);
+  }
+}
+
+.popup {
+  @include size(464px, 452px);
+  @include position(relative);
+  @include flex(column, center, flex-start, 34px);
+  @include indents(40px, 0);
+  box-sizing: border-box;
+  background-color: $off-white;
+  box-shadow: 0 12px 24px 0 #15123321;
+  border-radius: $xxl-border-radius;
+
+  @media screen and (max-width: 620px) {
+    @include size(320px, 300px);
+    justify-content: space-around;
+  }
+
+  &__content {
+    @include flex(column, center, flex-start, 20px);
+
+    @media screen and (max-width: 620px) {
+      gap: 8px;
+    }
+  }
+
+  &__buttons {
+    @include flex(row, center, center, 0);
+    align-self: flex-end;
+    padding-top: 20px;
+
+    @media screen and (max-width: 620px) {
+      flex-direction: column;
+      align-self: center;
+    }
+  }
+
+  &__rejectBtn {
+    @include buttonStyle();
+    @include size(118px, unset);
+    background-color: transparent;
+  }
+
+  &__confirmBtn {
+    @include buttonStyle();
+    @include size(165px, unset);
+    background-color: $primary-persian-blue-default;
+
+    &:disabled{
+      background-color: $grey-4;
+      cursor: auto;
+    }
+  }
+
+  &__rejectText {
+    @include buttonText();
+    color: $grey-4;
+  }
+
+  &__confirmText {
+    @include buttonText();
+    color: $off-white;
+  }
+
+  &__heading {
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: $xxl-font-size;
+    font-weight: $bold;
+    line-height: $m-line-height;
+    letter-spacing: $xxl-letter-space;
+    text-align: left;
+
+    @media screen and (max-width: 620px) {
+      font-size: $l-font-size;
+      font-weight: $bold;
+      line-height: $xl-line-height;
+      letter-spacing: 0;
+    }
+  }
+
+  &__text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: $xs-font-size;
+    font-weight: $normal;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
+    text-align: left;
+  }
+}
+
+.avatar{
+  @include position(relative);
+  @include size(88px, 88px);
+  @include indents((0 0 12px 0), 0);
+}
+
+.editButton{
+  @include position(absolute);
+  bottom: 10px;
+  right: -4px;
+}

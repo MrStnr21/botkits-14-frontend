@@ -5,6 +5,7 @@ import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
+import { TResponseError } from '../../types/response';
 import { IUserAuthError, IUserSigninState, TUser } from '../../types/user';
 import { ILogoutAction } from '../logout/logout';
 
@@ -32,7 +33,10 @@ export type TSigninActions =
   | ISigninErrorAction
   | ILogoutAction;
 
-// экшн авторизации
+/**
+ * экшн авторизации
+ * @param userInfo объект формата `{password: string, email: string}`
+ */
 const signinAction: AppThunk = (userInfo: IUserSigninState) => {
   return (dispatch: AppDispatch) => {
     dispatch({
@@ -66,6 +70,12 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
   };
 };
 
+/**
+ * экшн для авторизации через социальную сеть
+ * @param code строка
+ * @param social строка
+ * @param cookieData строка
+ */
 const socialAuthAction: AppThunk = (
   code: string,
   social: string,
@@ -98,12 +108,12 @@ const socialAuthAction: AppThunk = (
             });
           }
         })
-        .catch((err: { message: string }) => {
+        .catch((err: TResponseError) => {
           // eslint-disable-next-line no-console
-          console.log(err.message);
+          console.log(err[0]);
           dispatch({
             type: SIGNIN_ERROR,
-            textError: err.message,
+            textError: err[0],
           });
         });
     }

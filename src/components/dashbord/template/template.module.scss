@@ -1,0 +1,5 @@
+.item {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(134px, 188px));
+  align-items: flex-start;
+}

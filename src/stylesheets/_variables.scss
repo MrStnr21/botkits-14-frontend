@@ -110,3 +110,42 @@ $cursor: url('../images/icon/cursor/pointing-hand.svg'), pointer;
 // возможно не будут нужны после рефакторинга иконок
 $l-icon-stroke-width: 3px;
 $m-icon-stroke-width: 2px;
+
+:export {
+  grey1: $grey-1;
+  grey2: $grey-2;
+  grey3: $grey-3;
+  grey4: $grey-4;
+  blueDisabled: $blue-disabled;
+  offWhite: $off-white;
+
+  primaryPersianBlueDefault: $primary-persian-blue-default;
+  primaryPersianBluePress: $primary-persian-blue-press;
+  primaryPersianBlueHover: $primary-persian-blue-hover;
+  primaryPersianBlueFocus: $primary-persian-blue-focus; // только signin-signup
+
+  primaryOxfordBlueDefault: $primary-oxford-blue-default;
+
+  primaryMediumSpringGreenDefault: $primary-medium-spring-green-default;
+  primaryMediumSpringGreenHover: $primary-medium-spring-green-hover;
+  primaryMediumSpringGreenDisabled: $primary-medium-spring-green-disabled;
+
+  secondaryCulturedHover: $secondary-cultured-hover;
+  secondaryCulturedDefault: $secondary-cultured-default;
+  secondaryCulturedPress: $secondary-cultured-press;
+  secondaryCulturedFocus: $secondary-cultured-focus;
+
+  secondaryXiketicDefault: $secondary-xiketic-default;
+  secondaryXiketicPress: $secondary-xiketic-press;
+
+  errorDefault: $error-default;
+  successDefault: $success-default;
+
+  exampleButtonColorRed: $example-button-color-red;
+  exampleButtonColorGreen: $example-button-color-green;
+  exampleButtonColorBlue: $example-button-color-blue;
+
+  flowBackgroundColor: $flow-background-color;
+
+  switchingWidth: $switching-width
+}

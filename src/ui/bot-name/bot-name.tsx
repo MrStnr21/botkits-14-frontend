@@ -8,14 +8,19 @@ import Typography from '../typography/typography';
 export interface IBotName {
   platform_icon?: string;
   isUpdating: boolean;
+  title?: string;
 }
 
-const BotName: FC<IBotName> = ({ platform_icon = fb, isUpdating }) => {
+const BotName: FC<IBotName> = ({
+  platform_icon = fb,
+  isUpdating,
+  title = 'Название бота',
+}) => {
   return (
     <div className={styles.container}>
       <img className={styles.icon} src={platform_icon} alt="иконка" />
       <Typography tag="h4" fontFamily="secondary" className={styles.text}>
-        Название бота
+        {title}
       </Typography>
       {isUpdating ? (
         <UpdateIcon className={styles.update} />

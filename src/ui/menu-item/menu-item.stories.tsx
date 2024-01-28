@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
 import MenuItem, { IMenuItem } from './menu-item';
-import copyIcon from '../../images/icon/24x24/drop down/copy bot.svg';
 
 const divStyles: React.CSSProperties = {
   width: '264px',
@@ -53,7 +52,10 @@ export const Item: StoryObj<IMenuItem> = {
     <div style={divStyles}>
       <MenuItem option={option} onClick={onClick} />
       <MenuItem option={option} onClick={onClick} isChecked />
-      <MenuItem option={{ ...option, icon: copyIcon }} onClick={onClick} />
+      <MenuItem
+        option={{ ...option, icon: 'dropdownCopyBot' }}
+        onClick={onClick}
+      />
       {/* Имитация действия extraClass */}
       <div style={{ width: '200px', backgroundColor: '#E0E0E0' }}>
         <MenuItem

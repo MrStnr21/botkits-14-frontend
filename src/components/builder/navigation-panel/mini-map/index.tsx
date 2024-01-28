@@ -8,8 +8,6 @@ import {
   dragAction,
 } from '@use-gesture/react';
 import MiniMapNode from './mini-map-node';
-// Why does this not work?
-// import { getBoundsofRects } from "react-flow-renderer/dist/utils/graph";
 
 type StringFunc = (node: Node) => string;
 
@@ -22,13 +20,15 @@ export interface MiniMapProps extends HTMLAttributes<SVGSVGElement> {
   maskColor?: string;
 }
 
-// declare const window: any;
-
 const defaultWidth = 225;
 const defaultHeight = 116;
 
 const useGesture = createUseGesture([dragAction, wheelAction]);
 
+/**
+ * компонет-миникарта. За основу была взята реализация из открытого источника
+ * @see https://codesandbox.io/p/sandbox/react-flow-interactive-minimap-26u9lj?file=%2Fsrc%2Futils%2Fgraph.ts
+ */
 const MiniMap = ({
   style,
   className,

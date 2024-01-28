@@ -2,13 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ReactFlowProvider } from 'reactflow';
 import MessageBlock from './message-block';
 import { MessageDataTypes } from '../../../../services/types/builder';
+import { baseSlateData } from '../../../../utils/constants';
 
 const data = {
   name: 'Message',
   data: [
     {
       type: MessageDataTypes.message as const,
-      value: '',
+      value: baseSlateData,
     },
     {
       type: MessageDataTypes.answers as const,
@@ -22,7 +23,7 @@ const data = {
     },
   ],
   saveAnswer: {
-    value: '',
+    value: { id: '1', name: '', value: '' },
     show: false,
   },
   showTime: {

@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
-import { FC, useEffect, useMemo } from 'react';
-import { Position, useReactFlow, useNodeId, Node, useStore } from 'reactflow';
+import { FC, useMemo, useState } from 'react';
+import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import { Descendant } from 'slate';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -18,17 +19,20 @@ import {
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
 import FielsField from './files-field/fiels-field';
-import { setFlowData } from '../../utils';
+import { saveVariable, setFlowData } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
+import { storeOfVariables } from '../../utils/store';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const { seconds, minutes, hours, days } = data.showTime;
+  const [amount, render] = useState(0);
   const id = useNodeId() || '';
   const { setNodes, getNodes } = useReactFlow();
   const isMobile = useMediaQuery('(max-width: 620px)');
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
 
+  // загружено ли пользователем изображение
   const image = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -39,6 +43,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       }),
     [data.data]
   );
+  // загружен ли пользователем документ
   const doc = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -49,6 +54,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       }),
     [data.data]
   );
+  // загружено ли пользователем видео
   const video = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -59,6 +65,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       }),
     [data.data]
   );
+  // загружено ли пользователем аудио
   const audio = useMemo(
     () =>
       !!data.data.find((item) => {
@@ -70,10 +77,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [data.data]
   );
 
-  const { domNode } = useStore((s) => s);
-
-  useEffect(() => {}, [domNode]);
-
+  // список горизонтальных кнопок
   const horButtons = useMemo(
     () =>
       nodes.filter(
@@ -85,6 +89,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
+  // список вертикальных кнопок
   const verButtons = useMemo(
     () =>
       nodes.filter(
@@ -96,6 +101,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
+  // список горизонтальных ответов
   const horAnswers = useMemo(
     () =>
       nodes.filter(
@@ -107,6 +113,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
+  // список вертикальных ответов
   const verAnswers = useMemo(
     () =>
       nodes.filter(
@@ -118,7 +125,37 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
-  const setVariable = setFlowData({ selectors: ['saveAnswer', 'value'] });
+  const setVariable = (finalValue: string) => {
+    const idVariable = `${id}|||saveResultVariable`;
+    if (finalValue === '') {
+      const variableIndex = storeOfVariables.findIndex(
+        (item) => item.id === idVariable
+      );
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      variableIndex !== -1 && storeOfVariables.splice(variableIndex, 1);
+    } else {
+      saveVariable(storeOfVariables, finalValue, idVariable);
+    }
+
+    return setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              saveAnswer: {
+                ...item.data.saveAnswer,
+                value: { id: idVariable, name: finalValue, value: '' },
+              },
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   const toggleVariableBlock = setFlowData({
     selectors: ['saveAnswer', 'show'],
     value: !data.saveAnswer.show,
@@ -131,6 +168,14 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     value: !data.showTime.show,
   });
 
+  /**
+   * функция для добавления `node`- кнопки. Кнопкам необходимо задавать абсолютное позиционирование(механика nodes)
+   * @param blockType тип блока, в который добавляется кнопка(`answers` или `buttons`)
+   * @param direction вертикальная или горизонтальная кнопка
+   * @param blockOffset расстояние между верхней границей MessageBlock и блоком кнопок
+   * @param blockOffsetMob расстояние между верхней границей MessageBlock и блоком кнопок для мобильной версии
+   * @param blockOffsetDesk расстояние между верхней границей MessageBlock и блоком кнопок для настольной версии
+   */
   const addButton =
     (
       blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
@@ -140,9 +185,13 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       blockOffsetDesk: number
     ) =>
     ({
+      // расположение кнопки по оси x в px относительно MessageBlock
       x,
+      // расположение кнопки по оси y в px относительно MessageBlock
       y,
+      // расположение кнопки по оси y в px относительно MessageBlock для мобильной версии
       mobY,
+      // расположение кнопки по оси x в px относительно MessageBlock для настольной версии
       deskY,
     }: {
       x: number;
@@ -221,7 +270,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     );
   };
 
-  const setText = (value: string) => {
+  const setText = (value: Descendant[]) => {
     setNodes(
       getNodes().map((item) => {
         if (item.id === id) {
@@ -248,6 +297,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     );
   };
 
+  // подблоки MessageBlock, передаваемые при помощи массива в data.data с полем type
   const content = useMemo(
     () =>
       data.data.map((component, index) => {
@@ -320,7 +370,10 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   return (
     <ControlLayout type="Блок сообщений">
       <CustomHandle position={Position.Left} type="target" />
-      <div className={styles.content}>
+      <div
+        className={styles.content}
+        onClick={() => setTimeout(() => render(amount + 1))}
+      >
         {content}
         <FielsField
           addFile={addFile}
@@ -340,9 +393,11 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
           <Input
             minLength={0}
             placeholder="Введите переменную"
-            onChange={setVariable}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setVariable(event.target.value)
+            }
             styled="bot-builder-default"
-            value={data.saveAnswer.value}
+            value={data.saveAnswer.value.name}
           />
         </HiddenBlock>
         <HiddenBlock

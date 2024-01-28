@@ -1,12 +1,15 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, useState } from 'react';
 import stylesInput from './input-template.module.scss';
+import Typography from '../../typography/typography';
 
 export interface IInputTemplate {
   placeholder?: string;
   value?: string;
-  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   size: 'small' | 'big';
-  color: 'grey' | 'black';
+  name?: string;
+  required?: boolean;
+  errorMessage?: string;
 }
 
 const InputTemplate: FC<IInputTemplate> = ({
@@ -14,19 +17,37 @@ const InputTemplate: FC<IInputTemplate> = ({
   placeholder = 'Введите сообщение...',
   onChange,
   size,
-  color,
+  name,
+  required,
+  errorMessage = 'Введите сообщение',
 }) => {
-  let inputClassName = stylesInput.template__input;
+  const [error, setError] = useState<{ error: boolean; textError: string }>({
+    error: false,
+    textError: '',
+  });
+
   let inputContainerClassName = stylesInput.template;
+  let inputClassName = stylesInput.template__input;
 
   if (size === 'big') {
     inputContainerClassName += ' ';
     inputContainerClassName += stylesInput.template__big;
-  }
-  if (color === 'black') {
     inputClassName += ' ';
-    inputClassName += stylesInput.template__black;
+    inputClassName += stylesInput.template__input_big;
   }
+
+  const validate = (input: ChangeEvent<HTMLTextAreaElement>) => {
+    const validityState = input.currentTarget.validity;
+    if (validityState.valueMissing) {
+      setError({ error: true, textError: 'Это поле обязательно' });
+    } else if (validityState.patternMismatch) {
+      setError({ error: true, textError: errorMessage });
+    } else {
+      setError({ error: false, textError: '' });
+    }
+
+    onChange(input);
+  };
 
   return (
     <div className={inputContainerClassName}>
@@ -34,8 +55,15 @@ const InputTemplate: FC<IInputTemplate> = ({
         className={inputClassName}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={validate}
+        name={name}
+        required={required}
       />
+      {error.error && (
+        <Typography tag="p" className={stylesInput.template__incorrect_text}>
+          {error.textError}
+        </Typography>
+      )}
     </div>
   );
 };

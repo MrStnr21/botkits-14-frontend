@@ -2,7 +2,31 @@
 @use '../../stylesheets/variables' as *;
 
 .layout {
-  @include flex(row, center);
-  height: calc(100vh - 155px);
+  @include flex(column, center);
   margin-right: 40px;
+  padding-top: 32px;
+}
+
+.header {
+  @include flex(row, space-between);
+    width: 100%;
+    padding-bottom: 28px;
+
+  @media screen and (max-width: 620px) {
+    padding-bottom: 26px;
+    justify-content: center;
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 19px;
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper { // только для ширины кнопки
+  width: 240px;
 }

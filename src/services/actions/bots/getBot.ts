@@ -3,6 +3,7 @@ import { getBotsApi } from '../../../api';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
 import { TBot } from '../../types/bot';
+import { TResponseError } from '../../types/response';
 
 const GETBOTS_REQUEST = 'GETBOT_REQUSET';
 const GETBOTS_SUCCESS = 'GETBOT_SUCCESS';
@@ -26,15 +27,13 @@ export type TGetBotsActions =
   | IGetBotsSuccessAction
   | IGetBotsErrorAction;
 
-// экшн получения ботов
-const getBotsAction: AppThunk = (token: string) => {
+const getBotsAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GETBOTS_REQUEST,
     });
-    getBotsApi(token)
+    getBotsApi()
       .then((res) => {
-        console.log(res);
         if (res) {
           dispatch({
             type: GETBOTS_SUCCESS,
@@ -42,7 +41,7 @@ const getBotsAction: AppThunk = (token: string) => {
           });
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         dispatch({

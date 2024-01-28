@@ -1,4 +1,5 @@
 import { FC, useCallback, useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 
 import ReactFlow, {
@@ -8,6 +9,8 @@ import ReactFlow, {
   useEdgesState,
   Connection,
   Edge,
+  getConnectedEdges,
+  Node,
 } from 'reactflow';
 
 import { useMediaQuery } from '@mui/material';
@@ -19,7 +22,7 @@ import { initialEdges, edgeOptions } from './initial-edges';
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
 import NavigationPanel from '../navigation-panel/navigation-panel';
-import TriggerBlock from '../triggerBlock/triggerBlock';
+import TriggerBlock, { triggers } from '../triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
@@ -27,6 +30,18 @@ import BotName from '../../../ui/bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
+import {
+  filterNodes,
+  getUrlPath,
+  iconOfPlatform,
+  saveVariable,
+  saveTrigger,
+  // resetVar,
+} from '../utils';
+import { storeOfVariables } from '../utils/store';
+import { TVariable, TTrigger } from '../../../services/types/builder';
+import { getBuilderApi, saveBuilderApi } from '../../../api';
+import { TResponseError } from '../../../services/types/response';
 
 const cx = cn.bind(styles);
 
@@ -34,14 +49,96 @@ const cx = cn.bind(styles);
 export let namesOfBlocks: string[] = [];
 
 const LayoutFlow: FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isMobile = useMediaQuery('(max-width: 620px)');
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [triggerOpened, toggleTrigger] = useState(false);
   const [menuOpened, toggleMenu] = useState(false);
+  const [searchParams] = useSearchParams();
+  const [title, setTitle] = useState('Название бота');
+  const [platformIcon, setPlatformIcon] = useState(iconOfPlatform.Facebook);
 
   namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
+
+  useEffect(() => {
+    const id = searchParams.get('id') || '';
+    const path = searchParams.get('type')
+      ? getUrlPath[searchParams.get('type')!]
+      : '';
+
+    if (!id || !path) {
+      // return;
+      // eslint-disable-next-line no-console
+      console.log('нету');
+    }
+
+    getBuilderApi(path, id)
+      .then((data) => {
+        if (data.features && data.features.nodes) {
+          setNodes(data.features.nodes);
+        }
+        if (data.features && data.features.edges) {
+          setEdges(data.features.edges);
+        }
+        if (data.features && data.features.variables) {
+          data.features.variables.map((el: TVariable) =>
+            saveVariable(storeOfVariables, el.name, el.id)
+          );
+        }
+        if (data.features && data.features.triggers) {
+          data.features.triggers.map((el: TTrigger) =>
+            saveTrigger(triggers, el.id, el.tag, el.type, el.name, el.text)
+          );
+        }
+
+        if (data.title) {
+          setTitle(data.title);
+        }
+        if (data.messengers && data.messengers[0].name) {
+          setPlatformIcon(
+            data.messengers.map(
+              (el: { name: string }) => iconOfPlatform[el.name]
+            )[0]
+          );
+        }
+        // eslint-disable-next-line no-console
+        console.log(data);
+      })
+      .catch((err: TResponseError) => {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      });
+  }, []);
+
+  const saveBot = () => {
+    const id = searchParams.get('id') || '';
+    const path = searchParams.get('type')
+      ? getUrlPath[searchParams.get('type')!]
+      : '';
+    if (!id || !path) {
+      // eslint-disable-next-line no-console
+      console.log('нету');
+    }
+
+    const fetchingNodes = filterNodes(nodes);
+    const builder = {
+      features: {
+        nodes: fetchingNodes,
+        edges,
+        variables: storeOfVariables,
+        triggers,
+      },
+    };
+
+    saveBuilderApi(builder, path, id).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    });
+  };
+
+  // Ручная очистка любого массива с отправкой на бэк, например, битого блока с файлом
+  /* resetVar(nodes[1].data.data);
+  saveBot(); */
 
   const onConnect = useCallback((connection: Edge | Connection) => {
     if (connection.source === connection.target) {
@@ -57,6 +154,23 @@ const LayoutFlow: FC = () => {
       (edge) => edge.source === source && edge.target === target
     );
   };
+
+  const onNodesDelete = useCallback(
+    (deleted: Node[]) => {
+      setEdges(
+        deleted.reduce((acc, node) => {
+          const connectedEdges = getConnectedEdges([node], edges);
+
+          const remainingEdges = acc.filter(
+            (edge) => !connectedEdges.includes(edge)
+          );
+
+          return remainingEdges;
+        }, edges)
+      );
+    },
+    [nodes, edges]
+  );
 
   const menuCloseHandler = () => {
     toggleMenu(false);
@@ -118,10 +232,15 @@ const LayoutFlow: FC = () => {
         fitView
         defaultEdgeOptions={edgeOptions}
         isValidConnection={isValidConnection}
+        onNodesDelete={onNodesDelete}
       >
         <Background />
         <div className={styles['bot-name']}>
-          <BotName isUpdating={false} />
+          <BotName
+            isUpdating={false}
+            platform_icon={platformIcon}
+            title={title}
+          />
         </div>
         <div className={styles['trigger-button']}>
           <TriggerButton onClick={() => toggleTrigger(true)} />
@@ -140,6 +259,11 @@ const LayoutFlow: FC = () => {
           </div>
         </div>
         <NavigationPanel />
+        <div className={cx('saveButton')}>
+          <Button color="green" variant="default" onClick={saveBot}>
+            Сохранить
+          </Button>
+        </div>
         <div className={cx('addBlock')}>
           {!isMobile && menuOpened && (
             <div className={cx('addBlock__menu')}>

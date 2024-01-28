@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
+
 import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
 import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
 import ControlLayout from '../../control-layout/control-layout';
@@ -10,20 +11,28 @@ import { TBlockProps, TApiBlock } from '../../../../services/types/builder';
 import LabeledInput from '../../labeledInput/labeledInput';
 import ValField from './val-field/val-filed';
 import RequestSettings from './req-setting/req-setting';
-import { setFlowData } from '../../utils';
+import { saveVariable, setFlowData } from '../../utils';
+import { storeOfVariables } from '../../utils/store';
 
 const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
   const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const id = useNodeId() || '';
+  const nodes = getNodes();
 
   const setUrl = setFlowData({ selectors: ['url'] });
   const setGetType = setFlowData({ selectors: ['reqType'], value: 'get' });
   const setPostType = setFlowData({ selectors: ['reqType'], value: 'post' });
 
   const addField =
-    (field: 'headers' | 'params', type: 'variable' | 'const') => () =>
+    (field: 'headers' | 'params' | 'variables', type: 'variable' | 'const') =>
+    () => {
+      const idVariable = `${id}|||saveResultVariable-${
+        data.variables.length + 1
+      }`;
+      saveVariable(storeOfVariables, '', idVariable);
+
       setNodes(
-        getNodes().map((item) => {
+        nodes.map((item) => {
           if (item.id === id) {
             return {
               ...item,
@@ -31,7 +40,9 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
                 ...item.data,
                 [field]: [
                   ...item.data[field],
-                  { type, name: '', variable: '' },
+                  field === 'variables'
+                    ? { id: idVariable, name: '', value: '' }
+                    : { type, name: '', variable: '' },
                 ],
               },
             };
@@ -39,6 +50,7 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
           return item;
         })
       );
+    };
 
   const getHeaderFields = (type: 'variable' | 'const') => {
     return data.headers.map((item, index) => {
@@ -68,6 +80,51 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
             index={index}
           />
         )
+      );
+    });
+  };
+
+  const setVariable = (currentTarget: EventTarget & HTMLInputElement) => {
+    saveVariable(storeOfVariables, currentTarget.value, currentTarget.id);
+    return setNodes(
+      nodes.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            data: {
+              ...item.data,
+              variables: data.variables.map((el) => {
+                if (el.id === currentTarget.id) {
+                  return {
+                    id: currentTarget.id,
+                    name: currentTarget.value,
+                    value: '',
+                  };
+                }
+                return el;
+              }),
+            },
+          };
+        }
+        return item;
+      })
+    );
+  };
+
+  const getVariableFields = () => {
+    return data.variables.map((item, index) => {
+      return (
+        <Input
+          styled="bot-builder-default"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setVariable(event.target)
+          }
+          placeholder="Переменная"
+          value={item.name || ''}
+          minLength={0}
+          key={index}
+          id={item.id}
+        />
       );
     });
   };
@@ -112,21 +169,35 @@ const ApiBlockNode: FC<TBlockProps<TApiBlock>> = ({ data }) => {
           constFields={getHeaderFields('const')}
           addFieldVariable={addField('headers', 'variable')}
           addFieldConst={addField('headers', 'const')}
+          title="Заголовок"
         />
         <RequestSettings
           variableFields={getParamFields('variable')}
           constFields={getParamFields('const')}
           addFieldVariable={addField('params', 'variable')}
           addFieldConst={addField('params', 'const')}
+          title="Параметр"
         />
         <LabeledInput title="Сохранить результат">
-          <ConstructorAddButton
+          {/* <ConstructorAddButton
             buttonHtmlType="button"
             disabled={false}
-            onClick={() => {}}
+            onClick={() => setVariable}
           >
             Переменная
-          </ConstructorAddButton>
+          </ConstructorAddButton> */}
+          <div className={styles.field_blocks}>
+            <div className={styles.fields}>
+              {getVariableFields()}
+              <ConstructorAddButton
+                buttonHtmlType="button"
+                disabled={false}
+                onClick={addField('variables', 'variable')}
+              >
+                Переменная
+              </ConstructorAddButton>
+            </div>
+          </div>
         </LabeledInput>
       </div>
     </ControlLayout>

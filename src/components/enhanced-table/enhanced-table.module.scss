@@ -1,0 +1,14 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.pagination {
+  @include position(relative);
+  @include size(100%, unset);
+  @include flex(row, space-between, center);
+  @include indents(0, 20px 0 0 0);
+  @include max-size(100%, unset);
+}
+
+.checkboxTC {
+  @include indents();
+}

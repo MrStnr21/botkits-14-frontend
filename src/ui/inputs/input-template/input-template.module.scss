@@ -6,10 +6,12 @@
   @include flex();
   box-sizing: border-box;
   background-color: $secondary-cultured-default;
+  position: relative;
 
   &__big {
     @include size(362px, 70px);
-  }
+    
+}
 
   &__input {
     @include font('Open Sans', $xs-font-size, $normal, $grey-3);
@@ -22,17 +24,36 @@
     overflow: hidden;
     background-color: $off-white;
     border: 1px solid $grey-2;
+    color: $primary-oxford-blue-default;
 
     &::placeholder {
       color: $grey-3;
     }
   }
 
-  &__black {
-    color: $primary-oxford-blue-default;
+  &__input_big {
+    overflow-y: scroll;
 
-    &::placeholder {
-      color: $primary-oxford-blue-default;
-    }
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $off-white;
+    border-radius: $m-border-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-1;
+    box-sizing: border-box;
+    border-radius: $m-border-radius;
+    border: solid 5px $off-white;
+  }
+
+  }
+
+  &__incorrect_text {
+    @include incorrect-text(left);
+    bottom: -15px;
   }
 }

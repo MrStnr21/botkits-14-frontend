@@ -6,6 +6,7 @@ import {
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
+import { TResponseError } from '../../types/response';
 import { TUser } from '../../types/user';
 
 const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
@@ -30,13 +31,15 @@ export type TGetUserInfoActions =
   | IGetUserInfoSuccesAction
   | IGetUserInfoErrorAction;
 
-// Экшн получения данных пользователя
-const getUserInfoAction: AppThunk = (token: string) => {
+/**
+ * Экшн получения данных пользователя
+ */
+const getUserInfoAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: GET_USER_INFO_REQUEST,
     });
-    getUserInfoApi(token)
+    getUserInfoApi()
       .then((res: TUser) => {
         if (res) {
           dispatch({
@@ -45,7 +48,7 @@ const getUserInfoAction: AppThunk = (token: string) => {
           });
         }
       })
-      .catch((err) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
         if (err[0] === 'Ошибка 401') {

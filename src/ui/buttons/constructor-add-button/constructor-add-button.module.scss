@@ -1,7 +1,7 @@
 @use '../../../stylesheets/mixins' as *;
 @use '../../../stylesheets/variables' as *;
 
-.button {
+@mixin button {
   @include button-style-reset;
   @include flex($align-items: center);
   @include size(100%, 100%);
@@ -12,11 +12,20 @@
   transition: all 0.1s linear;
   border-radius: $l-border-radius;
   box-sizing: border-box;
+  background-color: #f2f4f8 !important;
+}
+
+.button {
+  @include button;
 
   @media screen and (max-width: $switching-width) {
     font-size: 7.41px;
     padding: 6px 7px 5.32px 7px;
   }
+}
+
+.button_unadaptive {
+  @include button;
 }
 
 /* .wrapper {
@@ -50,6 +59,10 @@
 }
 
 .button svg {
+  stroke: #a6b3c9;
+}
+
+.button_unadaptive svg {
   stroke: #a6b3c9;
 }
 

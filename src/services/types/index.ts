@@ -14,14 +14,13 @@ import { TGetUserInfoActions } from '../actions/user/user';
 import { TLogoutState } from '../reducers/logout/logout';
 import { TLogoutActions } from '../actions/logout/logout';
 
-import { TGetBotsState } from '../reducers/bots/getBots';
+import { TBotsState } from '../reducers/bots/bots';
 import { TGetBotsActions } from '../actions/bots/getBot';
 
-import { TAddBotState } from '../reducers/bots/addBot';
 import { TAddBotActions } from '../actions/bots/addBot';
 
-import { TGetTemplatesBotsState } from '../reducers/bots/getTemplatesBots';
-import { TGetTemplatesBotsActions } from '../actions/bots/getTemplatesBots';
+import { TGetTemplatesBotsState } from '../reducers/bots/templatesBots';
+import { TGetTemplatesBotsActions } from '../actions/bots/templatesBots';
 
 import { TUserResetPasswordActions } from '../actions/auth/reset-password';
 import { TResetPasswordState } from '../reducers/auth/reset-password';
@@ -30,6 +29,10 @@ import { TGetPlatformsState } from '../reducers/platforms/getPlatforms';
 import { TGetPlatformsActions } from '../actions/platforms/getPlatforms';
 
 import store from '../store';
+import { TDeleteBotActions } from '../actions/bots/deleteBot';
+import { TRenameBotActions } from '../actions/bots/renameBot';
+import { TErrorActions } from '../actions/errors/errors';
+import { TErrorState } from '../reducers/errors/errors';
 
 export type TStore = {
   signup: TSignupState;
@@ -37,10 +40,10 @@ export type TStore = {
   resetPassword: TResetPasswordState;
   getUserInfo: TGetUserInfoState;
   logout: TLogoutState;
-  getBots: TGetBotsState;
-  addBot: TAddBotState;
+  bots: TBotsState;
   getTemplatesBots: TGetTemplatesBotsState;
   getPlatforms: TGetPlatformsState;
+  errors: TErrorState;
 };
 
 export type RootState = ReturnType<typeof store.getState>;
@@ -53,8 +56,11 @@ export type TApplicationActions =
   | TLogoutActions
   | TGetBotsActions
   | TAddBotActions
+  | TDeleteBotActions
+  | TRenameBotActions
   | TGetTemplatesBotsActions
-  | TGetPlatformsActions;
+  | TGetPlatformsActions
+  | TErrorActions;
 
 export type AppThunk<TReturn = void> = ActionCreator<
   ThunkAction<TReturn, Action, RootState, TApplicationActions>

@@ -5,6 +5,7 @@ import {
 } from '../../../auth/authService';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
+import { TResponseError } from '../../types/response';
 
 const LOGOUT = 'LOGOUT';
 
@@ -14,23 +15,24 @@ export interface ILogoutAction {
 
 export type TLogoutActions = ILogoutAction;
 
-// экшен разлогина
-const logoutAction: AppThunk = (token: string, navigate) => {
+/**
+ * экшен разлогина
+ * @param navigate callback без аргументов
+ */
+const logoutAction: AppThunk = (navigate) => {
   return (dispatch: AppDispatch) => {
-    logoutApi(token)
-      .then((res) => {
+    logoutApi()
+      .then(() => {
         removeAccessToken();
         removeRefreshToken();
         dispatch({
           type: LOGOUT,
         });
         navigate();
-        // eslint-disable-next-line no-console
-        console.log(res.message);
       })
-      .catch((err: { message: string }) => {
+      .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
-        console.log(err.message);
+        console.log(err[0]);
       });
   };
 };

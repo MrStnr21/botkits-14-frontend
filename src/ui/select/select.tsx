@@ -1,40 +1,71 @@
+/* eslint-disable no-param-reassign */
 import React, { FC, useRef, useState, useMemo, useCallback } from 'react';
-import { useMediaQuery } from '@mui/material';
 import styles from './select.module.scss';
 import Menu from '../menus/menu/menu';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 import { Option } from '../../utils/types';
-import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
+import Icon from '../icon/icon';
 
 type ElementListener = 'document' | 'flow';
 
 export interface ISelect {
-  /** Текущее значение select */
+  /**
+   * текущая выбранная опция. Принимает объект Option или string
+   */
   currentOption?: Option | string | null;
-  options?: Option[] | string[];
-  /** Функция, вызываемая при клике на элемент селекта */
+  /**
+   * * Набор полей меню, массив объектов формата `{label: string; value: string; icon?: string;}`
+   */
+  options: Option[] | string[];
+  /**
+   * callback при клике на элемент select
+   */
   handleSelect?: (option: Option) => void;
   placeholder?: string;
-  /** style-объект для контейнера select */
+  /**
+   * `style` проп для кнопки открытия выпадающего списка
+   */
   buttonStyle?: React.CSSProperties;
-  /** Функция, вызываемая при клике на элемент селекта */
+  /**
+   * строка, описывающая элемент, на который вешаеся слушатель закрытия select по клику. На текущий момент принимает `'document' | 'flow'`
+   */
   elementToCloseListener?: ElementListener;
-  /** Переключатель адаптивности на 620px */
+  /**
+   * должен ли элемент быть адаптивным
+   */
   adaptive?: boolean;
-  /** extra-класс для контейнера селекта */
-  containerClassName?: string;
-  /** extra-класс для контейнера выпадающего меню */
+  /**
+   * className для контейнера выпадающего меню
+   */
   layoutClassName?: string;
-  /** extra-класс для элемента выпадающего меню */
+  /**
+   * className для элемента выпадающего меню
+   */
   itemClassName?: string;
-  /** настройка прокрутки выпадающего меню, требует доработки */
+  /**
+   * className для иконки элемента выпадающего меню
+   */
+  iconClassName?: string;
+  /**
+   * включить/выключить прокрутку в меню
+   */
   isScroll?: boolean;
-  /** внешняя функция-контроллер для переключения состояния селекта */
-  toggleSelect?: () => void;
-  /** внешняя функция-контроллер для закрытия селекта */
-  closeSelect?: () => void;
 }
 
+/**
+ * Более-менее универсальный компонент для задания селекта
+ * @example
+ * <Select
+    options={selectValues}
+    handleSelect={(option) => setVariable(option.value)}
+    currentOption={getSelectItemByValue(
+     itemFromVariables.variable,
+       selectValues
+      )}
+    elementToCloseListener="flow"
+    adaptive
+   />
+ */
 const Select: FC<ISelect> = ({
   currentOption,
   options,
@@ -44,15 +75,12 @@ const Select: FC<ISelect> = ({
   elementToCloseListener,
   adaptive,
   isScroll,
-  containerClassName,
   layoutClassName,
   itemClassName,
-  toggleSelect,
-  closeSelect,
+  iconClassName,
 }) => {
   const formatedOptions = useMemo(
     () =>
-      options &&
       options.map((option) => {
         if (typeof option === 'string') {
           return { value: option, label: option };
@@ -66,7 +94,6 @@ const Select: FC<ISelect> = ({
       ? { label: currentOption, value: currentOption }
       : currentOption;
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 620px)');
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -82,17 +109,13 @@ const Select: FC<ISelect> = ({
     }
   }, []);
 
-  const toggleDropdown =
-    toggleSelect ||
-    (() => {
-      setIsOpen(!isOpen);
-    });
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
-  const closeDropdown =
-    closeSelect ||
-    (() => {
-      setIsOpen(false);
-    });
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
 
   useOutsideClickAndEscape(
     menuRef,
@@ -108,14 +131,22 @@ const Select: FC<ISelect> = ({
       }
     : () => {};
 
+  const addChevronClassNames = (basicStyle: string) => {
+    if (isOpen) {
+      basicStyle += ` ${styles.is_opened}`;
+    }
+    if (currentOption) {
+      basicStyle += ` ${styles.colored}`;
+    }
+    return basicStyle;
+  };
+
   return (
     <button
       ref={buttonRef}
       onClick={toggleDropdown}
       type="button"
-      className={`${styles.container} ${
-        adaptive ? styles.container_adaptive : ''
-      } ${containerClassName || ''}`}
+      className={`${styles.container} ${adaptive ? styles.adaptive : ''}`}
       style={buttonStyle}
     >
       {formatedOption && !formatedOption.icon && (
@@ -125,20 +156,17 @@ const Select: FC<ISelect> = ({
         <span className={styles.placeholder}>{placeholder}</span>
       )}
       {formatedOption && formatedOption.icon && (
-        <img className={styles.icon} src={formatedOption.icon} alt="icon" />
-      )}
-      <span
-        className={`${styles.chevron} ${
-          isOpen ? styles.chevron_opened : styles.chevron_closed
-        }`}
-      >
-        <ChevronIcon
-          strokeWidth={1.5}
-          width={isMobile && adaptive ? 9 : 16}
-          height={isMobile && adaptive ? 9 : 16}
-          color={currentOption ? '#060C23' : '#BFC9D9'}
+        <Icon
+          icon={formatedOption.icon}
+          extraClass={`${styles.icon} ${iconClassName}`}
+          isColored
         />
-      </span>
+      )}
+      <Icon
+        icon="chevronDown"
+        extraClass={addChevronClassNames(styles.chevron)}
+        isColored
+      />
       {isOpen && formatedOptions && (
         <Menu
           ref={menuRef}
@@ -146,6 +174,7 @@ const Select: FC<ISelect> = ({
           onItemClick={handleOptionClick}
           layoutClassName={`${styles.dropdown} ${layoutClassName || ''}`}
           itemClassName={itemClassName}
+          iconClassName={iconClassName}
           isScroll={isScroll}
         />
       )}

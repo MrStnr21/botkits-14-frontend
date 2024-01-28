@@ -19,7 +19,6 @@
   background-color: $off-white;
   z-index: 100;
   transition: all .3s linear;
-
   box-shadow: $m-box-shadow;
 
   .header {
@@ -27,10 +26,25 @@
     @include content;
     h2 {
       margin: 0;
+      @media screen and (max-width: $switching-width) {
+        font-weight: 600;
+      }
     }
 
-    svg {
-      cursor: $cursor;
+    .img {
+      @media screen and (max-width: $switching-width) {
+        align-self: center;
+        background-image: url("../../../images/icon/24x24/common/tag.svg");
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        margin-right: 16px;
+      }
+    }
+
+    .box{
+      display: flex;
+      flex-direction: row;
     }
   }
 
@@ -42,8 +56,14 @@
   @media screen and (max-width: $switching-width) {
     @include position(fixed, 0, 0);
     height: 100vh;
+    padding: 40px 0;
     transition: none;
   }
+}
+
+.close {
+  @include size(24px, 24px);
+  cursor: $cursor;
 }
 
 .opened {

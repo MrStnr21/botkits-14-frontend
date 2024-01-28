@@ -14,6 +14,14 @@ type TProtectedRoute = {
   notAuth?: boolean;
 };
 
+/**
+ * Компонент-обёртка для роутов. Проверяет наличие токена в localStorage
+ * @param {boolean} notAuth нужна ли аутентификация для посещения страницы
+ * @example
+ * <ProtectedRoute notAuth>
+ *  <ChildComponent/>
+ * </ProtectedRoute>
+ */
 const ProtectedRoute: FC<TProtectedRoute> = ({
   children,
   notAuth = false,
@@ -24,8 +32,8 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
 
   useEffect(() => {
     if (token) {
-      dispatch(getUserInfoAction(token));
-      dispatch(getBotsAction(token));
+      dispatch(getUserInfoAction());
+      dispatch(getBotsAction());
     }
   }, [dispatch]);
 

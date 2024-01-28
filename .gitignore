@@ -10,6 +10,8 @@
 _socket-client.js
 # production
 /build
+/dist
+/out
 
 # misc
 .DS_Store

@@ -3,6 +3,9 @@ import cn from 'classnames';
 import Typography from '../../ui/typography/typography';
 import { convertTimeFormat } from '../../utils/timeFormat';
 import style from './table-cells.module.scss';
+import TableSwitcher from './table-switcher/table-switcher';
+import TableInputCell from './table-input-cell/table-input-cell';
+import TableSelectCell from './table-select-cell/table-select-cell';
 
 /* Общее */
 export const dateCell = (date: string) => (
@@ -65,10 +68,21 @@ export const paymentStatusCell = (status: boolean) => (
     {status ? 'Оплачено' : 'В обработке'}
   </Typography>
 );
+// Промокоды, общий доступ, пользователи:
 
-/* Mailing */
+export const switcherCell = (
+  status: boolean,
+  onCellUpdate: (newValue: boolean) => void
+) => <TableSwitcher status={status} onCellUpdate={onCellUpdate} />;
 
-export const mailStatusCell = (status: boolean) => (
+export const inputCell = (
+  value: string,
+  onCellUpdate: (newValue: string) => void
+) => {
+  return <TableInputCell value={value} onCellUpdate={onCellUpdate} />;
+};
+
+export const statusPromoCell = (status: boolean) => (
   <Typography
     tag="p"
     className={cn(
@@ -76,6 +90,8 @@ export const mailStatusCell = (status: boolean) => (
       status ? style.text_succsess : style.text_failure
     )}
   >
-    {status ? 'Запущено' : 'Отклонено'}
+    {status ? 'Активен' : 'Неактивен'}
   </Typography>
 );
+
+export const selectCell = (value: boolean) => <TableSelectCell />;

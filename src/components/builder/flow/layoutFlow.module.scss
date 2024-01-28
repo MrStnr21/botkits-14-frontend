@@ -73,6 +73,16 @@
   }
 }
 
+.saveButton {
+  @include position(absolute, $right: calc(65px + 24px + 24px), $bottom: calc(24px + (65px - 51px)/2));
+  @include size(151px, 48px);
+  z-index: 999;
+
+  @media screen and (max-width: $switching-width) {
+    bottom: calc(112px + (65px - 51px)/2);
+  }
+}
+
 .wrapper {
   @include max-size(151px, 48px);
   overflow: hidden;

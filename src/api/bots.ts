@@ -1,44 +1,115 @@
-import request from './api';
+import { deleteReq, getReq, patchReq, postReq } from './api';
 
 import {
+  TBot,
   IAddBotResponse,
   IGetBotsResponse,
-  IGetTemplatesBotsResponse,
-  TBot,
+  TBotTemplateReq,
+  IGetBotTemplatesResponse,
+  IAddBotTemplateResponse,
+  IDeleteBotTemplateResponse,
+  IUpdateBotTemplateResponse,
+  IDeleteBotResponse,
+  ICopyBotResponse,
+  IRenameBotResponse,
 } from '../services/types/bot';
 
 // запрос получения ботов
-function getBotsApi(token: string) {
-  return request<IGetBotsResponse>('bots', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      authorization: `Bearer ${token}`,
-    },
-  });
+function getBotsApi() {
+  return getReq<IGetBotsResponse>({ uri: 'bots', auth: true });
 }
 
 // запрос добавления бота
-function addBotApi(bot: TBot, token: string) {
-  return request<IAddBotResponse>('bots', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(bot),
+function addBotApi(bot: TBot, templateId: string | null) {
+  return postReq<IAddBotResponse>({
+    uri: templateId ? `bots/${templateId}` : 'bots',
+    auth: true,
+    data: bot,
+  });
+}
+
+// запрос удаления бота
+function deleteBotApi(id: string) {
+  return deleteReq<IDeleteBotResponse>({
+    uri: `bots`,
+    id,
+    auth: true,
+  });
+}
+
+// запрос копирования бота
+function copyBotApi(id: string) {
+  return postReq<ICopyBotResponse>({
+    uri: `bots/copy`,
+    id,
+    auth: true,
+  });
+}
+
+// запрос переименования бота
+function renameBotApi(id: string, title: string) {
+  return patchReq<IRenameBotResponse>({
+    uri: `bots`,
+    id,
+    auth: true,
+    data: { title },
+  });
+}
+
+// запрос выдачи доступа к боту по email
+function shareBotApi(id: string, email: string) {
+  return postReq<IRenameBotResponse>({
+    uri: `bots/${id}/share`,
+    auth: true,
+    data: { email },
   });
 }
 
 // запрос получения шаблонов
-function getTemplatesBotsApi(token: string) {
-  return request<IGetTemplatesBotsResponse>('bots/templates', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-      authorization: `Bearer ${token}`,
-    },
+function getBotTemplatesApi() {
+  return getReq<IGetBotTemplatesResponse>({
+    uri: 'bots/templates',
+    auth: true,
   });
 }
 
-export { getBotsApi, addBotApi, getTemplatesBotsApi };
+// запрос добавления шаблона
+function addBotTemplateApi(botTemplate: TBotTemplateReq) {
+  return postReq<IAddBotTemplateResponse>({
+    uri: 'bots/template',
+    auth: true,
+    data: botTemplate,
+  });
+}
+
+// запрос удаления шаблона
+function deleteBotTemplateApi(id: string) {
+  return deleteReq<IDeleteBotTemplateResponse>({
+    uri: 'bots/template',
+    id,
+    auth: true,
+  });
+}
+
+// запрос изменения шаблона
+function updateBotTemplateApi(botTemplate: TBotTemplateReq, id: string) {
+  return patchReq<IUpdateBotTemplateResponse>({
+    uri: 'bots/template',
+    id,
+    auth: true,
+    data: botTemplate,
+  });
+}
+
+export {
+  getBotsApi,
+  addBotApi,
+  deleteBotApi,
+  copyBotApi,
+  renameBotApi,
+  shareBotApi,
+  getBotTemplatesApi,
+  addBotTemplateApi,
+  deleteBotTemplateApi,
+  updateBotTemplateApi,
+};
