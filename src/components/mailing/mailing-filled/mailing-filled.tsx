@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { useMediaQuery } from '@mui/material';
 import styles from './mailing-filled.module.scss';
-import TableComponent from '../../table-component/table-component';
+import EnhancedTable from '../../enhanced-table/enhanced-table';
 import { cols, rows, rowStyle, cellStyle } from '../../../utils/mailingTable';
 import { ppHeadCell } from '../../table-cells/table-cells';
 import Typography from '../../../ui/typography/typography';
@@ -31,7 +31,7 @@ const MailingFilled: FC = () => {
         {isMobile ? (
           <MobileTable data={rows} />
         ) : (
-          <TableComponent
+          <EnhancedTable
             columns={cols}
             headComponent={ppHeadCell}
             tableData={rows}

@@ -2,6 +2,7 @@
 import { FC, useState, useEffect } from 'react';
 import { useMatch, useNavigate } from 'react-router';
 import { useMediaQuery } from '@mui/material';
+import { Descendant } from 'slate';
 import styles from './create-mailing.module.scss';
 import AsideMailing from '../../../components/mailing/aside/aside';
 import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
@@ -9,15 +10,21 @@ import BotFace from '../../../components/icons/Bot/BotIcon';
 import MailingForm from '../../../components/mailing/form/mailing-form';
 import MailingConditions from '../../../components/mailing/mailing-conditions/mailing-conditions';
 import ModalPopup from '../../../components/popups/modal-popup/modal-popup';
+import { baseSlateData } from '../../../utils/constants';
 
 const CreateMailing: FC = () => {
   const navigate = useNavigate();
   const matchConditions = useMatch('/mailing/create/conditions');
   const [nameValue, setNameValue] = useState('');
-  const [textValue, setTextValue] = useState('');
+  const [textValue, setTextValue] = useState<Descendant[]>(baseSlateData);
   const [mobile, setMobile] = useState(false);
   const [isAsideVisible, setAsideVisible] = useState(false);
   const isMobile = useMediaQuery('(max-width: 860px)');
+
+  const joinedText = textValue[0].children!.reduce(
+    (sum, item) => sum + item.text,
+    ''
+  );
 
   if (isMobile && isAsideVisible && !mobile) {
     setMobile(true);
@@ -78,10 +85,10 @@ const CreateMailing: FC = () => {
         {isAsideVisible &&
           (isMobile ? (
             <ModalPopup onClick={() => setAsideVisible(false)}>
-              <AsideMailing title={nameValue} text={textValue} />
+              <AsideMailing title={nameValue} text={joinedText} />
             </ModalPopup>
           ) : (
-            <AsideMailing title={nameValue} text={textValue} />
+            <AsideMailing title={nameValue} text={joinedText} />
           ))}
       </div>
       {(!isAsideVisible || isMobile) && (

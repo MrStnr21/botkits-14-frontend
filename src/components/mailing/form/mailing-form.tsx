@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
+import { Descendant } from 'slate';
 import styles from './mailing-form.module.scss';
 import CheckIcon from '../../icons/Check/CheckIcon';
 import ButtonAddContent from '../../../ui/buttons/button-add-content/button-add-content';
@@ -19,7 +20,7 @@ import Select from '../../../ui/select/select';
 
 interface IProps {
   nameValue: string;
-  textValue: string;
+  textValue: Descendant[];
   setNameValue: any;
   setTextValue: any;
   handleBack: () => void;
@@ -49,7 +50,7 @@ const MailingForm: FC<IProps> = ({
     setIsSecChecked(!isSecChecked);
   };
 
-  const handleTextChange = (newText: string) => {
+  const handleTextChange = (newText: Descendant[]) => {
     setTextValue(newText);
   };
   return (
@@ -79,11 +80,7 @@ const MailingForm: FC<IProps> = ({
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>Текст сообщения</legend>
           <div className={styles.form__textField}>
-            <TextField
-              setText={handleTextChange}
-              text={textValue}
-              isAdaptive={false}
-            />
+            <TextField setText={handleTextChange} text={textValue} />
           </div>
           <div className={styles.form__menuVariableWrapper}>
             <Select

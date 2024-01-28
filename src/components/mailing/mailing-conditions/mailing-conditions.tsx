@@ -166,11 +166,7 @@ const MailingConditions: FC<IProps> = ({
               <span className={styles.form__iconString}>
                 <CalendarIcon /> Дата
               </span>
-              <Select
-                currentOption={date}
-                toggleSelect={() => setCalendarOpen(!calendarOpen)}
-                closeSelect={() => setCalendarOpen(false)}
-              />
+              <Select currentOption={date} options={[]} />
               {calendarOpen &&
                 (isMobile ? (
                   <ModalPopup

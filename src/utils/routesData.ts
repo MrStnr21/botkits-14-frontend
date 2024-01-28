@@ -8,7 +8,7 @@ const routesUrl: TRoutesUrl = {
   addBot: 'add-bot',
   botBuilder: 'bot-builder',
   chat: 'chat',
-  mailing: 'mailing',
+  mailing: 'mailing/*',
   partnership: 'partnership',
   bottemplates: 'bottemplates',
   share: 'share',
