@@ -21,11 +21,6 @@ const CreateMailing: FC = () => {
   const [isAsideVisible, setAsideVisible] = useState(false);
   const isMobile = useMediaQuery('(max-width: 860px)');
 
-  const joinedText = textValue[0].children!.reduce(
-    (sum, item) => sum + item.text,
-    ''
-  );
-
   if (isMobile && isAsideVisible && !mobile) {
     setMobile(true);
     setAsideVisible(false);
@@ -85,10 +80,10 @@ const CreateMailing: FC = () => {
         {isAsideVisible &&
           (isMobile ? (
             <ModalPopup onClick={() => setAsideVisible(false)}>
-              <AsideMailing title={nameValue} text={joinedText} />
+              <AsideMailing title={nameValue} text={textValue} />
             </ModalPopup>
           ) : (
-            <AsideMailing title={nameValue} text={joinedText} />
+            <AsideMailing title={nameValue} text={textValue} />
           ))}
       </div>
       {(!isAsideVisible || isMobile) && (

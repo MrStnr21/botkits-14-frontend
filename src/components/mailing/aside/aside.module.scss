@@ -86,6 +86,7 @@
 
   &__robot {
     @include size(32px, 32px);
+    align-self: flex-start;
   }
 
   &__mainBtn {

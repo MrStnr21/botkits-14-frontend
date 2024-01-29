@@ -1,16 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
+import { Descendant } from 'slate';
 import Typography from '../../../ui/typography/typography';
 import styles from './aside.module.scss';
 import robot from '../../../images/robot-logo.png';
 import robotEmoji from '../../../images/RoboEmoji.png';
+import { slateSerialize } from '../../../utils/utils';
 
 interface IProps {
   title: string;
-  text: string;
+  text: Descendant[];
 }
 
 const AsideMailing: FC<IProps> = ({ title, text }) => {
+  const serializedText = slateSerialize(text).split('\n');
   return (
     <div className={styles.aside}>
       <div className={styles.aside__header}>
@@ -29,16 +32,20 @@ const AsideMailing: FC<IProps> = ({ title, text }) => {
             className={styles.aside__robot}
           />
           <div className={styles.aside__messageBubble}>
-            {text.length ? (
+            {serializedText.length ? (
               <Typography tag="p" className={styles.aside__botName}>
                 Бот
               </Typography>
             ) : (
               ''
             )}
-            <Typography tag="span" className={styles.aside__messageText}>
-              {text.length ? text : '...'}
-            </Typography>
+            {serializedText && serializedText[0].length
+              ? serializedText.map((item) => (
+                  <Typography tag="span" className={styles.aside__messageText}>
+                    {item}
+                  </Typography>
+                ))
+              : '...'}
           </div>
         </div>
         <button type="submit" className={styles.aside__mainBtn}>
