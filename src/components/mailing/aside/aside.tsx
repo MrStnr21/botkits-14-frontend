@@ -1,12 +1,10 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import { Descendant } from 'slate';
 import Typography from '../../../ui/typography/typography';
 import styles from './aside.module.scss';
 import robot from '../../../images/robot-logo.png';
 import robotEmoji from '../../../images/RoboEmoji.png';
-import { slateSerialize } from '../../../utils/utils';
 import SlateConverter from './slate-converter/slate-converted';
 
 interface IProps {
@@ -15,7 +13,8 @@ interface IProps {
 }
 
 const AsideMailing: FC<IProps> = ({ title, text }) => {
-  const serializedText = slateSerialize(text).split('\n');
+  const isFilled =
+    (text && text[0].children![0].text) || (text && text.length > 1);
   return (
     <div className={styles.aside}>
       <div className={styles.aside__header}>
@@ -34,14 +33,14 @@ const AsideMailing: FC<IProps> = ({ title, text }) => {
             className={styles.aside__robot}
           />
           <div className={styles.aside__messageBubble}>
-            {serializedText.length ? (
+            {isFilled ? (
               <Typography tag="p" className={styles.aside__botName}>
                 Бот
               </Typography>
             ) : (
               ''
             )}
-            {serializedText && serializedText[0].length
+            {isFilled
               ? text.map((item, index) => (
                   <SlateConverter key={index} descendant={item} />
                 ))
