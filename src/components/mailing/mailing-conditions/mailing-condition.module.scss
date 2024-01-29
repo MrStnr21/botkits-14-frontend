@@ -97,10 +97,10 @@
 
   &__menuContainer {
     @include position(relative);
+    @include size(100%, 40px);
     display: grid;
     grid-template-columns: 87px 1fr;
     align-items: center;
-    width: 100%
   }
 
   &__menuWrapper {

@@ -25,6 +25,7 @@ import {
   MCweek,
 } from '../../../utils/mockMailingData';
 import Select from '../../../ui/select/select';
+import DateSelectButton from '../../../ui/buttons/date-select-button/date-select-button';
 
 interface IProps {
   title?: string;
@@ -43,7 +44,7 @@ const MailingConditions: FC<IProps> = ({
   );
   const [sendTime, setSendTime] = useState<Option | null>(MCsend[0]);
   const [time, setTime] = useState<number>(0);
-  const [date, setDate] = useState<Option | null>(null);
+  const [date, setDate] = useState<string>('');
   const [selectedInterval, setSelectedInterval] = useState<Option | null>(
     MChowManyTimes[0]
   );
@@ -79,10 +80,7 @@ const MailingConditions: FC<IProps> = ({
   };
 
   const handleCalendarClick = (selected: string) => {
-    setDate({
-      value: selected,
-      label: selected.split(' ')[0].replaceAll('-', '.'),
-    });
+    setDate(selected.split(' ')[0].split('-').reverse().join('.'));
   };
 
   const handleIntervalClick = (selected: Option) => {
@@ -166,7 +164,11 @@ const MailingConditions: FC<IProps> = ({
               <span className={styles.form__iconString}>
                 <CalendarIcon /> Дата
               </span>
-              <Select currentOption={date} options={[]} />
+              <DateSelectButton
+                value={date}
+                isOpened={calendarOpen}
+                onClick={() => setCalendarOpen(!calendarOpen)}
+              />
               {calendarOpen &&
                 (isMobile ? (
                   <ModalPopup
