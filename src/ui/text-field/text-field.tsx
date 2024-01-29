@@ -82,6 +82,7 @@ const TextField: FC<ITextField> = ({
               CustomEditor.setDefaultMark(editor);
             }
             switch (event.key) {
+              case 'Enter':
               case ' ': {
                 CustomEditor.setDefaultMark(editor);
                 break;

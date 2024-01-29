@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import { Descendant } from 'slate';
@@ -6,6 +7,7 @@ import styles from './aside.module.scss';
 import robot from '../../../images/robot-logo.png';
 import robotEmoji from '../../../images/RoboEmoji.png';
 import { slateSerialize } from '../../../utils/utils';
+import SlateConverter from './slate-converter/slate-converted';
 
 interface IProps {
   title: string;
@@ -40,10 +42,8 @@ const AsideMailing: FC<IProps> = ({ title, text }) => {
               ''
             )}
             {serializedText && serializedText[0].length
-              ? serializedText.map((item) => (
-                  <Typography tag="span" className={styles.aside__messageText}>
-                    {item}
-                  </Typography>
+              ? text.map((item, index) => (
+                  <SlateConverter key={index} descendant={item} />
                 ))
               : '...'}
           </div>

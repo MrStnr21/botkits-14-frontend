@@ -54,7 +54,7 @@
   }
 
   &__messageBubble {
-    @include flex(column, center, flex-start, 8px);
+    @include flex(column, center, flex-start);
     @include indents(5px 10px, 0);
     @include min-size(40px, 20px);
     box-sizing: border-box;
@@ -64,6 +64,7 @@
 
   &__botName {
     @include font('Open Sans', 10px, $bold, black);
+    padding-bottom: 8px;
     line-height: $xl-line-height;
     letter-spacing: $m-letter-space;
   }
