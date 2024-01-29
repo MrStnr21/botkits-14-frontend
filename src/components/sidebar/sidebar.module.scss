@@ -33,7 +33,6 @@ $additional-grey-pressed: #c3d1d8;
 /* **     Общий блок открытое/закрытое состояние сайдбара и блок затемнения   ** */
 
 .wrapper {
-  @include hide-scroll;
   // START GRID LAYOUT
   grid-row: 1 / -1;
   grid-column: 1/2;
@@ -63,6 +62,7 @@ $additional-grey-pressed: #c3d1d8;
 }
 
 .sidebar {
+  @include hide-scroll;
   box-sizing: border-box;
   transition: all 0.2s;
   flex-shrink: 0;
