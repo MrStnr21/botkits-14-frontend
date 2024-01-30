@@ -8,7 +8,7 @@ const iconMap = {
   started: { icon: 'syncDone' as const, label: 'запущен' },
   error: { icon: 'slash' as const, label: 'ошибка' },
   updating: { icon: 'syncUpdate' as const, label: 'обновляется' },
-  editing: { icon: 'dropdownEdit' as const, label: 'создается' },
+  editing: { icon: 'dropdownEdit' as const, label: 'редактируется' },
 };
 
 type TBotStatusProps = {

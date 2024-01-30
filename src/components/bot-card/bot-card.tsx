@@ -62,7 +62,7 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
             }
             isColored={false}
           />
-          <BotStatus status="updating" />
+          <BotStatus status="editing" />
         </div>
         <div className={styles.name_box}>
           <Typography tag="p" fontFamily="secondary" className={styles.name}>
