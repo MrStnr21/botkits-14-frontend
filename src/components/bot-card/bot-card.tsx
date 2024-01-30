@@ -14,7 +14,7 @@ import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape
 import { BotActionValue } from '../popups/bot-actions-popups/utils';
 import PopupRouter from '../popups/bot-actions-popups/popup-router';
 import useModal from '../../services/hooks/use-modal';
-import StatusIcon from './status-icon/status-icon';
+import BotStatus from './bot-status/bot-status';
 
 export interface IBotCard {
   bot: TBot;
@@ -62,7 +62,7 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
             }
             isColored={false}
           />
-          <StatusIcon status="updating" />
+          <BotStatus status="updating" />
         </div>
         <div className={styles.name_box}>
           <Typography tag="p" fontFamily="secondary" className={styles.name}>

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import { FC, useRef } from 'react';
 import Icon from '../../../ui/icon/icon';
-import styles from './status-icon.module.scss';
+import styles from './bot-status.module.scss';
 import Typography from '../../../ui/typography/typography';
 
 const iconMap = {
@@ -11,11 +11,11 @@ const iconMap = {
   editing: { icon: 'dropdownEdit' as const, label: 'создается' },
 };
 
-type TStatusIconProps = {
+type TBotStatusProps = {
   status: 'started' | 'error' | 'updating' | 'editing';
 };
 
-const StatusIcon: FC<TStatusIconProps> = ({ status }) => {
+const BotStatus: FC<TBotStatusProps> = ({ status }) => {
   const ref = useRef<HTMLDivElement>(null);
   const onOver = () => {
     ref.current?.classList.remove(styles.out);
@@ -44,4 +44,4 @@ const StatusIcon: FC<TStatusIconProps> = ({ status }) => {
   );
 };
 
-export default StatusIcon;
+export default BotStatus;
