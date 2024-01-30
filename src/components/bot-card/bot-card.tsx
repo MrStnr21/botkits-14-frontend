@@ -14,6 +14,7 @@ import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape
 import { BotActionValue } from '../popups/bot-actions-popups/utils';
 import PopupRouter from '../popups/bot-actions-popups/popup-router';
 import useModal from '../../services/hooks/use-modal';
+import StatusIcon from './status-icon/status-icon';
 
 export interface IBotCard {
   bot: TBot;
@@ -51,15 +52,18 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
           navigate(`/${routesUrl.botBuilder}?id=${bot._id}&type=custom`);
         }}
       >
-        <Icon
-          extraClass={styles.icon}
-          icon={
-            bot.messengers[0]
-              ? messengerIcons[bot.messengers[0]!.name]
-              : 'xCircle'
-          }
-          isColored={false}
-        />
+        <div className={styles.header}>
+          <Icon
+            extraClass={styles.icon}
+            icon={
+              bot.messengers[0]
+                ? messengerIcons[bot.messengers[0]!.name]
+                : 'xCircle'
+            }
+            isColored={false}
+          />
+          <StatusIcon status="updating" />
+        </div>
         <div className={styles.name_box}>
           <Typography tag="p" fontFamily="secondary" className={styles.name}>
             {bot.title}
