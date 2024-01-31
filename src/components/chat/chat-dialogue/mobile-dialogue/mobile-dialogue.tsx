@@ -102,6 +102,7 @@ const MobileDialog: FC = () => {
             {isInputVisible && (
               <div className={stylesDialog.dialog__headerInputWrapper}>
                 <InputDialogues
+                  search
                   placeholder="Поиск..."
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setInputValue(e.target.value)

@@ -1,0 +1,23 @@
+@use '../../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
+
+.content {
+  @include flex(column, $gap: 48px);
+  @include indents(0 24px, 0);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.list {
+  @include flex(column, $gap: 16px);
+  @include indents(0, 0);
+  box-sizing: border-box;
+  width: 100%;
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  flex-basis: 320px;
+}

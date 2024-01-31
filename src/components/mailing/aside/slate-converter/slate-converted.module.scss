@@ -1,0 +1,12 @@
+@use '../../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
+
+.descendant {
+  @include font('Open Sans', $xs-font-size, $normal);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  margin: 0 0 6px;
+
+  &:last-child {
+    margin: 0;
+  }
+}
