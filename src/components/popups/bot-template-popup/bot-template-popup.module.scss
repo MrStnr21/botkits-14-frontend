@@ -18,7 +18,7 @@
   }
 }
 
-.bot_template_close {
+.close {
   @include position(absolute, 37px, 37px);
   cursor: $cursor;
   background: 0;
@@ -29,28 +29,28 @@
   }
 }
 
-.bot_template_image {
+.image {
   @include max-size(88px, 88px);
 }
 
-.bot_template_description {
+.description {
   @include flex(column, unset, unset, 20px);
   margin-top: 40px;
 }
 
-.bot_template_list {
+.list {
   @include flex(column, unset, unset, 20px);
   @include indents();
   list-style: none;
 }
 
-.bot_template_item_index {
+.item_index {
   color: $primary-persian-blue-default;
   margin-right: 28px;
 }
 
 
-.bot_template_buttons {
+.buttons {
   @include flex(row, flex-end, center, 28px);
   margin-top: 60px;
   @media screen and (max-width: 420px) {
@@ -58,7 +58,7 @@
   }
 }
 
-.bot_template_cancel {
+.cancel {
   @include button-style-reset;
   @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
   @include line-sizes($m-line-height, $xxl-letter-space);
@@ -69,6 +69,6 @@
   }
 }
 
-.bot_template_add_button {
+.add_button {
   min-width: 256px;
 }

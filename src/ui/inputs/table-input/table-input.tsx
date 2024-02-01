@@ -9,7 +9,7 @@ interface IProps {
   value?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   inputRef?: React.RefObject<HTMLInputElement>;
-  handleBlur?: () => void;
+  handleBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   min?: string;
   max?: string;
   isInvalid?: boolean;

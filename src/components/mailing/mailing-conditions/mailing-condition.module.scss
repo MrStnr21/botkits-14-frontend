@@ -1,0 +1,233 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+@mixin buttonStyles {
+  @include flex(row, center, center);
+  @include button-style-reset();
+  @include size(188px, 65px);
+  @include indents(20px 50px, 0);
+  border-radius: $l-border-radius;
+
+  @media screen and (max-width: 860px) {
+    @include size(130px, 48px);
+    @include indents(14.5px 42px, 0);
+  }
+}
+
+@mixin defaultFontStyles {
+  @include line-sizes($m-line-height, $xxl-letter-space);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form {
+  @include size(100%, unset);
+  @include indents(32px, 0);
+  display: grid;
+  grid-template-columns: 87px minmax(153px, 264px) auto;
+  column-gap: 16px;
+  border-radius: $xxl-border-radius;
+  background-color: $off-white;
+  box-shadow: 0px 6px 16px 0px #15123321;
+  box-sizing: border-box;
+  z-index: 2;
+
+  /* @media screen and (max-width: 860px) {
+    @include indents(24px, 0);
+    justify-content: center;
+    grid-template-columns: 87px minmax(153px, 264px) 0;
+  } */
+
+  &__breadcrumbs {
+    grid-column: 1/4;
+    grid-row: 1;
+    padding: 0 0 40px;
+  }
+
+  &__formFieldset {
+    @include flex(column, flex-start, flex-start, 24px);
+    @include size(100%, unset);
+    @include indents(0, 0);
+    grid-column: 1/4;
+    grid-row: 2;
+    border: none;
+  }
+
+  &__legend {
+    @include indents();
+    @include font('IBM Plex Mono', $m-font-size, $semi-bold, $primary-oxford-blue-default);
+    line-height: $m-line-height;
+    margin-bottom: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  // &__inputWrapper {
+  //   @include indents();
+  //   @include size(100%, 65px);
+  //   box-sizing: border-box;
+  // }
+
+  &__inputsFieldset {
+    @include size(360px, unset);
+    @include indents(0 0 32px 0, 0);
+    @include flex(column, unset, flex-end, 24px);
+    border: none;
+  }
+
+  &__smallInputsContainer {
+    @include flex(column, space-between, unset, 8px);
+    @include indents(16px 0 0, 0);
+    grid-column: 2/3;
+    border: none;
+
+    @media screen and (max-width: $switching-width) {
+      grid-column: 1/3;
+    }
+  }
+
+  &__hiddenInputs {
+    @include flex(column, space-between, unset, 40px);
+  }
+
+  &__calendar {
+    @include position(absolute, 40px, unset, unset, 0);
+    z-index: 996;
+  }
+
+  &__menuContainer {
+    @include position(relative);
+    @include size(100%, 40px);
+    display: grid;
+    grid-template-columns: 87px 1fr;
+    align-items: center;
+  }
+
+  &__menuWrapper {
+    @include size(265px, unset);
+  }
+
+  &__chooseWrapper {
+    @include flex(row, space-between, center, 8px);
+    grid-column: 1/3;
+  }
+
+  &__dateButtons {
+    @include flex(column, $gap: 8px);
+    grid-column: 1/3;
+    padding-top: 33px;
+  }
+
+  &__dateButton {
+    @include button-style-reset();
+    @include flex(row, space-between, center);
+    @include position(relative);
+    @include indents(10px, 0);
+    @include min-size(unset, 40px);
+    background-color: $secondary-cultured-default;
+    border-radius: $l-border-radius;
+    box-sizing: border-box;
+    cursor: $cursor;
+  }
+
+  &__relativeInput {
+    align-self: flex-end;
+    @include position(relative);
+    @include size(174px, unset);
+  }
+
+  &__hideBtn {
+    @include button-style-reset();
+    @include position(absolute, $top: 50%, $right: -60px);
+    transform: translateY(-50%);
+    color: $grey-1;
+    cursor: $cursor;
+  }
+
+  &__popupWrapper {
+    @include flex(row, space-between, center);
+    @include indents(8px, 0);
+    @include size(556px, 40px);
+    box-sizing: border-box;
+    background-color: $secondary-cultured-default;
+    border-radius: $s-border-radius;
+    cursor: pointer;
+  }
+
+  &__iconString {
+    @include flex(row, flex-start, center, 12px);
+    @include font('Open Sans', $xs-font-size, $normal, $grey-3);
+    @include line-sizes($xl-line-height, $m-letter-space);
+  }
+
+  &__dayPicker {
+    grid-column: 2/4;
+    padding-top: 20px;
+
+    @media screen and (max-width: $switching-width) {
+      grid-column: 1/4;
+    }
+  }
+}
+
+.container {
+  @include max-size(924px, unset);
+  @include size(100%, fit-content);
+  min-width: 320px;
+  background-color: $secondary-cultured-hover;
+  border-radius: $xxl-border-radius;
+
+  &__buttons {
+    @include size(100%, unset);
+    @include indents(32px, 0);
+    @include flex(row, flex-end, center, 0);
+    border-radius: 0 0 $xxl-border-radius $xxl-border-radius;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 860px) {
+      justify-content: center;
+    }
+  }
+
+  &__commonButton {
+    @include buttonStyles();
+  }
+
+  &__greenButton {
+    @include buttonStyles();
+    background-color: $primary-medium-spring-green-disabled;
+  }
+
+  &__greenActiveButton {
+    @include buttonStyles();
+    background-color: $primary-medium-spring-green-default;
+  }
+
+  &__blackText {
+    @include font('IBM Plex Mono', $l-font-size, $bold, $primary-oxford-blue-default);
+    @include defaultFontStyles();
+
+    @media screen and (max-width: 860px) {
+      font-size: $s-font-size;
+    }
+  }
+
+  &__buttonText {
+    @include font('IBM Plex Mono', $l-font-size, $bold, $grey-4);
+    @include defaultFontStyles();
+
+    @media screen and (max-width: 860px) {
+      font-size: $s-font-size;
+    }
+  }
+}
+
+.grid_1-3_3 {
+  grid-column: 1/3;
+  padding-top: 23px;
+}
+
+.grid_1-3_5 {
+  grid-column: 1/3;
+  padding-top: 30px;
+}

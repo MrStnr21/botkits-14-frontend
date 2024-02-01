@@ -11,17 +11,12 @@
   box-sizing: border-box;
   padding: 12px 12px 8px;
   z-index: 1;
-
-  @media screen and (max-width: $switching-width) {
-    height: 57px;
-    border-radius: 5.7px;
-    padding: 9px 7px 6px;
-  }
 }
 
 .textarea__input {
   @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
   @include line-sizes($xl-line-height, $m-letter-space);
+  @include hide-scroll;
   display: block;
   height: 56px;
   background-color: inherit;
@@ -30,10 +25,6 @@
   text-align: left;
   overflow-y: scroll;
   cursor: text;
-
-  @media screen and (max-width: $switching-width) {
-    font-size: 7.41px;
-  }
 }
 
 .textarea__input::placeholder {
@@ -59,11 +50,6 @@
   z-index: 1;
   text-align: left;
   column-gap: 12px;
-
-  @media screen and (max-width: $switching-width) {
-    font-size: 7px;
-    letter-spacing: 0.4px;
-  }
 }
 
 .textarea__counter {
@@ -84,12 +70,6 @@
   &:hover {
     cursor: $cursor;
   }
-
-  @media screen and (max-width: $switching-width) {
-    @include size(9.12px, 9.12px);
-    top: 20px;
-    right: 5px;
-  }
 }
 
 .textarea__emojiPicker {
@@ -98,4 +78,35 @@
   box-shadow: $l-box-shadow;;
   position: absolute;
   z-index: 10;
+}
+
+.textarea_adaptive {
+  @extend .textarea;
+
+  @media screen and (max-width: $switching-width) {
+    height: 57px;
+    border-radius: 5.7px;
+    padding: 9px 7px 6px;
+  }
+
+  .textarea__input {
+    @media screen and (max-width: $switching-width) {
+      font-size: 7.41px;
+    }
+  }
+
+  .textarea__footer {
+    @media screen and (max-width: $switching-width) {
+      font-size: 7px;
+      letter-spacing: 0.4px;
+    }
+  }
+
+  .textarea__font {
+    @media screen and (max-width: $switching-width) {
+      @include size(9.12px, 9.12px);
+      top: 20px;
+      right: 5px;
+    }
+  }
 }

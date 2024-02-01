@@ -1,0 +1,61 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@mixin holder($color){
+  @include font('Open Sans', $xs-font-size, $normal, $color);
+  @include line-sizes($xl-line-height, $m-letter-space);
+}
+
+.button {
+  @include button-style-reset;
+  @include flex(row, space-between, center, 4px);
+  @include size(100%, 100%);
+  @include indents(8px 10px, 0);
+  box-sizing: border-box;
+  position: relative;
+  background-color: $secondary-cultured-hover;
+  border-radius: 5px;
+
+  &.adaptive {
+    @media screen and (max-width: $switching-width) {
+      @include indents(4.5px 6.5px, 0);
+      border-radius: 2.85px;
+
+      & .label {
+        font-size: 7.41px;
+      }
+
+      & .placeholder {
+        font-size: 7.41px;
+      }
+
+      & .icon {
+        @include size(14px, 14px);
+      }
+
+      & .chevron {
+        @include size(9px, 9px);
+      }
+    }
+  }
+}
+
+.chevron {
+  @include size(16px, 16px);
+  color: $grey-2;
+  transition: transform .3s ease;
+
+  &.colored {
+    color: $primary-oxford-blue-default;
+  }
+
+  &.is_opened {
+    transform: rotate(180deg);
+  }
+}
+
+.label {
+  @include holder($primary-oxford-blue-default);
+  max-width: calc(100% - 16px);
+  @include ellipsis;
+}

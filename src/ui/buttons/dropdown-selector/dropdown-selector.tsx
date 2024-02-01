@@ -7,14 +7,20 @@ import NewFilterIcon from '../../../components/icons/NewFilterIcon/NewFilterIcon
 import Menu from '../../menus/menu/menu';
 
 export interface IProps {
+  // функция обработки клика
   onClick: () => void;
+  // текст кнопки
   text: string;
+  // стили для ротации иконки, которую передаем через пропсы ниже
   open?: boolean;
+  // если передан этот пропс(или два пропса ниже), отображаетя именно та иконка, которая соответствует пропсу
   exportIcon?: boolean;
   chevronIcon?: boolean;
   filterIcon?: boolean;
+  // необходим ли выпадающий список по клику на кнопку (по умолч. отключено для кнопки "Выгрузить")
+  dropdown?: boolean;
 }
-
+// хардкод по умолчанию
 const mockData = [
   { label: 'Option one', value: 'one' },
   { label: 'Option two', value: 'two' },
@@ -28,6 +34,7 @@ const DropdownSelectorButton: FC<IProps> = ({
   exportIcon,
   chevronIcon,
   filterIcon,
+  dropdown,
 }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -49,7 +56,7 @@ const DropdownSelectorButton: FC<IProps> = ({
         {chevronIcon && <DoubleChevronIcon width={24} height={24} />}
         {filterIcon && <NewFilterIcon width={24} height={24} />}
       </div>
-      {isMenuOpen && (
+      {isMenuOpen && dropdown && (
         <Menu
           ref={menuRef}
           options={mockData}

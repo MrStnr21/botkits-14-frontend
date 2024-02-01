@@ -15,6 +15,7 @@ const routesUrl: TRoutesUrl = {
   subscription: 'subscription',
   statistics: 'statistics',
   users: 'users',
+  tariffs: 'tariffs',
   notFound: '*',
 };
 

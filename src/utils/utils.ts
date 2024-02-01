@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
+import { Descendant, Node } from 'slate';
 import { saveSocial } from '../auth/authService';
 import { AUTH_URL_M, AUTH_URL_Y, AUTH_URL_V, AUTH_URL_G } from './config';
 
@@ -52,4 +53,8 @@ export const handlerAuthGoogle = () => {
 export const createUrlBuilder = (path: string, id: string) => {
   // Перенаправляем пользователя на страницу Builder по ID шаблона бота
   return `/${path}?id=${id}&type=template`;
+};
+
+export const slateSerialize = (nodes: Descendant[]) => {
+  return nodes.map((n) => Node.string(n)).join('\n');
 };

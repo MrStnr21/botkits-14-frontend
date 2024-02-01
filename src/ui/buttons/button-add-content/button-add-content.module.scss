@@ -3,14 +3,31 @@
 
 
 .wrapper {
-  width: fit-content;
-  background-color: $secondary-cultured-default;
+  width: 100%;
+  // background-color: $secondary-cultured-default;
   text-align: left;
 }
 
 .butbox {
-  @include flex(row, center, center);
-  margin: 16px 0 32px;
-  flex-wrap: wrap;
+  @include flex(row, start, center);
+  // margin: 16px 0 32px;
+  width: 100%;
   gap: 20px;
+  list-style: none;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    @include size(0, 0);
+  }
+}
+
+.inputs {
+  @include indents(0, 32px 0 0 0);
+
+  &__wrapper {
+    @include flex(column, $gap: 8px);
+  }
+
+  &__input {
+    @include size(unset, 40px);
+  }
 }

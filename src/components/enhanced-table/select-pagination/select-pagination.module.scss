@@ -1,0 +1,15 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.content {
+  @include flex(row, $align-items: center, $gap: 16px);
+}
+
+.title {
+  @include font('Open Sans', $xs-font-size, $bold);
+  @include line-sizes($xl-line-height, $m-letter-space);
+}
+
+.selectWrapper{
+  width: 80px;
+}

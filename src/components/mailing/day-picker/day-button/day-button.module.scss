@@ -1,0 +1,20 @@
+@use '../../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
+
+.button {
+  @include button-style-reset;
+  @include indents(6px 24px, 0);
+  @include font('Open Sans', $xs-font-size, $normal, $grey-3);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  border-radius: 32px;
+  background-color: $secondary-cultured-default;
+
+  &_active {
+    color: #243CBB;
+    background-color: #ECEFFF;
+  }
+
+  &:hover {
+    @extend .button_active;
+  }
+}

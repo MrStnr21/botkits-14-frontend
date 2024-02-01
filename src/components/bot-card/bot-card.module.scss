@@ -23,11 +23,17 @@
   }
 }
 
+.header {
+  @include flex($gap: 20px);
+}
+
 .icon {
   @include size(52px, 52px);
 }
 
 .more_button {
+  @include button-style-reset();
+  outline: none; // TODO перенести в button-style-reset();
   @include size(24px, 24px);
   @include position(absolute, 32px, $left: 256px);
   cursor: $cursor;

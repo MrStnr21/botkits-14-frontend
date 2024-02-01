@@ -39,6 +39,18 @@ export const statusCell = (status: boolean) => (
   </Typography>
 );
 
+export const mailingStatusCell = (status: boolean) => (
+  <Typography
+    tag="p"
+    className={cn(
+      style.text,
+      status ? style.text_succsess : style.text_failure
+    )}
+  >
+    {status ? 'Запущено' : 'Отклонено'}
+  </Typography>
+);
+
 /* партнерская программа */
 
 export const ppHeadCell = (data: string) => (
@@ -70,12 +82,16 @@ export const paymentStatusCell = (status: boolean) => (
 );
 // Промокоды, общий доступ, пользователи:
 
-export const switcherCell = (status: boolean, id: string) => (
-  <TableSwitcher status={status} id={id} />
-);
+export const switcherCell = (
+  status: boolean,
+  onCellUpdate: (newValue: boolean) => void
+) => <TableSwitcher status={status} onCellUpdate={onCellUpdate} />;
 
-export const inputCell = (value: string) => {
-  return <TableInputCell value={value} />;
+export const inputCell = (
+  value: string,
+  onCellUpdate: (newValue: string) => void
+) => {
+  return <TableInputCell value={value} onCellUpdate={onCellUpdate} />;
 };
 
 export const statusPromoCell = (status: boolean) => (

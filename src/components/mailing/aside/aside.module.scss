@@ -1,0 +1,105 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.aside {
+  @include position(relative);
+  @include size(30%, unset);
+  @include min-size(185px, 651px);
+  @include flex(column, center, stretch);
+  @include max-size(296px, 700px);
+  @include indents(16px, 0);
+  box-shadow: -2px 4px 10px 0px #2222220D;
+  border-radius: $l-border-radius;
+  box-sizing: border-box;
+  background-color: $off-white;
+
+  @media screen and (max-width: 860px) {
+    @include size(296px, 80vh);
+    @include min-size(unset, unset);
+  }
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  &__defaultText {
+    @include flex($gap: 6px);
+    @include font('IBM Plex Mono', $xxs-font-size, $normal, $grey-3);
+    line-height: $m-line-height;
+    letter-spacing: $l-letter-space;
+    text-align: left;
+  }
+
+  &__header {
+    @include max-size(unset, 70px);
+    @include size(100%, 100%);
+    @include flex(column, flex-start, flex-start, 8px);
+  }
+
+  &__title {
+    @include ellipsis();
+  }
+
+  &__main {
+    @include position(relative);
+    @include indents(32px 0, 0);
+    @include flex(column);
+    border-top: 1px $secondary-cultured-hover solid;
+    border-bottom: 1px $secondary-cultured-hover solid;
+    flex: 1;
+  }
+
+  &__message {
+    @include flex(row, flex-start, center, 8px);
+  }
+
+  &__messageBubble {
+    @include flex(column, center, flex-start);
+    @include indents(5px 10px, 0);
+    @include min-size(40px, 20px);
+    box-sizing: border-box;
+    background-color: $secondary-cultured-hover;
+    border-radius: 10px;
+  }
+
+  &__botName {
+    @include font('Open Sans', 10px, $bold, black);
+    padding-bottom: 8px;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
+  }
+
+  &__messageText {
+    @include font('Open Sans', 10px, $normal, $primary-oxford-blue-default);
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
+  }
+
+  &__footer {
+    @include flex(column, flex-end);
+    @include max-size(unset, 5%);
+    @include size(100%, 100%);
+  }
+
+  &__logo {
+    @include size(12px, 12px);
+  }
+
+  &__robot {
+    @include size(32px, 32px);
+    align-self: flex-start;
+  }
+
+  &__mainBtn {
+    @include font('Open Sans', $xs-font-size, $bold);
+    @include button-style-reset();
+    @include size(149px, 32px);
+    @include position(absolute, unset, -50%, 32px, 50%);
+    transform: translateX(-50%);
+    border-radius: 32px;
+    background-color: $primary-medium-spring-green-default;
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
+    text-align: center;
+  }
+}
