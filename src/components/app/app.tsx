@@ -193,6 +193,14 @@ const App: FC = (): JSX.Element => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path={routesUrl.users}
+            element={
+              <ProtectedRoute>
+                <UsersPage />
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
