@@ -1,16 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
+import { Descendant } from 'slate';
 import Typography from '../../../ui/typography/typography';
 import styles from './aside.module.scss';
 import robot from '../../../images/robot-logo.png';
 import robotEmoji from '../../../images/RoboEmoji.png';
+import SlateConverter from './slate-converter/slate-converted';
 
 interface IProps {
   title: string;
-  text: string;
+  text: Descendant[];
 }
 
 const AsideMailing: FC<IProps> = ({ title, text }) => {
+  const isFilled =
+    (text && text[0].children![0].text) || (text && text.length > 1);
   return (
     <div className={styles.aside}>
       <div className={styles.aside__header}>
@@ -29,16 +33,18 @@ const AsideMailing: FC<IProps> = ({ title, text }) => {
             className={styles.aside__robot}
           />
           <div className={styles.aside__messageBubble}>
-            {text.length ? (
+            {isFilled ? (
               <Typography tag="p" className={styles.aside__botName}>
                 Бот
               </Typography>
             ) : (
               ''
             )}
-            <Typography tag="span" className={styles.aside__messageText}>
-              {text.length ? text : '...'}
-            </Typography>
+            {isFilled
+              ? text.map((item, index) => (
+                  <SlateConverter key={index} descendant={item} />
+                ))
+              : '...'}
           </div>
         </div>
         <button type="submit" className={styles.aside__mainBtn}>

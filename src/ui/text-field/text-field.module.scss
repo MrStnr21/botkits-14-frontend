@@ -16,6 +16,7 @@
 .textarea__input {
   @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
   @include line-sizes($xl-line-height, $m-letter-space);
+  @include hide-scroll;
   display: block;
   height: 56px;
   background-color: inherit;

@@ -14,6 +14,7 @@ import emojiIcon from '../../images/icon/24x24/constructor/emoji.svg';
 import MenuTextEditor from '../menus/menu-text-editor/menu-text-editor';
 import Leaf from './leaf';
 import CustomEditor from './custom-editor';
+import { slateSerialize } from '../../utils/utils';
 
 interface ITextField {
   maxTextLength?: number;
@@ -32,9 +33,7 @@ const TextField: FC<ITextField> = ({
   const [emojis, toggleEmojis] = useState(false);
   const [editor] = useState(() => withReact(withHistory(createEditor())));
   const length = useMemo(() => {
-    return text[0]?.children?.reduce((sum, item) => {
-      return sum + item.text.length;
-    }, 0);
+    return slateSerialize(editor.children).length;
   }, [text]);
 
   const renderLeaf = useCallback((props: RenderLeafProps) => {
@@ -83,6 +82,7 @@ const TextField: FC<ITextField> = ({
               CustomEditor.setDefaultMark(editor);
             }
             switch (event.key) {
+              case 'Enter':
               case ' ': {
                 CustomEditor.setDefaultMark(editor);
                 break;

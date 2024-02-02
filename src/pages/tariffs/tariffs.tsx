@@ -7,9 +7,9 @@ import { ppHeadCell } from '../../components/table-cells/table-cells';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import { promoCellStyle, promoRowStyleRef } from '../share/promocodesConfig';
-import { tariffsCols } from '../share/tariffsConfig';
+import { tariffsCols, tariffsTableModalButtons } from '../share/tariffsConfig';
 import TariffPopup from '../../components/popups/tariff-popup/tariff-popup';
-import { getTariffs, patchTariff } from '../../api/tariffs';
+import { deleteTariff, getTariffs, patchTariff } from '../../api/tariffs';
 
 function Tariffs() {
   const [popupOpened, togglePopup] = useState(false);
@@ -49,8 +49,11 @@ function Tariffs() {
           rowStyle={promoRowStyleRef}
           cellStyle={promoCellStyle}
           shadow={1}
+          dropdown
           setTableData={setTariffs}
           onUpdate={patchTariff}
+          onDelete={deleteTariff}
+          menuOptions={tariffsTableModalButtons}
           pagination
         />
       </div>

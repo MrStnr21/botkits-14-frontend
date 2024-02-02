@@ -78,6 +78,7 @@ interface IProps {
   // функция-сеттер для родительского компонента
   setTableData?: (updatedData: TableData[]) => void;
   onUpdate?: (updatedData: TableData) => Promise<unknown>;
+  onDelete?: (id: string) => Promise<unknown>;
 }
 
 const EnhancedTable: FC<IProps> = ({
@@ -98,6 +99,7 @@ const EnhancedTable: FC<IProps> = ({
   rowsPerPageValue = 5,
   setTableData,
   onUpdate,
+  onDelete,
   ...props
 }) => {
   const [page, setPage] = useState(0);
@@ -110,9 +112,19 @@ const EnhancedTable: FC<IProps> = ({
   };
   // удаление строки таблицы
   const handleRemoveRow = (indexToRemove: number) => {
+    const removingRow = tableData[indexToRemove];
     const updatedRows = tableData.filter((_, index) => index !== indexToRemove);
-    if (setTableData) {
+    /*     if (setTableData) {
       setTableData(updatedRows);
+    } */
+    if (onDelete && setTableData) {
+      onDelete(removingRow.id)
+        .then(() => {
+          setTableData(updatedRows);
+        })
+        .catch(() => {
+          dispatch(createAddErrorAction('Ошибка при отправке данных'));
+        });
     }
   };
   // функция обновления состояния табличной ячейки

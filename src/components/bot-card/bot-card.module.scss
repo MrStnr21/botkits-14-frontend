@@ -23,6 +23,10 @@
   }
 }
 
+.header {
+  @include flex($gap: 20px);
+}
+
 .icon {
   @include size(52px, 52px);
 }
