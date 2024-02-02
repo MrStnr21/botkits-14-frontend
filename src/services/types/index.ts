@@ -22,6 +22,10 @@ import { TAddBotActions } from '../actions/bots/addBot';
 import { TGetTemplatesBotsState } from '../reducers/bots/templatesBots';
 import { TGetTemplatesBotsActions } from '../actions/bots/templatesBots';
 
+import { TGetMailingsActions } from '../actions/mailing/getMailings';
+import { TMailingsState } from '../reducers/mailings/mailings';
+import { TCreateMailingActions } from '../actions/mailing/createMailing';
+
 import { TUserResetPasswordActions } from '../actions/auth/reset-password';
 import { TResetPasswordState } from '../reducers/auth/reset-password';
 
@@ -41,6 +45,7 @@ export type TStore = {
   getUserInfo: TGetUserInfoState;
   logout: TLogoutState;
   bots: TBotsState;
+  mailings: TMailingsState;
   getTemplatesBots: TGetTemplatesBotsState;
   getPlatforms: TGetPlatformsState;
   errors: TErrorState;
@@ -60,6 +65,8 @@ export type TApplicationActions =
   | TRenameBotActions
   | TGetTemplatesBotsActions
   | TGetPlatformsActions
+  | TGetMailingsActions
+  | TCreateMailingActions
   | TErrorActions;
 
 export type AppThunk<TReturn = void> = ActionCreator<

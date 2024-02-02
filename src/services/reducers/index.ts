@@ -11,6 +11,8 @@ import logoutReducer from './logout/logout';
 
 import { botsReducer } from './bots/bots';
 
+import { mailingsReducer } from './mailings/mailings';
+
 import { getTemplatesBotsReducer } from './bots/templatesBots';
 
 import { getPlatformsReducer } from './platforms/getPlatforms';
@@ -26,6 +28,7 @@ const rootReducer = combineReducers({
   getUserInfo: getUserInfoReducer,
   logout: logoutReducer,
   bots: botsReducer,
+  mailings: mailingsReducer,
   getTemplatesBots: getTemplatesBotsReducer,
   getPlatforms: getPlatformsReducer,
   websocket: socketReducer,

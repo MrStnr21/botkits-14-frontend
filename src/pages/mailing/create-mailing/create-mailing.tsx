@@ -11,17 +11,33 @@ import MailingForm from '../../../components/mailing/form/mailing-form';
 import MailingConditions from '../../../components/mailing/mailing-conditions/mailing-conditions';
 import ModalPopup from '../../../components/popups/modal-popup/modal-popup';
 import { baseSlateData } from '../../../utils/constants';
+import { TFormData } from '../../../services/types/mailing';
+import { createMailingAction } from '../../../services/actions/mailing/createMailing';
+import { useAppDispatch } from '../../../services/hooks/hooks';
 
 const CreateMailing: FC = () => {
   const navigate = useNavigate();
   const matchConditions = useMatch('/mailing/create/conditions');
-  const [nameValue, setNameValue] = useState('');
-  const [textValue, setTextValue] = useState<Descendant[]>(baseSlateData);
   const [mobile, setMobile] = useState(false);
   const [isAsideVisible, setAsideVisible] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const [formData, setFormData] = useState<TFormData>({
+    name: '',
+    message: baseSlateData,
+    bot: '65b38779ee8311035872d56e', // Временно пока не добавили выбор бота
+    platforms: ['65b3874fee8311035872d52b'], // Нужно будет брать идшки из бота
+    isActive: true,
+    isActiveBotBuilder: false,
+    schedule: {
+      isNow: true,
+      isRepeat: false,
+    },
+  });
+
   const isMobile = useMediaQuery('(max-width: 860px)');
 
-  const joinedText = textValue[0].children!.reduce(
+  const joinedText = formData.message[0].children!.reduce(
     (sum, item) => sum + item.text,
     ''
   );
@@ -36,8 +52,15 @@ const CreateMailing: FC = () => {
   }
 
   const handleClickButton = () => {
-    if (nameValue && textValue) {
+    if (formData.name && formData.message) {
       navigate('/mailing/create/conditions');
+    }
+  };
+
+  const handleSendForm = () => {
+    if (formData.name && formData.message) {
+      console.log(formData);
+      dispatch(createMailingAction(formData, () => navigate(`/mailing`)));
     }
   };
 
@@ -68,16 +91,15 @@ const CreateMailing: FC = () => {
       )} */}
         {matchConditions ? (
           <MailingConditions
-            title={nameValue}
+            formData={formData}
+            setFormData={setFormData}
             handleBack={handleBack}
-            // handleClickButton={handleClickButton}
+            handleClickButton={handleSendForm}
           />
         ) : (
           <MailingForm
-            nameValue={nameValue}
-            textValue={textValue}
-            setNameValue={setNameValue}
-            setTextValue={setTextValue}
+            formData={formData}
+            setFormData={setFormData}
             handleBack={handleBack}
             handleClickButton={handleClickButton}
           />
@@ -85,10 +107,10 @@ const CreateMailing: FC = () => {
         {isAsideVisible &&
           (isMobile ? (
             <ModalPopup onClick={() => setAsideVisible(false)}>
-              <AsideMailing title={nameValue} text={joinedText} />
+              <AsideMailing title={formData.name} text={joinedText} />
             </ModalPopup>
           ) : (
-            <AsideMailing title={nameValue} text={joinedText} />
+            <AsideMailing title={formData.name} text={joinedText} />
           ))}
       </div>
       {(!isAsideVisible || isMobile) && (

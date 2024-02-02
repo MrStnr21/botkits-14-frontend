@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { Link, useMatch } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import stylesMailing from './mailing.module.scss';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
@@ -9,11 +9,21 @@ import HowToMailing from '../../components/mailing/how-to-mailing/how-to-mailing
 import MailingStart from '../../components/mailing/mailing-start/mailing-start';
 import MailingFilled from '../../components/mailing/mailing-filled/mailing-filled';
 import CreateMailing from './create-mailing/create-mailing';
+import { mailingsSel } from '../../utils/selectorData';
+import { getMailingsAction } from '../../services/actions/mailing/getMailings';
 
 const Mailing: FC = (): JSX.Element => {
-  const [is, setIs] = useState(true); // временно
+  const { mailings } = useAppSelector(mailingsSel);
+
+  const dispatch = useAppDispatch();
+
   const matchMailing = useMatch('/mailing');
   const isMobile = useMediaQuery('(max-width: 860px)');
+
+  useEffect(() => {
+    const botId = '65b38779ee8311035872d56e'; // Временно пока не сделали выбор бота
+    dispatch(getMailingsAction(botId));
+  }, [dispatch]);
 
   return (
     <div className={stylesMailing.mailing}>
@@ -38,7 +48,11 @@ const Mailing: FC = (): JSX.Element => {
       </div>
       {matchMailing ? (
         <div className={stylesMailing.mailing__content}>
-          {!is ? <MailingStart /> : <MailingFilled />}
+          {!mailings.length ? (
+            <MailingStart />
+          ) : (
+            <MailingFilled mailings={mailings} />
+          )}
           <HowToMailing />
         </div>
       ) : (

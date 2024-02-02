@@ -17,21 +17,18 @@ import {
   MFmessengerList,
 } from '../../../utils/mockMailingData';
 import Select from '../../../ui/select/select';
+import { TFormData } from '../../../services/types/mailing';
 
 interface IProps {
-  nameValue: string;
-  textValue: Descendant[];
-  setNameValue: any;
-  setTextValue: any;
+  formData: TFormData;
+  setFormData: any;
   handleBack: () => void;
   handleClickButton: () => void;
 }
 
 const MailingForm: FC<IProps> = ({
-  nameValue,
-  textValue,
-  setNameValue,
-  setTextValue,
+  formData,
+  setFormData,
   handleBack,
   handleClickButton,
 }) => {
@@ -42,16 +39,27 @@ const MailingForm: FC<IProps> = ({
 
   const handleFirstClick = () => {
     setIsSecChecked(false);
+    setFormData({
+      ...formData,
+      isActiveBotBuilder: !isFirstChecked,
+    });
     setIsFirstChecked(!isFirstChecked);
   };
 
   const handleSecClick = () => {
     setIsFirstChecked(false);
+    setFormData({
+      ...formData,
+      isActiveBotBuilder: false,
+    });
     setIsSecChecked(!isSecChecked);
   };
 
   const handleTextChange = (newText: Descendant[]) => {
-    setTextValue(newText);
+    setFormData({
+      ...formData,
+      message: newText,
+    });
   };
   return (
     <div className={styles.container}>
@@ -63,8 +71,10 @@ const MailingForm: FC<IProps> = ({
           <div className={styles.form__inputWrapper}>
             <Input
               placeholder="Название рассылки"
-              onChange={(e) => setNameValue(e.target.value)}
-              value={nameValue}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              value={formData.name}
               minLength={0}
             />
           </div>
@@ -80,7 +90,7 @@ const MailingForm: FC<IProps> = ({
         <fieldset className={styles.form__formFieldset}>
           <legend className={styles.form__legend}>Текст сообщения</legend>
           <div className={styles.form__textField}>
-            <TextField setText={handleTextChange} text={textValue} />
+            <TextField setText={handleTextChange} text={formData.message} />
           </div>
           <div className={styles.form__menuVariableWrapper}>
             <Select
@@ -125,7 +135,7 @@ const MailingForm: FC<IProps> = ({
         <button
           type="button"
           className={
-            nameValue && textValue
+            formData.name && formData.message
               ? styles.container__greenActiveButton
               : styles.container__greenButton
           }
@@ -134,7 +144,7 @@ const MailingForm: FC<IProps> = ({
           <Typography
             tag="p"
             className={
-              nameValue && textValue
+              formData.name && formData.message
                 ? styles.container__blackText
                 : styles.container__buttonText
             }

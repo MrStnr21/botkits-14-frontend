@@ -3,6 +3,7 @@ import styles from './mobile-table-row.module.scss';
 import { ReactComponent as tgIcon } from '../../../../../images/icon/40x40/telegram/hover.svg';
 import { ReactComponent as vkIcon } from '../../../../../images/icon/40x40/vk/hover.svg';
 import { ReactComponent as viberIcon } from '../../../../../images/icon/40x40/viber/hover.svg';
+import { ReactComponent as facebookIcon } from '../../../../../images/icon/40x40/facebook/hover.svg';
 import { rows } from '../../../../../utils/mailingTable';
 
 type TMobileTableRowProps = (typeof rows)[0];
@@ -25,6 +26,9 @@ const MobileTableRow: FC<TMobileTableRowProps> = ({
       }
       case 'VK': {
         return vkIcon;
+      }
+      case 'Facebook': {
+        return facebookIcon;
       }
       default: {
         return vkIcon;
