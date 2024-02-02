@@ -33,14 +33,17 @@ $additional-grey-pressed: #c3d1d8;
 /* **     Общий блок открытое/закрытое состояние сайдбара и блок затемнения   ** */
 
 .wrapper {
+  @include flex(column);
   // START GRID LAYOUT
   grid-row: 1 / -1;
   grid-column: 1/2;
   z-index: 3;
   // END GRID LAYOUT
   position: relative;
-  margin: 16px 46px 16px 0;
-  display: flex;
+  margin: 16px 46px 16px 16px;
+  overflow: hidden;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
 
   @media (max-width: $switching-width) {
     margin: 0;
@@ -211,12 +214,13 @@ $additional-grey-pressed: #c3d1d8;
 }
 
 .header__logo {
-  @include size(145px, 34px);
+  height: 34px;
+  max-width: 145px;
   box-sizing: border-box;
-  margin: 0 8px;
+  margin: 20px 16px 0;
   background-image: url('../../images/icon/side bar/full-logo.svg');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: initial;
   flex-shrink: 0;
 
   @media (max-width: $switching-width) {
@@ -248,51 +252,14 @@ $additional-grey-pressed: #c3d1d8;
 }
 
 .navigation__list {
+  @include flex(column, $gap: 8px);
   list-style: none;
-  margin: 47px 0 20px 0;
+  margin: 47px 8px 20px;
   padding: 0;
+  overflow: hidden;
 
   @media (max-width: $switching-width) {
     margin-top: 0;
-  }
-}
-
-.navigation__link {
-  @include flex(row, $align-items: center, $gap: 15px);
-  @include button-style-reset;
-  @include min-size(46px, 46px);
-  border-radius: 50px;
-  margin-bottom: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 15px;
-
-  @include font-nav();
-
-  text-decoration: none;
-  color: $primary-oxford-blue-default;
-  transition: all 0.3s;
-
-  svg {
-    flex-shrink: 0;
-    stroke: $secondary-cultured-press;
-  }
-
-  &:hover {
-    background-color: $secondary-cultured-hover;
-  }
-
-  @media (max-width: $switching-width) {
-    gap: 23px;
-  }
-}
-
-.navigation__link_active {
-  stroke: $primary-persian-blue-default;
-  color: $primary-persian-blue-default;
-  &:hover {
-    background-color: inherit;
-    cursor: default;
   }
 }
 

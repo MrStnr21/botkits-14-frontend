@@ -5,13 +5,18 @@
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(0, min-content) minmax(calc($min-content-width - 300px), auto);
+  grid-template-columns: calc(86px + 46px) auto;
   box-sizing: border-box;
   position: relative;
   background-color: $off-white;
+  transition: .3s;
 
   @media (max-width: $switching-width) {
     padding: 0;
+  }
+
+  &.sidebar_opened {
+    grid-template-columns: calc(224px + 46px) auto;
   }
 }
 

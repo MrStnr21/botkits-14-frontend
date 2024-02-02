@@ -5,7 +5,7 @@
   grid-column: 2 / 3;
   grid-row: 1;
 
-  @include flex(row, flex-end, center);
+  @include flex(row, space-between, center);
   height: 72px;
   border-bottom: 1px solid $secondary-cultured-press;
   margin-right: 40px;
@@ -20,6 +20,15 @@
   @include flex(row, unset, center);
   color: $primary-oxford-blue-default;
   position: relative;
+}
+
+.sidebar-toggle {
+  @include button-style-reset;
+  @include size(24px, 24px);
+
+  &__icon {
+    color: $secondary-cultured-press;
+  }
 }
 
 .text {

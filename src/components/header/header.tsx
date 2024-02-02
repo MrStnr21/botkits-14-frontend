@@ -15,10 +15,15 @@ import MenuUser from '../../ui/menus/menu-user/menu-user';
 
 import NotificationPopup from '../popups/notification-popup/notification-popup';
 import Typography from '../../ui/typography/typography';
+import Icon from '../../ui/icon/icon';
 // import MenuMobile from '../icons/MenuMobile/MenuMobile';
 // import Menu24px from '../icons/Menu24px/Menu24px';
 
-const Header: FC = (): JSX.Element => {
+type THeaderProps = {
+  toggleSidebar: () => void;
+};
+
+const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
   const [isOpenAccontSettings, setIsAccSet] = useState(false);
   const [isNotificationOpened, setIsNotificationOpened] = useState(false);
 
@@ -34,6 +39,17 @@ const Header: FC = (): JSX.Element => {
 
   return (
     <header className={styles.header}>
+      <button
+        className={styles['sidebar-toggle']}
+        type="button"
+        onClick={toggleSidebar}
+      >
+        <Icon
+          extraClass={styles['sidebar-toggle__icon']}
+          icon="menu"
+          isColored
+        />
+      </button>
       {/* <div className={styles.container}>
         {matches ? <MenuMobile /> : <Menu24px />}
         <span className={styles.logo}>
