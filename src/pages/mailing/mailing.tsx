@@ -8,9 +8,9 @@ import Typography from '../../ui/typography/typography';
 import HowToMailing from '../../components/mailing/how-to-mailing/how-to-mailing';
 import MailingStart from '../../components/mailing/mailing-start/mailing-start';
 import MailingFilled from '../../components/mailing/mailing-filled/mailing-filled';
-import CreateMailing from './create-mailing/create-mailing';
 import { mailingsSel } from '../../utils/selectorData';
 import { getMailingsAction } from '../../services/actions/mailing/getMailings';
+import CreateMailing from './create-mailing/create-mailing';
 
 const Mailing: FC = (): JSX.Element => {
   const { mailings } = useAppSelector(mailingsSel);

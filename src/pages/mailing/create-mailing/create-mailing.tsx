@@ -14,6 +14,7 @@ import { baseSlateData } from '../../../utils/constants';
 import { TFormData } from '../../../services/types/mailing';
 import { createMailingAction } from '../../../services/actions/mailing/createMailing';
 import { useAppDispatch } from '../../../services/hooks/hooks';
+import { botId, platformsId } from '../ids-temp';
 
 const CreateMailing: FC = () => {
   const navigate = useNavigate();
@@ -25,8 +26,8 @@ const CreateMailing: FC = () => {
   const [formData, setFormData] = useState<TFormData>({
     name: '',
     message: baseSlateData,
-    bot: '65b38779ee8311035872d56e', // Временно пока не добавили выбор бота
-    platforms: ['65b3874fee8311035872d52b'], // Нужно будет брать идшки из бота
+    bot: botId,
+    platforms: platformsId,
     isActive: true,
     isActiveBotBuilder: false,
     schedule: {
@@ -36,11 +37,6 @@ const CreateMailing: FC = () => {
   });
 
   const isMobile = useMediaQuery('(max-width: 860px)');
-
-  const joinedText = formData.message[0].children!.reduce(
-    (sum, item) => sum + item.text,
-    ''
-  );
 
   if (isMobile && isAsideVisible && !mobile) {
     setMobile(true);
@@ -107,10 +103,10 @@ const CreateMailing: FC = () => {
         {isAsideVisible &&
           (isMobile ? (
             <ModalPopup onClick={() => setAsideVisible(false)}>
-              <AsideMailing title={formData.name} text={joinedText} />
+              <AsideMailing title={formData.name} text={formData.message} />
             </ModalPopup>
           ) : (
-            <AsideMailing title={formData.name} text={joinedText} />
+            <AsideMailing title={formData.name} text={formData.message} />
           ))}
       </div>
       {(!isAsideVisible || isMobile) && (
