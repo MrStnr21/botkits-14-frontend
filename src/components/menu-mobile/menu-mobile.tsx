@@ -5,7 +5,7 @@ import styles from './menu-mobile.module.scss';
 import SidebarItemDropdown from '../sidebar/sidebar-item/sidebar-item-dropdown';
 import SidebarItem from '../sidebar/sidebar-item/sidebar-item';
 import Icon from '../../ui/icon/icon';
-import Button from '../sidebar/button/button';
+import Button from '../../ui/buttons/button/button';
 
 type TMenuMobileProps = {
   isOpened: boolean;
@@ -35,8 +35,9 @@ const MenuMobile: FC<TMenuMobileProps> = ({ isOpened, closeMenu }) => {
           return <SidebarItem {...item} />;
         })}
       </ul>
-      <div>
-        <Button type="compact" isSidebarOpened />
+      <div className={styles.addBot}>
+        <Button size="small" variant="circle" />
+        <span className={styles.addBots__text}>Добавить бота</span>
       </div>
     </div>
   );

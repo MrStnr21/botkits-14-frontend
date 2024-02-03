@@ -4,7 +4,7 @@
 .menu {
   @include flex(column);
   @include position(fixed, 0, 0);
-  @include size(100vw, 100vh);
+  @include size(100%, 100vh);
   @include hide-scroll;
 
   overflow-y: scroll;
@@ -13,6 +13,30 @@
 }
 
 .header {
-  @include flex(row, center);
+  @include flex(row, flex-start, flex-end, 16px);
+  @include size(100%, 68px);
+
+  box-sizing: border-box;
   background-color: $secondary-cultured-default;
+  padding: 19px 0 15px 20px;
+
+  & .close {
+    @include button-style-reset;
+    @include size(24px, 24px);
+
+    &__icon {
+      color: $grey-3;
+    }
+  }
+}
+
+.links {
+  @include indents(32px 20px 0 20px, 0);
+}
+
+.addBot {
+  @include flex(row, flex-start, center, $gap: 12px);
+  @include indents(20px 0 20px 0, 20px 20px 0 20px);
+  border-top: 1px solid $secondary-cultured-hover;
+  box-sizing: border-box;
 }

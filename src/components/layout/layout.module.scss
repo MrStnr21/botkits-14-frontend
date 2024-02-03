@@ -5,18 +5,19 @@
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: calc(86px + 46px) auto;
+  grid-template-columns: calc(86px + 46px) 1fr;
   box-sizing: border-box;
   position: relative;
   background-color: $off-white;
   transition: .3s;
 
   @media (max-width: $switching-width) {
+    width: 100%;
     padding: 0;
   }
 
   &.sidebar_opened {
-    grid-template-columns: calc(224px + 46px) auto;
+    grid-template-columns: calc(224px + 46px) 1fr;
   }
 }
 

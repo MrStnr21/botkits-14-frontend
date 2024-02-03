@@ -30,10 +30,6 @@
     background-color: $secondary-cultured-hover;
   }
 
-  @media (max-width: $switching-width) {
-    gap: 23px;
-  }
-
   &.active{
     stroke: $primary-persian-blue-default;
     color: $primary-persian-blue-default;

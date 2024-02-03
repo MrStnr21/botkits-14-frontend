@@ -8,6 +8,7 @@ import Sidebar from '../sidebar/sidebar';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import MenuMobile from '../menu-mobile/menu-mobile';
+import { switchingWidth } from '../../stylesheets/scss-variables';
 
 type TLayoutProps = {
   type?: 'default' | 'compact';
@@ -16,7 +17,7 @@ type TLayoutProps = {
 
 const Layout: FC<TLayoutProps> = ({ type = 'default', width = 'limited' }) => {
   const [sidebarOpened, setSidebar] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 620px)');
+  const isMobile = useMediaQuery(`(max-width: ${switchingWidth})`);
   const matchChat = useMatch('/chat/:id');
 
   const toggleSidebar = () => setSidebar(!sidebarOpened);

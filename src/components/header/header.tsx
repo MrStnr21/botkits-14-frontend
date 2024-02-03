@@ -8,6 +8,7 @@ import Notifications from '../icons/Notifications/Notifications';
 import ArrowSmall from '../icons/ArrowSmall/ArrowSmall';
 import Help from '../icons/Help/Help';
 // import Logo from '../icons/Logo/Logo';
+import { ReactComponent as Logo } from '../../images/icon/side bar/full-logo.svg';
 
 import avatar from '../../images/avatar/circled/default.svg';
 
@@ -16,6 +17,7 @@ import MenuUser from '../../ui/menus/menu-user/menu-user';
 import NotificationPopup from '../popups/notification-popup/notification-popup';
 import Typography from '../../ui/typography/typography';
 import Icon from '../../ui/icon/icon';
+import { switchingWidth } from '../../stylesheets/scss-variables';
 // import MenuMobile from '../icons/MenuMobile/MenuMobile';
 // import Menu24px from '../icons/Menu24px/Menu24px';
 
@@ -35,27 +37,24 @@ const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
     setIsNotificationOpened(!isNotificationOpened);
   };
 
-  const matches = useMediaQuery('(max-width: 620px)');
+  const isMobile = useMediaQuery(`(max-width: ${switchingWidth})`);
 
   return (
     <header className={styles.header}>
-      <button
-        className={styles['sidebar-toggle']}
-        type="button"
-        onClick={toggleSidebar}
-      >
-        <Icon
-          extraClass={styles['sidebar-toggle__icon']}
-          icon="menu"
-          isColored
-        />
-      </button>
-      {/* <div className={styles.container}>
-        {matches ? <MenuMobile /> : <Menu24px />}
-        <span className={styles.logo}>
-          <Logo />
-        </span>
-      </div> */}
+      <div className={styles.header__left}>
+        <button
+          className={styles['sidebar-toggle']}
+          type="button"
+          onClick={toggleSidebar}
+        >
+          <Icon
+            extraClass={styles['sidebar-toggle__icon']}
+            icon="menu"
+            isColored
+          />
+        </button>
+        {isMobile && <Logo />}
+      </div>
       <div className={styles.wrapper}>
         <Typography tag="p" fontFamily="secondary" className={styles.text}>
           Тариф
@@ -87,7 +86,7 @@ const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
         <MenuUser
           isActive={isOpenAccontSettings}
           top={47}
-          right={matches ? -15 : 0}
+          right={isMobile ? -15 : 0}
           onClick={(e) => {
             setIsAccSet(false);
             if ((e.target as HTMLInputElement).id === 'notification') {
