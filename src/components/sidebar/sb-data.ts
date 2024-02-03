@@ -1,19 +1,10 @@
 /* eslint-disable import/no-named-as-default */
-import dashboardIcon from '../../images/icon/side bar/dashboard';
-import mailingIcon from '../../images/icon/side bar/mailing';
-import constructorIcon from '../../images/icon/side bar/constructor';
-import listsIcon from '../../images/icon/side bar/lists';
-import chartsIcon from '../../images/icon/side bar/charts';
-import accessIcon from '../../images/icon/side bar/access';
-import dialogueIcon from '../../images/icon/side bar/dialogue';
-import rocketIcon from '../../images/icon/side bar/rocket';
-import minilandingIcon from '../../images/icon/side bar/minilanding';
-import crmIcon from '../../images/icon/side bar/crm';
 import routesUrl from '../../utils/routesData';
+import { IconName } from '../../ui/icon/utils';
 
 export interface ILink {
   navLink: string;
-  icon?: JSX.Element;
+  icon?: IconName;
   text: string;
   child?: Array<ILink>;
 }
@@ -21,47 +12,47 @@ export interface ILink {
 export const links: Array<ILink> = [
   {
     navLink: routesUrl.homePage,
-    icon: dashboardIcon,
+    icon: 'side_dashboard',
     text: 'Дашборд',
   },
   {
     navLink: routesUrl.botBuilder,
-    icon: constructorIcon,
+    icon: 'side_constructor',
     text: 'Воронки',
   },
   {
     navLink: routesUrl.mailing,
-    icon: mailingIcon,
+    icon: 'side_mailing',
     text: 'Рассылки',
   },
   {
     navLink: routesUrl.lists || '/lists',
-    icon: listsIcon,
+    icon: 'side_lists',
     text: 'Списки',
   },
   {
     navLink: routesUrl.statistics,
-    icon: chartsIcon,
+    icon: 'side_charts',
     text: 'Статистика',
   },
   {
     navLink: routesUrl.chat,
-    icon: dialogueIcon,
+    icon: 'side_dialogue',
     text: 'Диалоги',
   },
   {
     navLink: routesUrl.partnership,
-    icon: rocketIcon,
+    icon: 'rocket',
     text: 'Партнерская программа',
   },
   {
     navLink: routesUrl.share,
-    icon: accessIcon,
+    icon: 'side_access',
     text: 'Общий доступ',
   },
   {
     navLink: routesUrl.minilanding || '/minilanding',
-    icon: minilandingIcon,
+    icon: 'side_minilanding',
     text: 'Мини-лендинг',
     child: [
       {
@@ -72,7 +63,7 @@ export const links: Array<ILink> = [
   },
   {
     navLink: '/crm',
-    icon: crmIcon,
+    icon: 'side_crm',
     text: 'CRM',
   },
 ];

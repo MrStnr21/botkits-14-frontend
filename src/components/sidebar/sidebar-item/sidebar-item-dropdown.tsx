@@ -22,7 +22,9 @@ const SidebarItemDropdown: FC<TProps> = ({
         type="button"
         onClick={() => setMenuStatus(!isMenuOpened)}
       >
-        <div className={styles.icon}>{icon}</div>
+        <div className={styles['icon-wrapper']}>
+          {icon && <Icon extraClass={styles.icon} icon={icon} isColored />}
+        </div>
         <span className={styles.text}>{text}</span>
         {sidebarOpened && (
           <Icon

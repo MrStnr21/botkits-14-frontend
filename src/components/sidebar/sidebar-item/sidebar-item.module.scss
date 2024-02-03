@@ -44,9 +44,18 @@
   }
 }
 
-.icon {
+.icon-wrapper {
   @include flex(row, center, center);
   @include min-size(46px, 46px);
+}
+
+.icon {
+  @include size(24px, 24px);
+  color: $grey-1;
+
+  &.active {
+    color: inherit;
+  }
 }
 
 .list {
