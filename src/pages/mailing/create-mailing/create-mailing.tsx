@@ -55,7 +55,6 @@ const CreateMailing: FC = () => {
 
   const handleSendForm = () => {
     if (formData.name && formData.message) {
-      console.log(formData);
       dispatch(createMailingAction(formData, () => navigate(`/mailing`)));
     }
   };

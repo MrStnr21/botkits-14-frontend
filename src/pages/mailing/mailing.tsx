@@ -11,6 +11,7 @@ import MailingFilled from '../../components/mailing/mailing-filled/mailing-fille
 import { mailingsSel } from '../../utils/selectorData';
 import { getMailingsAction } from '../../services/actions/mailing/getMailings';
 import CreateMailing from './create-mailing/create-mailing';
+import { botId } from './ids-temp';
 
 const Mailing: FC = (): JSX.Element => {
   const { mailings } = useAppSelector(mailingsSel);
@@ -21,7 +22,6 @@ const Mailing: FC = (): JSX.Element => {
   const isMobile = useMediaQuery('(max-width: 860px)');
 
   useEffect(() => {
-    const botId = '65b38779ee8311035872d56e'; // Временно пока не сделали выбор бота
     dispatch(getMailingsAction(botId));
   }, [dispatch]);
 
