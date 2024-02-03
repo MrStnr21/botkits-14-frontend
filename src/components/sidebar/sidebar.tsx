@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import stylesSidebar from './sidebar.module.scss';
 
-import { links } from './sb-data';
-import Typography from '../../ui/typography/typography';
+import { links } from '../../utils/menuData';
 import SidebarItem from './sidebar-item/sidebar-item';
 import SidebarItemDropdown from './sidebar-item/sidebar-item-dropdown';
 import Button from './button/button';
@@ -25,7 +23,7 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
       <NavLink to="/" className={stylesSidebar.header__logo} />
       <Button isSidebarOpened={isOpened} type={type} />
       <ul className={stylesSidebar.navigation__list}>
-        {links.map((item, index) => {
+        {links.map((item) => {
           if (item.child) {
             return (
               <SidebarItemDropdown

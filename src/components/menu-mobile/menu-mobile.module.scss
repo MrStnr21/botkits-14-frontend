@@ -1,0 +1,18 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+.menu {
+  @include flex(column);
+  @include position(fixed, 0, 0);
+  @include size(100vw, 100vh);
+  @include hide-scroll;
+
+  overflow-y: scroll;
+  z-index: 999;
+  background-color: $off-white;
+}
+
+.header {
+  @include flex(row, center);
+  background-color: $secondary-cultured-default;
+}

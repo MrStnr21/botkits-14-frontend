@@ -1,6 +1,5 @@
-/* eslint-disable import/no-named-as-default */
-import routesUrl from '../../utils/routesData';
-import { IconName } from '../../ui/icon/utils';
+import routesUrl from './routesData';
+import { IconName } from '../ui/icon/utils';
 
 export interface ILink {
   navLink: string;

@@ -7,6 +7,7 @@ import stylesLayout from './layout.module.scss';
 import Sidebar from '../sidebar/sidebar';
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import MenuMobile from '../menu-mobile/menu-mobile';
 
 type TLayoutProps = {
   type?: 'default' | 'compact';
@@ -15,10 +16,12 @@ type TLayoutProps = {
 
 const Layout: FC<TLayoutProps> = ({ type = 'default', width = 'limited' }) => {
   const [sidebarOpened, setSidebar] = useState(false);
-  const matches = useMediaQuery('(max-width: 620px)');
+  const isMobile = useMediaQuery('(max-width: 620px)');
   const matchChat = useMatch('/chat/:id');
 
   const toggleSidebar = () => setSidebar(!sidebarOpened);
+
+  const closeSidebar = () => setSidebar(false);
 
   return (
     <div
@@ -26,8 +29,11 @@ const Layout: FC<TLayoutProps> = ({ type = 'default', width = 'limited' }) => {
         sidebarOpened ? stylesLayout.sidebar_opened : ''
       }`}
     >
-      {!matches && <Sidebar isOpened={sidebarOpened} type={type} />}
-      {(type === 'default' || matches) && (
+      {!isMobile && <Sidebar isOpened={sidebarOpened} type={type} />}
+      {isMobile && sidebarOpened && (
+        <MenuMobile isOpened={sidebarOpened} closeMenu={closeSidebar} />
+      )}
+      {(type === 'default' || isMobile) && (
         <Header toggleSidebar={toggleSidebar} />
       )}
       <main className={`${stylesLayout.page} ${stylesLayout[width] || ''}`}>
