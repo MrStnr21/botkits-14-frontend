@@ -38,6 +38,15 @@
       cursor: default;
     }
   }
+
+  &.disabled {
+    cursor: default;
+    opacity: .4;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
 }
 
 .icon-wrapper {
@@ -63,6 +72,12 @@
 .chevron {
   @include position(absolute, 13px, 0);
   @include size(20px, 20px);
+
+  transition: transform .3s;
+
+  &.opened {
+    transform: (rotate(180deg));
+  }
 }
 
 .text {

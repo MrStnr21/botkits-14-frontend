@@ -29,7 +29,9 @@ const SidebarItemDropdown: FC<TProps> = ({
         {sidebarOpened && (
           <Icon
             icon="chevronDown"
-            extraClass={styles.chevron}
+            extraClass={`${styles.chevron} ${
+              isMenuOpened ? styles.opened : ''
+            }`}
             isColored={false}
           />
         )}

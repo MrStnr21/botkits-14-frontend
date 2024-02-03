@@ -8,6 +8,13 @@ type TMessenger = {
   url?: string;
 };
 
+export type TBotPermissions = {
+  botBuilder: boolean;
+  dashboard: boolean;
+  mailing: boolean;
+  static: boolean;
+};
+
 /* Для будущего использования
 enum TypeCommands {
   COPY_BOT = '/copy',
@@ -27,6 +34,7 @@ export type TBot = {
   description?: string;
   features?: TBuilderData;
   messengers: Array<TMessenger>;
+  permission: TBotPermissions;
   // profile?: Profile;
   // settings?: object;
   // commands?: Array<TypeCommands>;

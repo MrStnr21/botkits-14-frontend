@@ -57,6 +57,23 @@
   }
 }
 
+.select {
+  right: unset;
+  left: 0;
+  max-width: 100%;
+
+  &__item{
+    @include ellipsis;
+    text-align: start;
+    display: block;
+    width: 100%;
+  }
+}
+
+.select-wrapper {
+  padding: 20px 8px 0;
+}
+
 .compact {
   @include hide-scroll;
   position: absolute;

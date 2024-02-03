@@ -1,11 +1,13 @@
 import routesUrl from './routesData';
 import { IconName } from '../ui/icon/utils';
+import { TBotPermissions } from '../services/types/bot';
 
 export interface ILink {
   navLink: string;
   icon?: IconName;
   text: string;
   child?: Array<ILink>;
+  permission?: keyof TBotPermissions;
 }
 
 export const links: Array<ILink> = [
@@ -18,11 +20,13 @@ export const links: Array<ILink> = [
     navLink: routesUrl.botBuilder,
     icon: 'side_constructor',
     text: 'Воронки',
+    permission: 'botBuilder',
   },
   {
     navLink: routesUrl.mailing,
     icon: 'side_mailing',
     text: 'Рассылки',
+    permission: 'mailing',
   },
   {
     navLink: routesUrl.lists || '/lists',
@@ -33,6 +37,7 @@ export const links: Array<ILink> = [
     navLink: routesUrl.statistics,
     icon: 'side_charts',
     text: 'Статистика',
+    permission: 'static',
   },
   {
     navLink: routesUrl.chat,

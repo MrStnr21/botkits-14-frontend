@@ -8,19 +8,36 @@ export type TSidebarItemProps = {
   text: string;
   navLink: string;
   icon?: IconName;
+  disabled?: boolean | null;
+  onClick?: () => void;
 };
 
-const SidebarItem: FC<TSidebarItemProps> = ({ text, navLink, icon }) => {
+const SidebarItem: FC<TSidebarItemProps> = ({
+  text,
+  navLink,
+  icon,
+  disabled,
+  onClick,
+}) => {
   const [isActive, setIsActive] = useState(false);
+
+  const onLinkClick = (e: React.MouseEvent) => {
+    if (disabled) {
+      e.preventDefault();
+    } else if (onClick) {
+      onClick();
+    }
+  };
   return (
     <li className={styles.item}>
       <NavLink
+        onClick={onLinkClick}
         to={navLink}
         className={(navData) => {
           setIsActive(navData.isActive);
-          return navData.isActive
-            ? `${styles.link} ${styles.active}`
-            : styles.link;
+          return `${styles.link}
+          ${navData.isActive ? styles.active : ''}
+          ${disabled ? styles.disabled : ''}`;
         }}
       >
         <div className={styles['icon-wrapper']}>

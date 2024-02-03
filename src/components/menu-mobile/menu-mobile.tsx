@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { links } from '../../utils/menuData';
 import { ReactComponent as Logo } from '../../images/icon/side bar/full-logo.svg';
 import styles from './menu-mobile.module.scss';
@@ -6,6 +7,11 @@ import SidebarItemDropdown from '../sidebar/sidebar-item/sidebar-item-dropdown';
 import SidebarItem from '../sidebar/sidebar-item/sidebar-item';
 import Icon from '../../ui/icon/icon';
 import Button from '../../ui/buttons/button/button';
+import { useAppSelector } from '../../services/hooks/hooks';
+import { botsSel } from '../../utils/selectorData';
+import Select from '../../ui/select/select';
+import { Option } from '../../utils/types';
+import routesUrl from '../../utils/routesData';
 
 type TMenuMobileProps = {
   isOpened: boolean;
@@ -13,6 +19,14 @@ type TMenuMobileProps = {
 };
 
 const MenuMobile: FC<TMenuMobileProps> = ({ isOpened, closeMenu }) => {
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const { bots } = useAppSelector(botsSel);
+  const mappedBots = bots.map((item, index) => {
+    return {
+      label: item.title,
+      value: index.toString(),
+    };
+  });
   return (
     <div className={styles.menu}>
       <div className={styles.header}>
@@ -20,6 +34,16 @@ const MenuMobile: FC<TMenuMobileProps> = ({ isOpened, closeMenu }) => {
           <Icon extraClass={styles.close__icon} icon="close" isColored />
         </button>
         <Logo />
+      </div>
+      <div className={styles.select}>
+        <Select
+          options={mappedBots}
+          handleSelect={setSelectedOption}
+          currentOption={selectedOption}
+          layoutClassName={styles.select__layout}
+          itemClassName={styles.select__item}
+          placeholder="Текущий бот"
+        />
       </div>
       <ul className={styles.links}>
         {links.map((item) => {
@@ -32,13 +56,29 @@ const MenuMobile: FC<TMenuMobileProps> = ({ isOpened, closeMenu }) => {
               />
             );
           }
-          return <SidebarItem {...item} />;
+          return (
+            <SidebarItem
+              {...item}
+              disabled={
+                selectedOption &&
+                item.permission &&
+                bots[Number(selectedOption.value)].permission[
+                  item.permission
+                ] === false
+              }
+              onClick={closeMenu}
+            />
+          );
         })}
       </ul>
-      <div className={styles.addBot}>
+      <NavLink
+        onClick={closeMenu}
+        className={styles.addBot}
+        to={routesUrl.addBot}
+      >
         <Button size="small" variant="circle" />
         <span className={styles.addBots__text}>Добавить бота</span>
-      </div>
+      </NavLink>
     </div>
   );
 };

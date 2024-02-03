@@ -34,9 +34,28 @@
   @include indents(32px 20px 0 20px, 0);
 }
 
+.select {
+  padding: 20px;
+
+  &__layout {
+    width: 100%;
+    right: unset;
+    left: 0;
+  }
+
+  &__item{
+    @include ellipsis;
+    text-align: start;
+    display: block;
+    width: 100%;
+  }
+}
+
 .addBot {
   @include flex(row, flex-start, center, $gap: 12px);
   @include indents(20px 0 20px 0, 20px 20px 0 20px);
   border-top: 1px solid $secondary-cultured-hover;
   box-sizing: border-box;
+  text-decoration: none;
+  color: $primary-oxford-blue-default
 }
