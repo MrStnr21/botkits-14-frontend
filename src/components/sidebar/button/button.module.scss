@@ -1,0 +1,42 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+
+.addButton {
+  @include flex(row, center, center,);
+  @include button-style-reset;
+  @include size(182px, 46px);
+  @include ellipsis;
+  min-height: 46px;
+  background-color: $primary-persian-blue-default;
+  border-radius: $l-border-radius;
+  margin: 18px 0 0 8px;
+  text-decoration: none;
+
+  &.animated {
+    transition: width .3s, border-radius .3s;
+  }
+
+  &.closed {
+    margin: 18px auto 0;
+    width: 46px;
+    border-radius: 50%;
+    background-image: url('../../../images/icon/24x24/sidebar/plus.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &:hover {
+    background-color: $primary-persian-blue-press;
+  }
+}
+
+
+
+.addText {
+  opacity: 1;
+  visibility: visible;
+  color: $off-white;
+
+  line-height: 1;
+}

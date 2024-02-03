@@ -26,7 +26,7 @@ const Layout: FC<TLayoutProps> = ({ type = 'default', width = 'limited' }) => {
         sidebarOpened ? stylesLayout.sidebar_opened : ''
       }`}
     >
-      <Sidebar isOpened={sidebarOpened} type={type} />
+      {!matches && <Sidebar isOpened={sidebarOpened} type={type} />}
       {(type === 'default' || matches) && (
         <Header toggleSidebar={toggleSidebar} />
       )}

@@ -2,43 +2,20 @@
 @use '../../stylesheets/mixins' as *;
 
 
-
-@mixin add-button-circle() {
-  @include size(46px, 46px);
-  border-radius: $border-radius-circle;
-  background-image: url('../../images/icon/24x24/sidebar/plus.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: $primary-persian-blue-default;
-  transition: all 0.3s;
-  flex-shrink: 0;
-
-  &:hover {
-    background-color: $primary-persian-blue-press;
-  }
-  &:active {
-    background-color: $primary-persian-blue-hover;
-  }
-}
-
 // используется в кнопках и ссылках
-@mixin font-nav() {
+/* @mixin font-nav() {
   // общее оформление текста в навигации
   @include font('Open Sans', $m-font-size, $normal);
   @include line-sizes($xl-line-height, 0.2px);
-}
-
-$additional-grey-pressed: #c3d1d8;
-
-/* **     Общий блок открытое/закрытое состояние сайдбара и блок затемнения   ** */
+} */
 
 .wrapper {
   @include flex(column);
-  // START GRID LAYOUT
+
   grid-row: 1 / -1;
   grid-column: 1/2;
   z-index: 3;
-  // END GRID LAYOUT
+
   position: relative;
   margin: 16px 46px 16px 16px;
   overflow: hidden;
@@ -49,31 +26,6 @@ $additional-grey-pressed: #c3d1d8;
     margin: 0;
   }
 }
-
-  .addtext {
-    opacity: 1;
-    visibility: visible;
-    color: $off-white;
-  }
-
-  .addbutton {
-    overflow: visible;
-    background-color: $primary-persian-blue-default;
-    width: 182px;
-    border-radius: $l-border-radius;
-    margin-left: 8px;
-
-    background-image: none; // Будет плюс на синем блоке при закрытии)
-  }
-
-  .addbutton_active {
-    //Эти стили здесь для "веса"
-    background-color: $primary-persian-blue-hover;
-    &:hover {
-      background-color: $primary-persian-blue-hover;
-      cursor: default;
-    }
-  }
 
 .header__logo {
   height: 34px;
@@ -94,80 +46,27 @@ $additional-grey-pressed: #c3d1d8;
   @include flex(column);
 }
 
-.addbutton {
-  @include flex(row, center, center,);
-  height: 46px;
-  margin-top: 18px;
-  text-decoration: none;
-  @include button-style-reset;
-
-  &:hover {
-    background-color: $primary-persian-blue-press;
-  }
-}
-
-/* .addtext {
-  color: $off-white;
-  text-transform: uppercase;
-  margin: 0;
-  opacity: 0;
-} */
-
 .navigation__list {
   @include flex(column, $gap: 8px);
   list-style: none;
   margin: 47px 8px 20px;
   padding: 0;
-  overflow: hidden;
 
   @media (max-width: $switching-width) {
     margin-top: 0;
   }
 }
 
-.addbutton_mobile {
-  display: none;
-}
-
-@media (max-width: $switching-width) {
-  // синяя кнопка внизу у моб.пользователей
-  .addbutton_mobile {
-    @include flex($align-items: center, $gap: 12px);
-    border-top: 1px solid $secondary-cultured-hover;
-    padding-top: 20px;
-  }
-  .addcircle_mobile {
-    @include add-button-circle();
-  }
-  .addtext_mobile {
-    @include font-nav();
-  }
-}
-
 .compact {
+  @include hide-scroll;
   position: absolute;
-  overflow: hidden;
   top: 16px;
   left: 16px;
   max-width: 70px;
   margin: 0;
-
-  .sidebar {
-    max-height: calc(100vh - 16px*2 - 62px);
-    overflow-y: scroll;
-    background-color: $off-white;
-
-    @media (max-width: $switching-width) {
-      max-height: unset;
-    }
-  }
-
-  .header__toggle{
-    display: none;
-    @media (max-width: $switching-width) {
-      display: block;
-    }
-  }
+  max-height: calc(100vh - 16px*2 - 62px);
+  overflow-y: scroll;
+  background-color: $off-white;
 
   @media (max-width: $switching-width) {
     max-width: unset;
