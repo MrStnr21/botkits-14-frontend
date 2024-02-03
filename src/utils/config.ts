@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://127.0.0.1:3001/dev/api';
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const CLIENT_ID_M = process.env.REACT_APP_CLIENT_ID_MAILRU;
 export const CLIENT_ID_Y = process.env.REACT_APP_CLIENT_ID_YANDEX;
