@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -46,10 +47,11 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
         />
       </div>
       <ul className={stylesSidebar.navigation__list}>
-        {links.map((item) => {
+        {links.map((item, index) => {
           if (item.child) {
             return (
               <SidebarItemDropdown
+                key={index}
                 {...item}
                 child={item.child}
                 sidebarOpened={isOpened}
@@ -58,6 +60,7 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
           }
           return (
             <SidebarItem
+              key={index}
               {...item}
               disabled={
                 selectedOption &&

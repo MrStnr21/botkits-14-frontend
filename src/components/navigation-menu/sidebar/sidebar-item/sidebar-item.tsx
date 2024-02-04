@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './sidebar-item.module.scss';
 import Icon from '../../../../ui/icon/icon';
@@ -19,8 +19,6 @@ const SidebarItem: FC<TSidebarItemProps> = ({
   disabled,
   onClick,
 }) => {
-  const [isActive, setIsActive] = useState(false);
-
   const onLinkClick = (e: React.MouseEvent) => {
     if (disabled) {
       e.preventDefault();
@@ -34,22 +32,25 @@ const SidebarItem: FC<TSidebarItemProps> = ({
         onClick={onLinkClick}
         to={navLink}
         className={(navData) => {
-          setIsActive(navData.isActive);
           return `${styles.link}
           ${navData.isActive ? styles.active : ''}
           ${disabled ? styles.disabled : ''}`;
         }}
       >
-        <div className={styles['icon-wrapper']}>
-          {icon && (
-            <Icon
-              extraClass={`${styles.icon} ${isActive ? styles.active : ''}`}
-              icon={icon}
-              isColored
-            />
-          )}
-        </div>
-        <span className={styles.text}>{text}</span>
+        {({ isActive }) => (
+          <>
+            <div className={styles['icon-wrapper']}>
+              {icon && (
+                <Icon
+                  extraClass={`${styles.icon} ${isActive ? styles.active : ''}`}
+                  icon={icon}
+                  isColored
+                />
+              )}
+            </div>
+            <span className={styles.text}>{text}</span>
+          </>
+        )}
       </NavLink>
     </li>
   );

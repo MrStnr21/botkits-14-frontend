@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { links } from '../../../utils/menuData';
@@ -46,10 +47,11 @@ const MenuMobile: FC<TMenuMobileProps> = ({ isOpened, closeMenu }) => {
         />
       </div>
       <ul className={styles.links}>
-        {links.map((item) => {
+        {links.map((item, index) => {
           if (item.child) {
             return (
               <SidebarItemDropdown
+                key={index}
                 {...item}
                 child={item.child}
                 sidebarOpened={isOpened}
@@ -58,6 +60,7 @@ const MenuMobile: FC<TMenuMobileProps> = ({ isOpened, closeMenu }) => {
           }
           return (
             <SidebarItem
+              key={index}
               {...item}
               disabled={
                 selectedOption &&
