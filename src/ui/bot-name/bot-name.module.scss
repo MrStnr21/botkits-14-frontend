@@ -17,6 +17,7 @@
 
 .text {
   @include size(141px, 23px);
+  @include ellipsis;
   margin: 0px 52px 0px 16px !important;
 
   @media screen and (max-width: 520px) {
