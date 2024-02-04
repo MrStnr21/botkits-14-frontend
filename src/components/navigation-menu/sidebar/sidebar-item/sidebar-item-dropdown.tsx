@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { FC, useState } from 'react';
 import styles from './sidebar-item.module.scss';
 import SidebarItem, { TSidebarItemProps } from './sidebar-item';
@@ -38,8 +39,8 @@ const SidebarItemDropdown: FC<TProps> = ({
       </button>
       {isMenuOpened && (
         <ul className={styles.list}>
-          {child.map((item) => (
-            <SidebarItem {...item} />
+          {child.map((item, index) => (
+            <SidebarItem key={index} {...item} />
           ))}
         </ul>
       )}

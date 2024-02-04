@@ -36,9 +36,11 @@ const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
   const { user } = useAppSelector(getUserInfoSel);
 
   useEffect(() => {
-    getSubscriptions().then((data) => {
-      setTariff(data.tariff);
-    });
+    getSubscriptions()
+      .then((data) => {
+        setTariff(data.tariff);
+      })
+      .catch((e) => console.log(e));
   }, []);
 
   const toggleAccSet = () => {
