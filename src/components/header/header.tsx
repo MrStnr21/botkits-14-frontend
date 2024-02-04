@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import { useMediaQuery } from '@mui/material';
 
@@ -18,6 +18,9 @@ import NotificationPopup from '../popups/notification-popup/notification-popup';
 import Typography from '../../ui/typography/typography';
 import Icon from '../../ui/icon/icon';
 import { switchingWidth } from '../../stylesheets/scss-variables';
+import { useAppSelector } from '../../services/hooks/hooks';
+import { getUserInfoSel } from '../../utils/selectorData';
+import { getSubscriptions } from '../../api/subscriptions';
 // import MenuMobile from '../icons/MenuMobile/MenuMobile';
 // import Menu24px from '../icons/Menu24px/Menu24px';
 
@@ -28,6 +31,15 @@ type THeaderProps = {
 const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
   const [isOpenAccontSettings, setIsAccSet] = useState(false);
   const [isNotificationOpened, setIsNotificationOpened] = useState(false);
+  const [curTariff, setTariff] = useState<string>('');
+
+  const { user } = useAppSelector(getUserInfoSel);
+
+  useEffect(() => {
+    getSubscriptions().then((data) => {
+      setTariff(data.tariff);
+    });
+  }, []);
 
   const toggleAccSet = () => {
     setIsAccSet(!isOpenAccontSettings);
@@ -60,7 +72,7 @@ const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
           Тариф
         </Typography>
         <Typography tag="p" fontFamily="secondary" className={styles.text}>
-          Демо
+          {curTariff}
         </Typography>
         <div className={styles.icons}>
           <Help />
@@ -71,7 +83,7 @@ const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
             <img src={avatar} alt="Avatar" className={styles.userInfo__image} />
           </span>
           <Typography tag="p" fontFamily="secondary" className={styles.text}>
-            User Name
+            {user?.username || 'User Name'}
           </Typography>
           <span
             className={`${styles.userInfo__button} ${

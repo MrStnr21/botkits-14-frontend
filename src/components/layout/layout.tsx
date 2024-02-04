@@ -4,10 +4,10 @@ import { Outlet, useMatch } from 'react-router';
 import { useMediaQuery } from '@mui/material';
 import stylesLayout from './layout.module.scss';
 
-import Sidebar from '../sidebar/sidebar';
+import Sidebar from '../navigation-menu/sidebar/sidebar';
 import Footer from '../footer/footer';
 import Header from '../header/header';
-import MenuMobile from '../menu-mobile/menu-mobile';
+import MenuMobile from '../navigation-menu/menu-mobile/menu-mobile';
 import { switchingWidth } from '../../stylesheets/scss-variables';
 
 type TLayoutProps = {

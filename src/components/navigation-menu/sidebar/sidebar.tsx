@@ -4,14 +4,14 @@ import { NavLink } from 'react-router-dom';
 
 import stylesSidebar from './sidebar.module.scss';
 
-import { links } from '../../utils/menuData';
+import { links } from '../../../utils/menuData';
 import SidebarItem from './sidebar-item/sidebar-item';
 import SidebarItemDropdown from './sidebar-item/sidebar-item-dropdown';
 import Button from './button/button';
-import { useAppSelector } from '../../services/hooks/hooks';
-import { botsSel } from '../../utils/selectorData';
-import Select from '../../ui/select/select';
-import { Option } from '../../utils/types';
+import { useAppSelector } from '../../../services/hooks/hooks';
+import { botsSel } from '../../../utils/selectorData';
+import Select from '../../../ui/select/select';
+import { Option } from '../../../utils/types';
 
 type TSidebarProps = {
   type: 'default' | 'compact';
@@ -33,7 +33,7 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
         type === 'compact' ? stylesSidebar.compact : ''
       }`}
     >
-      <NavLink to="/" className={stylesSidebar.header__logo} />
+      <NavLink to="/" className={stylesSidebar.logo} />
       <Button isSidebarOpened={isOpened} type={type} />
       <div className={stylesSidebar['select-wrapper']}>
         <Select

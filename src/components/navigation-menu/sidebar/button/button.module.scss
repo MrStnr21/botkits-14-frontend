@@ -1,5 +1,5 @@
-@use '../../../stylesheets/variables' as *;
-@use '../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
 
 
 .addButton {
@@ -21,7 +21,7 @@
     margin: 18px auto 0;
     width: 46px;
     border-radius: 50%;
-    background-image: url('../../../images/icon/24x24/sidebar/plus.svg');
+    background-image: url('../../../../images/icon/24x24/sidebar/plus.svg');
     background-repeat: no-repeat;
     background-position: center;
   }

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { FC } from 'react';
 import styles from './button.module.scss';
-import Typography from '../../../ui/typography/typography';
+import Typography from '../../../../ui/typography/typography';
 
 type TButtonProps = {
   isSidebarOpened: boolean;

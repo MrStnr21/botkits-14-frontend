@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './sidebar-item.module.scss';
-import Icon from '../../../ui/icon/icon';
-import { IconName } from '../../../ui/icon/utils';
+import Icon from '../../../../ui/icon/icon';
+import { IconName } from '../../../../ui/icon/utils';
 
 export type TSidebarItemProps = {
   text: string;

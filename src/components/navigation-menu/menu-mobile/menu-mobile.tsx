@@ -1,17 +1,17 @@
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { links } from '../../utils/menuData';
-import { ReactComponent as Logo } from '../../images/icon/side bar/full-logo.svg';
+import { links } from '../../../utils/menuData';
+import { ReactComponent as Logo } from '../../../images/icon/side bar/full-logo.svg';
 import styles from './menu-mobile.module.scss';
 import SidebarItemDropdown from '../sidebar/sidebar-item/sidebar-item-dropdown';
 import SidebarItem from '../sidebar/sidebar-item/sidebar-item';
-import Icon from '../../ui/icon/icon';
-import Button from '../../ui/buttons/button/button';
-import { useAppSelector } from '../../services/hooks/hooks';
-import { botsSel } from '../../utils/selectorData';
-import Select from '../../ui/select/select';
-import { Option } from '../../utils/types';
-import routesUrl from '../../utils/routesData';
+import Icon from '../../../ui/icon/icon';
+import Button from '../../../ui/buttons/button/button';
+import { useAppSelector } from '../../../services/hooks/hooks';
+import { botsSel } from '../../../utils/selectorData';
+import Select from '../../../ui/select/select';
+import { Option } from '../../../utils/types';
+import routesUrl from '../../../utils/routesData';
 
 type TMenuMobileProps = {
   isOpened: boolean;

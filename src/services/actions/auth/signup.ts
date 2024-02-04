@@ -45,6 +45,7 @@ const signupAction: AppThunk = (userInfo: IUserSignupState) => {
     dispatch({
       type: SIGNUP_REQUEST,
     });
+    console.log(userInfo);
     signupApi(userInfo)
       .then((res: TUser) => {
         if (res) {

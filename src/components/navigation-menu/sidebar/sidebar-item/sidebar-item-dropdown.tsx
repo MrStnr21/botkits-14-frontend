@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import styles from './sidebar-item.module.scss';
 import SidebarItem, { TSidebarItemProps } from './sidebar-item';
-import Icon from '../../../ui/icon/icon';
+import Icon from '../../../../ui/icon/icon';
 
 type TProps = TSidebarItemProps & {
   child: TSidebarItemProps[];
