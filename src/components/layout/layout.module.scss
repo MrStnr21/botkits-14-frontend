@@ -5,7 +5,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: calc(86px + 46px) 1fr;
+  grid-template-columns: calc(86px + 46px) minmax(0, auto);
   box-sizing: border-box;
   position: relative;
   background-color: $off-white;
@@ -17,7 +17,7 @@
   }
 
   &.sidebar_opened {
-    grid-template-columns: calc(224px + 46px) 1fr;
+    grid-template-columns: calc(224px + 46px) minmax(0, auto);
   }
 }
 
