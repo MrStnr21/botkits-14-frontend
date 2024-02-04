@@ -61,7 +61,6 @@ function botsReducer(
       };
     }
     case GETBOTS_SUCCESS: {
-      console.log(action.bot);
       return {
         ...state,
         bots: action.bot,
