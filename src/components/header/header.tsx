@@ -38,7 +38,7 @@ const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
   useEffect(() => {
     getSubscriptions()
       .then((data) => {
-        setTariff(data.tariff);
+        setTariff(data.tariff.name);
       })
       .catch((e) => console.log(e));
   }, []);

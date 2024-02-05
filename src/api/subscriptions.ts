@@ -2,7 +2,7 @@
 import { getReq } from './api';
 
 function getSubscriptions() {
-  return getReq<{ tariff: string }>({
+  return getReq<{ tariff: { name: string } }>({
     uri: 'subscriptions',
     auth: true,
   });
