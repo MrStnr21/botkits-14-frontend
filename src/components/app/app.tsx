@@ -201,8 +201,8 @@ const App: FC = (): JSX.Element => {
               </ProtectedRoute>
             }
           />
+          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
-        <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
       <ErrorNotificator />
     </>
