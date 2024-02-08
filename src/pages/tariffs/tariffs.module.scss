@@ -8,6 +8,7 @@
 
 .header {
   @include flex(row, space-between, center);
+  padding-bottom: 28px;
 }
 
 .button {
