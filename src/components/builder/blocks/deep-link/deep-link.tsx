@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 import styles from './deep-link.module.scss';
 import Input from '../../../../ui/inputs/input/input';
 import ControlLayout from '../../control-layout/control-layout';
@@ -9,45 +8,38 @@ import {
   TDeepLinkBlock,
 } from '../../../../services/types/builder';
 import { selectValuesType } from '../../utils/data';
-import { getSelectItemByValue, setFlowData } from '../../utils';
+import { getSelectItemByValue, setFlowDataInit } from '../../utils';
 import Select from '../../../../ui/select/select';
 import { Option } from '../../../../utils/types';
 
 const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
-  const { getNodes, setNodes } = useReactFlow();
-  const id = useNodeId();
+  const setFlowData = setFlowDataInit();
 
-  const setSelected = (fieldName: string) => (option: Option) => {
-    setNodes(
-      getNodes().map((node) => {
-        if (node.id === id) {
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              [fieldName]: option.value,
-            },
-          };
-        }
-        return node;
-      })
-    );
-  };
+  const setParam = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'param'],
+      value: e.target.value,
+    });
 
-  const setParam = setFlowData({
-    selectors: ['param'],
-  });
+  const setSignsAmount = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'signsAmount'],
+      value: e.target.value,
+    });
 
-  const setSignsAmount = setFlowData({
-    selectors: ['signsAmount'],
-  });
+  const setAdditionValue = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'additionValue'],
+      value: e.target.value,
+    });
+  const setAdditionLink = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'additionLink'],
+      value: e.target.value,
+    });
 
-  const setAdditionValue = setFlowData({
-    selectors: ['additionValue'],
-  });
-  const setAdditionLink = setFlowData({
-    selectors: ['additionLink'],
-  });
+  const setTypeValue = (field: string) => (option: Option) =>
+    setFlowData({ path: ['data', field], value: option.value });
 
   return (
     <ControlLayout type="Deep Link">
@@ -65,7 +57,7 @@ const DeepLink: FC<TBlockProps<TDeepLinkBlock>> = ({ data }) => {
           <div style={{ zIndex: 10 }}>
             <Select
               options={selectValuesType}
-              handleSelect={setSelected('type')}
+              handleSelect={setTypeValue('type')}
               currentOption={getSelectItemByValue(data.type, selectValuesType)}
               elementToCloseListener="flow"
               adaptive

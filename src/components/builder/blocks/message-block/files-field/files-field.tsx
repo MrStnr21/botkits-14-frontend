@@ -18,7 +18,7 @@ type TFielsFieldProps = {
   addFile?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const FielsField: FC<TFielsFieldProps> = ({
+const FilesField: FC<TFielsFieldProps> = ({
   image,
   video,
   audio,
@@ -62,4 +62,4 @@ const FielsField: FC<TFielsFieldProps> = ({
   );
 };
 
-export default FielsField;
+export default FilesField;

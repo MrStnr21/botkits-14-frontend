@@ -1,9 +1,7 @@
 /* eslint-disable react/no-array-index-key */ // Пока элементы в message не draggable
 import { FC, useMemo, useState } from 'react';
-import { Position, useReactFlow, useNodeId, Node } from 'reactflow';
+import { Position, useReactFlow, useNodeId } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
-import { v4 as uuid } from 'uuid';
-import { Descendant } from 'slate';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -14,20 +12,20 @@ import {
   MessageDataTypes,
   TBlockProps,
   TMessageBlock,
-  TMessageBlockData,
 } from '../../../../services/types/builder';
 import File from './file/file';
 import HiddenBlock from './hidden-block/hidden-block';
-import FielsField from './files-field/fiels-field';
-import { saveVariable, setFlowData } from '../../utils';
+import FilesField from './files-field/files-field';
+import { setFlowDataInit } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
-import { storeOfVariables } from '../../utils/store';
+import { addButtonFlow, setTextFlow, setVariableFlow } from './flow';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
+  const setFlowData = setFlowDataInit();
   const { seconds, minutes, hours, days } = data.showTime;
   const [amount, render] = useState(0);
   const id = useNodeId() || '';
-  const { setNodes, getNodes } = useReactFlow();
+  const { getNodes } = useReactFlow();
   const isMobile = useMediaQuery('(max-width: 620px)');
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
@@ -125,177 +123,37 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     [nodes]
   );
 
-  const setVariable = (finalValue: string) => {
-    const idVariable = `${id}|||saveResultVariable`;
-    if (finalValue === '') {
-      const variableIndex = storeOfVariables.findIndex(
-        (item) => item.id === idVariable
-      );
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      variableIndex !== -1 && storeOfVariables.splice(variableIndex, 1);
-    } else {
-      saveVariable(storeOfVariables, finalValue, idVariable);
-    }
+  const setVariable = setVariableFlow();
 
-    return setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              saveAnswer: {
-                ...item.data.saveAnswer,
-                value: { id: idVariable, name: finalValue, value: '' },
-              },
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const toggleVariableBlock = () =>
+    setFlowData({
+      path: ['data', 'saveAnswer', 'show'],
+      value: !data.saveAnswer.show,
+    });
 
-  const toggleVariableBlock = setFlowData({
-    selectors: ['saveAnswer', 'show'],
-    value: !data.saveAnswer.show,
-  });
+  const setTime = (type: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'showTime', type], value: e.target.value });
+  const toggleTimeBlock = () =>
+    setFlowData({
+      path: ['data', 'showTime', 'show'],
+      value: !data.showTime.show,
+    });
 
-  const setTime = (type: string) =>
-    setFlowData({ selectors: ['showTime', type] });
-  const toggleTimeBlock = setFlowData({
-    selectors: ['showTime', 'show'],
-    value: !data.showTime.show,
-  });
+  const addButton = addButtonFlow();
 
-  /**
-   * функция для добавления `node`- кнопки. Кнопкам необходимо задавать абсолютное позиционирование(механика nodes)
-   * @param blockType тип блока, в который добавляется кнопка(`answers` или `buttons`)
-   * @param direction вертикальная или горизонтальная кнопка
-   * @param blockOffset расстояние между верхней границей MessageBlock и блоком кнопок
-   * @param blockOffsetMob расстояние между верхней границей MessageBlock и блоком кнопок для мобильной версии
-   * @param blockOffsetDesk расстояние между верхней границей MessageBlock и блоком кнопок для настольной версии
-   */
-  const addButton =
-    (
-      blockType: MessageDataTypes.answers | MessageDataTypes.buttons,
-      direction: 'horizontal' | 'vertical',
-      blockOffset: number,
-      blockOffsetMob: number,
-      blockOffsetDesk: number
-    ) =>
-    ({
-      // расположение кнопки по оси x в px относительно MessageBlock
-      x,
-      // расположение кнопки по оси y в px относительно MessageBlock
-      y,
-      // расположение кнопки по оси y в px относительно MessageBlock для мобильной версии
-      mobY,
-      // расположение кнопки по оси x в px относительно MessageBlock для настольной версии
-      deskY,
-    }: {
-      x: number;
-      y: number;
-      mobY: number;
-      deskY: number;
-    }) =>
-    () => {
-      const node: Node = {
-        type: 'button',
-        id: uuid(),
-        position: { x, y: y + blockOffset },
-        data: {
-          type: blockType.slice(0, 6),
-          direction,
-          name: 'имя',
-          color: '',
-          str: '',
-          deskY: deskY + blockOffsetDesk,
-          mobY: mobY + blockOffsetMob,
+  const addFile = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({
+      path: ['data', 'data'],
+      value: [
+        ...data.data,
+        {
+          type: MessageDataTypes.file,
+          file: e.target.files && e.target.files[0],
         },
-        expandParent: true,
-        parentNode: id,
-        draggable: false,
-      };
+      ],
+    });
 
-      setNodes([
-        ...getNodes().map((item) => {
-          if (
-            item.position.y > node.position.y &&
-            node.parentNode === item.parentNode
-          ) {
-            return {
-              ...item,
-              position: {
-                ...item.position,
-                y: item.position.y + buttonSizes.buttonHeight + buttonSizes.gap,
-              },
-              data: {
-                ...item.data,
-                deskY:
-                  item.data.deskY + ButtonSizes.buttonHeight + ButtonSizes.gap,
-                mobY:
-                  item.data.mobY +
-                  ButtonSizesMobile.buttonHeight +
-                  ButtonSizesMobile.gap,
-              },
-            };
-          }
-          return item;
-        }),
-        node,
-      ]);
-    };
-
-  const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: [
-                ...item.data.data,
-                {
-                  type: MessageDataTypes.file,
-                  file: e.target.files && e.target.files[0],
-                },
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
-
-  const setText = (value: Descendant[]) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              data: [
-                ...item.data.data.map((content: TMessageBlockData) => {
-                  if (content.type === MessageDataTypes.message) {
-                    return {
-                      ...content,
-                      value,
-                    };
-                  }
-                  return content;
-                }),
-              ],
-            },
-          };
-        }
-        return item;
-      })
-    );
-  };
+  const setText = setTextFlow();
 
   // подблоки MessageBlock, передаваемые при помощи массива в data.data с полем type
   const content = useMemo(
@@ -310,14 +168,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                   'horizontal',
                   buttonSizes.secondY,
                   ButtonSizesMobile.secondY,
-                  ButtonSizes.secondY
+                  ButtonSizes.secondY,
+                  buttonSizes
                 )}
                 addVerticalButton={addButton(
                   MessageDataTypes.answers,
                   'vertical',
                   buttonSizes.secondY + buttonSizes.blockGap,
                   ButtonSizesMobile.secondY + ButtonSizesMobile.blockGap,
-                  ButtonSizes.secondY + ButtonSizes.blockGap
+                  ButtonSizes.secondY + ButtonSizes.blockGap,
+                  buttonSizes
                 )}
                 buttonsBefore={[...horButtons, ...verButtons]}
                 horizontalButtons={horAnswers}
@@ -335,14 +195,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
                   'horizontal',
                   buttonSizes.firstY,
                   ButtonSizesMobile.firstY,
-                  ButtonSizes.firstY
+                  ButtonSizes.firstY,
+                  buttonSizes
                 )}
                 addVerticalButton={addButton(
                   MessageDataTypes.buttons,
                   'vertical',
                   buttonSizes.firstY + buttonSizes.blockGap,
                   ButtonSizesMobile.firstY + ButtonSizesMobile.blockGap,
-                  ButtonSizes.firstY + ButtonSizes.blockGap
+                  ButtonSizes.firstY + ButtonSizes.blockGap,
+                  buttonSizes
                 )}
                 buttonsBefore={[]}
                 horizontalButtons={horButtons}
@@ -380,7 +242,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         onClick={() => setTimeout(() => render(amount + 1))}
       >
         {content}
-        <FielsField
+        <FilesField
           addFile={addFile}
           image={image}
           doc={doc}

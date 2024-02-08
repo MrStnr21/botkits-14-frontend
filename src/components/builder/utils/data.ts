@@ -1,11 +1,12 @@
 import { MessageDataTypes } from '../../../services/types/builder';
+import { baseSlateData } from '../../../utils/constants';
 import { Option } from '../../../utils/types';
 
 export enum ButtonSizes {
   startX = 32,
   firstY = 244,
-  secondY = 452,
-  blockGap = 86,
+  secondY = 446,
+  blockGap = 74,
   addString = 16,
   buttonHeight = 40,
   gap = 12,
@@ -14,8 +15,8 @@ export enum ButtonSizes {
 export enum ButtonSizesMobile {
   startX = ButtonSizes.startX * 0.5,
   firstY = 155,
-  secondY = 295,
-  blockGap = 55,
+  secondY = 289,
+  blockGap = 43,
   addString = 8,
   buttonHeight = 27,
   gap = 12,
@@ -35,12 +36,6 @@ export const crmList = [
 export const saveOptions = [
   { value: 'new', nameValue: 'Новая запись' },
   { value: 'suppl', nameValue: 'Дополнить запись' },
-];
-
-export const selectValues = [
-  { value: '1', label: '1' },
-  { value: '2', label: '2' },
-  { value: '3', label: '3' },
 ];
 
 export const selectValuesType = [
@@ -115,7 +110,7 @@ export const currencyAvailable = [
   { value: 'Доллары США', label: 'USD' },
 ];
 
-export const messagesSuccessful = [
+export const blocks = [
   { value: 'message', label: 'Блок сообщений' },
   { value: 'api', label: 'API' },
   { value: 'conditional', label: 'Условный блок' },
@@ -131,7 +126,7 @@ export const defaultBlocks = {
   message: {
     name: 'message',
     data: [
-      { type: MessageDataTypes.message, value: '' },
+      { type: MessageDataTypes.message, value: baseSlateData },
       { type: MessageDataTypes.buttons, verButtons: [], horButtons: [] },
       { type: MessageDataTypes.answers, verButtons: [], horButtons: [] },
     ],
@@ -193,6 +188,8 @@ export const defaultBlocks = {
     variables: [],
   },
 };
+
+export const coordinateRegExp = /^-?\d*[.,]?\d*$/;
 
 export default {};
 

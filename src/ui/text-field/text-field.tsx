@@ -95,7 +95,7 @@ const TextField: FC<ITextField> = ({
 
       <div className={styles.textarea__footer}>
         <span className={styles.textarea__counter}>
-          {length}/{maxTextLength}
+          {length || 0}/{maxTextLength}
         </span>
         <button className={styles.textarea__font} type="button">
           <img className={styles.icon} src={bracketIcon} alt="Шрифт" />
