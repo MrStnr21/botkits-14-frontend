@@ -17,6 +17,7 @@ export type TUser = {
   role: string;
   type: string;
   _id: string;
+  username: string;
 };
 
 export interface IUserSignupState {

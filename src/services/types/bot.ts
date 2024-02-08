@@ -8,6 +8,13 @@ type TMessenger = {
   url?: string;
 };
 
+export type TBotPermissions = {
+  botBuilder: boolean;
+  dashboard: boolean;
+  mailing: boolean;
+  static: boolean;
+};
+
 /* Для будущего использования
 enum TypeCommands {
   COPY_BOT = '/copy',
@@ -27,6 +34,7 @@ export type TBot = {
   description?: string;
   features?: TBuilderData;
   messengers: Array<TMessenger>;
+  permission: TBotPermissions;
   // profile?: Profile;
   // settings?: object;
   // commands?: Array<TypeCommands>;
@@ -58,7 +66,9 @@ export type TBotTemplateReq = {
   isToPublish?: boolean;
 };
 
-// Возможно нужно заменить на универсальный IBotResponse extends TBot {}
+// Возможно нужно заменить все на универсальный IBotResponse extends TBot {}
+export interface IBotResponse extends TBot {}
+
 export interface IAddBotResponse extends TBot {}
 
 export interface IGetBotResponse extends TBot {}

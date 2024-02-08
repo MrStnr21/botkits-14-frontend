@@ -4,19 +4,22 @@ import FilterIcon from '../../../components/icons/Filter/FilterIcon';
 import SearchFilters from '../../../components/chat/SearchFilters/SearchFilters';
 import useEscapeKey from '../../../services/hooks/use-esc-key';
 import useClick from '../../../services/hooks/use-click';
+import SearchIcon from '../../../components/icons/Search/SearchIcon';
 
-interface IInputDialogsues {
+interface IInputDialogues {
   placeholder?: string;
   value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   iconVisible?: boolean;
+  search?: boolean;
 }
 
-const InputDialogsues: FC<IInputDialogsues> = ({
+const InputDialogues: FC<IInputDialogues> = ({
   value,
   placeholder = 'Поиск...',
   onChange,
   iconVisible = false,
+  search = false,
 }) => {
   const [isOpenFilters, setIsOpenFilters] = useState(false);
 
@@ -29,6 +32,7 @@ const InputDialogsues: FC<IInputDialogsues> = ({
 
   return (
     <div className={stylesInput.message}>
+      {search && <SearchIcon />}
       <input
         className={stylesInput.input}
         type="text"
@@ -49,4 +53,4 @@ const InputDialogsues: FC<IInputDialogsues> = ({
   );
 };
 
-export default InputDialogsues;
+export default InputDialogues;

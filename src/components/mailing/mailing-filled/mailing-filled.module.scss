@@ -1,0 +1,35 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+.table {
+  @include indents(40px 0, 0);
+  background-color: $off-white;
+  border-radius: $xxl-border-radius;
+  box-shadow: $m-box-shadow;
+
+  &__titleContainer {
+    @include flex(row, space-between, center);
+    @include size(100%, unset);
+    @include indents(0 40px 40px, 0);
+    box-sizing: border-box;
+
+    @media screen and (max-width: 860px) {
+      padding: 0 24px 30px;
+    }
+  }
+
+  &__title {
+    @media screen and (max-width: 860px) {
+      font-size: $l-font-size;
+    }
+  }
+
+  &__button {
+    @include flex(row, center, center, 16px);
+    @include font('Open Sans', $m-font-size, $bold, $grey-4);
+    @include button-style-reset();
+    line-height: $xl-line-height;
+    letter-spacing: $m-letter-space;
+    text-align: right;
+  }
+}

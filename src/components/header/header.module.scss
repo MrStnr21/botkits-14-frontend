@@ -5,14 +5,21 @@
   grid-column: 2 / 3;
   grid-row: 1;
 
-  @include flex(row, flex-end, center);
+  @include flex(row, space-between);
   height: 72px;
   border-bottom: 1px solid $secondary-cultured-press;
   margin-right: 40px;
 
   @media (max-width: $switching-width) {
+    height: 68px;
+    grid-column: 1 / 3;
     border-bottom: none;
-    margin-right: 20px;
+    margin: 0 20px;
+  }
+
+  &__left {
+    padding: 19px 0 15px;
+    box-sizing: content-box;
   }
 }
 
@@ -20,6 +27,16 @@
   @include flex(row, unset, center);
   color: $primary-oxford-blue-default;
   position: relative;
+}
+
+.sidebar-toggle {
+  @include button-style-reset;
+  @include size(24px, 24px);
+  margin-right: 16px;
+
+  &__icon {
+    color: $secondary-cultured-press;
+  }
 }
 
 .text {

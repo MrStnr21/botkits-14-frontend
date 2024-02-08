@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useRef, useState } from 'react';
 import style from './table-input-cell.module.scss';
 import TableInput from '../../../ui/inputs/table-input/table-input';
 
 interface IProps {
   value: string;
+  onCellUpdate: (newValue: string) => void;
 }
 
-const TableInputCell: FC<IProps> = ({ value }) => {
+const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {
+  const [inputValue, setInputValue] = useState(value);
   const [isEditing, setIsEditing] = useState(false);
-  const [inpValue, setInpValue] = useState(value);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -22,14 +24,14 @@ const TableInputCell: FC<IProps> = ({ value }) => {
     setIsEditing(!isEditing);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsEditing(false);
-    return null;
+    onCellUpdate(inputValue);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    setInpValue(e.target.value);
+    setInputValue(e.target.value);
   };
 
   return (
@@ -37,12 +39,12 @@ const TableInputCell: FC<IProps> = ({ value }) => {
       {isEditing ? (
         <TableInput
           onChange={handleChange}
-          value={inpValue}
+          value={inputValue}
           inputRef={inputRef}
           handleBlur={handleBlur}
         />
       ) : (
-        <div onClick={handleClick}>{inpValue}</div>
+        <div onClick={handleClick}>{value}</div>
       )}
     </div>
   );

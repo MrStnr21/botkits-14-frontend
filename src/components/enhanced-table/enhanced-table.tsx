@@ -1,85 +1,87 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  ChangeEvent,
-  FC,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { ChangeEvent, FC, ReactNode, useMemo, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import { v4 as uuidv4 } from 'uuid';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
-import TablePagination from '@mui/material/TablePagination';
 import { Box, Checkbox } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
 import {
   headCheckBoxStyles,
-  paginationStyles,
   paperStyles,
   checkBoxStyle,
   boxStyle,
   tableContainerStyles,
+  checkboxTableCellStyle,
 } from './tableStyles';
 import CustomPagination from './custom-pagination/custom-pagination';
 import styles from './enhanced-table.module.scss';
 import TableMenuButton from '../table-menu-button/table-menu-button';
+import SelectPagination from './select-pagination/select-pagination';
+import { Option } from '../../utils/types';
+import { useAppDispatch } from '../../services/hooks/hooks';
+import { createAddErrorAction } from '../../services/actions/errors/errors';
 
 type Columns = {
   id?: number;
   key: string;
   label: ReactNode;
   colStyle?: SxProps;
-  cellComponent?: (data: any, id: string) => ReactNode;
+  cellComponent?: (
+    data: any,
+    onCellUpdate: (newValue: string | boolean) => void
+  ) => ReactNode;
 };
 
-type TableData = {
+export type TableData = {
   [key: string]: any;
 };
 
-type Props = {
+interface IProps {
   columns: Columns[];
   tableData: TableData[];
   headComponent: (data: any) => ReactNode;
   headStyle?: SxProps;
   rowStyle?: SxProps;
   cellStyle?: SxProps;
-  // нужна ли пагинация в таблице
+  /** нужна ли пагинация в таблице */
   pagination?: boolean;
-  // подключены ли чекбоксы к строке
+  /** подключены ли чекбоксы к строке */
   check?: boolean;
-  // наличие нопок фильтров и выгрузки над таблицей
+  // наличие кнопок фильтров и выгрузки над таблицей
   toolbar?: boolean;
-  // стандартный box-shadow контейнеру таблицы (откл. по умолчанию)
-  shadow?: number;
-  // хидер с названием и фильтром строк
-  header?: boolean;
-  // кнопка с выпадающим списком
-  dropdown?: boolean;
-  onFilterChange?: (value: string) => void;
-  // минимальная ширина таблицы(исп. для вкл-я горизонтального скролла)
-  minTableWidth?: string;
-  // значения, прокидываемые в выпадающий список кнопки
-  menuOptions?: { label: string; value: string }[];
-  // значения, прокидываемые в выпадающий список фильтра в хидере
-  headerOptions?: { label: string; value: string }[];
-  // название таблицы в хидере
-  tableHeaderTitle?: string;
   // необходимость отображения кнопок фильтров в тулбаре
   toolbarFilters?: boolean;
+  // стандартный box-shadow контейнеру таблицы (откл. по умолчанию)
+  shadow?: number;
+  /** хидер с названием и фильтром строк */
+  header?: boolean;
+  // значения, прокидываемые в выпадающий список фильтра в хидере
+  headerOptions?: { label: string; value: string }[];
+  /** название таблицы в хидере */
+  tableHeaderTitle?: string;
+  // кнопка с выпадающим списком
+  dropdown?: boolean;
+  // функция обработки изменения фильтров из тулбара таблицы (при её наличии)
+  onFilterChange?: (value: string) => void;
+  /** минимальная ширина таблицы(исп. для вкл-я горизонтального скролла) */
+  minTableWidth?: string;
+  /** значения, прокидываемые в выпадающий список кнопки */
+  menuOptions?: { label: string; value: string }[];
   // количество отображаемых на одной странице строк в начальном состоянии таблицы
   rowsPerPageValue?: number;
-};
+  // функция-сеттер для родительского компонента
+  setTableData?: (updatedData: TableData[]) => void;
+  onUpdate?: (updatedData: TableData) => Promise<unknown>;
+  onDelete?: (id: string) => Promise<unknown>;
+}
 
-const EnhancedTable: FC<Props> = ({
+const EnhancedTable: FC<IProps> = ({
   columns,
   tableData,
   pagination,
@@ -95,35 +97,71 @@ const EnhancedTable: FC<Props> = ({
   tableHeaderTitle,
   toolbarFilters,
   rowsPerPageValue = 5,
+  setTableData,
+  onUpdate,
+  onDelete,
   ...props
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
-  const [rows, setRows] = useState(tableData);
-  // исп. для обновления строк в зависимости от фильтра в хидере
-  useEffect(() => {
-    setRows(tableData);
-  }, [onFilterChange]);
+  const dispatch = useAppDispatch();
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
   // удаление строки таблицы
   const handleRemoveRow = (indexToRemove: number) => {
-    const updatedRows = rows.filter((_, index) => index !== indexToRemove);
-    setRows(updatedRows);
+    const removingRow = tableData[indexToRemove];
+    const updatedRows = tableData.filter((_, index) => index !== indexToRemove);
+    /*     if (setTableData) {
+      setTableData(updatedRows);
+    } */
+    if (onDelete && setTableData) {
+      onDelete(removingRow.id)
+        .then(() => {
+          setTableData(updatedRows);
+        })
+        .catch(() => {
+          dispatch(createAddErrorAction('Ошибка при отправке данных'));
+        });
+    }
+  };
+  // функция обновления состояния табличной ячейки
+  const handleCellUpdate = (
+    rowId: number,
+    colName: string,
+    updatedValue?: string | boolean
+  ) => {
+    const rowIndex = tableData.findIndex((row) => row.id === rowId);
+
+    if (setTableData && rowIndex !== -1) {
+      const unUpdatedData = [...tableData];
+      const updatedData = [...tableData];
+      const updatedRow = {
+        ...updatedData[rowIndex],
+        [colName]: updatedValue,
+      };
+      updatedData[rowIndex] = updatedRow;
+      setTableData(updatedData);
+      if (onUpdate) {
+        onUpdate(updatedRow).catch((e) => {
+          setTableData(unUpdatedData);
+          dispatch(createAddErrorAction('Ошибка при отправке данных'));
+          console.log(e);
+        });
+      }
+    }
   };
   // изменение кол-ва страниц в зависимости от количества строк на одной странице
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const handleChangeRowsPerPage = (option: Option) => {
+    setRowsPerPage(Number(option.value));
     setPage(0);
   };
-  console.log(selected);
   // функция выделения всех строк таблицы по клику на чекбокс в шапке
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((row) => row.id);
+      const newSelected = tableData.map((row) => row.id);
       setSelected(newSelected);
     } else {
       setSelected([]);
@@ -153,13 +191,19 @@ const EnhancedTable: FC<Props> = ({
   const paginatedData = useMemo(() => {
     const startIdx = page * rowsPerPage;
     const endIdx = startIdx + rowsPerPage;
-    return rows.slice(startIdx, endIdx);
-  }, [page, rowsPerPage, rows]);
+    return tableData.slice(startIdx, endIdx);
+  }, [page, rowsPerPage, tableData]);
 
   return (
     <Box sx={boxStyle}>
-      {toolbar && <TableToolbar filters={toolbarFilters} />}
       <Paper elevation={shadow} sx={paperStyles}>
+        {toolbar && (
+          <TableToolbar
+            filters={toolbarFilters}
+            tableData={tableData}
+            selectedRows={selected}
+          />
+        )}
         {header && (
           <EnhancedTableHeader
             title={tableHeaderTitle}
@@ -172,26 +216,33 @@ const EnhancedTable: FC<Props> = ({
             <TableHead>
               <TableRow>
                 {check && (
-                  <Checkbox
+                  <TableCell
                     sx={{
-                      '&.MuiCheckbox-root': headCheckBoxStyles.root,
-                      '&.Mui-checked': headCheckBoxStyles.checked,
+                      '&.MuiTableCell-root': checkboxTableCellStyle,
                     }}
-                    indeterminate={
-                      selected.length > 0 && selected.length < tableData.length
-                    }
-                    checked={
-                      tableData.length > 0 &&
-                      selected.length === tableData.length
-                    }
-                    onChange={handleSelectAllClick}
-                    inputProps={{
-                      'aria-label': 'select all',
-                    }}
-                  />
+                  >
+                    <Checkbox
+                      sx={{
+                        '&.MuiCheckbox-root': headCheckBoxStyles.root,
+                        '&.Mui-checked': headCheckBoxStyles.checked,
+                      }}
+                      indeterminate={
+                        selected.length > 0 &&
+                        selected.length < tableData.length
+                      }
+                      checked={
+                        tableData.length > 0 &&
+                        selected.length === tableData.length
+                      }
+                      onChange={handleSelectAllClick}
+                      inputProps={{
+                        'aria-label': 'select all',
+                      }}
+                    />
+                  </TableCell>
                 )}
-                {columns?.map(({ label, colStyle }) => (
-                  <TableCell key={uuidv4()} sx={colStyle}>
+                {columns?.map(({ label, colStyle, key }) => (
+                  <TableCell key={key} sx={colStyle}>
                     {props.headComponent ? (
                       props.headComponent(label)
                     ) : (
@@ -202,7 +253,7 @@ const EnhancedTable: FC<Props> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {(pagination ? paginatedData : rows).map((row, index) => (
+              {(pagination ? paginatedData : tableData).map((row, index) => (
                 <TableRow
                   key={row.id}
                   sx={{
@@ -211,19 +262,27 @@ const EnhancedTable: FC<Props> = ({
                   }}
                 >
                   {check && (
-                    <Checkbox
-                      sx={checkBoxStyle}
-                      checked={isSelected(row.id)}
-                      onChange={(event) => handleClick(event, row.id)}
-                      inputProps={{
-                        'aria-labelledby': `enhanced-table-checkbox-${row.id}`,
+                    <TableCell
+                      sx={{
+                        '&.MuiTableCell-root': checkboxTableCellStyle,
                       }}
-                    />
+                    >
+                      <Checkbox
+                        sx={checkBoxStyle}
+                        checked={isSelected(row.id)}
+                        onChange={(event) => handleClick(event, row.id)}
+                        inputProps={{
+                          'aria-labelledby': `enhanced-table-checkbox-${row.id}`,
+                        }}
+                      />
+                    </TableCell>
                   )}
-                  {columns?.map(({ key, cellComponent, id }) => (
-                    <TableCell key={id} sx={props.cellStyle}>
+                  {columns?.map(({ key, cellComponent }) => (
+                    <TableCell key={`${row.id}_${key}`} sx={props.cellStyle}>
                       {cellComponent ? (
-                        cellComponent(row[key], uuidv4())
+                        cellComponent(row[key], (newValue: any) =>
+                          handleCellUpdate(row.id, key, newValue)
+                        )
                       ) : (
                         <Typography tag="p">{row[key]}</Typography>
                       )}
@@ -249,16 +308,11 @@ const EnhancedTable: FC<Props> = ({
             onChange={handleChangePage}
             count={tableData.length}
           />
-          <TablePagination
-            sx={paginationStyles}
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={tableData.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Отображать по строкам"
+          <SelectPagination
+            options={['5', '10', '25']}
+            value={rowsPerPage.toString()}
+            handleSelect={handleChangeRowsPerPage}
+            title="Отображать по строкам: "
           />
         </div>
       )}

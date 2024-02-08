@@ -61,14 +61,6 @@
   div {
     @include flex(row, center, center);
   }
-
-  svg {
-    @include size(24px, 24px);
-
-    @media screen and (max-width: $switching-width) {
-      @include size(13px, 13px);
-    }
-  }
 }
 
 .iconMln {
@@ -85,6 +77,16 @@
     box-shadow: $m-box-shadow;
     .iconMln {
       background-color: $primary-persian-blue-default;
+    }
+  }
+}
+
+.iconBld {
+  svg {
+    @include size(24px, 24px);
+
+    @media screen and (max-width: $switching-width) {
+      @include size(13px, 13px);
     }
   }
 }

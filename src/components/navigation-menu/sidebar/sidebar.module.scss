@@ -1,0 +1,67 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.wrapper {
+  @include flex(column);
+
+  grid-row: 1 / -1;
+  grid-column: 1/2;
+  z-index: 3;
+
+  position: relative;
+  margin: 16px 46px 16px 16px;
+  overflow: hidden;
+  background-color: $secondary-cultured-default;
+  border-radius: $l-border-radius;
+}
+
+.logo {
+  height: 34px;
+  max-width: 145px;
+  box-sizing: border-box;
+  margin: 20px 16px 0;
+  background-image: url('../../../images/icon/side bar/full-logo.svg');
+  background-repeat: no-repeat;
+  background-size: initial;
+  flex-shrink: 0;
+}
+
+.navigation {
+  @include flex(column);
+
+  &__list {
+    @include flex(column, $gap: 8px);
+    list-style: none;
+    margin: 47px 8px 20px;
+    padding: 0;
+  }
+}
+
+.select {
+  right: unset;
+  left: 0;
+  max-width: 100%;
+
+  &__item{
+    @include ellipsis;
+    text-align: start;
+    display: block;
+    width: 100%;
+  }
+}
+
+.select-wrapper {
+  padding: 20px 8px 0;
+}
+
+.compact {
+  @include hide-scroll;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  max-width: 70px;
+  margin: 0;
+  max-height: calc(100vh - 16px*2 - 62px);
+  overflow-y: scroll;
+  background-color: $off-white;
+}

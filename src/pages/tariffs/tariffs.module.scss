@@ -1,0 +1,16 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+
+.page {
+  padding: 32px 40px 0 0;
+}
+
+.header {
+  @include flex(row, space-between, center);
+  padding-bottom: 28px;
+}
+
+.button {
+  width: 230px;
+}
