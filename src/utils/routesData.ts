@@ -14,6 +14,7 @@ const routesUrl: TRoutesUrl = {
   share: 'share',
   subscription: 'subscription',
   statistics: 'statistics',
+  users: 'users',
   tariffs: 'tariffs',
   notFound: '*',
 };

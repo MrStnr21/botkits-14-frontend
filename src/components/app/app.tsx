@@ -14,6 +14,7 @@ import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat-page/chat-page';
+import UsersPage from '../../pages/users-page/users-page';
 
 import routesUrl from '../../utils/routesData';
 
@@ -189,6 +190,14 @@ const App: FC = (): JSX.Element => {
             element={
               <ProtectedRoute>
                 <Tariffs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={routesUrl.users}
+            element={
+              <ProtectedRoute>
+                <UsersPage />
               </ProtectedRoute>
             }
           />
