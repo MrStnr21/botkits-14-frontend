@@ -1,21 +1,40 @@
-import React, { FC, useState } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { FC, useEffect, useState, useRef } from 'react';
+import { useDraggable } from 'react-use-draggable-scroll';
 import stylesPaymentPopup from './payment-popup.module.scss';
 import Button from '../../../ui/buttons/button/button';
 import Typography from '../../../ui/typography/typography';
 import rocketBot from '../../../images/icon/template/rocketBot.svg';
 import logoUkassaIcon from '../../../images/icon/logoUkassaIcon.svg';
-import tariffs from '../../../ui/tariffs/tariffs';
 import CheckIcon from '../../icons/Check/CheckIcon';
+import { getTariffs } from '../../../api/tariffs';
+import { TableData } from '../../enhanced-table/enhanced-table';
 
 interface IPaymentPopup {
-  onClick?: () => void;
+  onClick: (id: string) => void;
 }
 
 const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
-  const [selectedTariff, setSelectedTariff] = useState<number>(790);
+  const [selectedTariff, setSelectedTariff] = useState<TableData | null>(null);
+  const [tariffs, setTariffs] = useState<TableData[]>([]);
+  const ref =
+    useRef<HTMLDivElement>() as unknown as React.MutableRefObject<HTMLDivElement>;
 
-  const handleTariffSelection = (tariffPrice: number) => {
-    setSelectedTariff(tariffPrice);
+  const { events } = useDraggable(ref);
+
+  useEffect(() => {
+    getTariffs().then((data) => {
+      const filtered = data.filter((tariff) => !tariff.isDemo);
+      setTariffs(filtered);
+      setSelectedTariff(filtered[0]);
+    });
+  }, []);
+
+  const clickHandler = () => {
+    if (!selectedTariff) {
+      return;
+    }
+    onClick(selectedTariff._id as string);
   };
 
   return (
@@ -44,11 +63,11 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
           </Typography>
           <CheckIcon color="#00E98F" width={30} />
         </div>
-        <div className={stylesPaymentPopup.linkGroup}>
+        <div ref={ref} {...events} className={stylesPaymentPopup.linkGroup}>
           {tariffs.map((tariff) => (
             <div
               key={tariff.id}
-              onClick={() => handleTariffSelection(tariff.price)}
+              onClick={() => setSelectedTariff(tariff)}
               className={`${stylesPaymentPopup.linkBtn} ${
                 tariff.price === selectedTariff
                   ? stylesPaymentPopup.selected
@@ -105,7 +124,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
             className={stylesPaymentPopup.totalPrice}
             tag="h4"
           >
-            {selectedTariff}&nbsp;
+            {selectedTariff?.price}&nbsp;
           </Typography>
           <Typography className={stylesPaymentPopup.totalPrice} tag="p">
             руб
@@ -113,7 +132,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
         </div>
         <div className={stylesPaymentPopup.paymentButtonsContainer}>
           <Button
-            onClick={onClick}
+            onClick={clickHandler}
             size="large"
             variant="default"
             color="blue"
@@ -131,7 +150,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
             </div>
           </Button>
           <Button
-            onClick={onClick}
+            onClick={clickHandler}
             size="large"
             variant="default"
             color="light-grey"
