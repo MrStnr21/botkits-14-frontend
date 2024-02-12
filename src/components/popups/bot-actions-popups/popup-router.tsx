@@ -17,6 +17,7 @@ import {
   mockNotifyLink,
 } from '../../../utils/mockBotActionsValues';
 import { shareBotApi } from '../../../api/user';
+import { createAddErrorAction } from '../../../services/actions/errors/errors';
 
 interface IPopupRouter {
   action: BotActionValue;
@@ -28,12 +29,11 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
   const dispatch = useAppDispatch();
 
   const handleShare = (email: string) => {
-    try {
-      shareBotApi(email);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
-    }
+    shareBotApi(email)
+      .catch(() =>
+        dispatch(createAddErrorAction('Не получилось поделиться ботом'))
+      )
+      .finally(() => close());
   };
 
   const getPopup = (actionValue: typeof action) => {
