@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, ReactNode, useMemo, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
-import { Box, Checkbox } from '@mui/material';
+import { Box, Checkbox, Divider, useMediaQuery } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
@@ -26,6 +27,7 @@ import SelectPagination from './select-pagination/select-pagination';
 import { Option } from '../../utils/types';
 import { useAppDispatch } from '../../services/hooks/hooks';
 import { createAddErrorAction } from '../../services/actions/errors/errors';
+import { switchingWidth } from '../../stylesheets/scss-variables';
 
 type Columns = {
   id?: number;
@@ -106,6 +108,9 @@ const EnhancedTable: FC<IProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
   const dispatch = useAppDispatch();
+
+  const isMobile = useMediaQuery(`(max-width: ${switchingWidth})`);
+
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -211,56 +216,11 @@ const EnhancedTable: FC<IProps> = ({
             options={headerOptions}
           />
         )}
-        <TableContainer sx={tableContainerStyles}>
-          <Table sx={{ minWidth: minTableWidth }}>
-            <TableHead>
-              <TableRow>
-                {check && (
-                  <TableCell
-                    sx={{
-                      '&.MuiTableCell-root': checkboxTableCellStyle,
-                    }}
-                  >
-                    <Checkbox
-                      sx={{
-                        '&.MuiCheckbox-root': headCheckBoxStyles.root,
-                        '&.Mui-checked': headCheckBoxStyles.checked,
-                      }}
-                      indeterminate={
-                        selected.length > 0 &&
-                        selected.length < tableData.length
-                      }
-                      checked={
-                        tableData.length > 0 &&
-                        selected.length === tableData.length
-                      }
-                      onChange={handleSelectAllClick}
-                      inputProps={{
-                        'aria-label': 'select all',
-                      }}
-                    />
-                  </TableCell>
-                )}
-                {columns?.map(({ label, colStyle, key }) => (
-                  <TableCell key={key} sx={colStyle}>
-                    {props.headComponent ? (
-                      props.headComponent(label)
-                    ) : (
-                      <Typography tag="p">{label}</Typography>
-                    )}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(pagination ? paginatedData : tableData).map((row, index) => (
-                <TableRow
-                  key={row.id}
-                  sx={{
-                    position: 'relative',
-                    ...props.rowStyle,
-                  }}
-                >
+        {!isMobile && (
+          <TableContainer sx={tableContainerStyles}>
+            <Table sx={{ minWidth: minTableWidth }}>
+              <TableHead>
+                <TableRow>
                   {check && (
                     <TableCell
                       sx={{
@@ -268,37 +228,169 @@ const EnhancedTable: FC<IProps> = ({
                       }}
                     >
                       <Checkbox
-                        sx={checkBoxStyle}
-                        checked={isSelected(row.id)}
-                        onChange={(event) => handleClick(event, row.id)}
+                        sx={{
+                          '&.MuiCheckbox-root': headCheckBoxStyles.root,
+                          '&.Mui-checked': headCheckBoxStyles.checked,
+                        }}
+                        indeterminate={
+                          selected.length > 0 &&
+                          selected.length < tableData.length
+                        }
+                        checked={
+                          tableData.length > 0 &&
+                          selected.length === tableData.length
+                        }
+                        onChange={handleSelectAllClick}
                         inputProps={{
-                          'aria-labelledby': `enhanced-table-checkbox-${row.id}`,
+                          'aria-label': 'select all',
                         }}
                       />
                     </TableCell>
                   )}
-                  {columns?.map(({ key, cellComponent }) => (
-                    <TableCell key={`${row.id}_${key}`} sx={props.cellStyle}>
-                      {cellComponent ? (
-                        cellComponent(row[key], (newValue: any) =>
-                          handleCellUpdate(row.id, key, newValue)
-                        )
+                  {columns?.map(({ label, colStyle, key }) => (
+                    <TableCell key={key} sx={colStyle}>
+                      {props.headComponent ? (
+                        props.headComponent(label)
                       ) : (
-                        <Typography tag="p">{row[key]}</Typography>
+                        <Typography tag="p">{label}</Typography>
                       )}
                     </TableCell>
                   ))}
-                  {dropdown && (
-                    <TableMenuButton
-                      onRemove={() => handleRemoveRow(index)}
-                      options={menuOptions}
-                    />
-                  )}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {(pagination ? paginatedData : tableData).map((row, index) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{
+                      position: 'relative',
+                      ...props.rowStyle,
+                    }}
+                  >
+                    {check && (
+                      <TableCell
+                        sx={{
+                          '&.MuiTableCell-root': checkBoxStyle,
+                        }}
+                      >
+                        <Checkbox
+                          sx={checkBoxStyle}
+                          checked={isSelected(row.id)}
+                          onChange={(event) => handleClick(event, row.id)}
+                          inputProps={{
+                            'aria-labelledby': `enhanced-table-checkbox-${row.id}`,
+                          }}
+                        />
+                      </TableCell>
+                    )}
+                    {columns?.map(({ key, cellComponent }) => (
+                      <TableCell key={`${row.id}_${key}`} sx={props.cellStyle}>
+                        {cellComponent ? (
+                          cellComponent(row[key], (newValue: any) =>
+                            handleCellUpdate(row.id, key, newValue)
+                          )
+                        ) : (
+                          <Typography tag="p">{row[key]}</Typography>
+                        )}
+                      </TableCell>
+                    ))}
+                    {dropdown && (
+                      <TableMenuButton
+                        onRemove={() => handleRemoveRow(index)}
+                        options={menuOptions}
+                      />
+                    )}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+        {isMobile && (
+          <TableContainer sx={tableContainerStyles}>
+            <Table sx={{ minWidth: minTableWidth }}>
+              <TableHead>
+                <TableRow>
+                  {check && (
+                    <TableCell
+                      sx={{
+                        '&.MuiTableCell-root': checkboxTableCellStyle,
+                      }}
+                    >
+                      <Checkbox
+                        sx={{
+                          '&.MuiCheckbox-root': headCheckBoxStyles.root,
+                          '&.Mui-checked': headCheckBoxStyles.checked,
+                        }}
+                        indeterminate={
+                          selected.length > 0 &&
+                          selected.length < tableData.length
+                        }
+                        checked={
+                          tableData.length > 0 &&
+                          selected.length === tableData.length
+                        }
+                        onChange={handleSelectAllClick}
+                        inputProps={{
+                          'aria-label': 'select all',
+                        }}
+                      />
+                    </TableCell>
+                  )}
+                  {/* {columns?.map(({ label, colStyle, key }) => (
+                    <TableCell key={key} sx={colStyle}>
+                      {props.headComponent ? (
+                        props.headComponent(label)
+                      ) : (
+                        <Typography tag="p">{label}</Typography>
+                      )}
+                    </TableCell>
+                  ))} */}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(pagination ? paginatedData : tableData).map((row, index) => (
+                  <>
+                    <TableRow>
+                      {columns?.map(
+                        ({ label, colStyle, key, cellComponent }) => (
+                          <TableRow>
+                            <TableCell key={key} sx={colStyle}>
+                              {props.headComponent ? (
+                                props.headComponent(label)
+                              ) : (
+                                <Typography tag="p">{label}</Typography>
+                              )}
+                            </TableCell>
+                            <TableCell
+                              key={`${row.id}_${key}`}
+                              sx={props.cellStyle}
+                            >
+                              {cellComponent ? (
+                                cellComponent(row[key], (newValue: any) =>
+                                  handleCellUpdate(row.id, key, newValue)
+                                )
+                              ) : (
+                                <Typography tag="p">{row[key]}</Typography>
+                              )}
+                            </TableCell>
+                            {dropdown && (
+                              <TableMenuButton
+                                onRemove={() => handleRemoveRow(index)}
+                                options={menuOptions}
+                              />
+                            )}
+                          </TableRow>
+                        )
+                      )}
+                    </TableRow>
+                    <Divider />
+                  </>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </Paper>
       {pagination && (
         <div className={styles.pagination}>
