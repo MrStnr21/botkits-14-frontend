@@ -1,4 +1,3 @@
-// import { Profile } from "./user";
 import { TBuilderData } from './builder';
 
 type TMessenger = {
@@ -35,7 +34,7 @@ export type TBot = {
   features?: TBuilderData;
   messengers: Array<TMessenger>;
   permission: TBotPermissions;
-  // profile?: Profile;
+  profile: string;
   // settings?: object;
   // commands?: Array<TypeCommands>;
   // isToPublish?: boolean;
