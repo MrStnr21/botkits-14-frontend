@@ -5,6 +5,7 @@ import { copyBotApi } from '../../../api/bots';
 import { AppDispatch, AppThunk } from '../../types';
 import { TBot } from '../../types/bot';
 import { TResponseError } from '../../types/response';
+import { createAddErrorAction } from '../errors/errors';
 
 const ADD_BOT_REQUEST = 'ADD_BOT_REQUSET';
 const ADD_BOT_SUCCESS = 'ADD_BOT_SUCCESS';
@@ -81,6 +82,7 @@ const copyBotAction: AppThunk = (id: string) => {
       .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
+        dispatch(createAddErrorAction('Не удалось скопировать бот'));
         dispatch({
           type: ADD_BOT_ERROR,
         });
