@@ -19,7 +19,7 @@ const Templates: FC<TTemplates> = ({ templates }) => {
   return (
     <div className={styles.container}>
       <div className={styles.header_wrapper}>
-        <Typography tag="h2" fontFamily="secondary">
+        <Typography tag="h2" fontFamily="secondary" className={styles.header}>
           Шаблоны
         </Typography>
         <div className={styles.accordion_wrapper}>
