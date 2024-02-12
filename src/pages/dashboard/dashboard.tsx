@@ -24,14 +24,14 @@ const Dashboard: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!botTemplates) {
+    if (botTemplates.length === 0) {
       dispatch(getTemplatesBotsAction());
     }
   }, [dispatch, botTemplates]);
 
   useEffect(() => {
     if (!user) {
-      dispatch(getUserInfoAction);
+      dispatch(getUserInfoAction());
     }
   }, [dispatch, user]);
 
@@ -59,7 +59,7 @@ const Dashboard: FC = (): JSX.Element => {
 
   return (
     <div className={styles.dashboard}>
-      {botTemplates && <Templates templates={botTemplates} />}
+      {botTemplates.length > 0 && <Templates templates={botTemplates} />}
       <MyBots title="Мои боты" bots={userBots} hasAddBtn />
       {sharedBots.length > 0 && (
         <MyBots
