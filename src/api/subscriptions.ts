@@ -20,6 +20,16 @@ function makeSubscription(id: string) {
   });
 }
 
+function toggleSubscriptionStatus(status: boolean) {
+  return postReq({
+    uri: `subscriptions/activate`,
+    auth: true,
+    data: {
+      status,
+    },
+  });
+}
+
 function activatePromocode(code: string) {
   return patchReq({
     uri: `promocodes/promocode?code=${code}`,
@@ -27,4 +37,9 @@ function activatePromocode(code: string) {
   });
 }
 
-export { getSubscriptions, activatePromocode, makeSubscription };
+export {
+  getSubscriptions,
+  activatePromocode,
+  makeSubscription,
+  toggleSubscriptionStatus,
+};

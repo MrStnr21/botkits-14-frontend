@@ -26,6 +26,7 @@ import {
   activatePromocode,
   getSubscriptions,
   makeSubscription,
+  toggleSubscriptionStatus,
 } from '../../api/subscriptions';
 import { TSubscriptionData } from '../../services/types/subscription';
 import { useAppDispatch } from '../../services/hooks/hooks';
@@ -40,6 +41,7 @@ const dateTimeFormat = new Intl.DateTimeFormat('ru', {
 const Subscription: FC = (): JSX.Element => {
   const [subscriptionData, setSubscriptionData] =
     useState<TSubscriptionData | null>(null);
+  const [counter, refreshWithFetch] = useState(0);
   const [filterValue, setFilterValue] = useState<string>('all');
   const { isModalOpen, closeModal, openModal } = useModal();
   const [popupType, setPopupType] = useState<
@@ -51,11 +53,13 @@ const Subscription: FC = (): JSX.Element => {
     setPopupType(type);
   };
 
+  console.log(subscriptionData?.payments);
+
   useEffect(() => {
     getSubscriptions().then((data) => {
       setSubscriptionData({ ...data, payments: data.payments.reverse() });
     });
-  }, [isModalOpen]);
+  }, [isModalOpen, counter]);
 
   if (!subscriptionData) {
     return <div />;
@@ -80,6 +84,14 @@ const Subscription: FC = (): JSX.Element => {
         dispatch(createAddErrorAction('Не удалось оформить подписку'))
       )
       .finally(() => closeModal());
+  };
+
+  const toggleTariffStatus = (status: boolean) => {
+    toggleSubscriptionStatus(status)
+      .catch(() =>
+        dispatch(createAddErrorAction('Не удалось изменить статус подписки'))
+      )
+      .finally(() => refreshWithFetch(counter + 1));
   };
 
   const handleFilterChange = (value: string) => {
@@ -126,7 +138,7 @@ const Subscription: FC = (): JSX.Element => {
               </Typography>
             </div>
             <div className={style.settings}>
-              {subscriptionData.cardMask ? (
+              {subscriptionData.status ? (
                 <>
                   <p className={style.info}>Следующее списание</p>
                   <p className={style.card}>
@@ -139,7 +151,11 @@ const Subscription: FC = (): JSX.Element => {
                       {subscriptionData.cardMask}
                     </span>
                   </p>
-                  <button className={style.button} type="button">
+                  <button
+                    onClick={() => toggleTariffStatus(true)}
+                    className={style.button}
+                    type="button"
+                  >
                     отменить
                   </button>
                 </>
@@ -152,7 +168,7 @@ const Subscription: FC = (): JSX.Element => {
                     <Button
                       variant="default"
                       color="green"
-                      onClick={() => handleActivateSubscription('subscription')}
+                      onClick={() => toggleTariffStatus(false)}
                     >
                       Активировать подписку
                     </Button>

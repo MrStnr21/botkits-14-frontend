@@ -69,7 +69,7 @@ const PaymentPopup: FC<IPaymentPopup> = ({ onClick }): JSX.Element | null => {
               key={tariff.id}
               onClick={() => setSelectedTariff(tariff)}
               className={`${stylesPaymentPopup.linkBtn} ${
-                tariff.price === selectedTariff
+                tariff._id === selectedTariff?._id
                   ? stylesPaymentPopup.selected
                   : ''
               }`}

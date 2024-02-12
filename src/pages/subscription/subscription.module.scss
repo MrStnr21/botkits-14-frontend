@@ -30,7 +30,7 @@
   &__header {
     @include size(100%, 228px);
     @include position(absolute, 0, $left: 0);
-    @include flex(column);
+    @include flex(column, space-between);
     box-sizing: border-box;
     background-color: $off-white;
     border-radius: $xxl-border-radius;
