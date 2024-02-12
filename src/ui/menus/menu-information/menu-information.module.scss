@@ -6,7 +6,7 @@
   background-color: $off-white;
   color: $grey-1;
   border-bottom: 2px solid $secondary-cultured-press;
-  padding: 13px;
+  padding: 13px 0;
   transition: all 0.4s linear;
   font-weight: $normal;
   font-size: $s-font-size;
@@ -22,7 +22,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-  
+
     .button{
       @include button_all;
       font-weight: $bold;
@@ -57,7 +57,7 @@
     .notifications:disabled {
       @include button_all_disabled;
     }
-    
+
     .builder {
       @include button_all;
     }
@@ -72,6 +72,6 @@
     .button, .notifications, .builder{
       width: 160px !important;
       height: 50px !important;
-      
+
     }
   }

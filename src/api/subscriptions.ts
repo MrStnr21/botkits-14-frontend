@@ -15,7 +15,7 @@ function makeSubscription(id: string) {
     auth: true,
     data: {
       cardMask: '**** **** **** ****',
-      debitDate: new Date(),
+      debitDate: new Date().toISOString(),
     },
   });
 }
