@@ -24,24 +24,26 @@ const Dashboard: FC = (): JSX.Element => {
   }, [dispatch, user]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { userBots, sharedBots } = useMemo(
-    () =>
-      bots.reduce<{
-        userBots: TBot[];
-        sharedBots: TBot[];
-      }>(
-        (acc, bot) => {
-          if (bot.profile === user!._id) {
-            acc.userBots.push(bot);
-          } else {
-            acc.sharedBots.push(bot);
-          }
-          return acc;
-        },
-        { userBots: [], sharedBots: [] }
-      ),
-    [bots, user]
-  );
+  const { userBots, sharedBots } = useMemo(() => {
+    if (!user) {
+      return { userBots: [], sharedBots: [] };
+    }
+
+    return bots.reduce<{
+      userBots: TBot[];
+      sharedBots: TBot[];
+    }>(
+      (acc, bot) => {
+        if (bot.profile === user._id) {
+          acc.userBots.push(bot);
+        } else {
+          acc.sharedBots.push(bot);
+        }
+        return acc;
+      },
+      { userBots: [], sharedBots: [] }
+    );
+  }, [bots, user]);
 
   return (
     <div className={styles.dashboard}>
