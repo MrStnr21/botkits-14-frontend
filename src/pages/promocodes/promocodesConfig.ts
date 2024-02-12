@@ -1,7 +1,7 @@
 import {
   baseCell,
   inputCell,
-  statusPromoCell,
+  switcherCell,
 } from '../../components/table-cells/table-cells';
 
 export const promoTableModalButtons = [{ label: 'Удалить', value: 'del' }];
@@ -42,35 +42,49 @@ export const promoCellStyle = {
 export const promoColumns = [
   {
     id: 1,
-    key: 'date',
+    key: 'formatedDate',
     label: 'Дата',
     colStyle: { ...promoHeadStyle, width: '25%' },
     cellComponent: baseCell,
   },
   {
     id: 2,
-    key: 'promo',
+    key: 'code',
     label: 'Промокод',
-    colStyle: { ...promoHeadStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '20%' },
     cellComponent: inputCell,
   },
   {
     id: 3,
-    key: 'price',
+    key: 'amount',
     label: 'Стоимость',
-    colStyle: { ...promoHeadStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     id: 4,
+    key: 'maxActivationCount',
+    label: 'макс. активаций',
+    colStyle: { ...promoHeadStyle, width: '15%' },
+    cellComponent: inputCell,
+  },
+  {
+    id: 5,
+    key: 'activationCount',
+    label: 'активирован',
+    colStyle: { ...promoHeadStyle, width: '15%' },
+    cellComponent: baseCell,
+  },
+  {
+    id: 6,
     key: 'status',
     label: 'Статус',
-    colStyle: { ...promoHeadStyle, width: '25%' },
-    cellComponent: statusPromoCell,
+    colStyle: { ...promoHeadStyle, width: '10%' },
+    cellComponent: switcherCell,
   },
 ];
 
 const hours = new Date().getHours().toString().padStart(2, '0');
 const minutes = new Date().getMinutes().toString().padStart(2, '0');
-export const now = `${new Date().toLocaleDateString('ru-RU')} 
+export const now = `${new Date().toLocaleDateString('ru-RU')}
 ${hours}:${minutes}`;

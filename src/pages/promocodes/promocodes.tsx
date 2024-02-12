@@ -1,8 +1,10 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import stylesPromocodes from './promocodes.module.scss';
+/* eslint-disable no-underscore-dangle */
+import { FC, useEffect, useState } from 'react';
+import styles from './promocodes.module.scss';
 import Typography from '../../ui/typography/typography';
-import EnhancedTable from '../../components/enhanced-table/enhanced-table';
+import EnhancedTable, {
+  TableData,
+} from '../../components/enhanced-table/enhanced-table';
 import { ppHeadCell } from '../../components/table-cells/table-cells';
 import {
   promoCellStyle,
@@ -11,65 +13,38 @@ import {
   promoHeaderTitle,
   promoRowStyleRef,
   promoTableModalButtons,
-  now,
 } from './promocodesConfig';
-import Input from '../../ui/inputs/input/input';
-import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
-import { TPromocodes } from '../../utils/types';
+import { getPromocodes, patchPromocode } from '../../api/promocodes';
+import Button from '../../ui/buttons/button/button';
+import AddPromoPopup from '../../components/popups/add-promo-popup/add-promo-popup';
+
+const dateFormat = new Intl.DateTimeFormat('ru', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+});
 
 const Promocodes: FC = (): JSX.Element => {
-  const [data, setData] = useState<TPromocodes[]>([]);
-  const [inputValue, setInputValue] = useState<string>('');
-  // логика для фильтрации отображаемых строк в таблице с промокодами,
-  // при создании страницы promocodes вынести в компонент страницы
+  const [data, setData] = useState<TableData[]>([]);
   const [filterValue, setFilterValue] = useState<string>('all');
+  const [popupOpened, togglePopup] = useState(false);
 
-  // загрузка данных таблицы с сервера и запись в data стэйт
-  // useEffect(() => {
-  //   app.get('url')
-  //   .then(res => setData(res.data))
-  //   .catch(err => console.log(err))
-  // }, [])
-
-  const createPromocode = (value: string) => {
-    const obj = [
-      {
-        id: uuidv4(),
-        date: now,
-        promo: value,
-        price: '30р',
-        status: true,
-        menu: true,
-      },
-    ];
-    return obj;
-  };
-
-  const handleGeneratePromocode = (
-    evt: FormEvent<HTMLFormElement>,
-    value: string
-  ) => {
-    const getInput = document.getElementById('input') as HTMLInputElement;
-    getInput.value = '';
-
-    evt.preventDefault();
-
-    // обновление тестовое
-    setData(createPromocode(value)); // удалить при отправке на сервер
-
-    // отправка на сервер
-    // api.post('url',
-    // {
-    //   id: uuidv4(),
-    //   date: now,
-    //   promo: inputValue,
-    //   price: '30р',
-    //   status: true,
-    //   menu: true,
-    // })
-    // .then(res => console.log(res))
-    // .catch(err => console.log(err))
-  };
+  useEffect(() => {
+    getPromocodes().then((d) => {
+      setData(
+        d.map((item) => {
+          const newDate = dateFormat.format(new Date(item.actionPeriod));
+          return {
+            ...item,
+            formatedDate: newDate,
+            id: item._id,
+          };
+        })
+      );
+    });
+  }, []);
 
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
@@ -89,45 +64,28 @@ const Promocodes: FC = (): JSX.Element => {
   };
 
   return (
-    <div className={stylesPromocodes.page}>
-      <Typography
-        tag="h2"
-        fontFamily="secondary"
-        className={stylesPromocodes.page__heading}
-      >
-        Промокоды
-      </Typography>
-      <div className={stylesPromocodes.container}>
-        <form
-          onSubmit={(evt) => handleGeneratePromocode(evt, inputValue)}
-          className={stylesPromocodes.menue}
-        >
+    <>
+      <div className={styles.page}>
+        <div className={styles.header}>
           <Typography
-            tag="h4"
+            tag="h2"
             fontFamily="secondary"
-            className={stylesPromocodes.menue__title}
+            className={styles.page__heading}
           >
-            Cгенерируйте промокод
+            Промокоды
           </Typography>
-          <div className={stylesPromocodes.input}>
-            <Input
-              onChange={(evt: ChangeEvent<HTMLInputElement>) =>
-                setInputValue(evt.target.value)
-              }
-              placeholder="Введите промокод"
-              errorMessage="Вы не сгенерировали промокод"
-              styled="main"
-              id="input"
-            />
+          <div className={styles.button}>
+            <Button
+              color="green"
+              variant="default"
+              onClick={() => togglePopup(true)}
+            >
+              Добавить промокод
+            </Button>
           </div>
-          <div className={stylesPromocodes.button}>
-            <ButtonBotTemplate buttonHtmlType="submit" color="blue">
-              СГЕНЕРИРОВАТЬ ПРОМОКОД
-            </ButtonBotTemplate>
-          </div>
-        </form>
-        <div>
-          <div className={stylesPromocodes.promocodeTable}>
+        </div>
+        <div className={styles.container}>
+          <div className={styles.promocodeTable}>
             <EnhancedTable
               check
               header
@@ -142,11 +100,14 @@ const Promocodes: FC = (): JSX.Element => {
               menuOptions={promoTableModalButtons}
               tableHeaderTitle={promoHeaderTitle}
               headerOptions={promoDropdownValues}
+              onUpdate={patchPromocode}
+              setTableData={setData}
             />
           </div>
         </div>
       </div>
-    </div>
+      {popupOpened && <AddPromoPopup closePopup={() => togglePopup(false)} />}
+    </>
   );
 };
 

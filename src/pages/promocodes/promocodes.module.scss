@@ -3,46 +3,26 @@
 
 .page {
   @include indents(0, 32px 40px 32px 46px);
-
-  &__heading {
-    margin-bottom: 32px;
-  }
 }
 
 .container {
   @include flex(row, false, false, 28px);
 }
 
+.header {
+  @include flex(row, space-between, center);
+  padding-bottom: 28px;
+}
+
+.button {
+  width: 230px;
+}
+
 .promocodeTable {
   @include flex(column, $align-items: center, $gap: 26px);
-  @include size(836px, unset);
+  @include size(100%, unset);
   background-color: $off-white;
   border-radius: $xxl-border-radius;
   box-sizing: border-box;
   box-shadow: $m-box-shadow;
-}
-
-// стили для меню
-.menue {
-  width: 404px;
-  height: 242px;
-  border-radius: 30px;
-  background: var(--Off-white, #FFF);
-  box-shadow: 0px 12px 24px 0px rgba(21, 18, 51, 0.13);
-
-  &__title {
-    margin: 40px 32px 16px;
-  }
-}
-
-.input {
-  width: 340px;
-  height: 67px;
-  margin: 0 32px 20px 32px;
-}
-
-.button {
-  width: 340px;
-  height: 46px;
-  margin-left: 32px;
 }
