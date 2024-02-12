@@ -71,7 +71,7 @@ const Subscription: FC = (): JSX.Element => {
   const usePromo = (promo: string) => {
     activatePromocode(promo)
       .catch(() =>
-        dispatch(createAddErrorAction('Промокд не принят, попробуйте еще раз'))
+        dispatch(createAddErrorAction('Промокод не принят, попробуйте еще раз'))
       )
       .finally(() => closeModal());
   };
