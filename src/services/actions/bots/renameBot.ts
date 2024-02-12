@@ -3,6 +3,7 @@ import { renameBotApi } from '../../../api/bots';
 import { AppDispatch, AppThunk } from '../../types';
 import { IRenameBotResponse, TBot } from '../../types/bot';
 import { TResponseError } from '../../types/response';
+import { createAddErrorAction } from '../errors/errors';
 
 const RENAME_BOT_REQUEST = 'RENAME_BOT_REQUEST';
 const RENAME_BOT_SUCCESS = 'RENAME_BOT_SUCCESS';
@@ -45,6 +46,7 @@ const renameBotAction: AppThunk = (id: TBot['_id'], title: TBot['title']) => {
       })
       .catch((err: TResponseError) => {
         console.error(err);
+        dispatch(createAddErrorAction('Не удалось переименовать бот'));
         dispatch({
           type: RENAME_BOT_ERROR,
         });

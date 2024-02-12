@@ -36,6 +36,12 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
       .finally(() => close());
   };
 
+  const handleRename = (value: TBot['title']) => {
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(renameBotAction(bot._id, value));
+    close();
+  };
+
   const getPopup = (actionValue: typeof action) => {
     switch (actionValue) {
       case 'share':
@@ -59,11 +65,7 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
             placeholder="Переименуйте файл"
             buttonText="Переименовать"
             value={bot.title}
-            onConfirm={(value: TBot['title']) => {
-              // eslint-disable-next-line no-underscore-dangle
-              dispatch(renameBotAction(bot._id, value));
-              close();
-            }}
+            onConfirm={(email: string) => handleRename(email)}
             onCancel={close}
           />
         );
