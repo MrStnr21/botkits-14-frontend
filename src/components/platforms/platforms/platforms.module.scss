@@ -1,0 +1,31 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.title {
+  @include indents(0, 0 0 32px 0);
+  text-align: left;
+
+  @media screen and (max-width: 520px) {
+    margin-left: 20px;
+  }
+}
+
+.list {
+  @include indents(0 0 16px);
+  @include flex($gap: 19px);
+  list-style: none;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    @include size(0, 0);
+  }
+
+  @media screen and (max-width: 520px) {
+    li:first-child {
+      margin-left: 20px;
+    }
+
+    li:last-child {
+      margin-right: 20px;
+    }
+  }
+}

@@ -33,7 +33,6 @@ export type TGetUserInfoActions =
 
 /**
  * Экшн получения данных пользователя
- * @param token access token
  */
 const getUserInfoAction: AppThunk = () => {
   return (dispatch: AppDispatch) => {

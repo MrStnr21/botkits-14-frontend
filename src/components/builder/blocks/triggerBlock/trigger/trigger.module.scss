@@ -1,0 +1,47 @@
+@use '../../../../../stylesheets/variables' as *;
+@use '../../../../../stylesheets/mixins' as *;
+
+.wrap {
+  @include flex(column, $align-items: center, $gap: 20px);
+  background-color: $secondary-cultured-default;
+  padding: 16px 20px;
+  border-radius: $l-border-radius;
+  max-width: 296px;
+
+  .header {
+    @include flex(row, space-between, center);
+    width: 256px;
+
+    svg {
+      cursor: $cursor;
+    }
+
+    .trashIcon {
+      background-image: url("../../../../../images/icon/24x24/constructor/delete.svg");
+      width: 18px;
+      height: 18px;
+      background-size: contain;
+    }
+  }
+
+  .title {
+    margin: 0 0 12px 0;
+    font-size: $s-font-size;
+    width: 100%;
+
+    @media screen and (max-width: $switching-width) {
+      font-size: $xs-font-size;
+      font-weight: $bold;
+    }
+  }
+
+  .buttons {
+    @include flex(row, false, false, 5px);
+    width: 100%;
+  }
+
+  .block{
+    @include flex(column, $align-items: center, $gap: 12px);
+    width: 100%;
+  }
+}

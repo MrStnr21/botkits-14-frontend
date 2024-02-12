@@ -8,7 +8,7 @@ import { SIZE_INPUT } from '../../../utils/constants';
 import Typography from '../../typography/typography';
 
 interface IDownloadFile {
-  size: SIZE_INPUT;
+  size?: SIZE_INPUT;
   state?: boolean; // добавила для сторибука
 }
 
@@ -33,7 +33,7 @@ const DownloadFile: FC<IDownloadFile> = ({
       className={`${stylesAddfile.download} ${
         isNoValid ? stylesAddfile.download_error : ''
       }`}
-      style={{ width: size }}
+      style={size ? { width: size } : {}}
     >
       <input
         className={stylesAddfile.download__input}

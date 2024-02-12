@@ -1,3 +1,11 @@
+export type TProfile = {
+  avatar: string;
+  balance: number;
+  phone: string;
+  username: string;
+  _id: string;
+};
+
 // типизация данных пользователя
 export type TUser = {
   credentials: {
@@ -5,16 +13,11 @@ export type TUser = {
     accessToken: string;
     refreshToken: string;
   };
-  profile: {
-    avatar: string;
-    balance: number;
-    phone: string;
-    username: string;
-    _id: string;
-  };
+  profile: TProfile;
   role: string;
   type: string;
   _id: string;
+  username: string;
 };
 
 export interface IUserSignupState {

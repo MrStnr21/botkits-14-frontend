@@ -11,3 +11,7 @@ body {
   width: 100%;
   background: #fff;
 }
+
+#errors {
+  @include position(fixed, $right: 20px, $bottom: 50px);
+}

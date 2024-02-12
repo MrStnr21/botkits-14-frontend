@@ -70,21 +70,24 @@ const PanelInline: FC<IPanelInline> = ({
 
   const verticalHeight =
     buttonHeight * verticalButtons.length +
-    openedVertical * buttonSizes.addString;
+    openedVertical * buttonSizes.addString +
+    buttonSizes.gap / 2;
   const horizontalHeight =
     buttonHeight * horizontalButtons.length +
     openedHorizontal * buttonSizes.addString;
 
   const verticalHeightDesk =
     buttonHeightDesk * verticalButtons.length +
-    openedVertical * ButtonSizes.addString;
+    openedVertical * ButtonSizes.addString +
+    buttonSizes.gap / 2;
   const horizontalHeightDesk =
     buttonHeightDesk * horizontalButtons.length +
     openedHorizontal * ButtonSizes.addString;
 
   const verticalHeightMobile =
     buttonHeightMobile * verticalButtons.length +
-    openedVertical * ButtonSizesMobile.addString;
+    openedVertical * ButtonSizesMobile.addString +
+    buttonSizes.gap / 2;
   const horizontalHeightMobile =
     buttonHeightMobile * horizontalButtons.length +
     openedHorizontal * ButtonSizesMobile.addString;
@@ -122,8 +125,10 @@ const PanelInline: FC<IPanelInline> = ({
               Горизонтальный инлайн
             </ConstructorAddButton>
           </div>
-          <hr className={styles['split-line']} />
-          <div className={styles.buttons} style={{ height: verticalHeight }} />
+          <div
+            className={styles['split-line']}
+            style={{ height: verticalHeight }}
+          />
           <div className={styles.wrapperButton}>
             <ConstructorAddButton
               onClick={

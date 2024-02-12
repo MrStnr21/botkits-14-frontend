@@ -22,6 +22,10 @@ export interface IMenu {
    * например: ```div.item { height: 30px;}``` */
   itemClassName?: string;
   /**
+   * стилизация иконок в элементах меню
+   */
+  iconClassName?: string;
+  /**
    * включить/выключить прокрутку в меню
    */
   isScroll?: boolean;
@@ -54,6 +58,7 @@ const Menu = forwardRef<Ref, IMenu>(
       onItemClick,
       layoutClassName = '',
       itemClassName = '',
+      iconClassName = '',
       isScroll = false,
       isMultiple = false,
       selectedValues = [],
@@ -77,6 +82,7 @@ const Menu = forwardRef<Ref, IMenu>(
               onClick={() => onItemClick(option)}
               isChecked={isMultiple && selectedValues.includes(option.value)}
               extraClass={itemClassName}
+              iconClass={iconClassName}
             />
           );
         })}

@@ -1,0 +1,23 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.popup {
+  @include flex(column, center, unset, 20px);
+  @include size(464px, unset);
+  @include indents(40px, unset);
+  box-sizing: border-box;
+  background-color: $off-white;
+  box-shadow: $l-box-shadow;
+  border: none;
+  border-radius: $xxl-border-radius;
+  position: relative;
+
+  @media (max-width: $min-content-width) {
+    width: 320px;
+  }
+
+  &__buttonsContainer {
+    @include flex(row, center, center, 16px);
+  }
+}
+

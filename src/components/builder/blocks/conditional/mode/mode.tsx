@@ -4,19 +4,20 @@ import styles from './mode.module.scss';
 import LabeledInput from '../../../labeledInput/labeledInput';
 import EasyMode from './easy';
 import HardMode from './hard';
-import { messagesSuccessful } from '../../../utils/data';
 import Select from '../../../../../ui/select/select';
-import { getSelectItemByValue } from '../../../utils';
+import { getSelectItemByValue, getSelectLabel } from '../../../utils';
+import { namesOfBlocks } from '../../../utils/store';
 
 export type TModeProps = {
   id: string;
   setTargetBlock: Function;
+  index: number;
 };
 
 /**
  * компонент-подблок для  взаимодействия с переменной
  */
-const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
+const Mode: FC<TModeProps> = ({ id, setTargetBlock, index }) => {
   const { getNodes, getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const nodes = getNodes();
@@ -28,7 +29,7 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
     variable?: {
       id: string;
       name: string;
-      value: any;
+      value: string;
     };
     sign?: string;
     condition?: string;
@@ -43,10 +44,10 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
   const getBlock = useMemo(() => {
     switch (itemFromVariables.type) {
       case 'easy': {
-        return <EasyMode id={id} />;
+        return <EasyMode index={index} id={id} />;
       }
       case 'hard': {
-        return <HardMode id={id} />;
+        return <HardMode index={index} id={id} />;
       }
       default: {
         return null;
@@ -61,11 +62,11 @@ const Mode: FC<TModeProps> = ({ id, setTargetBlock }) => {
       </LabeledInput>
       <LabeledInput title="То перейти" extraClass={styles.extraClass}>
         <Select
-          options={messagesSuccessful}
+          options={getSelectLabel(namesOfBlocks)}
           handleSelect={(option) => setTargetBlock(option.value)}
           currentOption={getSelectItemByValue(
             itemFromVariables.targetBlock,
-            messagesSuccessful
+            getSelectLabel(namesOfBlocks)
           )}
           elementToCloseListener="flow"
           adaptive

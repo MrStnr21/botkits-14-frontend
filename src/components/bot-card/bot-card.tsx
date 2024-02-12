@@ -1,43 +1,93 @@
-import { FC, useState } from 'react';
+/* eslint-disable no-underscore-dangle */
+import { FC, useRef, useState } from 'react';
 
-import stylesBotCard from './bot-card.module.scss';
+import { useNavigate } from 'react-router';
+import styles from './bot-card.module.scss';
 
-import tg from '../../images/icon/40x40/telegram/default.svg';
-
-import MoreMybotPopup from '../popups/more-mybot/more-mybot';
+import BotActionsMenu from '../popups/bot-actions-popups/bot-actions-menu/bot-actions-menu';
 import Typography from '../../ui/typography/typography';
+import { TBot } from '../../services/types/bot';
+import Icon from '../../ui/icon/icon';
+import messengerIcons from './utils';
+import routesUrl from '../../utils/routesData';
+import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
+import { BotActionValue } from '../popups/bot-actions-popups/utils';
+import PopupRouter from '../popups/bot-actions-popups/popup-router';
+import useModal from '../../services/hooks/use-modal';
+import BotStatus from './bot-status/bot-status';
 
 export interface IBotCard {
-  platform_icon: string;
-  bot_name: string;
-  bot_id?: string;
+  bot: TBot;
 }
 
-const BotCard: FC<IBotCard> = ({
-  platform_icon = tg,
-  bot_name = 'Название бота',
-  bot_id = '980809809',
-}): JSX.Element => {
-  const [isActive, setIsActive] = useState(false);
+const BotCard: FC<IBotCard> = ({ bot }) => {
+  const [isMenuActive, setIsMenuActive] = useState(false);
+  const [botAction, setBotAction] = useState<BotActionValue | null>(null);
+  const { isModalOpen, closeModal, openModal } = useModal();
+
+  // для пунктов меню, требующих открытия отдельного попапа
+  const onExtendedActionSelect = (value: BotActionValue) => {
+    setBotAction(value);
+    openModal();
+  };
+
+  const navigate = useNavigate();
+
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useOutsideClickAndEscape(
+    menuRef,
+    document,
+    () => setIsMenuActive(false),
+    buttonRef
+  );
 
   return (
-    <div className={stylesBotCard.card}>
-      <img className={stylesBotCard.icon} src={platform_icon} alt="иконка" />
+    <div className={styles.card}>
       <div
-        className={stylesBotCard.more_button}
-        onClick={() => setIsActive(!isActive)}
-        aria-label="Меню настроек бота"
-      />
-      <div className={stylesBotCard.name_box}>
-        <Typography
-          tag="p"
-          fontFamily="secondary"
-          className={stylesBotCard.name}
-        >
-          {bot_name}
-        </Typography>
+        className={styles.wrapper}
+        onClick={() => {
+          // eslint-disable-next-line no-underscore-dangle
+          navigate(`/${routesUrl.botBuilder}?id=${bot._id}&type=custom`);
+        }}
+      >
+        <div className={styles.header}>
+          <Icon
+            extraClass={styles.icon}
+            icon={
+              bot.messengers[0]
+                ? messengerIcons[bot.messengers[0]!.name]
+                : 'xCircle'
+            }
+            isColored={false}
+          />
+          <BotStatus status="editing" />
+        </div>
+        <div className={styles.name_box}>
+          <Typography tag="p" fontFamily="secondary" className={styles.name}>
+            {bot.title}
+          </Typography>
+        </div>
       </div>
-      {isActive && <MoreMybotPopup setIsOpen={setIsActive} idMyBot={bot_id} />}
+      <button
+        type="button"
+        className={styles.more_button}
+        onClick={() => setIsMenuActive(!isMenuActive)}
+        aria-label="Меню настроек бота"
+        ref={buttonRef}
+      />
+      {isMenuActive && (
+        <BotActionsMenu
+          setIsOpen={setIsMenuActive}
+          bot={bot}
+          ref={menuRef}
+          handleActionSelect={onExtendedActionSelect}
+        />
+      )}
+      {isModalOpen && botAction && (
+        <PopupRouter action={botAction} close={closeModal} bot={bot} />
+      )}
     </div>
   );
 };

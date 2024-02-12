@@ -37,6 +37,7 @@ const data = {
 };
 
 const meta: Meta<typeof MessageBlock> = {
+  title: 'COMPONENTS/Builder/other-components/blocks/message-block',
   component: MessageBlock,
 };
 

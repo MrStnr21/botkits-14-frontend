@@ -1,0 +1,57 @@
+@use '../../stylesheets/variables' as *;
+@use '../../stylesheets/mixins' as *;
+
+@keyframes appear {
+  from {
+    transform: translate(320px);
+  }
+  to {
+    transform: translate(0px);
+  }
+}
+
+@keyframes vanish {
+  0% {
+    opacity: .9;
+  }
+  100% {
+    //display: none;
+    opacity: 0;
+  }
+}
+
+.container {
+  @include flex(column, $align-items: center, $gap: 10px);
+  box-sizing: border-box;
+  position: relative;
+  width: 300px;
+  padding: 20px 10px;
+  background-color: $error-default;
+  border-radius: 30px;
+  opacity: .9;
+
+  &.animated_vanish {
+    animation: vanish 2s forwards;
+    animation-delay: 3s;
+  }
+
+  &.animated_full {
+    animation: appear 1s forwards, vanish 2s forwards 3s;
+  }
+
+}
+
+.title {
+  color: $off-white;
+}
+
+.message {
+  color: $off-white;
+  text-align: center;
+}
+
+.remove {
+  @include button-style-reset;
+  @include size(20px, 20px);
+  @include position(absolute, 10px, 20px)
+}

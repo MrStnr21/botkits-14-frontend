@@ -1,3 +1,5 @@
+import { IconName } from '../ui/icon/utils';
+
 export type IBot = {
   name: string;
   pages: boolean;
@@ -20,7 +22,7 @@ export type TRowData = {
 export type Option = {
   label: string;
   value: string;
-  icon?: string;
+  icon?: IconName;
 };
 
 export type TPromocodes = {

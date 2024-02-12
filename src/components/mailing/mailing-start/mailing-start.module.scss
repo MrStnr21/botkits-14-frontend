@@ -1,0 +1,26 @@
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/variables' as *;
+
+@mixin defaultTextStyles {
+  color: $grey-3;
+  font-style: $bold;
+}
+
+.start {
+  @include size(100%, 330px);
+  @include flex(column, center, center, 16px);
+  border-radius: $xxl-border-radius;
+  background-color: $secondary-cultured-hover;
+
+  &__title {
+    @include defaultTextStyles();
+    line-height: $xl-line-height;
+  }
+
+  &__text {
+    @include defaultTextStyles();
+    line-height: $m-line-height;
+    font-size: $m-font-size;
+  }
+}
+

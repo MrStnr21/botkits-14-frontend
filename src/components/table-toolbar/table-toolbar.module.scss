@@ -2,8 +2,8 @@
 @use '../../stylesheets/variables' as *;
 
 .toolbar {
-  @include flex(row, space-between, center);
-  @include indents(40px 0, 0);
+  @include flex(row-reverse, space-between, center);
+  @include indents(0 0 32px 0, 0);
 
   &__leftSide {
     @include flex(row, unset, center, 16px);

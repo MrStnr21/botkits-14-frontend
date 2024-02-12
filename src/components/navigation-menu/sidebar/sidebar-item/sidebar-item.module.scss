@@ -1,0 +1,88 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+.item {
+  width: 100%;
+  overflow: hidden;
+}
+
+.link {
+  @include flex(row, $align-items: center, $gap: 4px);
+  @include size(100%, 46px);
+  @include button-style-reset;
+  padding: 0 12px 0 4px;
+  position: relative;
+  border-radius: 50px;
+  box-sizing: border-box;
+
+  @include font('Open Sans', $m-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, 0.2px);
+
+  text-decoration: none;
+  transition: all 0.3s;
+
+  svg {
+    flex-shrink: 0;
+    stroke: $secondary-cultured-press;
+  }
+
+  &:hover {
+    background-color: $secondary-cultured-hover;
+  }
+
+  &.active{
+    stroke: $primary-persian-blue-default;
+    color: $primary-persian-blue-default;
+    &:hover {
+      background-color: inherit;
+      cursor: default;
+    }
+  }
+
+  &.disabled {
+    cursor: default;
+    opacity: .4;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
+}
+
+.icon-wrapper {
+  @include flex(row, center, center);
+  @include min-size(46px, 46px);
+}
+
+.icon {
+  @include size(24px, 24px);
+  color: $grey-1;
+
+  &.active {
+    color: inherit;
+  }
+}
+
+.list {
+  @include flex(column, $gap: 8px);
+  padding: 0;
+  list-style: none;
+}
+
+.chevron {
+  @include position(absolute, 13px, 0);
+  @include size(20px, 20px);
+
+  transition: transform .3s;
+
+  &.opened {
+    transform: (rotate(180deg));
+  }
+}
+
+.text {
+  @include font('Open Sans', $m-font-size, $normal);
+  @include line-sizes($xl-line-height, 0.2px);
+  min-width: 142px;
+  text-align: start;
+}

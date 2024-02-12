@@ -1,21 +1,12 @@
-import equalImage from '../../../images/icon/24x24/variables/equal.svg';
-import notEqualImage from '../../../images/icon/24x24/variables/equal-not.svg';
-import noCaseEqualImage from '../../../images/icon/24x24/variables/equal without case.svg';
-import inLineNoCaseImage from '../../../images/icon/24x24/variables/in line without case.svg';
-import inLineImage from '../../../images/icon/24x24/variables/in line.svg';
-import lessOrEqualImage from '../../../images/icon/24x24/variables/less or equal.svg';
-import lessImage from '../../../images/icon/24x24/variables/less.svg';
-import moreOrEqualImage from '../../../images/icon/24x24/variables/more or equal.svg';
-import moreImage from '../../../images/icon/24x24/variables/more.svg';
-import notInLineWithoutCaseImage from '../../../images/icon/24x24/variables/not in line without case.svg';
-import notInLineImage from '../../../images/icon/24x24/variables/not in line.svg';
 import { MessageDataTypes } from '../../../services/types/builder';
+import { baseSlateData } from '../../../utils/constants';
+import { Option } from '../../../utils/types';
 
 export enum ButtonSizes {
   startX = 32,
   firstY = 244,
-  secondY = 452,
-  blockGap = 86,
+  secondY = 446,
+  blockGap = 74,
   addString = 16,
   buttonHeight = 40,
   gap = 12,
@@ -24,8 +15,8 @@ export enum ButtonSizes {
 export enum ButtonSizesMobile {
   startX = ButtonSizes.startX * 0.5,
   firstY = 155,
-  secondY = 295,
-  blockGap = 55,
+  secondY = 289,
+  blockGap = 43,
   addString = 8,
   buttonHeight = 27,
   gap = 12,
@@ -47,12 +38,6 @@ export const saveOptions = [
   { value: 'suppl', nameValue: 'Дополнить запись' },
 ];
 
-export const selectValues = [
-  { value: '1', label: '1' },
-  { value: '2', label: '2' },
-  { value: '3', label: '3' },
-];
-
 export const selectValuesType = [
   { value: 'random', label: 'Случайное' },
   { value: 'static', label: 'Статичное' },
@@ -61,59 +46,59 @@ export const selectValuesType = [
   { value: 'CRM', label: 'CRM' },
 ];
 
-export const signSelectValues = [
+export const signSelectValues: Option[] = [
   {
-    icon: equalImage,
+    icon: 'equal',
     value: 'eq',
     label: 'Равно',
   },
   {
-    icon: notEqualImage,
+    icon: 'equalNot',
     value: 'neq',
     label: 'Не равно',
   },
   {
-    icon: moreImage,
+    icon: 'more',
     value: 'more',
     label: 'Больше',
   },
   {
-    icon: moreOrEqualImage,
+    icon: 'moreOrEqual',
     value: 'moreeq',
     label: 'Больше или равно',
   },
   {
-    icon: lessImage,
+    icon: 'less',
     value: 'less',
     label: 'Меньше',
   },
   {
-    icon: lessOrEqualImage,
+    icon: 'lessOrEqual',
     value: 'lesseq',
     label: 'Меньше или равно',
   },
   {
-    icon: noCaseEqualImage,
+    icon: 'equalWithoutCase',
     value: 'eqnoreg',
     label: 'Равно (без учёта регистра)',
   },
   {
-    icon: inLineNoCaseImage,
+    icon: 'inLineWithoutCase',
     value: 'instrnoreg',
     label: 'Входит в строку (без учёта регистра)',
   },
   {
-    icon: inLineImage,
+    icon: 'inLine',
     value: 'instr',
     label: 'Входит в строку',
   },
   {
-    icon: notInLineWithoutCaseImage,
+    icon: 'notInLineWithoutCase',
     value: 'notinstrnoreg',
     label: 'Не входит в строку (без учёта регистра)',
   },
   {
-    icon: notInLineImage,
+    icon: 'notInLine',
     value: 'notinstr',
     label: 'Не входит в строку',
   },
@@ -125,7 +110,7 @@ export const currencyAvailable = [
   { value: 'Доллары США', label: 'USD' },
 ];
 
-export const messagesSuccessful = [
+export const blocks = [
   { value: 'message', label: 'Блок сообщений' },
   { value: 'api', label: 'API' },
   { value: 'conditional', label: 'Условный блок' },
@@ -141,7 +126,7 @@ export const defaultBlocks = {
   message: {
     name: 'message',
     data: [
-      { type: MessageDataTypes.message, value: '' },
+      { type: MessageDataTypes.message, value: baseSlateData },
       { type: MessageDataTypes.buttons, verButtons: [], horButtons: [] },
       { type: MessageDataTypes.answers, verButtons: [], horButtons: [] },
     ],
@@ -203,6 +188,8 @@ export const defaultBlocks = {
     variables: [],
   },
 };
+
+export const coordinateRegExp = /^-?\d*[.,]?\d*$/;
 
 export default {};
 

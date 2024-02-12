@@ -1,59 +1,55 @@
 import { FC, useState } from 'react';
-
 import stylesMenuTime from './menu-time.module.scss';
 
 export interface IMenuTime {
-  isActive?: boolean;
-  top?: number;
-  left?: number;
+  curHour?: number;
+  curMin?: number;
   saveFunction: Function;
   clearFunction: Function;
+  closeMenu: () => void;
 }
 
 const MenuTime: FC<IMenuTime> = ({
-  isActive = false,
-  top = 0,
-  left = 0,
+  curHour,
+  curMin,
   clearFunction,
   saveFunction,
+  closeMenu,
 }): JSX.Element => {
-  const [minute, setMinute] = useState<number>(0);
-  const [hour, setHour] = useState<number>(0);
+  const [minute, setMinute] = useState<number>(curMin || 0);
+  const [hour, setHour] = useState<number>(curHour || 0);
 
   const saveHandler = () => {
-    saveFunction(`${hour}:${minute}`);
+    saveFunction(hour * 60 + minute);
+    closeMenu();
   };
 
   const clearHandler = () => {
     setMinute(0);
     setHour(0);
     clearFunction();
+    closeMenu();
+  };
+
+  const stopPropogation = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
 
   const minutes = new Array(60).fill(0).map((item, index) => index);
   const hours = new Array(24).fill(0).map((item, index) => index);
 
-  let boxClassName = stylesMenuTime.box;
-
-  if (isActive) {
-    boxClassName += ' ';
-    boxClassName += stylesMenuTime.active;
-  } else {
-    boxClassName = stylesMenuTime.box;
-  }
-
   return (
-    <div
-      className={boxClassName}
-      style={{ top: `${top}px`, left: `${left}px` }}
-    >
+    <div onClick={stopPropogation} className={stylesMenuTime.box}>
       <div className={stylesMenuTime.flex_row}>
         <div className={stylesMenuTime.numbers_box}>
           {hours.map((item) => {
             return (
               <div
-                className={stylesMenuTime.number_unit}
+                className={`${stylesMenuTime.number_unit} ${
+                  item === hour ? stylesMenuTime.number_unit_active : ''
+                }`}
                 onClick={() => setHour(item)}
+                key={item}
               >
                 {item}
               </div>
@@ -64,8 +60,11 @@ const MenuTime: FC<IMenuTime> = ({
           {minutes.map((item) => {
             return (
               <div
-                className={stylesMenuTime.number_unit}
+                className={`${stylesMenuTime.number_unit} ${
+                  item === minute ? stylesMenuTime.number_unit_active : ''
+                }`}
                 onClick={() => setMinute(item)}
+                key={item}
               >
                 {item}
               </div>

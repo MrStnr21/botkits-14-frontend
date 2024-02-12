@@ -3,7 +3,8 @@
 
 .card {
   @include size(296px, 172px);
-  @include flex(column, flex-start);
+  box-sizing: border-box;
+  padding: 24px 32px 16px;
   background-color: $off-white;
   border-radius: $xxl-border-radius;
   box-shadow: $l-box-shadow;
@@ -13,12 +14,26 @@
   }
 }
 
+.wrapper {
+  @include flex(column, space-between);
+  height: 100%;
+
+  &:hover {
+    cursor: $cursor;
+  }
+}
+
+.header {
+  @include flex($gap: 20px);
+}
+
 .icon {
   @include size(52px, 52px);
-  margin: 24px 0 0 32px;
 }
 
 .more_button {
+  @include button-style-reset();
+  outline: none; // TODO перенести в button-style-reset();
   @include size(24px, 24px);
   @include position(absolute, 32px, $left: 256px);
   cursor: $cursor;
@@ -31,9 +46,9 @@
 
 .name_box {
   @include flex($align-items: center);
+  margin-top: auto;
   height: 56px;
-  margin: 24px 0 0 32px;
-  max-width: 170px;
+  max-width: 100%;
 }
 
 .name {

@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Position, useReactFlow, useNodeId } from 'reactflow';
-import { useMediaQuery } from '@mui/material';
+import { Position } from 'reactflow';
 import styles from './button-inline.module.scss';
 import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
 import askPhoneIcon from '../../../../../images/icon/24x24/constructor/ask-phone.svg';
@@ -10,8 +9,8 @@ import {
   TBlockProps,
   TButtonBlock,
 } from '../../../../../services/types/builder';
-import { setFlowData } from '../../../utils';
-import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
+import { setFlowDataInit } from '../../../utils';
+import { deleteOnClickFlow, toggleStringFlow } from '../flow';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
@@ -19,32 +18,15 @@ export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
  * компонент-нода. кнопка/ответ, добавляем(ый/ая) в MessageBlock
  */
 const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
+  const setFlowData = setFlowDataInit();
   const [hidden, setHidden] = useState(true);
-  const { getNodes, setNodes, getNode } = useReactFlow();
-  const id = useNodeId() || '';
-  const isMobile = useMediaQuery('(max-width: 620px)');
-
-  const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
-
-  const closedButtonSizeDesk = ButtonSizes.buttonHeight + ButtonSizes.gap;
-  const openedButtonSizeDesk = closedButtonSizeDesk + ButtonSizes.addString;
-
-  const closedButtonSizeMobile =
-    ButtonSizesMobile.buttonHeight + ButtonSizesMobile.gap;
-  const openedButtonSizeMobile =
-    closedButtonSizeMobile + ButtonSizesMobile.addString;
-
-  const closedButtonSize = isMobile
-    ? closedButtonSizeMobile
-    : closedButtonSizeDesk;
-  const openedButtonSize = isMobile
-    ? openedButtonSizeMobile
-    : openedButtonSizeDesk;
 
   const [menu, toggleMenu] = useState<boolean>(false);
 
-  const setName = setFlowData({ selectors: ['name'] });
-  const setAdditionalString = setFlowData({ selectors: ['str'] });
+  const setName = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'name'], value: e.target.value });
+  const setAdditionalString = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFlowData({ path: ['data', 'str'], value: e.target.value });
 
   // ReactFlow стандартно поддерживает удаление nodes по клику на заданную кнопку. Данная функция для отмены такого поведения
   const preventButtonRemove = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -54,111 +36,13 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   };
 
   // Добавление/удаление 2-ой строки в кнопке/ответе. При добавлении/удалении нужно пересчитывать положение прочих элементов
-  const toggleString = () => {
-    const node = getNode(id);
-    setNodes([
-      ...getNodes().map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            data: { ...item.data, additionalData: !data.additionalData },
-          };
-        }
-        if (
-          item.position.y > node!.position.y &&
-          node?.parentNode === item.parentNode
-        ) {
-          if (node && node.data.additionalData) {
-            return {
-              ...item,
-              position: {
-                ...item.position,
-                y: item.position.y - buttonSizes.addString,
-              },
-              data: {
-                ...item.data,
-                deskY: item.data.deskY - ButtonSizes.addString,
-                mobY: item.data.mobY - ButtonSizesMobile.addString,
-              },
-            };
-          }
-          if (node && !node.data.additionalData) {
-            return {
-              ...item,
-              position: {
-                ...item.position,
-                y: item.position.y + buttonSizes.addString,
-              },
-              data: {
-                ...item.data,
-                deskY: item.data.deskY + ButtonSizes.addString,
-                mobY: item.data.mobY + ButtonSizesMobile.addString,
-              },
-            };
-          }
-        }
-        if (item.id === node?.parentNode) {
-          return { ...item, data: { ...item.data } };
-        }
-        return item;
-      }),
-    ]);
-  };
+  const toggleString = toggleStringFlow();
 
-  const setColor = (color: string) => {
-    const nodes = getNodes();
-    setNodes(
-      nodes.map((item) => {
-        if (item.id === id) {
-          return { ...item, data: { ...item.data, color } };
-        }
-        return item;
-      })
-    );
-  };
+  const setColor = (color: string) =>
+    setFlowData({ path: ['data', 'color'], value: color });
 
   // функция удаления кнопки/ответа. При удалении требуется пересчитывать расположение прочих кнопок/ответов
-  const deleteOnClick = () => {
-    const node = getNode(id);
-    const nodes = getNodes().filter((item) => item.id !== id);
-    setNodes(
-      nodes.map((item) => {
-        if (
-          item.position.y > node!.position.y &&
-          node?.parentNode === item.parentNode
-        ) {
-          return {
-            ...item,
-            position: {
-              ...item.position,
-              y:
-                item.position.y -
-                (node!.data.additionalData
-                  ? openedButtonSize
-                  : closedButtonSize),
-            },
-            data: {
-              ...item.data,
-              deskY:
-                item.data.deskY -
-                (node!.data.additionalData
-                  ? openedButtonSizeDesk
-                  : closedButtonSizeDesk),
-              mobX:
-                item.data.mobY -
-                (node!.data.additionalData
-                  ? openedButtonSizeMobile
-                  : closedButtonSizeMobile),
-            },
-          };
-        }
-        if (item.id === node?.parentNode) {
-          return { ...item, data: { ...item.data } };
-        }
-        return item;
-      })
-    );
-  };
+  const deleteOnClick = deleteOnClickFlow();
 
   const getIcon = () => {
     switch (data.type) {

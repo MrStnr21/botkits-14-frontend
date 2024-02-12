@@ -8,6 +8,7 @@ const data = {
 };
 
 const meta: Meta<typeof ConditionalBlock> = {
+  title: 'COMPONENTS/Builder/other-components/blocks/conditional-block',
   component: ConditionalBlock,
 };
 

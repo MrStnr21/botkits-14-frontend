@@ -1,12 +1,18 @@
-import { FC, ReactElement, useState } from 'react';
-import { Position, useReactFlow, useNodeId, Edge } from 'reactflow';
-import { v4 as uuid } from 'uuid';
+import { FC, ReactElement, useState, useEffect } from 'react';
+import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
 import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
 import CustomHandle from '../flow/custom-handle/custom-handle';
-import { setFlowData } from '../utils';
-import { storeOfVariables } from '../utils/store';
+import {
+  setFlowDataInit,
+  saveName,
+  clearingNames,
+  clearingVariables,
+} from '../utils';
+import { namesOfBlocks, storeOfVariables } from '../utils/store';
+
+import { removeNodeFlow, copyNodeFlow } from './flow';
 
 type TControlLayoutProps = {
   children?: ReactElement | ReactElement[];
@@ -20,72 +26,33 @@ type TControlLayoutProps = {
  * Общий layout для блоков билдера
  */
 const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
+  const setFlowData = setFlowDataInit();
   const [hidden, setHidden] = useState(true);
   const [menu, toggleMenu] = useState(false);
-  const id = useNodeId();
-  const { getNodes, setNodes, getNode, getEdges, setEdges } = useReactFlow();
+  const id = useNodeId() || '';
+  const { getNodes, setNodes, getNode } = useReactFlow();
   const node = getNode(id!);
 
-  const setName = setFlowData({ selectors: ['name'] });
+  useEffect(() => {
+    saveName(namesOfBlocks, node?.data.name, id, node?.type);
+    clearingNames(namesOfBlocks, getNodes());
+    clearingVariables(storeOfVariables, getNodes());
+  }, [getNodes()]);
+
+  const setName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    saveName(namesOfBlocks, e.target.value, id, node?.type);
+    setFlowData({ path: ['data', 'name'], value: e.target.value });
+  };
 
   const onClick = () => {
     toggleMenu(!menu);
   };
 
   // метод для удаления ноды из store
-  const removeNode = () => {
-    const nodes = getNodes().filter((item) => {
-      return item.id !== id && item.parentNode !== id;
-    });
-    setNodes(nodes);
-
-    const updatedEdges = getEdges().reduce(
-      (acc: Edge<any>[], edge: Edge<any>) => {
-        if (edge.source !== id && edge.target !== id) {
-          acc.push(edge);
-        }
-        return acc;
-      },
-      []
-    );
-
-    setEdges(updatedEdges);
-
-    const indexes: number[] = [];
-    storeOfVariables.forEach((el, ind) => {
-      if (el.id.split('|||')[0] === id) {
-        indexes.push(ind);
-      }
-    });
-
-    indexes.forEach((ind, i) => {
-      storeOfVariables.splice(ind - i, 1);
-    });
-  };
+  const removeNode = removeNodeFlow();
 
   // копирование ноды с данными исходной и дочерними нодами
-  const copyNode = () => {
-    const newNode = {
-      id: uuid(),
-      type: node!.type,
-      position: { x: node!.position.x + 300, y: node!.position.y },
-      data: node!.data,
-    };
-    const childNodes = getNodes()
-      .filter((item) => item.parentNode === id)
-      .map((item) => {
-        return {
-          id: uuid(),
-          position: item.position,
-          type: item.type,
-          data: item.data,
-          expandParent: true,
-          parentNode: newNode.id,
-          draggable: false,
-        };
-      });
-    setNodes([...getNodes(), newNode, ...childNodes]);
-  };
+  const copyNode = copyNodeFlow({ getNodes, setNodes, node, id });
 
   return (
     <article className={styles.container}>

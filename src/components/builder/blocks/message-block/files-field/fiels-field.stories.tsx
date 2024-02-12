@@ -1,19 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import FielsField from './fiels-field';
+import { ReactFlowProvider } from 'reactflow';
+import FilesField from './files-field';
 import ControlLayout from '../../../control-layout/control-layout';
 
-const meta: Meta<typeof FielsField> = {
-  component: FielsField,
+const meta: Meta<typeof FilesField> = {
+  title: 'COMPONENTS/Builder/other-components/blocks/message-block/files-field',
+  component: FilesField,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof FielsField>;
+type Story = StoryObj<typeof FilesField>;
 
 export const Block: Story = {
   render: () => (
-    <ControlLayout type="test">
-      <FielsField />
-    </ControlLayout>
+    <ReactFlowProvider>
+      <ControlLayout type="test">
+        <FilesField />
+      </ControlLayout>
+    </ReactFlowProvider>
   ),
 };

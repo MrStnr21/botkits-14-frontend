@@ -2,20 +2,27 @@ import { FC, useMemo } from 'react';
 import { useReactFlow, useNodeId } from 'reactflow';
 
 import styles from './mode.module.scss';
-import { selectValues, signSelectValues } from '../../../utils/data';
+import { signSelectValues } from '../../../utils/data';
+import { storeOfVariables } from '../../../utils/store';
 import Input from '../../../../../ui/inputs/input/input';
 import Select from '../../../../../ui/select/select';
-import { getSelectItemByValue } from '../../../utils';
+import {
+  getSelectItemByValue,
+  setFlowDataInit,
+  getSelectLabel,
+} from '../../../utils';
 
 export type TEasyBlockProps = {
   id: string;
+  index: number;
 };
 
 /**
  * компонент-подблок для  взаимодействия с переменной, уникальная для простого режима часть
  */
-const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
-  const { getNodes, setNodes, getNode } = useReactFlow();
+const EasyMode: FC<TEasyBlockProps> = ({ id, index }) => {
+  const setFlowData = setFlowDataInit();
+  const { getNode } = useReactFlow();
   const idNode = useNodeId() || '';
   const node = getNode(idNode);
 
@@ -26,63 +33,42 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
     [node]
   );
 
-  // todo - данная функция уже задана в ConditionalBlock, вынести её в utils
-  const setItemVariables = (
-    idItem: string,
-    key: 'id' | 'type' | 'variable' | 'sign' | 'condition' | 'targetBlock',
-    value: any
-  ) => {
-    setNodes(
-      getNodes().map((item) => {
-        if (item.id === idNode) {
-          return {
-            ...item,
-            data: {
-              ...item.data,
-              variables:
-                node &&
-                node.data.variables.map(
-                  (elem: { [x: string]: any; id: string }) => {
-                    if (elem.id === idItem) {
-                      // eslint-disable-next-line no-param-reassign
-                      elem[key] = value;
-                    }
-                    return elem;
-                  }
-                ),
-            },
-          };
-        }
-        return item;
-      })
-    );
+  const setCondition = (value: string) => {
+    setFlowData({
+      path: ['data', 'variables', index.toString(), 'condition'],
+      value,
+    });
   };
 
-  const setCondition = (value: any) => {
-    setItemVariables(id, 'condition', value);
-  };
+  const setVariable = (value: string) =>
+    setFlowData({
+      path: ['data', 'variables', index.toString(), 'variable'],
+      value,
+    });
 
-  const setVariable = (value: any) => setItemVariables(id, 'variable', value);
-
-  const setSign = (value: any) => setItemVariables(id, 'sign', value);
+  const setSign = (value: string) =>
+    setFlowData({
+      path: ['data', 'variables', index.toString(), 'sign'],
+      value,
+    });
 
   const content = useMemo(
     () => (
       <>
-        <div className={styles['selects-string']}>
-          <div className={styles.selectsVariable}>
+        <div className={styles.selects}>
+          <div className={styles.variable}>
             <Select
-              options={selectValues}
+              options={getSelectLabel(storeOfVariables)}
               handleSelect={(option) => setVariable(option.value)}
               currentOption={getSelectItemByValue(
                 itemFromVariables.variable,
-                selectValues
+                getSelectLabel(storeOfVariables)
               )}
               elementToCloseListener="flow"
               adaptive
             />
           </div>
-          <div className={styles.selectsIcon}>
+          <div className={styles.comparison}>
             <Select
               options={signSelectValues}
               handleSelect={(option) => setSign(option.value)}
@@ -92,8 +78,9 @@ const EasyMode: FC<TEasyBlockProps> = ({ id }) => {
                   signSelectValues
                 ) || signSelectValues[0]
               }
-              layoutClassName={styles.selectLayout}
-              itemClassName={styles.selectItem}
+              layoutClassName={styles.select_layout}
+              itemClassName={styles.select_item}
+              iconClassName={styles.select_item__icon}
               elementToCloseListener="flow"
               adaptive
             />
