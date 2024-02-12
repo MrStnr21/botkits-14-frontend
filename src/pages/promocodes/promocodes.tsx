@@ -14,7 +14,11 @@ import {
   promoRowStyleRef,
   promoTableModalButtons,
 } from './promocodesConfig';
-import { getPromocodes, patchPromocode } from '../../api/promocodes';
+import {
+  deletePromo,
+  getPromocodes,
+  patchPromocode,
+} from '../../api/promocodes';
 import Button from '../../ui/buttons/button/button';
 import AddPromoPopup from '../../components/popups/add-promo-popup/add-promo-popup';
 
@@ -44,7 +48,7 @@ const Promocodes: FC = (): JSX.Element => {
         })
       );
     });
-  }, []);
+  }, [popupOpened]);
 
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
@@ -102,6 +106,7 @@ const Promocodes: FC = (): JSX.Element => {
               headerOptions={promoDropdownValues}
               onUpdate={patchPromocode}
               setTableData={setData}
+              onDelete={deletePromo}
             />
           </div>
         </div>

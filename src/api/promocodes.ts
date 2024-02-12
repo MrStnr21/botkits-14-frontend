@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { TableData } from '../components/enhanced-table/enhanced-table';
 import { TPromocode } from '../services/types/promocodes';
-import { getReq, patchReq, postReq } from './api';
+import { deleteReq, getReq, patchReq, postReq } from './api';
 
 function getPromocodes() {
   return getReq<TPromocode[]>({
@@ -34,4 +34,8 @@ function patchPromocode(promocode: TableData) {
   });
 }
 
-export { getPromocodes, postPromocode, patchPromocode };
+function deletePromo(id: string) {
+  return deleteReq({ uri: `promocodes/${id}`, auth: true });
+}
+
+export { getPromocodes, postPromocode, patchPromocode, deletePromo };
