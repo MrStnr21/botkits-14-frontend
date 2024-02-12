@@ -6,16 +6,28 @@ import styles from './dashboard.module.scss';
 import KnowledgeBase from '../../components/dashbord/knowledge-base/knowledge-base';
 import Templates from '../../components/dashbord/templates/templates';
 import MyBots from '../../components/dashbord/my-bots/my-bots';
-import { botsSel, getUserInfoSel } from '../../utils/selectorData';
+import {
+  botsSel,
+  getTemplatesBotsSel,
+  getUserInfoSel,
+} from '../../utils/selectorData';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { TBot } from '../../services/types/bot';
 import { getUserInfoAction } from '../../services/actions/user/user';
+import { getTemplatesBotsAction } from '../../services/actions/bots/templatesBots';
+import { TBot } from '../../services/types/bot';
 
 const Dashboard: FC = (): JSX.Element => {
   const { bots } = useAppSelector(botsSel);
   const { user } = useAppSelector(getUserInfoSel);
+  const { botTemplates } = useAppSelector(getTemplatesBotsSel);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!botTemplates) {
+      dispatch(getTemplatesBotsAction());
+    }
+  }, [dispatch, botTemplates]);
 
   useEffect(() => {
     if (!user) {
@@ -47,7 +59,7 @@ const Dashboard: FC = (): JSX.Element => {
 
   return (
     <div className={styles.dashboard}>
-      <Templates />
+      {botTemplates && <Templates templates={botTemplates} />}
       <MyBots title="Мои боты" bots={userBots} hasAddBtn />
       {sharedBots.length > 0 && (
         <MyBots
