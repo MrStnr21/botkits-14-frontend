@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, ReactNode, useMemo, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { SxProps } from '@mui/system';
 import Paper from '@mui/material/Paper';
-import { Box, Checkbox } from '@mui/material';
+import { Box, Checkbox, Divider, useMediaQuery } from '@mui/material';
 import Typography from '../../ui/typography/typography';
 import TableToolbar from '../table-toolbar/table-toolbar';
 import EnhancedTableHeader from '../table-header/table-header';
@@ -26,6 +27,7 @@ import SelectPagination from './select-pagination/select-pagination';
 import { Option } from '../../utils/types';
 import { useAppDispatch } from '../../services/hooks/hooks';
 import { createAddErrorAction } from '../../services/actions/errors/errors';
+import { switchingWidth } from '../../stylesheets/scss-variables';
 
 type Columns = {
   id?: number;
@@ -112,6 +114,9 @@ const EnhancedTable: FC<IProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageValue);
   const [selected, setSelected] = useState<number[]>([]);
   const dispatch = useAppDispatch();
+
+  const isMobile = useMediaQuery(`(max-width: ${switchingWidth})`);
+
   // переключение страницы
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
