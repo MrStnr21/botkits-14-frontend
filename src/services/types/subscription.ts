@@ -7,6 +7,7 @@ export type TSubscriptionData = {
   status: boolean;
   payments: TSubscriptionPayment[];
   tariff: any;
+  isCanceled: boolean;
 };
 
 export type TSubscriptionPayment = {

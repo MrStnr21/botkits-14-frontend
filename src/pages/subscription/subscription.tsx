@@ -53,8 +53,6 @@ const Subscription: FC = (): JSX.Element => {
     setPopupType(type);
   };
 
-  console.log(subscriptionData?.payments);
-
   useEffect(() => {
     getSubscriptions().then((data) => {
       setSubscriptionData({ ...data, payments: data.payments.reverse() });
@@ -138,7 +136,7 @@ const Subscription: FC = (): JSX.Element => {
               </Typography>
             </div>
             <div className={style.settings}>
-              {subscriptionData.status ? (
+              {subscriptionData.status && !subscriptionData.isCanceled ? (
                 <>
                   <p className={style.info}>Следующее списание</p>
                   <p className={style.card}>

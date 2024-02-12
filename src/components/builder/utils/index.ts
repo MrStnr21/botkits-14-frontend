@@ -289,7 +289,7 @@ export const filterNodes = (nodes: Node[]) => {
 export const getUrlPath: {
   [key: string]: string;
 } = {
-  custom: 'bots',
+  custom: 'bots/bot',
   template: 'bots/template',
 };
 
@@ -371,7 +371,7 @@ export const connectStrings = (strings: string[], separator: string) => {
 };
 
 /**
- * создание массива объектов для передачи в селект из массива объектов с ключом name 
+ * создание массива объектов для передачи в селект из массива объектов с ключом name
  * @param {{ name: string }[]} store массив разделяемых строк
  * @returns {{ value: string, label: string }[]} массива объектов с ключами value и label
  */
