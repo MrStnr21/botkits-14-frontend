@@ -44,7 +44,7 @@ export const promoColumns = [
     id: 1,
     key: 'formatedDate',
     label: 'Дата',
-    colStyle: { ...promoHeadStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '20%' },
     cellComponent: baseCell,
   },
   {
@@ -79,7 +79,7 @@ export const promoColumns = [
     id: 6,
     key: 'status',
     label: 'Статус',
-    colStyle: { ...promoHeadStyle, width: '10%' },
+    colStyle: { ...promoHeadStyle, width: '15%' },
     cellComponent: switcherCell,
   },
 ];
