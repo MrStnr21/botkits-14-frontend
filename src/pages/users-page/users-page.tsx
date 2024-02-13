@@ -1,173 +1,47 @@
-import { FC } from 'react';
+/* eslint-disable no-underscore-dangle */
+import { FC, useEffect, useState } from 'react';
 import stylesUsers from './users-page.module.scss';
 import Typography from '../../ui/typography/typography';
-import EnhancedTable from '../../components/enhanced-table/enhanced-table';
+import EnhancedTable, {
+  TableData,
+} from '../../components/enhanced-table/enhanced-table';
 
-import { baseCell, ppHeadCell } from '../../components/table-cells/table-cells';
+import { ppHeadCell } from '../../components/table-cells/table-cells';
+import {
+  Cols,
+  cellStyle,
+  rowStyleRef,
+  shareTableModalButtons,
+} from './users-config';
+import { getUsersInfo, removeUser } from '../../api/user';
+
+const dateFormat = new Intl.DateTimeFormat('ru', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
 
 const UsersPage: FC = () => {
-  const shareHeadStyle = {
-    border: 'none',
-    backgroundColor: '#ECEFFF',
-    padding: '0',
-    borderRadius: '0',
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: '400',
-    fontSize: '16px',
-    ':last-of-type': {
-      borderRadius: '0 10px 10px 0',
-    },
-  };
-
-  const Cols = [
-    {
-      id: 1,
-      key: 'name',
-      label: 'Имя',
-      colStyle: { ...shareHeadStyle, width: '12%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 2,
-      key: 'mail',
-      label: 'Email',
-      colStyle: { ...shareHeadStyle, width: '12%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 3,
-      key: 'phone',
-      label: 'Телефон',
-      colStyle: { ...shareHeadStyle, width: '10%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 4,
-      key: 'count',
-      label: 'Кол-во ботов',
-      colStyle: { ...shareHeadStyle, width: '8%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 5,
-      key: 'date',
-      label: 'Дата регистрации',
-      colStyle: { ...shareHeadStyle, width: '12%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 6,
-      key: 'account',
-      label: 'Активность аккаунта',
-      colStyle: { ...shareHeadStyle, width: '12%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 7,
-      key: 'bots',
-      label: 'Активность бота',
-      colStyle: { ...shareHeadStyle, width: '10%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 8,
-      key: 'tariff',
-      label: 'Тариф',
-      colStyle: { ...shareHeadStyle, width: '10%' },
-      cellComponent: baseCell,
-    },
-    {
-      id: 9,
-      key: 'end',
-      label: 'Окончание тарифа',
-      colStyle: { ...shareHeadStyle, width: '12%' },
-      cellComponent: baseCell,
-    },
-  ];
-
-  const Row = [
-    {
-      id: 1,
-      name: 'Leslie Alexander',
-      mail: 'leslie@gmail.com',
-      phone: '+78888888800',
-      count: 4,
-      date: '14/03/2023',
-      account: '04/05/2023',
-      bots: '09/05/2023',
-      tariff: '',
-      end: '14/03/2024',
-    },
-    {
-      id: 2,
-      name: 'Leslie Genevieve',
-      mail: 'leslieG@gmail.com',
-      phone: '+375295012955',
-      count: 2,
-      date: '14/03/2023',
-      account: '02/04/2023',
-      bots: '14/04/2023',
-      tariff: '',
-      end: '14/03/2024',
-    },
-    {
-      id: 3,
-      name: 'Wade Warren',
-      mail: 'leslieG@gmail.com',
-      phone: '+79160012540',
-      count: 20,
-      date: '14/03/2023',
-      account: '06/07/2023',
-      bots: '18/07/2023',
-      tariff: '',
-      end: '14/03/2024',
-    },
-    {
-      id: 4,
-      name: 'Jenny Wilson',
-      mail: 'leslieG@gmail.com',
-      phone: '+375178001234',
-      count: 14,
-      date: '14/03/2023',
-      account: '21/03/2023',
-      bots: '21/03/2023',
-      tariff: '',
-      end: '14/03/2024',
-    },
-    {
-      id: 5,
-      name: 'Bessie Cooper',
-      mail: 'leslieG@gmail.com',
-      phone: '+79160012540',
-      count: 47,
-      date: '14/03/2023',
-      account: '31/03/2023',
-      bots: '1/04/2023',
-      tariff: '',
-      end: '14/03/2024',
-    },
-  ];
-
-  const cellStyle = {
-    border: 'none',
-    padding: '0',
-    boxSizing: 'border-box',
-    maxWidth: '168px',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  };
-
-  const rowStyleRef = {
-    height: '72px',
-    borderBottom: '.5px #CCD4E0 solid',
-    ':hover': {
-      backgroundColor: '#F8F9FB',
-    },
-    cursor: 'pointer',
-  };
-
-  const shareTableModalButtons = [{ label: 'Удалить', value: 'del' }];
+  const [tableData, setTableData] = useState<TableData[]>([]);
+  useEffect(() => {
+    getUsersInfo().then((data) => {
+      setTableData(
+        data.map((row) => {
+          return {
+            ...row,
+            dateRegistration: dateFormat.format(new Date(row.dateRegistration)),
+            lastActivityAccount: dateFormat.format(
+              new Date(row.lastActivityAccount)
+            ),
+            lastActivityBot: dateFormat.format(new Date(row.lastActivityBot)),
+            debitDate: dateFormat.format(new Date(row.debitDate)),
+            tariffName: row.tariff.name,
+            _id: row.id,
+          };
+        })
+      );
+    });
+  }, []);
 
   return (
     <div className={stylesUsers.layout}>
@@ -187,11 +61,13 @@ const UsersPage: FC = () => {
         toolbarFilters
         columns={Cols}
         headComponent={ppHeadCell}
-        tableData={Row}
+        tableData={tableData}
         rowStyle={rowStyleRef}
         cellStyle={cellStyle}
         shadow={1}
         menuOptions={shareTableModalButtons}
+        setTableData={setTableData}
+        onDelete={removeUser}
       />
     </div>
   );
