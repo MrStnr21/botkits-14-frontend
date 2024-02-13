@@ -27,13 +27,18 @@ export interface IRenameBotErrorAction {
  * Экшн переименования бота
  * @param id ID изменяемого бота
  * @param title новое имя бота
+ * @param permission разрешения на действия с ботом
  */
-const renameBotAction: AppThunk = (id: TBot['_id'], title: TBot['title']) => {
+const renameBotAction: AppThunk = (
+  id: TBot['_id'],
+  title: TBot['title'],
+  permission: TBot['permission']
+) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: RENAME_BOT_REQUEST,
     });
-    renameBotApi(id, title)
+    renameBotApi(id, title, permission)
       .then((res: IRenameBotResponse) => {
         if (res) {
           dispatch({

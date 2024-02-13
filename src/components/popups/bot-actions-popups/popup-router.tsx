@@ -38,7 +38,7 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
 
   const handleRename = (value: TBot['title']) => {
     // eslint-disable-next-line no-underscore-dangle
-    dispatch(renameBotAction(bot._id, value));
+    dispatch(renameBotAction(bot._id, value, bot.permission));
     close();
   };
 
