@@ -26,6 +26,7 @@ import MobileDialogInformation from '../chat/Information/MobileDialogInformation
 import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
 import MailingConditions from '../mailing/mailing-conditions/mailing-conditions';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
+import Promocodes from '../../pages/promocodes/promocodes';
 import ErrorNotificator from '../error-notificator/error-notificator';
 import Tariffs from '../../pages/tariffs/tariffs';
 
@@ -198,6 +199,15 @@ const App: FC = (): JSX.Element => {
             element={
               <ProtectedRoute>
                 <UsersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path={routesUrl.notFound} element={<NotFound />} />
+          <Route
+            path={routesUrl.promocodes}
+            element={
+              <ProtectedRoute>
+                <Promocodes />
               </ProtectedRoute>
             }
           />

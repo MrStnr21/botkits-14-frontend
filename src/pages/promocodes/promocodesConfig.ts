@@ -1,7 +1,7 @@
 import {
   baseCell,
   inputCell,
-  statusPromoCell,
+  switcherCell,
 } from '../../components/table-cells/table-cells';
 
 export const promoTableModalButtons = [{ label: 'Удалить', value: 'del' }];
@@ -39,65 +39,52 @@ export const promoCellStyle = {
   boxSizing: 'border-box',
 };
 
-export const promoRows = [
-  {
-    id: 1,
-    date: '15.12.2023 11:00',
-    promo: 'GHBDTN5',
-    price: '30р',
-    status: true,
-  },
-  {
-    id: 2,
-    date: '22.10.23 22:35',
-    promo: 'HELLO10',
-    price: '30р',
-    status: true,
-  },
-  {
-    id: 3,
-    date: '05.08.23 15:00',
-    promo: 'uae009',
-    price: '30р',
-    status: true,
-    menu: true,
-  },
-  {
-    id: 4,
-    date: '16.09.23 19:50',
-    promo: 'darkza444',
-    price: '30р',
-    status: false,
-  },
-];
-
 export const promoColumns = [
   {
     id: 1,
-    key: 'date',
+    key: 'formatedDate',
     label: 'Дата',
-    colStyle: { ...promoHeadStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '20%' },
     cellComponent: baseCell,
   },
   {
     id: 2,
-    key: 'promo',
+    key: 'code',
     label: 'Промокод',
-    colStyle: { ...promoHeadStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '20%' },
     cellComponent: inputCell,
   },
   {
     id: 3,
-    key: 'price',
+    key: 'amount',
     label: 'Стоимость',
-    colStyle: { ...promoHeadStyle, width: '25%' },
+    colStyle: { ...promoHeadStyle, width: '15%' },
     cellComponent: inputCell,
   },
   {
     id: 4,
+    key: 'maxActivationCount',
+    label: 'макс. активаций',
+    colStyle: { ...promoHeadStyle, width: '15%' },
+    cellComponent: inputCell,
+  },
+  {
+    id: 5,
+    key: 'activationCount',
+    label: 'активирован',
+    colStyle: { ...promoHeadStyle, width: '15%' },
+    cellComponent: baseCell,
+  },
+  {
+    id: 6,
     key: 'status',
     label: 'Статус',
-    colStyle: { ...promoHeadStyle, width: '25%' },
-    cellComponent: statusPromoCell,
+    colStyle: { ...promoHeadStyle, width: '15%' },
+    cellComponent: switcherCell,
   },
 ];
+
+const hours = new Date().getHours().toString().padStart(2, '0');
+const minutes = new Date().getMinutes().toString().padStart(2, '0');
+export const now = `${new Date().toLocaleDateString('ru-RU')}
+${hours}:${minutes}`;
