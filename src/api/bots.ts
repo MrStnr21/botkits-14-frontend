@@ -49,7 +49,7 @@ function copyBotApi(id: string) {
 // запрос переименования бота
 function renameBotApi(id: string, title: string) {
   return patchReq<IRenameBotResponse>({
-    uri: `bots`,
+    uri: `bots/bot`,
     id,
     auth: true,
     data: { title },
