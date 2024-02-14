@@ -9,10 +9,20 @@
   gap: 40px;
 }
 
-.title {
+.header {
   @include flex(row, space-between);
   margin-bottom: 24px;
   position: relative;
+
+  @media (max-width: $switching-width) {
+    @include flex(column, $gap: 16px);
+  }
+}
+
+.title {
+  @media (max-width: $switching-width) {
+    font-size: $xl-font-size;
+  }
 }
 
 .type {

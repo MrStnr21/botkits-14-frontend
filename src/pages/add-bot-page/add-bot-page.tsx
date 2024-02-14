@@ -6,6 +6,7 @@ import HowItWorks from '../../components/platforms/how-it-works/how-it-works';
 import CreateBot from '../../components/platforms/create-bot/create-bot';
 import { IBot } from '../../utils/types';
 import Platforms from '../../components/platforms/platforms/platforms';
+import Typography from '../../ui/typography/typography';
 
 const AddBotPage: FC = () => {
   const currentUrl = new URL(window.location.href);
@@ -28,6 +29,9 @@ const AddBotPage: FC = () => {
 
   return (
     <div className={styles.add_bot_page}>
+      <Typography tag="h2" fontFamily="secondary" className={styles.title}>
+        Добавить бота
+      </Typography>
       <Platforms bot={bot} onClick={onClick} />
       <div className={styles.add_bot_page_container}>
         <CreateBot

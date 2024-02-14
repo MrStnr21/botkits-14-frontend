@@ -9,7 +9,6 @@ import { IBot } from '../../../utils/types';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 import { getPlatformsAction } from '../../../services/actions/platforms/getPlatforms';
 import { getPlatformsSel } from '../../../utils/selectorData';
-import Typography from '../../../ui/typography/typography';
 
 interface IPlatforms {
   onClick: (name: string, pages: boolean, botURI: boolean) => void;
@@ -30,37 +29,28 @@ const Platforms: FC<IPlatforms> = ({ onClick, bot }) => {
   const { events } = useDraggable(ref);
 
   return (
-    <div>
-      <Typography tag="h2" fontFamily="secondary" className={styles.title}>
-        Добавить бота
-      </Typography>
-      <ul className={styles.list} {...events} ref={ref}>
-        {platforms?.map((platform) => (
-          <li key={platform.title} className={styles.item}>
-            <ButtonAddSocial
-              social={platform.icon}
-              onClick={() =>
-                onClick(
-                  platform.title,
-                  platform.formFields.pages,
-                  platform.formFields.url
-                )
-              }
-              buttonHtmlType="button"
-              extraClass={
-                bot
-                  ? platform.title !== bot?.name
-                    ? 'disabled'
-                    : 'active'
-                  : ''
-              }
-            >
-              {platform.title}
-            </ButtonAddSocial>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className={styles.list} {...events} ref={ref}>
+      {platforms?.map((platform) => (
+        <li key={platform.title} className={styles.item}>
+          <ButtonAddSocial
+            social={platform.icon}
+            onClick={() =>
+              onClick(
+                platform.title,
+                platform.formFields.pages,
+                platform.formFields.url
+              )
+            }
+            buttonHtmlType="button"
+            extraClass={
+              bot ? (platform.title !== bot?.name ? 'disabled' : 'active') : ''
+            }
+          >
+            {platform.title}
+          </ButtonAddSocial>
+        </li>
+      ))}
+    </ul>
   );
 };
 
