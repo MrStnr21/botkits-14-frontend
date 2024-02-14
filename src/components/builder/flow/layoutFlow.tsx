@@ -54,6 +54,7 @@ const LayoutFlow: FC = () => {
   const [searchParams] = useSearchParams();
   const [title, setTitle] = useState('Название бота');
   const [platformIcon, setPlatformIcon] = useState(iconOfPlatform.Facebook);
+  const [permission, setPermission] = useState({});
 
   useEffect(() => {
     const id = searchParams.get('id') || '';
@@ -102,7 +103,7 @@ const LayoutFlow: FC = () => {
           );
         }
         // eslint-disable-next-line no-console
-        console.log(data);
+        setPermission(data.permission);
       })
       .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
@@ -128,6 +129,7 @@ const LayoutFlow: FC = () => {
         variables: storeOfVariables,
         triggers,
       },
+      permission,
     };
 
     saveBuilderApi(builder, path, id).catch((err) => {

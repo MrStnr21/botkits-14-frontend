@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 
 import { useMediaQuery } from '@mui/material';
@@ -7,6 +8,8 @@ import CloseIcon from '../../icons/Close/CloseIcon';
 
 import stylesNotification from './notification-popup.module.scss';
 import Typography from '../../../ui/typography/typography';
+import LogsNotification from './logs-notification/logs-notification';
+import { logNotifications } from '../../../utils/mockNotification';
 
 interface INotificationPopup {
   isOpen: boolean;
@@ -16,8 +19,13 @@ const NotificationPopup: FC<INotificationPopup> = ({
   isOpen,
   setIsNotificationOpened,
 }): JSX.Element => {
+  const [logs, setLogs] = useState(logNotifications.reverse());
   const [isDisabled, setIsDisabled] = useState(true);
   const matches = useMediaQuery('(max-width: 520px)');
+
+  const removeLog = (id: string) => {
+    setLogs(logs.filter((item) => item._id !== id));
+  };
 
   return (
     <div
@@ -53,7 +61,7 @@ const NotificationPopup: FC<INotificationPopup> = ({
           )}
         </div>
         <MenuInformation
-          width={182}
+          width={148.25}
           height={50}
           isActive={isDisabled}
           type="isNotifications"
@@ -63,13 +71,15 @@ const NotificationPopup: FC<INotificationPopup> = ({
             setIsDisabled(!isDisabled);
           }}
         />
-        <div>
-          {isDisabled ? (
-            <div className="FirstTab" />
-          ) : (
-            <div className="FirstTab" />
-          )}
-        </div>
+        {isDisabled ? (
+          <div className={stylesNotification.news} />
+        ) : (
+          <div className={stylesNotification.logs}>
+            {logs.map((item) => (
+              <LogsNotification {...item} remove={removeLog} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
