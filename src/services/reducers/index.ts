@@ -18,8 +18,9 @@ import { socketReducer } from './socket/socketReducer';
 
 import { toggleMesPopup } from './popups/messengers-popup';
 import errorReducer from './errors/errors';
+import { TRootState, TApplicationActions } from '../types';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   signin: signinReducer,
   signup: signupReducer,
   resetPassword: resetPasswordReducer,
@@ -32,5 +33,16 @@ const rootReducer = combineReducers({
   toggleMessengersPopup: toggleMesPopup,
   errors: errorReducer,
 });
+
+const rootReducer = (
+  state: TRootState | undefined,
+  action: TApplicationActions
+) => {
+  if (action.type === 'LOGOUT') {
+    return appReducer(undefined, action);
+  }
+
+  return appReducer(state, action);
+};
 
 export default rootReducer;

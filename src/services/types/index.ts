@@ -28,13 +28,14 @@ import { TResetPasswordState } from '../reducers/auth/reset-password';
 import { TGetPlatformsState } from '../reducers/platforms/getPlatforms';
 import { TGetPlatformsActions } from '../actions/platforms/getPlatforms';
 
-import store from '../store';
 import { TDeleteBotActions } from '../actions/bots/deleteBot';
 import { TRenameBotActions } from '../actions/bots/renameBot';
 import { TErrorActions } from '../actions/errors/errors';
 import { TErrorState } from '../reducers/errors/errors';
+import { TSocketState } from '../reducers/socket/socketReducer';
+import { TToggleMesPopupState } from '../reducers/popups/messengers-popup';
 
-export type TStore = {
+export type TRootState = {
   signup: TSignupState;
   signin: TSigninState;
   resetPassword: TResetPasswordState;
@@ -44,9 +45,9 @@ export type TStore = {
   getTemplatesBots: TGetTemplatesBotsState;
   getPlatforms: TGetPlatformsState;
   errors: TErrorState;
+  websocket: TSocketState;
+  toggleMessengersPopup: TToggleMesPopupState;
 };
-
-export type RootState = ReturnType<typeof store.getState>;
 
 export type TApplicationActions =
   | TSignupActions
@@ -63,7 +64,7 @@ export type TApplicationActions =
   | TErrorActions;
 
 export type AppThunk<TReturn = void> = ActionCreator<
-  ThunkAction<TReturn, Action, RootState, TApplicationActions>
+  ThunkAction<TReturn, Action, TRootState, TApplicationActions>
 >;
 
 export type AppDispatch = Dispatch<TApplicationActions>;
