@@ -1,8 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { useMediaQuery } from '@mui/material';
 
+import { useDraggable } from 'react-use-draggable-scroll';
 import styles from './my-bots.module.scss';
 
 import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
@@ -27,11 +28,14 @@ const MyBots: FC<TMyBots> = ({
   titleStyle = 'main',
   hasAddBtn = false,
 }) => {
-  const [isHidden, setIsHidden] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const ref =
+    useRef<HTMLDivElement>() as unknown as React.MutableRefObject<HTMLUListElement>;
+  const { events } = useDraggable(ref);
 
   const navigate = useNavigate();
 
-  const matches = useMediaQuery('(max-width: 1410px)');
+  const matches = useMediaQuery(`(max-width: 860px)`);
 
   const addBot = () => {
     navigate(routesUrl.addBot);
@@ -62,13 +66,17 @@ const MyBots: FC<TMyBots> = ({
           <button
             className={styles.header__button}
             type="button"
-            onClick={() => setIsHidden(!isHidden)}
+            onClick={() => setIsExpanded(!isExpanded)}
           >
-            {isHidden ? 'Все' : 'Cвернуть'}
+            {isExpanded ? 'Cвернуть' : 'Все'}
           </button>
         )}
       </div>
-      <ul className={`${styles.list}  ${isHidden ? styles.list_hidden : ''}`}>
+      <ul
+        ref={ref}
+        {...events}
+        className={`${styles.list}  ${isExpanded ? '' : styles.list_hidden}`}
+      >
         {hasAddBtn && (
           <li className={styles.item}>
             <ButtonAddBot onClick={addBot}>Добавить бота</ButtonAddBot>

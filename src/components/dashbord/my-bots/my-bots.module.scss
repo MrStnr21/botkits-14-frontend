@@ -4,7 +4,6 @@
 .wrapper {
   max-width: 100%;
   margin-bottom: 10px;
-  overflow-x: clip;
 }
 
 .header {
@@ -44,7 +43,12 @@
 }
 
 .list_hidden {
+  height: 200px;
   grid-auto-flow: column;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    @include size(0, 0);
+  }
 }
 
 .item {
