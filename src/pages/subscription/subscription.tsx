@@ -3,6 +3,7 @@
 import { FC, useState, MouseEvent, useEffect } from 'react';
 import { ReactSVG } from 'react-svg';
 import cn from 'classnames';
+import { useMediaQuery } from '@mui/material';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
 import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
@@ -32,6 +33,7 @@ import {
 import { TSubscriptionData } from '../../services/types/subscription';
 import { useAppDispatch } from '../../services/hooks/hooks';
 import { createAddErrorAction } from '../../services/actions/errors/errors';
+import EnhancedTableMobile from '../../components/enhanced-table/enhanced-table-mobile';
 
 const dateTimeFormat = new Intl.DateTimeFormat('ru', {
   day: '2-digit',
@@ -39,7 +41,8 @@ const dateTimeFormat = new Intl.DateTimeFormat('ru', {
   year: 'numeric',
 });
 
-const Subscription: FC = (): JSX.Element => {
+const Subscription: FC = () => {
+  const isMobile = useMediaQuery('(max-width: 860px)');
   const [subscriptionData, setSubscriptionData] =
     useState<TSubscriptionData | null>(null);
   const [counter, refreshWithFetch] = useState(0);
@@ -212,17 +215,31 @@ const Subscription: FC = (): JSX.Element => {
         </div>
 
         <div className={style.payment}>
-          <EnhancedTable
-            header
-            tableHeaderTitle="История платежей"
-            headerOptions={subscriptionDropdownValues}
-            onFilterChange={handleFilterChange}
-            cellStyle={cellStyle}
-            rowStyle={rowStyle}
-            columns={columns}
-            tableData={renderFilteredRows()}
-            headComponent={sapHeadCell}
-          />
+          {!isMobile ? (
+            <EnhancedTable
+              header
+              tableHeaderTitle="История платежей"
+              headerOptions={subscriptionDropdownValues}
+              onFilterChange={handleFilterChange}
+              cellStyle={cellStyle}
+              rowStyle={rowStyle}
+              columns={columns}
+              tableData={renderFilteredRows()}
+              headComponent={sapHeadCell}
+            />
+          ) : (
+            <EnhancedTableMobile
+              header
+              tableHeaderTitle="История платежей"
+              headerOptions={subscriptionDropdownValues}
+              onFilterChange={handleFilterChange}
+              cellStyle={cellStyle}
+              rowStyle={rowStyle}
+              columns={columns}
+              tableData={renderFilteredRows()}
+              headComponent={sapHeadCell}
+            />
+          )}
         </div>
       </div>
 
