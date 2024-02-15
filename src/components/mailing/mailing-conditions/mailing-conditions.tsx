@@ -26,15 +26,19 @@ import {
 } from '../../../utils/mockMailingData';
 import Select from '../../../ui/select/select';
 import DateSelectButton from '../../../ui/buttons/date-select-button/date-select-button';
+import { TFormData } from '../../../services/types/mailing';
+import constructorHelperBottonStories from '../../../ui/buttons/constructor-helper-botton/constructor-helper-botton.stories';
 
 interface IProps {
-  title?: string;
+  formData: TFormData;
+  setFormData: any;
   handleBack?: () => void;
   handleClickButton?: () => void;
 }
 
 const MailingConditions: FC<IProps> = ({
-  title,
+  formData,
+  setFormData,
   handleBack,
   handleClickButton,
 }) => {
@@ -61,6 +65,12 @@ const MailingConditions: FC<IProps> = ({
   const [isOff, off] = useState(false);
   const [dat, setDat] = useState('');
 
+  const getTimeFromNumber = (selectedTime: number) => {
+    return `${Math.floor(selectedTime / 60) < 10 ? '0' : ''}${Math.floor(
+      selectedTime / 60
+    )}:${selectedTime % 60 < 10 ? '0' : ''}${selectedTime % 60}`;
+  };
+
   const toggleFirst = () => {
     setFirstOpen(!isFirstOpen);
     setSecondOpen(false);
@@ -77,13 +87,41 @@ const MailingConditions: FC<IProps> = ({
 
   const handleSendTimeClick = (selected: Option) => {
     setSendTime(selected);
+    if (selected.value === 'Сейчас') {
+      setFormData({
+        ...formData,
+        schedule: {
+          ...formData.schedule,
+          isNow: true,
+        },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        schedule: {
+          ...formData.schedule,
+          isNow: false,
+        },
+      });
+    }
   };
 
   const handleCalendarClick = (selected: string) => {
     setDate(selected.split(' ')[0].split('-').reverse().join('.'));
+    setFormData({
+      ...formData,
+      schedule: {
+        ...formData.schedule,
+        date: {
+          ...formData.schedule.date,
+          date: selected.split(' ')[0],
+        },
+      },
+    });
   };
 
   const handleIntervalClick = (selected: Option) => {
+    console.log(456);
     setSelectedInterval(selected);
   };
 
@@ -93,6 +131,16 @@ const MailingConditions: FC<IProps> = ({
       return;
     }
     setTime(time + 1);
+    setFormData({
+      ...formData,
+      schedule: {
+        ...formData.schedule,
+        date: {
+          ...formData.schedule.date,
+          time: getTimeFromNumber(time + 1),
+        },
+      },
+    });
   };
 
   const handleTimeDecrease = (e: React.MouseEvent) => {
@@ -101,10 +149,30 @@ const MailingConditions: FC<IProps> = ({
       return;
     }
     setTime(time - 1);
+    setFormData({
+      ...formData,
+      schedule: {
+        ...formData.schedule,
+        date: {
+          ...formData.schedule.date,
+          time: getTimeFromNumber(time - 1),
+        },
+      },
+    });
   };
 
   const handleSaveTime = (selectedTime: number) => {
     setTime(selectedTime);
+    setFormData({
+      ...formData,
+      schedule: {
+        ...formData.schedule,
+        date: {
+          ...formData.schedule.date,
+          time: getTimeFromNumber(selectedTime),
+        },
+      },
+    });
   };
 
   const handleDayClick = (selected: Option) => {
@@ -146,7 +214,7 @@ const MailingConditions: FC<IProps> = ({
           <Breadcrumbs crumbs={MCcrumbs} />
         </div>
         <fieldset className={styles.form__formFieldset}>
-          <Typography tag="h2">{title}</Typography>
+          <Typography tag="h2">{formData.name}</Typography>
         </fieldset>
         <div
           className={`${styles.form__menuContainer} ${styles['grid_1-3_3']}`}
@@ -188,9 +256,7 @@ const MailingConditions: FC<IProps> = ({
                 <TimeIcon /> Время
               </span>
               <TimeSelect
-                value={`${Math.floor(time / 60) < 10 ? '0' : ''}${Math.floor(
-                  time / 60
-                )}:${time % 60 < 10 ? '0' : ''}${time % 60}`}
+                value={getTimeFromNumber(time)}
                 curHour={Math.floor(time / 60)}
                 curMin={time % 60}
                 onDecrease={handleTimeDecrease}

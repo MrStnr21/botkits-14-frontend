@@ -1,7 +1,7 @@
 // import { Profile } from "./user";
 import { TBuilderData } from './builder';
 
-type TMessenger = {
+export type TMessenger = {
   name: string;
   pages?: string;
   accessKey?: string;

@@ -24,7 +24,6 @@ import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
 import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
-import MailingConditions from '../mailing/mailing-conditions/mailing-conditions';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
 import Promocodes from '../../pages/promocodes/promocodes';
 import ErrorNotificator from '../error-notificator/error-notificator';
@@ -77,7 +76,7 @@ const App: FC = (): JSX.Element => {
           }
         >
           <Route path="create" element={<CreateMailing />}>
-            <Route path="conditions" element={<MailingConditions />} />
+            {/* <Route path="conditions" element={<MailingConditions />} /> */}
           </Route>
           {/* <Route path="conditions" element={<MailingConditions />} /> */}
           <Route

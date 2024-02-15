@@ -11,14 +11,31 @@ import MailingForm from '../../../components/mailing/form/mailing-form';
 import MailingConditions from '../../../components/mailing/mailing-conditions/mailing-conditions';
 import ModalPopup from '../../../components/popups/modal-popup/modal-popup';
 import { baseSlateData } from '../../../utils/constants';
+import { TFormData } from '../../../services/types/mailing';
+import { createMailingAction } from '../../../services/actions/mailing/createMailing';
+import { useAppDispatch } from '../../../services/hooks/hooks';
+import { botId, platformsId } from '../ids-temp';
 
 const CreateMailing: FC = () => {
   const navigate = useNavigate();
   const matchConditions = useMatch('/mailing/create/conditions');
-  const [nameValue, setNameValue] = useState('');
-  const [textValue, setTextValue] = useState<Descendant[]>(baseSlateData);
   const [mobile, setMobile] = useState(false);
   const [isAsideVisible, setAsideVisible] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const [formData, setFormData] = useState<TFormData>({
+    name: '',
+    message: baseSlateData,
+    bot: botId,
+    platforms: platformsId,
+    isActive: true,
+    isActiveBotBuilder: false,
+    schedule: {
+      isNow: true,
+      isRepeat: false,
+    },
+  });
+
   const isMobile = useMediaQuery('(max-width: 860px)');
 
   if (isMobile && isAsideVisible && !mobile) {
@@ -31,8 +48,14 @@ const CreateMailing: FC = () => {
   }
 
   const handleClickButton = () => {
-    if (nameValue && textValue) {
+    if (formData.name && formData.message) {
       navigate('/mailing/create/conditions');
+    }
+  };
+
+  const handleSendForm = () => {
+    if (formData.name && formData.message) {
+      dispatch(createMailingAction(formData, () => navigate(`/mailing`)));
     }
   };
 
@@ -63,16 +86,15 @@ const CreateMailing: FC = () => {
       )} */}
         {matchConditions ? (
           <MailingConditions
-            title={nameValue}
+            formData={formData}
+            setFormData={setFormData}
             handleBack={handleBack}
-            // handleClickButton={handleClickButton}
+            handleClickButton={handleSendForm}
           />
         ) : (
           <MailingForm
-            nameValue={nameValue}
-            textValue={textValue}
-            setNameValue={setNameValue}
-            setTextValue={setTextValue}
+            formData={formData}
+            setFormData={setFormData}
             handleBack={handleBack}
             handleClickButton={handleClickButton}
           />
@@ -80,10 +102,10 @@ const CreateMailing: FC = () => {
         {isAsideVisible &&
           (isMobile ? (
             <ModalPopup onClick={() => setAsideVisible(false)}>
-              <AsideMailing title={nameValue} text={textValue} />
+              <AsideMailing title={formData.name} text={formData.message} />
             </ModalPopup>
           ) : (
-            <AsideMailing title={nameValue} text={textValue} />
+            <AsideMailing title={formData.name} text={formData.message} />
           ))}
       </div>
       {(!isAsideVisible || isMobile) && (
