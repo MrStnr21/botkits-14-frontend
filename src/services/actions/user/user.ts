@@ -1,4 +1,4 @@
-import { getUserInfoApi } from '../../../api/index';
+import { getUserInfoApi } from '../../../api/user';
 import {
   removeAccessToken,
   removeRefreshToken,

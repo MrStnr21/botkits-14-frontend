@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, MouseEvent, useEffect } from 'react';
 import { ReactSVG } from 'react-svg';
@@ -55,7 +56,13 @@ const Subscription: FC = (): JSX.Element => {
 
   useEffect(() => {
     getSubscriptions().then((data) => {
-      setSubscriptionData({ ...data, payments: data.payments.reverse() });
+      setSubscriptionData({
+        ...data,
+        payments: data.payments.reverse().map((item) => ({
+          ...item,
+          id: item._id,
+        })),
+      });
     });
   }, [isModalOpen, counter]);
 
@@ -136,7 +143,7 @@ const Subscription: FC = (): JSX.Element => {
               </Typography>
             </div>
             <div className={style.settings}>
-              {subscriptionData.status && !subscriptionData.isCanceled ? (
+              {subscriptionData.status && !subscriptionData.isCancelled ? (
                 <>
                   <p className={style.info}>Следующее списание</p>
                   <p className={style.card}>

@@ -7,10 +7,12 @@ export type TSubscriptionData = {
   status: boolean;
   payments: TSubscriptionPayment[];
   tariff: any;
-  isCanceled: boolean;
+  isCancelled: boolean;
 };
 
 export type TSubscriptionPayment = {
+  _id: string;
+  id: string;
   date: string;
   amount: number;
   note: string;

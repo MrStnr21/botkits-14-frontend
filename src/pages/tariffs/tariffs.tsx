@@ -6,7 +6,10 @@ import EnhancedTable, {
 import { ppHeadCell } from '../../components/table-cells/table-cells';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
-import { promoCellStyle, promoRowStyleRef } from '../share/promocodesConfig';
+import {
+  promoCellStyle,
+  promoRowStyleRef,
+} from '../promocodes/promocodesConfig';
 import { tariffsCols, tariffsTableModalButtons } from '../share/tariffsConfig';
 import TariffPopup from '../../components/popups/tariff-popup/tariff-popup';
 import { deleteTariff, getTariffs, patchTariff } from '../../api/tariffs';
