@@ -15,6 +15,14 @@
   }
 }
 
+// similar as bot list header__text
+.header {
+  @media (max-width: $switching-width) {
+    font-size: $xxl-font-size;
+    line-height: $m-line-height;
+  }
+}
+
 .list {
   list-style-type: none;
   display: grid;

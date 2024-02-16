@@ -1,6 +1,6 @@
 import { IUserResponse } from '../services/types/user';
 
-import { deleteReq, getReq } from './api';
+import { deleteReq, getReq, postReq } from './api';
 
 type TUser = {
   [key: string]: any;
@@ -19,4 +19,13 @@ function removeUser(id: string) {
   return deleteReq({ uri: `profiles/${id}`, auth: true });
 }
 
-export { getUserInfoApi, getUsersInfo, removeUser };
+// Запрос выдачи доступа к ботам по email
+function shareBotApi(email: string) {
+  return postReq<{}>({
+    uri: `profiles/shared`,
+    auth: true,
+    data: { email },
+  });
+}
+
+export { getUserInfoApi, getUsersInfo, removeUser, shareBotApi };
