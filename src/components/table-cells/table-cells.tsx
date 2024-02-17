@@ -39,6 +39,18 @@ export const statusCell = (status: boolean) => (
   </Typography>
 );
 
+export const mailingStatusCell = (status: boolean) => (
+  <Typography
+    tag="p"
+    className={cn(
+      style.text,
+      status ? style.text_succsess : style.text_failure
+    )}
+  >
+    {status ? 'Запущено' : 'Отклонено'}
+  </Typography>
+);
+
 /* партнерская программа */
 
 export const ppHeadCell = (data: string) => (

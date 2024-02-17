@@ -14,6 +14,7 @@ import Signin from '../../pages/signin/signin';
 import NotFound from '../../pages/not-found';
 import Share from '../../pages/share/share';
 import Chat from '../../pages/chat-page/chat-page';
+import UsersPage from '../../pages/users-page/users-page';
 
 import routesUrl from '../../utils/routesData';
 
@@ -22,7 +23,10 @@ import Statistics from '../../pages/statistics/statistics';
 import ChatMobile from '../../pages/chat-page/chat-mobile';
 import MobileDialog from '../chat/chat-dialogue/mobile-dialogue/mobile-dialogue';
 import MobileDialogInformation from '../chat/Information/MobileDialogInformation';
+import CreateMailing from '../../pages/mailing/create-mailing/create-mailing';
+import MailingConditions from '../mailing/mailing-conditions/mailing-conditions';
 import BotTemplates from '../../pages/bot-templates/bot-templates';
+import Promocodes from '../../pages/promocodes/promocodes';
 import ErrorNotificator from '../error-notificator/error-notificator';
 import Tariffs from '../../pages/tariffs/tariffs';
 
@@ -72,6 +76,10 @@ const App: FC = (): JSX.Element => {
             </ProtectedRoute>
           }
         >
+          <Route path="create" element={<CreateMailing />}>
+            <Route path="conditions" element={<MailingConditions />} />
+          </Route>
+          {/* <Route path="conditions" element={<MailingConditions />} /> */}
           <Route
             path={routesUrl.homePage}
             element={
@@ -125,7 +133,8 @@ const App: FC = (): JSX.Element => {
             />
           )}
           <Route
-            path={routesUrl.mailing}
+            // Поздравляю, вы увидели костыль, надо это поправить, но потом...
+            path={`${routesUrl.mailing}/*`}
             element={
               <ProtectedRoute>
                 <Mailing />
@@ -185,8 +194,25 @@ const App: FC = (): JSX.Element => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path={routesUrl.users}
+            element={
+              <ProtectedRoute>
+                <UsersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path={routesUrl.notFound} element={<NotFound />} />
+          <Route
+            path={routesUrl.promocodes}
+            element={
+              <ProtectedRoute>
+                <Promocodes />
+              </ProtectedRoute>
+            }
+          />
+          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
-        <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
       <ErrorNotificator />
     </>

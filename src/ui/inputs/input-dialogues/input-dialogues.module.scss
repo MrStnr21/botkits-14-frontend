@@ -26,12 +26,12 @@
   background-color: $secondary-cultured-default;
   line-height: 20px;
   letter-spacing: $m-letter-space;
-  text-indent: 25px;
+  text-indent: 5px;
   box-sizing: border-box;
 
   &::placeholder {
     color: $grey-4;
-    background: url('../../../images/icon/20x20/search.svg') no-repeat;
+    // background: url('../../../images/icon/20x20/search.svg') no-repeat;
   }
 
   &:focus::placeholder {

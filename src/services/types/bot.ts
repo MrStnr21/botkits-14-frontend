@@ -1,4 +1,3 @@
-// import { Profile } from "./user";
 import { TBuilderData } from './builder';
 
 type TMessenger = {
@@ -6,6 +5,13 @@ type TMessenger = {
   pages?: string;
   accessKey?: string;
   url?: string;
+};
+
+export type TBotPermissions = {
+  botBuilder: boolean;
+  dashboard: boolean;
+  mailing: boolean;
+  static: boolean;
 };
 
 /* Для будущего использования
@@ -27,7 +33,8 @@ export type TBot = {
   description?: string;
   features?: TBuilderData;
   messengers: Array<TMessenger>;
-  // profile?: Profile;
+  permission: TBotPermissions;
+  profile: string;
   // settings?: object;
   // commands?: Array<TypeCommands>;
   // isToPublish?: boolean;

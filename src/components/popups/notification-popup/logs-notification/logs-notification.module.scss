@@ -1,0 +1,63 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+
+.container {
+  position: relative;
+  padding: 7px 17px 11px;
+  border-radius: 30px;
+  box-shadow: $m-box-shadow;
+
+  & h4, p {
+    margin: 0
+  }
+}
+
+.header {
+  @include flex(row, $align-items: flex-end, $gap: 13px);
+}
+
+.time {
+  @include font('Open Sans', $xxs-font-size, $semi-bold, $grey-4);
+  @include line-sizes($xl-line-height, $l-letter-space);
+}
+
+.title {
+  @include font('Open Sans', $s-font-size, $bold, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $l-letter-space);
+  padding: 6px 0 11px;
+}
+
+.text {
+  @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+  @include line-sizes($xl-line-height, $m-letter-space);
+  padding-bottom: 5px;
+}
+
+.button {
+  @include button-style-reset;
+  @include position(absolute, 7px, 17px);
+}
+
+.icon {
+  @include size(24px, 24px);
+}
+
+.close-icon {
+  color: $grey-2;
+}
+
+.success {
+  color: $success-default;
+}
+
+.error {
+  color: $error-default;
+}
+
+.warning {
+  color: $warning-default;
+}
+
+.default {
+  color: $primary-persian-blue-default;
+}

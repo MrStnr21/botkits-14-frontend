@@ -30,13 +30,7 @@
   &__header {
     @include size(100%, 228px);
     @include position(absolute, 0, $left: 0);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      'rate status'
-      'info info'
-      'button button';
-    row-gap: 8px;
+    @include flex(column, space-between);
     box-sizing: border-box;
     background-color: $off-white;
     border-radius: $xxl-border-radius;
@@ -44,19 +38,65 @@
     overflow: hidden;
     padding: 32px;
     z-index: 1;
-  }
 
-  &__rate {
-    grid-area: rate;
+    & .payment-info {
+      @include flex(row, space-between, flex-end);
+      padding-bottom: 24px;
+    }
+
+    & .text {
+      &_succsess {
+        color: $primary-medium-spring-green-default;
+      }
+
+      &_failure {
+        color: $error-default;
+      }
+    }
+
+    & .tariff {
+      @include flex(row, space-between, flex-end);
+    }
+
+    & .settings {
+      & p {
+        margin: 0;
+      }
+
+      & .info {
+        @include font('Open Sans', $xs-font-size, $normal, $primary-oxford-blue-default);
+        @include line-sizes($xl-line-height, $m-letter-space);
+        padding-top: 32px;
+      }
+
+      & .card {
+        @include flex(row, space-between, flex-end);
+        padding-top: 12px;
+
+        & .date {
+          @include font('Open Sans', $m-font-size, $semi-bold, $primary-oxford-blue-default);
+          @include line-sizes($xl-line-height, $m-letter-space);
+        }
+
+        & .mask {
+          @include font('Open Sans', $m-font-size, $semi-bold, $grey-2);
+          @include line-sizes($xl-line-height, $m-letter-space);
+        }
+      }
+
+      & .button {
+        @include button-style-reset;
+        padding-top: 24px;
+      }
+    }
   }
 
   &__status {
-    grid-area: status;
     justify-self: end;
   }
 
   &__info {
-    grid-area: info;
+    padding-bottom: 12px;
   }
 
   &__button {

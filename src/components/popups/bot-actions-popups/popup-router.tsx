@@ -16,7 +16,8 @@ import {
   mockDisableNotufyLink,
   mockNotifyLink,
 } from '../../../utils/mockBotActionsValues';
-import { shareBotApi } from '../../../api/bots';
+import { shareBotApi } from '../../../api/user';
+import { createAddErrorAction } from '../../../services/actions/errors/errors';
 
 interface IPopupRouter {
   action: BotActionValue;
@@ -26,6 +27,20 @@ interface IPopupRouter {
 
 const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
   const dispatch = useAppDispatch();
+
+  const handleShare = (email: string) => {
+    shareBotApi(email)
+      .catch(() =>
+        dispatch(createAddErrorAction('Не получилось поделиться ботом'))
+      )
+      .finally(() => close());
+  };
+
+  const handleRename = (value: TBot['title']) => {
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(renameBotAction(bot._id, value, bot.permission));
+    close();
+  };
 
   const getPopup = (actionValue: typeof action) => {
     switch (actionValue) {
@@ -38,8 +53,7 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
             buttonText="Поделиться"
             value=""
             onConfirm={(email: string) => {
-              // eslint-disable-next-line no-underscore-dangle
-              shareBotApi(bot._id, email);
+              handleShare(email);
             }}
             onCancel={close}
           />
@@ -51,11 +65,7 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
             placeholder="Переименуйте файл"
             buttonText="Переименовать"
             value={bot.title}
-            onConfirm={(value: TBot['title']) => {
-              // eslint-disable-next-line no-underscore-dangle
-              dispatch(renameBotAction(bot._id, value));
-              close();
-            }}
+            onConfirm={(email: string) => handleRename(email)}
             onCancel={close}
           />
         );

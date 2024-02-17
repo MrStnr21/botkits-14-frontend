@@ -1,48 +1,39 @@
 import React, { FC } from 'react';
-import { useReactFlow, useNodeId } from 'reactflow';
 import styles from './value.module.scss';
 import Equal from '../../../../icons/Equal/Equal';
 import Input from '../../../../../ui/inputs/input/input';
-import { selectValues } from '../../../utils/data';
+import { storeOfVariables } from '../../../utils/store';
 import Select from '../../../../../ui/select/select';
 import { Option } from '../../../../../utils/types';
-import { getSelectItemByValue } from '../../../utils/index';
+import {
+  getSelectItemByValue,
+  setFlowDataInit,
+  getSelectLabel,
+} from '../../../utils/index';
 
 export type TValueProps = {
   idNum: string;
+  item: {
+    id: string;
+    variable: string;
+    value: string;
+  };
 };
 
-const Value: FC<TValueProps> = ({ idNum }) => {
-  const { getNodes, setNodes, getNode } = useReactFlow();
-  const id = useNodeId();
-  const node = getNode(id!);
+const Value: FC<TValueProps> = ({ idNum, item }) => {
+  const setItemValues = setFlowDataInit();
 
-  const itemLine = node!.data.variables.find(
-    (el: { id: string }) => el.id === idNum
-  );
+  const setVar = (value: string) =>
+    setItemValues({
+      path: ['data', 'variables', idNum, 'variable'],
+      value,
+    });
 
-  const setItemValues = (key: string, value: any) => {
-    itemLine[key] = value;
-
-    setNodes(
-      getNodes().map((el) => {
-        if (el.id === id) {
-          return {
-            ...el,
-            data: {
-              ...el.data,
-              variables: [...el.data.variables],
-            },
-          };
-        }
-        return el;
-      })
-    );
-  };
-
-  const setVar = (value: any) => setItemValues('variable', value);
-
-  const setVal = (option: Option) => setItemValues('value', option.value);
+  const setVal = (option: Option) =>
+    setItemValues({
+      path: ['data', 'variables', idNum, 'value'],
+      value: option.value,
+    });
 
   return (
     <div className={styles.overlay}>
@@ -52,7 +43,7 @@ const Value: FC<TValueProps> = ({ idNum }) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setVar(e.target.value)
           }
-          value={itemLine.variable}
+          value={item.variable}
           type="text"
           styled="bot-builder-default"
           textColor="default"
@@ -64,8 +55,11 @@ const Value: FC<TValueProps> = ({ idNum }) => {
       </div>
       <div className={styles.v}>
         <Select
-          options={selectValues}
-          currentOption={getSelectItemByValue(itemLine.value, selectValues)}
+          options={getSelectLabel(storeOfVariables)}
+          currentOption={getSelectItemByValue(
+            item.value,
+            getSelectLabel(storeOfVariables)
+          )}
           handleSelect={setVal}
           placeholder="переменная"
           elementToCloseListener="flow"

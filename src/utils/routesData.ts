@@ -12,8 +12,10 @@ const routesUrl: TRoutesUrl = {
   partnership: 'partnership',
   bottemplates: 'bottemplates',
   share: 'share',
+  promocodes: 'promocodes',
   subscription: 'subscription',
   statistics: 'statistics',
+  users: 'users',
   tariffs: 'tariffs',
   notFound: '*',
 };

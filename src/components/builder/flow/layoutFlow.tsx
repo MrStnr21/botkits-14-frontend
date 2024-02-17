@@ -1,4 +1,4 @@
-import { FC, useCallback, useState, useEffect, useMemo } from 'react';
+import { FC, useCallback, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import cn from 'classnames/bind';
 
@@ -22,7 +22,7 @@ import { initialEdges, edgeOptions } from './initial-edges';
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
 import NavigationPanel from '../navigation-panel/navigation-panel';
-import TriggerBlock, { triggers } from '../triggerBlock/triggerBlock';
+import TriggerBlock, { triggers } from '../blocks/triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
@@ -35,18 +35,15 @@ import {
   getUrlPath,
   iconOfPlatform,
   saveVariable,
+  saveName,
   saveTrigger,
-  // resetVar,
 } from '../utils';
-import { storeOfVariables } from '../utils/store';
+import { storeOfVariables, namesOfBlocks } from '../utils/store';
 import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
 import { TResponseError } from '../../../services/types/response';
 
 const cx = cn.bind(styles);
-
-// eslint-disable-next-line import/no-mutable-exports
-export let namesOfBlocks: string[] = [];
 
 const LayoutFlow: FC = () => {
   const isMobile = useMediaQuery('(max-width: 620px)');
@@ -57,8 +54,7 @@ const LayoutFlow: FC = () => {
   const [searchParams] = useSearchParams();
   const [title, setTitle] = useState('Название бота');
   const [platformIcon, setPlatformIcon] = useState(iconOfPlatform.Facebook);
-
-  namesOfBlocks = useMemo(() => nodes.map((item) => item.data.name), [nodes]);
+  const [permission, setPermission] = useState({});
 
   useEffect(() => {
     const id = searchParams.get('id') || '';
@@ -85,6 +81,11 @@ const LayoutFlow: FC = () => {
             saveVariable(storeOfVariables, el.name, el.id)
           );
         }
+        if (data.features && data.features.nodes) {
+          data.features.nodes.map((el) =>
+            saveName(namesOfBlocks, el.data.name, el.id, el.type)
+          );
+        }
         if (data.features && data.features.triggers) {
           data.features.triggers.map((el: TTrigger) =>
             saveTrigger(triggers, el.id, el.tag, el.type, el.name, el.text)
@@ -102,7 +103,7 @@ const LayoutFlow: FC = () => {
           );
         }
         // eslint-disable-next-line no-console
-        console.log(data);
+        setPermission(data.permission);
       })
       .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
@@ -128,6 +129,7 @@ const LayoutFlow: FC = () => {
         variables: storeOfVariables,
         triggers,
       },
+      permission,
     };
 
     saveBuilderApi(builder, path, id).catch((err) => {

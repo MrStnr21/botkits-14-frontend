@@ -7,13 +7,13 @@
   @include position(fixed, 0, 0);
   box-sizing: border-box;
   z-index: 100;
-  transition: right 0.5s linear;
+  transition: right 0.3s;
 }
 
 .popup_hidden {
   @include position(fixed, 0);
   right: -450px;
-  transition: right 0.5s linear;
+  transition: right 0.3s;
   height: 100vh;
   z-index: 100;
 }
@@ -21,7 +21,8 @@
 .container {
   @include flex(column, unset, center, 0);
   @include size(364px, 100%);
-  padding: 15px 30px 0 30px;
+  padding: 15px 0 0;
+  box-sizing: border-box;
   background-color: $off-white;
   box-shadow: $m-box-shadow;
   flex-direction: column;
@@ -30,11 +31,13 @@
 
 .header {
   @include flex(row, space-between, center, 0);
+  padding: 0 30px;
   width: 100%;
 }
 
 .wrapper {
   @include flex(row, unset, baseline, 20px);
+  padding: 0 30px;
 }
 
 .title {
@@ -43,9 +46,32 @@
 }
 
 .close_btn {
+  @include button-style-reset;
   @include position(absolute, 28px, 35px);
   background-color: $off-white;
   border: none;
+}
+
+.logs {
+  @include flex(column, $gap: 26px);
+  @include indents(25px 15px 25px 30px, 10px 15px 10px 0);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    height: 60%;
+    width: 3px;
+    margin: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-3;
+    border-radius: 100px;
+  }
 }
 
 @media (max-width: ($min-content-width + 200px)) {

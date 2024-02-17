@@ -5,7 +5,7 @@ import Input from '../../../ui/inputs/input/input';
 import Typography from '../../../ui/typography/typography';
 
 interface IActivatePromoCodePopup {
-  onClick?: () => void;
+  onClick: (promo: string) => void;
 }
 const ActivatePromoCodePopup: FC<IActivatePromoCodePopup> = ({
   onClick,
@@ -22,7 +22,7 @@ const ActivatePromoCodePopup: FC<IActivatePromoCodePopup> = ({
         onChange={(e) => setInputValue(e.target.value)}
       />
       <Button
-        onClick={onClick}
+        onClick={() => onClick(inputValue)}
         size="large"
         variant="default"
         color="blue"

@@ -1,13 +1,13 @@
-import { TStore } from '../services/types';
+import { TRootState } from '../services/types';
 
-const signupSel = (store: TStore) => store.signup;
-const signinSel = (store: TStore) => store.signin;
-const resetPasswordSel = (store: TStore) => store.resetPassword;
-const getUserInfoSel = (store: TStore) => store.getUserInfo;
-const botsSel = (store: TStore) => store.bots;
-const getTemplatesBotsSel = (store: TStore) => store.getTemplatesBots;
-const getPlatformsSel = (store: TStore) => store.getPlatforms;
-const getErrorsSel = (store: TStore) => store.errors;
+const signupSel = (store: TRootState) => store.signup;
+const signinSel = (store: TRootState) => store.signin;
+const resetPasswordSel = (store: TRootState) => store.resetPassword;
+const getUserInfoSel = (store: TRootState) => store.getUserInfo;
+const botsSel = (store: TRootState) => store.bots;
+const getTemplatesBotsSel = (store: TRootState) => store.getTemplatesBots;
+const getPlatformsSel = (store: TRootState) => store.getPlatforms;
+const getErrorsSel = (store: TRootState) => store.errors;
 
 export {
   signupSel,

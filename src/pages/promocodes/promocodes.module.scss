@@ -1,0 +1,28 @@
+@use '../../stylesheets/mixins' as *;
+@use '../../stylesheets/variables' as *;
+
+.page {
+  @include indents(0, 32px 40px 32px 46px);
+}
+
+.container {
+  @include flex(row, false, false, 28px);
+}
+
+.header {
+  @include flex(row, space-between, center);
+  padding-bottom: 28px;
+}
+
+.button {
+  width: 230px;
+}
+
+.promocodeTable {
+  @include flex(column, $align-items: center, $gap: 26px);
+  @include size(100%, unset);
+  background-color: $off-white;
+  border-radius: $xxl-border-radius;
+  box-sizing: border-box;
+  box-shadow: $m-box-shadow;
+}

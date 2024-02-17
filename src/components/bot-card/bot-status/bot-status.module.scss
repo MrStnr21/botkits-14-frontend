@@ -1,0 +1,87 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+@keyframes in {
+  0% {
+    z-index: 1;
+    opacity: 0;
+  }
+  100% {
+    z-index: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes out {
+  0% {
+    z-index: 1;
+    opacity: 1;
+  }
+  99% {
+    z-index: 1;
+    opacity: 0;
+  }
+  100% {
+    z-index: -1;
+    opacity: 0;
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.icon {
+  @include size(20px, 20px);
+
+  &.started {
+    color: $success-default;
+  }
+
+  &.error {
+    color: $error-default
+  }
+
+  &.updating {
+    color: $grey-3;
+    animation: spin 2s infinite linear;
+  }
+
+  &.editing {
+    color: $grey-3;
+  }
+}
+
+.container {
+  @include size(20px, 20px);
+  & > .caption {
+    @include position(absolute, -40px, $left: 0);
+    color: $grey-4;
+    background-color: $off-white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: $m-box-shadow;
+    opacity: 0;
+  }
+
+  &.in {
+    > .caption {
+      animation: in .5s forwards;
+    }
+  }
+
+  &.out {
+    > .caption {
+      animation: out .5s forwards;
+    }
+  }
+}

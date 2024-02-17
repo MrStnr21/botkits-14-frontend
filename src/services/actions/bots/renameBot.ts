@@ -3,6 +3,7 @@ import { renameBotApi } from '../../../api/bots';
 import { AppDispatch, AppThunk } from '../../types';
 import { IRenameBotResponse, TBot } from '../../types/bot';
 import { TResponseError } from '../../types/response';
+import { createAddErrorAction } from '../errors/errors';
 
 const RENAME_BOT_REQUEST = 'RENAME_BOT_REQUEST';
 const RENAME_BOT_SUCCESS = 'RENAME_BOT_SUCCESS';
@@ -26,13 +27,18 @@ export interface IRenameBotErrorAction {
  * Экшн переименования бота
  * @param id ID изменяемого бота
  * @param title новое имя бота
+ * @param permission разрешения на действия с ботом
  */
-const renameBotAction: AppThunk = (id: TBot['_id'], title: TBot['title']) => {
+const renameBotAction: AppThunk = (
+  id: TBot['_id'],
+  title: TBot['title'],
+  permission: TBot['permission']
+) => {
   return (dispatch: AppDispatch) => {
     dispatch({
       type: RENAME_BOT_REQUEST,
     });
-    renameBotApi(id, title)
+    renameBotApi(id, title, permission)
       .then((res: IRenameBotResponse) => {
         if (res) {
           dispatch({
@@ -45,6 +51,7 @@ const renameBotAction: AppThunk = (id: TBot['_id'], title: TBot['title']) => {
       })
       .catch((err: TResponseError) => {
         console.error(err);
+        dispatch(createAddErrorAction('Не удалось переименовать бот'));
         dispatch({
           type: RENAME_BOT_ERROR,
         });

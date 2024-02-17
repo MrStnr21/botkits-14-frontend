@@ -43,8 +43,12 @@
 }
 
 .list_hidden {
-  overflow-x: hidden;
+  height: 200px;
   grid-auto-flow: column;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    @include size(0, 0);
+  }
 }
 
 .item {

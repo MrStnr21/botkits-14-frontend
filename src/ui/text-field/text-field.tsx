@@ -14,21 +14,26 @@ import emojiIcon from '../../images/icon/24x24/constructor/emoji.svg';
 import MenuTextEditor from '../menus/menu-text-editor/menu-text-editor';
 import Leaf from './leaf';
 import CustomEditor from './custom-editor';
+import { slateSerialize } from '../../utils/utils';
 
 interface ITextField {
   maxTextLength?: number;
   text: Descendant[];
   setText: (value: Descendant[]) => void;
+  adaptive?: boolean;
 }
 
-const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
+const TextField: FC<ITextField> = ({
+  maxTextLength = 4096,
+  text,
+  setText,
+  adaptive,
+}) => {
   const [counter, rerender] = useState(1);
   const [emojis, toggleEmojis] = useState(false);
   const [editor] = useState(() => withReact(withHistory(createEditor())));
   const length = useMemo(() => {
-    return text[0]?.children?.reduce((sum, item) => {
-      return sum + item.text.length;
-    }, 0);
+    return slateSerialize(editor.children).length;
   }, [text]);
 
   const renderLeaf = useCallback((props: RenderLeafProps) => {
@@ -47,7 +52,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
 
   return (
     <div
-      className={styles.textarea}
+      className={adaptive ? styles.textarea_adaptive : styles.textarea}
       onClick={(e) => {
         e.stopPropagation();
         rerender(counter + 1);
@@ -77,6 +82,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
               CustomEditor.setDefaultMark(editor);
             }
             switch (event.key) {
+              case 'Enter':
               case ' ': {
                 CustomEditor.setDefaultMark(editor);
                 break;
@@ -89,7 +95,7 @@ const TextField: FC<ITextField> = ({ maxTextLength = 4096, text, setText }) => {
 
       <div className={styles.textarea__footer}>
         <span className={styles.textarea__counter}>
-          {length}/{maxTextLength}
+          {length || 0}/{maxTextLength}
         </span>
         <button className={styles.textarea__font} type="button">
           <img className={styles.icon} src={bracketIcon} alt="Шрифт" />

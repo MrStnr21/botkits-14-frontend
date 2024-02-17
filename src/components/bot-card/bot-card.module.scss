@@ -11,6 +11,7 @@
   position: relative;
   @media (max-width: $switching-width) {
     @include size(235px, 177px);
+    box-shadow: $m-box-shadow;
   }
 }
 
@@ -21,6 +22,10 @@
   &:hover {
     cursor: $cursor;
   }
+}
+
+.header {
+  @include flex($gap: 20px);
 }
 
 .icon {

@@ -49,8 +49,12 @@ $btn-border: rgba(6, 12, 35, 0.30);
 }
 
 .linkGroup {
-  @include flex(row, center, unset, 20px);
-  padding-bottom: 33px;
+  @include flex(row, flex-start, flex-start, 20px);
+  @include hide-scroll;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  padding: 1px 20px 33px;
 }
 
 .linkBtn {

@@ -3,6 +3,7 @@ import { deleteBotApi } from '../../../api/bots';
 import { AppDispatch, AppThunk } from '../../types';
 import { IDeleteBotResponse, TBot } from '../../types/bot';
 import { TResponseError } from '../../types/response';
+import { createAddErrorAction } from '../errors/errors';
 
 const DELETE_BOT_REQUEST = 'DELETE_BOT_REQUSET';
 const DELETE_BOT_SUCCESS = 'DELETE_BOT_SUCCESS';
@@ -43,6 +44,7 @@ const deleteBotAction: AppThunk = (id: string) => {
       .catch((err: TResponseError) => {
         // eslint-disable-next-line no-console
         console.log(err);
+        dispatch(createAddErrorAction('Не удалось удалить бот'));
         dispatch({
           type: DELETE_BOT_ERROR,
         });

@@ -1,22 +1,15 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { useDraggable } from 'react-use-draggable-scroll';
 import styles from './templates.module.scss';
 
-import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
-import { getTemplatesBotsAction } from '../../../services/actions/bots/templatesBots';
-import { getTemplatesBotsSel } from '../../../utils/selectorData';
 import Typography from '../../../ui/typography/typography';
 import Template from '../template/template';
+import { TBotTemplate } from '../../../services/types/bot';
 
-const Templates: FC = () => {
-  const { botTemplates } = useAppSelector(getTemplatesBotsSel);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getTemplatesBotsAction());
-  }, [dispatch]);
-
+type TTemplates = {
+  templates: TBotTemplate[];
+};
+const Templates: FC<TTemplates> = ({ templates }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const ref =
@@ -26,7 +19,7 @@ const Templates: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header_wrapper}>
-        <Typography tag="h2" fontFamily="secondary">
+        <Typography tag="h2" fontFamily="secondary" className={styles.header}>
           Шаблоны
         </Typography>
         <div className={styles.accordion_wrapper}>
@@ -61,12 +54,12 @@ const Templates: FC = () => {
         {...events}
         ref={ref}
       >
-        {botTemplates !== null &&
-          botTemplates.map((templateBot) => (
+        {templates.length &&
+          templates.map((template) => (
             <Template
               // eslint-disable-next-line no-underscore-dangle
-              key={templateBot._id}
-              template={templateBot}
+              key={template._id}
+              template={template}
             />
           ))}
       </ul>

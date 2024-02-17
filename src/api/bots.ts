@@ -12,6 +12,7 @@ import {
   IDeleteBotResponse,
   ICopyBotResponse,
   IRenameBotResponse,
+  TBotPermissions,
 } from '../services/types/bot';
 
 // запрос получения ботов
@@ -47,21 +48,12 @@ function copyBotApi(id: string) {
 }
 
 // запрос переименования бота
-function renameBotApi(id: string, title: string) {
+function renameBotApi(id: string, title: string, permission: TBotPermissions) {
   return patchReq<IRenameBotResponse>({
-    uri: `bots`,
+    uri: `bots/bot`,
     id,
     auth: true,
-    data: { title },
-  });
-}
-
-// запрос выдачи доступа к боту по email
-function shareBotApi(id: string, email: string) {
-  return postReq<IRenameBotResponse>({
-    uri: `bots/${id}/share`,
-    auth: true,
-    data: { email },
+    data: { title, permission },
   });
 }
 
@@ -107,7 +99,6 @@ export {
   deleteBotApi,
   copyBotApi,
   renameBotApi,
-  shareBotApi,
   getBotTemplatesApi,
   addBotTemplateApi,
   deleteBotTemplateApi,

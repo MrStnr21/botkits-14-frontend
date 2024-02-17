@@ -11,6 +11,7 @@ const data = {
 };
 
 const meta: Meta<typeof ApiBlockNode> = {
+  title: 'COMPONENTS/Builder/other-components/blocks/api-block',
   component: ApiBlockNode,
 };
 
