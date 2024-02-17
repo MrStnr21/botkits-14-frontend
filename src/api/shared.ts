@@ -11,14 +11,20 @@ const postSharedAccess = (sharedAccess: TableData) => {
 
 const patchSharedAccess = (sharedAccessData: TableData) => {
   const data = {
-    profile: sharedAccessData.profile,
-    dasboard: sharedAccessData.dasboard,
+    profile: sharedAccessData.id,
+    dashboard: sharedAccessData.dashboard,
     botBuilder: sharedAccessData.botBuilder,
     mailing: sharedAccessData.mailing,
-    static: sharedAccessData.static,
+    statistics: sharedAccessData.statistics,
+
+    /*  "profile": "65d0874b62a2669c8635d32f",
+  "dashboard": true,
+  "botBuilder": false,
+  "mailing": true,
+  "statistics": false */
   };
   return patchReq({
-    uri: `profiles/shared/${sharedAccessData.id}`,
+    uri: `profiles/shared`,
     data,
   });
 };

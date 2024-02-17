@@ -33,7 +33,7 @@ const Share: FC = () => {
       .then((responseData) => {
         setSharedAccesses(
           // eslint-disable-next-line no-underscore-dangle
-          responseData.map((item) => ({ ...item, id: uuidv4() }))
+          responseData.map((item) => ({ ...item, id: item._id }))
           // уникальный, чтобы не ругалась консоль
         );
       })

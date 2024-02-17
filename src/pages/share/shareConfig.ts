@@ -11,6 +11,7 @@ export const shareHeadStyle = {
   fontFamily: 'Open Sans, sans-serif',
   fontWeight: '400',
   fontSize: '16px',
+  'min-width': '100px',
   ':last-of-type': {
     borderRadius: '0 10px 10px 0',
   },
@@ -38,7 +39,7 @@ export const cellStyle = {
 export const shareCols = [
   {
     id: 1,
-    key: 'profile',
+    key: 'username',
     label: 'Имя',
     colStyle: { ...shareHeadStyle, width: '8%' },
     cellComponent: baseCell,
@@ -47,12 +48,12 @@ export const shareCols = [
     id: 2,
     key: 'email',
     label: 'Email',
-    colStyle: { ...shareHeadStyle, width: '12%' },
+    colStyle: { ...shareHeadStyle, width: '12%', 'min-width': '200px' },
     cellComponent: baseCell,
   },
   {
     id: 3,
-    key: 'dasboard',
+    key: 'dashboard',
     label: 'Управление',
     colStyle: { ...shareHeadStyle, width: '10%' },
     cellComponent: switcherCell,
@@ -60,7 +61,7 @@ export const shareCols = [
   {
     id: 4,
     key: 'botBuilder',
-    label: 'Общий доступ',
+    label: 'конструктор',
     colStyle: { ...shareHeadStyle, width: '13%' },
     cellComponent: switcherCell,
   },
@@ -80,7 +81,7 @@ export const shareCols = [
   },
   {
     id: 7,
-    key: 'static',
+    key: 'statistics',
     label: 'Статистика',
     colStyle: { ...shareHeadStyle, width: '10%' },
     cellComponent: switcherCell,
