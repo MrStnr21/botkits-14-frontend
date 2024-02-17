@@ -20,12 +20,15 @@ import {
   patchSharedAccess,
   postSharedAccess,
 } from '../../api/shared';
+import { useAppDispatch } from '../../services/hooks/hooks';
+import { createAddErrorAction } from '../../services/actions/errors/errors';
 
 const Share: FC = () => {
   const { isModalOpen, closeModal, openModal } = useModal();
 
   const [loading, setLoading] = useState(false);
   const [sharedAccesses, setSharedAccesses] = useState<any>([]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setLoading(true);
@@ -56,14 +59,12 @@ const Share: FC = () => {
         email: inputValue,
       };
       postSharedAccess(newRow)
-        .then((response) => {
-          console.log('Доступ успешно добавлен', response);
+        .catch(() => {
+          dispatch(createAddErrorAction('Не удалось предоставить доступ'));
         })
-        .catch((error) => {
-          console.error('Ошибка при добавлении доступа:', error);
+        .finally(() => {
+          closeModal();
         });
-
-      closeModal();
     }
   };
 
