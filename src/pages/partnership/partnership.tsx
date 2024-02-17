@@ -25,6 +25,7 @@ import { getUserInfoSel } from '../../utils/selectorData';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { getAccessToken } from '../../auth/authService';
 import { getUserInfoAction } from '../../services/actions/user/user';
+import { getReferrals } from '../../api/referrals';
 
 const Partnership: FC = (): JSX.Element => {
   const { user } = useAppSelector(getUserInfoSel);
@@ -44,6 +45,8 @@ const Partnership: FC = (): JSX.Element => {
 
   useEffect(() => {
     setInputValue(`${BASE_URL}/partnership?${user?.partner_ref}` || '');
+    // Получение статистики
+    getReferrals();
   }, [user]);
 
   const toggleReferralsTable = () => {
