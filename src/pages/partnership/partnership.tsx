@@ -20,7 +20,7 @@ import {
   rowStylePayment,
 } from './partnershipConfig';
 import { ppHeadCell } from '../../components/table-cells/table-cells';
-import { NUMBER_PARTNERSHIP, NUMBER_PARTNERSHIP_DEV } from '../../utils/config';
+import { BASE_URL } from '../../utils/config';
 import { getUserInfoSel } from '../../utils/selectorData';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { getAccessToken } from '../../auth/authService';
@@ -33,8 +33,7 @@ const Partnership: FC = (): JSX.Element => {
   const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
   const [paymentsChevronActive, setPaymentsChevronActive] = useState(false);
   const [refChevronActive, setRefChevronActive] = useState(false);
-  let number = '';
-  const [inputValue, setInputValue] = useState<string>(number);
+  const [inputValue, setInputValue] = useState<string>('');
 
   const token = getAccessToken();
   const dispatch = useAppDispatch();
@@ -44,8 +43,7 @@ const Partnership: FC = (): JSX.Element => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (user) number = NUMBER_PARTNERSHIP_DEV! + user.partner_ref;
-    setInputValue(number);
+    setInputValue(`${BASE_URL}/partnership?${user?.partner_ref}` || '');
   }, [user]);
 
   const toggleReferralsTable = () => {
