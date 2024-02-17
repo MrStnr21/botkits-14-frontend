@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   shareTableModalButtons,
-  shareRows,
   shareCols,
   cellStyle,
   rowStyleRef,
@@ -15,44 +15,56 @@ import Typography from '../../ui/typography/typography';
 import useModal from '../../services/hooks/use-modal';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ShareBotPopup from '../../components/popups/share-bot-popup/share-bot';
-import { getReq } from '../../api/api';
-
-type TableData = {
-  [key: string]: any;
-};
+import {
+  getSharedAccesses,
+  patchSharedAccess,
+  postSharedAccess,
+} from '../../api/shared';
+import { useAppDispatch } from '../../services/hooks/hooks';
+import { createAddErrorAction } from '../../services/actions/errors/errors';
 
 const Share: FC = () => {
   const { isModalOpen, closeModal, openModal } = useModal();
-  const [tableData, setTableData] = useState<TableData[]>(shareRows);
-  // временно
-  const [serverData, setServerData] = useState<any>([]);
-  console.log(serverData);
-  // ручка заработает, подключимся
+
+  const [loading, setLoading] = useState(false);
+  const [sharedAccesses, setSharedAccesses] = useState<any>([]);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    getReq({ uri: 'tariffs' })
+    setLoading(true);
+    getSharedAccesses()
       .then((responseData) => {
-        setServerData(responseData);
+        setSharedAccesses(
+          // eslint-disable-next-line no-underscore-dangle
+          responseData.map((item) => ({ ...item, id: item._id }))
+          // уникальный, чтобы не ругалась консоль
+        );
       })
-      .catch((error) => {
-        console.log('Ошибка получения данных:', error);
+      .finally(() => {
+        setLoading(false);
       });
-  }, []);
-  const removeEmail = (inputValue: string) => {
-    const atIndex = inputValue.indexOf('@');
-    if (atIndex !== -1) {
-      return inputValue.substring(0, atIndex);
-    }
-    return inputValue;
-  };
+  }, [isModalOpen]);
+
+  // const removeEmail = (inputValue: string) => {
+  //   const atIndex = inputValue.indexOf('@');
+  //   if (atIndex !== -1) {
+  //     return inputValue.substring(0, atIndex);
+  //   }
+  //   return inputValue;
+  // };
+
   const addTableData = (inputValue: string) => {
     if (inputValue) {
       const newRow = {
-        id: uuidv4(),
-        mail: inputValue,
-        name: removeEmail(inputValue),
+        email: inputValue,
       };
-      setTableData((prevData) => [newRow, ...prevData]);
-      closeModal();
+      postSharedAccess(newRow)
+        .catch(() => {
+          dispatch(createAddErrorAction('Не удалось предоставить доступ'));
+        })
+        .finally(() => {
+          closeModal();
+        });
     }
   };
 
@@ -81,21 +93,20 @@ const Share: FC = () => {
         </div>
       </div>
       <EnhancedTable
-        // при переполнении таблицы колонками задаём минимальную ширину таблицы больше минимальной
-        // ширины box и получаем горизонтальный скролл внутри box
-        // minTableWidth="1360px"
         pagination
         check
         toolbar
         dropdown
         columns={shareCols}
         headComponent={ppHeadCell}
-        tableData={tableData}
+        tableData={sharedAccesses}
         rowStyle={rowStyleRef}
         cellStyle={cellStyle}
         shadow={1}
         menuOptions={shareTableModalButtons}
-        setTableData={setTableData}
+        setTableData={setSharedAccesses}
+        loading={loading}
+        onUpdate={patchSharedAccess}
       />
       {isModalOpen && (
         <ModalPopup onClick={closeModal}>

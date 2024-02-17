@@ -2,13 +2,16 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import style from './table-input-cell.module.scss';
 import TableInput from '../../../ui/inputs/table-input/table-input';
+import { TableData } from '../../enhanced-table/enhanced-table';
 
 interface IProps {
   value: string;
   onCellUpdate: (newValue: string) => void;
+  column?: string;
+  TData?: TableData[];
 }
 
-const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {
+const TableInputCell: FC<IProps> = ({ value, onCellUpdate, column, TData }) => {
   const [inputValue, setInputValue] = useState(value);
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -38,6 +41,8 @@ const TableInputCell: FC<IProps> = ({ value, onCellUpdate }) => {
     <div className={style.inputCell} onClick={() => setIsEditing(!isEditing)}>
       {isEditing ? (
         <TableInput
+          data={TData}
+          column={column}
           onChange={handleChange}
           value={inputValue}
           inputRef={inputRef}

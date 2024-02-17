@@ -12,3 +12,7 @@
 .checkboxTC {
   @include indents();
 }
+
+.loader {
+  @include flex(row, center, center);
+}

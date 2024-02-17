@@ -13,4 +13,8 @@
   &__buttonWrapper {
     @include size(175px, 46px);
   }
+
+  @media screen and (max-width: $switching-width) {
+    @include indents(0, 20px);
+  }
 };
