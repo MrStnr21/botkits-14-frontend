@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import cn from 'classnames';
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useState, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
 import stylesPartnership from './partnership.module.scss';
@@ -20,15 +20,34 @@ import {
   rowStylePayment,
 } from './partnershipConfig';
 import { ppHeadCell } from '../../components/table-cells/table-cells';
-import { NUMBER_PARTNERSHIP } from '../../utils/config';
+import { BASE_URL } from '../../utils/config';
+import { getUserInfoSel } from '../../utils/selectorData';
+import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
+import { getAccessToken } from '../../auth/authService';
+import { getUserInfoAction } from '../../services/actions/user/user';
+import { getReferrals } from '../../api/referrals';
 
 const Partnership: FC = (): JSX.Element => {
+  const { user } = useAppSelector(getUserInfoSel);
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [isReferralsTableVisible, setReferralsTableVisible] = useState(true);
   const [isPaymentsTableVisible, setPaymentsTableVisible] = useState(false);
   const [paymentsChevronActive, setPaymentsChevronActive] = useState(false);
   const [refChevronActive, setRefChevronActive] = useState(false);
-  const [inputValue, setInputValue] = useState<string>(NUMBER_PARTNERSHIP!);
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const token = getAccessToken();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUserInfoAction(token));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setInputValue(`${BASE_URL}/partnership?${user?.partner_ref}` || '');
+    // Получение статистики
+    getReferrals();
+  }, [user]);
 
   const toggleReferralsTable = () => {
     setReferralsTableVisible(!isReferralsTableVisible);

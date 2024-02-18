@@ -6,10 +6,10 @@ import {
   TGetUserInfoActions,
 } from '../../actions/user/user';
 
-import { TUser } from '../../types/user';
+import { TUserProfile } from '../../types/user';
 
 export type TGetUserInfoState = {
-  user: TUser | null;
+  user: TUserProfile | null;
   isLoading: boolean;
   hasError: boolean;
 

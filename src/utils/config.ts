@@ -28,3 +28,5 @@ export const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
 export const URL_AVATAR = process.env.REACT_APP_URL_AVATAR;
 
 export const NUMBER_PARTNERSHIP = process.env.REACT_APP_NUMBER_PARTNERSHIP;
+export const NUMBER_PARTNERSHIP_DEV =
+  process.env.REACT_APP_NUMBER_PARTNERSHIP_DEV;
