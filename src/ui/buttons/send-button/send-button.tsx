@@ -2,9 +2,13 @@ import { FC } from 'react';
 import stylesSendButton from './send-button.module.scss';
 import ArrowIcon from '../../../components/icons/Arrow/ArrowIcon';
 
-const SendButton: FC = (): JSX.Element => {
+type TProps = {
+  onClick: () => void;
+};
+
+const SendButton: FC<TProps> = ({ onClick }) => {
   return (
-    <button type="button" className={stylesSendButton.button}>
+    <button onClick={onClick} type="button" className={stylesSendButton.button}>
       <ArrowIcon />
     </button>
   );

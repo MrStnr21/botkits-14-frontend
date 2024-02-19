@@ -7,7 +7,7 @@ import {
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import socketMiddleware from './middleware/socketMiddleware';
-import { wsActions } from '../utils/socketActionTypes';
+import { wsActions } from './actions/socket/socketActions';
 
 declare global {
   interface Window {

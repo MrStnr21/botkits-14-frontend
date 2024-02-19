@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 import styles from './dialog.module.scss';
@@ -5,28 +6,34 @@ import Avatar from '../../../ui/avatar/avatar';
 import Typography from '../../../ui/typography/typography';
 import getTimeAgo from '../../../utils/getTimeAgo';
 
+// Описание пропсов компонента Dialog
 interface IDialog {
-  name: string;
-  text: string;
-  timeAgo: Date;
-  messageNum: number;
-  status: string;
+  name: string; // Имя пользователя в диалоге
+  text: string; // Последнее сообщение в диалоге
+  timeAgo: Date; // Время последнего сообщения
+  messageNum: number; // Количество непрочитанных сообщений
+  status: string; // Статус пользователя (например, онлайн или оффлайн)
 }
 
+// Определение компонента Dialog
 const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
+  // Обработчик клика по диалогу для управления отображением линии под ним
   function pickChat(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    // Получение всех элементов с классом 'line'
     const allLines = document.querySelectorAll(
       '.line'
     ) as unknown as HTMLCollectionOf<HTMLElement>;
-    const line = e.currentTarget.lastChild as HTMLElement;
-    const newAllLines = Array.from(allLines);
+    const line = e.currentTarget.lastChild as HTMLElement; // Последний дочерний элемент текущего диалога (линия)
+    const newAllLines = Array.from(allLines); // Преобразование NodeList в массив
 
+    // Скрытие всех линий, кроме активной
     newAllLines.forEach((el) => {
       if (line !== el) {
-        const element = el;
-        element.style.display = 'none';
+        el.style.display = 'none';
       }
     });
+
+    // Переключение видимости активной линии
     if (
       line.classList.contains('line') &&
       (line.style.display === 'none' || '')
@@ -37,11 +44,14 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
     }
   }
 
+  // Рендеринг компонента
   return (
     <div className={styles.dialog} onClick={(e) => pickChat(e)}>
+      {/* Аватар пользователя */}
       <div className={styles.dialog__avatar}>
         <Avatar isBot="no" state={status} big="no" />
       </div>
+      {/* Контент диалога: имя пользователя, время последнего сообщения и текст последнего сообщения */}
       <div className={styles.dialog__content}>
         <div className={styles.dialog__nameContainer}>
           <Typography
@@ -67,7 +77,8 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
           >
             {text}
           </Typography>
-          {messageNum > 0 ? (
+          {/* Индикатор количества непрочитанных сообщений */}
+          {messageNum > 0 && (
             <div className={styles.dialog__messageNumCircle}>
               <Typography
                 tag="span"
@@ -77,9 +88,10 @@ const Dialog: FC<IDialog> = ({ name, text, timeAgo, messageNum, status }) => {
                 {messageNum}
               </Typography>
             </div>
-          ) : null}
+          )}
         </div>
       </div>
+      {/* Линия под диалогом, видимость которой управляется через pickChat */}
       <div className={`line ${styles.dialog__line}`} />
     </div>
   );

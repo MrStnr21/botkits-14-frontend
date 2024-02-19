@@ -23,10 +23,7 @@ const ChatDesktop: FC = () => {
 
   return (
     <div className={stylesChatDesktop.layout}>
-      <Dialogs
-        setSelectedMessages={setSelectedMessages}
-        setSelectedUser={setSelectedUser}
-      />
+      <Dialogs stateUser={selectedUser} setSelectedUser={setSelectedUser} />
       <ChatDialogue
         onSidebarClick={handleClick}
         isInfoVisible={isInfoVisible}

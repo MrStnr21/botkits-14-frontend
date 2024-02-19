@@ -14,11 +14,11 @@ import { botsReducer } from './bots/bots';
 import { getTemplatesBotsReducer } from './bots/templatesBots';
 
 import { getPlatformsReducer } from './platforms/getPlatforms';
-import { socketReducer } from './socket/socketReducer';
 
 import { toggleMesPopup } from './popups/messengers-popup';
 import errorReducer from './errors/errors';
 import { TRootState, TApplicationActions } from '../types';
+import chatReducer from './chat/chat';
 
 const appReducer = combineReducers({
   signin: signinReducer,
@@ -29,9 +29,9 @@ const appReducer = combineReducers({
   bots: botsReducer,
   getTemplatesBots: getTemplatesBotsReducer,
   getPlatforms: getPlatformsReducer,
-  websocket: socketReducer,
   toggleMessengersPopup: toggleMesPopup,
   errors: errorReducer,
+  chat: chatReducer,
 });
 
 const rootReducer = (

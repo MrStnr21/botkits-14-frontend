@@ -4,11 +4,7 @@ import stylesChatDesktop from './chat-page.module.scss';
 import Dialogs from '../../components/chat/dialogs/dialogs';
 
 const ChatMobile: FC = () => {
-  return (
-    <div className={stylesChatDesktop.layout}>
-      <Dialogs />
-    </div>
-  );
+  return <div className={stylesChatDesktop.layout}>{/* <Dialogs /> */}</div>;
 };
 
 export default ChatMobile;

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../services/hooks/hooks';
+import { ChangeEvent, FC, useState } from 'react';
 import stylesDialog from './chat-dialogue.module.scss';
 import TrashIcon from '../../icons/Trash/TrashIcon';
 import SearchIcon from '../../icons/Search/SearchIcon';
@@ -14,17 +13,19 @@ import SendButton from '../../../ui/buttons/send-button/send-button';
 import Avatar from '../../../ui/avatar/avatar';
 import Tooltip from './tooltip/tooltip';
 import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
-import { formatDate, DateType } from '../../../utils/chatDateFunctions';
+import { formatDate } from '../../../utils/chatDateFunctions';
 import { IMessage, IUser } from '../../../utils/mockChatData';
 import DeleteChatPopup from '../../popups/delete-chat-popup/delete-chat-popup';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import useModal from '../../../services/hooks/use-modal';
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
+import { wsActions } from '../../../services/actions/socket/socketActions';
 
 interface IChatDialogue {
   onSidebarClick: () => void;
   isInfoVisible: boolean;
   selectedMessages: IMessage[] | null;
-  selectedUser: IUser | null;
+  selectedUser: IUser;
 }
 
 const ChatDialogue: FC<IChatDialogue> = ({
@@ -34,12 +35,15 @@ const ChatDialogue: FC<IChatDialogue> = ({
   selectedUser,
 }) => {
   const [inputValue, setInputValue] = useState('');
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [isInputVisible, setInputVisible] = useState(false);
   const { isModalOpen, closeModal, openModal } = useModal();
-  const chatData = useAppSelector((store) => store.websocket.data); // заменить на это моковые данные
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  const { user } = useAppSelector((store: any) => ({
+    user: store.chat.user,
+  }));
+
+  /* useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date() as DateType;
       setCurrentDate(now);
@@ -48,9 +52,21 @@ const ChatDialogue: FC<IChatDialogue> = ({
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, []); */
 
-  const formattedDate = formatDate(currentDate);
+  const formattedDate = formatDate(new Date());
+
+  const handleButtonClick = () => {
+    const dataMessage = {
+      participants: [user.id, `${selectedUser.id}`],
+      sender: user.name, // Идентификатор отправителя
+      message: inputValue, // Текст сообщения
+      time: new Date().toISOString(), // Временная метка сообщения
+      status: 'sent', // Статус сообщения
+      avatar: '',
+    };
+    dispatch({ type: wsActions.wsSend, payload: dataMessage });
+  };
 
   return (
     <div
@@ -132,7 +148,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
               <InputMessage onChange={(e) => setInputValue(e.target.value)} />
             </div>
             <button type="button" className={stylesDialog.dialog__submitButton}>
-              <SendButton />
+              <SendButton onClick={handleButtonClick} />
             </button>
           </div>
         </>
