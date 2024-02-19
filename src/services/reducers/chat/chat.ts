@@ -21,8 +21,8 @@ export type TChatState = {
 const intialState: TChatState = {
   status: '',
   user: {
-    id: 777,
-    name: 'Oleg',
+    id: 666,
+    name: 'Chert Oleg',
   },
   usersFrontConnected: [],
   history: [],

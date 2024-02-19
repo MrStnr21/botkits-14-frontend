@@ -8,6 +8,7 @@ import {
   SET_STATUS,
   UPDATE_HISTORY,
 } from '../actions/chat/chat';
+import { getAccessToken } from '../../auth/authService';
 
 // socketMiddleware.ts
 const socketMiddleware = (WsActions: typeof wsActions): Middleware => {
@@ -22,7 +23,12 @@ const socketMiddleware = (WsActions: typeof wsActions): Middleware => {
 
       if (type === wsStart) {
         url = payload;
-        socket = io(url);
+        socket = io(url, {
+          /* transports: ['websocket'], */
+          extraHeaders: {
+            Authorization: getAccessToken() || '',
+          },
+        });
       } else if (type === onClose) {
         socket && socket.off();
       }
