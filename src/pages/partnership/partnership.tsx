@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import cn from 'classnames';
 import { ChangeEvent, FC, useState, useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { StyledEngineProvider, useMediaQuery } from '@mui/material';
@@ -22,9 +21,7 @@ import {
 import { ppHeadCell } from '../../components/table-cells/table-cells';
 import { BASE_URL } from '../../utils/config';
 import { getUserInfoSel } from '../../utils/selectorData';
-import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { getAccessToken } from '../../auth/authService';
-import { getUserInfoAction } from '../../services/actions/user/user';
+import { useAppSelector } from '../../services/hooks/hooks';
 import { getReferrals } from '../../api/referrals';
 
 const Partnership: FC = (): JSX.Element => {
@@ -35,13 +32,6 @@ const Partnership: FC = (): JSX.Element => {
   const [paymentsChevronActive, setPaymentsChevronActive] = useState(false);
   const [refChevronActive, setRefChevronActive] = useState(false);
   const [inputValue, setInputValue] = useState<string>('');
-
-  const token = getAccessToken();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getUserInfoAction(token));
-  }, [dispatch]);
 
   useEffect(() => {
     setInputValue(`${BASE_URL}/partnership?${user?.partner_ref}` || '');

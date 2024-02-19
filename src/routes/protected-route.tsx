@@ -1,13 +1,12 @@
 import { useEffect, FC } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../services/hooks/hooks';
 import { getUserInfoAction } from '../services/actions/user/user';
 import { getBotsAction } from '../services/actions/bots/getBot';
 
-import { getAccessToken } from '../auth/authService';
-
 import routesUrl from '../utils/routesData';
+import { getUserInfoSel } from '../utils/selectorData';
 
 type TProtectedRoute = {
   children: JSX.Element;
@@ -27,21 +26,27 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
   notAuth = false,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const { user, getUserInfoRequest } = useAppSelector(getUserInfoSel);
 
-  const token = getAccessToken();
+  /* const token = getAccessToken(); */
 
   useEffect(() => {
-    if (token) {
+    if (!user && !getUserInfoRequest) {
       dispatch(getUserInfoAction());
       dispatch(getBotsAction());
     }
-  }, [dispatch]);
+  }, []);
 
-  if (token && notAuth) {
+  if (getUserInfoRequest) {
+    // Лоадер
+    return <div />;
+  }
+
+  if (user && notAuth) {
     return <Navigate to={routesUrl.homePage} />;
   }
 
-  if (!notAuth && !token) {
+  if (!notAuth && !user) {
     return <Navigate to={routesUrl.signup} />;
   }
 
