@@ -24,24 +24,20 @@ import { wsActions } from '../../../services/actions/socket/socketActions';
 interface IChatDialogue {
   onSidebarClick: () => void;
   isInfoVisible: boolean;
-  selectedMessages: IMessage[] | null;
-  selectedUser: IUser;
 }
 
-const ChatDialogue: FC<IChatDialogue> = ({
-  onSidebarClick,
-  isInfoVisible,
-  selectedMessages,
-  selectedUser,
-}) => {
+const ChatDialogue: FC<IChatDialogue> = ({ onSidebarClick, isInfoVisible }) => {
   const [inputValue, setInputValue] = useState('');
   const [isInputVisible, setInputVisible] = useState(false);
   const { isModalOpen, closeModal, openModal } = useModal();
   const dispatch = useAppDispatch();
 
-  const { user } = useAppSelector((store: any) => ({
-    user: store.chat.user,
+  const { user, selectedUser } = useAppSelector((store: any) => ({
+    user: store.getUserInfo.user,
+    selectedUser: store.chat.selectedUser,
   }));
+
+  console.log(selectedUser);
 
   /* useEffect(() => {
     const interval = setInterval(() => {
@@ -57,9 +53,17 @@ const ChatDialogue: FC<IChatDialogue> = ({
   const formattedDate = formatDate(new Date());
 
   const handleButtonClick = () => {
+    setTimeout(() => {}, 3000);
+    const a = selectedUser.messages[0];
+    const b = a.chatId;
+    const res = b.slice(1).split(':');
+    // eslint-disable-next-line no-underscore-dangle
+    console.log(`Это отправитель - ${user._id}`);
+    console.log(`Это получатель - ${res[0]}`);
     const dataMessage = {
-      participants: [user.id, `${selectedUser.id}`],
-      sender: user.name, // Идентификатор отправителя
+      // eslint-disable-next-line no-underscore-dangle
+      participants: [`${res[0]}`, `${user._id}`],
+      sender: user.username, // Идентификатор отправителя
       message: inputValue, // Текст сообщения
       time: new Date().toISOString(), // Временная метка сообщения
       status: 'sent', // Статус сообщения
@@ -70,9 +74,11 @@ const ChatDialogue: FC<IChatDialogue> = ({
 
   return (
     <div
-      className={selectedMessages ? stylesDialog.dialog : stylesDialog.noBorder}
+      className={
+        selectedUser.messages ? stylesDialog.dialog : stylesDialog.noBorder
+      }
     >
-      {selectedMessages?.length ? (
+      {selectedUser.messages?.length ? (
         <>
           <RightSidebarButton
             onClick={onSidebarClick}
@@ -139,7 +145,7 @@ const ChatDialogue: FC<IChatDialogue> = ({
             </div>
           </div>
           <div className={stylesDialog.dialog__messages}>
-            {selectedMessages.map((message) => {
+            {selectedUser.messages.map((message: any) => {
               return <Message message={message} key={message.id} />;
             })}
           </div>

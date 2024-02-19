@@ -21,11 +21,8 @@ const ChatDesktop: FC = () => {
   });
 
   const { user, status } = useAppSelector((store: any) => ({
-    user: store.chat.user,
+    user: store.getUserInfo.user,
     status: store.chat.status,
-    history: store.chat.history,
-    usersFrontConnected: store.chat.usersFrontConnected,
-    historyIsHere: store.chat.historyIsHere,
   }));
 
   const dispatch = useAppDispatch();
@@ -37,13 +34,14 @@ const ChatDesktop: FC = () => {
   useEffect(() => {
     dispatch({
       type: wsActions.wsStart,
-      payload: `wss://ebaa-77-222-102-117.ngrok-free.app/socket.io/?EIO=4&transport=polling&t=Ot0zgJ4`,
+      payload: `http://localhost:3001`,
     });
   }, []);
 
   useEffect(() => {
     if (status === 'success') {
-      dispatch({ type: wsActions.wsSendUserId, payload: user.id });
+      // eslint-disable-next-line no-underscore-dangle
+      dispatch({ type: wsActions.wsSendUserId, payload: user._id });
     }
   }, [status]);
 
@@ -53,8 +51,6 @@ const ChatDesktop: FC = () => {
       <ChatDialogue
         onSidebarClick={handleClick}
         isInfoVisible={isInfoVisible}
-        selectedMessages={selectedMessages}
-        selectedUser={selectedUser}
       />
       {isInfoVisible && <Information selectedUser={selectedUser} />}
     </div>

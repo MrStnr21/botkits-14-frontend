@@ -19,7 +19,7 @@ const socketMiddleware = (WsActions: typeof wsActions): Middleware => {
     return (next) => (action) => {
       const { dispatch } = store;
       const { type, payload } = action;
-      const { wsStart, onClose, wsSend, wsSendUserId } = WsActions;
+      const { wsStart, onClose, wsSend } = WsActions;
 
       if (type === wsStart) {
         url = payload;
@@ -34,14 +34,7 @@ const socketMiddleware = (WsActions: typeof wsActions): Middleware => {
       }
 
       if (socket) {
-        // Отписываемся от всех предыдущих событий
-        socket.off('connect');
-        socket.off('connect_error');
-        socket.off('messageMockClient');
-        socket.off('disconnect');
-        socket.off('allChatsHistory');
-        socket.off('register');
-
+        socket.removeAllListeners();
         // Закрываем предыдущее соединение
         socket.on('connect', () => {
           console.log('Socket.IO Connected');
@@ -53,9 +46,36 @@ const socketMiddleware = (WsActions: typeof wsActions): Middleware => {
           dispatch({ type: SET_STATUS, payload: 'error' });
         });
 
-        socket.on('messageMockClient', (message) => {
+        socket.on('message', (message) => {
+          const messageObj = JSON.parse(message);
           console.log('Socket.IO Message', message);
-          dispatch({ type: UPDATE_HISTORY, payload: message });
+          dispatch({ type: UPDATE_HISTORY, payload: messageObj });
+        });
+
+        socket.on('newChat', async (chatData) => {
+          console.log(
+            `Сработало событие создание нового чата у фронитового клиента - ${JSON.stringify(
+              chatData,
+              null,
+              2
+            )}`
+          );
+          const res = JSON.parse(chatData);
+          socket!.emit('start-dialog', {
+            from: res.participants[0],
+            to: res.participants[1],
+          });
+
+          socket!.emit('rootServerMessage', res);
+        });
+
+        socket.on('send_rooms', (inviteData) => {
+          console.log(
+            'Сработало событие получение комнат у фронитового клиента:',
+            inviteData
+          );
+
+          // socket!.emit('send_rooms', inviteData);
         });
 
         socket.on('disconnect', (reason) => {
@@ -88,9 +108,7 @@ const socketMiddleware = (WsActions: typeof wsActions): Middleware => {
 
         if (type === wsSend) {
           // const { message } = payload;
-          socket.emit('mockChatMessage', payload);
-        } else if (type === wsSendUserId) {
-          socket.emit('mockChatHistory', payload);
+          socket.emit('rootServerMessage', payload);
         }
       }
 

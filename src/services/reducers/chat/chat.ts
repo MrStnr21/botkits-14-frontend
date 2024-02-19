@@ -1,7 +1,7 @@
 /* eslint-disable no-else-return */
 /* eslint-disable @typescript-eslint/default-param-last */
 import {
-  NEW_USER_CONNECTED,
+  SELECTED_USER,
   SET_CHATS_HISTORY,
   SET_STATUS,
   UPDATE_HISTORY,
@@ -9,24 +9,16 @@ import {
 
 export type TChatState = {
   status: string;
-  user: {
-    id: number;
-    name: string;
-  };
-  usersFrontConnected: any;
   history: any;
   historyIsHere: boolean;
+  selectedUser: any;
 };
 
 const intialState: TChatState = {
   status: '',
-  user: {
-    id: 666,
-    name: 'Chert Oleg',
-  },
-  usersFrontConnected: [],
   history: [],
   historyIsHere: false,
+  selectedUser: {},
 };
 
 const chatReducer = (state = intialState, action: any) => {
@@ -43,21 +35,15 @@ const chatReducer = (state = intialState, action: any) => {
         history: action.payload,
       };
     }
-    case NEW_USER_CONNECTED: {
-      return {
-        ...state,
-        usersFrontConnected: [...state.usersFrontConnected, action.payload],
-      };
-    }
     case UPDATE_HISTORY: {
       const { payload } = action;
-
       // Находим индекс чата в истории
       const chatIndex = state.history.findIndex(
         (hist: any) => hist.chatId === payload.chatId
       );
-
-      console.log(`Это index - ${chatIndex}`);
+      /* console.log(state.history[0].chatId);
+      console.log(chatIndex); */
+      console.log(payload);
 
       if (chatIndex === -1) {
         // Если чата нет, создаем новую историю для чата
@@ -68,8 +54,8 @@ const chatReducer = (state = intialState, action: any) => {
               chatId: payload.chatId,
               id: '1', // Уникальный идентификатор сообщения
               avatar: '', // Ссылка на аватар, если есть
-              user: state.user.name,
-              sender: state.user.name,
+              user: payload.sender,
+              sender: payload.sender,
               message: payload.message,
               time: new Date().toISOString(), // Время получения сообщения
               online: true, // Предполагается, что пользователь онлайн
@@ -80,9 +66,9 @@ const chatReducer = (state = intialState, action: any) => {
           profile: payload.participants[1],
         };
 
-        console.log(
+        /* console.log(
           `это история чатов - ${JSON.stringify(state.history, null, 2)}`
-        );
+        ); */
 
         return {
           ...state,
@@ -113,8 +99,18 @@ const chatReducer = (state = intialState, action: any) => {
             },
             ...state.history.slice(chatIndex + 1),
           ],
+          selectedUser: {
+            ...state.selectedUser,
+            messages: [...state.selectedUser.messages, newMessage],
+          },
         };
       }
+    }
+    case SELECTED_USER: {
+      return {
+        ...state,
+        selectedUser: action.payload,
+      };
     }
     default: {
       return state;

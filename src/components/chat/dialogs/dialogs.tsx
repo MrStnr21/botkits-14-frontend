@@ -15,7 +15,8 @@ import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
 import DialogMobilePopup from '../chat-dialogue/dialog-mobile-popup/dialog-mobile-popup';
 import useClick from '../../../services/hooks/use-click';
 import useEscapeKey from '../../../services/hooks/use-esc-key';
-import { useAppSelector } from '../../../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
+import { SELECTED_USER } from '../../../services/actions/chat/chat';
 
 // Определение пропсов компонента с возможностью задания функций для обновления состояний
 interface ID {
@@ -39,21 +40,23 @@ const Dialogs: FC<ID> = ({ setSelectedUser, stateUser }) => {
   // Массив для подсчета непрочитанных сообщений
   const count: number[] = [];
 
+  const dispatch = useAppDispatch();
+
   // Функция обработки клика по диалогу
   const handleDialogClick = (el: IChatData) => {
     if (setSelectedUser) {
       // Установка выбранного пользователя
       setSelectedUser(el.user);
+      dispatch({ type: SELECTED_USER, payload: el.user });
     }
   };
 
-  const { user, history, usersFrontConnected } = useAppSelector(
-    (store: any) => ({
-      user: store.chat.user,
-      history: store.chat.history,
-      usersFrontConnected: store.chat.usersFrontConnected,
-    })
-  );
+  const { user, history } = useAppSelector((store: any) => ({
+    // eslint-disable-next-line spaced-comment
+    //user: store.chat.user,
+    user: store.getUserInfo.user,
+    history: store.chat.history,
+  }));
 
   useEffect(() => {
     // Сначала создаем список диалогов на основе истории
@@ -63,9 +66,9 @@ const Dialogs: FC<ID> = ({ setSelectedUser, stateUser }) => {
       }
       return {
         user: {
-          id: hist?.profile, // предполагается, что chatId уникально идентифицирует диалог/пользователя
+          id: hist?.profile,
           name:
-            hist?.messages?.find((msg: any) => msg.sender !== user.name)
+            hist?.messages?.find((msg: any) => msg.sender !== user.username)
               ?.sender || 'Неизвестный пользователь',
           status: 'offline', // По умолчанию ставим offline, далее обновим статус если пользователь онлайн
           lastMessageAt: '2023-11-15 00:30:22', // Это заглушка, замените на актуальные данные
@@ -73,44 +76,6 @@ const Dialogs: FC<ID> = ({ setSelectedUser, stateUser }) => {
         },
       };
     });
-
-    // Теперь добавляем подключенных пользователей, которых нет в истории
-    usersFrontConnected.forEach((connectedUser) => {
-      const isUserInDialogs = dialogs.some((dialog) =>
-        dialog.user.id.includes(connectedUser._id)
-      );
-      if (!isUserInDialogs) {
-        // Если пользователя нет в диалогах, добавляем его с базовой информацией
-        dialogs.push({
-          user: {
-            id: connectedUser._id,
-            name: connectedUser.username,
-            status: 'online', // Пользователь подключен
-            lastMessageAt: '2023-11-15 00:30:22', // У нового пользователя нет сообщений
-            messages: [
-              {
-                id: 1,
-                avatar: '',
-                user: `${connectedUser.username}`,
-                message: '',
-                time: '16 мин назад',
-                online: true,
-                seen: '14:05',
-                status: 'read',
-              },
-            ], // Нет истории сообщений
-          },
-        });
-      } else {
-        // Обновляем статус пользователя на 'online', если он есть в истории
-        const dialogIndex = dialogs.findIndex((dialog) => {
-          console.log(`Dialogs: ${JSON.stringify(dialog, null, 2)}`);
-          return dialog.user.id === connectedUser._id;
-        });
-        dialogs[dialogIndex].user.status = 'online';
-      }
-    });
-
     const selectedUser = dialogs.find((dialog) => {
       return dialog.id === stateUser.id;
     }) || {
@@ -125,8 +90,7 @@ const Dialogs: FC<ID> = ({ setSelectedUser, stateUser }) => {
     // dialogs.sort((a, b) => /* Ваша логика сортировки */);
 
     setTestData(dialogs);
-    setSelectedUser(selectedUser);
-  }, [usersFrontConnected, history]);
+  }, [history]);
 
   // Фильтрация уникальных данных для избежания дубликатов диалогов
   // const uniqueData = testData.reduce((a: IChatData[], b: any) => {
@@ -148,7 +112,7 @@ const Dialogs: FC<ID> = ({ setSelectedUser, stateUser }) => {
           className={styles.dialogs__header}
           fontFamily="secondary"
         >
-          Мессенджер пользователя бота
+          Чаты
         </Typography>
         {isMobile && (
           <div className={styles.dialogs__icons}>
