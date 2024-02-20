@@ -43,7 +43,7 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
     return <div />;
   }
 
-  if (!user && !notAuth && !accessToken) {
+  if (!user && !notAuth && (!accessToken || userRequestedFirstTime)) {
     return <Navigate to={routesUrl.signin} state={{ prev: pathname }} />;
   }
 
