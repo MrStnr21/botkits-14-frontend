@@ -6,10 +6,11 @@ import MenuInformation from '../../../ui/menus/menu-information/menu-information
 import Notifications from '../../icons/Notifications/Notifications';
 import CloseIcon from '../../icons/Close/CloseIcon';
 
-import stylesNotification from './notification-popup.module.scss';
+import styles from './notification-popup.module.scss';
 import Typography from '../../../ui/typography/typography';
 import LogsNotification from './logs-notification/logs-notification';
 import { logNotifications } from '../../../utils/mockNotification';
+import linksMapping from './notificationLinksMapping';
 
 interface INotificationPopup {
   isOpen: boolean;
@@ -29,31 +30,25 @@ const NotificationPopup: FC<INotificationPopup> = ({
 
   return (
     <div
-      className={
-        isOpen ? stylesNotification.popup : stylesNotification.popup_hidden
-      }
+      className={isOpen ? styles.popup : styles.popup_hidden}
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           setIsNotificationOpened(false);
         }
       }}
     >
-      <div className={stylesNotification.container}>
-        <div className={stylesNotification.header}>
-          <div className={stylesNotification.wrapper}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.wrapper}>
             <Notifications number={2} color="#060c23" />
-            <Typography
-              tag="p"
-              fontFamily="secondary"
-              className={stylesNotification.title}
-            >
+            <Typography tag="p" fontFamily="secondary" className={styles.title}>
               Уведомления
             </Typography>
           </div>
           {!matches && (
             <button
               type="button"
-              className={stylesNotification.close_btn}
+              className={styles.close_btn}
               onClick={() => setIsNotificationOpened(false)}
             >
               <CloseIcon color="#d7deea" width={24} height={24} />
@@ -72,11 +67,16 @@ const NotificationPopup: FC<INotificationPopup> = ({
           }}
         />
         {isDisabled ? (
-          <div className={stylesNotification.news} />
+          <div className={styles.news} />
         ) : (
-          <div className={stylesNotification.logs}>
+          <div className={styles.logs}>
             {logs.map((item) => (
-              <LogsNotification {...item} remove={removeLog} />
+              <LogsNotification
+                key={item._id}
+                remove={removeLog}
+                link={item.goTo ? linksMapping[item.goTo] : ''}
+                {...item}
+              />
             ))}
           </div>
         )}
