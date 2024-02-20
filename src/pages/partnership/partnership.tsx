@@ -185,15 +185,24 @@ const Partnership: FC = (): JSX.Element => {
                 )}
               </button>
             </div>
-            {isPaymentsTableVisible && (
-              <EnhancedTable
-                columns={paymentCols}
-                headComponent={ppHeadCell}
-                tableData={paymentRows}
-                rowStyle={rowStylePayment}
-                cellStyle={cellStyle}
-              />
-            )}
+            {isPaymentsTableVisible &&
+              (!isMobile ? (
+                <EnhancedTable
+                  columns={paymentCols}
+                  headComponent={ppHeadCell}
+                  tableData={paymentRows}
+                  rowStyle={rowStylePayment}
+                  cellStyle={cellStyle}
+                />
+              ) : (
+                <EnhancedTableMobile
+                  columns={paymentCols}
+                  headComponent={ppHeadCell}
+                  tableData={paymentRows}
+                  rowStyle={rowStylePayment}
+                  cellStyle={cellStyle}
+                />
+              ))}
           </div>
         </div>
       </div>
