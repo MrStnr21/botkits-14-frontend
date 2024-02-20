@@ -1,7 +1,3 @@
-enum Role {
-  USER = 'user',
-  ADMIN = 'admin',
-  SUPER_ADMIN = 'superAdmin',
-}
+type Role = 'user' | 'admin' | 'superAdmin';
 
 export default Role;

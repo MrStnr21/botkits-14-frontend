@@ -1,12 +1,11 @@
 import { FC } from 'react';
 
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { getUserRole } from '../auth/authService';
 import routesUrl from '../utils/routesData';
 import Role from '../services/types/roles';
 
 type TRolesRoute = {
-  children: JSX.Element;
   roles: Role[];
 };
 
@@ -18,12 +17,12 @@ type TRolesRoute = {
  *  <ChildComponent/>
  * </RolesRoute>
  */
-const RolesRoute: FC<TRolesRoute> = ({ children, roles = [] }) => {
+const RolesRoute: FC<TRolesRoute> = ({ roles = [] }) => {
   const userRole = getUserRole() || '';
 
   const canAccess = roles.includes(userRole as Role);
 
-  if (canAccess) return children;
+  if (canAccess) return <Outlet />;
 
   return <Navigate to={routesUrl.homePage} />;
 };

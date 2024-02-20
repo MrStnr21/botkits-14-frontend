@@ -56,36 +56,41 @@ const App: FC = () => {
                 }
               />
             }
-          />
-          <Route path={routesUrl.homePage} element={<Dashboard />} />
-          <Route path={routesUrl.addBot} element={<AddBotPage />} />
-          <Route path={routesUrl.botBuilder} element={<BotBuilder />} />
-          <Route
-            path={routesUrl.chat}
-            element={isMobile ? <ChatMobile /> : <Chat />}
-          />
-          <Route path={routesUrl.partnership} element={<Partnership />} />
-          <Route path={routesUrl.bottemplates} element={<BotTemplates />} />
-          <Route path={routesUrl.share} element={<Share />} />
-          <Route path={routesUrl.subscription} element={<Subscription />} />
-          <Route path={routesUrl.tariffs} element={<Tariffs />} />
-          <Route path={routesUrl.statistics} element={<Statistics />} />
-          <Route path={routesUrl.users} element={<UsersPage />} />
-          <Route path={routesUrl.promocodes} element={<Promocodes />} />
-          <Route path={`${routesUrl.mailing}/*`} element={<Mailing />} />
-          {isMobile && <Route path="chat/:id" element={<MobileDialog />} />}
-          {isMobile && (
-            <Route path="chat/:id/info" element={<MobileDialogInformation />} />
-          )}
-          {/* Перенесен в защищенные при рефакторинге, я не знаю, кто это */}
-          <Route path="create" element={<CreateMailing />}>
-            <Route path="conditions" element={<MailingConditions />} />
+          >
+            <Route path={routesUrl.homePage} element={<Dashboard />} />
+            <Route path={routesUrl.addBot} element={<AddBotPage />} />
+            <Route path={routesUrl.botBuilder} element={<BotBuilder />} />
+            <Route
+              path={routesUrl.chat}
+              element={isMobile ? <ChatMobile /> : <Chat />}
+            />
+            <Route path={routesUrl.partnership} element={<Partnership />} />
+            <Route path={routesUrl.bottemplates} element={<BotTemplates />} />
+            <Route path={routesUrl.share} element={<Share />} />
+            <Route path={routesUrl.subscription} element={<Subscription />} />
+            <Route path={routesUrl.tariffs} element={<Tariffs />} />
+            <Route path={routesUrl.statistics} element={<Statistics />} />
+            <Route path={routesUrl.users} element={<UsersPage />} />
+            <Route path={routesUrl.promocodes} element={<Promocodes />} />
+            <Route path={`${routesUrl.mailing}/*`} element={<Mailing />} />
+            {isMobile && (
+              <Route
+                path={`${routesUrl.chat}/:id`}
+                element={<MobileDialog />}
+              />
+            )}
+            {isMobile && (
+              <Route
+                path={`${routesUrl.chat}/:id/info`}
+                element={<MobileDialogInformation />}
+              />
+            )}
+            <Route path="create" element={<CreateMailing />}>
+              <Route path="conditions" element={<MailingConditions />} />
+            </Route>
           </Route>
+          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
-      </Routes>
-
-      <Routes>
-        <Route path={routesUrl.notFound} element={<NotFound />} />
       </Routes>
       <ErrorNotificator />
     </>
