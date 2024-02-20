@@ -1,5 +1,5 @@
 import { useEffect, FC } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../services/hooks/hooks';
 import { getUserInfoAction } from '../services/actions/user/user';
@@ -9,7 +9,6 @@ import { getUserInfoSel } from '../utils/selectorData';
 import { getAccessToken } from '../auth/authService';
 
 type TProtectedRoute = {
-  children: JSX.Element;
   notAuth?: boolean;
 };
 
@@ -22,7 +21,6 @@ type TProtectedRoute = {
  * </ProtectedRoute>
  */
 const ProtectedRoute: FC<TProtectedRoute> = ({
-  children,
   notAuth = false,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -51,7 +49,7 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
     return <Navigate to={state?.prev ? state.prev : routesUrl.homePage} />;
   }
 
-  return children;
+  return <Outlet />;
 };
 
 export default ProtectedRoute;
