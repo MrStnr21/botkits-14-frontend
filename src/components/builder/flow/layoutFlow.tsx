@@ -42,6 +42,7 @@ import { storeOfVariables, namesOfBlocks } from '../utils/store';
 import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
 import { TResponseError } from '../../../services/types/response';
+import { createAddErrorAction } from '../../../services/actions/errors/errors';
 
 const cx = cn.bind(styles);
 
@@ -55,6 +56,7 @@ const LayoutFlow: FC = () => {
   const [title, setTitle] = useState('Название бота');
   const [platformIcon, setPlatformIcon] = useState(iconOfPlatform.Facebook);
   const [permission, setPermission] = useState({});
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const id = searchParams.get('id') || '';
@@ -129,12 +131,16 @@ const LayoutFlow: FC = () => {
         variables: storeOfVariables,
         triggers,
       },
-      permission,
-    };
+    } as any;
 
-    saveBuilderApi(builder, path, id).catch((err) => {
+    // Добавляем permission если изменяем не шаблон
+    if (searchParams.get('type') !== 'template') {
+      builder.permission = permission;
+    }
+
+    saveBuilderApi(builder, path, id).catch(() => {
       // eslint-disable-next-line no-console
-      console.log(err);
+      dispatch(createAddErrorAction('Не получилось сохранить'));
     });
   };
 
@@ -212,8 +218,6 @@ const LayoutFlow: FC = () => {
       );
     }
   }, [isMobile]);
-
-  const dispatch = useAppDispatch();
 
   return (
     <div className={cx('flow')}>
