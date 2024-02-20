@@ -1,13 +1,12 @@
 import { useEffect, FC } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
-import { useAppDispatch } from '../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../services/hooks/hooks';
 import { getUserInfoAction } from '../services/actions/user/user';
-import { getBotsAction } from '../services/actions/bots/getBot';
-
-import { getAccessToken } from '../auth/authService';
 
 import routesUrl from '../utils/routesData';
+import { getUserInfoSel } from '../utils/selectorData';
+import { getAccessToken } from '../auth/authService';
 
 type TProtectedRoute = {
   children: JSX.Element;
@@ -16,7 +15,7 @@ type TProtectedRoute = {
 
 /**
  * Компонент-обёртка для роутов. Проверяет наличие токена в localStorage
- * @param {boolean} notAuth нужна ли аутентификация для посещения страницы
+ * @param {boolean} notAuth страницу видят только неавторизованные пользователи
  * @example
  * <ProtectedRoute notAuth>
  *  <ChildComponent/>
@@ -27,22 +26,29 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
   notAuth = false,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const { state, pathname } = useLocation();
+  const { user, getUserInfoRequest, userRequestedFirstTime } =
+    useAppSelector(getUserInfoSel);
 
-  const token = getAccessToken();
+  const accessToken = getAccessToken();
 
   useEffect(() => {
-    if (token) {
+    if (!user && !getUserInfoRequest) {
       dispatch(getUserInfoAction());
-      dispatch(getBotsAction());
     }
-  }, [dispatch]);
+  }, [user]);
 
-  if (token && notAuth) {
-    return <Navigate to={routesUrl.homePage} />;
+  if (getUserInfoRequest || !userRequestedFirstTime) {
+    // Лоадер
+    return <div />;
   }
 
-  if (!notAuth && !token) {
-    return <Navigate to={routesUrl.signup} />;
+  if (!user && !notAuth && (!accessToken || userRequestedFirstTime)) {
+    return <Navigate to={routesUrl.signin} state={{ prev: pathname }} />;
+  }
+
+  if (user && notAuth) {
+    return <Navigate to={state?.prev ? state.prev : routesUrl.homePage} />;
   }
 
   return children;

@@ -4,10 +4,11 @@ import { signinApi } from '../../../api/index';
 import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
-import { AppDispatch, AppThunk } from '../../types';
+import { AppDispatch, AppThunk, TApplicationActions } from '../../types';
 import { TResponseError } from '../../types/response';
 import { IUserAuthError, IUserSigninState, TUser } from '../../types/user';
 import { ILogoutAction } from '../logout/logout';
+import { getUserInfoAction } from '../user/user';
 
 const SIGNIN_REQUEST = 'SIGNIN_REQUSET';
 const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
@@ -47,6 +48,7 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
         if (res) {
           saveAccessToken(res.credentials.accessToken);
           saveRefreshToken(res.credentials.refreshToken);
+          dispatch(getUserInfoAction() as unknown as TApplicationActions);
 
           dispatch({
             type: SIGNIN_SUCCESS,

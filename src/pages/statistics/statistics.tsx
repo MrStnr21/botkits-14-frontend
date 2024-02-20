@@ -45,17 +45,14 @@ const Statistics: FC = () => {
   );
 
   const messengersPeriodSelect = (period: Option) => {
-    console.log(period);
     setMessengersPeriod(period);
   };
 
   const installmentPeriodSelect = (period: Option) => {
-    console.log(period);
     setInstallmentPeriod(period);
   };
 
   const totalBotsPeriodSelect = (period: Option) => {
-    console.log(period);
     setTotalBotsPeriod(period);
   };
 

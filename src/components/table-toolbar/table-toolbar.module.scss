@@ -2,11 +2,20 @@
 @use '../../stylesheets/variables' as *;
 
 .toolbar {
-  @include flex(row-reverse, space-between, center);
+  @include flex(row-reverse, space-between, flex-start);
   @include indents(0 0 32px 0, 0);
 
   &__leftSide {
     @include flex(row, unset, center, 16px);
+
+    @media (max-width: 860px) {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: $switching-width) {
+    flex-direction: column-reverse;
+    gap: 16px;
   }
 }
 

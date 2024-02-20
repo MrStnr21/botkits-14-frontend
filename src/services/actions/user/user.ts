@@ -5,9 +5,10 @@ import {
 } from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
-import { AppDispatch, AppThunk } from '../../types';
+import { AppDispatch, AppThunk, TApplicationActions } from '../../types';
 import { TResponseError } from '../../types/response';
 import { TUser } from '../../types/user';
+import { getBotsAction } from '../bots/getBot';
 
 const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
 const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
@@ -46,6 +47,7 @@ const getUserInfoAction: AppThunk = () => {
             type: GET_USER_INFO_SUCCESS,
             user: res,
           });
+          dispatch(getBotsAction() as unknown as TApplicationActions);
         }
       })
       .catch((err: TResponseError) => {

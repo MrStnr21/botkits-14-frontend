@@ -12,6 +12,11 @@
   }
 }
 
+.link {
+  cursor: $cursor;
+  text-decoration: none;
+}
+
 .header {
   @include flex(row, $align-items: flex-end, $gap: 13px);
 }
