@@ -1,4 +1,4 @@
-import Role from "./roles";
+import Role from './roles';
 
 export type TProfile = {
   avatar: string;
