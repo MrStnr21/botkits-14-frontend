@@ -3,7 +3,6 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../services/hooks/hooks';
 import { getUserInfoAction } from '../services/actions/user/user';
-import { getBotsAction } from '../services/actions/bots/getBot';
 
 import routesUrl from '../utils/routesData';
 import { getUserInfoSel } from '../utils/selectorData';
@@ -36,7 +35,6 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
   useEffect(() => {
     if (!user && !getUserInfoRequest) {
       dispatch(getUserInfoAction());
-      dispatch(getBotsAction());
     }
   }, [user]);
 
