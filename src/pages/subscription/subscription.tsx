@@ -129,21 +129,29 @@ const Subscription: FC = () => {
         <div className={style.subscription}>
           <div className={style.subscription__header}>
             <div className={style.tariff}>
-              <Typography tag="h3" className={style.subscription__rate}>
-                {subscriptionData.tariff.name}
-              </Typography>
-              <Typography
-                tag="h4"
-                className={cn(
-                  style.subscription__status,
-                  style.text,
-                  subscriptionData.status
-                    ? style.text_succsess
-                    : style.text_failure
-                )}
-              >
-                {subscriptionData.status ? 'активен' : 'неактивен'}
-              </Typography>
+              {subscriptionData.tariff ? (
+                <>
+                  <Typography tag="h3" className={style.subscription__rate}>
+                    {subscriptionData.tariff.name}
+                  </Typography>
+                  <Typography
+                    tag="h4"
+                    className={cn(
+                      style.subscription__status,
+                      style.text,
+                      subscriptionData.status
+                        ? style.text_succsess
+                        : style.text_failure
+                    )}
+                  >
+                    {subscriptionData.status ? 'активен' : 'неактивен'}
+                  </Typography>
+                </>
+              ) : (
+                <Typography tag="h3" className={style.subscription__rate}>
+                  Тариф не выбран
+                </Typography>
+              )}
             </div>
             <div className={style.settings}>
               {subscriptionData.status && !subscriptionData.isCancelled ? (
@@ -177,6 +185,7 @@ const Subscription: FC = () => {
                       variant="default"
                       color="green"
                       onClick={() => toggleTariffStatus(false)}
+                      disabled={!subscriptionData.tariff}
                     >
                       Активировать подписку
                     </Button>
