@@ -134,7 +134,7 @@ const MobileDialog: FC = () => {
         <div className={stylesDialog.dialog__borderText}>{formattedDate}</div>
       </div>
       <div className={stylesDialog.dialog__messages}>
-        {user!.user.messages.map((message: any) => {
+        {user!.user.messages?.map((message: any) => {
           return <Message message={message} key={message.id} />;
         })}
       </div>
@@ -143,7 +143,7 @@ const MobileDialog: FC = () => {
           <InputMessage onChange={(e) => setInputValue(e.target.value)} />
         </div>
         <button type="button" className={stylesDialog.dialog__submitButton}>
-          <SendButton />
+          {/* <SendButton /> */}
         </button>
       </div>
       {isModalOpen && (

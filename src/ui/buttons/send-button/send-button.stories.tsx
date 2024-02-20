@@ -10,5 +10,5 @@ export default meta;
 type Story = StoryObj<typeof SendButton>;
 
 export const SButton: Story = {
-  render: () => <SendButton />,
+  render: () => <SendButton onClick={() => {}} />,
 };

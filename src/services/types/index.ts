@@ -32,8 +32,8 @@ import { TDeleteBotActions } from '../actions/bots/deleteBot';
 import { TRenameBotActions } from '../actions/bots/renameBot';
 import { TErrorActions } from '../actions/errors/errors';
 import { TErrorState } from '../reducers/errors/errors';
-import { TSocketState } from '../reducers/socket/socketReducer';
 import { TToggleMesPopupState } from '../reducers/popups/messengers-popup';
+import { TChatState } from '../reducers/chat/chat';
 
 export type TRootState = {
   signup: TSignupState;
@@ -45,8 +45,8 @@ export type TRootState = {
   getTemplatesBots: TGetTemplatesBotsState;
   getPlatforms: TGetPlatformsState;
   errors: TErrorState;
-  websocket: TSocketState;
   toggleMessengersPopup: TToggleMesPopupState;
+  chat: TChatState;
 };
 
 export type TApplicationActions =
