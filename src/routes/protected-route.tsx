@@ -7,7 +7,7 @@ import { getBotsAction } from '../services/actions/bots/getBot';
 
 import routesUrl from '../utils/routesData';
 import { getUserInfoSel } from '../utils/selectorData';
-import { getRefreshToken } from '../auth/authService';
+import { getAccessToken } from '../auth/authService';
 
 type TProtectedRoute = {
   children: JSX.Element;
@@ -28,23 +28,24 @@ const ProtectedRoute: FC<TProtectedRoute> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const { state, pathname } = useLocation();
-  const { user, getUserInfoRequest } = useAppSelector(getUserInfoSel);
+  const { user, getUserInfoRequest, userRequestedFirstTime } =
+    useAppSelector(getUserInfoSel);
 
-  const refreshToken = getRefreshToken();
+  const accessToken = getAccessToken();
 
   useEffect(() => {
-    if (!user && !getUserInfoRequest && refreshToken) {
+    if (!user && !getUserInfoRequest) {
       dispatch(getUserInfoAction());
       dispatch(getBotsAction());
     }
-  }, []);
+  }, [user]);
 
-  if (getUserInfoRequest) {
+  if (getUserInfoRequest || !userRequestedFirstTime) {
     // Лоадер
     return <div />;
   }
 
-  if (!user && !notAuth && !refreshToken) {
+  if (!user && !notAuth && !accessToken) {
     return <Navigate to={routesUrl.signin} state={{ prev: pathname }} />;
   }
 

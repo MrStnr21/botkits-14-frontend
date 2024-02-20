@@ -15,6 +15,7 @@ export type TGetUserInfoState = {
   isLoading: boolean;
   hasError: boolean;
 
+  userRequestedFirstTime: boolean;
   getUserInfoRequest: boolean;
   getUserInfoSuccess: boolean;
   getUserInfoError: boolean;
@@ -25,6 +26,7 @@ const getUserInfoInitialState: TGetUserInfoState = {
   isLoading: false,
   hasError: false,
 
+  userRequestedFirstTime: false,
   getUserInfoRequest: false,
   getUserInfoSuccess: false,
   getUserInfoError: false,
@@ -40,6 +42,7 @@ const getUserInfoReducer: Reducer = (
     case GET_USER_INFO_REQUEST: {
       return {
         ...state,
+        userRequestedFirstTime: true,
         getUserInfoRequest: true,
         getUserInfoError: false,
       };
