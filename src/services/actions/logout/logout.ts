@@ -2,6 +2,7 @@ import { logoutApi } from '../../../api/auth';
 import {
   removeAccessToken,
   removeRefreshToken,
+  removeUserRole,
 } from '../../../auth/authService';
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
@@ -25,6 +26,7 @@ const logoutAction: AppThunk = (navigate) => {
       .then(() => {
         removeAccessToken();
         removeRefreshToken();
+        removeUserRole();
         dispatch({
           type: LOGOUT,
         });

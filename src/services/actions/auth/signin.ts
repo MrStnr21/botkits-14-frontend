@@ -1,7 +1,11 @@
 import { socialAuth } from '../../../api/auth';
 import { signinApi } from '../../../api/index';
 
-import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
+import {
+  saveAccessToken,
+  saveRefreshToken,
+  saveUserRole,
+} from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk, TApplicationActions } from '../../types';
@@ -49,6 +53,7 @@ const signinAction: AppThunk = (userInfo: IUserSigninState) => {
           saveAccessToken(res.credentials.accessToken);
           saveRefreshToken(res.credentials.refreshToken);
           dispatch(getUserInfoAction() as unknown as TApplicationActions);
+          saveUserRole(res.role);
 
           dispatch({
             type: SIGNIN_SUCCESS,
