@@ -17,12 +17,15 @@ import {
   cellStyle,
   rowStyleRef,
   rowStylePayment,
+  cellStyleMobile,
+  rowStyleMobile,
 } from './partnershipConfig';
 import { ppHeadCell } from '../../components/table-cells/table-cells';
 import { BASE_URL } from '../../utils/config';
 import { getUserInfoSel } from '../../utils/selectorData';
 import { useAppSelector } from '../../services/hooks/hooks';
 import { getReferrals } from '../../api/referrals';
+import EnhancedTableMobile from '../../components/enhanced-table/enhanced-table-mobile';
 
 const Partnership: FC = (): JSX.Element => {
   const { user } = useAppSelector(getUserInfoSel);
@@ -121,16 +124,25 @@ const Partnership: FC = (): JSX.Element => {
                   />
                 </button>
               )} */}
-            <EnhancedTable
-              columns={refCols}
-              headComponent={ppHeadCell}
-              tableData={refRows}
-              rowStyle={rowStyleRef}
-              cellStyle={cellStyle}
-            />
+            {!isMobile ? (
+              <EnhancedTable
+                columns={refCols}
+                headComponent={ppHeadCell}
+                tableData={refRows}
+                rowStyle={rowStyleRef}
+                cellStyle={cellStyle}
+              />
+            ) : (
+              <EnhancedTableMobile
+                columns={refCols}
+                headComponent={ppHeadCell}
+                tableData={refRows}
+                rowStyle={rowStyleMobile}
+                cellStyle={cellStyleMobile}
+              />
+            )}
 
-            {/* TODO Не очень понятно как с этим быть, пока закоментил */}
-            {/* {isMobile && (
+            {isMobile && (
               <div className={stylesPartnership.partnership__buttonWrapper}>
                 <Button
                   variant="default"
@@ -141,7 +153,7 @@ const Partnership: FC = (): JSX.Element => {
                   Запросить выплату
                 </Button>
               </div>
-            )} */}
+            )}
           </div>
           <div className={stylesPartnership.tables__payments}>
             <div className={stylesPartnership.tables__titleContainer}>
@@ -173,15 +185,24 @@ const Partnership: FC = (): JSX.Element => {
                 )}
               </button>
             </div>
-            {isPaymentsTableVisible && (
-              <EnhancedTable
-                columns={paymentCols}
-                headComponent={ppHeadCell}
-                tableData={paymentRows}
-                rowStyle={rowStylePayment}
-                cellStyle={cellStyle}
-              />
-            )}
+            {isPaymentsTableVisible &&
+              (!isMobile ? (
+                <EnhancedTable
+                  columns={paymentCols}
+                  headComponent={ppHeadCell}
+                  tableData={paymentRows}
+                  rowStyle={rowStylePayment}
+                  cellStyle={cellStyle}
+                />
+              ) : (
+                <EnhancedTableMobile
+                  columns={paymentCols}
+                  headComponent={ppHeadCell}
+                  tableData={paymentRows}
+                  rowStyle={rowStylePayment}
+                  cellStyle={cellStyle}
+                />
+              ))}
           </div>
         </div>
       </div>

@@ -4,12 +4,10 @@
 .partnership {
   @include flex(column, center, center);
   margin-top: 32px;
-  margin-right: 40px;
+  padding-right: 40px;
 
-  @media screen and (max-width: 680px) {
-    margin: 0 auto;
-    max-width: 90vw;
-    width: 100%;
+  @media screen and (max-width: 860px) {
+    padding: 32px 20px 0;
   }
 
   &__wrapper {
@@ -19,7 +17,6 @@
 
     @media screen and (max-width: 620px) {
       padding-bottom: 26px;
-      justify-content: center;
     }
   }
 
@@ -55,7 +52,7 @@
 
     @media screen and (max-width: 860px) {
       width: 80%;
-      padding: 20px 0 40px;
+      // padding: 20px 0 40px;
     }
   }
 }

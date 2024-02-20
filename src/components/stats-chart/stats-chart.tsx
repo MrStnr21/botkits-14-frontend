@@ -42,12 +42,12 @@ const StatsChart: FC<ChartProps> = ({
 
   return (
     <section className={styles.chart}>
-      <div className={styles.title}>
+      <div className={styles.header}>
         <div>
           <Typography tag="p" className={styles.type}>
             {type}
           </Typography>
-          <Typography tag="h3" fontFamily="secondary">
+          <Typography tag="h3" fontFamily="secondary" className={styles.title}>
             {title}
           </Typography>
         </div>

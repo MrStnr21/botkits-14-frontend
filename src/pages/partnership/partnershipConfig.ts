@@ -12,6 +12,12 @@ export const colStyle = {
   ':last-of-type': {
     textAlign: 'right',
   },
+  '@media (max-width: 860px)': {
+    '& > *': {
+      color: '#A6B3C9!important',
+      fontWeight: '400!important',
+    },
+  },
 };
 
 export const cellStyle = {
@@ -23,11 +29,30 @@ export const cellStyle = {
   },
 };
 
+export const cellStyleMobile = {
+  border: 'none',
+  boxSizing: 'border-box',
+  padding: '0',
+  '& > *': { fontWeight: '600!important' },
+};
+
 export const rowStyleRef = {
   ':hover': {
     backgroundColor: '#F8F9FB',
   },
   cursor: 'pointer',
+  paddingBottom: '8px',
+};
+
+export const rowStyleMobile = {
+  ':hover': {
+    backgroundColor: '#F8F9FB',
+  },
+  cursor: 'pointer',
+};
+
+export const colStyleMobile = {
+  color: '#A6B3C9!important',
 };
 
 export const rowStylePayment = {
