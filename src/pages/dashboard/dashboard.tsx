@@ -12,7 +12,6 @@ import {
   getUserInfoSel,
 } from '../../utils/selectorData';
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import { getUserInfoAction } from '../../services/actions/user/user';
 import { getTemplatesBotsAction } from '../../services/actions/bots/templatesBots';
 import { TBot } from '../../services/types/bot';
 
@@ -28,12 +27,6 @@ const Dashboard: FC = (): JSX.Element => {
       dispatch(getTemplatesBotsAction());
     }
   }, [dispatch, botTemplates]);
-
-  useEffect(() => {
-    if (!user) {
-      dispatch(getUserInfoAction());
-    }
-  }, [dispatch, user]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { userBots, sharedBots } = useMemo(() => {

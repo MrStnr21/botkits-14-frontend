@@ -75,12 +75,12 @@ const MenuUser: FC<IMenuUser> = ({
           Настройки аккаунта
         </Typography>
       </NavLink>
-      <a href={routesUrl.subscription} className={stylesMenuUser.button}>
+      <NavLink to={routesUrl.subscription} className={stylesMenuUser.button}>
         <img src={paymentsIcon} alt="Иконка" />
         <Typography tag="p" className={stylesMenuUser.text}>
           Подписка и платежи
         </Typography>
-      </a>
+      </NavLink>
       <NavLink
         to="/"
         className={stylesMenuUser.button}

@@ -1,4 +1,6 @@
+/* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/no-cycle
+import { Reducer } from 'redux';
 import {
   GET_USER_INFO_REQUEST,
   GET_USER_INFO_SUCCESS,
@@ -13,6 +15,7 @@ export type TGetUserInfoState = {
   isLoading: boolean;
   hasError: boolean;
 
+  userRequestedFirstTime: boolean;
   getUserInfoRequest: boolean;
   getUserInfoSuccess: boolean;
   getUserInfoError: boolean;
@@ -23,21 +26,23 @@ const getUserInfoInitialState: TGetUserInfoState = {
   isLoading: false,
   hasError: false,
 
+  userRequestedFirstTime: false,
   getUserInfoRequest: false,
   getUserInfoSuccess: false,
   getUserInfoError: false,
 };
 
-function getUserInfoReducer(
+const getUserInfoReducer: Reducer = (
   // eslint-disable-next-line @typescript-eslint/default-param-last
   state = getUserInfoInitialState,
   action: TGetUserInfoActions
-) {
+) => {
   switch (action.type) {
     // экшены авторизации
     case GET_USER_INFO_REQUEST: {
       return {
         ...state,
+        userRequestedFirstTime: true,
         getUserInfoRequest: true,
         getUserInfoError: false,
       };
@@ -61,6 +66,6 @@ function getUserInfoReducer(
       return state;
     }
   }
-}
+};
 
 export { getUserInfoReducer };
