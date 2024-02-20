@@ -3,6 +3,7 @@
 
 .container {
   @include flex($gap: 28px);
+  flex-wrap: wrap;
   padding-top: 32px;
   padding-right: 40px;
 
