@@ -19,12 +19,14 @@ const Template: FC<{ template: TBotTemplate }> = ({ template }) => {
       );
       return imageModule.default;
     } catch (error) {
-      return 'null';
+      return template.icon;
     }
   };
 
   const [image, setImage] = useState<string>('');
   const { isModalOpen, closeModal, openModal } = useModal();
+
+  console.log(image);
 
   useEffect(() => {
     importImage().then((importedImage) => {

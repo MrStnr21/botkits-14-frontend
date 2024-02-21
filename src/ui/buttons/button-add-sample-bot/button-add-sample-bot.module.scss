@@ -82,6 +82,11 @@
   transition: all 0.1s linear;
 }
 
+.template_image {
+  @include size(88px, 88px);
+  border-radius: 50%;
+}
+
 .text {
   @include indents;
   text-align: left;

@@ -30,9 +30,10 @@ const ButtonAddSampleBot: FC<IButtonAddSampleBot> = ({
       disabled={disabled}
     >
       <div className={stylesButtonAddSampleBot.container}>
-        <ReactSVG
-          className={stylesButtonAddSampleBot.template_icon}
+        <img
           src={icon}
+          alt="иконка бота"
+          className={stylesButtonAddSampleBot.template_image}
         />
         <ReactSVG
           className={stylesButtonAddSampleBot.plus_icon}
