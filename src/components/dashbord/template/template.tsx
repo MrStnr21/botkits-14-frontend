@@ -26,8 +26,6 @@ const Template: FC<{ template: TBotTemplate }> = ({ template }) => {
   const [image, setImage] = useState<string>('');
   const { isModalOpen, closeModal, openModal } = useModal();
 
-  console.log(image);
-
   useEffect(() => {
     importImage().then((importedImage) => {
       setImage(importedImage);

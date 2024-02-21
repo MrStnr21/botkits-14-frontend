@@ -63,7 +63,13 @@ const BotTemplatePopup: FC<IBotTemplate> = ({ template, onClick }) => {
   return (
     <div className={styles.bot_template}>
       <div>
-        {image[template.title]}
+        {image[template.title] || (
+          <img
+            src={template.icon}
+            alt="иконка бота"
+            className={styles.template_image}
+          />
+        )}
         <div className={styles.description}>
           <Typography tag="h2" fontFamily="secondary" className={styles.title}>
             {template.title}

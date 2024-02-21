@@ -72,3 +72,8 @@
 .add_button {
   min-width: 256px;
 }
+
+.template_image {
+  @include size(88px, 88px);
+  border-radius: 50%;
+}
