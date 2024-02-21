@@ -29,6 +29,7 @@ import BotTemplates from '../../pages/bot-templates/bot-templates';
 import Promocodes from '../../pages/promocodes/promocodes';
 import ErrorNotificator from '../error-notificator/error-notificator';
 import Tariffs from '../../pages/tariffs/tariffs';
+import RolesRoute from '../../routes/roles-route';
 
 const App: FC = () => {
   const path = useLocation().pathname;
@@ -65,14 +66,11 @@ const App: FC = () => {
               element={isMobile ? <ChatMobile /> : <Chat />}
             />
             <Route path={routesUrl.partnership} element={<Partnership />} />
-            <Route path={routesUrl.bottemplates} element={<BotTemplates />} />
             <Route path={routesUrl.share} element={<Share />} />
             <Route path={routesUrl.subscription} element={<Subscription />} />
-            <Route path={routesUrl.tariffs} element={<Tariffs />} />
             <Route path={routesUrl.statistics} element={<Statistics />} />
-            <Route path={routesUrl.users} element={<UsersPage />} />
-            <Route path={routesUrl.promocodes} element={<Promocodes />} />
             <Route path={`${routesUrl.mailing}/*`} element={<Mailing />} />
+
             {isMobile && (
               <Route
                 path={`${routesUrl.chat}/:id`}
@@ -88,8 +86,17 @@ const App: FC = () => {
             <Route path="create" element={<CreateMailing />}>
               <Route path="conditions" element={<MailingConditions />} />
             </Route>
+
+            <Route element={<RolesRoute roles={['admin', 'superAdmin']} />}>
+              <Route path={routesUrl.tariffs} element={<Tariffs />} />
+              <Route path={routesUrl.users} element={<UsersPage />} />
+              <Route path={routesUrl.promocodes} element={<Promocodes />} />
+            </Route>
+            <Route element={<RolesRoute roles={['superAdmin']} />}>
+              <Route path={routesUrl.bottemplates} element={<BotTemplates />} />
+            </Route>
+            <Route path={routesUrl.notFound} element={<NotFound />} />
           </Route>
-          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
       </Routes>
       <ErrorNotificator />
