@@ -13,9 +13,11 @@
 
 .wrap {
   @include flex(column, false, false, 32px);
+  @include hide-scroll;
   padding: 24px 0;
   box-sizing: border-box;
   overflow-y: scroll;
+  overflow-x: hidden;
   background-color: $off-white;
   z-index: 100;
   transition: all .3s linear;
