@@ -59,10 +59,12 @@ const LayoutFlow: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const id = searchParams.get('id') || '';
-    const path = searchParams.get('type')
-      ? getUrlPath[searchParams.get('type')!]
-      : '';
+    const id = searchParams.get('id') || sessionStorage.getItem('bot_id') || '';
+    const path =
+      searchParams.get('type') || sessionStorage.getItem('type')
+        ? getUrlPath[searchParams.get('type') || ''] ||
+          getUrlPath[sessionStorage.getItem('type') || '']
+        : '';
 
     if (!id || !path) {
       // return;
@@ -114,10 +116,12 @@ const LayoutFlow: FC = () => {
   }, []);
 
   const saveBot = () => {
-    const id = searchParams.get('id') || '';
-    const path = searchParams.get('type')
-      ? getUrlPath[searchParams.get('type')!]
-      : '';
+    const id = searchParams.get('id') || sessionStorage.getItem('bot_id') || '';
+    const path =
+      searchParams.get('type') || sessionStorage.getItem('type')
+        ? getUrlPath[searchParams.get('type') || ''] ||
+          getUrlPath[sessionStorage.getItem('type') || '']
+        : '';
     if (!id || !path) {
       // eslint-disable-next-line no-console
       console.log('нету');

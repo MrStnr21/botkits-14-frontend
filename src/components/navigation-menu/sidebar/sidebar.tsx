@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import stylesSidebar from './sidebar.module.scss';
 
-import { links } from '../../../utils/menuData';
+import { links, openedRoutes } from '../../../utils/menuData';
 import SidebarItem from './sidebar-item/sidebar-item';
 import SidebarItemDropdown from './sidebar-item/sidebar-item-dropdown';
 import Button from './button/button';
@@ -28,6 +28,13 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
       value: index.toString(),
     };
   });
+  useEffect(() => {
+    if (selectedOption) {
+      sessionStorage.setItem('bot_id', bots[Number(selectedOption.value)]._id);
+      sessionStorage.setItem('type', 'custom');
+    }
+  }, [selectedOption]);
+
   return (
     <section
       className={`${stylesSidebar.wrapper} ${
@@ -48,6 +55,7 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
       </div>
       <ul className={stylesSidebar.navigation__list}>
         {links.map((item, index) => {
+          console.log(item.navLink);
           if (item.child) {
             return (
               <SidebarItemDropdown
@@ -63,11 +71,12 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
               key={index}
               {...item}
               disabled={
-                selectedOption &&
-                item.permission &&
-                bots[Number(selectedOption.value)].permission[
-                  item.permission
-                ] === false
+                (selectedOption &&
+                  item.permission &&
+                  bots[Number(selectedOption.value)].permission[
+                    item.permission
+                  ] === false) ||
+                (!selectedOption && !openedRoutes.includes(item.navLink))
               }
             />
           );
