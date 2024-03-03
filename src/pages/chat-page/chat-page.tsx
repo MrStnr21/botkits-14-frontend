@@ -34,7 +34,7 @@ const ChatDesktop: FC = () => {
   useEffect(() => {
     dispatch({
       type: wsActions.wsStart,
-      payload: `http://localhost:3001`,
+      payload: `https://botkits.nomoreparties.co`,
     });
   }, []);
 
