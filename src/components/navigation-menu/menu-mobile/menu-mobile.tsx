@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { links } from '../../../utils/menuData';
+import { links, openedRoutes } from '../../../utils/menuData';
 import { ReactComponent as Logo } from '../../../images/icon/side bar/full-logo.svg';
 import styles from './menu-mobile.module.scss';
 import SidebarItemDropdown from '../sidebar/sidebar-item/sidebar-item-dropdown';
@@ -63,11 +63,12 @@ const MenuMobile: FC<TMenuMobileProps> = ({ isOpened, closeMenu }) => {
               key={index}
               {...item}
               disabled={
-                selectedOption &&
-                item.permission &&
-                bots[Number(selectedOption.value)].permission[
-                  item.permission
-                ] === false
+                (selectedOption &&
+                  item.permission &&
+                  bots[Number(selectedOption.value)].permission[
+                    item.permission
+                  ] === false) ||
+                (!selectedOption && !openedRoutes.includes(item.navLink))
               }
               onClick={closeMenu}
             />

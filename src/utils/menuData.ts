@@ -71,3 +71,5 @@ export const links: Array<ILink> = [
     text: 'CRM',
   },
 ];
+
+export const openedRoutes = ['/', 'add-bot', 'partnership', 'share'];
