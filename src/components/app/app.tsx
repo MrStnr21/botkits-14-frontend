@@ -87,12 +87,10 @@ const App: FC = () => {
               <Route path="conditions" element={<MailingConditions />} />
             </Route>
 
-            <Route element={<RolesRoute roles={['admin', 'superAdmin']} />}>
+            <Route element={<RolesRoute roles={['superAdmin']} />}>
               <Route path={routesUrl.tariffs} element={<Tariffs />} />
               <Route path={routesUrl.users} element={<UsersPage />} />
               <Route path={routesUrl.promocodes} element={<Promocodes />} />
-            </Route>
-            <Route element={<RolesRoute roles={['superAdmin']} />}>
               <Route path={routesUrl.bottemplates} element={<BotTemplates />} />
             </Route>
             <Route path={routesUrl.notFound} element={<NotFound />} />
