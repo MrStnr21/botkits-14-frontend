@@ -42,7 +42,7 @@ const meta: Meta<IMenuItem> = {
 
 const option = {
   value: 'val1',
-  label: 'Компонент',
+  label: 'Manu item',
 };
 
 const onClick = () => {};
