@@ -1,6 +1,10 @@
 import { signupApi } from '../../../api/index';
 
-import { saveAccessToken, saveRefreshToken } from '../../../auth/authService';
+import {
+  saveAccessToken,
+  saveRefreshToken,
+  saveUserRole,
+} from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
 import { AppDispatch, AppThunk } from '../../types';
@@ -50,6 +54,7 @@ const signupAction: AppThunk = (userInfo: IUserSignupState) => {
         if (res) {
           saveAccessToken(res.credentials.accessToken);
           saveRefreshToken(res.credentials.refreshToken);
+          saveUserRole(res.role);
 
           dispatch({
             type: SIGNUP_SUCCESS,

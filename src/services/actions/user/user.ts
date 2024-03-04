@@ -2,6 +2,7 @@ import { getUserInfoApi } from '../../../api/user';
 import {
   removeAccessToken,
   removeRefreshToken,
+  removeUserRole,
 } from '../../../auth/authService';
 
 // eslint-disable-next-line import/no-cycle
@@ -56,6 +57,7 @@ const getUserInfoAction: AppThunk = () => {
         if (err[0] === 'Ошибка 401') {
           removeAccessToken();
           removeRefreshToken();
+          removeUserRole();
         }
         dispatch({
           type: GET_USER_INFO_ERROR,

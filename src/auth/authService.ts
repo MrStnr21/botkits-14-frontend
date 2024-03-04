@@ -1,5 +1,7 @@
 /** Функции для работы с localStorage */
 
+import Role from '../services/types/roles';
+
 /**
  * Функция для сохранения токена в localStorage
  * @param accessToken сохраняемый токен
@@ -58,6 +60,28 @@ const removeSocial = (): void => {
   localStorage.removeItem('social');
 };
 
+/**
+ * Функция для сохранения роли пользователя в localStorage
+ * @param accessToken сохраняемый токен
+ */
+const saveUserRole = (role: Role) => {
+  localStorage.setItem('role', role);
+};
+
+/**
+ * Функция для получения роли из localStorage
+ */
+const getUserRole = (): Role | null => {
+  const role = localStorage.getItem('role') as Role;
+  return role ?? null;
+};
+
+/**
+ * Функция удаление роли из localStorage
+ */
+const removeUserRole = (): void => {
+  localStorage.removeItem('role');
+};
 export {
   saveAccessToken,
   saveRefreshToken,
@@ -68,4 +92,7 @@ export {
   saveSocial,
   getSocial,
   removeSocial,
+  saveUserRole,
+  getUserRole,
+  removeUserRole,
 };

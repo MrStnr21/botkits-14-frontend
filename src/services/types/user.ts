@@ -1,3 +1,5 @@
+import Role from './roles';
+
 export type TProfile = {
   avatar: string;
   balance: number;
@@ -14,7 +16,7 @@ export type TUser = {
     refreshToken: string;
   };
   profile: TProfile;
-  role: string;
+  role: Role;
   type: string;
   _id: string;
   username: string;

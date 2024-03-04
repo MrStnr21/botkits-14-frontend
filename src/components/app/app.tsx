@@ -29,42 +29,25 @@ import BotTemplates from '../../pages/bot-templates/bot-templates';
 import Promocodes from '../../pages/promocodes/promocodes';
 import ErrorNotificator from '../error-notificator/error-notificator';
 import Tariffs from '../../pages/tariffs/tariffs';
+import RolesRoute from '../../routes/roles-route';
 
-const App: FC = (): JSX.Element => {
+const App: FC = () => {
   const path = useLocation().pathname;
   const isMobile = useMediaQuery('(max-width: 860px)');
 
   return (
     <>
       <Routes>
-        <Route
-          path={routesUrl.signup}
-          element={
-            <ProtectedRoute notAuth>
-              <Signup />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.signin}
-          element={
-            <ProtectedRoute notAuth>
-              <Signin />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.reset}
-          element={
-            <ProtectedRoute notAuth>
-              <ResetPassword />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={routesUrl.homePage}
-          element={
-            <ProtectedRoute>
+        <Route element={<ProtectedRoute notAuth />}>
+          <Route path={routesUrl.signup} element={<Signup />} />
+          <Route path={routesUrl.signin} element={<Signin />} />
+          <Route path={routesUrl.reset} element={<ResetPassword />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path={routesUrl.homePage}
+            element={
               <Layout
                 type={
                   path === `/${routesUrl.botBuilder}` ? 'compact' : 'default'
@@ -73,145 +56,45 @@ const App: FC = (): JSX.Element => {
                   path === `/${routesUrl.botBuilder}` ? 'unset' : 'limited'
                 }
               />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="create" element={<CreateMailing />}>
-            <Route path="conditions" element={<MailingConditions />} />
-          </Route>
-          {/* <Route path="conditions" element={<MailingConditions />} /> */}
-          <Route
-            path={routesUrl.homePage}
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.addBot}
-            element={
-              <ProtectedRoute>
-                <AddBotPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.botBuilder}
-            element={
-              <ProtectedRoute>
-                <BotBuilder />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.chat}
-            element={
-              <ProtectedRoute>
-                {isMobile ? <ChatMobile /> : <Chat />}
-              </ProtectedRoute>
-            }
-          />
-          {isMobile && (
-            <Route
-              path="chat/:id"
-              element={
-                <ProtectedRoute>
-                  <MobileDialog />
-                </ProtectedRoute>
-              }
-            />
-          )}
-          {isMobile && (
-            <Route
-              path="chat/:id/info"
-              element={
-                <ProtectedRoute>
-                  <MobileDialogInformation />
-                </ProtectedRoute>
-              }
-            />
-          )}
-          <Route
-            // Поздравляю, вы увидели костыль, надо это поправить, но потом...
-            path={`${routesUrl.mailing}/*`}
-            element={
-              <ProtectedRoute>
-                <Mailing />
-              </ProtectedRoute>
             }
           >
-            {/* <Route path="" element={<First... />} />
-              <Route path="start" element={<My... />} />
-              <Route path="add" element={<Create... />} />
-              <Route path="conditions" element={<Conditions.. />} /> */}
+            <Route path={routesUrl.homePage} element={<Dashboard />} />
+            <Route path={routesUrl.addBot} element={<AddBotPage />} />
+            <Route path={routesUrl.botBuilder} element={<BotBuilder />} />
+            <Route
+              path={routesUrl.chat}
+              element={isMobile ? <ChatMobile /> : <Chat />}
+            />
+            <Route path={routesUrl.partnership} element={<Partnership />} />
+            <Route path={routesUrl.share} element={<Share />} />
+            <Route path={routesUrl.subscription} element={<Subscription />} />
+            <Route path={routesUrl.statistics} element={<Statistics />} />
+            <Route path={`${routesUrl.mailing}/*`} element={<Mailing />} />
+
+            {isMobile && (
+              <Route
+                path={`${routesUrl.chat}/:id`}
+                element={<MobileDialog />}
+              />
+            )}
+            {isMobile && (
+              <Route
+                path={`${routesUrl.chat}/:id/info`}
+                element={<MobileDialogInformation />}
+              />
+            )}
+            <Route path="create" element={<CreateMailing />}>
+              <Route path="conditions" element={<MailingConditions />} />
+            </Route>
+
+            <Route element={<RolesRoute roles={['superAdmin']} />}>
+              <Route path={routesUrl.tariffs} element={<Tariffs />} />
+              <Route path={routesUrl.users} element={<UsersPage />} />
+              <Route path={routesUrl.promocodes} element={<Promocodes />} />
+              <Route path={routesUrl.bottemplates} element={<BotTemplates />} />
+            </Route>
+            <Route path={routesUrl.notFound} element={<NotFound />} />
           </Route>
-          <Route
-            path={routesUrl.partnership}
-            element={
-              <ProtectedRoute>
-                <Partnership />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.bottemplates}
-            element={
-              <ProtectedRoute>
-                <BotTemplates />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.share}
-            element={
-              <ProtectedRoute>
-                <Share />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.subscription}
-            element={
-              <ProtectedRoute>
-                <Subscription />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.statistics}
-            element={
-              <ProtectedRoute>
-                <Statistics />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.tariffs}
-            element={
-              <ProtectedRoute>
-                <Tariffs />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={routesUrl.users}
-            element={
-              <ProtectedRoute>
-                <UsersPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path={routesUrl.notFound} element={<NotFound />} />
-          <Route
-            path={routesUrl.promocodes}
-            element={
-              <ProtectedRoute>
-                <Promocodes />
-              </ProtectedRoute>
-            }
-          />
-          <Route path={routesUrl.notFound} element={<NotFound />} />
         </Route>
       </Routes>
       <ErrorNotificator />
