@@ -11,10 +11,47 @@ const options = [
 
 let currentOption = options[0];
 
-export default {
+const meta: Meta<typeof Select> = {
   title: 'UI/Select',
   component: Select,
-} as Meta<typeof Select>;
+  argTypes: {
+    currentOption: {
+      type: Option as unknown as 'string',
+      description:
+        'текущая выбранная опция. Принимает объект Option или string',
+    },
+    options: {
+      description:
+        'Набор полей меню, массив объектов формата **{label: string; value: string; icon?: string;}**',
+    },
+    handleSelect: {
+      description:
+        'callback при клике на элемент select <br/> **(option: Option) => void**',
+    },
+    placeholder: {
+      description: 'Отображаемый текст при отсутствии выбранной опции',
+    },
+    buttonStyle: {
+      description: 'style-аттрибут для select',
+    },
+    elementToCloseListener: {
+      options: ['document', 'flow'],
+      control: { type: 'radio' },
+      description:
+        'Клик на какой элемент вызывает закрытия select, добавлен из-за особенностей ReactFlow',
+    },
+    adaptive: {
+      type: 'boolean',
+      description: 'Подчиняется ли select общим правилам адаптива',
+    },
+  },
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
 
 const Template: StoryFn<typeof Select> = (args) => <Select {...args} />;
 
