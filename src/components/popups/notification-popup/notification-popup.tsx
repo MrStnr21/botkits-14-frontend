@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 
-import { useMediaQuery } from '@mui/material';
 import MenuInformation from '../../../ui/menus/menu-information/menu-information';
 import Notifications from '../../icons/Notifications/Notifications';
 import CloseIcon from '../../icons/Close/CloseIcon';
@@ -22,7 +21,6 @@ const NotificationPopup: FC<INotificationPopup> = ({
 }): JSX.Element => {
   const [logs, setLogs] = useState(logNotifications.reverse());
   const [isDisabled, setIsDisabled] = useState(true);
-  const matches = useMediaQuery('(max-width: 520px)');
 
   const removeLog = (id: string) => {
     setLogs(logs.filter((item) => item._id !== id));
@@ -45,15 +43,13 @@ const NotificationPopup: FC<INotificationPopup> = ({
               Уведомления
             </Typography>
           </div>
-          {!matches && (
-            <button
-              type="button"
-              className={styles.close_btn}
-              onClick={() => setIsNotificationOpened(false)}
-            >
-              <CloseIcon color="#d7deea" width={24} height={24} />
-            </button>
-          )}
+          <button
+            type="button"
+            className={styles.close_btn}
+            onClick={() => setIsNotificationOpened(false)}
+          >
+            <CloseIcon color="#d7deea" width={24} height={24} />
+          </button>
         </div>
         <MenuInformation
           width={148.25}

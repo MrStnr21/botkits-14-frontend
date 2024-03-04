@@ -101,12 +101,12 @@ const Header: FC<THeaderProps> = ({ toggleSidebar }) => {
           isActive={isOpenAccontSettings}
           top={47}
           right={isMobile ? -15 : 0}
-          onClick={(e) => {
+          onClick={() => {
             setIsAccSet(false);
-            if ((e.target as HTMLInputElement).id === 'notification') {
-              setIsNotificationOpened(true);
-            }
+            setIsNotificationOpened(true);
           }}
+          closeMenu={() => setIsAccSet(false)}
+          tariffName={curTariff}
         />
       </div>
       <NotificationPopup
