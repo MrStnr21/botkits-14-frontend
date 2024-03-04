@@ -66,12 +66,6 @@ const LayoutFlow: FC = () => {
           getUrlPath[sessionStorage.getItem('type') || '']
         : '';
 
-    if (!id || !path) {
-      // return;
-      // eslint-disable-next-line no-console
-      console.log('нету');
-    }
-
     getBuilderApi(path, id)
       .then((data) => {
         if (data.features && data.features.nodes) {
@@ -122,10 +116,6 @@ const LayoutFlow: FC = () => {
         ? getUrlPath[searchParams.get('type') || ''] ||
           getUrlPath[sessionStorage.getItem('type') || '']
         : '';
-    if (!id || !path) {
-      // eslint-disable-next-line no-console
-      console.log('нету');
-    }
 
     const fetchingNodes = filterNodes(nodes);
     const builder = {

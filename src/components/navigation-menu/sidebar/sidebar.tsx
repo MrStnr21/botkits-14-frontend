@@ -55,7 +55,6 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
       </div>
       <ul className={stylesSidebar.navigation__list}>
         {links.map((item, index) => {
-          console.log(item.navLink);
           if (item.child) {
             return (
               <SidebarItemDropdown
