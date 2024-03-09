@@ -36,6 +36,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const [crm, setCrm] = useState(card.isToPublish!);
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>('');
+  const [iconName, setIconName] = useState<string>('');
   const { values, handleChange, setValues } = useForm({
     nameBot: { value: card.title || '', valueValid: false },
     aboutBot: { value: card.description || '', valueValid: false },
@@ -56,8 +57,10 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
         return imageModule;
       }
       imageModule = await import(`../../images/icon/template/${card.icon}.svg`);
+      setIconName(card.icon);
       return imageModule.default;
     } catch (error) {
+      console.log(error);
       return 'null';
     }
   };
@@ -109,7 +112,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
 
   const updateInputs = () => {
     const upCard = {
-      icon: imageEdit,
+      icon: iconName || imageEdit,
       title: values.nameBot.value,
       description: values.aboutBot.value,
       features: card.features,
