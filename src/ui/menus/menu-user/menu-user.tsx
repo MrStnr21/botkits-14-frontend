@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import stylesMenuUser from './menu-user.module.scss';
@@ -11,11 +11,13 @@ import Notifications from '../../../components/icons/Notifications/Notifications
 import Help from '../../../components/icons/Help/Help';
 
 import { logoutAction } from '../../../services/actions/logout/logout';
-import { useAppDispatch } from '../../../services/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 
 import routesUrl from '../../../utils/routesData';
 
 import Typography from '../../typography/typography';
+import { getUserInfoSel } from '../../../utils/selectorData';
+import useOutsideClick from '../../../utils/hooks/useOutsideClick';
 
 export interface IMenuUser {
   isActive?: boolean;
@@ -23,6 +25,8 @@ export interface IMenuUser {
   left?: number;
   right?: number;
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void; // Пока что слушаем только "Уведомления"
+  closeMenu: () => void;
+  tariffName?: string;
 }
 
 const MenuUser: FC<IMenuUser> = ({
@@ -31,10 +35,16 @@ const MenuUser: FC<IMenuUser> = ({
   left = 0,
   right,
   onClick,
+  closeMenu,
+  tariffName,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { user } = useAppSelector(getUserInfoSel);
 
   const navigate = useNavigate();
+
   let boxClassName = stylesMenuUser.box;
 
   if (isActive) {
@@ -48,8 +58,11 @@ const MenuUser: FC<IMenuUser> = ({
     dispatch(logoutAction(() => navigate('signup', { replace: true })));
   };
 
+  useOutsideClick(ref, document, closeMenu);
+
   return (
     <div
+      ref={ref}
       style={
         left
           ? { top: `${top}px`, left: `${left}px` }
@@ -60,22 +73,24 @@ const MenuUser: FC<IMenuUser> = ({
     >
       <div className={stylesMenuUser.userInfo}>
         <Typography tag="p" className={stylesMenuUser.userInfo__name}>
-          Иванов Александр
+          {user?.username}
         </Typography>
         <div className={stylesMenuUser.tariff_container}>
-          <Typography tag="p" className={stylesMenuUser.text}>
-            Тариф
-          </Typography>
-          <Typography tag="p">Демо</Typography>
+          <Typography tag="p">Тариф</Typography>
+          <Typography tag="p">{tariffName}</Typography>
         </div>
       </div>
-      <NavLink to="/user" className={stylesMenuUser.button}>
+      <NavLink to="/user" className={stylesMenuUser.button} onClick={closeMenu}>
         <img src={settingsIcon} alt="Иконка" />
         <Typography tag="p" className={stylesMenuUser.text}>
           Настройки аккаунта
         </Typography>
       </NavLink>
-      <NavLink to={routesUrl.subscription} className={stylesMenuUser.button}>
+      <NavLink
+        to={routesUrl.subscription}
+        className={stylesMenuUser.button}
+        onClick={closeMenu}
+      >
         <img src={paymentsIcon} alt="Иконка" />
         <Typography tag="p" className={stylesMenuUser.text}>
           Подписка и платежи

@@ -144,7 +144,7 @@ const Select: FC<ISelect> = ({
   return (
     <button
       ref={buttonRef}
-      onClick={toggleDropdown}
+      onClick={formatedOptions.length > 0 ? toggleDropdown : () => {}}
       type="button"
       className={`${styles.container} ${adaptive ? styles.adaptive : ''}`}
       style={buttonStyle}

@@ -37,8 +37,6 @@ const ChatDialogue: FC<IChatDialogue> = ({ onSidebarClick, isInfoVisible }) => {
     selectedUser: store.chat.selectedUser,
   }));
 
-  console.log(selectedUser);
-
   /* useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date() as DateType;
