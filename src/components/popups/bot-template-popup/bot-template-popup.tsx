@@ -1,20 +1,7 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import styles from './bot-template-popup.module.scss';
-
-import { ReactComponent as ImageAnswer } from '../../../images/icon/template/answering machine.svg';
-import { ReactComponent as ImageEntertain } from '../../../images/icon/template/entertainment.svg';
-import { ReactComponent as ImageLead } from '../../../images/icon/template/lead generation.svg';
-import { ReactComponent as ImagePrivate } from '../../../images/icon/template/private club.svg';
-import { ReactComponent as ImageFood } from '../../../images/icon/template/food delivery.svg';
-import { ReactComponent as ImageLearn } from '../../../images/icon/template/e-learning.svg';
-import { ReactComponent as ImageReal } from '../../../images/icon/template/real estate.svg';
-import { ReactComponent as ImageCom } from '../../../images/icon/template/e-commerce.svg';
-import { ReactComponent as ImageQuest } from '../../../images/icon/template/question.svg';
-import { ReactComponent as ImageDemo } from '../../../images/icon/template/demo bot.svg';
-import { ReactComponent as ImageBeauty } from '../../../images/icon/template/beauty.svg';
-import { ReactComponent as ImagePoll } from '../../../images/icon/template/poll.svg';
 
 import { TBotTemplate } from '../../../services/types/bot';
 
@@ -27,25 +14,6 @@ interface IBotTemplate {
   onClick?: () => void;
 }
 
-interface IImage {
-  [key: string]: JSX.Element;
-}
-
-const image: IImage = {
-  'Бот автоответчик': <ImageAnswer className={styles.image} />,
-  'Доставка еды': <ImageFood className={styles.image} />,
-  'Демо бот': <ImageDemo className={styles.image} />,
-  Опрос: <ImagePoll className={styles.image} />,
-  'Лидогенерация/HR ререререре...': <ImageLead className={styles.image} />,
-  'Онлайн школа/Вебинар': <ImageLearn className={styles.image} />,
-  'Закрытый клуб по под...': <ImagePrivate className={styles.image} />,
-  'Агентство по недвижимости': <ImageReal className={styles.image} />,
-  Развлечения: <ImageEntertain className={styles.image} />,
-  'Салон красоты': <ImageBeauty className={styles.image} />,
-  'Онлайн-покупки': <ImageCom className={styles.image} />,
-  'Вопрос/ответ': <ImageQuest className={styles.image} />,
-};
-
 const BotTemplatePopup: FC<IBotTemplate> = ({ template, onClick }) => {
   const descriptionList = [
     'Что настроено в шаблоне',
@@ -54,22 +22,44 @@ const BotTemplatePopup: FC<IBotTemplate> = ({ template, onClick }) => {
     'Что настроено в шаблоне',
   ];
   const navigate = useNavigate();
+  const [image, setImage] = useState<string>('');
   const addBot = (templateId: string, templateTitle: string) => {
     navigate(
       `/${routesUrl.addBot}?template=${templateId}&title=${templateTitle}`
     );
   };
 
+  const importImage = async () => {
+    try {
+      let imageModule;
+      if (template.icon?.includes('http')) {
+        imageModule = template.icon;
+        return imageModule;
+      }
+      console.log(template.icon);
+      imageModule = await import(
+        `../../../images/icon/template/${template.icon}.svg`
+      );
+      return imageModule.default;
+    } catch (error) {
+      console.log(error);
+      return 'null';
+    }
+  };
+
+  useEffect(() => {
+    if (template.icon) {
+      importImage().then((importedImage) => {
+        console.log(importedImage);
+        setImage(importedImage);
+      });
+    }
+  }, [template.icon]);
+
   return (
     <div className={styles.bot_template}>
       <div>
-        {image[template.title] || (
-          <img
-            src={template.icon}
-            alt="иконка бота"
-            className={styles.template_image}
-          />
-        )}
+        <img src={image} alt="иконка бота" className={styles.template_image} />
         <div className={styles.description}>
           <Typography tag="h2" fontFamily="secondary" className={styles.title}>
             {template.title}
