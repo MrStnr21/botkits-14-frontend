@@ -4,7 +4,7 @@ import { FC, ChangeEvent, useState, useEffect } from 'react';
 import stylesInput from './input.module.scss';
 import Typography from '../../typography/typography';
 
-interface IInput {
+interface IInput extends React.HTMLProps<HTMLInputElement> {
   isInvalid?: boolean;
   placeholder?: string;
   errorMessage?: string;
@@ -74,7 +74,8 @@ const Input: FC<IInput> = ({
   max,
   id,
   unadaptive,
-}): JSX.Element => {
+  ...rest
+}) => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
     textError: '',
@@ -166,6 +167,7 @@ const Input: FC<IInput> = ({
         maxLength={maxLength}
         required={required}
         id={id}
+        {...rest}
         // step="0.01"
         // lang="en"
       />
