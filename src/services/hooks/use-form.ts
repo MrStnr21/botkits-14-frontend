@@ -1,6 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-export type TInputValue = { value: string | number; isValid?: boolean };
+export type TInputValue<T extends string | number = string | number> = {
+  value: T;
+  isValid?: boolean | undefined;
+};
 export type TFormValues = Record<string, TInputValue>;
 
 /**
@@ -19,11 +22,14 @@ function useForm<T extends TFormValues>(inputValues: T) {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { value, name } = event.target;
+    const isValid = event.target.validity.valid;
+
     setValues({
       ...values,
-      [name]: { value, isValid: event.target.validity.valid },
+      [name]: { value, isValid },
     });
   };
+
   return {
     values,
     isFormValid,

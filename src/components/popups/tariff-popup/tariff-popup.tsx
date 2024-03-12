@@ -4,10 +4,18 @@ import Input from '../../../ui/inputs/input/input';
 import ModalPopup from '../modal-popup/modal-popup';
 import Typography from '../../../ui/typography/typography';
 import Button from '../../../ui/buttons/button/button';
-import useForm from '../../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../../services/hooks/use-form';
 import { postTariff } from '../../../api/tariffs';
 
-const initialState = {
+type TTarifFormState = {
+  name: TInputValue;
+  cost: TInputValue;
+  botsAmount: TInputValue;
+  usersAmount: TInputValue;
+  duration: TInputValue;
+};
+
+const initialState: TTarifFormState = {
   name: { value: '' },
   cost: { value: '' },
   botsAmount: { value: '' },
@@ -20,7 +28,8 @@ type TTariffPopupProps = {
 };
 
 const TariffPopup: FC<TTariffPopupProps> = ({ closePopup }) => {
-  const { values, handleChange, setValues } = useForm(initialState);
+  const { values, handleChange, setValues, isFormValid } =
+    useForm<TTarifFormState>(initialState);
 
   const postData = () => {
     const data = {
@@ -117,7 +126,7 @@ const TariffPopup: FC<TTariffPopupProps> = ({ closePopup }) => {
           <button onClick={cleanForm} className={styles.button} type="button">
             СТЕРЕТЬ ВСЕ
           </button>
-          <Button variant="default" onClick={postData}>
+          <Button variant="default" onClick={postData} disabled={!isFormValid}>
             Добавить
           </Button>
         </div>

@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect } from 'react';
+import { FC, useState, useRef, useEffect, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../services/hooks/hooks';
 import stylesCard from './bot-templates-card.module.scss';
@@ -16,7 +16,7 @@ import ModalPopup from '../popups/modal-popup/modal-popup';
 // import Typography from '../../ui/typography/typography';
 import EditImagePopup from '../popups/edit-image-popup/edit-image-popup';
 import { createUrlBuilder } from '../../utils/utils';
-import useForm from '../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../services/hooks/use-form';
 
 import routesUrl from '../../utils/routesData';
 
@@ -28,6 +28,11 @@ interface IBotTemplatesCard {
   deleteCard: (id: string) => void;
 }
 
+type TTemplateFormState = {
+  nameBot: TInputValue<string>;
+  aboutBot: TInputValue<string>;
+};
+
 const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   card,
   disabled,
@@ -37,9 +42,9 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>('');
   const [iconName, setIconName] = useState<string>('');
-  const { values, handleChange, setValues } = useForm({
-    nameBot: { value: card.title || '', valueValid: false },
-    aboutBot: { value: card.description || '', valueValid: false },
+  const { values, handleChange, setValues } = useForm<TTemplateFormState>({
+    nameBot: { value: card.title || '', isValid: false },
+    aboutBot: { value: card.description || '', isValid: false },
   });
   const [isOpen, setOpenPupup] = useState(false);
 
@@ -110,7 +115,8 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     { label: 'Удалить', value: 'delete' },
   ];
 
-  const updateInputs = () => {
+  const updateTemplate = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const upCard = {
       icon: iconName || imageEdit,
       title: values.nameBot.value,
@@ -125,8 +131,8 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
 
   const clearInputs = () => {
     setValues({
-      nameBot: { value: '', valueValid: false },
-      aboutBot: { value: '', valueValid: false },
+      nameBot: { value: '', isValid: false },
+      aboutBot: { value: '', isValid: false },
     });
   };
 
@@ -135,7 +141,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   };
 
   return (
-    <div className={stylesCard.card}>
+    <form className={stylesCard.card} onSubmit={updateTemplate}>
       <div className={stylesCard.container}>
         <div className={stylesCard.wrapper}>
           <div className={stylesCard.avatar}>
@@ -215,11 +221,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
         >
           Отменить
         </ButtonBotTemplate>
-        <ButtonBotTemplate
-          onClick={updateInputs}
-          buttonHtmlType="button"
-          color="blue"
-        >
+        <ButtonBotTemplate buttonHtmlType="submit" color="blue">
           Сохранить изменения
         </ButtonBotTemplate>
       </div>
@@ -228,7 +230,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
           <EditImagePopup closeModal={openPopup} editImage={setImageEdit} />
         </ModalPopup>
       )}
-    </div>
+    </form>
   );
 };
 
