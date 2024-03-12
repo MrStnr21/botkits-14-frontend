@@ -19,6 +19,7 @@ import { createUrlBuilder } from '../../utils/utils';
 import useForm, { TInputValue } from '../../services/hooks/use-form';
 
 import routesUrl from '../../utils/routesData';
+import ConfirmDeletePopup from '../popups/confirm-delete-popup/confirm-delete-popup';
 
 // import { BUTTON_NAME } from '../../utils/constants';
 
@@ -47,6 +48,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     aboutBot: { value: card.description || '', isValid: false },
   });
   const [isOpen, setOpenPupup] = useState(false);
+  const [popup, setPopup] = useState<null | 'edit' | 'delete'>(null);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -105,9 +107,14 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
       navigate(createUrlBuilder(path, card._id));
     }
     if (e === 'delete') {
-      // eslint-disable-next-line no-underscore-dangle
-      deleteCard(card._id);
+      setOpenPupup(true);
+      setPopup('delete');
     }
+  };
+
+  const deleteTemplate = () => {
+    // eslint-disable-next-line no-underscore-dangle
+    deleteCard(card._id);
   };
 
   const options = [
@@ -136,8 +143,13 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     });
   };
 
-  const openPopup = () => {
-    setOpenPupup(!isOpen);
+  const handleEdit = () => {
+    setOpenPupup(true);
+    setPopup('edit');
+  };
+
+  const close = () => {
+    setOpenPupup(false);
   };
 
   return (
@@ -153,7 +165,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
               pic={imageEdit || imageAvatar}
             />
             <div className={stylesCard.editButton}>
-              <EditButton onClick={openPopup} />
+              <EditButton onClick={handleEdit} />
               {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
                 <input
                 type="file"
@@ -227,7 +239,17 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
       </div>
       {isOpen && (
         <ModalPopup onClick={() => setOpenPupup(false)}>
-          <EditImagePopup closeModal={openPopup} editImage={setImageEdit} />
+          <>
+            {popup === 'edit' && (
+              <EditImagePopup closeModal={close} editImage={setImageEdit} />
+            )}
+            {popup === 'delete' && (
+              <ConfirmDeletePopup
+                onSubmitClick={deleteTemplate}
+                onCancelClick={close}
+              />
+            )}
+          </>
         </ModalPopup>
       )}
     </form>
