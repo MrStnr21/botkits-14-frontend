@@ -12,7 +12,7 @@ import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
 import { signupAction } from '../../services/actions/auth/signup';
-import useForm from '../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../services/hooks/use-form';
 
 import { COUNTRY_COD_LIST, DEFAULT_PHONE_CODE } from '../../utils/constants';
 import { signupSel } from '../../utils/selectorData';
@@ -31,13 +31,20 @@ import stylesSignup from './signup.module.scss';
 import 'overlayscrollbars/overlayscrollbars.css';
 import Typography from '../../ui/typography/typography';
 
-const Signup: FC = (): JSX.Element => {
+type TSignupFormState = {
+  username: TInputValue;
+  email: TInputValue;
+  password: TInputValue;
+  phone: TInputValue;
+  phoneNumberMain: TInputValue;
+};
+
+const Signup: FC = () => {
   const titleImageStyle = {
     aspectRatio: '1.06',
     backgroundImage: `url(${backgroundImage})`,
   };
 
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const [phoneCode, setPhoneCode] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
@@ -47,13 +54,14 @@ const Signup: FC = (): JSX.Element => {
 
   useScrollbar(refI, visible);
 
-  const { values, handleChange, setValues } = useForm({
-    username: { value: '', valueValid: false },
-    email: { value: '', valueValid: false },
-    password: { value: '', valueValid: false },
-    phone: { value: '', valueValid: false },
-    phoneNumberMain: { value: '', valueValid: false },
-  });
+  const { values, handleChange, setValues, isFormValid } =
+    useForm<TSignupFormState>({
+      username: { value: '', isValid: false },
+      email: { value: '', isValid: false },
+      password: { value: '', isValid: false },
+      phone: { value: '', isValid: false },
+      phoneNumberMain: { value: '', isValid: false },
+    });
 
   useEffect(() => {
     return () => {
@@ -61,22 +69,14 @@ const Signup: FC = (): JSX.Element => {
     };
   }, []);
 
-  useEffect(() => {
-    if (
-      values.username.valueValid &&
-      values.email.valueValid &&
-      values.password.valueValid &&
-      values.phoneNumberMain.valueValid
-    ) {
-      setButtonDisabled(false);
-    } else setButtonDisabled(true);
-  }, [values]);
-
   const userData = useAppSelector(signupSel);
 
   const handleChangeCodePhone = (newCode: string) => {
     setPhoneCode(newCode);
-    setValues({ ...values, phone: newCode + values.phone });
+    setValues({
+      ...values,
+      phone: { ...values.phone, value: newCode + values.phone },
+    });
     setVisibleModal(false);
     setVisible(false);
   };
@@ -252,7 +252,7 @@ const Signup: FC = (): JSX.Element => {
                 size="large"
                 color="green"
                 buttonHtmlType="submit"
-                disabled={buttonDisabled}
+                disabled={!isFormValid}
               >
                 создать аккаунт
               </Button>

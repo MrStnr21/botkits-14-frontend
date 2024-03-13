@@ -1,4 +1,4 @@
-import { FC, FormEvent, useEffect, useState } from 'react';
+import { FC, FormEvent } from 'react';
 
 import stylesResetPassword from './reset-password.module.scss';
 
@@ -11,19 +11,20 @@ import Button from '../../ui/buttons/button/button';
 import Input from '../../ui/inputs/input/input';
 
 import { useAppDispatch, useAppSelector } from '../../services/hooks/hooks';
-import useForm from '../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../services/hooks/use-form';
 
 import { resetPasswordSel } from '../../utils/selectorData';
 import { resetPasswordAction } from '../../services/actions/auth/reset-password';
 import Typography from '../../ui/typography/typography';
 
-const ResetPassword: FC = (): JSX.Element => {
+const ResetPassword: FC = () => {
   const userData = useAppSelector(resetPasswordSel);
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
 
-  const { values, handleChange } = useForm({
-    email: { value: '', valueValid: false },
-  });
+  const { values, handleChange, isFormValid } = useForm<{ email: TInputValue }>(
+    {
+      email: { value: '', isValid: false },
+    }
+  );
 
   const titleImageStyle = {
     width: '100%',
@@ -34,12 +35,6 @@ const ResetPassword: FC = (): JSX.Element => {
   };
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (values.email.valueValid) {
-      setButtonDisabled(false);
-    } else setButtonDisabled(true);
-  }, [values]);
 
   const handleReset = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,7 +83,7 @@ const ResetPassword: FC = (): JSX.Element => {
                 variant="default"
                 color="green"
                 buttonHtmlType="submit"
-                disabled={buttonDisabled}
+                disabled={!isFormValid}
               >
                 сбросить пароль
               </Button>

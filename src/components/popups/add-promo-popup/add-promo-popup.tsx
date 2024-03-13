@@ -5,12 +5,19 @@ import Input from '../../../ui/inputs/input/input';
 import ModalPopup from '../modal-popup/modal-popup';
 import Typography from '../../../ui/typography/typography';
 import Button from '../../../ui/buttons/button/button';
-import useForm from '../../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../../services/hooks/use-form';
 import { postPromocode } from '../../../api/promocodes';
 
-const initialState = {
+type TPromoFormState = {
+  name: TInputValue<string>;
+  amount: TInputValue;
+  maxUsage: TInputValue;
+  date: TInputValue<string>;
+};
+
+const initialState: TPromoFormState = {
   name: { value: '' },
-  amont: { value: '' },
+  amount: { value: '' },
   maxUsage: { value: '' },
   date: { value: '' },
 };
@@ -20,7 +27,8 @@ type TPromoPopupProps = {
 };
 
 const AddPromoPopup: FC<TPromoPopupProps> = ({ closePopup }) => {
-  const { values, handleChange, setValues } = useForm(initialState);
+  const { values, handleChange, setValues, isFormValid } =
+    useForm<TPromoFormState>(initialState);
 
   const postData = () => {
     const data = {
@@ -70,7 +78,7 @@ const AddPromoPopup: FC<TPromoPopupProps> = ({ closePopup }) => {
               styled="secondary"
               onChange={handleChange}
               minLength={0}
-              value={values.cost?.value}
+              value={values.amount.value}
             />
           </div>
           <div className={styles.input}>
@@ -83,11 +91,11 @@ const AddPromoPopup: FC<TPromoPopupProps> = ({ closePopup }) => {
               styled="secondary"
               onChange={handleChange}
               minLength={0}
-              value={values.botsAmount?.value}
+              value={values.maxUsage.value}
             />
           </div>
           <div className={styles.input}>
-            <span className={styles.label}>Максимальное кол-во активаций</span>
+            <span className={styles.label}>Активировать до</span>
             <input
               name="date"
               value={values.date.value}
@@ -101,7 +109,7 @@ const AddPromoPopup: FC<TPromoPopupProps> = ({ closePopup }) => {
           <button onClick={cleanForm} className={styles.button} type="button">
             СТЕРЕТЬ ВСЕ
           </button>
-          <Button variant="default" onClick={postData}>
+          <Button variant="default" onClick={postData} disabled={!isFormValid}>
             Добавить
           </Button>
         </div>
