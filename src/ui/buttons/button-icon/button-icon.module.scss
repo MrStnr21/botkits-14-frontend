@@ -8,29 +8,31 @@
   line-height: 0;
 }
 
-// Размер
-.small {
-  @include size(36px, 100%);
-
+@mixin standart-icon {
   svg {
     @include size(24px, 24px);
   }
+}
+
+// Размер
+.xsmall {
+  @include size(36px, 100%);
+  @include standart-icon();
+}
+
+.small {
+  @include size(40px, 40px);
+  @include standart-icon();
 }
 
 .medium {
   @include size(48px, 100%);
-
-  svg {
-    @include size(24px, 24px);
-  }
+  @include standart-icon();
 }
 
 .large {
   @include size(56px, 52px);
-
-  svg {
-    @include size(24px, 24px);
-  }
+  @include standart-icon();
 }
 
 // Цветовые схемы

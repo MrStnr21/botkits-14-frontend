@@ -2,8 +2,6 @@ import React, { FC, useState } from 'react';
 import { Position } from 'reactflow';
 import styles from './button-inline.module.scss';
 import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
-import askPhoneIcon from '../../../../../images/icon/24x24/constructor/ask-phone.svg';
-import urlIcon from '../../../../../images/icon/24x24/constructor/url.svg';
 import CustomHandle from '../../../flow/custom-handle/custom-handle';
 import {
   TBlockProps,
@@ -11,6 +9,7 @@ import {
 } from '../../../../../services/types/builder';
 import { setFlowDataInit } from '../../../utils';
 import { deleteOnClickFlow, toggleStringFlow } from '../flow';
+import { IconName } from '../../../../../ui/icon/utils';
 
 export type TBtnColors = 'white' | 'red' | 'green' | 'blue';
 
@@ -44,16 +43,16 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
   // функция удаления кнопки/ответа. При удалении требуется пересчитывать расположение прочих кнопок/ответов
   const deleteOnClick = deleteOnClickFlow();
 
-  const getIcon = () => {
+  const getIcon = (): IconName => {
     switch (data.type) {
       case 'answer': {
-        return askPhoneIcon;
+        return 'askPhone';
       }
       case 'button': {
-        return urlIcon;
+        return 'constructorUrl';
       }
       default: {
-        return '';
+        return 'askPhone';
       }
     }
   };

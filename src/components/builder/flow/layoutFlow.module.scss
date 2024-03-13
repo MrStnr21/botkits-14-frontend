@@ -24,9 +24,17 @@
   }
 }
 
-.trigger-button{
+.triggerButton {
   @include position(absolute, 16px, 40px);
   z-index: 100;
+
+  @include size(60px, 48px);
+  border-radius: $s-border-radius;
+  padding: 17px 12px;
+
+  svg {
+    @include size(24px, 24px);
+  }
 
   @media screen and (max-width: $switching-width) {
     top: 8px;

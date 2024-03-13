@@ -15,7 +15,6 @@ import ReactFlow, {
 
 import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
-import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
 import { initialEdges, edgeOptions } from './initial-edges';
 
@@ -43,6 +42,7 @@ import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
 import { TResponseError } from '../../../services/types/response';
 import { createAddErrorAction } from '../../../services/actions/errors/errors';
+import ButtonIcon from '../../../ui/buttons/button-icon/button-icon';
 
 const cx = cn.bind(styles);
 
@@ -250,9 +250,12 @@ const LayoutFlow: FC = () => {
             title={title}
           />
         </div>
-        <div className={styles['trigger-button']}>
-          <TriggerButton onClick={() => toggleTrigger(true)} />
-        </div>
+        <ButtonIcon
+          icon="tag"
+          onClick={() => toggleTrigger(true)}
+          btnStyle="whiteBlack"
+          extraClass={styles.triggerButton}
+        />
         <div className={cx('upWrapper')}>
           <div className={cx('wrapper')}>
             <ButtonStart data={{ type: 'stop' }} />

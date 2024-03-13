@@ -17,7 +17,7 @@ const meta: Meta<IButtonIcon> = {
     btnSize: {
       description: 'Размер кнопки',
       defaultValue: 'small',
-      options: ['small'],
+      options: ['xsmall', 'small', 'medium', 'large'],
       control: {
         type: 'radio',
       },

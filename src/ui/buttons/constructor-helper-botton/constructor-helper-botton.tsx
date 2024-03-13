@@ -1,15 +1,16 @@
 import { FC, useEffect } from 'react';
-import { ReactSVG } from 'react-svg';
-import DeleteIcon from '../../../images/icon/24x24/constructor/delete.svg';
 
-import stylesConstructorHelperButton from './constructor-helper-botton.module.scss';
+import { Divider } from '@mui/material';
+import styles from './constructor-helper-botton.module.scss';
+import ButtonIcon from '../button-icon/button-icon';
+import { IconName } from '../../icon/utils';
 
 export interface IConstructorHelperButton {
   askButtonHtmlType?: 'button' | 'submit' | 'reset';
   deleteButtonHtmlType?: 'button' | 'submit' | 'reset';
   askOnClick?: () => void;
   deleteOnClick: () => void;
-  askIcon: string;
+  askIcon: IconName;
   color?: boolean;
   colorOnClick?: (newColor: string) => void;
   isVisible?: boolean;
@@ -57,22 +58,20 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
       {isVisible && (
         <div
           onClick={menuListener}
-          className={`${stylesConstructorHelperButton.container}${
-            color ? ` ${stylesConstructorHelperButton.container_color}` : ''
+          className={`${styles.container}${
+            color ? ` ${styles.container_color}` : ''
           }`}
         >
           <div
-            className={`${stylesConstructorHelperButton.wrapper}${
-              color ? ` ${stylesConstructorHelperButton.wrapper_color}` : ''
+            className={`${styles.wrapper}${
+              color ? ` ${styles.wrapper_color}` : ''
             }`}
           >
             {color
               ? colorTypes.map((colorType) => (
                   <button
                     key={colorType}
-                    className={
-                      stylesConstructorHelperButton[`color_button_${colorType}`]
-                    }
+                    className={styles[`color_button_${colorType}`]}
                     onClick={() => {
                       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                       colorOnClick ? colorOnClick(colorType) : () => {};
@@ -83,22 +82,23 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
                 ))
               : null}
           </div>
-          <button
-            className={stylesConstructorHelperButton.ask_button}
+          <ButtonIcon
             onClick={askOnClick}
+            icon={askIcon}
             // eslint-disable-next-line react/button-has-type
             type={askButtonHtmlType}
-          >
-            <ReactSVG src={askIcon} />
-          </button>
-          <button
-            className={stylesConstructorHelperButton.delete_button}
+            btnSize="medium"
+            btnStyle="whiteBlue"
+          />
+          <Divider orientation="vertical" flexItem className={styles.divider} />
+          <ButtonIcon
             onClick={deleteOnClick}
+            icon="delete"
             // eslint-disable-next-line react/button-has-type
             type={deleteButtonHtmlType}
-          >
-            <ReactSVG src={DeleteIcon} />
-          </button>
+            btnSize="medium"
+            btnStyle="whiteGrey"
+          />
         </div>
       )}
     </>

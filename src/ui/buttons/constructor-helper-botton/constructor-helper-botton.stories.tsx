@@ -2,8 +2,6 @@ import type { Meta, StoryFn } from '@storybook/react';
 import ConstructorHelperButton, {
   IConstructorHelperButton,
 } from './constructor-helper-botton';
-import AskPhoneIcon from '../../../images/icon/24x24/constructor/ask-phone.svg';
-import UrlIcon from '../../../images/icon/24x24/constructor/url.svg';
 
 export default {
   title: 'UI/Buttons/ConstructorHelperButton',
@@ -47,7 +45,7 @@ export default {
     askIcon: {
       type: 'string',
       description: 'Иконка кнопки запроса',
-      options: [AskPhoneIcon, UrlIcon],
+      options: ['askPhone', 'constructorUrl'],
       control: {
         type: 'select',
       },
@@ -67,7 +65,7 @@ export const Button = {
   args: {
     askButtonHtmlType: 'button',
     deleteButtonHtmlType: 'button',
-    askIcon: AskPhoneIcon,
+    askIcon: 'askPhone',
   },
   render: Template,
 };

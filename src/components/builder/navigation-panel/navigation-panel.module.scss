@@ -25,14 +25,12 @@
 }
 
 .controls {
-  @include flex(row, false, center, 12px);
+  @include flex(row, false, center);
+  height: 40px;
   box-sizing: border-box;
   width: fit-content;
   padding: 0 12px 0 16px;
-
-  >:not(hr){
-    margin: 8px 0;
-  }
+  overflow: hidden;
 
   @media screen and (max-width: $switching-width) {
     display: none;
@@ -41,4 +39,9 @@
 
 .map {
   position: static;
+}
+
+.divider {
+  border-color: $secondary-cultured-focus!important;
+  margin: 0 6px!important;
 }

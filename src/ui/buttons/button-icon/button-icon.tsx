@@ -6,7 +6,7 @@ import ButtonBasic, { IButtonBasic } from '../button-basic/button-basic';
 type ButtonThemes = 'whiteBlack' | 'whiteGray' | 'whiteBlue';
 
 export interface IButtonIcon extends IButtonBasic {
-  btnSize?: 'small' | 'medium';
+  btnSize?: 'xsmall' | 'small' | 'medium';
   isIconColored?: boolean;
   btnStyle?: string | ButtonThemes;
   extraClass?: string;
