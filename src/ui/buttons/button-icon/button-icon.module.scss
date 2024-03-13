@@ -1,0 +1,75 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+
+.button {
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+// Размер
+.small {
+  @include size(36px, 100%);
+
+  svg {
+    @include size(24px, 24px);
+  }
+}
+
+.medium {
+  @include size(48px, 100%);
+
+  svg {
+    @include size(24px, 24px);
+  }
+}
+
+.large {
+  @include size(56px, 52px);
+
+  svg {
+    @include size(24px, 24px);
+  }
+}
+
+// Цветовые схемы
+
+.whiteBlack {
+  background-color: $off-white;
+
+  &:hover {
+    background-color: $secondary-cultured-default;
+  }
+
+  svg {
+    color: $primary-oxford-blue-default;
+  }
+}
+
+.whiteGrey {
+  background-color: $off-white;
+
+  svg {
+    color: $grey-3;
+  }
+ &:hover {
+  svg {
+    color: $grey-1;
+  }
+ }
+}
+
+
+.whiteBlue {
+  background-color: $off-white;
+
+  svg {
+    color: $primary-persian-blue-default;
+  }
+ &:hover {
+  svg {
+    color: $primary-persian-blue-press;
+  }
+ }
+}

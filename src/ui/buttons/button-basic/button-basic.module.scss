@@ -1,0 +1,13 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.buttonBasic {
+  @include flex();
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+
+  &:hover {
+    cursor: $cursor;
+  }
+}
