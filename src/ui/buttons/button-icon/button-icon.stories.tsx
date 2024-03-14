@@ -14,14 +14,6 @@ const meta: Meta<IButtonIcon> = {
         type: 'select',
       },
     },
-    btnSize: {
-      description: 'Размер кнопки',
-      defaultValue: 'small',
-      options: ['xsmall', 'small', 'medium', 'large'],
-      control: {
-        type: 'radio',
-      },
-    },
     btnStyle: {
       description: 'Внешний вид иконки',
     },
@@ -46,7 +38,6 @@ const Template: StoryFn<IButtonIcon> = (args) => <ButtonIcon {...args} />;
 export const ButtonIconComponent = {
   args: {
     icon: 'italic',
-    btnSize: 'small',
     isIconColored: true,
   },
   render: Template,

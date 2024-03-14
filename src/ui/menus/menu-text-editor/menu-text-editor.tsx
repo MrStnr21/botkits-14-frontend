@@ -40,27 +40,24 @@ const MenuTextEditor: FC<IMenuTextEditor> = ({
       <Tooltip text="Жирный">
         <ButtonIcon
           icon="bold"
-          btnSize="medium"
           onClick={boldHandler}
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
       </Tooltip>
       <Divider orientation="vertical" flexItem className={styles.divider} />
       <Tooltip text="Курсив">
         <ButtonIcon
           icon="italic"
-          btnSize="medium"
           onClick={italicHandler}
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
       </Tooltip>
       <Divider orientation="vertical" flexItem className={styles.divider} />
       <Tooltip text="Код">
         <ButtonIcon
           icon="code"
-          btnSize="medium"
           onClick={codeHandler}
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
       </Tooltip>
     </div>

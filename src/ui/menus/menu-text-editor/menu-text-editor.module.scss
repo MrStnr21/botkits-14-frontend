@@ -1,5 +1,6 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/buttonStyling' as *;
 
 .box {
   @include size(144px, 40px);
@@ -18,4 +19,11 @@
 
 .divider {
   border-color: $secondary-cultured-hover;
+}
+
+.button {
+  @include size(48px, 100%);
+  @include standart-icon();
+  @include white-hovered();
+  @include black-icon();
 }

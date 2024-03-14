@@ -52,38 +52,33 @@ const NavigationPanel: FC = () => {
           onClick={onPlus}
           disabled={zoomLevel === maxScale}
           aria-label="Увеличить"
-          btnSize="xsmall"
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
         <ButtonIcon
           icon="screenNavigationMinus"
           onClick={onMinus}
           disabled={zoomLevel === minScale}
           aria-label="Уменьшить"
-          btnSize="xsmall"
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
         <Divider orientation="vertical" flexItem className={styles.divider} />
         <ButtonIcon
           icon="screenNavigationFit"
           onClick={onFit}
           aria-label="Центрировать"
-          btnSize="xsmall"
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
         <ButtonIcon
           icon="screenNavigationFullScreen"
           onClick={onFullscreen}
           aria-label="На весь экран"
-          btnSize="xsmall"
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
         <ButtonIcon
           icon="screenNavigationPage"
           onClick={onPage}
           aria-label="Обзор страницы"
-          btnSize="xsmall"
-          btnStyle="whiteBlack"
+          btnStyle={styles.button}
         />
       </div>
     </div>

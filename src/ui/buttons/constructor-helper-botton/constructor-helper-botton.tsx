@@ -87,8 +87,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
             icon={askIcon}
             // eslint-disable-next-line react/button-has-type
             type={askButtonHtmlType}
-            btnSize="medium"
-            btnStyle="whiteBlue"
+            btnStyle={`${styles.button} ${styles.blue}`}
           />
           <Divider orientation="vertical" flexItem className={styles.divider} />
           <ButtonIcon
@@ -96,8 +95,7 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
             icon="delete"
             // eslint-disable-next-line react/button-has-type
             type={deleteButtonHtmlType}
-            btnSize="medium"
-            btnStyle="whiteGrey"
+            btnStyle={`${styles.button} ${styles.grey}`}
           />
         </div>
       )}

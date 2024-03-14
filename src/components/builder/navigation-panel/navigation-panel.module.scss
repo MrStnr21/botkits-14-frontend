@@ -1,5 +1,6 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/buttonStyling' as *;
 
 .panel {
   @include flex(column, $align-items: center);
@@ -35,6 +36,13 @@
   @media screen and (max-width: $switching-width) {
     display: none;
   }
+}
+
+.button {
+  @include size(36px, 100%);
+  @include standart-icon();
+  @include white-hovered();
+  @include black-icon();
 }
 
 .map {

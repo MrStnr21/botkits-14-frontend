@@ -1,5 +1,6 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/buttonStyling' as *;
 
 .container {
   display: flex;
@@ -38,6 +39,20 @@
   justify-content: space-around !important;
   border-right: solid 1px $secondary-cultured-hover;
   padding-right: 6px;
+}
+
+.button {
+  @include size(48px, 100%);
+  @include standart-icon();
+  background-color: $off-white;
+
+  &.blue {
+    @include blue-icon()
+  }
+
+  &.grey {
+    @include grey-icon()
+  }
 }
 
 @mixin color_button {
