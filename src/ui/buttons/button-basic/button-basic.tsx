@@ -4,7 +4,9 @@ import Icon from '../../icon/icon';
 import { IconName } from '../../icon/utils';
 
 export interface IButtonBasic extends HTMLProps<HTMLButtonElement> {
+  /** Текст на кнопке */
   text?: string;
+  /** Имя иконки */
   icon?: IconName;
   iconType?: 'basic' | 'left' | 'right';
   isIconColored?: boolean;

@@ -33,6 +33,11 @@
       color: $primary-persian-blue-press;
     }
   }
+  &:disabled {
+    svg {
+      color: $grey-2;
+    }
+  }
 }
 
 @mixin grey-icon() {
@@ -42,6 +47,11 @@
   &:hover {
     svg {
       color: $grey-1;
+    }
+  }
+  &:disabled {
+    svg {
+      color: $grey-2;
     }
   }
 }

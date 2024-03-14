@@ -4,11 +4,10 @@ import { Bar, Line } from 'react-chartjs-2';
 import Typography from '../../ui/typography/typography';
 import styles from './stats-chart.module.scss';
 import { ChartProps } from './types';
-import calendarIcon from '../../images/icon/16x16/common/calendar.svg';
-import DropSelectorButton from '../../ui/buttons/drop-selector-button/drop-selector-button';
 import Calendar from '../calendar/calendar';
 import DateSelect from '../date-selector/date-selector';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
+import ButtonIcon from '../../ui/buttons/button-icon/button-icon';
 
 const StatsChart: FC<ChartProps> = ({
   type, // подпись над заголовком
@@ -57,7 +56,11 @@ const StatsChart: FC<ChartProps> = ({
             currentOption={currentPeriod}
             handleSelect={onPeriodSelect}
           />
-          <DropSelectorButton icon={calendarIcon} onClick={toggleCalendar} />
+          <ButtonIcon
+            icon="calendar"
+            onClick={toggleCalendar}
+            btnStyle={styles.calendarButton}
+          />
           {showCalendar && (
             <div className={styles.calendar}>
               <Calendar handleFunction={onCalendar} ref={calendarRef} />

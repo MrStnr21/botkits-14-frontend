@@ -4,8 +4,11 @@ import styles from './button-icon.module.scss';
 import ButtonBasic, { IButtonBasic } from '../button-basic/button-basic';
 
 export interface IButtonIcon extends IButtonBasic {
+  /** Можно ли перекрашивать иконку */
   isIconColored?: boolean;
+  /** Внешний вид кнопки */
   btnStyle?: string;
+  /** Дополнительный класс */
   extraClass?: string;
 }
 
