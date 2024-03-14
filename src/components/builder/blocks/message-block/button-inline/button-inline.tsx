@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Position } from 'reactflow';
 import styles from './button-inline.module.scss';
-import ConstructorHelperButton from '../../../../../ui/buttons/constructor-helper-botton/constructor-helper-botton';
+import HelperPanel from '../../helper-panel/helper-panel';
 import CustomHandle from '../../../flow/custom-handle/custom-handle';
 import {
   TBlockProps,
@@ -97,7 +97,7 @@ const ButtonInline: FC<TBlockProps<TButtonBlock>> = ({ data }) => {
       <CustomHandle position={Position.Right} hidden={hidden} type="source" />
       <div className={styles.container}>
         <div className={styles['absolute-wrapper']}>
-          <ConstructorHelperButton
+          <HelperPanel
             isVisible={menu}
             askOnClick={toggleString}
             deleteOnClick={deleteOnClick}

@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react';
 
 import { Divider } from '@mui/material';
-import styles from './constructor-helper-botton.module.scss';
-import ButtonIcon from '../button-icon/button-icon';
-import { IconName } from '../../icon/utils';
+import styles from './helper-panel.module.scss';
+import ButtonIcon from '../../../../ui/buttons/button-icon/button-icon';
+import { IconName } from '../../../../ui/icon/utils';
 
-export interface IConstructorHelperButton {
+export interface IHelperPanel {
   askButtonHtmlType?: 'button' | 'submit' | 'reset';
   deleteButtonHtmlType?: 'button' | 'submit' | 'reset';
   askOnClick?: () => void;
@@ -17,7 +17,7 @@ export interface IConstructorHelperButton {
   hide?: () => void;
 }
 
-const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
+const HelperPanel: FC<IHelperPanel> = ({
   askButtonHtmlType = 'button',
   deleteButtonHtmlType = 'button',
   askOnClick,
@@ -103,4 +103,4 @@ const ConstructorHelperButton: FC<IConstructorHelperButton> = ({
   );
 };
 
-export default ConstructorHelperButton;
+export default HelperPanel;

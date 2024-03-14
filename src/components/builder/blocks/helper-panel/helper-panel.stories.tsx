@@ -1,11 +1,9 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import ConstructorHelperButton, {
-  IConstructorHelperButton,
-} from './constructor-helper-botton';
+import HelperPanel, { IHelperPanel } from './helper-panel';
 
 export default {
-  title: 'UI/Buttons/ConstructorHelperButton',
-  component: ConstructorHelperButton,
+  title: 'COMPONENTS/Builder/other-components/blocks/helper-panel',
+  component: HelperPanel,
   argTypes: {
     askButtonHtmlType: {
       type: 'string',
@@ -55,11 +53,9 @@ export default {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} as Meta<IConstructorHelperButton>;
+} as Meta<IHelperPanel>;
 
-const Template: StoryFn<IConstructorHelperButton> = (args) => (
-  <ConstructorHelperButton {...args} />
-);
+const Template: StoryFn<IHelperPanel> = (args) => <HelperPanel {...args} />;
 
 export const Button = {
   args: {
