@@ -24,7 +24,7 @@ const ButtonIcon: FC<IButtonIcon> = ({
   return (
     <ButtonBasic
       iconType="basic"
-      btnClass={buttonCn}
+      btnStyle={buttonCn}
       {...rest}
       isIconColored={isIconColored}
     />
