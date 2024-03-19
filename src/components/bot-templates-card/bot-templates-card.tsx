@@ -1,11 +1,10 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../services/hooks/hooks';
-import stylesCard from './bot-templates-card.module.scss';
+import styles from './bot-templates-card.module.scss';
 import CheckboxWithText from '../../ui/CheckboxWithText/CheckboxWithText';
 import Avatar from '../../ui/avatar/avatar';
 import imageAvatar from '../../images/icon/template/answering machine.svg';
-import EditButton from '../../ui/buttons/button-edit/button-edit';
 import Menu from '../../ui/menus/menu/menu';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
 import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
@@ -19,6 +18,7 @@ import { createUrlBuilder } from '../../utils/utils';
 import useForm from '../../services/hooks/use-form';
 
 import routesUrl from '../../utils/routesData';
+import ButtonIcon from '../../ui/buttons/button-icon/button-icon';
 
 // import { BUTTON_NAME } from '../../utils/constants';
 
@@ -135,10 +135,10 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   };
 
   return (
-    <div className={stylesCard.card}>
-      <div className={stylesCard.container}>
-        <div className={stylesCard.wrapper}>
-          <div className={stylesCard.avatar}>
+    <div className={styles.card}>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
+          <div className={styles.avatar}>
             <Avatar
               isBot="no"
               state="offline"
@@ -146,8 +146,12 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
               botTemplates="yes"
               pic={imageEdit || imageAvatar}
             />
-            <div className={stylesCard.editButton}>
-              <EditButton onClick={openPopup} />
+            <div className={styles.editButton}>
+              <ButtonIcon
+                icon="dropdownEdit"
+                onClick={openPopup}
+                btnStyle={styles.edit}
+              />
               {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
                 <input
                 type="file"
@@ -165,11 +169,11 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
               </label> */}
             </div>
           </div>
-          <div className={stylesCard.more}>
+          <div className={styles.more}>
             <button
               ref={buttonRef}
               type="button"
-              className={stylesCard.more__Button}
+              className={styles.more__Button}
               onClick={onClick}
             >
               {' '}
@@ -179,7 +183,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
                 ref={menuRef}
                 options={options}
                 onItemClick={(e) => handleOptionClick(e.value)}
-                layoutClassName={stylesCard.dropdown}
+                layoutClassName={styles.dropdown}
               />
             )}
           </div>
@@ -207,7 +211,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
           disabled={disabled}
         />
       </div>
-      <div className={stylesCard.buttons}>
+      <div className={styles.buttons}>
         <ButtonBotTemplate
           onClick={clearInputs}
           buttonHtmlType="button"

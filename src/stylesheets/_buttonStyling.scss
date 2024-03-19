@@ -7,6 +7,12 @@
   }
 }
 
+@mixin small-icon() {
+  svg {
+    @include size(16px, 16px);
+  }
+}
+
 // Цвет фона
 @mixin white-hovered() {
   background-color: $off-white;
@@ -51,6 +57,24 @@
   }
   &:disabled {
     svg {
+      color: $grey-2;
+    }
+  }
+}
+
+// цвет текста
+
+@mixin blue-text() {
+  span {
+    color: $primary-persian-blue-default;
+  }
+  &:hover {
+    .span {
+      color: $primary-persian-blue-hover;
+    }
+  }
+  &:disabled {
+    span {
       color: $grey-2;
     }
   }

@@ -1,5 +1,6 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/buttonStyling' as *;
 
 @mixin font {
   font-family: 'Open Sans', sans-serif;
@@ -18,6 +19,7 @@
 
 .files {
   @include max-size(250px, unset);
+  @include font;
   display: grid;
   grid-template-columns: 226px 65px;
   grid-template-rows: 20px 112px;
@@ -34,7 +36,6 @@
   }
 
   &__paragraph {
-    @include font;
     font-weight: $bold;
   }
 
@@ -52,5 +53,16 @@
   &__itemColumn {
     @include item;
     flex-direction: column;
+  }
+}
+
+.button {
+  @include size(24px, 20px);
+  background-color: $off-white;
+
+  @include blue-text();
+  span {
+    font-weight: $bold;
+    font-size: $s-font-size;
   }
 }
