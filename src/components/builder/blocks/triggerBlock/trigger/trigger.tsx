@@ -3,7 +3,7 @@ import { ChangeEvent, FC, useState } from 'react';
 import styles from './trigger.module.scss';
 
 import Input from '../../../../../ui/inputs/input/input';
-import ConstructorDefaultButton from '../../../../../ui/buttons/constructor-default-button/constructor-default-button';
+import ConstructorDefaultButton from '../../../buttons/constructor-default-button/constructor-default-button';
 import { TTrigger } from '../../../../../services/types/builder';
 import { namesOfBlocks } from '../../../utils/store';
 import Select from '../../../../../ui/select/select';

@@ -4,7 +4,7 @@ import ConstructorDefaultButton, {
 } from './constructor-default-button';
 
 export default {
-  title: 'UI/Buttons/ConstructorDefaultButton',
+  title: 'COMPONENTS/Builder/other-components/Buttons/ConstructorDefaultButton',
   component: ConstructorDefaultButton,
   argTypes: {
     disabled: {

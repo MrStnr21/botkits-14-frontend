@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import styles from './button-add-block.module.scss';
 
-import messageIcon from '../../../images/icon/24x24/add block/message-square.svg';
+import messageIcon from '../../../../images/icon/24x24/add block/message-square.svg';
 
 export interface IButtonAddBlock {
   icon: string;

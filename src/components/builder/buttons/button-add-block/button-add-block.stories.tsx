@@ -1,14 +1,14 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import ButtonAddBlock, { IButtonAddBlock } from './button-add-block';
-import api from '../../../images/icon/24x24/add block/api.svg';
-import credit from '../../../images/icon/24x24/add block/credit-card.svg';
-import deeplink from '../../../images/icon/24x24/add block/deeplink.svg';
-import git from '../../../images/icon/24x24/add block/git-branch.svg';
-import headphones from '../../../images/icon/24x24/add block/headphones.svg';
-import map from '../../../images/icon/24x24/add block/map-pin.svg';
-import message from '../../../images/icon/24x24/add block/message-square.svg';
-import sliders from '../../../images/icon/24x24/add block/sliders.svg';
-import table from '../../../images/icon/24x24/add block/table.svg';
+import api from '../../../../images/icon/24x24/add block/api.svg';
+import credit from '../../../../images/icon/24x24/add block/credit-card.svg';
+import deeplink from '../../../../images/icon/24x24/add block/deeplink.svg';
+import git from '../../../../images/icon/24x24/add block/git-branch.svg';
+import headphones from '../../../../images/icon/24x24/add block/headphones.svg';
+import map from '../../../../images/icon/24x24/add block/map-pin.svg';
+import message from '../../../../images/icon/24x24/add block/message-square.svg';
+import sliders from '../../../../images/icon/24x24/add block/sliders.svg';
+import table from '../../../../images/icon/24x24/add block/table.svg';
 
 const icons = {
   api,
@@ -23,7 +23,7 @@ const icons = {
 };
 
 export default {
-  title: 'UI/Buttons/Button-Add-Block',
+  title: 'COMPONENTS/Builder/other-components/Buttons/Button-Add-Block',
   component: ButtonAddBlock,
   argTypes: {
     hover: {

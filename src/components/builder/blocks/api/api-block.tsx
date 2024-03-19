@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import { FC } from 'react';
 
-import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
-import ConstructorDefaultButton from '../../../../ui/buttons/constructor-default-button/constructor-default-button';
+import ConstructorAddButton from '../../buttons/constructor-add-button/constructor-add-button';
+import ConstructorDefaultButton from '../../buttons/constructor-default-button/constructor-default-button';
 import ControlLayout from '../../control-layout/control-layout';
 import Input from '../../../../ui/inputs/input/input';
 import styles from './api-block.module.scss';

@@ -4,7 +4,7 @@ import {
   TBlockProps,
   TVariablesControlBlock,
 } from '../../../../services/types/builder';
-import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
+import ConstructorAddButton from '../../buttons/constructor-add-button/constructor-add-button';
 import ControlLayout from '../../control-layout/control-layout';
 import styleVariableBlock from './variable.module.scss';
 import Value from './value/value';

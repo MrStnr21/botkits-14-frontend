@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import PlusIcon from '../../../images/icon/24x24/constructor/plus.svg';
-import Horizontal from '../../../images/icon/24x24/constructor/horizontal.svg';
-import Vertical from '../../../images/icon/24x24/constructor/vertical.svg';
-import Photo from '../../../images/icon/24x24/add content/image.svg';
+import PlusIcon from '../../../../images/icon/24x24/constructor/plus.svg';
+import Horizontal from '../../../../images/icon/24x24/constructor/horizontal.svg';
+import Vertical from '../../../../images/icon/24x24/constructor/vertical.svg';
+import Photo from '../../../../images/icon/24x24/add content/image.svg';
 
 import styles from './constructor-add-button.module.scss';
 

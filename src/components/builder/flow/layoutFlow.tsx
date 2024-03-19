@@ -14,7 +14,7 @@ import ReactFlow, {
 } from 'reactflow';
 
 import { useMediaQuery } from '@mui/material';
-import ButtonStart from '../blocks/button-start/button-start';
+import ButtonStart from '../buttons/button-start/button-start';
 import { initialNodes, nodeTypes } from './initial-nodes';
 import { initialEdges, edgeOptions } from './initial-edges';
 

@@ -2,7 +2,7 @@ import { ReactFlowProvider } from 'reactflow';
 import ButtonStart from './button-start';
 
 export default {
-  title: 'COMPONENTS/Builder/other-components/blocks/button-start',
+  title: 'COMPONENTS/Builder/other-components/Buttons/button-start',
   component: ButtonStart,
 };
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import LabeledInput from '../../../labeledInput/labeledInput';
 import styles from './req-settings.module.scss';
-import ConstructorAddButton from '../../../../../ui/buttons/constructor-add-button/constructor-add-button';
+import ConstructorAddButton from '../../../buttons/constructor-add-button/constructor-add-button';
 
 type RequestSettingsProps = {
   variableFields: React.ReactNode[];

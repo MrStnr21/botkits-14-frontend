@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useReactFlow } from 'reactflow';
 import { v4 as uuid } from 'uuid';
 import styles from './add-block-panel.module.scss';
-import ButtonAddBlock from '../../../ui/buttons/button-add-block/button-add-block';
+import ButtonAddBlock from '../buttons/button-add-block/button-add-block';
 import api from '../../../images/icon/24x24/add block/api.svg';
 import credit from '../../../images/icon/24x24/add block/credit-card.svg';
 import deeplink from '../../../images/icon/24x24/add block/deeplink.svg';

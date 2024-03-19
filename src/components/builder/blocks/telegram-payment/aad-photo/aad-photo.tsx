@@ -1,6 +1,6 @@
 import { FC, useRef } from 'react';
 
-import ConstructorAddButton from '../../../../../ui/buttons/constructor-add-button/constructor-add-button';
+import ConstructorAddButton from '../../../buttons/constructor-add-button/constructor-add-button';
 
 import { BUTTON_NAME } from '../../../../../utils/constants';
 
