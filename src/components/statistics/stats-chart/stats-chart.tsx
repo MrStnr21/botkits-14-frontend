@@ -1,13 +1,13 @@
 import { Divider } from '@mui/material';
 import { FC, useRef, useState } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
-import Typography from '../../ui/typography/typography';
+import Typography from '../../../ui/typography/typography';
 import styles from './stats-chart.module.scss';
 import { ChartProps } from './types';
-import Calendar from '../calendar/calendar';
+import Calendar from '../../calendar/calendar';
+import useOutsideClickAndEscape from '../../../utils/hooks/useOutsideClickAndEscape';
+import ButtonIcon from '../../../ui/buttons/button-icon/button-icon';
 import DateSelect from '../date-selector/date-selector';
-import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
-import ButtonIcon from '../../ui/buttons/button-icon/button-icon';
 
 const StatsChart: FC<ChartProps> = ({
   type, // подпись над заголовком

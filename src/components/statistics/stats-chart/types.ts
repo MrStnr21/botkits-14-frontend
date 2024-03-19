@@ -5,7 +5,7 @@ import {
   BarControllerDatasetOptions,
 } from 'chart.js';
 
-import type { Option } from '../../utils/types';
+import type { Option } from '../../../utils/types';
 
 type CommonProps = {
   type: string;

@@ -1,9 +1,9 @@
 import { FC, useRef, useState } from 'react';
 import styles from './date-selector.module.scss';
-import Menu from '../../ui/menus/menu/menu';
-import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
-import PeriodSelectButton from '../../ui/buttons/period-select-button/period-select-button';
-import type { Option } from '../../utils/types';
+import Menu from '../../../ui/menus/menu/menu';
+import useOutsideClickAndEscape from '../../../utils/hooks/useOutsideClickAndEscape';
+import PeriodSelectButton from '../period-select-button/period-select-button';
+import type { Option } from '../../../utils/types';
 
 export interface IDateSelector {
   currentOption: Option;
