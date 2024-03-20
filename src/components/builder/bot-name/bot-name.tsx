@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import styles from './bot-name.module.scss';
-import fb from '../../images/icon/40x40/facebook/hover.svg';
-import DoneIcon from '../icons/Done/Done';
-import { ReactComponent as UpdateIcon } from '../../images/icon/20x20/update.svg';
-import Typography from '../typography/typography';
+import noPlatform from '../../../assets/icons/24x24/common/x-circle.svg';
+import Typography from '../../../ui/typography/typography';
+import Icon from '../../../ui/icon/icon';
 
 export interface IBotName {
   platform_icon?: string;
@@ -12,7 +11,7 @@ export interface IBotName {
 }
 
 const BotName: FC<IBotName> = ({
-  platform_icon = fb,
+  platform_icon = noPlatform,
   isUpdating,
   title = 'Название бота',
 }) => {
@@ -23,9 +22,13 @@ const BotName: FC<IBotName> = ({
         {title}
       </Typography>
       {isUpdating ? (
-        <UpdateIcon className={styles.update} />
+        <Icon
+          icon="syncUpdate"
+          extraClass={`${styles.icon} ${styles.update}`}
+          isColored
+        />
       ) : (
-        <DoneIcon size={20} />
+        <Icon icon="syncDone" extraClass={styles.icon} isColored />
       )}
     </div>
   );

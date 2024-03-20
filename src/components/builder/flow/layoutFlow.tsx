@@ -25,7 +25,7 @@ import TriggerBlock, { triggers } from '../blocks/triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
-import BotName from '../../../ui/bot-name/bot-name';
+import BotName from '../bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';

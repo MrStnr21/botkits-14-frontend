@@ -1,19 +1,19 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import BotName, { IBotName } from './bot-name';
-import fb from '../../images/icon/40x40/facebook/hover.svg';
-import tg from '../../images/icon/40x40/telegram/hover.svg';
-import alisa from '../../images/icon/40x40/alisa/hover.svg';
-import google from '../../images/icon/40x40/google/hover.svg';
-import inst from '../../images/icon/40x40/insta/hover.svg';
-import mail from '../../images/icon/40x40/mailru/hover.svg';
-import ok from '../../images/icon/40x40/odnoklassniki/hover.svg';
-import twit from '../../images/icon/40x40/twitter/hover.svg';
-import viber from '../../images/icon/40x40/viber/hover.svg';
-import vk from '../../images/icon/40x40/vk/hover.svg';
-import web from '../../images/icon/40x40/web/hover.svg';
-import whats from '../../images/icon/40x40/whatsapp/hover.svg';
-import ya from '../../images/icon/40x40/yandex/hover.svg';
-import yt from '../../images/icon/40x40/youtube/hover.svg';
+import fb from '../../../assets/icons/40x40/facebook/hover.svg';
+import tg from '../../../assets/icons/40x40/telegram/hover.svg';
+import alisa from '../../../assets/icons/40x40/alisa/hover.svg';
+import google from '../../../assets/icons/40x40/google/hover.svg';
+import inst from '../../../assets/icons/40x40/insta/hover.svg';
+import mail from '../../../assets/icons/40x40/mailru/hover.svg';
+import ok from '../../../assets/icons/40x40/odnoklassniki/hover.svg';
+import twit from '../../../assets/icons/40x40/twitter/hover.svg';
+import viber from '../../../assets/icons/40x40/viber/hover.svg';
+import vk from '../../../assets/icons/40x40/vk/hover.svg';
+import web from '../../../assets/icons/40x40/web/hover.svg';
+import whats from '../../../assets/icons/40x40/whatsapp/hover.svg';
+import ya from '../../../assets/icons/40x40/yandex/hover.svg';
+import yt from '../../../assets/icons/40x40/youtube/hover.svg';
 
 const icons = {
   fb,
@@ -33,7 +33,7 @@ const icons = {
 };
 
 export default {
-  title: 'UI/BotName',
+  title: 'COMPONENTS/Builder/BotName',
   component: BotName,
   argTypes: {
     platform_icon: {

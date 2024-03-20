@@ -27,6 +27,7 @@
 .triggerButton {
   @include position(absolute, 16px, 40px);
   z-index: 100;
+  background-color: $off-white;
 
   @include size(60px, 48px);
   border-radius: $s-border-radius;
