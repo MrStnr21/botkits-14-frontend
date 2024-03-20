@@ -15,6 +15,12 @@ import { BotActionValue } from '../popups/bot-actions-popups/utils';
 import PopupRouter from '../popups/bot-actions-popups/popup-router';
 import useModal from '../../services/hooks/use-modal';
 import BotStatus from './bot-status/bot-status';
+import { shareBotApi } from '../../api/user';
+import { deleteBotAction } from '../../services/actions/bots/deleteBot';
+import { renameBotAction } from '../../services/actions/bots/renameBot';
+import { createAddErrorAction } from '../../services/actions/errors/errors';
+import { useAppDispatch } from '../../services/hooks/hooks';
+import { copyBotAction } from '../../services/actions/bots/addBot';
 
 export interface IBotCard {
   bot: TBot;
@@ -25,13 +31,8 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
   const [botAction, setBotAction] = useState<BotActionValue | null>(null);
   const { isModalOpen, closeModal, openModal } = useModal();
 
-  // для пунктов меню, требующих открытия отдельного попапа
-  const onExtendedActionSelect = (value: BotActionValue) => {
-    setBotAction(value);
-    openModal();
-  };
-
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -42,6 +43,41 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
     () => setIsMenuActive(false),
     buttonRef
   );
+
+  // Действия с ботом
+  const handleShare = (email: string) => {
+    shareBotApi(email)
+      .catch(() =>
+        dispatch(createAddErrorAction('Не получилось поделиться ботом'))
+      )
+      .finally(() => closeModal());
+  };
+
+  const handleRename = (value: TBot['title']) => {
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(renameBotAction(bot._id, value, bot.permission));
+    closeModal();
+  };
+
+  const handleDelete = () => {
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(deleteBotAction(bot._id));
+    closeModal();
+  };
+
+  const copyBot = () => {
+    dispatch(copyBotAction(bot._id));
+  };
+
+  // Действия при выбору пункта меню
+  const onActionSelect = (action: BotActionValue) => {
+    if (action === 'copy') {
+      copyBot();
+    } else {
+      setBotAction(action);
+      openModal();
+    }
+  };
 
   return (
     <div className={styles.card}>
@@ -80,13 +116,17 @@ const BotCard: FC<IBotCard> = ({ bot }) => {
       {isMenuActive && (
         <BotActionsMenu
           setIsOpen={setIsMenuActive}
-          bot={bot}
           ref={menuRef}
-          handleActionSelect={onExtendedActionSelect}
+          handleActionSelect={onActionSelect}
         />
       )}
       {isModalOpen && botAction && (
-        <PopupRouter action={botAction} close={closeModal} bot={bot} />
+        <PopupRouter
+          action={botAction}
+          close={closeModal}
+          bot={bot}
+          handlers={{ handleShare, handleRename, handleDelete }}
+        />
       )}
     </div>
   );

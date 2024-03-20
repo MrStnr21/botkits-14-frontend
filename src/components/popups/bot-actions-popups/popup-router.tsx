@@ -6,9 +6,6 @@ import InfoPopup from './info-popup';
 import LinkPopup from './link-popup';
 import ModalPopup from '../modal-popup/modal-popup';
 
-import { useAppDispatch } from '../../../services/hooks/hooks';
-import { renameBotAction } from '../../../services/actions/bots/renameBot';
-
 import {
   mockAccessKey,
   mockChannelLink,
@@ -16,31 +13,19 @@ import {
   mockDisableNotufyLink,
   mockNotifyLink,
 } from '../../../utils/mockBotActionsValues';
-import { shareBotApi } from '../../../api/user';
-import { createAddErrorAction } from '../../../services/actions/errors/errors';
+import ConfirmDeletePopup from '../confirm-delete-popup/confirm-delete-popup';
 
 interface IPopupRouter {
   action: BotActionValue;
   bot: TBot;
   close: () => void;
+  handlers: {
+    [key: string]: ((value: string) => void) | (() => void);
+  };
 }
 
-const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
-  const dispatch = useAppDispatch();
-
-  const handleShare = (email: string) => {
-    shareBotApi(email)
-      .catch(() =>
-        dispatch(createAddErrorAction('Не получилось поделиться ботом'))
-      )
-      .finally(() => close());
-  };
-
-  const handleRename = (value: TBot['title']) => {
-    // eslint-disable-next-line no-underscore-dangle
-    dispatch(renameBotAction(bot._id, value, bot.permission));
-    close();
-  };
+const PopupRouter: FC<IPopupRouter> = ({ action, bot, close, handlers }) => {
+  const { handleShare, handleRename, handleDelete } = handlers;
 
   const getPopup = (actionValue: typeof action) => {
     switch (actionValue) {
@@ -113,6 +98,13 @@ const PopupRouter: FC<IPopupRouter> = ({ action, bot, close }) => {
                 toCopy: true,
               },
             ]}
+          />
+        );
+      case 'delete':
+        return (
+          <ConfirmDeletePopup
+            onSubmitClick={handleDelete as () => void}
+            onCancelClick={close}
           />
         );
       default:

@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect } from 'react';
+import { FC, useState, useRef, useEffect, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../services/hooks/hooks';
 import styles from './bot-templates-card.module.scss';
@@ -15,10 +15,11 @@ import ModalPopup from '../popups/modal-popup/modal-popup';
 // import Typography from '../../ui/typography/typography';
 import EditImagePopup from '../popups/edit-image-popup/edit-image-popup';
 import { createUrlBuilder } from '../../utils/utils';
-import useForm from '../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../services/hooks/use-form';
 
 import routesUrl from '../../utils/routesData';
 import ButtonIcon from '../../ui/buttons/button-icon/button-icon';
+import ConfirmDeletePopup from '../popups/confirm-delete-popup/confirm-delete-popup';
 
 // import { BUTTON_NAME } from '../../utils/constants';
 
@@ -27,6 +28,11 @@ interface IBotTemplatesCard {
   disabled?: boolean;
   deleteCard: (id: string) => void;
 }
+
+type TTemplateFormState = {
+  nameBot: TInputValue<string>;
+  aboutBot: TInputValue<string>;
+};
 
 const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   card,
@@ -37,11 +43,12 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
   const [menu, toggleMenu] = useState(false);
   const [imageEdit, setImageEdit] = useState<string>('');
   const [iconName, setIconName] = useState<string>('');
-  const { values, handleChange, setValues } = useForm({
-    nameBot: { value: card.title || '', valueValid: false },
-    aboutBot: { value: card.description || '', valueValid: false },
+  const { values, handleChange, setValues } = useForm<TTemplateFormState>({
+    nameBot: { value: card.title || '', isValid: false },
+    aboutBot: { value: card.description || '', isValid: false },
   });
   const [isOpen, setOpenPupup] = useState(false);
+  const [popup, setPopup] = useState<null | 'edit' | 'delete'>(null);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -100,9 +107,14 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
       navigate(createUrlBuilder(path, card._id));
     }
     if (e === 'delete') {
-      // eslint-disable-next-line no-underscore-dangle
-      deleteCard(card._id);
+      setOpenPupup(true);
+      setPopup('delete');
     }
+  };
+
+  const deleteTemplate = () => {
+    // eslint-disable-next-line no-underscore-dangle
+    deleteCard(card._id);
   };
 
   const options = [
@@ -110,7 +122,8 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
     { label: 'Удалить', value: 'delete' },
   ];
 
-  const updateInputs = () => {
+  const updateTemplate = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const upCard = {
       icon: iconName || imageEdit,
       title: values.nameBot.value,
@@ -125,17 +138,22 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
 
   const clearInputs = () => {
     setValues({
-      nameBot: { value: '', valueValid: false },
-      aboutBot: { value: '', valueValid: false },
+      nameBot: { value: '', isValid: false },
+      aboutBot: { value: '', isValid: false },
     });
   };
 
-  const openPopup = () => {
-    setOpenPupup(!isOpen);
+  const handleEdit = () => {
+    setOpenPupup(true);
+    setPopup('edit');
+  };
+
+  const close = () => {
+    setOpenPupup(false);
   };
 
   return (
-    <div className={styles.card}>
+    <form className={styles.card} onSubmit={updateTemplate}>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.avatar}>
@@ -149,7 +167,7 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
             <div className={styles.editButton}>
               <ButtonIcon
                 icon="dropdownEdit"
-                onClick={openPopup}
+                onClick={handleEdit}
                 btnStyle={styles.edit}
               />
               {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
@@ -219,20 +237,26 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
         >
           Отменить
         </ButtonBotTemplate>
-        <ButtonBotTemplate
-          onClick={updateInputs}
-          buttonHtmlType="button"
-          color="blue"
-        >
+        <ButtonBotTemplate buttonHtmlType="submit" color="blue">
           Сохранить изменения
         </ButtonBotTemplate>
       </div>
       {isOpen && (
         <ModalPopup onClick={() => setOpenPupup(false)}>
-          <EditImagePopup closeModal={openPopup} editImage={setImageEdit} />
+          <>
+            {popup === 'edit' && (
+              <EditImagePopup closeModal={close} editImage={setImageEdit} />
+            )}
+            {popup === 'delete' && (
+              <ConfirmDeletePopup
+                onSubmitClick={deleteTemplate}
+                onCancelClick={close}
+              />
+            )}
+          </>
         </ModalPopup>
       )}
-    </div>
+    </form>
   );
 };
 

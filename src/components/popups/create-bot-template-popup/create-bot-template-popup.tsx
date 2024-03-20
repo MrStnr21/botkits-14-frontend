@@ -1,4 +1,4 @@
-import { FC, useState, FormEvent, useEffect } from 'react';
+import { FC, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router';
 import Typography from '../../../ui/typography/typography';
 import styles from './create-bot-template-popup.module.scss';
@@ -12,7 +12,7 @@ import { createUrlBuilder } from '../../../utils/utils';
 import routesUrl from '../../../utils/routesData';
 import ModalPopup from '../modal-popup/modal-popup';
 import EditImagePopup from '../edit-image-popup/edit-image-popup';
-import useForm from '../../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../../services/hooks/use-form';
 import { TBotTemplateReq } from '../../../services/types/bot';
 import { addBotTemplateAction } from '../../../services/actions/bots/templatesBots';
 import { useAppDispatch } from '../../../services/hooks/hooks';
@@ -23,16 +23,21 @@ interface IPopupCreateBotTemplates {
   closeModal: () => void;
 }
 
+type TTemplateFormState = {
+  nameBot: TInputValue<string>;
+  aboutBot: TInputValue<string>;
+};
+
 const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   closeModal,
 }) => {
   const [imageEdit, setImageEdit] = useState<string>('');
   const [isOpen, setOpenPupup] = useState(false);
-  const { values, handleChange, setValues } = useForm({
-    nameBot: { value: '', valueValid: false },
-    aboutBot: { value: '', valueValid: false },
-  });
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const { values, handleChange, setValues, isFormValid } =
+    useForm<TTemplateFormState>({
+      nameBot: { value: '', isValid: false },
+      aboutBot: { value: '', isValid: false },
+    });
 
   const history = useNavigate();
   const dispatch = useAppDispatch();
@@ -44,17 +49,11 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
 
   const clearInputs = () => {
     setValues({
-      nameBot: { value: '', valueValid: false },
-      aboutBot: { value: '', valueValid: false },
+      nameBot: { value: '', isValid: false },
+      aboutBot: { value: '', isValid: false },
     });
     closeModal();
   };
-
-  useEffect(() => {
-    if (values.nameBot.valueValid && values.aboutBot.valueValid) {
-      setButtonDisabled(false);
-    } else setButtonDisabled(true);
-  }, [values]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,8 +62,8 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
         `../../../images/icon/side bar/logo.svg`
       );
       const dataBotTemplates: TBotTemplateReq = {
-        title: values.nameBot.value,
-        description: values.aboutBot.value,
+        title: values.nameBot.value as string,
+        description: values.aboutBot.value as string,
         icon: imageEdit || imageModule.default,
         isToPublish: false,
       };
@@ -79,8 +78,8 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
     }
 
     setValues({
-      nameBot: { value: '', valueValid: false },
-      aboutBot: { value: '', valueValid: false },
+      nameBot: { value: '', isValid: false },
+      aboutBot: { value: '', isValid: false },
     });
   };
 
@@ -154,7 +153,7 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
           <button
             type="submit"
             className={styles.popup__confirmBtn}
-            disabled={buttonDisabled}
+            disabled={isFormValid}
           >
             <Typography tag="p" className={styles.popup__confirmText}>
               Cоздать

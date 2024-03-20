@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState, useEffect } from 'react';
+import { FC, FormEvent, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -17,7 +17,7 @@ import {
 } from '../../services/actions/auth/signin';
 
 import routesUrl from '../../utils/routesData';
-import useForm from '../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../services/hooks/use-form';
 import { signinSel } from '../../utils/selectorData';
 import { getSocial, removeSocial } from '../../auth/authService';
 import {
@@ -28,26 +28,24 @@ import {
 } from '../../utils/utils';
 import Typography from '../../ui/typography/typography';
 
-const Signin: FC = (): JSX.Element => {
+type TSiginFormState = {
+  email: TInputValue;
+  password: TInputValue;
+};
+
+const Signin: FC = () => {
   const userData = useAppSelector(signinSel);
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   // Извлечение текущего URL
   const currentUrl = new URL(window.location.href);
   // Используем URLSearchParams для получения параметра 'code'
   const code = currentUrl.searchParams.get('code');
   const cookieData = Cookies.get('auth');
-  const { values, handleChange } = useForm({
-    email: { value: '', valueValid: false },
-    password: { value: '', valueValid: false },
+  const { values, handleChange, isFormValid } = useForm<TSiginFormState>({
+    email: { value: '', isValid: false },
+    password: { value: '', isValid: false },
   });
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (values.email.valueValid && values.password.valueValid) {
-      setButtonDisabled(false);
-    } else setButtonDisabled(true);
-  }, [values]);
 
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -120,7 +118,7 @@ const Signin: FC = (): JSX.Element => {
                 variant="default"
                 color="green"
                 buttonHtmlType="submit"
-                disabled={buttonDisabled}
+                disabled={!isFormValid}
               >
                 Войти
               </Button>

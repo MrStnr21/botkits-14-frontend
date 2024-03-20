@@ -19,7 +19,7 @@ import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
 
 import StepperFillBot from '../stepper-fill-bot/stepper-fill-bot';
 import LoadPages from '../load-pages/load-pages';
-import useForm from '../../../services/hooks/use-form';
+import useForm, { TInputValue } from '../../../services/hooks/use-form';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 
@@ -37,6 +37,12 @@ export interface ICreateBot {
   templateTitle: string | null;
   botURI?: boolean;
 }
+
+type TBotFormState = {
+  botName: TInputValue<string>;
+  accessKey: TInputValue<string>;
+  uri: TInputValue<string>;
+};
 
 const img: ImageMap = {
   Facebook: <Facebook className={styles.create_main_bot_name_img} />,
@@ -59,10 +65,10 @@ const CreateBot: FC<ICreateBot> = ({
 }) => {
   const [arrPages, setArrPages] = useState<string[]>([]);
 
-  const { values, handleChange, setValues } = useForm({
-    botName: { value: '', valueValid: false },
-    accessKey: { value: '', valueValid: false },
-    uri: { value: '', valueValid: false },
+  const { values, handleChange, setValues } = useForm<TBotFormState>({
+    botName: { value: '', isValid: false },
+    accessKey: { value: '', isValid: false },
+    uri: { value: '', isValid: false },
   });
 
   const navigate = useNavigate();
@@ -113,9 +119,9 @@ const CreateBot: FC<ICreateBot> = ({
     }
 
     setValues({
-      botName: { value: '', valueValid: false },
-      accessKey: { value: '', valueValid: false },
-      uri: { value: '', valueValid: false },
+      botName: { value: '', isValid: false },
+      accessKey: { value: '', isValid: false },
+      uri: { value: '', isValid: false },
     });
   };
   return (

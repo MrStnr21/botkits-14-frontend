@@ -1,10 +1,11 @@
-import { FC, useState } from 'react';
+import { FC, FormEvent } from 'react';
 
 import styles from './popup.module.scss';
 
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';
 import Typography from '../../../ui/typography/typography';
+import useForm, { TInputValue } from '../../../services/hooks/use-form';
 
 export interface IFormPopup {
   title: string;
@@ -25,17 +26,32 @@ const FormPopup: FC<IFormPopup> = ({
   onConfirm,
   inputType,
 }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const { values, handleChange, isFormValid } = useForm<{
+    formValue: TInputValue;
+  }>({
+    formValue: { value, isValid: true },
+  });
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>, formValue: string) => {
+    e.preventDefault();
+    if (values.formValue.isValid) {
+      onConfirm(formValue);
+    }
+  };
 
   return (
-    <div className={styles.container}>
+    <form
+      className={styles.container}
+      onSubmit={(e) => handleSubmit(e, values.formValue.value as string)}
+    >
       <Typography tag="h3" fontFamily="secondary">
         {title}
       </Typography>
       {/* TODO валидация и disable кнопки подтверждения */}
       <Input
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        name="formValue"
+        value={values.formValue.value}
+        onChange={handleChange}
         placeholder={placeholder}
         type={inputType}
         required
@@ -47,17 +63,17 @@ const FormPopup: FC<IFormPopup> = ({
         </button>
         <div className={styles.submit}>
           <Button
-            onClick={() => onConfirm(inputValue)}
             size="medium"
             variant="default"
             color="blue"
             buttonHtmlType="submit"
+            disabled={!isFormValid}
           >
             {buttonText}
           </Button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
