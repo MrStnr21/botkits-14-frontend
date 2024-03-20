@@ -4,7 +4,7 @@ import Trigger, { ITriggerProps } from './trigger';
 import { TTrigger } from '../../../../../services/types/builder';
 
 const meta = {
-  title: 'COMPONENTS/Builder/other-components/blocks/TriggerBlock/Trigger',
+  title: 'COMPONENTS/Builder/blocks/TriggerBlock/Trigger',
   component: Trigger,
 } satisfies Meta<ITriggerProps>;
 

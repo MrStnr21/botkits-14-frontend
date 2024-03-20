@@ -23,7 +23,7 @@ const icons = {
 };
 
 export default {
-  title: 'COMPONENTS/Builder/other-components/Buttons/Button-Add-Block',
+  title: 'COMPONENTS/Builder/Buttons/Button-Add-Block',
   component: ButtonAddBlock,
   argTypes: {
     hover: {

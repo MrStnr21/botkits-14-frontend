@@ -17,7 +17,7 @@ import { ReactComponent as WebSite } from '../../../images/icon/40x40/web/hover.
 import { ReactComponent as Alisa } from '../../../images/icon/40x40/alisa/hover.svg';
 import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
 
-import StepperFillBot from '../../../ui/stepper-fill-bot/stepper-fill-bot';
+import StepperFillBot from '../stepper-fill-bot/stepper-fill-bot';
 import LoadPages from '../../../ui/inputs/load-pages/load-pages';
 import useForm from '../../../services/hooks/use-form';
 import Button from '../../../ui/buttons/button/button';

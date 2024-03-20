@@ -14,7 +14,7 @@ const data = {
 };
 
 const meta: Meta<typeof VariableBlockNode> = {
-  title: 'COMPONENTS/Builder/other-components/blocks/variable-block',
+  title: 'COMPONENTS/Builder/blocks/variable-block',
   component: VariableBlockNode,
 };
 

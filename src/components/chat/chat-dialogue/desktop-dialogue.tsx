@@ -12,7 +12,7 @@ import Typography from '../../../ui/typography/typography';
 import SendButton from '../../../ui/buttons/send-button/send-button';
 import Avatar from '../../../ui/avatar/avatar';
 import Tooltip from './tooltip/tooltip';
-import RightSidebarButton from '../../../ui/buttons/right-sidebar-button/right-sidebar-button';
+import RightSidebarButton from '../right-sidebar-button/right-sidebar-button';
 import { formatDate } from '../../../utils/chatDateFunctions';
 import { IMessage, IUser } from '../../../utils/mockChatData';
 import DeleteChatPopup from '../../popups/delete-chat-popup/delete-chat-popup';

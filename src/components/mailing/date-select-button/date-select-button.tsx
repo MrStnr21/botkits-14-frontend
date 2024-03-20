@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { FC } from 'react';
 import styles from './date-select-button.module.scss';
-import Icon from '../../icon/icon';
+import Icon from '../../../ui/icon/icon';
 
 type TProps = {
   value: string;

@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import HelperPanel, { IHelperPanel } from './helper-panel';
 
 export default {
-  title: 'COMPONENTS/Builder/other-components/blocks/helper-panel',
+  title: 'COMPONENTS/Builder/blocks/helper-panel',
   component: HelperPanel,
   argTypes: {
     askButtonHtmlType: {

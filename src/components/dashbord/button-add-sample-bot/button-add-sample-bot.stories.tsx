@@ -1,9 +1,12 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import ButtonAddBot, { IButtonAddBot } from './button-add-bot';
+import ButtonAddSampleBot, {
+  IButtonAddSampleBot,
+} from './button-add-sample-bot';
+import AnsweringMachineIcon from '../../../images/icon/template/answering machine.svg';
 
 export default {
-  title: 'UI/Buttons/ButtonAddBot',
-  component: ButtonAddBot,
+  title: 'Components/Dashboard/Button Add Sample Bot',
+  component: ButtonAddSampleBot,
   argTypes: {
     disabled: {
       type: 'boolean',
@@ -32,20 +35,27 @@ export default {
       description: 'Текст кнопки',
       name: 'label',
     },
+    icon: {
+      type: 'string',
+      description: 'Иконка кнопки',
+    },
   },
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} as Meta<IButtonAddBot>;
+} as Meta<IButtonAddSampleBot>;
 
-const Template: StoryFn<IButtonAddBot> = (args) => <ButtonAddBot {...args} />;
+const Template: StoryFn<IButtonAddSampleBot> = (args) => (
+  <ButtonAddSampleBot {...args} />
+);
 
 export const Button = {
   args: {
     children: 'Добавить бота',
     buttonHtmlType: 'button',
     disabled: false,
+    icon: AnsweringMachineIcon,
   },
   render: Template,
 };

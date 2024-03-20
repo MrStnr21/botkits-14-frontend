@@ -4,7 +4,7 @@ import { Bar, Line } from 'react-chartjs-2';
 import Typography from '../../../ui/typography/typography';
 import styles from './stats-chart.module.scss';
 import { ChartProps } from './types';
-import Calendar from '../../calendar/calendar';
+import Calendar from '../../../ui/calendar/calendar';
 import useOutsideClickAndEscape from '../../../utils/hooks/useOutsideClickAndEscape';
 import ButtonIcon from '../../../ui/buttons/button-icon/button-icon';
 import DateSelect from '../date-selector/date-selector';

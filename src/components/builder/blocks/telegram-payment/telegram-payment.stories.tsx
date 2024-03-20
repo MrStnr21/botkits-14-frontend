@@ -12,7 +12,7 @@ const data = {
 };
 
 export default {
-  title: 'COMPONENTS/Builder/other-components/blocks/TelegramPayment',
+  title: 'COMPONENTS/Builder/blocks/TelegramPayment',
   component: TelegramPayment,
 };
 

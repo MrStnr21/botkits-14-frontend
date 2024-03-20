@@ -4,6 +4,7 @@ import { rows } from '../../../../utils/mailingTable';
 import MobileTable from './mobile-table';
 
 const meta: Meta<typeof MobileTable> = {
+  title: 'Components/Mailing/Mobile Table',
   component: MobileTable,
   decorators: [
     (Story) => (

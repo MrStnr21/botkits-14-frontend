@@ -16,10 +16,10 @@ import { format } from 'date-fns';
 
 import stylesCalendar from './calendar.module.scss';
 
-import InputSelect from '../../ui/inputs/input-select/input-select';
+import InputSelect from '../inputs/input-select/input-select';
 
 import { TIME_ZONE } from '../../utils/constants';
-import Typography from '../../ui/typography/typography';
+import Typography from '../typography/typography';
 
 interface ICalendar {
   handleFunction: (payload: string) => void;

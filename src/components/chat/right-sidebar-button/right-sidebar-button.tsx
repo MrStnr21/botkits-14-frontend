@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import stylesRightSidebarButton from './right-sidebar-button.module.scss';
-import ChevronIcon from '../../../components/icons/Chevron/ChevronIcon';
+import styles from './right-sidebar-button.module.scss';
+import ChevronIcon from '../../icons/Chevron/ChevronIcon';
 
 interface IRightSidebarButton {
   onClick?: VoidFunction;
@@ -16,7 +16,7 @@ const RightSidebarButton: FC<IRightSidebarButton> = ({
   rightPX = '0',
 }) => {
   const rotate = isVisible ? 'right' : 'left';
-  const styles = {
+  const position = {
     top: topPX,
     right: rightPX,
   };
@@ -24,8 +24,8 @@ const RightSidebarButton: FC<IRightSidebarButton> = ({
   return (
     <button
       type="button"
-      className={stylesRightSidebarButton.button}
-      style={styles}
+      className={styles.button}
+      style={position}
       onClick={onClick}
     >
       <ChevronIcon

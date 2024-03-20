@@ -4,7 +4,7 @@ import Platforms, { IPlatforms } from './platforms';
 import store from '../../../services/store';
 
 const meta: Meta<IPlatforms> = {
-  title: 'COMPONENTS/Platforms/Platforms',
+  title: 'COMPONENTS/AddBot/Platforms',
   component: Platforms,
   tags: ['autodocs'],
   decorators: [

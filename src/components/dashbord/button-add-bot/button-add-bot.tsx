@@ -4,7 +4,7 @@ import { ReactSVG } from 'react-svg';
 import PlusIcon from '../../../images/icon/24x24/add_bot/plus.svg';
 
 import styles from './button-add-bot.module.scss';
-import Typography from '../../typography/typography';
+import Typography from '../../../ui/typography/typography';
 
 export interface IButtonAddBot {
   buttonHtmlType?: 'button' | 'submit' | 'reset';
@@ -18,7 +18,7 @@ const ButtonAddBot: FC<IButtonAddBot> = ({
   onClick,
   disabled,
   children,
-}): JSX.Element => {
+}) => {
   return (
     <button
       className={styles.button}

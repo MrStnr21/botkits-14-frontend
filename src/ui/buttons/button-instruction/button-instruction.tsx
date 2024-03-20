@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import stylesButtonInstruction from './button-instruction.module.scss';
+import styles from './button-instruction.module.scss';
 import Typography from '../../typography/typography';
 
 export interface IButtonInstruction {
@@ -18,7 +18,7 @@ const ButtonInstruction: FC<IButtonInstruction> = ({
   disabled,
   children,
   icon,
-}): JSX.Element => {
+}) => {
   const onClick = () => {
     window.open(url, '_blank');
   };
@@ -28,14 +28,14 @@ const ButtonInstruction: FC<IButtonInstruction> = ({
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}
       onClick={onClick}
-      className={stylesButtonInstruction.button}
+      className={styles.button}
       disabled={disabled}
     >
-      <div className={stylesButtonInstruction.image_box}>
+      <div className={styles.image_box}>
         <ReactSVG src={icon} />
       </div>
-      <div className={stylesButtonInstruction.text_container}>
-        <Typography tag="p" className={stylesButtonInstruction.text}>
+      <div className={styles.text_container}>
+        <Typography tag="p" className={styles.text}>
           {children}
         </Typography>
       </div>

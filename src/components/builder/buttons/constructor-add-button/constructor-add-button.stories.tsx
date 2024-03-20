@@ -5,7 +5,7 @@ import ConstructorAddButton, {
 } from './constructor-add-button';
 
 export default {
-  title: 'COMPONENTS/Builder/other-components/Buttons/ConstructorAddButton',
+  title: 'COMPONENTS/Builder/Buttons/ConstructorAddButton',
   component: ConstructorAddButton,
   argTypes: {
     disabled: {

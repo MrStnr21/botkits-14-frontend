@@ -6,7 +6,7 @@ import { useMediaQuery } from '@mui/material';
 import { useDraggable } from 'react-use-draggable-scroll';
 import styles from './my-bots.module.scss';
 
-import ButtonAddBot from '../../../ui/buttons/button-add-bot/button-add-bot';
+import ButtonAddBot from '../button-add-bot/button-add-bot';
 
 import BotCard from '../../bot-card/bot-card';
 

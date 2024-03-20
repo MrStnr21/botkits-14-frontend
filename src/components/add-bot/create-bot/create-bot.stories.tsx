@@ -5,7 +5,7 @@ import CreateBot, { ICreateBot } from './create-bot';
 import store from '../../../services/store';
 
 const meta: Meta<ICreateBot> = {
-  title: 'Components/Platforms/Create Bot',
+  title: 'COMPONENTS/AddBot/Create Bot',
   component: CreateBot,
   decorators: [
     (Story) => (

@@ -1,10 +1,10 @@
 import type { StoryObj } from '@storybook/react';
 import StepperFillBot from './stepper-fill-bot';
-import LoadPages from '../inputs/load-pages/load-pages';
-import Input from '../inputs/input/input';
+import LoadPages from '../../../ui/inputs/load-pages/load-pages';
+import Input from '../../../ui/inputs/input/input';
 
 const meta = {
-  title: 'UI/StepperFillBot',
+  title: 'Components/AddBot/StepperFillBot',
   component: StepperFillBot,
 };
 

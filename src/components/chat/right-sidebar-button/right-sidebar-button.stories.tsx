@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import RightSidebarButton from './right-sidebar-button';
 
 const meta: Meta<typeof RightSidebarButton> = {
+  title: 'COMPONENTS/Chat/Right Sidebar Icon',
   component: RightSidebarButton,
   argTypes: {
     onClick: {
