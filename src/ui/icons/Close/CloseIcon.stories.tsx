@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof CloseIcon> = {
-  title: 'Components/Icons/CloseIcon',
+  title: 'UI/Icons/CloseIcon',
   component: CloseIcon,
   argTypes: {
     color: {

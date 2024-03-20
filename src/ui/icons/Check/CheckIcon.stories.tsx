@@ -8,7 +8,7 @@ const colors = {
 };
 
 const meta: Meta<typeof CheckIcon> = {
-  title: 'Components/Icons/CheckIcon',
+  title: 'UI/Icons/CheckIcon',
   component: CheckIcon,
   argTypes: {
     color: {

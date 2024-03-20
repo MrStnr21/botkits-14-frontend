@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof TrashIcon> = {
-  title: 'Components/Icons/TrashIcon',
+  title: 'UI/Icons/TrashIcon',
   component: TrashIcon,
   argTypes: {
     color: {

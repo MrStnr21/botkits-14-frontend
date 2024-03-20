@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof QuickAnswerIcon> = {
-  title: 'Components/Icons/QuickAnswerIcon',
+  title: 'UI/Icons/QuickAnswerIcon',
   component: QuickAnswerIcon,
   argTypes: {
     color: {

@@ -8,7 +8,7 @@ const colors = {
 };
 
 const meta: Meta<typeof ExportIcon> = {
-  title: 'Components/Icons/ExportIcon',
+  title: 'UI/Icons/ExportIcon',
   component: ExportIcon,
   argTypes: {
     color: {

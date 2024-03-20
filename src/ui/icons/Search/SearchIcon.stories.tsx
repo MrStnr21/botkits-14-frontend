@@ -13,7 +13,7 @@ const sizes = {
 };
 
 const meta: Meta<typeof SearchIcon> = {
-  title: 'Components/Icons/SearchIcon',
+  title: 'UI/Icons/SearchIcon',
   component: SearchIcon,
   argTypes: {
     size: {

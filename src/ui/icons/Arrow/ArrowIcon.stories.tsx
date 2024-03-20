@@ -14,7 +14,7 @@ const positions = {
 };
 
 const meta: Meta<typeof ArrowIcon> = {
-  title: 'Components/Icons/ArrowIcon',
+  title: 'UI/Icons/ArrowIcon',
   component: ArrowIcon,
   argTypes: {
     color: {

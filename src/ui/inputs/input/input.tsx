@@ -74,7 +74,7 @@ const Input: FC<IInput> = ({
   max,
   id,
   unadaptive,
-}): JSX.Element => {
+}) => {
   const [error, setError] = useState<{ error: boolean; textError: string }>({
     error: false,
     textError: '',

@@ -3,8 +3,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, ChangeEvent, useState, useMemo } from 'react';
 import styles from './table-input.module.scss';
-import Typography from '../../typography/typography';
-import { TableData } from '../../../components/enhanced-table/enhanced-table';
+import Typography from '../../../ui/typography/typography';
+import { TableData } from '../../enhanced-table/enhanced-table';
 
 interface IProps {
   name?: string;

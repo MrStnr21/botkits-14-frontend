@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof InvisibleMessageIcon> = {
-  title: 'Components/Icons/InvisibleMessageIcon',
+  title: 'UI/Icons/InvisibleMessageIcon',
   component: InvisibleMessageIcon,
   argTypes: {
     color: {

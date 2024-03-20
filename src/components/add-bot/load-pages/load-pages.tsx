@@ -5,7 +5,7 @@ import stylesInput from './load-pages.module.scss';
 import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
 
 import PageItem from '../page-item/page-item';
-import Typography from '../../typography/typography';
+import Typography from '../../../ui/typography/typography';
 
 interface ILoadPages {
   disabled?: boolean;
@@ -13,11 +13,7 @@ interface ILoadPages {
   onClick: () => void;
 }
 
-const LoadPages: FC<ILoadPages> = ({
-  arr = [],
-  onClick,
-  disabled,
-}): JSX.Element => {
+const LoadPages: FC<ILoadPages> = ({ arr = [], onClick, disabled }) => {
   return (
     <div className={stylesInput.selects}>
       {!arr.length ? (

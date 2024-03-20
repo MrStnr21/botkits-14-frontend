@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import AttachedFileIcon from './AttachedFileIcon';
 
 const meta: Meta<typeof AttachedFileIcon> = {
-  title: 'Components/Icons/AttachedFileIcon',
+  title: 'UI/Icons/AttachedFileIcon',
   component: AttachedFileIcon,
 };
 

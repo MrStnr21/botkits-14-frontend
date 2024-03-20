@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import NewFilterIcon from './NewFilterIcon';
 
 const meta: Meta<typeof NewFilterIcon> = {
-  title: 'Components/Icons/NewFilterIcon',
+  title: 'UI/Icons/NewFilterIcon',
   component: NewFilterIcon,
 };
 

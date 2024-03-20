@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof EmojiIcon> = {
-  title: 'Components/Icons/EmojiIcon',
+  title: 'UI/Icons/EmojiIcon',
   component: EmojiIcon,
   argTypes: {
     color: {

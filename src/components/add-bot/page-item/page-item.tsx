@@ -5,7 +5,7 @@ import stylesInput from './page-item.module.scss';
 import { ReactComponent as Check } from '../../../images/icon/24x24/common/check.svg';
 import imgDefault from '../../../images/avatar/circled/for group/default.svg';
 import { ReactComponent as Plus } from '../../../images/icon/36x36/add.svg';
-import Typography from '../../typography/typography';
+import Typography from '../../../ui/typography/typography';
 
 interface IPageItem {
   text?: string;
@@ -21,7 +21,7 @@ const PageItem: FC<IPageItem> = ({
   disabled,
   onClick = () => console.log('Click'),
   image = imgDefault,
-}): JSX.Element => {
+}) => {
   const [selected, setSelected] = useState(false);
   return (
     <button

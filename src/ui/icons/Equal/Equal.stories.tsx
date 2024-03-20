@@ -7,7 +7,7 @@ const sizes = {
 };
 
 const meta: Meta<typeof EqualIcon> = {
-  title: 'Components/Icons/Equal',
+  title: 'UI/Icons/Equal',
   component: EqualIcon,
   argTypes: {
     size: {

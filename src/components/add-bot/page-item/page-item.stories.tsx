@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react';
 import PageItem from './page-item';
 
 const meta = {
-  title: 'UI/Fields/PageItem',
+  title: 'COMPONENTS/AddBot/Page Item',
   component: PageItem,
 };
 

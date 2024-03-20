@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof PlayIcon> = {
-  title: 'Components/Icons/PlayIcon',
+  title: 'UI/Icons/PlayIcon',
   component: PlayIcon,
   argTypes: {
     color: {

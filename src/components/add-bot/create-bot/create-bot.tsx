@@ -18,7 +18,7 @@ import { ReactComponent as Alisa } from '../../../images/icon/40x40/alisa/hover.
 import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
 
 import StepperFillBot from '../stepper-fill-bot/stepper-fill-bot';
-import LoadPages from '../../../ui/inputs/load-pages/load-pages';
+import LoadPages from '../load-pages/load-pages';
 import useForm from '../../../services/hooks/use-form';
 import Button from '../../../ui/buttons/button/button';
 import Input from '../../../ui/inputs/input/input';

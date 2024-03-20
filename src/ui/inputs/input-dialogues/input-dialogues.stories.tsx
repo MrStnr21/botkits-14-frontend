@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react';
 import InputDialogsues from './input-dialogues';
 
 const meta = {
-  title: 'COMPONENTS/Chat/InputDialogsues',
+  title: 'UI/Fields/Input Dialogues',
   component: InputDialogsues,
   argTypes: {
     search: {

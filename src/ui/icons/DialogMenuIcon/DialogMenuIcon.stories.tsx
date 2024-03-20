@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import DialogMenuIcon from './DialogMenuIcon';
 
 const meta: Meta<typeof DialogMenuIcon> = {
-  title: 'Components/Icons/DialogMenuIcon',
+  title: 'UI/Icons/DialogMenuIcon',
   component: DialogMenuIcon,
 };
 

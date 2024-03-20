@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof PaperClipIcon> = {
-  title: 'Components/Icons/PaperClipIcon',
+  title: 'UI/Icons/PaperClipIcon',
   component: PaperClipIcon,
   argTypes: {
     color: {

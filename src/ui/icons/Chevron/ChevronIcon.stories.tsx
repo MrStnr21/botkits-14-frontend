@@ -15,7 +15,7 @@ const positions = {
 };
 
 const meta: Meta<typeof ChevronIcon> = {
-  title: 'Components/Icons/ChevronIcon',
+  title: 'UI/Icons/ChevronIcon',
   component: ChevronIcon,
   argTypes: {
     color: {

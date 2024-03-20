@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BotIcon from './BotIcon';
 
 const meta: Meta<typeof BotIcon> = {
-  title: 'Components/Icons/BotIcon',
+  title: 'UI/Icons/BotIcon',
   component: BotIcon,
 };
 

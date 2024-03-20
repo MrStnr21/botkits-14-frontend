@@ -7,7 +7,7 @@ const colors = {
 };
 
 const meta: Meta<typeof MoreIcon> = {
-  title: 'Components/Icons/MoreIcon',
+  title: 'UI/Icons/MoreIcon',
   component: MoreIcon,
   argTypes: {
     color: {

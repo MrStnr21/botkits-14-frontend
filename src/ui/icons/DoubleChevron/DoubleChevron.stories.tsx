@@ -9,7 +9,7 @@ const positions = {
 };
 
 const meta: Meta<typeof DoubleChevronIcon> = {
-  title: 'Components/Icons/DoubleChevronIcon',
+  title: 'UI/Icons/DoubleChevronIcon',
   component: DoubleChevronIcon,
   argTypes: {
     position: {

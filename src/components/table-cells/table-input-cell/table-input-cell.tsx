@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useRef, useState } from 'react';
 import style from './table-input-cell.module.scss';
-import TableInput from '../../../ui/inputs/table-input/table-input';
+import TableInput from '../table-input/table-input';
 import { TableData } from '../../enhanced-table/enhanced-table';
 
 interface IProps {

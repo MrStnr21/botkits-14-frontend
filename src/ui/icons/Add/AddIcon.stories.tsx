@@ -12,7 +12,7 @@ const positions = {
 };
 
 const meta: Meta<typeof AddIcon> = {
-  title: 'Components/Icons/AddIcon',
+  title: 'UI/Icons/AddIcon',
   component: AddIcon,
   argTypes: {
     color: {
