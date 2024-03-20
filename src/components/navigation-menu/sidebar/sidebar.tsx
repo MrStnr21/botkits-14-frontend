@@ -70,14 +70,14 @@ const Sidebar: FC<TSidebarProps> = ({ type, isOpened }) => {
             <SidebarItem
               key={index}
               {...item}
-              // disabled={
-              //   (selectedOption &&
-              //     item.permission &&
-              //     bots[Number(selectedOption.value)].permission[
-              //       item.permission
-              //     ] === false) ||
-              //   (!selectedOption && !openedRoutes.includes(item.navLink))
-              // }
+              disabled={
+                (selectedOption &&
+                  item.permission &&
+                  bots[Number(selectedOption.value)].permission[
+                    item.permission
+                  ] === false) ||
+                (!selectedOption && !openedRoutes.includes(item.navLink))
+              }
             />
           );
         })}
