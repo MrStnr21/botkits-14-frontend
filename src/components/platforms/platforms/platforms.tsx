@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 import { getPlatformsAction } from '../../../services/actions/platforms/getPlatforms';
 import { getPlatformsSel } from '../../../utils/selectorData';
 
-interface IPlatforms {
+export interface IPlatforms {
   onClick: (name: string, pages: boolean, botURI: boolean) => void;
   bot: IBot;
 }

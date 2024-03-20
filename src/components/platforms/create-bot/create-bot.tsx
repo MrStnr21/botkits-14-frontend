@@ -30,7 +30,7 @@ interface ImageMap {
   [key: string]: JSX.Element;
 }
 
-interface ICreateBot {
+export interface ICreateBot {
   botName: string;
   pages: boolean;
   templateId: string | null;

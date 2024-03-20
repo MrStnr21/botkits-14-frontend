@@ -1,9 +1,21 @@
-import type { StoryObj } from '@storybook/react';
-import CreateBot from './create-bot';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import CreateBot, { ICreateBot } from './create-bot';
+import store from '../../../services/store';
 
-const meta = {
-  title: 'COMPONENTS/CreateBot',
+const meta: Meta<ICreateBot> = {
+  title: 'Components/Platforms/Create Bot',
   component: CreateBot,
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <Router>
+          <Story />
+        </Router>
+      </Provider>
+    ),
+  ],
   argTypes: {
     botName: {
       type: 'string',

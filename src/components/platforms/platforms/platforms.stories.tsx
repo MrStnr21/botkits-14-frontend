@@ -1,10 +1,19 @@
-import type { StoryObj } from '@storybook/react';
-import Platforms from './platforms';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Provider } from 'react-redux';
+import Platforms, { IPlatforms } from './platforms';
+import store from '../../../services/store';
 
-const meta = {
+const meta: Meta<IPlatforms> = {
   title: 'COMPONENTS/Platforms/Platforms',
   component: Platforms,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <Story />
+      </Provider>
+    ),
+  ],
 };
 
 export default meta;

@@ -37,7 +37,7 @@ const MenuUser: FC<IMenuUser> = ({
   onClick,
   closeMenu,
   tariffName,
-}): JSX.Element => {
+}) => {
   const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement>(null);
 

@@ -1,5 +1,8 @@
 import type { Meta, StoryFn } from '@storybook/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import MenuUser, { IMenuUser } from './menu-user';
+import store from '../../../services/store';
 
 export default {
   title: 'UI/Menus/Menu-User',
@@ -28,6 +31,15 @@ export default {
   parameters: {
     layout: 'centered',
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <Router>
+          <Story />
+        </Router>
+      </Provider>
+    ),
+  ],
   tags: ['autodocs'],
 } as Meta<IMenuUser>;
 
