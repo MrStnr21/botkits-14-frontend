@@ -17,7 +17,7 @@ import { useMediaQuery } from '@mui/material';
 import ButtonStart from '../blocks/button-start/button-start';
 import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
 import { initialNodes, nodeTypes } from './initial-nodes';
-import { initialEdges, edgeOptions } from './initial-edges';
+import { edgeOptions, initialEdges } from './initial-edges';
 
 import styles from './layoutFlow.module.scss';
 import 'reactflow/dist/style.css';
@@ -43,6 +43,7 @@ import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
 import { TResponseError } from '../../../services/types/response';
 import { createAddErrorAction } from '../../../services/actions/errors/errors';
+import { removeFileApi } from '../../../api/builder';
 
 const cx = cn.bind(styles);
 
@@ -107,6 +108,8 @@ const LayoutFlow: FC = () => {
         // eslint-disable-next-line no-console
         console.log(err);
       });
+
+    localStorage.setItem('builder-files-to-remove', '');
   }, []);
 
   const saveBot = () => {
@@ -219,7 +222,30 @@ const LayoutFlow: FC = () => {
         })
       );
     }
+
+    // Сохранение обновленного билдера, если изменилось кол-во нод и объект permission не пустой(загружены данные бота)
+    if (Object.keys(permission).length) {
+      saveBot();
+    }
   }, [isMobile, setNodes, nodes.length]);
+
+  const onButtonSave = () => {
+    const filesToRemove = localStorage.getItem('builder-files-to-remove');
+    const id = searchParams.get('id') || sessionStorage.getItem('bot_id') || '';
+    saveBot();
+    if (filesToRemove) {
+      const toRemoveArr = filesToRemove.split(' ');
+      toRemoveArr.forEach((item: string) => {
+        const [fileId, nodeId] = item.split(',');
+        removeFileApi(`bots/files/delete/${fileId}/${id}/${nodeId}`).catch(
+          () => {
+            console.log('file del err');
+          }
+        );
+      });
+    }
+    localStorage.setItem('builder-files-to-remove', '');
+  };
 
   return (
     <div className={cx('flow')}>
@@ -268,7 +294,7 @@ const LayoutFlow: FC = () => {
         </div>
         <NavigationPanel />
         <div className={cx('saveButton')}>
-          <Button color="green" variant="default" onClick={saveBot}>
+          <Button color="green" variant="default" onClick={onButtonSave}>
             Сохранить
           </Button>
         </div>

@@ -2,6 +2,7 @@
 import { FC, useMemo, useState } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
 import { useMediaQuery } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
 import styles from './message-block.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
 import TextField from '../../../../ui/text-field/text-field';
@@ -19,8 +20,12 @@ import FilesField from './files-field/files-field';
 import { setFlowDataInit } from '../../utils';
 import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 import { addButtonFlow, setTextFlow, setVariableFlow } from './flow';
+import { BASE_URL } from '../../../../utils/config';
+import { saveFile } from '../../../../api/builder';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
+  const [searchParams] = useSearchParams();
+  const botId = searchParams.get('id')!;
   const setFlowData = setFlowDataInit();
   const { seconds, minutes, hours, days } = data.showTime;
   const [amount, render] = useState(0);
@@ -35,8 +40,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     () =>
       !!data.data.find((item) => {
         return (
-          item.type === MessageDataTypes.file &&
-          item.file.type.includes('image')
+          item.type === MessageDataTypes.file && item.fileType.includes('image')
         );
       }),
     [data.data]
@@ -47,7 +51,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       !!data.data.find((item) => {
         return (
           item.type === MessageDataTypes.file &&
-          item.file.type.includes('application')
+          item.fileType.includes('application')
         );
       }),
     [data.data]
@@ -57,8 +61,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     () =>
       !!data.data.find((item) => {
         return (
-          item.type === MessageDataTypes.file &&
-          item.file.type.includes('video')
+          item.type === MessageDataTypes.file && item.fileType.includes('video')
         );
       }),
     [data.data]
@@ -68,8 +71,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
     () =>
       !!data.data.find((item) => {
         return (
-          item.type === MessageDataTypes.file &&
-          item.file.type.includes('audio')
+          item.type === MessageDataTypes.file && item.fileType.includes('audio')
         );
       }),
     [data.data]
@@ -141,17 +143,20 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
 
   const addButton = addButtonFlow();
 
-  const addFile = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFlowData({
-      path: ['data', 'data'],
-      value: [
-        ...data.data,
-        {
-          type: MessageDataTypes.file,
-          file: e.target.files && e.target.files[0],
-        },
-      ],
-    });
+  const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      saveFile(
+        `${BASE_URL}/bots/files/upload/${botId}/${id}/`,
+        e.target.files[0]
+      ).then((resData) => {
+        setFlowData({
+          path: ['data', 'data'],
+          value: [...data.data, resData[resData.length - 1]],
+        });
+      });
+    }
+    return null;
+  };
 
   const setText = setTextFlow();
 
@@ -215,7 +220,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
             );
           }
           case MessageDataTypes.file: {
-            return <File key={index} data={component.file} />;
+            return <File key={index} {...component} />;
           }
           case MessageDataTypes.message: {
             return (

@@ -5,19 +5,18 @@ import styles from '../file.module.scss';
 import { sizeFormated } from '../../../../../../utils/utils';
 
 export type TUploadedDockProps = {
-  name: string;
-  size: number;
+  blob: Blob;
   onRemove: () => void;
 };
 
-const UploadedDock: FC<TUploadedDockProps> = ({ name, size, onRemove }) => {
-  const isRequired = size <= 1024 * 1024 * 10;
+const UploadedDock: FC<TUploadedDockProps> = ({ blob, onRemove }) => {
+  const isRequired = blob.size <= 1024 * 1024 * 10;
   const Icon = isRequired ? DocImage : DocErrorImage;
   return (
     <div className={`${styles.result} ${!isRequired && styles.result_error}`}>
       <Icon className={styles.result__icon} />
-      <p className={styles.result__name}>{name}</p>
-      <p className={styles.result__size}>{sizeFormated(size)}</p>
+      <p className={styles.result__name}>no name</p>
+      <p className={styles.result__size}>{sizeFormated(blob.size)}</p>
       <button
         type="button"
         aria-label="Удалить файл"

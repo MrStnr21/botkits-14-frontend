@@ -1,4 +1,6 @@
 import { FC, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useNodeId } from 'reactflow';
 import ControlLayout from '../../control-layout/control-layout';
 import styles from './telegram-payment.module.scss';
 import LabeledInput from '../../labeledInput/labeledInput';
@@ -15,15 +17,20 @@ import {
   setFlowDataInit,
   getSelectLabel,
 } from '../../utils';
-import File from './file/file';
 import AadPhoto from './aad-photo/aad-photo';
 import Select from '../../../../ui/select/select';
 import { Option } from '../../../../utils/types';
+import File from '../message-block/file/file';
+import { saveFile } from '../../../../api/builder';
+import { BASE_URL } from '../../../../utils/config';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   const setFlowData = setFlowDataInit();
+  const [searchParams] = useSearchParams();
+  const botId = searchParams.get('id')!;
+  const id = useNodeId() || '';
 
-  const image = useMemo(() => !!data.image, [data.image]);
+  const image = useMemo(() => !!data.data[0], [data.data[0]]);
 
   const setCurrency = (option: Option) =>
     setFlowData({
@@ -63,22 +70,25 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   const placeholder = 'Введите название';
 
   const addFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFlowData({
-      path: ['data', 'image'],
-      value: e.target.files && e.target.files[0],
-    });
-    e.target.value = '';
-  };
-
-  const removeFile = () => {
-    setFlowData({
-      path: ['data', 'image'],
-      value: '',
-    });
+    if (e.target.files && e.target.files[0]) {
+      saveFile(
+        `${BASE_URL}/bots/files/upload/${botId}/${id}/`,
+        e.target.files[0]
+      ).then((fileData) => {
+        setFlowData({
+          path: ['data', 'data'],
+          value: fileData,
+        });
+      });
+      e.target.value = '';
+    }
   };
 
   const content = useMemo(
-    () => data.image && <File data={data.image} removeFile={removeFile} />,
+    () =>
+      data.data[0] && (
+        <File fileId={data.data[0].fileId} fileType={data.data[0].fileType} />
+      ),
     [data]
   );
 

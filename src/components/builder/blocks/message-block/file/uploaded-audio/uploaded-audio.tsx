@@ -4,12 +4,12 @@ import { getTimeMS } from '../../../../utils';
 import { ReactComponent as PlayImage } from '../../../../../../images/icon/add content/play-blue.svg';
 
 export type TUploadedAudioProps = {
-  src: string;
-  name: string;
+  blob: Blob;
   onRemove: () => void;
 };
 
-const UploadedAudio: FC<TUploadedAudioProps> = ({ src, name, onRemove }) => {
+const UploadedAudio: FC<TUploadedAudioProps> = ({ blob, onRemove }) => {
+  const src = URL.createObjectURL(blob);
   const audio = new Audio(src);
   const [duration, setDuration] = useState<number>(audio.duration);
   audio.onloadedmetadata = () => {
@@ -32,7 +32,7 @@ const UploadedAudio: FC<TUploadedAudioProps> = ({ src, name, onRemove }) => {
         onClick={onClick}
         className={`${styles.result__icon} ${styles.result__icon_interactive}`}
       />
-      <p className={styles.result__name}>{name}</p>
+      <p className={styles.result__name}>no name</p>
       <p className={styles.result__size}>{getTimeMS(duration)}</p>
       <button
         onClick={onRemove}

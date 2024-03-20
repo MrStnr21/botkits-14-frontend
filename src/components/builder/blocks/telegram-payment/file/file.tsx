@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 // import { useReactFlow, useNodeId } from 'reactflow';
 import UploadedPicture from '../../message-block/file/uploaded-pick/uploaded-pick';
 
@@ -8,13 +8,11 @@ type TdataProps = {
 };
 
 const File: FC<TdataProps> = ({ data, removeFile }) => {
-  const src = useMemo(() => URL.createObjectURL(data), [data]);
-
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {data && data.type.includes('image') && (
-        <UploadedPicture src={src} onRemove={removeFile} />
+        <UploadedPicture blob={data} onRemove={removeFile} />
       )}
     </>
   );

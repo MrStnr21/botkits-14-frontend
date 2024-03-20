@@ -3,12 +3,13 @@ import { useMediaQuery } from '@mui/material';
 import VideoCard from '../../../../../video-card/video-card';
 
 export type TUploadedVideoProps = {
-  src: string;
+  blob: Blob;
   onRemove: () => void;
 };
 
-const UploadedVideo: FC<TUploadedVideoProps> = ({ src, onRemove }) => {
+const UploadedVideo: FC<TUploadedVideoProps> = ({ blob, onRemove }) => {
   const isMobile = useMediaQuery('(max-width: 620px)');
+  const src = URL.createObjectURL(blob);
   return (
     <VideoCard
       hover
