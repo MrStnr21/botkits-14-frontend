@@ -14,12 +14,11 @@ import ru from 'date-fns/locale/ru';
 import { zonedTimeToUtc, format as formatZ } from 'date-fns-tz';
 import { format } from 'date-fns';
 
-import stylesCalendar from './calendar.module.scss';
-
-import InputSelect from '../inputs/input-select/input-select';
-
+import { Option } from '../../utils/types';
 import { TIME_ZONE } from '../../utils/constants';
 import Typography from '../typography/typography';
+import Select from '../select/select';
+import styles from './calendar.module.scss';
 
 interface ICalendar {
   handleFunction: (payload: string) => void;
@@ -29,14 +28,16 @@ type Ref = HTMLDivElement;
 
 const Calendar = forwardRef<Ref, ICalendar>(({ handleFunction }, ref) => {
   const [date, setDate] = useState<Date | null>(new Date());
-  const [timeZone, setTimeZone] = useState<string>('');
+  const [timeZone, setTimeZone] = useState<Option | undefined>(undefined);
   const [reset, setReset] = useState<boolean>(false);
 
   const localTimeZone = format(new Date(), 'zzz');
+  const findOption = (tz: string) =>
+    TIME_ZONE.find((zone) => zone.value === tz);
 
   useEffect(() => {
     setDate(new Date());
-    setTimeZone(localTimeZone);
+    setTimeZone(findOption(localTimeZone));
   }, []);
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const Calendar = forwardRef<Ref, ICalendar>(({ handleFunction }, ref) => {
     }
   }, [reset]);
 
-  const getInputTimeZone = (payload: string) => {
+  const getInputTimeZone = (payload: Option) => {
     setTimeZone(payload);
   };
 
@@ -78,18 +79,18 @@ const Calendar = forwardRef<Ref, ICalendar>(({ handleFunction }, ref) => {
     <div ref={ref}>
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ru}>
         <ThemeProvider theme={calendarTheme}>
-          <div className={stylesCalendar.container}>
+          <div className={styles.container}>
             <DateField
               value={date}
               fullWidth
               timezone="UTC"
               onChange={handleChangeDate}
-              className={stylesCalendar.dataFiled}
+              className={styles.dataFiled}
             />
             <StaticDatePicker
               onChange={handleChangeDate}
               value={date}
-              className={stylesCalendar.staticDatePicker}
+              className={styles.staticDatePicker}
               slotProps={{
                 actionBar: {
                   actions: [],
@@ -101,22 +102,23 @@ const Calendar = forwardRef<Ref, ICalendar>(({ handleFunction }, ref) => {
               }}
               defaultValue={date}
             />
-            <div className={stylesCalendar.containerTimeZone}>
-              <Typography tag="span" className={stylesCalendar.timeZoneLabel}>
+            <div className={styles.containerTimeZone}>
+              <Typography tag="span" className={styles.timeZoneLabel}>
                 Часовой пояс
               </Typography>
-              <InputSelect
-                maxWidth={144}
-                values={TIME_ZONE}
-                defaultValue={[localTimeZone]}
-                handleFunction={getInputTimeZone}
-                resetSelect={reset}
+              <Select
+                options={TIME_ZONE}
+                currentOption={timeZone}
+                layoutClassName={styles.timezone}
+                buttonStyle={{ width: '144px' }}
+                handleSelect={getInputTimeZone}
+                isScroll
               />
             </div>
-            <div className={stylesCalendar.containerButton}>
+            <div className={styles.containerButton}>
               <button
                 type="button"
-                className={stylesCalendar.button}
+                className={styles.button}
                 onClick={handleClear}
               >
                 Очистить
