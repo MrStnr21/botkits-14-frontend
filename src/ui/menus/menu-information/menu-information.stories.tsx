@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import MenuInformation, { IMenuInformation } from './menu-information';
 
 export default {
-  title: 'UI/Menus/Menu-Information',
+  title: 'UI/Menus/Menu Information',
   component: MenuInformation,
   argTypes: {
     width: {

@@ -12,7 +12,7 @@ const divStyles: React.CSSProperties = {
 };
 
 const meta: Meta<IMenuItem> = {
-  title: 'UI/Menu-Item',
+  title: 'UI/Menu/Menu Item',
   component: MenuItem,
   argTypes: {
     isChecked: {

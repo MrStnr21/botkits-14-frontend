@@ -1,10 +1,11 @@
 import { FC, ChangeEvent, useState } from 'react';
-import stylesInput from './input-dialogues.module.scss';
-import FilterIcon from '../../icons/Filter/FilterIcon';
-import SearchFilters from '../../../components/chat/SearchFilters/SearchFilters';
 import useEscapeKey from '../../../services/hooks/use-esc-key';
 import useClick from '../../../services/hooks/use-click';
-import SearchIcon from '../../icons/Search/SearchIcon';
+import Menu from '../../menus/menu/menu';
+import { Option } from '../../../utils/types';
+import styles from './input-dialogues.module.scss';
+import Icon from '../../icon/icon';
+import ButtonIcon from '../../buttons/button-icon/button-icon';
 
 interface IInputDialogues {
   placeholder?: string;
@@ -30,25 +31,56 @@ const InputDialogues: FC<IInputDialogues> = ({
   useEscapeKey(() => setIsOpenFilters(false));
   useClick(() => setIsOpenFilters(false), 'inputDialoguesButton');
 
+  const filters: Option[] = [
+    {
+      label: 'Cначала новые',
+      value: 'newFirst',
+    },
+    {
+      label: 'Сначала старые',
+      value: 'oldFirst',
+    },
+    {
+      label: 'Неотвеченные',
+      value: 'unreplied',
+    },
+  ];
+
+  const handleFilter = (option: Option) => {
+    switch (option.value) {
+      case 'newFirst':
+      case 'oldFirst':
+      case 'unreplied':
+      default:
+        break;
+    }
+  };
+
   return (
-    <div className={stylesInput.message}>
-      {search && <SearchIcon />}
+    <div className={styles.message}>
+      {search && <Icon icon="search" extraClass={styles.search} isColored />}
       <input
-        className={stylesInput.input}
+        className={styles.input}
         type="text"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
-      <button
-        className={stylesInput.button}
-        type="button"
-        onClick={toggleIsOpenFilters}
-        id="inputDialoguesButton"
-      >
-        {iconVisible && <FilterIcon />}
-      </button>
-      <SearchFilters active={isOpenFilters} />
+      {iconVisible && (
+        <ButtonIcon
+          icon="settings"
+          onClick={toggleIsOpenFilters}
+          btnStyle={styles.settings}
+          aria-label="Открыть фильтр сообщений"
+        />
+      )}
+      {isOpenFilters && (
+        <Menu
+          options={filters}
+          layoutClassName={styles.filters}
+          onItemClick={handleFilter}
+        />
+      )}
     </div>
   );
 };

@@ -2,7 +2,6 @@ import { FC, ReactElement, useState, useEffect } from 'react';
 import { Position, useReactFlow, useNodeId } from 'reactflow';
 import styles from './control-layout.module.scss';
 import moreIcon from '../../../images/icon/24x24/common/more.svg';
-import MenuBot from '../../../ui/menus/menu-bot/menu-bot';
 import CustomHandle from '../flow/custom-handle/custom-handle';
 import {
   setFlowDataInit,
@@ -11,8 +10,10 @@ import {
   clearingVariables,
 } from '../utils';
 import { namesOfBlocks, storeOfVariables } from '../utils/store';
+import type { Option } from '../../../utils/types';
 
 import { removeNodeFlow, copyNodeFlow } from './flow';
+import Menu from '../../../ui/menus/menu/menu';
 
 type TControlLayoutProps = {
   children?: ReactElement | ReactElement[];
@@ -53,6 +54,32 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
 
   // копирование ноды с данными исходной и дочерними нодами
   const copyNode = copyNodeFlow({ getNodes, setNodes, node, id });
+
+  const actions: Option[] = [
+    {
+      label: 'Копировать',
+      value: 'copy',
+      icon: 'dropdownCopyBot',
+    },
+    {
+      label: 'Удалить',
+      value: 'delete',
+      icon: 'dropdownTrash',
+    },
+  ];
+
+  const handleActions = (option: Option) => {
+    switch (option.value) {
+      case 'copy':
+        copyNode();
+        break;
+      case 'delete':
+        removeNode();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <article className={styles.container}>
@@ -95,15 +122,15 @@ const ControlLayout: FC<TControlLayoutProps> = ({ children, type }) => {
           />
           <div className={styles.more} onClick={onClick}>
             <img className={styles.img} src={moreIcon} alt="больше" />
-            <MenuBot
-              size="medium"
-              editFunction={() => {}}
-              isActive={menu}
-              top={0}
-              left={30}
-              removeFunction={removeNode}
-              copyFuntion={copyNode}
-            />
+            {menu && (
+              <Menu
+                options={actions}
+                onItemClick={handleActions}
+                layoutClassName={styles.menu}
+                itemClassName={styles.menu__item}
+                iconClassName={styles.menu__icon}
+              />
+            )}
           </div>
         </div>
         {children && (

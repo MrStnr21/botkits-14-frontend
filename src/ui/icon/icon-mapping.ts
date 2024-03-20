@@ -16,6 +16,7 @@ const IconMapping = {
   syncUpdate: '16x16/sync/update.svg',
   chevronDown: '20x20/chevron/down.svg',
   chevronUp: '20x20/chevron/up.svg',
+  settings: '20x20/settings.svg',
   api: '24x24/add-block/api.svg',
   creditCard: '24x24/add-block/credit-card.svg',
   deeplink: '24x24/add-block/deeplink.svg',

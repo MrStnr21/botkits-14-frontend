@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import styles from './menu-item.module.scss';
-import checkIcon from '../../images/icon/24x24/common/check.svg';
-import { Option } from '../../utils/types';
-import Icon from '../icon/icon';
-import { IconName } from '../icon/utils';
+import { Option } from '../../../../utils/types';
+import Icon from '../../../icon/icon';
+import { IconName } from '../../../icon/utils';
 
 export interface IMenuItem {
   option: Option;
@@ -29,7 +28,7 @@ const renderIcon = (icon: IconName | undefined, style: string) => {
 
 const renderCheck = (isChecked: boolean) => {
   if (isChecked) {
-    return <img src={checkIcon} alt="" className={styles.check} />;
+    return <Icon icon="check" extraClass={styles.check} isColored />;
   }
   return null;
 };

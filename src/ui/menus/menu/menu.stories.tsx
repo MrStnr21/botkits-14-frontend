@@ -11,7 +11,7 @@ const options = [
 const selectedValuesCurr = ['val1', 'val3'];
 
 export default {
-  title: 'UI/Menu',
+  title: 'UI/Menu Basic',
   component: Menu,
   argTypes: {
     options: {

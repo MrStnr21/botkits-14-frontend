@@ -56,6 +56,25 @@
   @include flex(row, center, center);
 }
 
-.icon {
-  stroke: $grey-1;
+.filters {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 175px;
+  box-shadow: $m-box-shadow;
+  background-color: $off-white;
+  border-radius: $l-border-radius;
+}
+
+.search {
+  @include size(20px, 20px);
+  color: $grey-3;
+}
+
+.settings {
+  background-color: transparent;
+  svg {
+    @include size(20px, 20px);
+    color: $primary-oxford-blue-default;
+  }
 }

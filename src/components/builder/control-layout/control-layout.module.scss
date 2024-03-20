@@ -84,3 +84,26 @@
     height: 0.5px;
   }
 }
+
+.menu {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 30px;
+  width: 175px;
+  box-shadow: $l-box-shadow;
+  background-color: $off-white;
+  border-radius: $l-border-radius;
+}
+
+.menu__icon {
+  @include size(24px, 24px);
+}
+
+.menu__item {
+  &:last-child .menu__icon {
+    color: $grey-3;
+  }
+}
+
+

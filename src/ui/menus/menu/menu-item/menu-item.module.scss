@@ -1,5 +1,5 @@
-@use '../../stylesheets/variables' as *;
-@use '../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
 
 .item {
   @include font('Open Sans',$xs-font-size, $normal, $secondary-xiketic-press);
@@ -29,6 +29,5 @@
 .check {
   @include size(20px, 20px);
   margin-left: auto;
-  filter: invert(21%) sepia(67%) saturate(5310%) hue-rotate(232deg)
-    brightness(75%) contrast(93%);
+  color: $primary-persian-blue-default;
 }

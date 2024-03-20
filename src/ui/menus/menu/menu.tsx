@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import cn from 'classnames';
 
 import styles from './menu.module.scss';
-import MenuItem from '../../menu-item/menu-item';
+import MenuItem from './menu-item/menu-item';
 import type { Option } from '../../../utils/types';
 
 export interface IMenu {
