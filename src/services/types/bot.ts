@@ -2,7 +2,7 @@ import { TBuilderData } from './builder';
 
 type TMessenger = {
   name: string;
-  pages?: string;
+  pages?: string[];
   accessKey?: string;
   url?: string;
 };
@@ -11,10 +11,9 @@ export type TBotPermissions = {
   botBuilder: boolean;
   dashboard: boolean;
   mailing: boolean;
-  static: boolean;
+  statistics: boolean;
 };
 
-/* Для будущего использования
 enum TypeCommands {
   COPY_BOT = '/copy',
   SHARE_BOT = '/share',
@@ -23,7 +22,8 @@ enum TypeCommands {
   NOTIFY_SETTINGS = '/notify',
   DELETE_BOT = '/delete',
 }
-*/
+
+export type TCommand = `${TypeCommands}`;
 
 // Типизация данных бота. Закомментированы не используемые сейчас поля
 export type TBot = {
@@ -35,9 +35,11 @@ export type TBot = {
   messengers: Array<TMessenger>;
   permission: TBotPermissions;
   profile: string;
+  type?: string;
   // settings?: object;
-  // commands?: Array<TypeCommands>;
-  // isToPublish?: boolean;
+  commands?: TCommand[];
+  isToPublish?: boolean;
+  status?: string;
 };
 
 // Типизация данных шаблона. Закомментированы не используемые сейчас поля
