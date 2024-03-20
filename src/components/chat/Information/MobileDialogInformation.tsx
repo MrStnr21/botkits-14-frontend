@@ -7,8 +7,8 @@ import MenuInformation from '../../../ui/menus/menu-information/menu-information
 import { testData } from '../../../utils/mockChatData';
 import DropDownList from '../DropDownList/DropDownList';
 import Files from '../Files/Files';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
-import DialogMenuIcon from '../../icons/DialogMenuIcon/DialogMenuIcon';
+import ChevronIcon from '../../../ui/icons/Chevron/ChevronIcon';
+import DialogMenuIcon from '../../../ui/icons/DialogMenuIcon/DialogMenuIcon';
 
 const MobileDialogInformation: FC = () => {
   const { id } = useParams();

@@ -1,10 +1,10 @@
 import { FC, ChangeEvent, useState } from 'react';
 import stylesInput from './input-dialogues.module.scss';
-import FilterIcon from '../../../components/icons/Filter/FilterIcon';
+import FilterIcon from '../../icons/Filter/FilterIcon';
 import SearchFilters from '../../../components/chat/SearchFilters/SearchFilters';
 import useEscapeKey from '../../../services/hooks/use-esc-key';
 import useClick from '../../../services/hooks/use-click';
-import SearchIcon from '../../../components/icons/Search/SearchIcon';
+import SearchIcon from '../../icons/Search/SearchIcon';
 
 interface IInputDialogues {
   placeholder?: string;

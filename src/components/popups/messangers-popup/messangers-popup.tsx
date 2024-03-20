@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import Typography from '../../../ui/typography/typography';
 import ModalPopup from '../modal-popup/modal-popup';
 import styles from './messangers-popup.module.scss';
-import AttachedFileIcon from '../../icons/AttachedFile/AttachedFileIcon';
+import AttachedFileIcon from '../../../ui/icons/AttachedFile/AttachedFileIcon';
 import { useAppDispatch, useAppSelector } from '../../../services/hooks/hooks';
 import { CLOSE_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
 

@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './triggerBlock.module.scss';
-import CloseIcon from '../../../icons/Close/CloseIcon';
+import CloseIcon from '../../../../ui/icons/Close/CloseIcon';
 import ConstructorAddButton from '../../buttons/constructor-add-button/constructor-add-button';
 import Trigger from './trigger/trigger';
 import { TTrigger } from '../../../../services/types/builder';

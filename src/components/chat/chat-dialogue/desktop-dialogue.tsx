@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, FC, useState } from 'react';
 import stylesDialog from './chat-dialogue.module.scss';
-import TrashIcon from '../../icons/Trash/TrashIcon';
-import SearchIcon from '../../icons/Search/SearchIcon';
-import PlayIcon from '../../icons/Play/PlayIcon';
-import CloseIcon from '../../icons/Close/CloseIcon';
+import TrashIcon from '../../../ui/icons/Trash/TrashIcon';
+import SearchIcon from '../../../ui/icons/Search/SearchIcon';
+import PlayIcon from '../../../ui/icons/Play/PlayIcon';
+import CloseIcon from '../../../ui/icons/Close/CloseIcon';
 import Message from './message/message';
 import InputMessage from '../../../ui/inputs/input-message/input-message';
 import InputDialogues from '../../../ui/inputs/input-dialogues/input-dialogues';

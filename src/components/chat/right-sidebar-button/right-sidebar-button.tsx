@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './right-sidebar-button.module.scss';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../../ui/icons/Chevron/ChevronIcon';
 
 interface IRightSidebarButton {
   onClick?: VoidFunction;

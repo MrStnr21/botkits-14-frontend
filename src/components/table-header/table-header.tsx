@@ -2,7 +2,7 @@
 import { FC, useRef, useState } from 'react';
 import Typography from '../../ui/typography/typography';
 import styles from './table-header.module.scss';
-import ChevronIcon from '../icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../ui/icons/Chevron/ChevronIcon';
 import Menu from '../../ui/menus/menu/menu';
 import { Option } from '../../utils/types';
 

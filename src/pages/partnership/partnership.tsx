@@ -6,7 +6,7 @@ import stylesPartnership from './partnership.module.scss';
 import Input from '../../ui/inputs/input/input';
 import Button from '../../ui/buttons/button/button';
 import ButtonIconCopy from '../../ui/buttons/button-icon-copy/button-icon-copy';
-import ChevronIcon from '../../components/icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../ui/icons/Chevron/ChevronIcon';
 import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import Typography from '../../ui/typography/typography';
 import {

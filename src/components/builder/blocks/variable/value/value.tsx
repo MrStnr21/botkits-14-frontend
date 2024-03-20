@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './value.module.scss';
-import Equal from '../../../../icons/Equal/Equal';
+import Equal from '../../../../../ui/icons/Equal/Equal';
 import Input from '../../../../../ui/inputs/input/input';
 import { storeOfVariables } from '../../../utils/store';
 import Select from '../../../../../ui/select/select';

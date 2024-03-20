@@ -6,7 +6,7 @@ import defaultAvatar2 from '../../images/avatar/default/default_avatar_2.png';
 import defaultAvatar3 from '../../images/avatar/default/default_avatar_3.png';
 import defaultAvatar4 from '../../images/avatar/default/default_avatar_4.png';
 import getRandomInt from '../../utils/getRandomInt';
-import BotIcon from '../../components/icons/Bot/BotIcon';
+import BotIcon from '../icons/Bot/BotIcon';
 
 interface IAvatar {
   pic?: string;

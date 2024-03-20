@@ -2,8 +2,8 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 
 import MenuInformation from '../../../ui/menus/menu-information/menu-information';
-import Notifications from '../../icons/Notifications/Notifications';
-import CloseIcon from '../../icons/Close/CloseIcon';
+import Notifications from '../../../ui/icons/Notifications/Notifications';
+import CloseIcon from '../../../ui/icons/Close/CloseIcon';
 
 import styles from './notification-popup.module.scss';
 import Typography from '../../../ui/typography/typography';

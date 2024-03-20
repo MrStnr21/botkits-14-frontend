@@ -7,7 +7,7 @@ import Typography from '../../../ui/typography/typography';
 import MenuVariable from '../../../ui/menus/menu-variable/menu-variable';
 import InputDialogsues from '../../../ui/inputs/input-dialogues/input-dialogues';
 import Calendar from '../../../ui/calendar/calendar';
-import CheckIcon from '../../icons/Check/CheckIcon';
+import CheckIcon from '../../../ui/icons/Check/CheckIcon';
 import { Option } from '../../../utils/types';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';

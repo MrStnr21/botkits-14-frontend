@@ -7,7 +7,7 @@ import ButtonInstruction from '../../../ui/buttons/button-instruction/button-ins
 import FaqIcon from '../../../images/icon/add bot/tutorial.svg';
 import VideoIcon from '../../../images/icon/add bot/video.svg';
 import Typography from '../../../ui/typography/typography';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../../ui/icons/Chevron/ChevronIcon';
 
 const HowToMailing: FC = () => {
   const isMobile = useMediaQuery('(max-width: 860px)');

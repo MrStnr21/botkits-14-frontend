@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState } from 'react';
 import Typography from '../../../ui/typography/typography';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../../ui/icons/Chevron/ChevronIcon';
 import styles from './mailing-popup.module.scss';
-import CheckIcon from '../../icons/Check/CheckIcon';
+import CheckIcon from '../../../ui/icons/Check/CheckIcon';
 import useClick from '../../../services/hooks/use-click';
 
 interface IProps {
