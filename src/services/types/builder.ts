@@ -133,7 +133,7 @@ export type TCoordinateBlock = {
 export type TTelegramPayBlock = {
   name: string;
   goodsName: string;
-  image?: File;
+  data: TFileData[];
   description: string;
   /**
    * сумма оплаты
@@ -296,7 +296,8 @@ export type TAnswersData = {
 
 export type TFileData = {
   type: MessageDataTypes.file;
-  file: File;
+  fileType: string;
+  fileId: string;
 };
 
 export type TBuilder = {

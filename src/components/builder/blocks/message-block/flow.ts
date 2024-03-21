@@ -263,12 +263,13 @@ export const deleteOnClickFlow = () => {
 
 export const removeFileFlow = () => {
   const { getNodes, setNodes, id, getNode } = useFlow();
-  return (data: File) => {
+  return (fileId: string) => {
     const node = getNode(id)!;
     const value = node.data.data.filter((media: TMessageBlockData) => {
-      return (
-        media.type !== MessageDataTypes.file || media.file.name !== data.name
-      );
+      if (!('fileId' in media)) {
+        return true;
+      }
+      return media.fileId !== fileId;
     });
 
     saveNode({

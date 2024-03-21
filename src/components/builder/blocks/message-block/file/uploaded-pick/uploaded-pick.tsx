@@ -3,12 +3,13 @@ import { useMediaQuery } from '@mui/material';
 import VideoCard from '../../../../../video-card/video-card';
 
 export type TUploadedPictureProps = {
-  src: string;
+  blob: Blob;
   onRemove: () => void;
 };
 
-const UploadedPicture: FC<TUploadedPictureProps> = ({ src, onRemove }) => {
+const UploadedPicture: FC<TUploadedPictureProps> = ({ blob, onRemove }) => {
   const isMobile = useMediaQuery('(max-width: 620px)');
+  const src = URL.createObjectURL(blob);
   return (
     <VideoCard
       contentType="image"

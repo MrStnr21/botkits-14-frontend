@@ -381,4 +381,10 @@ export const getSelectLabel = (store: { name: string }[]) =>
     label: elem.name,
   }));
 
+export const addFileToRemove = (fileId: string, nodeId: string) => {
+  const items = localStorage.getItem('builder-files-to-remove');
+  const newItem = `${items && items.length > 0 ? " " : ""}${fileId},${nodeId}`;
+  localStorage.setItem('builder-files-to-remove', items + newItem)
+};
+
 export default {};
