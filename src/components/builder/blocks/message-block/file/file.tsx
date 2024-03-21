@@ -27,7 +27,7 @@ const File: FC<TdataProps> = ({ fileId, fileType, fileName }) => {
   }, []);
 
   const removeFile = () => {
-    addFileToRemove('1', id);
+    addFileToRemove(fileId, id);
     removeFileF(fileId);
   };
   return (
