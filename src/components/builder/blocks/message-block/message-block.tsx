@@ -22,6 +22,8 @@ import { ButtonSizes, ButtonSizesMobile } from '../../utils/data';
 import { addButtonFlow, setTextFlow, setVariableFlow } from './flow';
 import { BASE_URL } from '../../../../utils/config';
 import { saveFile } from '../../../../api/builder';
+import { useAppDispatch } from '../../../../services/hooks/hooks';
+import { createAddErrorAction } from '../../../../services/actions/errors/errors';
 
 const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const [searchParams] = useSearchParams();
@@ -34,6 +36,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
   const isMobile = useMediaQuery('(max-width: 620px)');
   const buttonSizes = isMobile ? ButtonSizesMobile : ButtonSizes;
   const nodes = getNodes();
+  const dispatch = useAppDispatch();
 
   // загружено ли пользователем изображение
   const image = useMemo(
@@ -148,12 +151,16 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
       saveFile(
         `${BASE_URL}/bots/files/upload/${botId}/${id}/`,
         e.target.files[0]
-      ).then((resData) => {
-        setFlowData({
-          path: ['data', 'data'],
-          value: [...data.data, resData[resData.length - 1]],
-        });
-      });
+      )
+        .then((resData) => {
+          setFlowData({
+            path: ['data', 'data'],
+            value: [...data.data, resData[resData.length - 1]],
+          });
+        })
+        .catch(() =>
+          dispatch(createAddErrorAction('Не удалось загрузить файл.'))
+        );
     }
     return null;
   };

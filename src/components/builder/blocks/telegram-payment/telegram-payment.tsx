@@ -23,12 +23,15 @@ import { Option } from '../../../../utils/types';
 import File from '../message-block/file/file';
 import { saveFile } from '../../../../api/builder';
 import { BASE_URL } from '../../../../utils/config';
+import { createAddErrorAction } from '../../../../services/actions/errors/errors';
+import { useAppDispatch } from '../../../../services/hooks/hooks';
 
 const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
   const setFlowData = setFlowDataInit();
   const [searchParams] = useSearchParams();
   const botId = searchParams.get('id')!;
   const id = useNodeId() || '';
+  const dispatch = useAppDispatch();
 
   const image = useMemo(() => !!data.data[0], [data.data[0]]);
 
@@ -74,12 +77,16 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
       saveFile(
         `${BASE_URL}/bots/files/upload/${botId}/${id}/`,
         e.target.files[0]
-      ).then((fileData) => {
-        setFlowData({
-          path: ['data', 'data'],
-          value: fileData,
-        });
-      });
+      )
+        .then((fileData) => {
+          setFlowData({
+            path: ['data', 'data'],
+            value: fileData,
+          });
+        })
+        .catch(() =>
+          dispatch(createAddErrorAction('Не удалось загрузить файл.'))
+        );
       e.target.value = '';
     }
   };
