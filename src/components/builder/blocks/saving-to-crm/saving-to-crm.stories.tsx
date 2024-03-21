@@ -2,7 +2,7 @@ import { ReactFlowProvider } from 'reactflow';
 import SavingToCrmBlock from './saving-to-crm';
 
 export default {
-  title: 'COMPONENTS/Builder/other-components/blocks/SavingToCrmBlock',
+  title: 'COMPONENTS/Builder/blocks/SavingToCrmBlock',
   component: SavingToCrmBlock,
 };
 

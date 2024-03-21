@@ -1,0 +1,9 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+
+.button {
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}

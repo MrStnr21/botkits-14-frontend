@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import stylesFile from './UploadedFile.module.scss';
-import AttachedFileIcon from '../../icons/AttachedFile/AttachedFileIcon';
+import AttachedFileIcon from '../../../ui/icons/AttachedFile/AttachedFileIcon';
 import Typography from '../../../ui/typography/typography';
 
 interface IUploadedFile {

@@ -1,0 +1,81 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+@mixin standart-icon() {
+  svg {
+    @include size(24px, 24px);
+  }
+}
+
+@mixin small-icon() {
+  svg {
+    @include size(16px, 16px);
+  }
+}
+
+// Цвет фона
+@mixin white-hovered() {
+  background-color: $off-white;
+
+  &:hover {
+    background-color: $secondary-cultured-default;
+  }
+}
+
+// цвет иконки
+
+@mixin black-icon() {
+  svg {
+    color: $primary-oxford-blue-default;
+  }
+}
+
+@mixin blue-icon() {
+  svg {
+    color: $primary-persian-blue-default;
+  }
+  &:hover {
+    svg {
+      color: $primary-persian-blue-press;
+    }
+  }
+  &:disabled {
+    svg {
+      color: $grey-2;
+    }
+  }
+}
+
+@mixin grey-icon() {
+  svg {
+    color: $grey-3;
+  }
+  &:hover {
+    svg {
+      color: $grey-1;
+    }
+  }
+  &:disabled {
+    svg {
+      color: $grey-2;
+    }
+  }
+}
+
+// цвет текста
+
+@mixin blue-text() {
+  span {
+    color: $primary-persian-blue-default;
+  }
+  &:hover {
+    .span {
+      color: $primary-persian-blue-hover;
+    }
+  }
+  &:disabled {
+    span {
+      color: $grey-2;
+    }
+  }
+}

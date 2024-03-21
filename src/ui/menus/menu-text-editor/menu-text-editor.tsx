@@ -1,11 +1,10 @@
 import { FC } from 'react';
 
-import stylesMenuTextEditor from './menu-text-editor.module.scss';
+import { Divider } from '@mui/material';
+import styles from './menu-text-editor.module.scss';
 
-import { ReactComponent as ItalicIcon } from '../../../images/icon/24x24/markdown/italic.svg';
-import { ReactComponent as BoldIcon } from '../../../images/icon/24x24/markdown/bold.svg';
-import { ReactComponent as CodeIcon } from '../../../images/icon/24x24/markdown/code.svg';
 import Tooltip from '../../../components/chat/chat-dialogue/tooltip/tooltip';
+import ButtonIcon from '../../buttons/button-icon/button-icon';
 
 export interface IMenuTextEditor {
   isActive?: boolean;
@@ -23,14 +22,14 @@ const MenuTextEditor: FC<IMenuTextEditor> = ({
   boldHandler,
   italicHandler,
   codeHandler,
-}): JSX.Element => {
-  let boxClassName = stylesMenuTextEditor.box;
+}) => {
+  let boxClassName = styles.box;
 
   if (isActive) {
     boxClassName += ' ';
-    boxClassName += stylesMenuTextEditor.active;
+    boxClassName += styles.active;
   } else {
-    boxClassName = stylesMenuTextEditor.box;
+    boxClassName = styles.box;
   }
 
   return (
@@ -38,33 +37,29 @@ const MenuTextEditor: FC<IMenuTextEditor> = ({
       style={{ top: `${top}px`, left: `${left}px` }}
       className={boxClassName}
     >
-      <button
-        type="button"
-        className={stylesMenuTextEditor.button}
-        onClick={boldHandler}
-      >
-        <Tooltip text="Жирный">
-          <BoldIcon />
-        </Tooltip>
-      </button>
-      <button
-        type="button"
-        className={stylesMenuTextEditor.button}
-        onClick={italicHandler}
-      >
-        <Tooltip text="Курсив">
-          <ItalicIcon />
-        </Tooltip>
-      </button>
-      <button
-        type="button"
-        className={stylesMenuTextEditor.button}
-        onClick={codeHandler}
-      >
-        <Tooltip text="Код">
-          <CodeIcon />
-        </Tooltip>
-      </button>
+      <Tooltip text="Жирный">
+        <ButtonIcon
+          icon="bold"
+          onClick={boldHandler}
+          btnStyle={styles.button}
+        />
+      </Tooltip>
+      <Divider orientation="vertical" flexItem className={styles.divider} />
+      <Tooltip text="Курсив">
+        <ButtonIcon
+          icon="italic"
+          onClick={italicHandler}
+          btnStyle={styles.button}
+        />
+      </Tooltip>
+      <Divider orientation="vertical" flexItem className={styles.divider} />
+      <Tooltip text="Код">
+        <ButtonIcon
+          icon="code"
+          onClick={codeHandler}
+          btnStyle={styles.button}
+        />
+      </Tooltip>
     </div>
   );
 };

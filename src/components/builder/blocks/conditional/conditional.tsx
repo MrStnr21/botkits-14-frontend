@@ -3,7 +3,7 @@ import { useReactFlow, useNodeId } from 'reactflow';
 
 import styles from './conditional.module.scss';
 import ControlLayout from '../../control-layout/control-layout';
-import ConstructorAddButton from '../../../../ui/buttons/constructor-add-button/constructor-add-button';
+import ConstructorAddButton from '../../buttons/constructor-add-button/constructor-add-button';
 import {
   TBlockProps,
   TConditionalBlock,

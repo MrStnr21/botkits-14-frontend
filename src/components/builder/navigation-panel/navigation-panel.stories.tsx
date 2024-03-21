@@ -3,7 +3,7 @@ import { ReactFlowProvider } from 'reactflow';
 import NavigationPanel from './navigation-panel';
 
 const meta: Meta<typeof NavigationPanel> = {
-  title: 'COMPONENTS/Builder/other-components/navigation-panel',
+  title: 'COMPONENTS/Builder/navigation-panel',
   component: NavigationPanel,
 };
 

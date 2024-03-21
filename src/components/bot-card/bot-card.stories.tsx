@@ -1,4 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import BotCard, { IBotCard } from './bot-card';
 import fb from '../../images/icon/40x40/facebook/default.svg';
 import tg from '../../images/icon/40x40/telegram/default.svg';
@@ -76,16 +77,45 @@ export default {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Router>
+        <Story />
+      </Router>
+    ),
+  ],
 } as Meta<IBotCard>;
 
-const Template: StoryFn<IBotCard> = (args: { bot: TBot }) => (
-  <BotCard {...args} />
-);
+const Bot: TBot = {
+  _id: '0',
+  title: 'Бот',
+  description: 'none',
+  profile: '0',
+  messengers: [],
+  commands: ['/copy', '/delete', '/rename', '/share', '/info', '/notify'],
+  isToPublish: false,
+  status: 'editing',
+  permission: {
+    dashboard: true,
+    botBuilder: true,
+    mailing: true,
+    statistics: true,
+  },
+};
+
+const Template: StoryFn<IBotCard> = (args) => <BotCard {...args} />;
 
 export const Facebook = {
   args: {
-    platform_icon: fb,
-    bot_name: 'Facebook',
+    bot: {
+      ...Bot,
+      messengers: {
+        name: 'Facebook',
+        pages: ['Страница'],
+        accessKey: '',
+        url: '',
+      },
+    },
   },
   render: Template,
 };

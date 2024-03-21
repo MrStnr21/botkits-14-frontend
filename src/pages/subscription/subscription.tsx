@@ -1,16 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState, MouseEvent, useEffect } from 'react';
-import { ReactSVG } from 'react-svg';
+import { FC, useState, useEffect } from 'react';
 import cn from 'classnames';
 import { useMediaQuery } from '@mui/material';
 import Button from '../../ui/buttons/button/button';
 import Typography from '../../ui/typography/typography';
-import MenuSimple from '../../ui/menus/menu-simple/menu-simple';
-import icon from '../../images/icon/20x20/chevron/down.svg';
-import EnhancedTable, {
-  TableData,
-} from '../../components/enhanced-table/enhanced-table';
+import EnhancedTable from '../../components/enhanced-table/enhanced-table';
 import style from './subscription.module.scss';
 import ModalPopup from '../../components/popups/modal-popup/modal-popup';
 import ActivatePromoCodePopup from '../../components/popups/activate-promo-code-popup/activate-promo-code-popup';

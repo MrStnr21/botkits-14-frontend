@@ -1,8 +1,7 @@
 import PanelInline from './panel-inline';
 
 export default {
-  title:
-    'COMPONENTS/Builder/other-components/blocks/message-block/panel-inline',
+  title: 'COMPONENTS/Builder/blocks/message-block/panel-inline',
   component: PanelInline,
 };
 

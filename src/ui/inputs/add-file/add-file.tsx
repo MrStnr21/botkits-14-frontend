@@ -12,10 +12,7 @@ interface IDownloadFile {
   state?: boolean; // добавила для сторибука
 }
 
-const DownloadFile: FC<IDownloadFile> = ({
-  size,
-  state = false,
-}): JSX.Element => {
+const DownloadFile: FC<IDownloadFile> = ({ size, state = false }) => {
   const [isNoValid, setIsNoValid] = useState(state);
 
   const handleChange = (e: React.ChangeEvent) => {

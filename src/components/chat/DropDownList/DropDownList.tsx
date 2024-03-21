@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../../ui/icons/Chevron/ChevronIcon';
 import stylesList from './DropDownList.module.scss';
 import Typography from '../../../ui/typography/typography';
 

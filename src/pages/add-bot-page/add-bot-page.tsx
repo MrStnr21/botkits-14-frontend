@@ -2,10 +2,10 @@ import { useState, FC } from 'react';
 
 import styles from './add-bot-page.module.scss';
 
-import HowItWorks from '../../components/platforms/how-it-works/how-it-works';
-import CreateBot from '../../components/platforms/create-bot/create-bot';
+import HowItWorks from '../../components/add-bot/how-it-works/how-it-works';
+import CreateBot from '../../components/add-bot/create-bot/create-bot';
 import { IBot } from '../../utils/types';
-import Platforms from '../../components/platforms/platforms/platforms';
+import Platforms from '../../components/add-bot/platforms/platforms';
 import Typography from '../../ui/typography/typography';
 
 const AddBotPage: FC = () => {

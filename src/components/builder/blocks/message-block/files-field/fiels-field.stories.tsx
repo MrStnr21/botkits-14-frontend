@@ -4,7 +4,7 @@ import FilesField from './files-field';
 import ControlLayout from '../../../control-layout/control-layout';
 
 const meta: Meta<typeof FilesField> = {
-  title: 'COMPONENTS/Builder/other-components/blocks/message-block/files-field',
+  title: 'COMPONENTS/Builder/blocks/message-block/files-field',
   component: FilesField,
 };
 

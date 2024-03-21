@@ -1,0 +1,64 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/buttonStyling' as *;
+
+.chart {
+  box-sizing: border-box;
+  border-radius: $xxl-border-radius;
+  box-shadow: $m-box-shadow;
+  padding: 40px;
+  gap: 40px;
+}
+
+.header {
+  @include flex(row, space-between);
+  margin-bottom: 24px;
+  position: relative;
+
+  @media (max-width: $switching-width) {
+    @include flex(column, $gap: 16px);
+  }
+}
+
+.title {
+  @media (max-width: $switching-width) {
+    font-size: $xl-font-size;
+  }
+}
+
+.type {
+  color: $grey-4;
+  font-weight: $bold;
+  margin-bottom: 3px;
+}
+
+.divider {
+  margin-bottom: 34px!important;
+  color: $grey-1;
+}
+
+.selectors {
+  @include flex($gap: 8px);
+}
+
+.calendarButton {
+  @include size(40px, 41px);
+  border-radius: $m-border-radius;
+  background-color: $blue-disabled;
+
+  &:hover {
+    background-color: $secondary-cultured-default;
+  }
+
+  &:disabled {
+    background-color: $secondary-cultured-hover;
+  }
+  @include blue-icon();
+
+  svg {
+    @include size(16px, 16px);
+  }
+}
+.calendar {
+  @include position(absolute, 59px, 0);
+}

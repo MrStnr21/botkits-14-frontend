@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import ButtonAddSampleBot from '../../../ui/buttons/button-add-sample-bot/button-add-sample-bot';
+import ButtonAddSampleBot from '../button-add-sample-bot/button-add-sample-bot';
 import BotTemplatePopup from '../../popups/bot-template-popup/bot-template-popup';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import useModal from '../../../services/hooks/use-modal';

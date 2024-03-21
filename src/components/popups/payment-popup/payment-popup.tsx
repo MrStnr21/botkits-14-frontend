@@ -6,7 +6,7 @@ import Button from '../../../ui/buttons/button/button';
 import Typography from '../../../ui/typography/typography';
 import rocketBot from '../../../images/icon/template/rocketBot.svg';
 import logoUkassaIcon from '../../../images/icon/logoUkassaIcon.svg';
-import CheckIcon from '../../icons/Check/CheckIcon';
+import CheckIcon from '../../../ui/icons/Check/CheckIcon';
 import { getTariffs } from '../../../api/tariffs';
 import { TableData } from '../../enhanced-table/enhanced-table';
 

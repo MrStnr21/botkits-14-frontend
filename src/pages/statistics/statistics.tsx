@@ -16,8 +16,8 @@ import {
   totalBotsChartOptions,
   totalBotsDatasetOptions,
 } from './chartsConfig';
-import StatsChart from '../../components/stats-chart/stats-chart';
-import { Data, Labels } from '../../components/stats-chart/types';
+import StatsChart from '../../components/statistics/stats-chart/stats-chart';
+import { Data, Labels } from '../../components/statistics/stats-chart/types';
 import { Option } from '../../utils/types';
 
 Chart.register(...registerables);

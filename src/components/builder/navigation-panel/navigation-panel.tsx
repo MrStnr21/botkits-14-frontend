@@ -2,15 +2,10 @@ import { FC, useState } from 'react';
 import { useReactFlow, useStore } from 'reactflow';
 import Divider from '@mui/material/Divider';
 import MiniMap from './mini-map';
-import fit from '../../../images/icon/24x24/screen navigation/fit.svg';
-import fullScreen from '../../../images/icon/24x24/screen navigation/full screen.svg';
-import minus from '../../../images/icon/24x24/screen navigation/minus.svg';
-import plus from '../../../images/icon/24x24/screen navigation/plus.svg';
-import page from '../../../images/icon/24x24/screen navigation/page.svg';
 
 import styles from './navigation-panel.module.scss';
-import NavigationButton from '../../../ui/buttons/builder-navigation-button/builder-navigation-button';
 import Typography from '../../../ui/typography/typography';
+import ButtonIcon from '../../../ui/buttons/button-icon/button-icon';
 
 /**
  * навигационная панель в builder
@@ -52,26 +47,39 @@ const NavigationPanel: FC = () => {
         <Typography tag="span" className={styles.percent}>
           {Math.round(zoomLevel * 100)}
         </Typography>
-        <NavigationButton
-          icon={plus}
-          alt="Увеличить"
+        <ButtonIcon
+          icon="screenNavigationPlus"
           onClick={onPlus}
           disabled={zoomLevel === maxScale}
+          aria-label="Увеличить"
+          btnStyle={styles.button}
         />
-        <NavigationButton
-          icon={minus}
-          alt="Уменьшить"
+        <ButtonIcon
+          icon="screenNavigationMinus"
           onClick={onMinus}
           disabled={zoomLevel === minScale}
+          aria-label="Уменьшить"
+          btnStyle={styles.button}
         />
-        <Divider orientation="vertical" flexItem />
-        <NavigationButton icon={fit} alt="Центрировать" onClick={onFit} />
-        <NavigationButton
-          icon={fullScreen}
-          alt="На весь экран"
+        <Divider orientation="vertical" flexItem className={styles.divider} />
+        <ButtonIcon
+          icon="screenNavigationFit"
+          onClick={onFit}
+          aria-label="Центрировать"
+          btnStyle={styles.button}
+        />
+        <ButtonIcon
+          icon="screenNavigationFullScreen"
           onClick={onFullscreen}
+          aria-label="На весь экран"
+          btnStyle={styles.button}
         />
-        <NavigationButton icon={page} alt="Обзор страницы" onClick={onPage} />
+        <ButtonIcon
+          icon="screenNavigationPage"
+          onClick={onPage}
+          aria-label="Обзор страницы"
+          btnStyle={styles.button}
+        />
       </div>
     </div>
   );

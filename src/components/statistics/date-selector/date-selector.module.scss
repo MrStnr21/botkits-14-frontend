@@ -1,0 +1,11 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.container {
+  position: relative;
+}
+
+div.dropdown {
+  @include position(absolute, 56px, 0);
+  width: 264px;
+}

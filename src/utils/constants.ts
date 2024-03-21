@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import { MuiTelInputCountry } from 'mui-tel-input';
+import { Option } from './types';
 
 /* eslint-disable import/prefer-default-export */
 export enum SIZE_INPUT {
@@ -34,34 +35,34 @@ export enum BUTTON_NAME {
   FILE = 'Файл',
 }
 
-export const TIME_ZONE = [
-  { nameValue: 'UTC-12:00', value: 'GMT-12' },
-  { nameValue: 'UTC-11:00', value: 'GMT-10' },
-  { nameValue: 'UTC-10:00', value: 'GMT-11' },
-  { nameValue: 'UTC-9:00', value: 'GMT-9' },
-  { nameValue: 'UTC-8:00', value: 'GMT-8' },
-  { nameValue: 'UTC-7:00', value: 'GMT-7' },
-  { nameValue: 'UTC-6:00', value: 'GMT-6' },
-  { nameValue: 'UTC-5:00', value: 'GMT-5' },
-  { nameValue: 'UTC-4:00', value: 'GMT-4' },
-  { nameValue: 'UTC-3:00', value: 'GMT-3' },
-  { nameValue: 'UTC-2:00', value: 'GMT-2' },
-  { nameValue: 'UTC-1:00', value: 'GMT-1' },
-  { nameValue: 'UTC-0:00', value: 'GMT-0' },
-  { nameValue: 'UTC+1:00', value: 'GMT+1' },
-  { nameValue: 'UTC+2:00', value: 'GMT+2' },
-  { nameValue: 'UTC+3:00', value: 'GMT+3' },
-  { nameValue: 'UTC+4:00', value: 'GMT+4' },
-  { nameValue: 'UTC+5:00', value: 'GMT+5' },
-  { nameValue: 'UTC+6:00', value: 'GMT+6' },
-  { nameValue: 'UTC+7:00', value: 'GMT+7' },
-  { nameValue: 'UTC+8:00', value: 'GMT+8' },
-  { nameValue: 'UTC+9:00', value: 'GMT+9' },
-  { nameValue: 'UTC+10:00', value: 'GMT+10' },
-  { nameValue: 'UTC+11:00', value: 'GMT+11' },
-  { nameValue: 'UTC+12:00', value: 'GMT+12' },
-  { nameValue: 'UTC+13:00', value: 'GMT+13' },
-  { nameValue: 'UTC+14:00', value: 'GMT+14' },
+export const TIME_ZONE: Option[] = [
+  { label: 'UTC-12:00', value: 'GMT-12' },
+  { label: 'UTC-11:00', value: 'GMT-10' },
+  { label: 'UTC-10:00', value: 'GMT-11' },
+  { label: 'UTC-9:00', value: 'GMT-9' },
+  { label: 'UTC-8:00', value: 'GMT-8' },
+  { label: 'UTC-7:00', value: 'GMT-7' },
+  { label: 'UTC-6:00', value: 'GMT-6' },
+  { label: 'UTC-5:00', value: 'GMT-5' },
+  { label: 'UTC-4:00', value: 'GMT-4' },
+  { label: 'UTC-3:00', value: 'GMT-3' },
+  { label: 'UTC-2:00', value: 'GMT-2' },
+  { label: 'UTC-1:00', value: 'GMT-1' },
+  { label: 'UTC-0:00', value: 'GMT-0' },
+  { label: 'UTC+1:00', value: 'GMT+1' },
+  { label: 'UTC+2:00', value: 'GMT+2' },
+  { label: 'UTC+3:00', value: 'GMT+3' },
+  { label: 'UTC+4:00', value: 'GMT+4' },
+  { label: 'UTC+5:00', value: 'GMT+5' },
+  { label: 'UTC+6:00', value: 'GMT+6' },
+  { label: 'UTC+7:00', value: 'GMT+7' },
+  { label: 'UTC+8:00', value: 'GMT+8' },
+  { label: 'UTC+9:00', value: 'GMT+9' },
+  { label: 'UTC+10:00', value: 'GMT+10' },
+  { label: 'UTC+11:00', value: 'GMT+11' },
+  { label: 'UTC+12:00', value: 'GMT+12' },
+  { label: 'UTC+13:00', value: 'GMT+13' },
+  { label: 'UTC+14:00', value: 'GMT+14' },
 ];
 
 export enum POPUP_ITEM {

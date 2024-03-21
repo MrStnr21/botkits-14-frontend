@@ -3,7 +3,7 @@ import LabeledInput from './labeledInput';
 import Input from '../../../ui/inputs/input/input';
 
 const meta: Meta<typeof LabeledInput> = {
-  title: 'COMPONENTS/Builder/other-components/labeled-input',
+  title: 'COMPONENTS/Builder/labeled-input',
   component: LabeledInput,
 };
 

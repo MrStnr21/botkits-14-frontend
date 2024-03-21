@@ -1,0 +1,21 @@
+@use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/mixins' as *;
+
+.stepper {
+  max-width: 580px;
+  width: 100%;
+}
+
+.stepper_step {
+  @include flex($gap: 32px);
+  font-weight: $bold;
+  margin-bottom: 16px;
+
+  * {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 520px) {
+    gap: 12px;
+  }
+}

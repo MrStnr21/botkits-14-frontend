@@ -22,8 +22,7 @@ const divStyles = {
 };
 
 const meta: Meta<typeof InlineButton> = {
-  title:
-    'COMPONENTS/Builder/other-components/blocks/message-block/button-inline',
+  title: 'COMPONENTS/Builder/blocks/message-block/button-inline',
   component: InlineButton,
 };
 

@@ -1,7 +1,7 @@
 import { Node, NodeTypes } from 'reactflow';
 import { v4 as uuid } from 'uuid';
 
-import ButtonStart from '../blocks/button-start/button-start';
+import ButtonStart from '../buttons/button-start/button-start';
 import InlineButton from '../blocks/message-block/button-inline/button-inline';
 import ApiBlockNode from '../blocks/api/api-block';
 import 'reactflow/dist/style.css';

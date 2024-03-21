@@ -1,5 +1,6 @@
 @use '../../../stylesheets/mixins' as *;
 @use '../../../stylesheets/variables' as *;
+@use '../../../stylesheets/buttonStyling' as *;
 
 @mixin buttonText {
   font-family: 'IBM Plex Mono', sans-serif;
@@ -116,8 +117,13 @@
   @include indents((0 0 12px 0), 0);
 }
 
-.editButton{
+.edit {
   @include position(absolute);
   bottom: 10px;
   right: -4px;
+  @include size(32px, 32px);
+  @include small-icon();
+  @include white-hovered();
+  @include blue-icon();
+  border-radius: $border-radius-circle;
 }

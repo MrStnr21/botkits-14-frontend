@@ -1,11 +1,10 @@
 import { FC, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router';
 import Typography from '../../../ui/typography/typography';
-import stylesPopup from './create-bot-template-popup.module.scss';
+import styles from './create-bot-template-popup.module.scss';
 import InputTemplate from '../../../ui/inputs/input-template/input-template';
 import Avatar from '../../../ui/avatar/avatar';
 import imageAvatar from '../../../images/icon/side bar/logo.svg';
-import EditButton from '../../../ui/buttons/button-edit/button-edit';
 import { createUrlBuilder } from '../../../utils/utils';
 
 // import { BUTTON_NAME } from '../../../utils/constants';
@@ -17,6 +16,7 @@ import useForm, { TInputValue } from '../../../services/hooks/use-form';
 import { TBotTemplateReq } from '../../../services/types/bot';
 import { addBotTemplateAction } from '../../../services/actions/bots/templatesBots';
 import { useAppDispatch } from '../../../services/hooks/hooks';
+import ButtonIcon from '../../../ui/buttons/button-icon/button-icon';
 // import { TTemplateBotRes } from '../../../services/types/bot';
 
 interface IPopupCreateBotTemplates {
@@ -88,13 +88,13 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
   };
 
   return (
-    <div className={stylesPopup.popup}>
+    <div className={styles.popup}>
       <form onSubmit={handleSubmit}>
-        <div className={stylesPopup.popup__content}>
-          <Typography tag="h3" className={stylesPopup.popup__heading}>
+        <div className={styles.popup__content}>
+          <Typography tag="h3" className={styles.popup__heading}>
             Добавить Шаблон
           </Typography>
-          <div className={stylesPopup.avatar}>
+          <div className={styles.avatar}>
             <Avatar
               isBot="no"
               state="offline"
@@ -102,9 +102,12 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
               botTemplates="yes"
               pic={imageEdit || imageAvatar}
             />
-            <div className={stylesPopup.editButton}>
-              <EditButton onClick={openPopup} />
-              {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
+            <ButtonIcon
+              icon="dropdownEdit"
+              onClick={openPopup}
+              btnStyle={styles.edit}
+            />
+            {/* // Пока бэк не умеет принимать файлы, реализован попап для ссылки на аватар
               <input
                 type="file"
                 id="upload-file"
@@ -119,7 +122,6 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
               <label htmlFor={BUTTON_NAME.IMAGE}>
                 <EditButton onClick={onClickEditAvatar} />
               </label> */}
-            </div>
           </div>
           <InputTemplate
             name="nameBot"
@@ -138,22 +140,22 @@ const CreateBotTemplatesPopup: FC<IPopupCreateBotTemplates> = ({
             required
           />
         </div>
-        <div className={stylesPopup.popup__buttons}>
+        <div className={styles.popup__buttons}>
           <button
             type="button"
-            className={stylesPopup.popup__rejectBtn}
+            className={styles.popup__rejectBtn}
             onClick={clearInputs}
           >
-            <Typography tag="p" className={stylesPopup.popup__rejectText}>
+            <Typography tag="p" className={styles.popup__rejectText}>
               Отмена
             </Typography>
           </button>
           <button
             type="submit"
-            className={stylesPopup.popup__confirmBtn}
-            disabled={!isFormValid}
+            className={styles.popup__confirmBtn}
+            disabled={isFormValid}
           >
-            <Typography tag="p" className={stylesPopup.popup__confirmText}>
+            <Typography tag="p" className={styles.popup__confirmText}>
               Cоздать
             </Typography>
           </button>

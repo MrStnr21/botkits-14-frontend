@@ -3,7 +3,7 @@ import { useMediaQuery } from '@mui/material';
 import useOutsideClickAndEscape from '../../../utils/hooks/useOutsideClickAndEscape';
 import styles from './time-select.module.scss';
 import MenuTime from '../../../ui/menus/menu-time/menu-time';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../../ui/icons/Chevron/ChevronIcon';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 
 type TTimeSelectProps = {

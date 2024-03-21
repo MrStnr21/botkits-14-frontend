@@ -3,7 +3,7 @@ import DownloadFile from './add-file';
 import { SIZE_INPUT } from '../../../utils/constants';
 
 const meta = {
-  title: 'COMPONENTS/Fields/DownloadFile',
+  title: 'UI/Fields/Download File',
   component: DownloadFile,
 };
 

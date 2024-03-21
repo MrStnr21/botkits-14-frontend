@@ -112,3 +112,32 @@
   rotate: 180deg;
   transition: all 0.5s linear;
 }
+
+.menu {
+  position: absolute;
+  top: 47px;
+  right: 0;
+  z-index: 10;
+  width: 200px;
+  box-shadow: $l-box-shadow;
+  background-color: $off-white;
+  border-radius: $l-border-radius;
+
+  @media (max-width: $switching-width) {
+    right: -15px;
+  };
+}
+
+.menu__item {
+  gap: 10px;
+
+  &:last-child {
+    padding-top: 16px;
+    border-top: 1px solid $secondary-cultured-press;
+    justify-self: end;
+  }
+}
+
+.menu__icon {
+  @include size(20px, 20px);
+}

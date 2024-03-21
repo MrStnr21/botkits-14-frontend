@@ -19,7 +19,7 @@ import btnIcon from '../../../images/icon/24x24/add content/button.svg';
 import { BUTTON_NAME, SIZE_INPUT } from '../../../utils/constants';
 import Typography from '../../typography/typography';
 import DownloadFile from '../../inputs/add-file/add-file';
-import ConstructorAddButton from '../constructor-add-button/constructor-add-button';
+import ConstructorAddButton from '../../../components/builder/buttons/constructor-add-button/constructor-add-button';
 import InputDialogsues from '../../inputs/input-dialogues/input-dialogues';
 
 const ButtonAddContent: FC = (): JSX.Element => {

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useRef, useState } from 'react';
 import style from './dropdown-selector.module.scss';
-import ExportIcon from '../../../components/icons/Export/ExportIcon';
-import DoubleChevronIcon from '../../../components/icons/DoubleChevron/DoubleChevron';
-import NewFilterIcon from '../../../components/icons/NewFilterIcon/NewFilterIcon';
+import ExportIcon from '../../icons/Export/ExportIcon';
+import DoubleChevronIcon from '../../icons/DoubleChevron/DoubleChevron';
+import NewFilterIcon from '../../icons/NewFilterIcon/NewFilterIcon';
 import Menu from '../../menus/menu/menu';
 
 export interface IProps {

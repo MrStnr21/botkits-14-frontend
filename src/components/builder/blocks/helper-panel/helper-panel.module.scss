@@ -1,0 +1,143 @@
+@use '../../../../stylesheets/variables' as *;
+@use '../../../../stylesheets/mixins' as *;
+@use '../../../../stylesheets/buttonStyling' as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s linear;
+  height: 40px;
+  width: 96px;
+  border-radius: 10px;
+  box-shadow: $m-box-shadow;
+}
+
+.container_color {
+  width: 96px + 80px;
+}
+
+.container div {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container svg {
+  transition: stroke 0.1s linear;
+}
+
+.wrapper {
+  width: 0;
+}
+
+.wrapper_color {
+  width: 80px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around !important;
+  border-right: solid 1px $secondary-cultured-hover;
+  padding-right: 6px;
+}
+
+.button {
+  @include size(48px, 100%);
+  @include standart-icon();
+  background-color: $off-white;
+
+  &.blue {
+    @include blue-icon()
+  }
+
+  &.grey {
+    @include grey-icon()
+  }
+}
+
+@mixin color_button {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color_button_white {
+  @include color_button;
+  background-color: $off-white;
+  border: 1px solid $secondary-cultured-hover;
+  &:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+}
+.color_button_red {
+  @include color_button;
+  background-color: $example-button-color-red;
+  border-color: $example-button-color-red;
+  &:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+}
+.color_button_green {
+  @include color_button;
+  background-color: $example-button-color-green;
+  border-color: $example-button-color-green;
+  &:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+}
+.color_button_blue {
+  @include color_button;
+  background-color: $example-button-color-blue;
+  border-color: $example-button-color-blue;
+  &:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+}
+
+.wrapper {
+  width: 0;
+}
+
+.wrapper_color {
+  width: 80px;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-around !important;
+  border-right: solid 1px $secondary-cultured-hover;
+  padding-right: 6px;
+}
+
+@mixin color_button {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color_button_white {
+  @include color_button;
+  background-color: $off-white;
+  border: 1px solid $secondary-cultured-hover;
+  &:hover {
+    svg {
+      stroke: $grey-1;
+    }
+  }
+
+  &:active {
+    svg {
+      stroke: $grey-3;
+    }
+  }
+}
+
+.divider {
+  border-color: $secondary-cultured-hover!important;
+}

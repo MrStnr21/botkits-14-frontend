@@ -6,7 +6,7 @@ import EnhancedTable from '../../enhanced-table/enhanced-table';
 import { cols, rows, rowStyle, cellStyle } from '../../../utils/mailingTable';
 import { ppHeadCell } from '../../table-cells/table-cells';
 import Typography from '../../../ui/typography/typography';
-import ChevronIcon from '../../icons/Chevron/ChevronIcon';
+import ChevronIcon from '../../../ui/icons/Chevron/ChevronIcon';
 import MobileTable from './mobile-table/mobile-table';
 
 const MailingFilled: FC = () => {

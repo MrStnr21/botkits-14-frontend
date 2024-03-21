@@ -16,7 +16,7 @@ const ButtonBotTemplate: FC<IButtonBotTemplate> = ({
   disabled,
   children = 'Сохренить изменения',
   color,
-}): JSX.Element => {
+}) => {
   let boxClassName = stylesButtonBotTemplate.button;
 
   if (color === 'blue') {

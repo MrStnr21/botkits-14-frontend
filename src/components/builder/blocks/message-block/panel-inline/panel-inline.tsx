@@ -3,7 +3,7 @@ import { Node } from 'reactflow';
 
 import { useMediaQuery } from '@mui/material';
 import LabeledInput from '../../../labeledInput/labeledInput';
-import ConstructorAddButton from '../../../../../ui/buttons/constructor-add-button/constructor-add-button';
+import ConstructorAddButton from '../../../buttons/constructor-add-button/constructor-add-button';
 import styles from './panel-inline.module.scss';
 import { ButtonSizes, ButtonSizesMobile } from '../../../utils/data';
 

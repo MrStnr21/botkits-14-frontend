@@ -4,7 +4,7 @@ import AddBlockPanel from './add-block-panel';
 
 const meta: Meta<typeof AddBlockPanel> = {
   component: AddBlockPanel,
-  title: 'COMPONENTS/Builder/other-components/add-block-panel',
+  title: 'COMPONENTS/Builder/add-block-panel',
 };
 
 export default meta;

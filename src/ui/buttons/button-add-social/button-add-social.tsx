@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import stylesButtonAddSocial from './button-add-social.module.scss';
+import styles from './button-add-social.module.scss';
 import Typography from '../../typography/typography';
 
 export interface IButtonAddSocial {
@@ -23,28 +23,26 @@ const ButtonAddSocial: FC<IButtonAddSocial> = ({
   social,
   extraClass = '',
   size,
-}): JSX.Element => {
-  const iconCn = cn(stylesButtonAddSocial.icon, stylesButtonAddSocial[social]);
+}) => {
+  const iconCn = cn(styles.icon, styles[social]);
 
   return (
     <button
-      className={`${stylesButtonAddSocial.button} ${
-        stylesButtonAddSocial[extraClass]
-      } ${size === 'small' ? stylesButtonAddSocial.buttonSmall : ''}`}
+      className={`${styles.button} ${styles[extraClass]} ${
+        size === 'small' ? styles.buttonSmall : ''
+      }`}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={buttonHtmlType}
       disabled={disabled}
     >
       <div
-        className={`${iconCn} ${
-          size === 'small' ? stylesButtonAddSocial.buttonSmall : ''
-        }`}
+        className={`${iconCn} ${size === 'small' ? styles.buttonSmall : ''}`}
       />
       {size === 'small' ? (
         ''
       ) : (
-        <Typography tag="p" className={stylesButtonAddSocial.text}>
+        <Typography tag="p" className={styles.text}>
           {children}
         </Typography>
       )}

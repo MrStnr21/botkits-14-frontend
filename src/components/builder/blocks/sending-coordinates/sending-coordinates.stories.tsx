@@ -8,7 +8,7 @@ const data = {
 };
 
 const meta: Meta<typeof SendingCoordinatesBlock> = {
-  title: 'COMPONENTS/Builder/other-components/blocks/sending-coordinates',
+  title: 'COMPONENTS/Builder/blocks/sending-coordinates',
   component: SendingCoordinatesBlock,
 };
 

@@ -2,7 +2,7 @@
 import { FC, useState } from 'react';
 import { Descendant } from 'slate';
 import styles from './mailing-form.module.scss';
-import CheckIcon from '../../icons/Check/CheckIcon';
+import CheckIcon from '../../../ui/icons/Check/CheckIcon';
 import ButtonAddContent from '../../../ui/buttons/button-add-content/button-add-content';
 import MailingPopup from '../../popups/mailing-popup/mailing-popup';
 import TextField from '../../../ui/text-field/text-field';

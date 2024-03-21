@@ -14,8 +14,7 @@ import ReactFlow, {
 } from 'reactflow';
 
 import { useMediaQuery } from '@mui/material';
-import ButtonStart from '../blocks/button-start/button-start';
-import TriggerButton from '../../../ui/buttons/trigger-block-button/trigger-block-button';
+import ButtonStart from '../buttons/button-start/button-start';
 import { initialNodes, nodeTypes } from './initial-nodes';
 import { edgeOptions, initialEdges } from './initial-edges';
 
@@ -26,7 +25,7 @@ import TriggerBlock, { triggers } from '../blocks/triggerBlock/triggerBlock';
 import AddBlockPanel from '../add-block-panel/add-block-panel';
 import Button from '../../../ui/buttons/button/button';
 import { ButtonSizes, ButtonSizesMobile } from '../utils/data';
-import BotName from '../../../ui/bot-name/bot-name';
+import BotName from '../bot-name/bot-name';
 import ModalPopup from '../../popups/modal-popup/modal-popup';
 import { useAppDispatch } from '../../../services/hooks/hooks';
 import { OPEN_MES_POPUP } from '../../../services/actions/popups/messengers-popup';
@@ -43,6 +42,7 @@ import { TVariable, TTrigger } from '../../../services/types/builder';
 import { getBuilderApi, saveBuilderApi } from '../../../api';
 import { TResponseError } from '../../../services/types/response';
 import { createAddErrorAction } from '../../../services/actions/errors/errors';
+import ButtonIcon from '../../../ui/buttons/button-icon/button-icon';
 import { removeFileApi } from '../../../api/builder';
 
 const cx = cn.bind(styles);
@@ -276,9 +276,12 @@ const LayoutFlow: FC = () => {
             title={title}
           />
         </div>
-        <div className={styles['trigger-button']}>
-          <TriggerButton onClick={() => toggleTrigger(true)} />
-        </div>
+        <ButtonIcon
+          icon="tag"
+          onClick={() => toggleTrigger(true)}
+          btnStyle="whiteBlack"
+          extraClass={styles.triggerButton}
+        />
         <div className={cx('upWrapper')}>
           <div className={cx('wrapper')}>
             <ButtonStart data={{ type: 'stop' }} />

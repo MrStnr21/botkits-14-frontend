@@ -1,5 +1,5 @@
 import { FC, useRef, useState } from 'react';
-import MoreIcon from '../icons/More/MoreIcon';
+import MoreIcon from '../../ui/icons/More/MoreIcon';
 import Menu from '../../ui/menus/menu/menu';
 import style from './table-menu-button.module.scss';
 import ModalPopup from '../popups/modal-popup/modal-popup';

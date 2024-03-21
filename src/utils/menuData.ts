@@ -37,7 +37,7 @@ export const links: Array<ILink> = [
     navLink: routesUrl.statistics,
     icon: 'side_charts',
     text: 'Статистика',
-    permission: 'static',
+    permission: 'statistics',
   },
   {
     navLink: routesUrl.chat,

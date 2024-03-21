@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import stylesSidebar from './sidebar.module.scss';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { links, openedRoutes } from '../../../utils/menuData';
 import SidebarItem from './sidebar-item/sidebar-item';
 import SidebarItemDropdown from './sidebar-item/sidebar-item-dropdown';

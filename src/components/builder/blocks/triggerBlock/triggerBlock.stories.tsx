@@ -1,7 +1,7 @@
 import TriggerBlock from './triggerBlock';
 
 export default {
-  title: 'COMPONENTS/Builder/other-components/blocks/TriggerBlock',
+  title: 'COMPONENTS/Builder/blocks/TriggerBlock',
   component: TriggerBlock,
 };
 
