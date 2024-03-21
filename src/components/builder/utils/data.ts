@@ -158,7 +158,7 @@ export const defaultBlocks = {
   telegramPay: {
     name: 'TelegramPay',
     goodsName: '',
-    image: '',
+    data: [],
     description: '',
     payment: '',
     currency: '',

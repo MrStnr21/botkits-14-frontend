@@ -1,38 +1,48 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useNodeId } from 'reactflow';
 import UploadedVideo from './uploaded-video/uploaded-video';
 import UploadedPicture from './uploaded-pick/uploaded-pick';
 import UploadedDock from './uploaded-doc/uploaded-doc';
 import UploadedAudio from './uploaded-audio/uploaded-audio';
 import { removeFileFlow } from '../flow';
+import { BASE_URL } from '../../../../../utils/config';
+import { getFile } from '../../../../../api/builder';
+import { addFileToRemove } from '../../../utils';
 
 type TdataProps = {
-  data: File;
+  fileId: string;
+  fileType: string;
+  fileName?: string;
 };
 
-const File: FC<TdataProps> = ({ data }) => {
-  const src = useMemo(() => URL.createObjectURL(data), [data]);
-  const removeFile = removeFileFlow();
+const File: FC<TdataProps> = ({ fileId, fileType, fileName }) => {
+  const [file, setFile] = useState<Blob | null>(null);
+  const removeFileF = removeFileFlow();
+  const id = useNodeId() || '';
+
+  useEffect(() => {
+    getFile(`${BASE_URL}/bots/files/download/${fileId}`).then((data) => {
+      setFile(data);
+    });
+  }, []);
+
+  const removeFile = () => {
+    addFileToRemove(fileId, id);
+    removeFileF(fileId);
+  };
   return (
     <>
-      {data && data.type.includes('video') && (
-        <UploadedVideo src={src} onRemove={() => removeFile(data)} />
+      {file && fileType.includes('video') && (
+        <UploadedVideo blob={file} onRemove={removeFile} />
       )}
-      {data && data.type.includes('image') && (
-        <UploadedPicture src={src} onRemove={() => removeFile(data)} />
+      {file && fileType.includes('image') && (
+        <UploadedPicture blob={file} onRemove={removeFile} />
       )}
-      {data && data.type.includes('application') && (
-        <UploadedDock
-          name={data.name}
-          size={data.size}
-          onRemove={() => removeFile(data)}
-        />
+      {file && fileType.includes('application') && (
+        <UploadedDock blob={file} fileName={fileName} onRemove={removeFile} />
       )}
-      {data && data.type.includes('audio') && (
-        <UploadedAudio
-          src={src}
-          name={data.name}
-          onRemove={() => removeFile(data)}
-        />
+      {file && fileType.includes('audio') && (
+        <UploadedAudio blob={file} fileName={fileName} onRemove={removeFile} />
       )}
     </>
   );

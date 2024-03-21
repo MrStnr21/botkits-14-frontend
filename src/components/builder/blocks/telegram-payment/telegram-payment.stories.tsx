@@ -3,6 +3,7 @@ import TelegramPayment from './telegram-payment';
 
 const data = {
   name: 'TelegramPay',
+  data: [],
   goodsName: '',
   description: '',
   payment: 0,
