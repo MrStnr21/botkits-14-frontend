@@ -6,16 +6,17 @@ import { sizeFormated } from '../../../../../../utils/utils';
 
 export type TUploadedDockProps = {
   blob: Blob;
+  fileName?: string;
   onRemove: () => void;
 };
 
-const UploadedDock: FC<TUploadedDockProps> = ({ blob, onRemove }) => {
+const UploadedDock: FC<TUploadedDockProps> = ({ blob, fileName, onRemove }) => {
   const isRequired = blob.size <= 1024 * 1024 * 10;
   const Icon = isRequired ? DocImage : DocErrorImage;
   return (
     <div className={`${styles.result} ${!isRequired && styles.result_error}`}>
       <Icon className={styles.result__icon} />
-      <p className={styles.result__name}>no name</p>
+      <p className={styles.result__name}>{fileName}</p>
       <p className={styles.result__size}>{sizeFormated(blob.size)}</p>
       <button
         type="button"

@@ -5,10 +5,15 @@ import { ReactComponent as PlayImage } from '../../../../../../images/icon/add c
 
 export type TUploadedAudioProps = {
   blob: Blob;
+  fileName?: string;
   onRemove: () => void;
 };
 
-const UploadedAudio: FC<TUploadedAudioProps> = ({ blob, onRemove }) => {
+const UploadedAudio: FC<TUploadedAudioProps> = ({
+  blob,
+  fileName,
+  onRemove,
+}) => {
   const src = URL.createObjectURL(blob);
   const audio = new Audio(src);
   const [duration, setDuration] = useState<number>(audio.duration);
@@ -32,7 +37,7 @@ const UploadedAudio: FC<TUploadedAudioProps> = ({ blob, onRemove }) => {
         onClick={onClick}
         className={`${styles.result__icon} ${styles.result__icon_interactive}`}
       />
-      <p className={styles.result__name}>no name</p>
+      <p className={styles.result__name}>{fileName}</p>
       <p className={styles.result__size}>{getTimeMS(duration)}</p>
       <button
         onClick={onRemove}

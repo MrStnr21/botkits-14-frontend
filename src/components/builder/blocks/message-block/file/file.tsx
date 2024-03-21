@@ -12,9 +12,10 @@ import { addFileToRemove } from '../../../utils';
 type TdataProps = {
   fileId: string;
   fileType: string;
+  fileName?: string;
 };
 
-const File: FC<TdataProps> = ({ fileId, fileType }) => {
+const File: FC<TdataProps> = ({ fileId, fileType, fileName }) => {
   const [file, setFile] = useState<Blob | null>(null);
   const removeFileF = removeFileFlow();
   const id = useNodeId() || '';
@@ -26,7 +27,7 @@ const File: FC<TdataProps> = ({ fileId, fileType }) => {
   }, []);
 
   const removeFile = () => {
-    addFileToRemove(fileId, id);
+    addFileToRemove('1', id);
     removeFileF(fileId);
   };
   return (
@@ -38,10 +39,10 @@ const File: FC<TdataProps> = ({ fileId, fileType }) => {
         <UploadedPicture blob={file} onRemove={removeFile} />
       )}
       {file && fileType.includes('application') && (
-        <UploadedDock blob={file} onRemove={removeFile} />
+        <UploadedDock blob={file} fileName={fileName} onRemove={removeFile} />
       )}
       {file && fileType.includes('audio') && (
-        <UploadedAudio blob={file} onRemove={removeFile} />
+        <UploadedAudio blob={file} fileName={fileName} onRemove={removeFile} />
       )}
     </>
   );

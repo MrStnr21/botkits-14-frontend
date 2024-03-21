@@ -81,7 +81,7 @@ const TelegramPayment: FC<TBlockProps<TTelegramPayBlock>> = ({ data }) => {
         .then((fileData) => {
           setFlowData({
             path: ['data', 'data'],
-            value: fileData,
+            value: [fileData],
           });
         })
         .catch(() =>

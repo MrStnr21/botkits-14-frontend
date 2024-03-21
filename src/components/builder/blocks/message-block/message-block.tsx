@@ -155,7 +155,7 @@ const MessageBlock: FC<TBlockProps<TMessageBlock>> = ({ data }) => {
         .then((resData) => {
           setFlowData({
             path: ['data', 'data'],
-            value: [...data.data, resData[resData.length - 1]],
+            value: [...data.data, resData],
           });
         })
         .catch(() =>
