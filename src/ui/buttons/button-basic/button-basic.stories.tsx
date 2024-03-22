@@ -3,7 +3,7 @@ import ButtonBasic, { IButtonBasic } from './button-basic';
 import IconMapping from '../../icon/icon-mapping';
 
 const meta: Meta<IButtonBasic> = {
-  component: ButtonBasic,
+  component: ButtonBasic as React.ComponentType<IButtonBasic>,
   title: 'UI/Buttons/ButtonBasic',
   argTypes: {
     icon: {
@@ -35,7 +35,9 @@ const meta: Meta<IButtonBasic> = {
 
 export default meta;
 
-const Template: StoryFn<IButtonBasic> = (args) => <ButtonBasic {...args} />;
+const Template: StoryFn<typeof ButtonBasic> = (args) => (
+  <ButtonBasic {...args} />
+);
 
 export const ButtonBasicComponent = {
   args: {

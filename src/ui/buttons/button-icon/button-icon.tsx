@@ -10,12 +10,14 @@ export interface IButtonIcon extends IButtonBasic {
   btnStyle?: string;
   /** Дополнительный класс */
   extraClass?: string;
+  ref?: HTMLButtonElement | undefined;
 }
 
 const ButtonIcon: FC<IButtonIcon> = ({
   btnStyle = '',
   isIconColored = true,
   extraClass = '',
+  ref,
   ...rest
 }) => {
   const cx = cn.bind(styles);
