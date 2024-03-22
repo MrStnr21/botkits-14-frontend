@@ -33,7 +33,7 @@ const ButtonBasic = forwardRef<HTMLButtonElement, IButtonBasic>(
     {
       children,
       icon,
-      iconType = 'basic',
+      iconType,
       isIconColored = false,
       btnStyle,
       type = 'button',
