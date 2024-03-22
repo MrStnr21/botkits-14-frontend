@@ -28,6 +28,7 @@ function useForm<T extends TFormValues>(inputValues: T) {
       ...values,
       [name]: { value, isValid },
     });
+    console.log(values);
   };
 
   return {

@@ -27,7 +27,7 @@ import {
 import backgroundImage from '../../images/roboSuccess.png';
 import useScrollbar from '../../services/hooks/use-scrollbar';
 
-import stylesSignup from './signup.module.scss';
+import styles from './signup.module.scss';
 import 'overlayscrollbars/overlayscrollbars.css';
 import Typography from '../../ui/typography/typography';
 
@@ -35,7 +35,6 @@ type TSignupFormState = {
   username: TInputValue;
   email: TInputValue;
   password: TInputValue;
-  phone: TInputValue;
   phoneNumberMain: TInputValue;
 };
 
@@ -59,7 +58,6 @@ const Signup: FC = () => {
       username: { value: '', isValid: false },
       email: { value: '', isValid: false },
       password: { value: '', isValid: false },
-      phone: { value: '', isValid: false },
       phoneNumberMain: { value: '', isValid: false },
     });
 
@@ -75,7 +73,6 @@ const Signup: FC = () => {
     setPhoneCode(newCode);
     setValues({
       ...values,
-      phone: { ...values.phone, value: newCode + values.phone },
     });
     setVisibleModal(false);
     setVisible(false);
@@ -106,17 +103,17 @@ const Signup: FC = () => {
     />
   ) : (
     <RegLogResLayout title="Регистрация">
-      <div className={stylesSignup.signupFormContainer}>
-        <div className={stylesSignup.signupSocialContainer}>
+      <div className={styles.signupFormContainer}>
+        <div className={styles.signupSocialContainer}>
           <Typography
             tag="h2"
             fontFamily="secondary"
-            className={stylesSignup.signupTitle}
+            className={styles.signupTitle}
           >
             Создай аккаунт с помощью
           </Typography>
-          <div className={stylesSignup.socialContainer}>
-            <div className={stylesSignup.socialMain}>
+          <div className={styles.socialContainer}>
+            <div className={styles.socialMain}>
               <ButtonAddSocial
                 social="google"
                 size="small"
@@ -136,7 +133,7 @@ const Signup: FC = () => {
                 onClick={handlerAuthMailru}
               />
             </div>
-            <div className={stylesSignup.socialMain}>
+            <div className={styles.socialMain}>
               <ButtonAddSocial
                 social="vk"
                 size="small"
@@ -161,16 +158,16 @@ const Signup: FC = () => {
             </div>
           </div>
         </div>
-        <div className={stylesSignup.signupInputsContainer}>
-          <Typography tag="h2" className={stylesSignup.signupTitleForm}>
+        <div className={styles.signupInputsContainer}>
+          <Typography tag="h2" className={styles.signupTitleForm}>
             или
           </Typography>
           <form
-            className={stylesSignup.inputsForm}
+            className={styles.inputsForm}
             onSubmit={handleSignup}
             noValidate
           >
-            <div className={stylesSignup.inputsContainer}>
+            <div className={styles.inputsContainer}>
               <Input
                 placeholder="Имя"
                 name="username"
@@ -202,11 +199,11 @@ const Signup: FC = () => {
                 type="password"
                 required
               />
-              <div className={stylesSignup.inputsPhoneContainer}>
+              <div className={styles.inputsPhoneContainer}>
                 <MuiTelInput
                   defaultCountry={DEFAULT_PHONE_CODE.country}
                   value={phoneCode}
-                  className={stylesSignup.phoneCodeSelect}
+                  className={styles.phoneCodeSelect}
                   onChange={handleChangeCodePhone}
                   InputProps={{
                     onClick: () => {
@@ -246,7 +243,7 @@ const Signup: FC = () => {
                 />
               </div>
             </div>
-            <div className={stylesSignup.formsButton}>
+            <div className={styles.formsButton}>
               <Button
                 variant="default"
                 size="large"
@@ -257,24 +254,24 @@ const Signup: FC = () => {
                 создать аккаунт
               </Button>
               {userData.signupError && (
-                <Typography tag="p" className={stylesSignup.incorrect_text}>
+                <Typography tag="p" className={styles.incorrect_text}>
                   {userData.signupErrorText}
                 </Typography>
               )}
             </div>
           </form>
-          <div className={stylesSignup.signupReadyContainer}>
-            <Typography tag="span" className={stylesSignup.signupReadyTitle}>
+          <div className={styles.signupReadyContainer}>
+            <Typography tag="span" className={styles.signupReadyTitle}>
               Уже прошли регистрацию?
             </Typography>
             <Link
               to={{ pathname: routesUrl.signin }}
-              className={stylesSignup.signinLink}
+              className={styles.signinLink}
             >
               Войти
             </Link>
           </div>
-          <div className={stylesSignup.signupBackgroundImage} />
+          <div className={styles.signupBackgroundImage} />
         </div>
       </div>
     </RegLogResLayout>
