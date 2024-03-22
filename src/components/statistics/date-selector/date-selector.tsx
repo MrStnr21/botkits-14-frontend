@@ -2,8 +2,8 @@ import { FC, useRef, useState } from 'react';
 import styles from './date-selector.module.scss';
 import Menu from '../../../ui/menus/menu/menu';
 import useOutsideClickAndEscape from '../../../utils/hooks/useOutsideClickAndEscape';
-import PeriodSelectButton from '../period-select-button/period-select-button';
 import type { Option } from '../../../utils/types';
+import ButtonBasic from '../../../ui/buttons/button-basic/button-basic';
 
 export interface IDateSelector {
   currentOption: Option;
@@ -53,13 +53,16 @@ const DateSelect: FC<IDateSelector> = ({
 
   return (
     <div className={styles.container}>
-      <PeriodSelectButton
+      <ButtonBasic
+        icon="chevronDown"
+        iconType="right"
         ref={buttonRef}
-        option={selectedOption}
-        isOpen={isOpen}
         onClick={toggleDropdown}
-        formatLabel={shortenLabel}
-      />
+        btnStyle={`${styles.button} ${isOpen ? styles.rotated : ''}`}
+        isIconColored
+      >
+        {shortenLabel(selectedOption.label)}
+      </ButtonBasic>
       {isOpen && (
         <Menu
           ref={menuRef}
