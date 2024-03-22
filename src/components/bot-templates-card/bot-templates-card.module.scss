@@ -55,24 +55,34 @@
   gap: 12px;
 }
 
-.buttons{
+.buttons {
   display: flex;
   justify-content: end;
   gap: 12px;
   padding-top: 12px;
 }
 
-.dropdown{
+.dropdown {
   flex-direction: column;
   gap: 4px;
   width: 175px;
   box-shadow: $l-box-shadow;
-  background-color: white;
+  background-color: $off-white;
   border-radius: $l-border-radius;
   position: absolute;
-  top:0;
-  left:30px;
+  top: 0;
+  left: 30px;
   z-index: 2;
+}
+
+.button {
+  // @include size(100%, 100%);
+  height: 32px;
+  align-items: center;
+  @include indents((0 12px 0 12px), 0);
+  @include line-sizes($xl-line-height, 0.02em);
+  border-radius: $xs-border-radius;
+  transition: all 0.1s linear;
 }
 
 .edit {
@@ -81,4 +91,12 @@
   @include white-hovered();
   @include blue-icon();
   border-radius: $border-radius-circle;
+}
+
+.submit {
+  @include common-submit-btn-color();
+}
+
+.cancel {
+  @include cancel-btn-color();
 }
