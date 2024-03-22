@@ -1,0 +1,41 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+
+import * as ButtonIconStories from './button-icon.stories';
+
+<Meta of={ButtonIconStories} />
+
+# ButtonIcon
+Частный случай иконки ButtonBasic:
+
++ **icon** - иконка. Полный список - ```icon-mapping.ts```
++ **isIconColored** - флаг, определяющий, можно ли управлять цветом иконки из CSS. По умолчанию ```false```
++ **btnStyle** - устанавливает цвет и размер иконки, добавляет дополнительную стилизацию, например, анимацию.
++ **другие пропсы** - все стандартные атрибуты HTML кнопки и пропсы ButtonBasic
+Тип кнопки по умолчанию - ```button```.
+Базовая кнопка практически не имеет своих стилей:
+
+## Стилизация
+В файле ```src/stylesheets/_buttonStyling.css``` лежат миксины, задающие основные стили кнопок
+
+### Пример кнопки
+```jsx
+<ButtonIcon
+  icon="settings"
+  onClick={onClick}
+  btnStyle={styles.button}
+  isIconColored
+/>
+```
+```css
+@use 'pathTo/stylesheets/buttonStyling' as *;
+
+.button {
+  @include standart-icon();
+  @include blue-icon();
+  @include blue-text();
+  // остальные стили - padding, width и т.д.
+}
+```
+
+<Canvas of={ButtonIconStories.ButtonIconComponent} />
+<Controls />

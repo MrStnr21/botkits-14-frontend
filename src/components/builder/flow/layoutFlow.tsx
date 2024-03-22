@@ -279,8 +279,7 @@ const LayoutFlow: FC = () => {
         <ButtonIcon
           icon="tag"
           onClick={() => toggleTrigger(true)}
-          btnStyle="whiteBlack"
-          extraClass={styles.triggerButton}
+          btnStyle={styles.triggerButton}
         />
         <div className={cx('upWrapper')}>
           <div className={cx('wrapper')}>

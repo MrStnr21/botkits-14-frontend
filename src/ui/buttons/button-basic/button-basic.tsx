@@ -5,9 +5,7 @@ import { IconName } from '../../icon/utils';
 
 export interface IButtonBasic
   extends Omit<HTMLProps<HTMLButtonElement>, 'ref'> {
-  /** Текст или контент кнопки */
   children?: ReactNode;
-  /** Имя иконки */
   icon?: IconName;
   iconType?: 'basic' | 'left' | 'right';
   isIconColored?: boolean;
@@ -17,6 +15,19 @@ export interface IButtonBasic
   ref?: HTMLButtonElement | null;
 }
 
+/**
+ * Компонент-основа для кнопки.
+ *
+ * @param {ReactNode} children - текст кнопки
+ * @param {IconName} icon - имя иконки
+ * @param {'basic' | 'left' | 'right'} iconType - положение иконки - по центру либо слева, слева или справа от текста
+ * @param {boolean} isIconColored - допускает ли иконка изменение цвета через css
+ * @param {string} btnStyle - стилизация кнопки
+ * @param {() => void | ((value: unknown) => void)} onClick - обработчик клика
+ * @param {'button' | 'submit' | 'reset'} type - тип кнопки
+ * @default 'button'
+ * @param {HTMLButtonElement | null} ref - Ref для элемента кнопки
+ */
 const ButtonBasic = forwardRef<HTMLButtonElement, IButtonBasic>(
   (
     {
@@ -41,9 +52,11 @@ const ButtonBasic = forwardRef<HTMLButtonElement, IButtonBasic>(
         {icon && iconType === 'left' && (
           <Icon icon={icon} isColored={isIconColored} />
         )}
-        {children && <span className={styles.text}>{children}</span>}
         {icon && iconType === 'basic' && (
           <Icon icon={icon} isColored={isIconColored} />
+        )}
+        {children && !(iconType === 'basic') && (
+          <span className={styles.text}>{children}</span>
         )}
         {icon && iconType === 'right' && (
           <Icon icon={icon} isColored={isIconColored} />
