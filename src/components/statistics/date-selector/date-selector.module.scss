@@ -18,6 +18,11 @@ div.dropdown {
   text-align: center;
   padding: 10px;
 
+  svg {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+
   span {
     @include font('Open Sans', $s-font-size, $bold, $primary-persian-blue-default);
     @include line-sizes($xl-line-height, $m-letter-space);
@@ -25,7 +30,6 @@ div.dropdown {
   &.rotated {
     svg {
       transform: rotate(-180deg);
-      transition: transform 0.3s ease;
     }
   }
 }
