@@ -7,7 +7,6 @@ import Avatar from '../../ui/avatar/avatar';
 import imageAvatar from '../../images/icon/template/answering machine.svg';
 import Menu from '../../ui/menus/menu/menu';
 import useOutsideClickAndEscape from '../../utils/hooks/useOutsideClickAndEscape';
-import ButtonBotTemplate from '../../ui/buttons/button-bot-template/button-bot-template';
 import InputTemplate from '../../ui/inputs/input-template/input-template';
 import { updateBotTemplatesAction } from '../../services/actions/bots/templatesBots';
 import { TBotTemplate } from '../../services/types/bot';
@@ -20,6 +19,7 @@ import useForm, { TInputValue } from '../../services/hooks/use-form';
 import routesUrl from '../../utils/routesData';
 import ButtonIcon from '../../ui/buttons/button-icon/button-icon';
 import ConfirmDeletePopup from '../popups/confirm-delete-popup/confirm-delete-popup';
+import ButtonBasic from '../../ui/buttons/button-basic/button-basic';
 
 // import { BUTTON_NAME } from '../../utils/constants';
 
@@ -230,16 +230,18 @@ const BotTemplatesCard: FC<IBotTemplatesCard> = ({
         />
       </div>
       <div className={styles.buttons}>
-        <ButtonBotTemplate
+        <ButtonBasic
           onClick={clearInputs}
-          buttonHtmlType="button"
-          color="white"
+          btnStyle={`${styles.button} ${styles.cancel}`}
         >
           Отменить
-        </ButtonBotTemplate>
-        <ButtonBotTemplate buttonHtmlType="submit" color="blue">
+        </ButtonBasic>
+        <ButtonBasic
+          type="submit"
+          btnStyle={`${styles.button} ${styles.submit}`}
+        >
           Сохранить изменения
-        </ButtonBotTemplate>
+        </ButtonBasic>
       </div>
       {isOpen && (
         <ModalPopup onClick={() => setOpenPupup(false)}>

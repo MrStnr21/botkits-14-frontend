@@ -1,5 +1,6 @@
 @use '../../../stylesheets/variables' as *;
 @use '../../../stylesheets/mixins' as *;
+@use '../../../stylesheets/buttonStyling' as *;
 
 .container {
   position: relative;
@@ -9,3 +10,27 @@ div.dropdown {
   @include position(absolute, 56px, 0);
   width: 264px;
 }
+
+.button {
+  @include stats-btn();
+  @include flex(row, center, center, 12px);
+  min-width: 170px;
+  text-align: center;
+  padding: 10px;
+
+  svg {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+
+  span {
+    @include font('Open Sans', $s-font-size, $bold, $primary-persian-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
+  }
+  &.rotated {
+    svg {
+      transform: rotate(-180deg);
+    }
+  }
+}
+

@@ -1,0 +1,71 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+
+import * as ButtonBasicStories from './button-basic.stories';
+
+<Meta of={ButtonBasicStories} />
+
+# ButtonBasic
+
++ **children** - текст на кнопке
++ **icon** - иконка. Полный список - ```icon-mapping.ts```
++ **iconType** - расположение иконки. Слева, справа от текста либо только иконка по центру
++ **isIconColored** - флаг, определяющий, можно ли управлять цветом иконки из CSS. По умолчанию ```false```
++ **btnStyle** - устанавливает цвет и размер иконки, добавляет дополнительную стилизацию, например, анимацию.
++ **ref** - ссылка для прямого доступа к DOM-элементу кнопки
++ **другие пропсы** - все стандартные атрибуты HTML кнопки
+Тип кнопки по умолчанию - ```button```.
+Базовая кнопка практически не имеет своих стилей:
+
+```css
+.buttonBasic {
+  @include flex();
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+
+  &:hover {
+    cursor: $cursor;
+  }
+}
+```
+
+## Стилизация
+В файле ```src/stylesheets/_buttonStyling.css``` лежат миксины, задающие основные стили кнопок
+
+### Пример кнопки
+```jsx
+<ButtonBasic
+  icon="chevronDown"
+  iconType="right"
+  onClick={onClick}
+  btnStyle={styles.button}
+  isIconColored
+>
+  Открыть
+</ButtonBasic>
+```
+```css
+@use 'pathTo/stylesheets/buttonStyling' as *;
+
+.button {
+  @include standart-icon();
+  @include blue-icon();
+  @include blue-text();
+  // остальные стили - padding, width и т.д.
+
+  // доступ к тексту и иконке для стилизации, не описанной в миксинах
+  span {
+    @include font('Open Sans', $s-font-size, $bold, $primary-persian-blue-default);
+    @include line-sizes($xl-line-height, $m-letter-space);
+  }
+  &:hovered {
+    svg {
+      transform: rotate(-180deg);
+      transition: transform 0.3s ease;
+    }
+  }
+}
+```
+
+<Canvas of={ButtonBasicStories.ButtonBasicComponent} />
+<Controls />

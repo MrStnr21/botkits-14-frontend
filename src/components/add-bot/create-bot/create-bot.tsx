@@ -7,16 +7,6 @@ import { addBotAction } from '../../../services/actions/bots/addBot';
 
 import { useAppDispatch } from '../../../services/hooks/hooks';
 
-import { ReactComponent as Odnoklassniki } from '../../../images/icon/40x40/odnoklassniki/hover.svg';
-import { ReactComponent as Telegram } from '../../../images/icon/40x40/telegram/hover.svg';
-import { ReactComponent as Whatsapp } from '../../../images/icon/40x40/whatsapp/hover.svg';
-import { ReactComponent as Facebook } from '../../../images/icon/40x40/facebook/hover.svg';
-import { ReactComponent as Instagram } from '../../../images/icon/40x40/insta/hover.svg';
-import { ReactComponent as Viber } from '../../../images/icon/40x40/viber/hover.svg';
-import { ReactComponent as WebSite } from '../../../images/icon/40x40/web/hover.svg';
-import { ReactComponent as Alisa } from '../../../images/icon/40x40/alisa/hover.svg';
-import { ReactComponent as VK } from '../../../images/icon/40x40/vk/hover.svg';
-
 import StepperFillBot from '../stepper-fill-bot/stepper-fill-bot';
 import LoadPages from '../load-pages/load-pages';
 import useForm, { TInputValue } from '../../../services/hooks/use-form';
@@ -25,10 +15,8 @@ import Input from '../../../ui/inputs/input/input';
 
 import routesUrl from '../../../utils/routesData';
 import Typography from '../../../ui/typography/typography';
-
-interface ImageMap {
-  [key: string]: JSX.Element;
-}
+import Icon from '../../../ui/icon/icon';
+import messengerIcons from '../../bot-card/utils';
 
 export interface ICreateBot {
   botName: string;
@@ -42,18 +30,6 @@ type TBotFormState = {
   botName: TInputValue<string>;
   accessKey: TInputValue<string>;
   uri: TInputValue<string>;
-};
-
-const img: ImageMap = {
-  Facebook: <Facebook className={styles.create_main_bot_name_img} />,
-  Telegram: <Telegram className={styles.create_main_bot_name_img} />,
-  Viber: <Viber className={styles.create_main_bot_name_img} />,
-  VK: <VK className={styles.create_main_bot_name_img} />,
-  Odnoklassniki: <Odnoklassniki className={styles.create_main_bot_name_img} />,
-  Алиса: <Alisa className={styles.create_main_bot_name_img} />,
-  Whatsapp: <Whatsapp className={styles.create_main_bot_name_img} />,
-  Instagram: <Instagram className={styles.create_main_bot_name_img} />,
-  'Веб-сайт': <WebSite className={styles.create_main_bot_name_img} />,
 };
 
 const CreateBot: FC<ICreateBot> = ({
@@ -129,7 +105,11 @@ const CreateBot: FC<ICreateBot> = ({
       {botName ? (
         <div className={styles.create_main}>
           <div className={styles.create_main_bot_name}>
-            {img[botName]}
+            <Icon
+              icon={messengerIcons[botName]}
+              isColored={false}
+              extraClass={styles.create_main_bot_name_img}
+            />
             <Typography
               tag="h3"
               fontFamily="secondary"

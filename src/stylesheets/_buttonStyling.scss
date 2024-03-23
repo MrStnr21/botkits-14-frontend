@@ -1,6 +1,7 @@
 @use './variables' as *;
 @use './mixins' as *;
 
+// размер иконки
 @mixin standart-icon() {
   svg {
     @include size(24px, 24px);
@@ -23,7 +24,6 @@
 }
 
 // цвет иконки
-
 @mixin black-icon() {
   svg {
     color: $primary-oxford-blue-default;
@@ -63,7 +63,6 @@
 }
 
 // цвет текста
-
 @mixin blue-text() {
   span {
     color: $primary-persian-blue-default;
@@ -77,5 +76,61 @@
     span {
       color: $grey-2;
     }
+  }
+}
+
+
+// Цветовая тема - фон, текст, иконка
+@mixin common-submit-btn-color {
+  color: $off-white;
+
+  background-color: $primary-persian-blue-default;
+
+  &:hover {
+    background-color: $primary-persian-blue-press;
+  }
+
+  &:active {
+    background-color: $primary-persian-blue-hover;
+  }
+
+  &:disabled {
+    background-color: $blue-disabled;
+  }
+}
+
+@mixin cancel-btn-color {
+  background-color: $off-white;
+  color: $grey-3;
+
+  &:hover {
+    color: $primary-persian-blue-default;
+  }
+
+  &:active {
+    color: $primary-persian-blue-default;
+  }
+
+  &:disabled {
+    color: $secondary-cultured-press;
+  }
+}
+
+
+@mixin stats-btn() {
+  border-radius: $m-border-radius;
+  background-color: $blue-disabled;
+
+  &:hover {
+    background-color: $secondary-cultured-default;
+  }
+
+  &:disabled {
+    background-color: $secondary-cultured-hover;
+  }
+  @include blue-icon();
+
+  svg {
+    @include size(16px, 16px);
   }
 }
